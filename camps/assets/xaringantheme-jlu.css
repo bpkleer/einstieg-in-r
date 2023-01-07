@@ -1,0 +1,547 @@
+/**
+CSS based on work of 
+
+a) Yihui Xie (xaringan slides)
+https://github.com/yihui/xaringan
+
+b)
+Garth Tarr (U Sydney theme)
+https://github.com/garthtarr/sydney_xaringan
+**/
+
+/********* 
+
+Slide Styles 
+
+**********/
+
+/* Standard slide */
+.remark-slide-content {
+  background-color: #FFFFFF;
+  font-size: 20px;
+  font-family: "Fira Sans";
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 1em 2em 1em 2em
+}
+
+/* Title slide */
+.title {
+  background-image: url("./jlu.jpg"), url(./blue.png), url(./lightblue.png);
+  background-size: 16.5%, 95%, 90%;
+  background-position: 95% 11%, 0% 80%, 100% 100%;
+}
+
+/* section slide */
+.section {
+  background-color: #FFFFFF; 
+  margin: 0.625em 0.9375em 0 0.9375em;
+  text-shadow: none;
+}
+
+/* inverse section slide jlu-blue */
+.inverse {
+  background-color: #0069B3;
+  margin: 0.625em 0.9375em 0 0.9375em;
+  text-shadow: none;
+}
+
+/* goodbye slide */
+.goodbye {
+  border-top: 0;
+  background-image: url(./blue.png), url(./lightblue2.png);
+  background-size: 95%, 90%;
+  background-position: 0% 81%, 80% 40%;
+}
+
+/* Removes colored bar from top of the slide resulting in a clear slide */
+.clear{
+  border-top: 0 solid #FFFFFF;
+}
+
+.appendix{
+  
+}
+
+/************
+
+scrollable slides 
+
+*************/
+
+.scrollable{
+  height: 25em;
+  overflow-y: auto;
+}
+
+/* scrollable code chunks */
+.scroll-box-8 {
+  height:8em;
+  overflow-y: scroll;
+}
+.scroll-box-10 {
+  height:10em;
+  overflow-y: scroll;
+}
+.scroll-box-12 {
+  height:12em;
+  overflow-y: scroll;
+}
+.scroll-box-14 {
+  height:14em;
+  overflow-y: scroll;
+}
+.scroll-box-16 {
+  height:16em;
+  overflow-y: scroll;
+}
+.scroll-box-18 {
+  height:18em;
+  overflow-y: scroll;
+}
+.scroll-box-20 {
+  height:20em;
+  overflow-y: scroll;
+}
+.scroll-box-22 {
+  height:22em;
+  overflow-y: scroll;
+}
+.scroll-box-24 {
+  height:24em;
+  overflow-y: scroll;
+}
+
+
+/********** 
+
+Headers & Font sizes
+
+***********/
+
+h1 {
+  font-weight: normal;
+  color: #0069B3;
+}
+
+h2, h3, h4 {
+  color: #0069B3;
+  text-shadow: none;
+  font-weight: 400;
+  text-align: left;
+}
+
+.remark-slide-content h1 {
+  font-size: 45px;
+  color: #0069B3;
+}
+
+.remark-slide-content h2 {
+  font-size: 35px;
+  color: #0069B3;
+  margin: 0em;
+}
+
+.remark-slide-content h3 {
+  font-size: 30px;
+  color: #0069B3;
+  margin: 0em;
+}
+
+.left-column h2, .left-column h3, .left-column h4 {
+  color: #0069B3;
+}
+
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #0069B3;
+}
+
+.pull-left h2, .pull-right h2, .pull-left h3, .pull-right h3 {
+    color: #53606B;
+}
+
+
+.title h1  {
+  color: #FFFFFF;
+  font-size: 35px;
+  text-shadow: none;
+  font-weight: 400;
+  text-align: left;
+  padding-top: 10.5em;
+  padding-left: 2.5em;
+}
+
+.title h2  {
+  color: #FFFFFF;
+  text-shadow: none;
+  font-weight: 300;
+  font-size: 30px;
+  text-align: left;
+  margin-top: -1em;
+  margin-bottom: 0.75em;
+  padding-left: 3em;
+}
+
+.title h3  {
+  color: #FFFFFF;
+  text-shadow: none;
+  font-weight: 300;
+  font-size: 20px;
+  text-align: left;
+  margin-top: -1.35em;
+  margin-bottom: -0.5em;
+  padding-left: 4.6em;
+  padding-bottom: 0.75em;
+}
+
+.goodbye h1 {
+  color: #FFFFFF;
+  font-size: 40px;
+  text-shadow: none;
+  font-weight: 400;
+  text-align: left;
+  margin-top: 8em;
+  margin-left: 1em;
+  margin-bottom: 0.1em;
+  padding-top: 0.8em;
+  padding-left: 0.5em; 
+}
+
+.section h1, h2, h3 {
+  color: #0069B3;
+}
+
+.inverse h1, h2, h3{
+  color: #FFFFFF;
+}
+
+/* Section Underlines */
+hr, .section h1::after {
+  content: '';
+  display: block;
+  border: none;
+  background-color: #0069B3;
+  height: 2px;
+}
+
+hr, .inverse h1::after {
+  content: '';
+  display: block;
+  border: none;
+  background-color: #FFFFFF;
+  height: 2px;
+}
+
+/*********
+
+Slide numbers &
+
+Progressbar
+
+*********/
+
+/* Slide numbers */
+.remark-slide-number {
+  font-size: 13pt;
+  color: #53606B;
+  opacity: 1;
+}
+
+.inverse .remark-slide-number {
+  font-size: 13pt;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+/* no numbers on title, goodbye, section */
+.title .remark-slide-number {
+  display: none;
+}
+
+.goodbye .remark-slide-number {
+  display: none;
+}
+
+.section .remark-slide-number {
+  display: none;
+}
+
+.inverse .remark-slide-number {
+  display: none;
+}
+
+/* Progress bar */
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 8px;
+  opacity: 0.5;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: #53606B;
+}
+
+/********
+
+Fonts
+
+********/
+
+/* Font import */
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,500,500i,700,700i);
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.204/distr/fira_code.css);
+
+/* font for text */
+body {
+  font-family: 'Fira Sans','Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', serif;
+}
+
+/* jlu blue for bold */
+b, strong {
+  color: #0069B3;
+}
+
+/* customized link color */
+a {
+  color: #53606B;
+  opacity: 0. 5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* font for code */
+.remark-code, .remark-inline-code {
+  font-family: 'Fira Code', 'Lucida Console', Monaco, monospace;
+  font-size: 80%;
+}
+
+/*******
+
+Font size and colours
+
+**********/
+/* LaTeX style */
+.Large, .Large .remark-code, .Large .remark-inline-code { font-size: 144%; }
+.large, .large .remark-code, .large .remark-inline-code { font-size: 120%; }
+.small, .small .remark-code, .small .remark-inline-code { font-size: 90%; }
+.footnotesize, .footnotesize .remark-code, .footnotesize .remark-inline-code { font-size: 80%; }
+.scriptsize, .scriptsize .remark-code, .scriptsize .remark-inline-code { font-size: 70%; }
+.tiny, .tiny .remark-code, .tiny .remark-inline-code { font-size: 60%; }
+
+/* Font / Code sizes */
+.font10 , .code10 .remark-code, .code10 .remark-inline-code{ font-size: 10%; }
+.font20 , .code20 .remark-code, .code20 .remark-inline-code{ font-size: 20%; }
+.font30 , .code30 .remark-code, .code30 .remark-inline-code{ font-size: 30%; }
+.font40 , .code40 .remark-code, .code40 .remark-inline-code{ font-size: 40%; }
+.font50 , .code50 .remark-code, .code50 .remark-inline-code{ font-size: 50%; }
+.font60 , .code60 .remark-code, .code60 .remark-inline-code{ font-size: 60%; }
+.font70 , .code70 .remark-code, .code70 .remark-inline-code{ font-size: 70%; }
+.font75 , .code75 .remark-code, .code75 .remark-inline-code{ font-size: 75%; }
+.font80 , .code80 .remark-code, .code80 .remark-inline-code{ font-size: 80%; }
+.font90 , .code90 .remark-code, .code90 .remark-inline-code{ font-size: 90%; }
+.font100, .code100 .remark-code, .code100 .remark-inline-code{ font-size: 100%; }
+.font110, .code110 .remark-code, .code110 .remark-inline-code{ font-size: 110%; }
+.font120, .code120 .remark-code, .code120 .remark-inline-code{ font-size: 120%; }
+.font130, .code130 .remark-code, .code130 .remark-inline-code{ font-size: 130%; }
+.font140, .code140 .remark-code, .code140 .remark-inline-code{ font-size: 140%; }
+.font150, .code150 .remark-code, .code150 .remark-inline-code{ font-size: 150%; }
+.font160, .code160 .remark-code, .code160 .remark-inline-code{ font-size: 160%; }
+.font170, .code170 .remark-code, .code170 .remark-inline-code{ font-size: 170%; }
+.font175, .code175 .remark-code, .code175 .remark-inline-code{ font-size: 175%; }
+.font180, .code180 .remark-code, .code180 .remark-inline-code{ font-size: 180%; }
+.font190, .code190 .remark-code, .code190 .remark-inline-code{ font-size: 190%; }
+.font200, .code200 .remark-code, .code200 .remark-inline-code{ font-size: 200%; }
+
+/**** Colors ****/
+.jlublue { color: #0069B3; }
+.jlulightblue { color: #DCE6EB; }
+.jlugray { color: #53606B; }
+
+/**********
+JLU colors 
+
+JLU blau
+  R=0 G=105 B=179 
+  HEX=#0069B3
+  C=100 Y=50 A=0 N=0
+
+JLU hellblau
+  R=220 G=230 B=235
+  HEX=#DCE6EB
+  C=10 Y=0 A=0 N=10
+
+JLU grau
+  R=83 G=96 B=107
+  HEX=#53606B
+  C=15 Y=0 A=0 N=65
+
+***********/
+
+
+
+
+/**********
+
+Code chunks 
+
+**********/
+
+/* Inline Code */
+.remark-inline-code {
+  /* background: #F5F5F5; /* lighter */
+  background: #e7e8e2; /* darker */
+  border-radius: 0.3em;
+  padding: 0.15em;
+}
+
+.remark-code-line-highlighted	{
+	  background-color: rgba(0, 105, 179, .2);
+	}
+	
+/* Code chunk box */
+.remark-code {
+  background-color: rgba(235, 129, 27, .2);
+}
+
+/*********
+
+Spaltenformate
+
+
+**********/
+
+/* Column ratios */
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+
+.pull-right + * {
+  clear: both;
+}
+
+.pull-left-70 { 
+  float: left; 
+  width: 66.5%; 
+}
+
+.pull-right-30 { 
+  float: right; 
+  width: 28.5%; 
+}
+
+.pull-right-30 + * { 
+  clear: both;
+  }
+
+.pull-left-60 {
+  float: left; 
+  width: 57%; 
+}
+
+.pull-right-40 { 
+  float: right; 
+  width: 38%;
+  }
+  
+.pull-right-40 + * {
+  clear: both;
+  }
+
+.pull-left-50 { 
+  float: left; 
+  width: 47.5%;
+  }
+  
+.pull-right-50 { 
+  float: right; 
+  width: 47.5%; 
+}
+
+.pull-right-50 + * { 
+  clear: both;
+  }
+
+.pull-left-40 { 
+  float: left; 
+  width: 38%; 
+}
+
+.pull-right-60 {
+  float: right;
+  width: 57%;
+  }
+  
+.pull-right-60 + * {
+  clear: both;
+  }
+
+.pull-left-30 {
+  float: left; 
+  width: 28.5%;
+  }
+  
+.pull-right-70 {
+  float: right;
+  width: 66.5%;
+  }
+  
+.pull-right-70 + * { 
+  clear: both;
+  }
+
+/*******
+
+Social media class
+
+********/
+
+/* social media class (title slide) */
+.social {
+  text-align: left;
+}
+
+.goodbye .social {
+  text-align: left;
+  margin-left: 15px;
+  padding-left: 50px; 
+  margin-top: 1em;
+  fill: #FFFFFF;
+}
+
+.title .social {
+  margin-bottom: 0
+  margin-top: 0;
+  fill: #0069B3;
+  padding-left: 4.75em;
+}
+
+/**********
+
+Setup for PDF printing
+
+**********/
+@page { margin: 0; }
+
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}

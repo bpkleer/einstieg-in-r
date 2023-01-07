@@ -1,0 +1,90 @@
+---
+title: "Dataframes"  # Titel der Seite
+weight: 204  # Individuelles Gewicht 
+menuTitle: "Dataframes" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datentypen" , "dataframes"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Neben Vektoren und Faktoren und gibt es noch den für uns wichtigen Objekttyp <strong>data frame</strong>. Ein <strong>data frame</strong> ist einfach eine Verbindung mehrerer Vektoren (Variablen) derselben Länge in einer Matrix. Im konventionellen Format (<em>wide-Format</em>) sind in den Spalten die Variablen vorzufinden und in den Zeilen die Befragten</p>
+<ul>
+<li><p>Spalten: Vektoren, Faktoren (Variablen)</p></li>
+<li><p>Zeilen: Fälle (einzelne Beobachtungseinheiten, z.B. Befragte)</p></li>
+</ul>
+<p>Machen wir das ganze am Beispiel des Datensatzes, den wir während des Kurses benutzen werden: <strong>Panem Social Survey</strong> (<code>pss</code>). Dies ist ein Trainingsdatensatz ausgerichtet am European Social Survey, der aber deutlich weniger Variablen/Fälle beinhaltet (hier nur 10 Fälle und 4 Variablen):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">idno</th>
+<th align="left">district</th>
+<th align="left">gndr</th>
+<th align="right">agea</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">10000</td>
+<td align="left">Distrikt 1</td>
+<td align="left">male</td>
+<td align="right">41</td>
+</tr>
+<tr class="even">
+<td align="right">10001</td>
+<td align="left">Distrikt 1</td>
+<td align="left">male</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="right">10002</td>
+<td align="left">Distrikt 1</td>
+<td align="left">male</td>
+<td align="right">48</td>
+</tr>
+<tr class="even">
+<td align="right">10003</td>
+<td align="left">Distrikt 1</td>
+<td align="left">female</td>
+<td align="right">49</td>
+</tr>
+<tr class="odd">
+<td align="right">10004</td>
+<td align="left">Distrikt 1</td>
+<td align="left">female</td>
+<td align="right">48</td>
+</tr>
+<tr class="even">
+<td align="right">10005</td>
+<td align="left">Distrikt 1</td>
+<td align="left">female</td>
+<td align="right">64</td>
+</tr>
+<tr class="odd">
+<td align="right">10006</td>
+<td align="left">Distrikt 1</td>
+<td align="left">male</td>
+<td align="right">63</td>
+</tr>
+<tr class="even">
+<td align="right">10007</td>
+<td align="left">Distrikt 1</td>
+<td align="left">female</td>
+<td align="right">70</td>
+</tr>
+<tr class="odd">
+<td align="right">10008</td>
+<td align="left">Distrikt 1</td>
+<td align="left">female</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="right">10009</td>
+<td align="left">Distrikt 1</td>
+<td align="left">male</td>
+<td align="right">57</td>
+</tr>
+</tbody>
+</table>
+<p>Hier im Beispiel haben wir im Datensatz vier Variablen: <code>idno</code>, <code>district</code>, <code>gndr</code> sowie <code>agea</code>. Diese sind selbsterklärend: <code>idno</code> ist die unique ID, <code>district</code> ist der Bezirk des Befragten, <code>gndr</code> das Geschlecht und <code>agea</code> das Alter. Oftmals sind Variablen nicht intuitiv herleitbar, so dass man ein Codebook konsultieren muss. Mit dem Handling von größeren Datensätzen werden wir uns im nächsten Lernblock beschäftigen.</p>
+<p>Auf geht’s zur abschließenden Challenge!</p>

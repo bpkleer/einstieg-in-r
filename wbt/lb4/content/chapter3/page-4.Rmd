@@ -1,0 +1,91 @@
+---
+title: "Annahme 3: Homoskedastizität"  # Titel der Seite
+weight: 304  # Individuelles Gewicht 
+menuTitle: "Homoskedastizität" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "homoskedastizitaet"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("lmtest")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+Die dritte Annahme ist **Homoskedastizität**. **Homoskedastizität** bedeutete, dass die Varianz der Resdiuen annähernd gleich ist und nicht variiert. 
+
+Um zu diagnostizieren, ob die Varianzen der Residuen gleiche Varianzen aufweisen, ändern wir das zweite Argument in der Funktion `plot()` auf den Wert `3`:
+```{r assumption3, eval = TRUE}
+plot(
+  olsModel2, 
+  3
+)
+```
+
+$\Rightarrow$ die Punkte sollten gleichmäßig um die horzontale Linie gelegen sein. Mit pseudo-metrischen Daten ist das ganze nur schwer zu interpretieren.
+
+Mit der **library** `ggplot` ist die Darstellung besser, da wir die Datenpunkt jittern lassen können. Wie du `ggplot` genau anwendest, lernst du im Lernblock 5!
+
+```{r assumption3b, eval = TRUE}
+ggplot(
+  olsModel2, 
+  aes(.fitted, 
+      sqrt(abs(.stdresid))
+  )
+) + 
+  geom_point(na.rm = TRUE) +
+  geom_jitter(
+    width = 0.35,
+    height = 0.35
+  ) +
+  stat_smooth(
+    method = "loess",
+    na.rm = TRUE,
+    se = FALSE
+  ) + 
+  xlab("Fitted Values") + 
+  ylab(expression(sqrt("Standardized residuals"))) + 
+  ggtitle("Scale-Location")
+```
+
+$\Rightarrow$ Punkte sollten gleichmäßig um die horizontale Linie streuen.
+
+Wir können auch einen statistischen Test durchführen. Dies ist hilfreich, wenn die grafische Analyse schwerfällt. Dieser Test heißt **Breusch-Pagan-Test**. 
+
+- $H_0:$ Es liegen homoskedastische Residuen vor.
+
+Dazu nutzen wir die Funktion `bptest()` aus der **library** `lmtest`:
+```{r bp-test, eval = TRUE}
+library("lmtest")
+
+bptest(olsModel2)
+```
+
+Der p-Wert zeigt uns an, dass die Nullhypothese nicht abgelehnt werden kann. Wir können daher homskedastische Residuen annehmen und die Annahme als erfüllt ansehen!
+
+## Hilfe bei heteroskedastischen Daten
+Wenn heteroskedastische Daten vorliegen, können wir eine sogenannte *robuste* Schätzungen durchführen. Dies inkludiert mathematische Verfahren, die nicht in dem Maße durch heteroskedastische Daten beeinflusst werden. Die Interpretation der Kennwerte bleibt genau gleich. Dazu verwendest du die **library** `robustbase`:
+```{r robustlm, eval=FALSE}
+install.packages("robustbase")
+library("robustbase")
+
+# Just use function lmrob() as lm()
+olsModel2rob <- lmrob(
+  stfdem ~ 1 + stfeco + trstlgl,
+  data = pss
+)
+
+summary(olsModel2rob)
+```
+
+Das Ergebnis wird ergänzt um sogenannte *robustness weights*, die aber erstmal für dich nicht interessant sind. Der obere Teil wird wie zuvor interpretiert!

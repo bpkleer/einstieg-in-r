@@ -1,0 +1,47 @@
+---
+title: "Automatisierte Kontrolle"  # Titel der Seite
+weight: 305  # Individuelles Gewicht 
+menuTitle: "Kontrolle Lab" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+Hier zeigen wir dir nun, wie du euer Skript für die Gruppenabgabe automatisiert prüfen kannst. Ihr könnt den Test beliebig oft durchführen, es beansprucht aber etwas Zeit, da dies über einen privaten Server und nicht über die Universität läuft. Deshalb arbeiten wir in den Lab-Aufgaben auch nur mit dem fiktiven Datensatz des PSS.
+
+Du hast ja gerade schon gelernt, wie du Änderungen an die globale Version sendest. Habt ihr in der Gruppe eine fertige Version, kann sich eine Person der Gruppe in [gitlab](https://gitlab.ub.uni-giessen.de) einloggen und dort dann die automatische Kontrolle starten. 
+
+Dazu müsst ihr nur drei kleine Schritte machen:
+
+1. Loggt euch in [gitlab](https://gitlab.ub.uni-giessen.de)
+
+2. Gehe zu deiner Gruppe (im Beispiel hier Katnyss)
+
+![Gehe zur Gruppe](../img/pipeline1.png)
+
+3. Gehe in das Repository der jeweiligen Lab Task
+
+![Gehe zur entsprechenden labtask](../img/pipeline2.png)
+
+4. Gehe dann links im Menü auf **CI/CD** -> **Pipelines**
+
+![Gehe zu Pipelines](../img/pipeline3.png)
+5. Klicke dann rechts auf **Run Pipeline**.
+
+![Starte Pipeline](../img/pipeline4.png)
+
+6. Auf der neuen Seite dann einfach nochmal **Run Pipeline** klicken und keine Einstellung verändern.
+
+![Starte Pipeline](../img/pipeline5.png)
+
+7. Die Pipeline ist gestartet und du erhältst folgendes Bild:
+
+![gestartete Pipeline](../img/pipeline6.png)
+
+8. Wenn die Pipeline erfolgreich ist, wird **passed** angezeigt, wenn sie nicht erfolgreich war (Lösungen nicht korrekt) erscheint **failed**. Hier im Beispiel erscheint natürlich **failed**, denn das Skript ist noch leer und kann somit nicht korrekt sein. 
+
+![Failed Pipeline](../img/pipeline7.png)
+
+Wenn eine Pipeline **failed**, musst du weiter am Skript arbeiten und dir nochmal überlegen, was eventuell verändert werden muss. Kommst du oder ihr in der Gruppe nicht weiter, geht in die Sprechstunde der Tutor:innen!
+
+So einfach kannst du deine Abgabe automatisiert kontrollieren. Dies kannst du zu jeder beliebigen Zeit machen! Bitte beachtet, dass der hinterlegte Server nicht unendlich viel Leistung hat, es daher bei den späteren Aufgaben durchaus 10 bis 20 Minuten dauern kann, bis ihr ein Ergebnis in der Pipeline habt. 
+
+Jetzt musst du nur noch lernen, wie du die Kursmaterialien updatest!

@@ -1,0 +1,21 @@
+---
+title: "Kursmaterialien"  # Titel der Seite
+weight: 306  # Individuelles Gewicht 
+menuTitle: "Kursmaterialien" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+Die Kursmaterialien sind als Projekt in RStudio angelegt: **course materials** (im Workspace *Stats<sup>+</sup>: Einstieg in R*). 
+
+Als erstes legst du dir eine eigene Kopie des Projekts an, wie zuvor mit **firststeps**. 
+
+![Kopieren **course materials**](../img/course-project.gif)
+
+Jetzt hast du das Projekt kopiert und kannst selbst darin arbeiten und zum Beispiel Kommentare in die Skripte hinzufügen. Du findest unter `instructions.Rmd` eine Anleitung, wie du den Ordner handhabst. Wir fügen nach und nach Kursmaterialien hinzu. Das Projekt ist mit **gitlab** verbunden und daher kannst du Updates ganz einfach **pullen**. 
+![Lesen der Anweisungen](../img/read-instructions.gif)
+
+Um nun Updates zu erhalten, öffnest du eine neues Skript und führst die Schritte aus den Instruktionen durch. Danach gehst du bei **Environment** zum Tab **Git** und klickst einfach **nur** auf **pull**. Wichtig: Hier musst du nicht den Dreischritt ausführen, da deine persönliche Kommentare ja nicht allen zur Verfügung gestellt werden sollen. Daher nur **pullen**!
+
+![Updaten der Kursmaterialien](../img/git-pull.gif)
+
+Das war's! Jetzt bist du auch fit für **gitlab**!

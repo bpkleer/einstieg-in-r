@@ -1,0 +1,133 @@
+---
+title: "Achsen, Legende & Titel"  # Titel der Seite
+weight: 114  # Individuelles Gewicht 
+menuTitle: "Achsen, Legende & Titel" # Falls Titel zulang ist, hier Kurztitel
+tags: ["achsen", "titel", "legende", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+
+barplotBeyonce <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(values = beyonce_palette(25))
+```
+
+## Achsen
+Oftmals müssen die Achsen angepasst werden, um die Daten besser darzustellen. Wenn du dich gerade ausprobiert hast und versucht hast die Werte überhalb der Balken anzeigen zu lassen, ist es womöglich passiert, dass nicht mehr alle Werte von jedem Balken angezeigt wurden. Dies lag daran, dass die y-Achse zu kurz ist. Du kannst die Achsen ganz einfach in der Funktion `scale_x_continuous()` begrenzen. `continuous` wird hier genutzt, weil es die Hua (Typ *integer* oder *numeric*) handelt. Dort nutzt du für die Begrenzung das Argument `limits = c(...)` und gibst darin das Minimum und das Maximum an.
+
+```{r barplot-axis, eval=TRUE}
+barplotBeyonce <- barplotBeyonce +
+  geom_text(
+    stat = "count", 
+    aes(label = ..count..), 
+    vjust = -2.5, 
+    size = 8,
+    color = "white"
+  ) +
+  scale_y_continuous(
+    limits = c(
+      0, 
+      1750
+    )
+  )
+
+barplotBeyonce
+```
+
+Ebenso kannst du in der Funktion `scale_y_continuous` die Achsenmarkierungen bestimmen. Dies machst du im Argument `breaks` und gibst dort einfach eine Sequenz an. 
+```{r barplot-ticks, eval=TRUE}
+barplotBeyonce <- barplotBeyonce + 
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      1750, 
+      100
+    ),
+    limits = c(
+      0,
+      1750
+    )
+  )
+
+barplotBeyonce
+```
+
+Das gleiche geht für die x-Achse: Du weißt, dass die Variable `edu` ein Faktor mit fünf Leveln (plus `NA`) ist. Es handelt sich also nicht um eine kontinuierliche Variable. Daher benutzt du hier die Funktion `scale_x_discrete()`. 
+```{r barplot-axis-discrete, eval=TRUE}
+barplotBeyonce <- barplotBeyonce + 
+  scale_x_discrete(
+    limits = c(
+      "ES-ISCED I", 
+      "ES-ISCED II",
+      "ES-ISCED III",
+      "ES-ISCED IV",
+      "ES-ISCED V", 
+      NA
+    )
+  ) 
+
+barplotBeyonce
+```
+Du musst also bei nicht-kontinuierlichen Variablen die Ausprägungen anzeigen, die angezeigt werden sollen. 
+
+{{% expand \"Überlege bzw. probiere aus, wie du die `NA`-Kategorie ausschließen kannst?\" %}}
+Nicht immer möchte man auch die `NA`-Kategorie anzeigen. In dem du diese einfach aus der Funktion `scale_x_discrete()` ausschließt, wird sie auch nicht mehr im Plot angezeigt. 
+{{% /expand %}}
+
+{{% expand \"Du möchtest die Reihenfolge ändern, von der höchsten zur niedrigsten Ausprägung. Wie kannst du das machen?\" %}}
+Genau! Du musst einfach nur die Reihenfolge innerhalb der Funktion `scale_x_discrete()` ändern!
+{{% /expand %}}
+
+## Legende
+Gerade erscheint die Legende rechts. Du kannst das beliebig ändern mit dem Argument `legend.position` innerhalb der zusätzlichen Funktion `theme()`:
+```{r barplot-legend, eval=TRUE}
+barplotBeyonce +
+  theme(legend.position = "bottom") # left, right, top oder none
+```
+
+Auch die Beschriftung der Legende kannst du anpassen:
+```{r barlplot-legend2, eval=TRUE}
+barplotBeyonce + 
+  scale_fill_manual(
+    name = "Bildungsniveau",
+    labels = c(
+      "sehr niedrig", 
+      "niedrig",
+      "mittel",
+      "hoch",
+      "sehr hoch", 
+      "NA"
+    ),
+    values = beyonce_palette(25)
+  )
+```
+
+## Titel
+Jetzt fehlen noch angepasste Achsenbeschriftungen und Titel!
+```{r barplot-titles, eval=TRUE}
+barplotBeyonce + 
+  labs(
+    x = "Bildungsniveau", 
+    y = "Häufigkeiten",
+    title = "My first try with ggplot2"
+  )
+```
+
+Alles im Überblick? Gehe weiter!

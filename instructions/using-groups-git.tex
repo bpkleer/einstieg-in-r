@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+%%\usepackage{xunicode}
+%\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Color und Hyperlink packages
+\usepackage{hyperref}
+\usepackage[svgnames,hyperref]{xcolor}
+
+% Table packages
+%\usepackage{booktabs}
+%\usepackage{longtable}
+
+% Code highlighting
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{forest}
+\usepackage{listings}
+\lstset{frame=tb,
+basicstyle=\ttfamily,
+language=R,
+aboveskip=6mm,
+belowskip=6mm,
+showstringspaces=false,
+columns=flexible,
+numbers=none,
+keywordstyle=\color{blue},
+numberstyle=\tiny\color{gray},
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3
+}
+
+%Einstellungen hyperlink
+\hypersetup{
+    colorlinks=true,
+    filecolor=Purple,    
+    linkcolor = Orange,  
+    urlcolor=MediumSeaGreen,
+    citecolor = black,
+    pdftitle={Seminarplan},
+    pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+% how to use Hyperlinks: https://de.overleaf.com/learn/latex/Hyperlinks
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Gebrauchsanweisung Gruppen in gitlab \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+In \textbf{gitlab} können Gruppen zur Organisation genutzt werden. Für die Nutzung in der Lehre bietet sich dies insbesondere an, da in Gruppen nicht nur mehrere Repositories gebündelt werden können, sondern auch \textbf{Subgroups} für Gruppenarbeiten angelegt werden können. Mit \textbf{gitlabber} können dann auch immer alle Subgruppen und alle Repositories einer Gruppe gepullt werden (siehe Anleitung gitlabber).
+
+Die gesamte Gruppe ist wie folgt aufgebaut:
+
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[intro-r-fall21 (Kurs, \textit{Main group})
+  [course materials (\textit{project})]
+  [effie (Gruppe 1, \textit{subgroup 1})
+    [lab tasks (\textit{project})]
+  ]
+  [gale (Gruppe 2, \textit{subgroup 2})
+    [lab tasks (\textit{project})]
+  ]
+  [katniss (Gruppe 3, \textit{subgroup 3})
+    [lab tasks (\textit{project})]
+  ]
+  [peeta (Gruppe 4, \textit{subgroup 4})
+    [lab tasks (\textit{project})]
+  ]
+  [rue (Gruppe 5, \textit{subgroup 5})
+    [lab tasks (\textit{project})]
+  ]
+]
+\end{forest}
+
+\section{Rechtezuteilungen}
+
+\subsection{Hauptgruppe}
+In der Hauptgruppe werden alle Kursteilnehmer:innen als \textbf{Developer} eingetragen. In den Einstellungen ist eingestellt, dass nur \textbf{Maintainer} Projekte erstellen können. In den Einstellungen der Gruppe haben somit Kursteilnehmer:innen nur Leserechte der Repository in der Hauptgruppe und keine Schreibrechte. 
+
+Wir haben uns dazu entschieden, nur Leserechte einzustellen, da dies der erste Kontakt mit gitlab ist und wir vermeiden möchten, dass Studierende das zentrale Repository \textbf{course-materials} zerschießen. In fortgeschrittenen Kursen kann es durchaus sinnvoll sein, höhere Rechte zu geben, da so Studierende Fehler in den Kursmaterialien verbessern und pushen könnten. 
+
+\subsection{Subgroups}
+Automatisch haben in gitlab alle Personen in \textbf{Subgroups} die Rechte von der übergeordneten Gruppe, also hier alle \textbf{Developer}-Status. 
+
+In den Subgruppen wollen wir, dass die Personen aus der jeweiligen Gruppe auch an den Repositories arbeiten können. Daher muss man jede Person aus der Gruppe in der \textbf{Subgroup} erneut einladen und zwar als \textbf{Maintainer}. Dies gilt ebenfalls für das \textbf{lab tasks}-Repository (erneut einladen mit \textbf{Maintainer}-Status. Wenn das nicht geschieht, können die Studierenden in RStudio nicht ihre Änderungen pushen. 
+
+\section{Implementation in RStudio Cloud}
+In diesem Kurs arbeiten wir mit einer RStudio Cloud Lizenz, in dem wir einen \textbf{Workspace} vorbereitet haben, in den die Studierenden per SSO-Login sich einwählen können. Zur Implementation von git gibt es z.B. hier [Hilfe](https://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/).
+
+Der \textbf{Workspace} ist wie folgt aufgebaut:
+
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[Stats$^+$: Einstieg in R (Kurs, \textit{Workspace})
+  [course materials (\textit{project})]
+  [effie (Gruppe 1, \textit{project})]
+  [gale (Gruppe 2, \textit{project})]
+  [katniss (Gruppe 3, \textit{project})]
+  [peeta (Gruppe 4, \textit{project})]
+  [rue (Gruppe 5, \textit{project})]
+]
+\end{forest}
+
+Jede Gruppe hat ein eigenes Projekt. Wie es in RStudio Cloud üblich ist, können Studierende die vorbereiteten Projekte aufrufen und dann eine lokale Kopie speichern (\textbf{course-materials} und die entsprechende Gruppe).
+
+In den einzelnen Projekten haben wir die git-Verknüpfung vorbereitet, damit Studierende diesen Schritt überspringen können. 
+
+Dazu initiiert man zuerst \textbf{git} im entsprechenden Projekt über \begin{verbatim}Tools -> Version Control -> Project Setup \end{verbatim}. Danach startet sich dann das Projekt neu. 
+
+Im Terminal muss man dann nur die folgenden Befehle eingeben, um das entsprechende Repository zu verbinden:
+
+\begin{lstlisting}[language=bash]
+git remote add origin https://gitlab.com/myrepo.git
+
+git pull origin main
+
+git branch --set-upstream-to=origin/main master
+\end{lstlisting}
+
+Um dann git nutzen zu können, müssen die einzelnen Kursteilnehmer:innen nur ihren Git-Name und E-Mail-Adresse fürs committen hinzufügen (wir nutzen R und die \textit{library usethis}). Beim Pullen oder Pushen muss dann jeweils der Benutzername und das Passwort aus \textbf{gitlab} eingegeben werden (Studierendenkennung).
+
+\begin{lstlisting}[language=R]
+library("usethis")
+
+use_git_config( 
+  user.name = "Jane Doe", #hier deinen Namen eingeben
+  user.email = "jane@example.org" # Hier deine JLU-E-Mail-Adresse eingeben
+)
+\end{lstlisting}
+
+Anschließend funktioniert \textbf{pullen} und \textbf{pushen} entsprechend der Rechte in \textbf{gitlab}. Im Repository \textbf{course-materials} können Studierende nur pullen, in den \textbf{lab tasks} auch pushen. 
+
+\textbf{Wichtig:} Auch im Repository \textbf{course-materials} müssen Kursteilnehmer:innen ihre Änderungen (also z.B. Anmerkungen) committen, da diese sonst beim pullen verloren gehen. 
+
+
+\end{document}

@@ -1,0 +1,40 @@
+[
+  {
+    "username": "bpkleer",
+    "name": "B. Philipp Kleer",
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/147/avatar.png",
+    "web_url": "https://gitlab.ub.uni-giessen.de/bpkleer",
+    "created_by": {},
+    "commits": 92
+  },
+  {
+    "username": "J_E8E7E5F",
+    "name": "Meike Schulz-Narres",
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png",
+    "web_url": "https://gitlab.ub.uni-giessen.de/J_E8E7E5F",
+    "created_by": {
+      "id": 147,
+      "username": "bpkleer",
+      "name": "B. Philipp Kleer",
+      "state": "active",
+      "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/147/avatar.png",
+      "web_url": "https://gitlab.ub.uni-giessen.de/bpkleer"
+    },
+    "commits": 71
+  },
+  {
+    "username": "g32013",
+    "name": "Leon Klemm",
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png",
+    "web_url": "https://gitlab.ub.uni-giessen.de/g32013",
+    "created_by": {
+      "id": 147,
+      "username": "bpkleer",
+      "name": "B. Philipp Kleer",
+      "state": "active",
+      "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/147/avatar.png",
+      "web_url": "https://gitlab.ub.uni-giessen.de/bpkleer"
+    },
+    "commits": 27
+  }
+]

@@ -1,0 +1,61 @@
+---
+title: "tidy up statclass"  # Titel der Seite
+weight: 323  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+statclass <- readRDS("./data/statclass.rds")
+```
+
+In der Tabelle kann die Note jeder Person aus jeder Prüfung ausgelesen werden. Überlegt kurz, welche Variablen wir bei diesem Satz generieren möchten!
+
+```{r statclassa, eval=TRUE}
+statclass
+```
+
+> - `names`: momo, sascha, kim
+> - `course`: statI, statII, r, spss
+> - `grade`: Wert in Abhängigkeit der zwei oberen.
+
+Es sind also zwei Informationen in den Spalten `stat1`, `stat2`, `r` und `spss`. Nämlich welcher Test es ist (implizit über Variablenname) und die Note. D.h. hier sind Werte als Variablenname angegeben und das verstößt gegen die Regeln eines *tidy* Datensatzes. Wir benötigen in einem *tidy*-Format aber beide Informationen explizit! Denn die Spaltennamen sind hier Werte (Art der Prüfung) und nicht einfach Namen.
+
+Um dies zu bereinigen, nutzt man `pivot_longer()`. Hierbei geben wir zuerst an, welche Spalten neugeordnet werden sollen (in unserem Fall `stat1` bis `spss`), dann in welche neuen Variablen die Namen bzw. die Werte gespeichert werden sollen. Mit `names_to` benennen wir die neue Variable, die den Test unterscheidet und mit `values_to` benennen wir die Variable, die die Noten beinhaltet. 
+
+``` {r pivot-longer, eval=TRUE}
+statclassTidy <- statclass %>% 
+  pivot_longer(
+    stat1:spss, 
+    names_to = "course", 
+    values_to = "grade"
+  ) %>% 
+  arrange(
+    name,
+    course
+  )
+
+statclassTidy
+```
+
+Jetzt haben wir ein *long*-Format, dass die Datenbearbeitung oft einfacher macht (z.B. mit `ggplot2`). **Aber Aufpassen**: Man kann jetzt nicht einfach mehr einen Mittelwert von `grade` berechnen, da dies verschiedene Kurse beinhaltet. Man muss dabei also Bedingungen setzen (wenn man im *long*-Format ist).
+
+Möchte man dies wieder umkehren, nutzt man die Funktion `pivot_wider()`:
+``` {r pivot-wider, eval=FALSE}
+statclassRe <- statclassTidy %>% 
+  pivot_wider(
+    names_from = course, 
+    values_from = grade, 
+  )
+
+statclassRe
+```

@@ -1,0 +1,71 @@
+---
+title: "Streumaße"  # Titel der Seite
+weight: 203  # Individuelles Gewicht 
+menuTitle: "Streumaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["deskriptiv", "streumaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")   
+```
+
+### Interquartilsabstand{.tabset .tabset-fade}
+Der Interquartilsabstand kann mit der Funktion `IQR()` ausgegeben werden:
+```{r iqr, eval=FALSE}
+IQR(
+  pss$stfdem, 
+  na.rm = TRUE
+)
+```
+
+{{% expand \"Wie interpretierst du diese Zahl?\" %}}
+Der Abstand zwischen dem ersten und dritten Quartil beträgt 3! Dieser Wert sagt uns noch nicht, wo das erste und das dritte Quartil liegen.
+
+$$q_{75} - q_{25} = IQR$$
+{{% /expand %}}
+
+### Alternative Ausgabe des IQR
+Eine etwas anpassungsfähigere Alternative ist die Kombination der Funktionen `diff()` und `quantile()`. In der Funktion`quantile()` wird die Variable angegeben ($1.$ Argument), die gewünschten Quantile ($2.$ Argument) und zuletzt werden `NA's` ausgeschlossen. Die Funktion liefert zwei Werte und mit der Funktion `diff()` wird von diesen zwei Werten dann die Differenz berechnet und ausgegeben.
+```{r iqr-manuell, eval=FALSE}
+diff(
+  quantile(
+    pss$stfdem, 
+    probs = c(
+      0.25,
+      0.75
+    ),  
+    na.rm = TRUE
+  )
+)   
+```
+
+### Standardabweichung & Varianz
+Die Standardabweichung und die Varianz erhalten wir über die folgenden zwei Funktionen:
+```{r sd-var, eval=FALSE}
+sd(
+  pss$stfdem, 
+  na.rm = TRUE
+)
+
+var(
+  pss$stfdem, 
+  na.rm = TRUE
+)
+```
+
+{{% expand \"Wie könntest du alternativ von der Standardabweichung auf die Varianz kommen?\" %}}
+Du weißt, dass die Standardabweichung nur die Wurzel der Varianz ist. Um also von der Standardabweichung auf die Varianz zu kommen, muss diese einfach quadriert werden. Das kann als einfache Rechnung umgesetzt werden:
+
+```{R}
+sd(pss$stfdem, na.rm = TRUE) ^ 2
+```
+
+{{% /expand %}}
+
+Nun gehen wir einen Schritt tiefer noch in die Verarbeitung von Datensätzen und betreten das `tidyverse`!

@@ -1,0 +1,113 @@
+baseURL = "https://lehre.bpkleer.de/statsplus/"
+languageCode = "de-DE"
+defaultContentLanguage = "de"
+
+title = "WBT Statistik<sup>+</sup>: Einstieg in R leicht gemacht"
+theme = "hugo-theme-learn"
+themesdir = "./themes/"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= false
+
+[params]
+  baseURL = "https://lehre.bpkleer.de/statsplus/"
+  themeVariant = "jlug"
+  description = "WBT Statistik<sup>+</sup>"
+  author = "B. Philipp Kleer"
+  showVisitedLinks = true
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableLandingPageButton = true
+  disableMermaid = false
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
+  titleSeparator = ">"
+  disableInlineCopyToClipBoard = true
+  [assets]
+    disableHLJS = true
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 1"
+url = "https://lehre.bpkleer.de/statsplus/lb1/"
+weight = 10
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 2"
+url = "https://lehre.bpkleer.de/statsplus/lb2/"
+weight = 20
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 3"
+url = "https://lehre.bpkleer.de/statsplus/lb3/"
+weight = 30
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 4"
+url = "https://lehre.bpkleer.de/statsplus/lb4/"
+weight = 40
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 5"
+url = "https://lehre.bpkleer.de/statsplus/lb5/"
+weight = 40
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-bullhorn'></i> Credits"
+url = "/credits"
+weight = 60
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-tags'></i> Tags"
+url = "/tags"
+weight = 70
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-gitlab'></i> Gitlab"
+url = "https://gitlab.com/bpkleer/stats-with-r/"
+weight = 80
+
+# no different languages so far
+#[Languages]
+#[Languages.en]
+#title = "Documentation for Hugo Learn Theme"
+#weight = 1
+#languageName = "English"
+#landingPageURL = "/en"
+#landingPageName = "<i class='fas fa-home'></i> Home"
+
+#[[Languages.en.menu.shortcuts]]
+#name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+#identifier = "ds"
+#url = "https://github.com/matcornic/hugo-theme-learn"
+#weight = 10
+
+#[[Languages.en.menu.shortcuts]]
+#name = "<i class='fas fa-fw fa-camera'></i> Showcases"
+#url = "showcase"
+#weight = 11
+
+#[[Languages.en.menu.shortcuts]]
+#name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
+#identifier = "hugodoc"
+#url = "https://gohugo.io/"
+#weight = 20
+
+#[[Languages.en.menu.shortcuts]]
+#name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
+#url = "/credits"
+#weight = 30
+[markup]
+  [markup.highlight]
+    codeFences = false
+#    codeFences = true
+#    hl_Lines = ""
+#    lineNoStart = 1
+#    lineNos = true
+#    lineNumbersInTable = false
+#   noClasses = true
+#    style = "monokailight"
+#    tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

@@ -1,0 +1,27 @@
+---
+title: "Import von SPSS"  # Titel der Seite
+weight: 124  # Individuelles Gewicht 
+menuTitle: "SPSS-Import" # Falls Titel zulang ist, hier Kurztitel
+tags: [".sav", "datei", "spss", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{%attachments style="grey" title="Datensatz" /%}}</p>
+<p>Die Basis-Funktionen in R können SPSS-Dateien nicht importieren. Das bedeutet, dass du jetzt eine weitere <strong>library</strong> benötigst, um eine Funktion zu haben, die die SPSS-Datei importieren kann. Hier gibt es eine Reihe von verschiedenen <strong>libraries</strong>, wir beschränken uns hier auf die <strong>library</strong> <code>foreign</code>.</p>
+<p>Wenn man eine zusätzliche <strong>library</strong> benötigt, muss man diese zuerst <strong>einmalig</strong> installieren. Dies geht über die Funktion <code>install.packages()</code> und als Argument gibt man den Namen der <strong>library</strong> ein - in unserem Fall also <code>foreign</code>.</p>
+<pre class="r"><code>install.packages(&quot;foreign&quot;)</code></pre>
+<p>{{% expand "Überlege kurz, warum der Name im Argument in Anführungszeichen gesetzt werden muss!" %}}
+Der Name muss in Anführungszeichen gesetzt werden, weil wir Text in die Funktion übergeben. Die Funktion sucht dann eine <strong>library</strong> namens <code>foreign</code>. Lässt du die Anführungszeichen weg, würde die Funktion ein Objekt namens <code>foreign</code> suchen und es kommt zu einer Fehlermeldung.
+{{% /expand %}}</p>
+<p>Jetzt hast du die zusätzlichen Funktionen aus dem Paket <code>foreign</code> installiert. Damit du diese nutzen kannst, musst du jedes Mal, wenn du diese in einer R-Session verwenden willst, kurz laden. Dies geschieht mit der Funktion <code>library()</code>, wobei als Argument wieder der Name des Pakets genutzt wird.</p>
+<pre class="r"><code>library(&quot;foreign&quot;)</code></pre>
+<p>Wir laden jetzt wieder den <code>exam</code>-Datensatz in R, aber diesmal eben im SPSS-Format. Die Besonderheit an SPSS ist, dass es oftmals Beschreibungen von Code-Werten enthält oder Beschreibungstext für Variablen. Beides nutzen wir in R aber nicht, sondern nutzen dafür das Codebook eines Datensatzes. In den späteren Beispielen wirst du die Arbeit mit dem Codebook kennenlernen, in diesem simplen Trainngsdatensatz lassen wir das erstmal aus.</p>
+<p>Aus der library <code>foreign</code> nutzen wir die Funktion <code>read.spss()</code>, in der wir auch wieder die Funktion <code>file.path()</code> nutzen, um das <code>path</code>-Objekt nutzen zu können. Wir haben zwei weitere Argumente in der <code>read.spss()</code>-Funktion, die neu sind: <code>use.value.labels</code> und <code>to.data.frame</code>. Letztere gibt einfach nur an, dass das finale Objekt ein Datensatz sein soll und keine Matrix. Mit dem Argument <code>use.value.labels = FALSE</code> schalten wir aus, dass die Wertebeschriftungen übernommen werden. So erhalten wir keine Probleme beim Import, denn in SPSS sind oftmals nur die Endpunkte einer Skala beschriftet und wir würden dann vermischte Variablen erhalten, die alle als <em>character</em> gelesen werden würden, obwohl sie numerisch sind.</p>
+<p>Der Import funktioniert dann ganz einfach:</p>
+<pre class="r"><code>examspss &lt;- read.spss(
+  &quot;./data/exam.sav&quot;, 
+  use.value.labels = FALSE,       
+  to.data.frame = TRUE
+)            </code></pre>
+<p>So, das war’s erstmal zum Datenimport!</p>

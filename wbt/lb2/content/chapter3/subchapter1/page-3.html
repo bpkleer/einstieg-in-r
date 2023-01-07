@@ -1,0 +1,30 @@
+---
+title: "Teilen eines Datensatzes"  # Titel der Seite
+weight: 313  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Zuerst wiederholen wir noch einmal, wie wir einen Datensatz teilen: Wir filtern die Fälle, die für unsere spätere Analyse relevant sind. Zum Beispiel wollen wir nur männliche Befragte aus Distrikt 5 forschen.</p>
+<p>{{% expand "Welche Funktionen müssen wir anwenden?" %}}
+Genau wir nutzen filter().</p>
+<pre class="r"><code>pssD5M &lt;- pss %&gt;%
+  filter(district == &quot;Distrikt 5&quot; &amp; gndr == &quot;male&quot;)
+
+head(pssD5M)</code></pre>
+<p>{{% /expand %}}</p>
+<p>{{% tabs groupId="tab1" %}}
+{{% tab name="Aufgabe" %}}
+Filtere jetzt einmal den Datensatz nach Personen, die in Distrikt 1 oder 12 leben und mehr als 30h arbeiten! Speichere das Subset in einem neuen Objekt!
+{{% /tab %}}
+{{% tab name="Code" %}}</p>
+<pre class="r"><code>pssD1D12o30 &lt;- pss %&gt;%
+  filter((district == &quot;Distrikt 1&quot; | district == &quot;Distrikt 12&quot;) &amp; wkhtot &gt; 30)
+
+head(pssD1D12o30)</code></pre>
+<p>{{% /tab %}}
+{{% /tabs %}}</p>
+<p>Manchmal muss man selbst auch Datensätze, die getrennt erhoben wurden, selbst zusammenfügen. Das kannst du auf der nächsten Seite lernen. Die nächste Seite kannst du aber auch überspringen, wenn du findest, dass das für dich nicht relevant ist!</p>

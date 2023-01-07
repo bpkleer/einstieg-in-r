@@ -1,0 +1,70 @@
+# bring the file to the topfolder of the repository and rename it to .gitlab-ci.yml
+
+image: rocker/tidyverse
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never  # Prevent pipeline run for push event
+    - when: always # Run pipeline for all other cases
+
+# register your gitlab runner under settings > CI/CD > Runner
+# save tokens under settings > CI/CD > Variables (SCRIPTS_TOKEN and SCRIPTS_USER)
+variables:
+  SCRIPTS_REPO: https://$SCRIPTS_USER:$SCRIPTS_TOKEN@gitlab.com/bpkleer/r-teaching/ #add your URL here
+before_script:
+  - export SCRIPTS_DIR=$(mktemp -d)
+  - git clone -q --depth 1 "$SCRIPTS_REPO" "$SCRIPTS_DIR" 
+    
+stages:
+  - check task 1
+  - check task 2
+  - check task 3
+  - check task 4
+  - check task 5
+
+# if you have a different folder structure/filenames in your solution repository, change it here!
+task 1:
+  stage: check task 1
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t1.R
+
+task 2a:
+  stage: check task 2
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t2a.R
+
+task 2b:
+  stage: check task 2
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t2b.R
+
+task 2c:
+  stage: check task 2
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t2c.R
+
+task 2d:
+  stage: check task 2
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t2d.R
+
+task 3a:
+  stage: check task 3
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t3a.R
+
+task 3b:
+  stage: check task 3
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t3b.R
+
+task 4:
+  stage: check task 4
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t4.R
+
+task 5:
+  stage: check task 5
+  script:
+    - r $SCRIPTS_DIR/solutions/lab4/cicd-lab4-t5.R

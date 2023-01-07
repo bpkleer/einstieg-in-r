@@ -1,0 +1,39 @@
+---
+title: "Annahme 5: Multikollinearität"  # Titel der Seite
+weight: 306  # Individuelles Gewicht 
+menuTitle: "Multikollinearität" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "multikollinearität"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("car")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)       
+```
+
+**Multikollinearität** bedeutet, dass unter den unabhängigen Variablen lineare Abhängigkeiten vorliegen. Dies prüfst du über den *variance inflation factor* (**VIF**). Wenn der Wert des **VIF** über $10$ liegt, dann ist die **Multikollinearität** hoch und die Schätzung verzerrt (andere empfehlen Richtwert $5$).
+
+Formel des **VIF**:
+$$VIF_i = \frac{1}{1-R^2_i}$$
+
+Um den **VIF** zu berechnen, rufen wir die Funktion `vif()` aus der **library** `car` auf. Für jede unabhängige Variable erhälst du den **VIF**-Wert:
+```{r car, eval=FALSE}
+install.packages("car")
+library("car")
+```
+```{r vif, eval=TRUE}
+vif(olsModel2)
+```
+
+$\Rightarrow$ Wir erhalten hier keine Werte, die über den empfohlenem Grenzwert liegen. Also weiterhin alles okay!

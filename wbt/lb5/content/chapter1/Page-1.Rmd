@@ -1,0 +1,38 @@
+---
+title: "Vorbereitungen"  # Titel der Seite
+weight: 101  # Individuelles Gewicht 
+menuTitle: "Vorbereitungen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["vorbereitung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Bevor wir mit den grafischen Darstellungen beginnen können, gilt es ein paar Vorbereitungen zu treffen. 
+
+Lade dir zuerst den Datensatz `pss` in dein **Environment**. Zur Erinnerung der Datensatz ist direkt in der RStudio Cloud im Ordner `data` oder alternativ (wenn du lokal arbeitest) hier herunterzuladen:
+
+{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+
+`ggplot` ist Teil des [`tidyverse`](https://www.tidyverse.org) und somit kompatibel zu den anderen **libraries** aus `tidyverse`, die wir bisher genutzt haben (`dplyr` und `tidyr`). Eine genaue Beschreibung der **library** und des Funktionsumfangs findet sich [hier](https://ggplot2.tidyverse.org).
+
+Im Lernmodul werden alle Veränderungen Schritt für Schritt durchgeführt und du kannst diese immer direkt im Output der Grafik sehen. Zuerst werden wir uns mit vier Arten von Grafiken beschäftigen, an diesen dann Erweiterungen vornehmen und im letzten Kapitel Grafiken entsprechend dem Output von spezifischen Methoden erstellen. 
+
+Um mit `ggplot` zu starten, musst du nur mehr die **library** laden. Dies kannst du entweder über `tidyverse` machen (empfohlen) oder singulär:
+
+```{r library-load, eval = FALSE}
+# tidyverse
+library("tidyverse")
+
+# singulär
+library("ggplot2")
+```
+
+

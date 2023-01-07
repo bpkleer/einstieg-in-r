@@ -1,0 +1,98 @@
+---
+title: "Annahme 4: Autokorrelation"  # Titel der Seite
+weight: 305  # Individuelles Gewicht 
+menuTitle: "Autokorrelation" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "autokorrelation"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("lmtest")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+**Autokorrelation** kann insbesondere ein Problem in linearen Regression sein, in denen Zeitreihen als Daten vorliegen. Wenn **Autokorrelation** vorliegt, erhalten wir verzerrte Schätzer. **Autokorrelation** heißt, dass der Wert des Residuums den nachfolgenden Wert positiv oder negativ beeinflusst.  **Autokorrelation** heißt also, dass der $i$-te Residualwert den $(i+1)$-ten Residualwert beeinflusst.
+
+**Autokorrelation** indiziert daher zeitliche Bezüge (nicht-lineare Beziehung) oder das Fehlen von Variablen im Modell.
+
+![](../img/autocorr_pos.png)
+
+![](../img/autocorr_neg.png)
+
+Es gibt vier Möglichkeiten auf **Autokorrelation** zu testen:
+
+1. *lagged regression*
+
+2. Durbin-Watson-Test ($lag = 1$)
+
+3. Breusch-Godfrey-Test (änderbares *lag*)
+
+4. Grafische Analyse
+
+## Variante 1: *lagged regression* 
+Hierbei wird einfach eine Regression der Residuen gerechnet. Abhängige Variable sind die Residuen in umgekehrter Reihenfolge (`res[-n]`)  und unabhängige Variable ist jeweils vorherige Residuum (`res[-1]`). Wir sollten einen nicht signifikanten Wert für den Koeffizienten von `res[-1]` erhalten. Wenn dieser signifikant ist, könnte **Autokorrelation** vorliegen.
+
+```{r autocor1, eval=TRUE}
+res <- olsModel2$res  
+
+n <- length(res)       
+
+testmodel <- lm(res[-n] ~ res[-1]) 
+
+summary(testmodel)
+```
+
+$\Rightarrow$ Und wir haben das in diesem Fall erhalten! Wenn der Effekt signifikant ist, weißt du, dass das jeweiligevorherige Residuum einen signifikanten (also mehr als zufälligen) Effekt hat. Und das bedeutet dann, dass Autokorrelation vorliegt. 
+
+## Variante 2: Durbin-Watson-Test
+Zweitens kannst du dir die **Durbin-Watson-Statistik** ausgeben lassen. Dazu nutzt du die Funktion `dwtest()` aus der **library** `lmtest`.
+
+Der **Durbin-Watson-Test** ist ein Hypothesentest. Die Nullhypothese lautet dabei:
+
+$H_0$: Autokorrelation ist gleich $0$. 
+
+Ziel ist es also einen nicht signifikanten Hypothesentest zu erhalten, um abzulehnen, dass Autokorrelation vorliegt. 
+
+In diesem Test ist das *lag* (Verzögerung) immer gleich $1$:
+```{r dwtest, eval=TRUE}
+dwtest(olsModel2)
+```
+
+$\Rightarrow$ Wie in Variante 1 zeigt der **Durbin-Watson-Test** ebenfalls an, dass keine Autokorrelation vorliegt. 
+
+## Variante 3: Breusch-Godfrey-Test
+Ein dritter Weg ist die Ausgabe des **Breusch-Godfrey-Test**. In diesem Test können wir die Verzögerung (*lag*) einstellen. Hierfür nutzen wir die Funktion `bgtest()` aus der **library** `lmtest`.
+
+Auch der **Breusch-Godfrey-Test** ist ein Hypothesentest. Wie auch beim Durbin-Watson-Test ist die Nullhypothese folgende: 
+
+$H_0$: Autokorrelation ist gleich $0$.
+
+Ziel ist also wie beim Durbin-Watson-Test auch ein nicht signifikantes Testergebnis!
+
+Wie zuvor ist im erten Argument der Funktion einfach das Objekt der Regression. Im zweiten Argument (`order`) kannst du das *lag* einstellen. 
+```{r bgtest, eval=TRUE}
+bgtest(
+  olsModel2,
+  order = 1
+) 
+```
+
+$\Rightarrow$ Auch hier erhalten wir die Information, dass keine Autokorrelation vorliegt. 
+
+## Variante 4: Grafische Analyse
+Wir könnten uns auch noch die Residuen plotten, um auf **Autokorrelation** zu prüfen. Dazu nutzt man einfach wieder die `plot()`-Funktion und gibt nun die Residuen des Models als Dateneingabe ein. Liegt Autokorrelation vor, würdest du ein Muster wie ganz am Anfang auf dieser Seite sehen. 
+```{r autocor-plot, eval=TRUE}
+plot(olsModel2$residuals)
+```
+
+$\Rightarrow$ Du siehst, dass kein Muster wie oben vorliegt. Auch hiermit bestätigst du, dass keine Autokorrelation vorliegt. 

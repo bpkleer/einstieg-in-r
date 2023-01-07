@@ -1,0 +1,110 @@
+---
+title: "Vektoren"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Vektoren" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datentypen", "vektoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Wenn wir mit Datensätzen arbeiten, beinhaltet eine Variable ja nicht nur einen einzigen Wert, sondern die Werte auf der Variable aller Befragten. Wenn wir eine Variable Einkommen haben, sind in dieser alle Einkommenswerte aller Befragten aufgelistet. Wir sprechen dann dabei auch von einem Vektor: Die einzelnen Werte der Befragten sind die Komponenten des Vektors.</p>
+<p>Nehmen wir ein Beispiel von fünf Personen mit den Einkommenswerten: <span class="math inline">\(1432\)</span>, <span class="math inline">\(982\)</span>, <span class="math inline">\(5139\)</span>, <span class="math inline">\(3210\)</span> und <span class="math inline">\(726\)</span>.</p>
+<p>Als Vektor würde dies wie folgt dargestellt:</p>
+<p><span class="math display">\[ income = \left(\begin{array}{c} 1432 \\ 982 \\ 5139 \\ 3210 \\ 726 \end{array}\right) \]</span>
+Ein <strong>Vektor</strong> ist sozusagen eine <em>Kette</em> von Werten.</p>
+<div id="vektoren-in-r" class="section level2">
+<h2>Vektoren in R</h2>
+<p>Ein <strong>Vektor</strong> kann jede beliebige Anzahl von Nummern, Buchstaben oder einer Kombination aus beiden beinhalten. Er kann also aus einem der vier Wertetypen bestehen, die du zuvor kennengelernt hast.</p>
+<p>Zur Erinnerung hier nochmal die Wertetypen:</p>
+<ul>
+<li><p><code>numeric</code>: <span class="math inline">\(1.456783135786\)</span>, <span class="math inline">\(2.5467\)</span>, <span class="math inline">\(-3.45786\)</span></p></li>
+<li><p><code>integer</code>: <span class="math inline">\(1\)</span>, <span class="math inline">\(27\)</span>, <span class="math inline">\(1453\)</span>, <span class="math inline">\(-144\)</span>, <span class="math inline">\(545\)</span></p></li>
+<li><p><code>character</code>: jeder beliebige Buchstabe/Zeichen oder eine Kombination von Zeichen und Ziffern</p></li>
+<li><p><code>logical</code>: <code>TRUE</code> oder <code>FALSE</code></p></li>
+</ul>
+<p>In R führen wir verschiedene Werte mit einer Funktion in einem Objekt zusammen, das neue Objekt ist dann nicht mehr ein einfacher Wert, sondern ein Vektor. Eine Funktion ist eine bereits programmierte Anweisung, die über den spezifischen Befehl aufgerufen und angewendet werden kann. R bietet umfassende <strong>libraries</strong> (was das ist, lernen wir nächstes Mal!) mit mehreren tausenden Funktionen. Aber keine Sorge, niemand kennt diese alle auswendig. Der wichtigste Skill im R-Kurs ist es, Programmieren zu verstehen, denn so kann man sich neue Funktionen oder vergessene Funktionen wieder aneignen.</p>
+<p>Die Funktion, die wir jetzt nutzen wollen, wird mit <code>c()</code> aufgerufen. In der Klammer werden alle Werte aufgeführt, die wir in einem Objekt zu einem Vektor verbinden wollen. Das, was in einer Funktion in Klammern steht, wird auch <strong>Argument</strong> genannt. Wir trennen die Werte/Argumente mit einem Komma.</p>
+<p>Machen wir ein Beispiel, in dem wir mehrere numerische Werte verbinden:</p>
+<pre class="r"><code>math &lt;- c(
+  0.2, 
+  0.4, 
+  0.6, 
+  0.8, 
+  1.0
+)
+
+math</code></pre>
+<pre><code>## [1] 0.2 0.4 0.6 0.8 1.0</code></pre>
+<p>In der Ausgabe wird nicht mehr nur ein Wert ausgegeben, sondern eben alle in dem Vektor gespeicherten Werte. Ein Vektor kann beliebig lang sein.</p>
+<p>Im <strong>Environment</strong> sehen wir jetzt, dass neben dem Wert auch der Typ des Vektors angegeben ist (hier <code>num</code>). Nach dem Typ wird die Länge des Vektors angegeben: <code>[1:5]</code>. Wir starten als bei der Zählung des Vektors bei <code>1</code> und es endet bei <code>5</code>. <strong>Wichtig:</strong> In vielen anderen Sprachen beginnt die Zählung bei <code>0</code>.</p>
+<div class="figure">
+<img src="../img/vektor1.png" alt="" />
+<p class="caption">Vektor im Environment</p>
+</div>
+<p>Auch mit den anderen Wertetypen können wir Vektoren beliebiger Länge schaffen:</p>
+<pre class="r"><code>logi &lt;- c(
+  TRUE, 
+  FALSE
+)
+
+numbers &lt;- c(
+  1,
+  2, 
+  3, 
+  4, 
+  5, 
+  6, 
+  7, 
+  8, 
+  9, 
+  10
+)
+
+char &lt;- c(
+  &quot;Taipeh&quot;, 
+  &quot;Seoul&quot;,
+  &quot;Berlin&quot;,
+  &quot;Taipeh&quot;
+)</code></pre>
+<p>Im Environment finden wir dann alle diese Vektoren wieder und den jeweiligen Typ:</p>
+<div class="figure">
+<img src="../img/vektor2.png" alt="" />
+<p class="caption">Vektoren im Environment</p>
+</div>
+<p>Was passiert wenn wir mehrere Wertetypen in einem Vektor vermischen wollen? Führe den Code aus und schau dir im Environment an, welcher Typ zugeordnet wird.</p>
+<pre class="r"><code>mix &lt;- c(
+  1.231, 
+  &quot;Berlin&quot;,
+  TRUE
+)</code></pre>
+</div>
+<div id="eine-zweite-funktion" class="section level2">
+<h2>Eine zweite Funktion</h2>
+<p>Nun lernen wir eine weitere Funktion bzw. vier weitere Funktionen kennen, mit denen wir den Typ eines Objekts testen können. Diese Funktionen lauten:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>is.numeric()</code>,</p></li>
+<li><p><code>is.integer()</code>,</p></li>
+<li><p><code>is.character()</code> und</p></li>
+<li><p><code>is.logical()</code></p></li>
+</ol>
+<p>In der Klammer geben wir ein zu testendes Objekt ein, das wir im <strong>Environment</strong> gespeichert haben. Es gibt also nur ein einziges Argument in dieser Funktion. In der Ausgabe erhalten wir einen logischen Wert: <code>TRUE</code> oder <code>FALSE</code>. Je nachdem, ob es zutrifft oder nicht.</p>
+<p>Versuche es mit den gespeicherten Objekten von oben. Wann trifft die Eigenschaft zu? Kopiere den Code einfach in dein Skript und führe die Funktionen/Befehle dann aus!</p>
+<pre class="r"><code>is.numeric(numbers)
+
+is.integer(math)
+
+is.logical(logi)
+
+is.character(logi)</code></pre>
+</div>
+<div id="einzelne-elemente-innerhalb-eines-vektors" class="section level2">
+<h2>Einzelne Elemente innerhalb eines Vektors</h2>
+<p>Manchmal möchten wir wissen, was der x-te Wert eines Vektors ist. Dies können wir mit Bedingungen auf einem Objekt lösen. Bedingungen auf einem Objekt werden in eckigen Klammern angegeben <code>[]</code>. Bei Vektoren haben wir nur eine Dimension, das heißt wir können hier nur ein Argument angeben.</p>
+<p>Wir wollen zum Beispiel wissen, welche Stadt Person <span class="math inline">\(3\)</span> in der Variable <code>char</code> angegeben hat. Wir nutzen das Objekt und geben (ohne Leerzeichen) in eckigen Klammern die gewünschte Position aus (hier dann <span class="math inline">\(3\)</span>):</p>
+<pre class="r"><code>char[3]</code></pre>
+<pre><code>## [1] &quot;Berlin&quot;</code></pre>
+<p>Person <span class="math inline">\(3\)</span> hat also die Stadt Berlin angegeben.</p>
+<p>Diese kleine Anwendung wird später beim Rekodieren und Bearbeiten von Variablen wichtig, daher schau es dir ruhig ein zweites Mal an oder probiere mit den anderen Objekten und anderen Stellen aus.</p>
+<p>Was gibt es denn neben Vektoren noch als Objekttyp in R?</p>
+</div>

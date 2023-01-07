@@ -1,0 +1,50 @@
+---
+title: "Annahme 2: Normalverteilung Residuen"  # Titel der Seite
+weight: 303  # Individuelles Gewicht 
+menuTitle: "Normalverteilung" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+Um zu prüfen, ob die Residuen normalverteilt mit Erwartungswert $E=0$ sind, rufen wir den sogenannten *Normal-Q-Q*-Plot auf. Dazu ändern wir einfach das zweite Argument in der Funktion `plot()` einfach auf den Wert `2`:
+
+```{r assumption2, eval = TRUE}
+plot(
+  olsModel2,
+  2
+)
+
+```
+
+$\Rightarrow$ Die Punkte sollten der Diagonalen folgen bzw. eng an der Linie liegen. Wir können also auch hier asymptotisch die Annahme als erfüllt ansehen. 
+
+Wir können auch die Dichte-Funktion der Residuen analysieren: 
+```{r assumption2b, eval = TRUE}
+plot(density(olsModel2$residuals))
+
+curve(
+  dnorm(
+    x, 
+    0, 
+    summary(olsModel2)$sigma
+  ), 
+  add = TRUE,
+  col = "green", 
+  lwd = 2
+)
+```
+
+$\Rightarrow$ Verteilung sollte der grünen Linie folgen. Das ganze ist hier etwas ungenau, da wir pseudo-metrische Daten haben!

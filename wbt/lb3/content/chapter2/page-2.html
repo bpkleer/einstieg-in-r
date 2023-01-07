@@ -1,0 +1,147 @@
+---
+title: "Zwischen zwei Gruppen"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Zwei-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
+tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>Beim Zwei-Stichproben t-Test musst du unterscheiden, ob es sich um gepaarte oder ungepaarte Stichproben handelt.</p>
+<div id="zwei-stichproben-t-test-ungepaart" class="section level2">
+<h2>Zwei-Stichproben t-Test (ungepaart)</h2>
+<p>In dieser Testsituation werden zwei verschiedene Gruppen innerhalb einer Stichprobe (z.B. nach Geschlecht) getestet. Beide Gruppen sind nicht verbunden bzw. nicht gepaart. Die Antwort des einen Falles ist nicht durch die Antwort anderer Fälle beeinflusst bzw. steht nicht in Verbindung dazu.</p>
+<p>Wir möchten testen, inwieweit die vertragliche Arbeitszeit (<code>wkhtot</code>) sich zwischen Männern und Frauen (<code>gndr</code>) in der Stichprobe unterscheidet.</p>
+<p>Wie sind die Variablen kodiert? Prüfe es im Codebook:
+{{%attachments style="grey" title="Codebook PSS" /%}}</p>
+<div id="annahmen" class="section level3">
+<h3>Annahmen</h3>
+<p>Um den Test zu berechnen, müssen zwei Annahmen geprüft werden:</p>
+<ol style="list-style-type: decimal">
+<li><p>Varianzgleichheit (Levene-Test)</p></li>
+<li><p>Normalverteilung der metrischen Variable (uV)</p></li>
+</ol>
+<p>Die zweite Annahme muss nur getestet werden, wenn <span class="math inline">\(n &lt; 30\)</span>. In Situationen mit <span class="math inline">\(n &gt; 30\)</span> liefert der Test asymptotisch korrekte Ergebnisse.</p>
+<p>Um zu prüfen, ob Varianzgleichheit vorliegt, berechnest du den <strong>Levene-Test</strong>. Hierzu nutzt du die Funktion <code>leveneTest()</code> aus der <strong>library</strong> <code>car</code>:</p>
+<pre class="r"><code>install.packages(&quot;car&quot;)
+library(&quot;car&quot;)</code></pre>
+<pre class="r"><code>leveneTest(
+  pss$wkhtot,      
+  pss$gndr,        
+  center = &quot;mean&quot;
+)   </code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = &quot;mean&quot;)
+##         Df F value Pr(&gt;F)
+## group    1  0.5405 0.4623
+##       4998</code></pre>
+<p>Wie wird der Test interpretiert?</p>
+<p>Die Nullhypothese des Tests (<span class="math inline">\(H_0\)</span>) lautet, dass beide Gruppen in der metrischen Variable gleiche Varianzen haben. Ein p-Wert unter <span class="math inline">\(0.05\)</span> erfordert die Ablehnung der Nullhypothese und daher sind keine gleichen Varianzen anzunehmen. In der Berechnung des Tests musst du diese Eigenschaft angeben.</p>
+<p>{{% expand "Was sagt also der Test hier aus?" %}}
+Richtig, in diesem Fall kann Varianzgleichheit angenommen werden, da der p-Wert <span class="math inline">\(&gt;0.05\)</span> ist.
+{{% /expand %}}</p>
+</div>
+<div id="durchführung-des-tests" class="section level3">
+<h3>Durchführung des Tests</h3>
+<p>Nun nutzt du wieder die Funktion <code>t.test()</code>, um den Test zu berechnen. Dabei werden die zwei Variablen nicht über ein Komma als Argument getrennt, sondern als Formel angegeben. Hierbei steht die metrische Variable zuerst, als zweites folgt die kategorielle Variable (mit nur zwei Gruppen!). Getrennt wird dies durch eine <code>~</code> (Tilde). Du nimmst standardmäßig eine Differenz von <span class="math inline">\(0\)</span> an (<code>mu = 0</code>) und im Argument <code>paired = FALSE</code> gibst du an, dass es sich um ungepaarte Stichproben handelt. Das Ergebnis des Levene-Tests wird im letzten Argument angegeben: <code>var.equal = TRUE</code>, denn es liegt ja Varianzgleichheit vor.</p>
+<pre class="r"><code>t.test(
+  pss$wkhtot ~ pss$gndr,     
+  mu = 0,                        
+  alternative = &quot;two.sided&quot;,     
+  paired = FALSE,    # ungepaarte Stichproben!            
+  var.equal = TRUE  # Option des Levene-Tests!
+)            </code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  pss$wkhtot by pss$gndr
+## t = 1.3509, df = 4998, p-value = 0.1768
+## alternative hypothesis: true difference in means between group female and group male is not equal to 0
+## 95 percent confidence interval:
+##  -0.1436357  0.7803096
+## sample estimates:
+## mean in group female   mean in group male 
+##             34.46080             34.14246</code></pre>
+<p>Du siehst jetzt die folgenden Werte:</p>
+<ul>
+<li><p><span class="math inline">\(t = 1.3509\)</span> (<strong>t-value</strong>)</p></li>
+<li><p><span class="math inline">\(p \approx 0.1768\)</span> (<strong>p-value</strong>)</p></li>
+<li><p><span class="math inline">\(CI\approx[-0.1436357, 0.7803096]\)</span> (<strong>confidence interval</strong>)</p></li>
+<li><p>Group female <span class="math inline">\(\approx 34.46080\)</span></p></li>
+<li><p>Group male <span class="math inline">\(\approx 34.14246\)</span></p></li>
+</ul>
+<p>Im Durchschnitt haben Männer etwas weniger (<span class="math inline">\(0.31834\)</span>), aber die Differenz ist nicht statistisch signifikant.</p>
+</div>
+<div id="durchführung-des-test-polytome-variable" class="section level3">
+<h3>Durchführung des Test (polytome Variable)</h3>
+<p>Nun möchten wir diesen Test mit einer Variable durchführen, die mehr als zwei Ausprägungen (also Gruppen) inkludiert. Um einen <strong>t-Test</strong> berechnen zu können, musst du zwei Gruppen festlegen.
+Wir möchten nun den Unterschied nach Bildungsabschluss testen (<code>edu</code>). Die Kodierungen können dem Codebook entnommen werden. Insgesamt hat die Variable <span class="math inline">\(5\)</span> Ausprägungen. Wir wählen einfach zwei Gruppen aus, die wir vergleichen möchten.</p>
+<p>Auch hier musst du wieder den Test auf Varianzgleichheit zuerst durchführen:</p>
+<pre class="r"><code># Test of homogeneity of variances
+leveneTest(
+  pss$wkhtot,
+  pss$edu,
+  center = &quot;mean&quot;
+)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = &quot;mean&quot;)
+##         Df F value Pr(&gt;F)
+## group    4  0.4981 0.7372
+##       4643</code></pre>
+<p>Nun kannst du den <strong>t-Test</strong> durchführen. Bevor du diesen durchführst, musst du dich noch für zwei Gruppen aus der neuen Variable entscheiden. Du vergleichst den niedrigsten und den höchsten Abschluss. Da wir nur bestimmte Gruppen vergleichen, können wir nicht die Formelschreibweise verwenden. Stattdessen gibst du die metrische Variable zweimal an, wobei du die Daten mit <strong>[]</strong> auf die jeweilige Gruppe beschränkst:</p>
+<pre class="r"><code>t.test(
+  pss$wkhtot[pss$edu == &quot;ES-ISCED I&quot;],
+  pss$wkhtot[pss$edu == &quot;ES-ISCED V&quot;], 
+  mu = 0, 
+  alternative = &quot;two.sided&quot;, 
+  paired = FALSE, 
+  var.equal = TRUE
+)</code></pre>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  pss$wkhtot[pss$edu == &quot;ES-ISCED I&quot;] and pss$wkhtot[pss$edu == &quot;ES-ISCED V&quot;]
+## t = 9.723, df = 1078, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  4.492021 6.763452
+## sample estimates:
+## mean of x mean of y 
+##  36.19636  30.56863</code></pre>
+<p>{{% tabs %}}
+{{% tab name="Frage" %}}
+Wie interpretierst du das Ergebnis? Was ist die Differenz?
+{{% /tab %}}
+{{% tab name="Auflösung" %}}
+Es ist zu sehen, dass im Durchschnitt Personen mit geringerer Bildung (<em>mean of x</em>) mehr arbeiten als Personen mit höherer Bildung (<em>mean of y</em>). Der Effekt ist signifikant und die Differenz beträgt <span class="math inline">\(5.62773\)</span> Stunden.
+{{% /tab %}}
+{{% /tabs %}}</p>
+</div>
+</div>
+<div id="zwei-stichproben-t-test-gepaart" class="section level2">
+<h2>Zwei-Stichproben t-Test (gepaart)</h2>
+<p>Nun soll ein gepaarter Zwei-Stichproben <strong>t-Test</strong> durchgeführt werden. Gepaart bedeutet, dass die Werte der einen Gruppe in Relation zu den Werten der anderen Gruppe stehen. Dies ist z.B. der Fall wenn ein:e Befragte:r eine Frage an zwei verschiedenen Zeitpunkten beantwortet hat, oder jede Person aus Gruppe A eine Person aus Gruppe B zugeordnet werden kann (Mutter &lt;-&gt; Kind, Partner). Es gibt den Datensatz <code>pss2</code>, der zwei Jahre nach dem eigentlichen Datensatz (mit denselben Befragten) erhoben wurde und wir möchten nun testen, ob sich die Mittelwerte im zeitlichen Verlauf signifikant unterschieden</p>
+<p><strong>Überprüfen der Annahmen</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Variablen sind metrisch <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>Differenz folgt einer Normalverteilung (relevant für <span class="math inline">\(n \leq 30\)</span>) (<span class="math inline">\(\checkmark\)</span>)</p></li>
+</ol>
+<p>Es ist ganz leicht, denn jetzt nutzt du wieder die Funktion <code>t.test()</code>. Du musst nur das Argument <code>paired</code> ändern:</p>
+<pre class="r"><code>t.test(
+  pss$trstprl,
+  pss2$trstprl, 
+  alternative = &quot;two.sided&quot;, 
+  paired = TRUE
+)</code></pre>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  pss$trstprl and pss2$trstprl
+## t = NaN, df = 4964, p-value = NA
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  NaN NaN
+## sample estimates:
+## mean of the differences 
+##                       0</code></pre>
+<p><strong>Ergebnisinterpretation</strong>: Im Durchschnitt unterschieden sich das Vertrauen in das Parlament zwischen den zwei Erhebungen nicht.</p>
+<p>Gehe nun zu Testsituationen mit mehr als zwei Gruppen!</p>
+</div>

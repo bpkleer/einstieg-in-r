@@ -1,0 +1,87 @@
+---
+title: "Grundlagen der linearen Regression"  # Titel der Seite
+weight: 101  # Individuelles Gewicht 
+menuTitle: "Grundlagen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>Mit einer <strong>linearen Regression</strong> schätzen wir die kausale Beziehung zwischen einer (oder mehr) unabhängigen Variablen und einer abhängigen Variable. Das Modell wird i.d.R. mit dem Verfahren <em>Ordinary-Least-Squares</em> (OLS) geschätzt und so erhalten wir den besten linearen Schätzer (<em>Best Linear Unbiased Estimator - BLUE</em>). Dies gilt nur bei Zutreffen der Annahmen.</p>
+<p>Basierend auf theoretischen Annahmen oder empirischer Evidenz anderer Forscher:innen (<em>state of the art</em>) schätzen wir ein Modell. Die unabhängigen Variablen werden oftmals geteilt in Kontrollvariablen und Variablen, über die wir theoretische Annahmen testen möchten.</p>
+<p>Was sollte aus der Erinnerung der Statistik-Vorlesungen hängen geblieben sein?</p>
+<ul>
+<li><p>Ziel der linearen Regression</p></li>
+<li><p>Eigenschaften der linearen Regression</p></li>
+<li><p>lineare Beziehungen</p></li>
+<li><p>grundlegende Mathematik hinter der linearen Regression</p></li>
+<li><p>(OLS Annahmen)</p></li>
+</ul>
+<div id="ziele" class="section level2">
+<h2>Ziele</h2>
+<p>Mit der linearen Regression können wir folgende Fragen beantworten:</p>
+<ol style="list-style-type: decimal">
+<li><p>Kann das Modell Varianz in der abhängigen Variable erklären?</p></li>
+<li><p>Wie viel kann das Modell erklären?</p></li>
+<li><p>Ist der Effekt der unabhängigen Variable signifikant?</p></li>
+<li><p>In welche Richtung wirkt der Effekt der unabhängigen Variable?</p></li>
+<li><p>Wie stark ist der Effekt der unabhängigen Variable (und wie stark ist er in Relation zu weiteren unabhängigen Variablen)?</p></li>
+</ol>
+<p><span class="math inline">\(\Rightarrow\)</span> Mit all diesen Fragen werden in den Sozialwissenschaften gebildete Hypothesen aus dem theoretischen Rahmen getestet. D.h. vor der Datenanalyse steht eine Theorie!</p>
+</div>
+<div id="eigenschaften" class="section level2">
+<h2>Eigenschaften</h2>
+<p>Folgende Bedingungen müssen vorliegen, um eine lineare Regression berechnen zu können:</p>
+<p><span class="math inline">\(\checkmark\)</span> abhängige Variable muss (pseudo-)metrisch sein</p>
+<p><span class="math inline">\(\checkmark\)</span> unabhängige Variablen können (pseudo-)metrisch oder kategoriell sein</p>
+<p><span class="math inline">\(\checkmark\)</span> die Beziehung zwischen jeder unabhängigen Variable und der abhängigen Variable muss linear sein</p>
+</div>
+<div id="beispiel-einer-linearen-regression" class="section level2">
+<h2>Beispiel einer linearen Regression</h2>
+<p>In diesem Beispiel nutzen wir einen fiktiven Datensatz <code>statistics</code>, der unter anderem die Note der Statistik I und die Note der Statistik II Prüfung von Studierenden enthält. Wir möchten ein Modell berechnen, in dem wir einen Effekt der Note in der Statistik I Prüfung (<code>grade</code>) auf die Note in der Statistik II Prüfung (<code>grade3</code>) berechnen.</p>
+<p>Was könnte unsere theoretische Annahme dafür sein?</p>
+<p>Eine lineare Beziehung können wir über ein <strong>Scatterplot</strong> testen. Wie wir das erstellen, lernen wir im letzten Lernblock!</p>
+<div class="figure">
+<img src="../img/reg1.png" alt="" />
+<p class="caption">Lineare Beziehung</p>
+</div>
+</div>
+<div id="grundlegende-mathematik" class="section level2">
+<h2>Grundlegende Mathematik</h2>
+<p>Wir berechnen in unserem Beispiel zuerst eine bivariate lineare Regression:</p>
+<ul>
+<li><p>abhängige Variable: <code>grade3</code> (<span class="math inline">\(y\)</span>)</p></li>
+<li><p>unabhängige Variable: <code>grade</code> (<span class="math inline">\(x_1\)</span>)</p></li>
+</ul>
+<p>Die Gleichung dieses (bivariaten) Regressionsmodells lautet daher:</p>
+<p><span class="math inline">\(Y = \beta_0 + \beta_1 * X_1 + \varepsilon, \varepsilon \sim \mathcal{N}(0, \sigma^2)\)</span></p>
+<p><span class="math inline">\(Y\)</span> ist die unabhängige Variable, <span class="math inline">\(X\)</span> die abhängige Variable und <span class="math inline">\(\varepsilon\)</span> stellt die Residuen dar.</p>
+<p>{{% tabs %}}
+{{% tab name="Frage" %}}</p>
+<ol style="list-style-type: decimal">
+<li><p>Was ist nochmal <span class="math inline">\(\varepsilon\)</span>?</p></li>
+<li><p>Und was bedeutet dieser Ausdruck <span class="math inline">\(\varepsilon \sim \mathcal{N}(0, \sigma^2)\)</span> nochmal?
+{{% /tab %}}
+{{% tab name="Auflösung" %}}</p></li>
+<li><p><span class="math inline">\(\varepsilon\)</span> umfasst die Residuen. Dies sind die Abstände zwischen geschätztem Wert (<span class="math inline">\(\hat{y}\)</span>, grüne Punkte) und beobachtetem Wert (<span class="math inline">\(y\)</span>, blaue Punkte).</p></li>
+<li><p><span class="math inline">\(\varepsilon \sim \mathcal{N}(0, \sigma^2)\)</span> bedeutet, dass diese Fehler normalverteilt sind. Manche Abstände sind positiv, andere negativ. In Summe haben diese aber den Mittelwert <span class="math inline">\(0\)</span> und die Varianz <span class="math inline">\(\sigma^2\)</span>.</p></li>
+</ol>
+<p><img src="../img/reg4.png" alt="Residuum in Regression" />
+{{% /tab %}}
+{{% /tabs %}}</p>
+</div>
+<div id="gleichung-der-linearen-regression" class="section level2">
+<h2>Gleichung der linearen Regression</h2>
+<p>Wiederholen wir kurz die Gleichung der linearen Regression:</p>
+<p><span class="math inline">\(Y = \beta_0 + \beta_1*X_1 + \varepsilon\)</span></p>
+<p>Wir können die Gleichung auch für jeden Fall aufstellen, mit einem Laufindex <code>i</code>:</p>
+<p><span class="math inline">\(y_i = \beta_0 + \beta_1 * {x_1}_i + \epsilon_i\)</span></p>
+<p><strong>Lineare Regressionen</strong> werden standardmäßig mit dem <em>Ordinary-Least-Squared</em>-Verfahren (OLS) berechnet. Was heißt das nochmal?</p>
+<p><span class="math inline">\(\sum_{i=1}^n(\hat{y_i} - y_i)^2 \to min.\)</span></p>
+<p><span class="math inline">\(\Rightarrow\)</span> Das Modell wählt die Linie, die die summierten quadrierten Abstände minimiert.</p>
+<p>Wir können für die Darstellung auch Matrix-Algebra nutzen. Dies hilft (manchen) es besser in R zu verstehen, da wir hier auch mit Vektoren, Matrizen und <strong>data frames</strong> (als spezielle Form einer Matrix) arbeiten:</p>
+<p><span class="math inline">\(Y = X\beta + E\)</span></p>
+<p><span class="math inline">\(\begin{bmatrix}y_1 \\y_2 \\... \\y_n \\\end{bmatrix} = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ 1 &amp; ...\\ 1 &amp; x_n\\ \end{bmatrix} \begin{bmatrix}\beta_0 \\ \beta_1\\\end{bmatrix} + \begin{bmatrix}\epsilon_1 \\ \epsilon_2 \\ ... \\ \epsilon_n \\ \end{bmatrix}\)</span></p>
+<p>Das Modell berechnet die Matrix <span class="math inline">\(\beta\)</span> - im bivariaten Fall zwei Koeffizienten: Konstante (<em>intercept</em>) und Steigung (<em>slope</em>) der unabhängigen Variable. Als Ergebnis der Berechnung der Koeffizienten ergibt sich <span class="math inline">\(E\)</span> (Residuum, Differenz zu beobachteten Werten).</p>
+<p>Auf der nächsten Seite schauen wir uns mal ein konkretes Beispiel an!</p>
+</div>

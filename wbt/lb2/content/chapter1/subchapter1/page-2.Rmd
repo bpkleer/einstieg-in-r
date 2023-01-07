@@ -1,0 +1,53 @@
+---
+title: "Datensatz im Data frame"  # Titel der Seite
+weight: 112  # Individuelles Gewicht 
+menuTitle: "Data frame" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+library("rmarkdown")
+
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")   
+```
+
+Jetzt lernst du den Aufbau einer Datentabelle kennen. Im Screenshot siehst du den Datensatz des **PSS** eingeschränkt auf die vier Beispielfragen (Variablen) von der vorherigen Seite. 
+
+```{r df-example, eval=TRUE, echo=FALSE}
+paged_table(
+  pss[, c("idno", "agea", "gndr", "income", "stfdem")],
+  options = list(rows.print = 15)
+)
+```
+
+{{% expand \"Was kannst du in der Tabelle erkennen? Was ist in den Spalten und was ist in den Zeilen?\" %}}
+Du hast es richtig erkannt! In einer Datentabelle sind in der Spalte die Variablen abgebildet und in den Zeilen die Fälle. Die Besonderheit ist die ersten Zeile, da diese keine Antworten enthält, sondern die Namen der Variablen!
+{{% /expand %}}
+
+Wenn du jetzt einen genaueren Blick auf die Variable `stfdem` wirfst, siehst du, dass dort nur Zahlenwerte eingetragen sind. Auch für den Codewert `0` und `10` ist nicht die Wertebeschriftung aus der PDF genutzt, sondern der Codewert! **Das ist eine wichtige Erkenntnis.** Denn nur wenn auf allen Ausprägungen Zahlenwerte genutzt werden, kann die Variable als metrisches Skalenniveau genutzt werden und in einem *numeric*- oder *integer*-Vektor gespeichert werden. Denn: Alle statistischen Berechnungen bedingen *numeric*- oder *integer*-Vektoren, denn mit Buchstaben lässt sich keine Standardabweichung berechnen. 
+
+
+{{% expand \"In welchem Einkommensziel befindet sich die Person mit der ID-Nummer 10020?\" %}}
+Im 7. Dezil, richtig! In den Zellen der Datentabelle befinden sich also die entsprechenden Werte einer befragten Person zu der entsprechenden Variable. 
+
+Prima, du kannst jetzt also eine Datentabelle bzw. ein **data frame**-Gerüst verstehen!
+{{% /expand %}}
+
+Du hast jetzt verstanden, wie eine Datentabelle aufgebaut ist, was sich in den Zeilen, Spalten und Zellen befindet. In R werden diese Datentabellen als Objekttyp **data frame** abgelegt. 
+
+![Beispiel data frame im Environment](../img/df1.png)
+
+Im **Environment** siehst du, dass dies unter die Gruppe **data** fällt. Du siehst auch, dass das Objekt *ausklappbar* ist. Wenn du den Pfeil-Button drückst, erscheinen alle Variablen (jeweils mit einem `$` davor) auf, die in diesem neuem Objekt zusammengefasst sind. Es ist also einfach zu verstehen, dass ein **data frame** lediglich die Zusammenfassung alle Variablen (bzw. Vektoren in R) einer Befragung ist. 
+
+Mit einem Doppelklick kannst du die Datenansicht öffnen. Dies ist einfach die Datentabelle, wie oben besprochen. In den Spalten befinden sich die Variablen und in den Zeilen die Fälle (außer erste Zeile!).
+
+![Beispiel Datenansicht R](../img/df3.png)
+
+Aber wie handhabst du nun einen Datensatz in R?

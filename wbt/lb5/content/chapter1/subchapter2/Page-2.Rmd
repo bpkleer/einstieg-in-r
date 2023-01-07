@@ -1,0 +1,85 @@
+---
+title: "Gruppieren"  # Titel der Seite
+weight: 122  # Individuelles Gewicht 
+menuTitle: "Gruppieren" # Falls Titel zulang ist, hier Kurztitel
+tags: ["gruppieren", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+pss <- readRDS("./data/pss.rds")
+```
+
+Ebenso können wir **Histogramme** einer Variable nach Gruppen trennen, wie wir es mit den Balkendiagrammen zuvor gemacht haben. Hierzu nutzen wir die Extra-Funktion `facet_grid()`, die den Plot teilt, sodass die Grafiken besser zu erkennen sind. In `facet_grid()` geben wir einfach nur in einer Formel an (`x ~ y`) nach welcher Variable auf der x-Achse bzw. y-Achse aufgeteilt werden soll. Wir wollen jetzt nur auf der y-Achse nach Geschlecht aufteilen. 
+``` {r hist-group, eval=TRUE}
+histGroup <- ggplot(
+  pss,
+  aes(
+    agea, 
+    fill = gndr
+  )
+) +
+  geom_histogram(
+    aes(y = ..density..),
+    alpha = 0.2
+  ) + 
+  geom_density(alpha = 0.2) +
+  facet_grid(
+    .~ gndr
+  ) + 
+  scale_fill_manual(
+    name = "Gender", 
+    labels = c(
+      "Female", 
+      "Male"
+    ),
+    values = beyonce_palette(72)
+  ) +
+  labs(
+    x = "Age in years", 
+    y = "Density", 
+    title = "Histogram of Age"
+  )
+
+histGroup
+```
+
+## Anpassungen
+Nun verändern wir noch die Beschriftungen über den **Histogrammen** und entfernen die Legende (weil sonst doppelt!).
+```{r hist-group2, eval=TRUE}
+histGroup <- ggplot(
+  pss,
+  aes(
+    agea, 
+    fill = gndr
+  )
+) +
+  geom_histogram(
+    aes(y = ..density..),
+    alpha = 0.2, 
+    bins = 30, 
+    position = "identity"
+  ) + 
+  geom_density(alpha = 0.2) +
+  facet_grid(
+    .~ gndr 
+  ) + 
+  scale_fill_manual(values = beyonce_palette(72)) +
+  labs(
+    x = "Age in years", 
+    y = "Density", 
+    title = "Histogram of Age"
+  ) + 
+  theme(legend.position = "none")
+
+histGroup
+```
+
+Als Alternative kannst du auch ein Ridgeline-Plot erstellen. Mehr dazu auf der nächsten Seite!

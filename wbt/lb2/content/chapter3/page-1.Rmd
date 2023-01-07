@@ -1,0 +1,56 @@
+---
+title: "Was ist tidyverse?"  # Titel der Seite
+weight: 301  # Individuelles Gewicht 
+menuTitle: "Was ist es?" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "funktionen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+```
+
+**Tidyverse** ist ein Paket, dass mehrere **libraries** beinhaltet, die alle nach ähnlicher Syntax funktionieren und untereinander kompatibel sind. Es bietet somit einen sehr großen Funktionsumfang und wird daher auch viel genutzt.
+
+![The tidyverse](../img/tidyverse.png)
+
+**Tidyverse** beinhaltet Kernpakete, die allesamt mit dem Befehl `library("tidyverse")` geladen werden. Dies sind:
+
+- **dplyr** (Datenbereinigung)
+ 
+- **tidyr** (Umgang mit Datensätzen)
+ 
+- ggplot2 (Grafiken)
+
+- stringr (Umgang mit Textdaten)
+
+- forcats (Umgang mit Faktoren)
+
+- tibble (Tabellentool)
+
+- readr (Import von Daten)
+
+- purrr (Umgang mit Funktionen und Vektoren)
+
+Im Laufe dieses Lernblocks lernst du `dplyr` und `tidyr` kennen!
+
+![The core tidyverse](../img/coretidy.png) 
+
+Zu allen `tidyverse`-Librariyes gibt es umfangreiche Dokumentationen aber auch kurze Cheat-Sheets. Die Cheatsheets zu den zwei hier nun vorgestellten Libraries findest du hier:
+
+![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)](../img/dplyr.png) 
+
+![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) ](../img/tidyr.png) 
+
+`dplyr` beinhaltet eine Grammatik, um Datenmanipulationen zu machen. Es besticht dabei durch seine Einfachheit und der Kombinationsmöglichkeit der Grundbefehle. Für eine erste Dateneinsicht ist dies meist hilfreich zu nutzen, oder um die Daten umzustrukturieren (manipulieren). 
+
+`tidyr` beinhaltet eine Grammatik, um Datensätze in ein *tidy* Format zu bringen. Ziel ist es, dass jede 
+Spalte eine Variable ist, jede Zeile eine Beobachtung und jede Zelle einen Wert beinhaltet. Hier gibt es das zu `tidyr`.
+
+Jetzt kannst du mit `dplyr` starten!

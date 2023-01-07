@@ -1,0 +1,42 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{article-german}
+
+% Code highlighting
+%\usepackage{minted}
+%\usemintedstyle{monokai}
+%\setminted{bgcolor=black}
+%\setminted{linenos = true}
+
+% Dateibaum
+\usepackage{forest}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+\title{Lab 3 \\ \normalsize \textit{Lernblock 3}}
+\author{Meike Schulz-Narres, B. Philipp Kleer}
+\date{\today \\ \small{Version: 0.1}} 
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item Erstelle eine Tabelle \texttt{table1} der Variable \texttt{stfeco} aus dem PSS. Die Tabelle soll neben den gültigen Fällen auch die fehlenden Werte anzeigen.
+	\item Erstellt eine Kreuztabelle \texttt{table2} aus den Variablen \texttt{district} und \texttt{income} aus dem PSS.
+	\item Nutze das Objekt \texttt{table2} und gib nun die Spaltenprozente an. Speichere dies im Objekt \texttt{table2col}.
+	\item Teste den Zusammenhang zwischen den Variablen \texttt{agea} und \texttt{lrscale}. 
+	\begin{enumerate}
+		\item Erstelle zuerst ein Scatterplot und speichere dies in \texttt{plot1}. 
+		\item Überlege dir, welches Maß du anwenden kannst!
+		\item Berechne das Maß und speichere das Ergebnis in \texttt{res1}. Verwende hierzu die \textit{library} \texttt{psych}.
+	\end{enumerate}
+	\item Du möchtest wissen, ob sich das Vertrauen der Befragten in das Parlament (\texttt{trstprl}) zwischen den Geschlechtern (\texttt{gndr}) unterscheidet. Du hast dazu in einem angesehenen Journal einen Beitrag gelesen, dass Männer mehr Vertrauen als Frauen haben. Daher testest du einseitig! Speichere den Test im Objekt \texttt{mt1}!
+\end{enumerate}
+
+\end{document}

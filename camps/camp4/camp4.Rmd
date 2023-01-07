@@ -1,0 +1,461 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["./assets/xaringantheme-jlu.css"]  #Style sheet
+    nature:
+      beforeInit: "./assets/macros.js"  # individual macros
+      seal: false  # no automatic title slide
+      highlightStyle: github
+      highlightLines: true
+      highlightLanguage: ["r"]
+      countIncrementalSlides: false  # incremental does not count as single slide 
+      ratio: '16:9'  
+      slideNumberFormat: |   # progress bar instead of slide numbers
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>    
+      navigation:
+        scroll: false  #mouse scroll off (otherwise copying code is difficult)
+---
+```{r setup, include=FALSE}
+library("knitr")  
+library("rmarkdown")
+library("tidyverse")
+library("modelsummary")
+library("performance")
+library("DT")  # Table illustration
+library("icons")  # Social Media Links
+library("emoji") # Emojis
+library("RefManageR") # Zitation
+library("xaringanBuilder") # Export
+library("xaringanExtra") # some extras (panels, copyable code, etc.)
+
+# Code Options
+opts_chunk$set(fig.path = "assets/createdpics/", # path for calculated figures
+               fig.align = "center",  # alignment of figure (also possible right, left, default)
+               fig.show = "hold", # how to show figures: hold -> direct at the end of code chunk; animate: all plots in an animation
+               out.width = "50%",
+               echo = TRUE,     # Code is printed
+               eval = FALSE,    # Code is NOT evaluated
+               warning = FALSE, # warnings are NOT displayed
+               message = FALSE, # messages are NOT displayed
+               background = "#E7E7E7", # background color of code chunks
+               comment = "", # no hashtags before output
+               results = "markdown",
+               rows.print = 15
+)
+
+# data table options
+options(DT.options = list(pageLength = 5,
+                          language = list(search = 'Filter:'),
+                          autowidth = TRUE,
+                          lengthChange = FALSE,
+                          formatStyle = (fontSize = "40%"))
+        )
+
+# copyable code
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+
+# Referenzen
+BibOptions(
+  check.entries = FALSE, 
+  bib.style = "authoryear", 
+  cite.style = "authoryear", 
+  style = "markdown",
+  hyperlink = FALSE, 
+  dashed = FALSE
+)
+
+lit = ReadBib("./assets/lit.bib")
+
+# Suche
+xaringanExtra::use_search(
+  show_icon = FALSE,
+  auto_search = TRUE,
+  position = "top-right"
+  )
+
+essIt <- readRDS("../data/essIt.rds")
+
+
+model0 <- lm(
+  stfdem ~ 1, 
+  data = essIt
+)
+
+model1 <- lm(
+  stfdem ~ 1 + stfeco + stfhlth + stfedu, 
+  data = essIt
+)
+
+essIt <- essIt %>% 
+  mutate(
+    eduG = case_when(
+      edlveit <= 2 ~ "low", 
+      edlveit > 2 & edlveit <= 8 ~ "medium",
+      edlveit > 8 & edlveit <= 21 ~ "high",
+      TRUE ~ NA_character_
+    ),
+    eduG = factor(eduG),
+    gndr = factor(
+      essIt$gndr,
+      labels = c(
+        "female", 
+        "male"
+      )
+    )
+  )
+
+model2 <- lm(
+  stfdem ~ 1 + stfeco + stfhlth + stfedu + agea + gndr + hinctnta + eduG, 
+  data = essIt
+)
+
+```
+
+class: title, center, middle
+
+# Statistik<sup>+</sup>: Einstieg in R leicht gemacht!
+
+## Anwendungsorientierte Statistikvermittlung 
+
+### Philipp Kleer | Institut für Politikwissenschaft | FB 03 | Sommersemester 2022
+
+<!--- Social Media Links, müssen angepasst werden -->
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+
+---
+
+
+# Was haben wir bisher geschafft?
+
+Du kannst jetzt schon Datensätze handhaben und in R laden. 
+
+Du kannst bearbeitete Datensätze neu speichern.
+
+Du kannst erste Recodierungsschritte vornehmen und Variablen ändern.
+
+Du kannst **pipen** und dir auch damit deskriptive Statistiken ausgeben lassen. 
+
+Du kannst Mittelwertvergleiche und Korrelationen berechnen und auswerten.
+
+--
+
+**Heute**: Regressionen! `r emoji::emoji("smiling_face_with_smiling_eyes")`
+
+---
+
+# Rückfragen: Lineare Regression
+
+---
+
+# Variables of interest & control variables
+
+Ziel einer Analyse ist es immer den Einfluss **unabhängiger Variablen** (*variables of interest*) auf eine gewählte **abhängige Variable** zu testen. In den Sozialwissenschaften können wir aber nie Wirkungsketten so klar einschränken, so dass auch immer Kontrollvariablen in Modellen mit aufgenommen werden.
+
+Kontrollvariablen sind dabei Variablen, zu denen bekannt ist (durch andere Forschungsbeiträge), dass sie möglicherweise die abhängige Variable beeinflussen. Genauso können Kontrollvariablen solche sein, zu denen zwar ein Einfluss vermutet wird, dieser aber nicht theoretisiert ist und nicht im Fokus der durchgeführten Analyse steht. 
+
+Trotzdem werden Kontrollvariablen mit aufgenommen!
+
+---
+
+# Vorgehen Modelle lineare Regression
+
+Modelle werden sequentiell aufgebaut. Dabei startet man meist mit einem Nullmodell (nur *Intercept*/Konstante). Dann erfolgt oft ein Modell, dass nur die Kontrollvariablen beinhaltet und als nächstes erfolgt die Einbindung der *variables of interest*. Wenn Modelle komplexer sind, erfolgt der letzte Schritt in Teilschritten. 
+
+Wichtig hierbei: Die Formel verstehen hilft bei der Umsetzung dieser Schritte!
+
+Nehmen wir ein Beispiel: Wir wollen die Zufriedenheit mit der Demokratie erklären. Dazu haben wir theoretisiert, dass die Zufriedenheit mit der Demokratie (`stfdem`) in engem Zusammenhang mit der Zufriedenheit mit der ökonomischen Leistung (`stfeco`) und anderen Subsystemen steht (Gesundheitssystem (`stfhlth`), Bildungssystem (`stfedu`)). 
+
+Aus anderen Beiträgen wissen wir, dass auch Alter sowie sozio-ökonomischer Status einen Einfluss haben können. Daher nehmen wir folgende Variablen als Kontrollvariablen ins Modell auf: Alter (`agea`), Einkommen (`hinctnta`) sowie Geschlecht (`gndr`). 
+
+---
+
+# Modellaufbau
+
+Nullmodell:
+
+--
+
+$$y_i = \beta_0 + \epsilon_i$$
+
+--
+
+Modell 1 (Einflussfaktoren):
+
+--
+
+$$y_i = \beta_0 + \beta_1*stfeco_i + \beta_2*stfhlth_i + \beta_3*stfedu_i + \epsilon_i$$
+
+--
+
+Modell 2 (Einflussfaktoren + Kontrollvariablen):
+
+--
+
+$$y_i = \beta_0 + \beta_1*stfeco_i + \beta_2*stfhlth_i + \beta_3*stfedu_i + \beta_4*agea_i + \beta_5*gndr_i + \beta_6*hinctnta_i + \epsilon_i$$
+
+---
+
+# Quick Task
+.pull-left[
+Rechts siehst du Modelle! Bilde diese Modelle in R nach und berechne Sie, übe dich in der Interpretation!
+
+**Zeit: 30 Minuten.**
+]
+
+.pull-right[
+.scroll-box-24[
+```{r quicktask, eval=TRUE, echo=FALSE}
+models <- list(
+  model0, 
+  model1, 
+  model2
+)
+
+modelsummary(
+  models,
+  stars = TRUE
+)
+```
+]
+]
+---
+
+
+# Modelle berechnen
+
+Welche Funktion brauchen wir?
+
+```{r models-lin, eval=TRUE}
+model0 <- lm(
+  stfdem ~ 1, 
+  data = essIt
+)
+```
+
+--
+
+```{r models-lin1, eval=TRUE}
+model1 <- lm(
+  stfdem ~ 1 + stfeco + stfhlth + stfedu, 
+  data = essIt
+)
+```
+
+--
+.scroll-box-8[
+```{r models-lin2, eval=TRUE}
+essIt <- essIt %>% 
+  mutate(
+    eduG = case_when(
+      edlveit <= 2 ~ "low", 
+      edlveit > 2 & edlveit <= 8 ~ "medium",
+      edlveit > 8 & edlveit <= 21 ~ "high",
+      TRUE ~ NA_character_
+    ),
+    eduG = factor(eduG),
+    gndr = factor(
+      essIt$gndr,
+      labels = c(
+        "female", 
+        "male"
+      )
+    )
+  )
+
+model2 <- lm(
+  stfdem ~ 1 + stfeco + stfhlth + stfedu + agea + gndr + hinctnta + eduG, 
+  data = essIt
+)
+```
+]
+
+---
+
+# Nullmodell
+
+```{r mod0, eval =TRUE}
+summary(model0)
+```
+
+---
+
+# Modell 1
+
+.code70[
+```{r mod1, eval =TRUE}
+summary(model1)
+```
+]
+---
+
+# Modell 2
+.code60[
+```{r mod2, eval =TRUE}
+summary(model2)
+
+```
+]
+---
+
+# Modelle darstellen
+.pull-left[
+```{r modellist, eval=FALSE}
+models <- list(
+  model0, 
+  model1, 
+  model2
+)
+
+modelsummary(
+  models,
+  stars = TRUE
+)
+```
+]
+
+.pull-right[
+.scroll-box-24[
+```{r modellist2, eval=TRUE, echo=FALSE}
+models <- list(
+  model0, 
+  model1, 
+  model2
+)
+
+modelsummary(
+  models,
+  stars = TRUE
+)
+```
+]
+]
+---
+
+
+# Dot-Whisker-Plot
+.pull-left-30[
+```{r dwplot, eval=FALSE}
+library("dotwhisker")
+
+dwplot(
+  list(
+    model0, 
+    model1, 
+    model2
+  )
+)
+
+```
+]
+
+.pull-right-70[
+```{r dwplot2, eval=TRUE, echo=FALSE}
+library("dotwhisker")
+
+dwplot(
+  list(
+    model0, 
+    model1, 
+    model2
+  )
+)
+
+```
+]
+---
+
+# Regressionsdiagnostik mit `performance`
+
+Im Lernmodul sind verständliche Wege beschrieben, wie sich die Diagnostikschritte nacharbeiten lassen. Dies ist dazu da, sich auch nochmal selbst stärker in das Verständnis des Programmierens einzuarbeiten und auch in die Diagnostik. 
+
+Es gibt auch natürlich auch ein Paket, dass das erleichtert: `performance`.
+
+In der *library* gibt es die Funktion `check_model()`, die einem alle relevanten Plots ausgibt. 
+
+---
+
+# Regressiondiagnostik mit `performance`
+
+```{r regdiag, eval=FALSE}
+# install.packages("performance")
+# library(
+#   "performance",
+#   dependecies = TRUE
+# )
+
+check_model(model1)
+``` 
+---
+
+# Regressiondiagnostik mit `performance`: Model 1
+
+```{r regdiag2, eval=TRUE, echo=FALSE}
+# install.packages("performance")
+# library(
+#   "performance",
+#   dependecies = TRUE
+# )
+
+check_model(model1)
+``` 
+---
+
+# Regressiondiagnostik mit `performance`: Model 2
+
+```{r regdiag3, eval=TRUE, echo=FALSE}
+# install.packages("performance")
+# library(
+#   "performance",
+#   dependecies = TRUE
+# )
+
+check_model(model1)
+``` 
+---
+
+# Into the real world
+
+In den letzten Camps haben wir angefangen mit dem Datensatz **European Social Survey** zu arbeiten und du hast dir eine abhängige Variable ausgesucht, die du im Laufe des Semesters untersuchen möchtest. Heute werden wir diese Analyse finalisieren, in dem du eine multivariate lineare Regression berechnest. 
+
+Suche dir daher aus dem Codebook mind. **5** metrische Variablen heraus, die im Zusammenhang mit deiner gewählten **abhängigen Variable** stehen könnten und suche dir zwei kategoriale Variablen heraus. Es können Variablen sein, die du bereits bei der Analyse von Mittelwertvergleichen und Korrelationen genutzt hast. Unterteile die Variablen in *variables of interest* und Kontrollvariablen. Überlege dir zu den *variables of interest* empirische Hypothesen (mit Theoriekontext aus deinem bisherigen Studium), die du in Regression testen möchtest. 
+
+Aufgaben:
+
+1. Berechne die Modelle und werte diese aus. Verschriftliche die Auswertung.
+
+2. Stelle die Ergebnisse in Tabellen und grafisch dar!
+
+3. Überprüfe die Regressionsdiagnostik deines letzten Modells.
+
+**Zeit: 120 Minuten.** Macht selbstständig Pause.
+---
+
+# Lab tasks 4
+
+
+Korrekte Pipeline bis **05. August 2022**.
+
+Nutzt die Issues und nutzt die Tutor:innen-Sprechstunde!
+
+---
+
+class: goodbye, center, middle
+
+# Wir sehen uns in 2 Wochen zu Spaß mit ggplot `r emoji("grinning_face_with_big_eyes")`
+
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 

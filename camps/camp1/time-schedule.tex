@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+% Download font here: https://fonts.google.com/specimen/Fira+Sans
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Zeitplan Camp 1 \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+Im Vorfeld des Kurses wurde eine E-Mail (\textit{siehe unten}) an die Studierenden versendet, in denen die einzelnen Anmeldeschritte erklärt wurden und die Studierenden aufgefordert wurden, diese Anmeldeschritte vor der Sitzung durchzuführen. 
+
+\begin{center}
+	\begin{longtable}{p{0.15\textwidth} p{0.1\textwidth} p{0.65\textwidth}}
+		\toprule[2pt]
+		\textbf{Zeit} & \textbf{Dauer} & \textbf{Was?}\\
+		\midrule
+		16:00 – 16:15 & 15 & Kurzeinführung \& formale Rückfragen\\
+		\midrule
+		16:15 – 16:30 & 15 & Dateien \& Pfade\\
+		\midrule
+		16:30 – 17:00 & 30 & Einsteig in RStudio Cloud: Login \& Teilbereiche von RStudio\\
+		\midrule
+		17:00 – 17:30 & 15 & Erste Rechnungen in der Konsole, Skripte \& Objekte (kleinere Zwischenaufgaben)\\
+		\midrule[2pt]
+		17:30 - 17:50 & 20 & Pause \\
+		\midrule[2pt]
+		17:50 – 18:20 & 30 & 4 Wertetypen (kleinere Zwischenaufgaben) und erste Funktion (\texttt{c()})\\
+		\midrule
+		18:20 – 18:50 & 30 & Datentypen in R: Fokus auf Vektoren (kleiner Zwischenaufgaben)\\
+		\midrule[2pt]
+		18:50 – 19:15 & 25 & Pause\\
+		\midrule[2pt]
+		19:15 – 19:45 & 30 & Einführung in gitlab \& Einführung in Projekt \texttt{course-materials}\\
+		\midrule
+		19:45 – 20:00 & 15 & Rückfragen\\	
+		\bottomrule[2pt]
+	\end{longtable}
+\end{center}
+\newpage
+
+\textbf{E-Mail an Studierende im Vorfeld}
+
+\input{./email.tex}
+\end{document}

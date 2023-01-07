@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>camp1.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"top-right","caseSensitive":false,"showIcon":false,"autoSearch":true}) })</script>
+    <link rel="stylesheet" href="../assets/xaringantheme-jlu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+# Bevor wir anfangen:
+
+Folge den Instruktionen in der E-Mail vom Anfang der Woche:
+
+[] Login mit s-/j-/n-Kennung in ...
+
+[] Login mit s-/j-/n-Kennung in ...
+
+[] Survey ausfüllen
+
+[] 3 Einladungen zu gitlab annehmen
+
+---
+
+class: title, center, middle
+
+# Statistik&lt;sup&gt;+&lt;/sup&gt;: Einstieg in R leicht gemacht!
+
+## Camp 1 
+
+### Philipp Kleer | Institut für Politikwissenschaft | FB 03 | Sommersemester 2022
+
+&lt;!--- Social Media Links, müssen angepasst werden --&gt;
+.social[
+[&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt;](mailto:philipp.kleer@sowi.uni-giessen.de)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57zM300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://orcid.org/0000-0003-1935-387X)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88l94.3 294 94.3-294zm349.4 88l-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://gitlab.ub.uni-giessen.de/bpkleer)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [&lt;svg viewBox="0 0 448 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+
+---
+
+# Was auf Sie zu kommt!
+.pull-left-70[
+.pull-left[
+.center[
+![:scale 15%](./img/rlogo.svg)
+]
+- Programmiersprache
+
+- GNU-Projekt, daher frei erweiterbar, kostenlos und durch die Community immer up-to-date (neuere Methoden etc.)
+]
+
+.pull-right[
+.center[
+![:scale 37%](./img/rstudio.png)
+]
+- Software, in der wir R benutzen
+
+- *Integrated Development Environment* (IDE)
+
+- wir nutzen Cloud-Version (über Uni lizenziert): Zugriff einfach aus dem Browser heraus (keine Installation notwendig )
+
+- in der Einzelanwenderlizenz kostenlos (also auch Installation am eigenen Rechner möglich)
+
+]
+]
+
+--
+
+.pull-right-30[
+.center[
+![:scale 30%](./img/git.png) ![:scale 40%](./img/jlugit.png)
+]
+
+- sogenannte *Version Control*
+
+- erleichtert die gemeinsame Arbeit (kollaborativ) an Programm-Code
+
+- erspart eine Menge Zeit an Datei-Management/-Versand, so dass wir die Zeit wirklich fürs Programieren/Lernen nutzen können (bzw. auf Dozentensicht für's Lehren)
+]
+ 
+---
+
+class: section, mline, center, middle
+
+# Gibt es Rückfragen zu den Formalia?
+
+---
+
+# Basics Computer: Dateien &amp; Dateipfade
+
+Was sind Dateien? 
+--
+
+- Inhalt, der in einem bestimmten Format gespeichert ist und von spezifischen Programmen gelesen werden kann
+
+- Beispiel: semesterplan**.pdf** oder script1**.html**
+
+--
+
+Was für eine Endung hat eine Bilddatei zum Beispiel? Welche Endung hat eine Word-Datei?
+
+--
+
+- Bilddatei: **.png**, **.jpeg** ...
+
+- Word-Datei: **.docx**, **.doc**
+
+--
+
+Wo werden Dateien gespeichert?
+
+--
+- Dateien werden lokal gespeichert und haben eine spezifische Adresse!
+
+---
+
+# Basics: Dateipfade
+
+.center[
+![Dateipfad finden](./img/filepath.png)
+]
+---
+
+class: section, mline, center, middle
+
+# Fangen wir mit dem Coden an!
+
+---
+
+# Einstieg in RStudio
+
+Gehe auf RStudio und logge dich ein!
+
+![Erster Login in RStudio](firstlogin.gif)
+
+???
+zeigen was beim Login passiert.
+
+Aufteilung erklären im Stil (Was ist Console, Was ist ) in **firststeps**
+
+Erstmal fokussieren auf die drei Sachen: Console, Files, Environment
+
+Screenshots siehe Desktop Folder Statsplus-Screenshots
+
+---
+
+# Konsole
+
+In der Konsole kann man direkt Anweisungen eingeben. 
+
+R ist eine Rechensprache! Gib einfach mal `3 + 4` in die Konsole ein. Mit `Enter` führst du den Befehl in der Konsole aus. 
+
+--
+
+**Problem hierbei:** Um das Ergebnis aufzurufen, muss man immer wieder die Rechnung eingeben. Das ist lästig.
+
+--
+
+**Lösung**: Objekt speichern
+
+???
+ 
+in Konsole einfache Rechnung ausführen: `3 + 4`
+
+Das heißt in der Konsole können wir Code einfach ausführen.
+
+---
+
+# Objekte
+
+Was ist ein Objekt?
+
+--
+
+Ein Objekt ist ein beliebig benanntes Ergebnis oder Anweisung, die wir speichern können. 
+
+Um eine Anweisung in R zu machen, nutzt du den `&lt;-` (Anweisungspfeil). Warum geht der Pfeil in diese Richtung?
+
+
+```r
+math &lt;- 2 + 3
+```
+
+--
+
+Links steht das Objekt und rechts die Anweisung. Und die Anweisung geht zum Objekt! Für den Anweisungspfeil gibt es Shortcuts: `Alt` + `I` (Windows), `Option` + `I` (Mac).     
+
+Was fällt dir auf?
+
+--
+
+Das Ergebnis wird nicht angezeigt. Korrekt, denn wir haben nur ein Objekt gespeichert. Um jetzt auf das Objekt zuzugreifen (bzw. den Inhalt im Objekt), musst du das Objekt aufrufen. 
+
+--
+
+Aber was könnte jetzt noch ein **Problem** sein?
+
+--
+
+Es gibt keine Möglichkeit den Code nachzuverfolgen. Die Konsole kann nicht gespeichert werden. 
+
+---
+
+# Skript anstatt Konsole
+
+In Skripten kann Code gespeichert werden und so für sich selbst oder andere gespeichert werden. 
+
+Warum könnte es relevant sein, dass wir das, was wir gemacht haben, in einer Datei speichern (und anderen zur Verfügung stellen können)?
+
+--
+
+- Nachbearbeitung, Teilen unserer Arbeit, Transparenz unserer Arbeit!
+
+Ein neues **Skript** öffnest du über `File -&gt; New File -&gt; New R Script` oder mit dem Shortcut `Strg`+ `Shift` + `N` (Windows) oder `Cmd` + `Shift` + `N` (Mac). 
+
+--
+
+Welche Endung hat die Datei?
+
+--
+
+**.R** `\(\Rightarrow\)` weil die Sprache des Skripts eben R ist!
+
+--
+
+Schreib den Code aus der Konsole nochmals ins Skript und führe den Code aus. Wie kannst du den Code ausführen?
+
+--
+
+Zeilen markieren oder Cursor in die Zeile stellen und `Strg + Enter` bzw. `Cmd + Enter`
+
+???
+neue Datei: Auf save button klicken und datei speichern. 
+Wie führt man Code aus? Sie spielen lassen!
+
+---
+
+# Zwischenaufgabe
+
+1. Führe eine Berechnung aus, die eine Multiplikation und Addition beinhaltet und als Ergebnis 20 hat. 
+
+2. Speichere eine weitere Rechnung im Objekt `result`, das nur aus einer Subtraktion besteht und als Ergebnis 17 hat. 
+
+Schreib beides in dein Skript!
+
+---
+
+# Was haben wir bisher geschafft?
+
+Du hast die ersten Schritte in der Sprache R gelernt und kannst einfache Rechnungen ausführen. 
+
+Du weißt wie du Objekte speicherst und wie du diese aufrufen kannst!
+
+Wir wollen aber nicht nur einfache Rechnungen ausführen, sondern mit Surveydaten arbeiten.
+
+--
+
+**Next step: Welche Form können Daten haben?**
+
+---
+
+# 4 Wertetypen
+
+Es gibt vier Wertetypen, die genutzt werden können:
+
+- numeric (*numerisch*)
+
+- integer (*ganzzahlig*)
+
+- character/string (*Zeichen*)
+
+- logical/boolean (*binär*: `TRUE`/`FALSE`)
+
+???
+
+Beispiel an der Tafel (jeweils mehrere Werte):
+
+Wohnort
+
+Alter
+
+beantwortung Likert-Skala: trifft nicht zu &lt;-&gt; trifft voll zu
+
+---
+
+# Zwischentask
+
+1. Speicher ein neues Objekt `ganzzahl`, das eine ganze Zahl beinhaltet.
+
+2. Speicher ein neues Objekt `reell`, das eine Dezimalzahl beinhaltet.
+
+3. Speicher ein neues Objekt `word`, dass ein beliebiges Wort beinhaltet.
+
+???
+
+1. Speicher ein neues Objekt `ganzzahl`, das eine ganze Zahl beinhaltet.
+
+2. Speicher ein neues Objekt `reell`, dass eine reelle Zahl (aber nicht ganzzahlig) beinhaltet.
+Lernziel: Punkt statt Komma als Dezimaltrennzahl!
+
+3. Speicher ein neues Objekt `word`, dass ein beliebiges Wort beinhaltet.
+Lernziel: Anführungsstriche für Text
+
+---
+
+# Mehr als ein Wert in Objekt speichern!
+
+Um mehrere Werte in einem Objekt zu speichern, nutzt du deine erste **Funktion** in R. Mit der Funktion `c()` (*combine*) können wir mehr als einen Wert speichern! Funktionen erkennst du daran, dass eine Klammer folgt, der Argumente der Funktion (komma-getrennt) sind. 
+
+Speichere **5** Werte im Objekte `fuenfWerte` mit der Funktion `c()`.
+
+--
+
+Wir erhalten dann einen Vektor! Daher lernen wir jetzt was über Datentypen in R!
+
+---
+
+# Vier Datentypen
+
+- Vektoren (mehrere Werte in einem Objekt, z.B. genutzt für Variablen)
+ 
+- Faktoren (Spezialform des Vektors für nominale Daten)
+
+- Listen (Zusammenführung verschiedener anderer Objekt in einer Liste)
+
+- Dataframes (spezielles Datenformat für Daten)
+
+---
+
+# Vektoren
+.scrollable[
+Wir haben das Alter von fünf Befragten und wollen das in einem Vektor `age` speichern.
+
+Als Vektor würde dies wie folgt dargestellt: 
+
+$$ age = \left(\begin{array}{c} 25, \\ 18, \\ 35, \\ 45, \\ 28 \end{array}\right) $$
+
+Oder wir speichern den Wohnort von fünf Personen in einem Vektor `town`:
+
+$$ town = \left(\begin{array}{c} Rio \, de \, Janeiro, \\ Salvador, \\ Salvador, \\ Belo \, Horizonte, \\ Belo \, Horizonte \end{array}\right) $$
+Jetzt speichern wir das in R
+
+
+
+```r
+age &lt;- c(
+  25, 
+  18, 
+  35,
+  45, 
+  28
+)
+
+town &lt;- c(
+  "Rio de Janeiro",
+  "Salvador",
+  "Salvador", 
+  "Belo Horizonte", 
+  "Belo Horizonte"
+)
+```
+]
+
+---
+
+# Werte in einem Vektor
+Du weißt ja bereits wie du alle Werte eines Objekts aufrufst. Wie geht das nochmal?
+
+--
+
+Jetzt möchten wir einen einzigen Wert aus `age` ansprechen, nämlich den Wert der dritten befragten Person. 
+
+--
+
+In R werden Einschränkungen immer in `[...]` (eckige Klammern) gesetzt. Um also die Einschränkung zu setzen, dass nur der dritte Wert angezeigt werden soll, kannst du einfach `[3]` schreiben. Doch wo muss man das hinsetzen?
+
+--
+
+
+```r
+age[3]
+```
+
+--
+
+
+```
+[1] 35
+```
+
+---
+
+# Faktoren
+
+**Faktoren** sind ein spezielles Datenformat für nominale Daten. Dieses Datenformat ist später oft sinnvoll, wenn für eine Ausprägung mehrere Fälle auftreten (also wie bei `Salvador` oder `Belo Horizonte` in `town`).
+
+--
+
+Einen Faktor schafft man, in dem man auf den Vektor einfach die Funktion `as.factor()` anwendet:
+
+
+```r
+as.factor(town)
+```
+
+--
+
+
+```
+[1] Rio de Janeiro Salvador       Salvador       Belo Horizonte Belo Horizonte
+Levels: Belo Horizonte Rio de Janeiro Salvador
+```
+
+Es gibt auch noch **ordered factors**, das lernst du in der Nachbearbeitung kennen.
+
+---
+
+# Dataframe
+
+Ein **data frame** ist einfach ein Datensatz. Welche Konvention gilt für Datensätze?
+
+--
+
+column (*Spalte*): Variablen (in R: Vektoren oder Faktoren)
+
+
+row (*Zeilen*): Beobachtungen (in R: Fälle)
+
+--
+
+Mehr zu Datensätze lernen wir in der Code-Challenge und im nächsten Lernblock kennen!
+
+---
+
+# Zwischenziel erreicht!
+
+Du kanns jetzt nicht nur erste kleine Rechnungen in R ausführen, du kennst auch schon Wertetypen und Datentypen, die du anwenden kannst!
+
+Nach der Pause machen wir noch etwas zur Einführung von gitlab!
+
+---
+
+class: section, mline, center, middle
+
+# Git: Kollaborieren wie die Profis
+
+---
+
+# Was passiert oft in Projekten?
+Nehmen wir ein einfaches Beispiel: Ihr arbeitet in einer Projektgruppe an einer empirischen Hausarbeit und schreibt auch Code. Ihr habt es bis zu einer finalen Version des Skripts geschafft und macht nun eine finale Kontrolle. 
+ 
+--
+
+&lt;img src="./img/process1-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Was passiert oft in Projekten?
+Dann behebt die eifrige Person C direkt noch Änderung und schickt es wieder an alle Personen der Gruppe.
+
+&lt;img src="./img/process2-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Was passiert oft in Projekten?
+Dann haben Person B und D auch Zeit und bearbeiten noch die finale Version. Person B verplant sich aber dabei und bearbeitete die von A geschickte Version. Person D bearbeitet die von C nochmals korrigierte Version. 
+&lt;img src="./img/process3-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+---
+
+# Was passiert oft in Projekten?
+
+Man kann das noch weiterspinnen, was aber klar wird: Es ist ein reines **Chaos** und es fällt schwer den Überblick zu behhalten. 
+
+--
+
+Auch Tools wie JLUbox oder Dropbox sind nur eingeschränkt sinnvoll, da auch hier die synchrone Bearbeitung oftmals zu Problemen führt.
+
+--
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#0069B3;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"&gt;&lt;/path&gt;&lt;/svg&gt; deshalb ![:scale 5%](./img/git.png)
+
+---
+
+# Was macht also ![:scale 10%](./img/git.png) ?
+- **Git** ist eine *Version*-Control: Anwendung in Forschung als auch in IT-Unternehmen
+--
+
+- Ziel ist Änderungen in textbasierten Dateien nachverfolgen zu können, also z.B. in Skripten (`.r`, `.rmd`, oder `.md`)
+--
+
+- es können verschiedene Personen auch zeitgleich an Dateien arbeiten
+--
+
+- Nutzende bearbeiten Dateien lokal, bestätigen ihre Änderungen und senden diese dann an den Server
+--
+
+- **Git** speichert die Änderungen und synchronisiert die Datei mit Änderungen von anderen
+--
+
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:#0069B3;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"&gt;&lt;/path&gt;&lt;/svg&gt; Es besteht also global immer nur eine Datei, die aber alle Änderungen nachverfolgbar dokumentiert!
+
+---
+
+
+# Wie wendet man git an?
+Es gibt verschiedene Serverlösungen, die auf git beruhen. Dies sind unter anderem **Gitlab**, **Github** (😒 wurde von Microsoft aufgekauft) oder auch **Bitbucket**. An der JLU gibt es eine Distribution von [JLU Gitlab](https://gitlab.ub.uni-giessen.de), auf der man sich mit seiner s-/j-/g-Kennung einloggen kann. 
+
+--
+
+Um git verwenden zu können, muss man ein paar Vokabeln verstehen. Diese reichen aber für die Grundlagen vollkommen aus. Um in **Git** arbeiten zu können, muss man ein paar Vokabeln üben. 
+
+--
+
+- Repository (lokal und global (*server-side*))
+- Group
+- commit
+- pull
+- push
+
+---
+
+# Repository
+.font80[
+Ein **Repository** (in Gitlab: **Project**) ist wie ein Ordner in der JLUBox oder DropBox. **Repositories** sind durch **Git** synchronisiert und die Versionsverläufe können nachverfolgt werden. Ein **Repository** ist also eine Sammlung von Dateien, deren Bearbeitungsverlauf in Schnappschüssen versioniert wird. Mit **Git** kann man beliebig viele unterschiedliche Repositories verwalten.
+]
+--
+.font80[
+Ein **Git-repository** sind z.B. die Kursmaterialien [course-materials](https://gitlab.ub.uni-giessen.de/intro-r-spring22/course-materials). Dieses **Repository** beinhaltet die Kursmaterialien zum Kurs. Dies ist die globale Version (*server-side*), die auf **JLU Gitlab** gehostet wird. Man kann die Dateien auf dem Server direkt bearbeiten, das macht man aber in der Regel nicht. Im Üblichen **cloned** man das **Repository** in einen lokalen Ordner, verändert dort die Dateien (in entsprechenden Programmen) und sendet dann die Änderungen an den Server zurück.
+]
+--
+.font80[
+.pull-left[
+Ein lokales Repository ist einfach ein Ordner, der neben den Dateien einen versteckten Ordner `.git` enthält. In diesem ist hinterlegt, dass dieser Ordner mit einer Server-Version verknüpft ist. 
+]
+]
+ 
+.pull-right[
+.center[
+![:scale 85%](./img/folder.PNG)
+]
+]
+---
+
+# Group 
+Eine **Group** in **Gitlab** ist einfach eine Sammlung verschiedener Repositories oder **Subgroups** in einer Gruppe. Somit lassen sich größere Projekte besser verwaltem. So ist z.B. der [Kurs im Sommersemester](https://gitlab.ub.uni-giessen.de/intro-r-spring21) eine solche Gruppe, in der es **Subgroups** und Repositories gibt: `effie` bis `rue` und `course-materials`. Eine **Subgroup** ist einfach nur eine Gruppe innerhalb einer Gruppe. 
+
+.center[
+![:scale 70%](./img/git-group.png)
+]
+---
+
+# Commit 
+.font90[
+In RStudio haben wir bereits die Verbindung zur globalen Version für dich hergestellt (**clonen**), darum musst du dich nicht mehr kümmern. Jetzt musst du nur noch lernen, wie du die Änderungen auf deine Version holst bzw. wie du selbst Änderungen abschickst (Gruppenabgaben). Wenn man Änderungenan den Server schicken und allen sichtbar machen, macht man folgenden Dreischritt: **commit**, **pull** &amp; **push**. Will man Änderungen nur erhalten, reicht ein Zweischritt: **commit** &amp; **pull**.
+]
+--
+.font90[
+Mit **commit** als ersten Schritt geben wir **Git** an, dass die Änderungen, die wir gemacht haben, registriert und nicht überspeichert werden sollen. Dazu gehst du im **Environment** auf den Tab **Git**. Du siehst direkt die drei Buttons. Wenn es bereits Änderungen gibt, sind diese hier aufgelistet. Falls nichts geändert wurde, erscheint auch nichts und du kannst nicht **committen**.
+]
+
+.center[
+![:scale 60%](./img/rstudio-git4.png)
+]
+
+---
+
+# Commit
+
+.pull-left[
+Wenn man etwas an den Dateien bearbeitet und die Datei gespeichert hat, wird im Reiter **git** sichtbar, dass man diese Datei bearbeitet hat (hier `M` für *modified*)
+]
+
+.pull-right[
+.center[
+![:scale 70%](./img/rstudio-git5.png)
+]
+]
+
+--
+
+Wenn man nach Änderungen nun auch **Commit** klickt, öffnet sich ein neues Fenster. 
+
+--
+
+.pull-left[
+Hier wird angezeigt, welche Datei *modified* wurde, oder z.B. gelöscht (*deleted*) oder hinzugefügt (*added*). Um diese Dateien zu committen, muss einfach ein Haken neben der Datei gesetzt werden. Anschliessend gibt man eine *Commit message* ein und klickt anschließend auf *commit*. Wenn man eine Datei angeklickt hat, sieht man auch im unteren Feld, was in der Datei geändert wurde. 
+
+]
+
+
+.pull-right[
+.center[
+![:scale 90%](./img/rstudio-git6.png)
+]
+]
+
+??? 
+
+Mit denen einmal vormachen mit course materials!
+---
+
+# `course-materials`
+
+Im Projekt `course-materials` kannst du nur Änderungen holen, nicht deine Änderungen abschicken. 
+
+Hier werden nach und nach immer die aktuellen Kursmaterialien zur Verfügung gestellt. 
+
+Also hier kannst du nur **commit** &amp; **pull** machen. 
+
+---
+
+# Gruppenprojekte `effie`, `katniss`, `gale`, `peta` &amp; `rue` 
+In RStudio gibt es für jede Gruppe ein Projekt. Wie auch schon bei den anderen beiden Projekten `course-materials` und `firststeps` musst du nach dem ersten Öffnen eine eigene Kopie speichern. 
+
+--
+
+Es hat also jede Person aus der Gruppe einen eigene Kopie. Über **gitlab** könnt ihr euren Code dann untereinander austauschen. Hier muss man jetzt den **Dreischritt** (*commit*, *pull*, *push*) anwenden. 
+ 
+--
+
+Wenn wir bearbeitete Dateien an den Server schicken wollen, führen wir zuerst **commit** aus. Mit **pull** ziehen wir die aktuellste Version vom Server auf RStudio Cloud. **Wichtig:** Man muss vorher seine lokalen Änderungen mit **commit** speichern. **Pull** vor **Push** ist wichtig, da ja auch andere Personen an den Dateien arbeiten und evtl. ist die eigene lokale Version gar nicht mehr die aktuellste. Wenn man das vergisst, kann es zum **merge error** kommen (dann bei uns melden!). Nachdem man dann die eigenen Änderungen committed hat, und die aktuellste Version gepulled hat, kann man seine Bearbeitung pushen. 
+
+---
+
+class: goodbye, center, middle
+
+# Wir sehen uns in 3 Wochen!
+
+.social[
+[&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt;](mailto:philipp.kleer@sowi.uni-giessen.de)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57zM300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://orcid.org/0000-0003-1935-387X)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88l94.3 294 94.3-294zm349.4 88l-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://gitlab.ub.uni-giessen.de/bpkleer)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [&lt;svg viewBox="0 0 448 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../assets/macros.js"></script>
+<script>var slideshow = remark.create({
+"seal": false,
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightLanguage": "r",
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>    \n",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{article-german}
+
+% Code highlighting
+%\usepackage{minted}
+%\usemintedstyle{monokai}
+%\setminted{bgcolor=black}
+%\setminted{linenos = true}
+
+% Dateibaum
+\usepackage{forest}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+\title{Lab 4 \\ \normalsize \textit{Lernblock 4}}
+\author{Leon Klemm, B. Philipp Kleer}
+\date{\today \\ \small{Version: 0.1}} 
+
+
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item Lade den Datensatz \texttt{pss} in das \textit{environment}.		
+	\item Berechne folgende lineare Regressionsmodelle auf die Variable Vertrauen in Politiker:innen (\texttt{trstplt}):
+	\begin{enumerate}
+		\item \texttt{model1}: Zufriedenheit mit der Demokratie (\texttt{stfdem})
+		\item \texttt{model2}: plus Vertrauen ins Parlament (\texttt{trstprl})
+		\item \texttt{model3}: plus Vertrauen in Parteien (\texttt{trstprt})
+		\item \texttt{model4}: plus Geschlecht (\texttt{gndr}), Schulabschluss (\texttt{edu}), Alter (\texttt{agea}) und Einkommen (\texttt{income}) als Kontrollvariablen. Referenzkategorien: \texttt{weiblich}, \texttt{Master}, \texttt{10. Dezil}
+	\end{enumerate}
+	\item Nun extrahiere aus den Modellen Werte und speichere diese jeweils in einem Objekt:
+	\begin{enumerate}
+		\item erklärte Varianz von \texttt{model2} in \texttt{rsquaredmod2}
+        \item erklärte Varianz von \texttt{model4} in \texttt{rsquaredmod4}
+        \item Namen aller signifikanten Variablen des \texttt{model3} in Charakter-Vektor \texttt{sigvars}
+	\end{enumerate}
+	 \item Gib einen einfachen Koeffizienten-Plot aus, in dem die Modelle \texttt{model1}, \texttt{model2} und \texttt{model3} angezeigt werden, und speichere diesen Plot in \texttt{olsplot}. Nutze das Paket \texttt{dotwhisker}.
+	 \item Speichere eine einfache exportfähig Tabelle, in der alle Modelle aufgelistet sind, im Objekt \texttt{olstab}. Nutze das Paket \texttt{modelsummary}.
+\end{enumerate}
+
+\end{document}

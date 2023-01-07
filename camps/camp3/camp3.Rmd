@@ -1,0 +1,261 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["../assets/xaringantheme-jlu.css"]  #Style sheet
+    nature:
+      beforeInit: "../assets/macros.js"  # individual macros
+      seal: false  # no automatic title slide
+      highlightStyle: github
+      highlightLines: true
+      highlightLanguage: ["r"]
+      countIncrementalSlides: false  # incremental does not count as single slide 
+      ratio: '16:9'  
+      slideNumberFormat: |   # progress bar instead of slide numbers
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>    
+      navigation:
+        scroll: false  #mouse scroll off (otherwise copying code is difficult)
+---
+```{r setup, include=FALSE}
+library("knitr")  
+library("rmarkdown")
+library("tidyverse")
+library("DT")  # Table illustration
+library("icons")  # Social Media Links
+library("RefManageR") # Zitation
+library("xaringanBuilder") # Export
+library("xaringanExtra") # some extras (panels, copyable code, etc.)
+
+# Code Options
+opts_chunk$set(fig.path = "assets/createdpics/", # path for calculated figures
+               fig.align = "center",  # alignment of figure (also possible right, left, default)
+               fig.show = "hold", # how to show figures: hold -> direct at the end of code chunk; animate: all plots in an animation
+               out.width = "50%",
+               echo = TRUE,     # Code is printed
+               eval = FALSE,    # Code is NOT evaluated
+               warning = FALSE, # warnings are NOT displayed
+               message = FALSE, # messages are NOT displayed
+               background = "#E7E7E7", # background color of code chunks
+               comment = "", # no hashtags before output
+               results = "markdown",
+               rows.print = 15
+)
+
+# data table options
+options(DT.options = list(pageLength = 5,
+                          language = list(search = 'Filter:'),
+                          autowidth = TRUE,
+                          lengthChange = FALSE,
+                          formatStyle = (fontSize = "40%"))
+        )
+
+# copyable code
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+
+# Referenzen
+BibOptions(
+  check.entries = FALSE, 
+  bib.style = "authoryear", 
+  cite.style = "authoryear", 
+  style = "markdown",
+  hyperlink = FALSE, 
+  dashed = FALSE
+)
+
+lit = ReadBib("./assets/lit.bib")
+
+# Suche
+xaringanExtra::use_search(
+  show_icon = FALSE,
+  auto_search = TRUE,
+  position = "top-right"
+  )
+
+library("essurvey")
+set_email("...")
+ess9 <- import_rounds(9)
+essIt <- ess %>% 
+  filter(cntry == "IT") %>% 
+  mutate(
+    eduG = case_when(
+      edlveit <= 2 ~ "low", 
+      edlveit > 2 & edlveit <= 8 ~ "medium",
+      edlveit > 8 & edlveit <= 20 ~ "high", 
+      edlveit > 20 & edlveit <= 27 ~ "very high", 
+      TRUE ~ NA_character_
+    ),
+    eduG = factor(eduG)
+  )
+```
+
+
+class: section, mline, center, middle
+
+# Geh in deine JLU-E-Mails und folge dem Link zum Survey und fülle ihn aus! (Falls noch nicht gemacht.)
+
+---
+
+class: title, center, middle
+
+# Statistik<sup>+</sup>: Einstieg in R leicht gemacht!
+
+## Anwendungsorientierte Statistikvermittlung 
+
+### Philipp Kleer | Institut für Politikwissenschaft | FB 03 | Sommersemester 2022
+
+<!--- Social Media Links, müssen angepasst werden -->
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+
+---
+
+
+# Was haben wir bisher geschafft?
+
+Du kannst jetzt schon Datensätze handhaben und in R laden. 
+
+Du kannst bearbeitete Datensätze neu speichern.
+
+Du kannst erste Recodierungsschritte vornehmen und Variablen ändern.
+
+Du kannst **pipen** und dir auch damit deskriptive Statistiken ausgeben lassen. 
+
+--
+
+**Heute**: bivariate Analysen!
+
+---
+
+# Rückfragen & Wiederholung: Korrelation & Zusammenhangsmaße
+
+---
+
+# Alternativen zum Gerlernten: t-Test pipen
+Die Funktionen aus der *library* `psych` können nicht Daten aus einer Pipe bearbeiten. Dazu haben Personen die *library* `rstatix` geschrieben, in der es einen Workaround gibt, um einen t-Test in der Pipe zu nutzen. Das Rekodieren einer neuen Variable mit den nur zwei gewählten Ausprägungen, macht es möglich die Formelschreibweise zu nutzen!
+
+.scroll-box-20[
+```{r eval=TRUE}
+# install.packages("rstatix")
+library("rstatix")
+
+# neue Variable, die nur die zwei Gruppen beinhaltet
+essIt <- essIt %>% 
+  mutate(
+    eduG2 = case_when(
+      eduG == "medium" ~ "medium", 
+      eduG == "high" ~ "high",
+      TRUE ~ NA_character_
+    )
+  )
+
+# levene-test
+essIt %>% 
+  levene_test(stfdem ~ eduG2)
+
+mcTest <- essIt %>% 
+  t_test(
+    stfdem ~ eduG2,
+    mu = 0,
+    alternative = "two.sided",
+    paired = FALSE,
+    var.equal = FALSE
+  )
+
+mcTest
+```
+]
+---
+
+# Lesen des Tests
+
+Der Output ist manchmal etwas kompliziert in R. Es gibt eine gute *library*, die den Output oftmals lesbarer macht: `parameters`!
+
+.code70[
+```{r eval=TRUE}
+# install.packages("parameters")
+library("parameters")
+
+t.test(
+  essIt$stfdem ~ essIt$eduG2,
+  mu = 0,
+  alternative = "two.sided",
+  paired = FALSE, 
+  var.equal = FALSE
+) %>% 
+  parameters()
+```
+]
+
+--
+
+$\rightarrow$ Ergebnisse aus `t.test()` können also gepiped werden! 
+---
+
+# Into the real world
+
+Im letzten Camp haben wir angefangen mit dem Datensatz **European Social Survey** zu arbeiten und du hast dir einen abhängige Variable ausgesucht, die du im Laufe des Semesters untersuchen möchtest. 
+
+Heute werden wir uns den Zusammenhang mit weiteren metrischen Variablen anschauen und Unterschiede auf der abhängigen Variable nach kategorialen Variablen anschauen. 
+
+Suche dir daher aus dem Codebook mind. **5** metrische Variablen heraus, die im Zusammenhang mit deiner gewählten **abhängigen Variable** stehen könnten und suche dir zwei kategoriale Variablen heraus. 
+
+**Zeit: 15 Minuten.**
+---
+
+# Start in die Analyse
+.font70[
+Wir gehen heute weiter in der Analyse deiner gewählten **abhängigen Variable**. Nutze einfach weiter das Skript vom letzten Mal bzw. speicher dir ein neues Skript im Projekt **course-materials**. Als Vorschritt zur Regressionsanalye schaut man sich oftmals zuerst Korrelationen an bzw. rechnet Gruppenvergleiche. Dies werden wir heute machen. Die Aufgaben für heute lauten daher wie folgt:
+
+1. Lade den Datensatz aus der letzten Einheit in dein Environment. Das sollte der ESS mit nur italienischen Befragten sein. 
+
+1. Du möchtest den Zusammenhang deiner **abhängigen Variable** mit möglichen Einflussfaktoren testen. Dazu suchst du dir aus dem **ESS** mindestens **5** *pseudo-*metrische Variablen.  
+
+  a) Berechne die Korrelation zwischen diesen Variablen (Subset Italien).
+  
+  b) Erstelle ein `corrplot`. 
+  
+  c) Schreibe in einer Text-Datei oder als Kommentar die Auswertung des Tests!
+
+1. Jetzt möchtest du noch den Einfluss zwischen zwei kategorialen Variablen und deiner **abhängigen Variable** testen. Dazu berechnest du Mittelwertvergleiche. 
+  
+  a) Wähle eine kategoriale Variable mit zwei Ausprägungen (oder beschränke die Auswahl auf zwei Ausprägungen) und führe den passenden Mittelwertvergleich aus. 
+  
+  b) Welchen Mittelwertvergleich führst du durch? Interpretiere das Ergebnis und schreibe einen Absatz dazu!
+  
+  c) Wähle nun eine kategoriale Variable mit mehr als zwei Ausprägungen aus und führe einen Mittelwertvergleich über alle Ausprägungen dieser Variable aus. 
+  
+  d) Welchen Mittelwertvergleich führst du hier durch? Interpretiere das Ergebnis und schreibe einen Absatz dazu!
+  
+1. Wenn du willst, kannst du deine schriftliche Ausführungen einfach als Textfile im Projekt **course-materials** speichern (`File -> New File -> Text File`). Sofern gewünscht, kannst du in gitlab ein Issue erstellen und ich bzw. die Tutor:innen schauen sich deine Ausführungen an und geben dir Feedback. 
+]
+---
+
+# Lab tasks 3
+
+
+Korrekte Pipeline bis **19. Juni 2022**.
+
+Danach Zeit zum Vorbereiten des 4. Camps (**lineare Regression**). 
+
+Nutzt die Issues und nutzt die Tutor:innen-Sprechstunde!
+
+---
+
+class: goodbye, center, middle
+
+# Wir sehen uns in 4 Wochen!
+
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 

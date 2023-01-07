@@ -1,0 +1,181 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Color und Hyperlink packages
+\usepackage{hyperref}
+\usepackage[svgnames,hyperref]{xcolor}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Bibtex Einstellungen
+\usepackage[%defernumbers=true,
+%			%sorting =ydnt,
+			backend=biber,
+%			citestyle=apa,
+%			bibstyle=apa, %apa funktioniert nicht irgendwie
+			style=apa,
+			%isbn=false,
+			%block=space,
+			%doi=true,
+			%url=true,
+			%maxnames=9
+			]{biblatex}
+\DeclareLanguageMapping{german}{german-apa}	
+\addbibresource{literature.bib} 
+
+%Einstellungen hyperlink
+\definecolor{jlublue}{RGB}{0, 105, 179} 
+
+\hypersetup{
+    colorlinks=true,
+    filecolor=Purple,    
+    linkcolor = Orange,  
+    urlcolor=jlublue,
+    citecolor = black,
+    pdftitle={Seminarplan}
+}
+
+\urlstyle{same}
+% how to use Hyperlinks: https://de.overleaf.com/learn/latex/Hyperlinks
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+% Name, Titel, etc.
+\author{\href{mailto:philipp.kleer@sowi.uni-giessen.de}{B. Philipp Kleer}}
+\title{%
+  Statistik$^+$: Einstieg in R leicht gemacht\\
+  \large Semesterplan \\
+  Sommersemester 2022}
+
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Allgemein Veranstaltungsinformation}
+\textbf{Beginn:} Blockseminar, Termine siehe unten\\
+\textbf{Raum:} tba \\
+\textbf{Studiengang / Modul:} BA Social Sciences / Modul 7: Statistik \& quantitative Analyseverfahren\\
+\textbf{Sprechstunde:} Termine sind über \href{https://ilias.uni-giessen.de/ilias/goto.php?target=prtf_415969_35654&client_id=JLUG}{\textbf{ILIAS}} zu buchen\\
+\textbf{Tutor:innen:} \href{mailto:Leon.P.Klemm@sowi.uni-giessen.de}{Leon Klemm} und \href{mailto:meike.schulz-narres@agrar.uni-giessen.de}{Meike Schulz-Narres}
+
+\section*{Veranstaltungsinhalt}
+Du bist interessiert an quantitativen Verfahren und möchtest gern ein solides Tool kennenlernen, mit dem du eine Vielzahl an Datenanalysen durchführen kannst? Du hast aber noch nicht so viel Erfahrung im Umgang mit einem Computer oder mit Programmieren ganz generell? Dieser Kurs ist für alle Studierende zu empfehlen, die grundsätzlich Interesse an einer Programmiersprache haben und verschiedene Instrumente kennenlernen möchten, die während Programmierschritten eingesetzt werden. Programmierkenntnisse sind keine Voraussetzung, sondern die (erste) Programmiersprache wird während des Kurses gelernt. Voraussetzung ist damit nur die Lernbereitschaft für eine neue (Programmier-)Sprache!
+
+Technische Voraussetzung ist lediglich, dass Sie einen Laptop oder ein Tablet mitbringen, auf dem einer der gängigen Browser (Firefox, Chrome oder Safari) installiert ist. Die Software wird durch eine Cloud-Version den Teilnehmenden zur Verfügung gestellt. Es sind keine Installationen am eigenen Rechner notwendig!
+
+\subsection*{Ziel des Kurses}
+In den Modulen 5 \& 6 sowie in den Statistik-Vorlesungen des Moduls 7 haben Studierende des BA \textit{Social Sciences} die theoretischen Grundlagen für die praktische Anwendung quantitativer Datenanalyse gelegt. In diesem Kurs werden wir diese Kenntnisse aus allen drei Modulen in die Praxis umsetzen. Wir werden \textbf{Daten bearbeiten, beschreiben und analysieren}. Wir werden den Weg \textbf{von der Datenerhebung in einen Datensatz} nachvollziehen. Auch werden wir Daten in Abhängigkeit des \textbf{Skalenniveaus} anhand ihrer \textbf{Lage-}und \textbf{Streumaße} beschreiben und grafisch passend darstellen. Wir werden Daten \textbf{univariat}, \textbf{bivariat} und \textbf{multivariat} analysieren. Dazu nutzen wir die Programmiersprache R, in der alle notwendigen Schritte direkt durchführbar sind. Da R eine \textit{Open-Source}-Sprache unter der \href{https://de.wikipedia.org/wiki/GNU-Lizenz}{GNU Lizenz} ist, hat die Sprache mittlerweile eine führende Rolle in der Anwendung unter Sozialwissenschaftler:innen erreicht. Moderne Programmiersprachen wie R bringen für Studierende den Vorteil mit, dass entgegen den Beschränkungen in den anderen Programmen (z.B. in SPSS) eine Vielzahl an unterschiedlichen empirischen Methoden in dieser einen Programmiersprache umgesetzt werden können. Im weiteren Verlauf des eigenen Studiums, eines Masterstudiums oder im Berufsleben können Studierende auf dieses Grundwissen der Programmiersprache aufbauen und neue Verfahren über das Erlernen neuer Vokabeln in dieser Programmiersprache erlernen. 
+
+\subsection*{Kursaufbau}
+Studierende werden Schritt für Schritt die Sprache \textbf{R} kennenlernen und deren Anwendung in der Software \textbf{RStudio}. \textbf{RStudio} bietet eine \href{https://en.wikipedia.org/wiki/Graphical_user_interface}{GUI}, die einige Vorteile gegenüber der direkten Nutzung von R bietet. Dies beinhaltet unter anderem die Erstellung von Projekten und die Verknüpfung mit \textbf{Git} zur Kollaboration mit anderen Personen. 
+
+Dieser Kurs orientiert sich stärker an genereller Programmierlehre und an Beiträgen aus dem US-amerikanischen Raum in der Vermittlung angewandter Statistik bzw. Programmierung. Grundidee ist es, gebündelte Trainingszeiten in der Präsenz zu haben, in der angewandte Beispiele in der Programmiersprache erprobt werden. Das Format orientiert sich an \textbf{blended-learning}-Formaten. So wird in der Präsenzzeit ausschließlich die Anwendung fokussiert und somit steht auch genügend Zeit für das \textit{troubleshooting} in der Präsenz zur Verfügung, die sonst in klassischen Formaten oft fehlt. Des Weiteren kann so die praktische Vermittlung und das praktische Arbeiten mit R stärker in den Fokus gestellt werden. \textbf{Vorausgesetzt wird hierbei}, dass Studierende die im Modul angegebene Zeit nutzen, um die praktischen Inhalte des jeweiligen Lernblocks (mit Ausnahme des ersten Lernblocks) vorzubereiten. Hierzu werden \href{https://lehre.bpkleer.de/statsplus/}{Lernbücher} erstellt, die Studierenden den Einstieg in die Thematik erleichtern und somit die praktische Anwendung vorbereiten. Diese werden nach und nach im Semester zur Verfügung gestellt. Daneben gibt es eine tutorielle Sprechstunde, die wöchentlich stattfindet, um individuelle Probleme zu lösen. 
+
+Daneben gibt es zur Vertiefung der Anwendung Übungsaufgaben (vier kleinere Gruppenarbeiten), mit denen Studierende ihr Wissen sichern sollen. In diesen wird die praktische Anwendung aus den Lernblöcken auf einen neuen Fall wiederholt angewandt. Hierbei können Studierende ihre Lösung automatisiert prüfen. Es gibt hierbei kein \textbf{pass} oder \textbf{fail}, denn Programmieren ist in \textbf{iterativer} Prozess, in dem Mängel nach und nach behoben werden. Falls die Lösung nicht passt, wird dies zurückgespielt und Teilnehmende können mit den Hinweisen an der Lösung arbeiten. Ziel dieses Kurses ist es, das Arbeiten mit Code in Gruppen für Studierende erfahrbar zu machen.
+
+Da dieser Kurs in dieser Struktur erstmalig angeboten wird, wird es fortlaufend während des Semesters Evaluationen und Feedback-Runden geben, an denen eine hohe Teilnahme mehr als erwünscht ist.
+    
+\section*{Pflichtliteratur und weiterführende Literatur}
+In der Übung gibt es im klassischen Sinne keine Literatur im Sinne von Forschungsbeiträgen. Der Kurs ist als \textbf{\textit{flipped classroom}} konzipiert, daher ist die im Modul verankerte Vor-/Nachbereitungszeit (3 Stunden/Woche) mit dem zur Verfügung gestellten Materialien zu verbringen. Dies sind extra für diesen Kurs neu konzipierte und neu erstellte Lernbücher, die jeweils in die Themen der Lernblöcke einführen. In den Sitzungen selbst klären wir dann Rückfragen und wenden praktische Beispiele an. Das Material findet sich auch in der Lernumgebung in \href{https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG}{\textbf{ILIAS}}. 
+
+\section*{Teilnahmemodalitäten}
+Innerhalb des Moduls 7 erbringen Sie in diesem Kurs nur Vorleistungen. Die Vorleistungen werden in Gruppenarbeiten erbracht.
+\newline
+
+\underline{Anforderungen \textit{Pass}:}
+\begin{itemize}
+	\item Anwesenheit
+	\item aktive Mitarbeit
+	\item vier Gruppenabgaben (unbenotete, kleinere Code-Skripte) während des Semesters
+\end{itemize}
+	
+\section*{Lernziele}
+Bei regelmäßiger und aktiver Teilnahme können Studierende am Ende des Semesters ...
+\begin{itemize}
+	\item[...] Programmieren verstehen und anwenden,
+	\item[...] den \textit{workflow} eines Datenprojekts verstehen und anwenden,
+	\item[...] in R Datenprojekte durchführen,
+	\item[...] erste Analysen selbstständig durchführen
+	\item[...] Grafiken individuell erstellen
+	\item[...] IT-Projekte in Gruppen organiseren und verwalten
+\end{itemize}
+
+\section*{Semesterplan}
+Nachfolgend finden Sie den voraussichtlichen Semesterplan. Sie finden die Lernbücher unter jeder Einheit. Diese werden erst nach und nach im Semester freigeschaltet.
+
+\begin{longtable}{p{0.1\textwidth} p{0.6\textwidth}}
+	\toprule[2pt]
+	%1. Einheit
+	\multicolumn{2}{l}{\textbf{Lernblock 1:} \printdate{2022-4-14}}\\
+	\midrule
+	Inhalt & Start in die Programme, Was ist Programmieren? , Objekte \& einfache Rechnungen mit R \\
+	\midrule
+	Lernbuch & \textbf{\url{https://lehre.bpkleer.de/statsplus/lb1/}}\\
+	\bottomrule[2pt]
+	 & \\ 
+ 	\toprule[2pt]
+ 	%2. Einheit
+	\multicolumn{2}{l}{\textbf{Lernblock 2:} \printdate{2022-5-6}}\\
+	\midrule
+	Inhalt & Datensatzhandling \& deskriptive Statistik \\
+	\midrule
+	Lernbuch & \textbf{\url{https://lehre.bpkleer.de/statsplus/lb2/}}\\
+	\bottomrule[2pt]
+	 & \\ 
+ 	\toprule[2pt]
+ 	%3. Einheit
+	\multicolumn{2}{l}{\textbf{Lernblock 3:} \printdate{2022-6-3}}\\
+	\midrule
+	Inhalt & Zusammenhangsmaße \& Mittelwertvergleiche \\
+	\midrule
+	Lernbuch & \textbf{\url{https://lehre.bpkleer.de/statsplus/lb3/}} \\
+	\bottomrule[2pt]
+	 & \\ 
+ 	\toprule[2pt]
+ 	%4. Einheit
+	\multicolumn{2}{l}{\textbf{Lernblock 4:} \printdate{2022-7-1}}\\
+	\midrule
+	Inhalt & Lineare Regression \\
+	\midrule
+	Lernbuch & \textbf{\url{https://lehre.bpkleer.de/statsplus/lb4/}} \\
+	\bottomrule[2pt]
+	 & \\ 
+ 	\toprule[2pt]
+ 	%5. Einheit
+	\multicolumn{2}{l}{\textbf{Lernblock 5:} \printdate{2022-7-15}}\\
+	\midrule
+	Inhalt & Grafiken erstellen\\
+	\midrule
+	Lernbuch & \textbf{\url{https://lehre.bpkleer.de/statsplus/lb5/}}  \\
+	\bottomrule[2pt]
+\end{longtable}
+
+
+\printbibliography
+
+\end{document}

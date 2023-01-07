@@ -1,0 +1,30 @@
+---
+title: "Basics: Neues & Recap"  # Titel der Seite
+menuTitle: "Basics" # Falls Titel zulang ist, hier Kurztitel
+weight: 101  # Individuelles Gewicht 
+tags: ["datei", "dateimanagement", "dateipfad"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>In der praktischen Datenanalyse, in der wir Berechnungen nicht händisch durchführen (wie z. B. in der Vorlesung zu Statistik), nutzen wir die Rechnerleistung eines Computers, um Daten zu bearbeiten, einfache Berechnungen oder auch kompliziertere statische Modelle zu berechnen. Wir verwenden dabei Daten, die wir in Dateien gespeichert haben. Doch was sind eigentlich nochmal Dateien und wie lassen sich diese finden?</p>
+<p>Daten werden in der Regel als <strong>Dateien</strong> an einem <em>lokalen</em> Ort auf dem Computer (Desktop oder Laptop) oder Tablet gespeichert. <em>Lokal</em> meint dabei, dass die Dateien physisch auf deinem Rechner abgelegt sind. Das Gegenteil Dateien, die zum Beispiel in einer Cloud (wie der Hessenbox) gespeichert sind und nur temporär bei Bearbeitung der Dateien lokal gespeichert werden.</p>
+<p>Dateien haben immer eine Endung, die den Typ der Datei festlegt. So haben Word-Dokumente in der Regel die Endung <em>.docx</em> bzw. Powerpoint-Dateien die Endung <em>.pptx</em>. Auch Bilddateien haben festgelegte Endungen wie <em>.jpg</em> oder <em>.png</em>. Die Endung einer Datei gibt Aufschluss, wie diese Datei zu lesen ist bzw. mit welchem Programm die Datei geöffnet wird. Dies ist meist in den automatischen Einstellungen (in Windows oder Mac) festgelegt.</p>
+<p>Eine zweite Information, die wir über Dateien benötigen, wenn wir mit diesen arbeiten möchten ist der <em>Pfad</em>. Der <em>Pfad</em> ist sozusagen die Wohnadresse der Datei. Jede Datei ist an einem bestimmten lokalen Ort gespeichert und dazu gibt es immer eine eindeutige Adresse, mit der die Datei ansprechbar bzw. auffindbar ist. Das ist auf dem Tablet eventuell schwer nachvollziehbar, am Desktop/Laptop wird dies aber schnell klar.</p>
+<p>Ich habe zum Beispiel die Datei <strong>syllabus.pdf</strong> (Kursplan dieses Kurses) lokal auf meinem Computer gespeichert. Doch wie finden wir heraus, wo wir die Datei gespeichert haben?</p>
+<p>Der erste Schritt ist sicher im Finder (Mac) oder Explorer (Windows) danach zu suchen. Haben wir die Datei gefunden, können wir auch den eindeutigen Pfad anzeigen lassen.</p>
+<p>Auf dem Mac-Rechner sieht das wie folgt aus:
+<img src="../img/path.png" alt="Beispiel Pfad" /></p>
+<p>Analog sieht es auf dem Windows-Rechner wie folgt aus:
+<img src="../img/path-win.png" alt="Beispiel Pfad Win" /></p>
+<p>Die Adresse der Datei ist nicht unbedingt direkt sichtbar. Sie befindet sich bei Mac am unteren Ende des Fensters bzw. bei Windows am oberen Ende des Fenster. Durch Rechtsklick kann man aus dem Finder als auch dem Explorer den Pfad kopieren und hat somit die eindeutige Adresse einer Datei.</p>
+<p>Auf dem Mac-Rechner ist die Adresse (Pfad) im Beispiel:</p>
+<pre><code>/Users/jlug/Documents/Teaching/syllabus.pdf</code></pre>
+<p>Auf dem Windows-Rechner ist die Adresse (Pfad) im Beispiel:</p>
+<pre><code>D:\g31442\Teaching\syllabus.pdf</code></pre>
+<p>Einen wichtigen Unterschied sehen wir jetzt hier schon. Bei Windows-Rechnern mit deutscher Spracheinstellung wird ein Backslash <code>\</code> zur Unterscheidung von Ordnern genutzt, bei Mac-Rechnern ein einfacher Slash <code>/</code>. Das liegt an den Spracheinstellungen meines Windows-Rechner, der auf eine deutsche Systemsprache eingestellt ist. Wenn du mit einem Windows-Rechner arbeitest, ist es wichtig, dass diese Backslashes in der Benutzung in R immer zu normalen Slash umgestellt werden. Denn R arbeitet nur mit der englischen Spracheinstellung und in der werden Pfade immer mit Slashes <code>/</code> angegeben.</p>
+<p>Wir müssen also den oberen Pfad wie folgt ändern:</p>
+<pre><code>D:/g31442/Teaching/syllabus.pdf</code></pre>
+<p>Es ist wichtig, dass du diesen ersten Schritt verstanden hast. Am besten probierst du einmal selbst aus, den Dateifpad von einer beliebigen Datei in ein Word-Dokument zu kopieren.</p>
+<p>Falls du Fragen dazu hast, melde dich in der Präsenzzeit. Wir werden in den späteren Lernblöcken Pfade nutzen, um Daten in R zu bearbeiten und auch Ergebnisse aus R auf dem Computer zu speichern.</p>

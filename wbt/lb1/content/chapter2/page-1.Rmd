@@ -1,0 +1,60 @@
+---
+title: "Wertetypen"
+weight: 201
+menuTitle: "Wertetypen"
+tags: ["datentypen", "numeric", "integer", "character", "boolean"]
+---
+
+Wir haben bereits kennengelernt, dass wir direkt Rechnungen in R ausführen können bzw. das Ergebnis direkt in ein Objekt speichern können. 
+
+Wir können aber auch direkt Werte in Objekte speichern, dabei unterscheiden wir vier verschiedene Wertetypen:
+
+1. numeric
+
+1. integer
+
+1. character
+
+1. logical
+
+# Numeric
+Dieser Wertetyp umfasst alle möglichen Zahlenwerte. Streng genommen ist **integer** ein Untertyp dieses Zahlenwertes. Wir können also auch Kommawerte so in R speichern. Speichern wir eine einfache Kommazahl im neuen Objekt `mathNum` und rufen dieses anschließend auf. 
+
+```{r numeric1, eval=TRUE}
+mathNum <- 2.345
+
+mathNum
+```
+
+Wichtig zur Handhabung im Lernmodul: Du kannst den Code direkt kopieren und so in dein eigenes Skript einfügen. In der rechten oberen Ecke findet sich in jedem Code-Schnippsel ein Kopiersymbol. Einfach darauf klicken und dann in dein Skript einfügen (`cmd` und `V` bzw. `Strg` und `V`).
+
+{{% expand \"Was fällt dir auf bei der Eingabe der Kommazahl?\" %}}
+Kommazahlen haben als Trennzeichen einen `.` (Punkt) und nicht ein `,` (Komma). Denn R basiert auf englischer Sprache und da ist das Dezimaltrennzeichen nunmal ein `.` (Punkt).
+{{% /expand %}}
+
+# Integer
+Diesen Wertetyp kennen wir bereits, denn wir haben ihn im Objekt `math` genutzt. **Integer** sind ganzzahlige Werte, also im Beispiel von `math` der Wert `7`. 
+
+# Character
+Als nächstes gibt es noch den Wertetyp **character**. Dies sind Zeichenketten: Das kann sinnhaftes aus Buchstaben sein, aber auch Kombinationen von Buchstabend und Zahlen oder Zeichen. Speichern wir z.B. ein Objekt `hometown` mit dem Wohnort (in meinem Fall Berlin). 
+
+```{r character1, eval=TRUE}
+hometown <- "Berlin"
+
+hometown
+```
+
+{{% expand \"Was fällt dir auf im Unterschied zum Speichern eines Zahlenwertes des Typs numeric oder integer?\" %}}
+Wenn es sich um Text handelt, muss dieser in der Sprache in R in `"..."` (Anführungsstriche) gesetzt werden. Man kann sowohl die doppelten `"..."` als auch die einfachen `'...'` dafür nutzen. **Wichtig:** Bleibe konsistent! 
+{{% /expand %}}
+
+# logical
+Dieser Wertetyp spielt für die Datenverarbeitung eine wichtige Rolle, da wir später Bedingungen nutzen werden, die jeweils den Wertetyp **logical** haben. Es gibt insgesamt zwei Ausprägungen beim Wertetyp **logical**: `TRUE` und `FALSE`. **Wichtig:** Diese Worte müssen groß geschrieben werden! Ansonsten erkennt R diese nicht als **logical**. Speichern wir zum Beispiel den Wert `TRUE` in einem Objekt names `truth`. 
+
+```{r logical1, eval=TRUE}
+truth <- TRUE
+
+truth
+```
+
+Doch können wir auch mehr als einen Wert speichern?

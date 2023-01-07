@@ -1,0 +1,124 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Color und Hyperlink packages
+\usepackage{hyperref}
+\usepackage[svgnames,hyperref]{xcolor}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Code highlighting
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{listings}
+\lstset{frame=tb,
+basicstyle=\ttfamily,
+language=bash,
+aboveskip=6mm,
+belowskip=6mm,
+showstringspaces=false,
+columns=flexible,
+numbers=none,
+keywordstyle=\color{blue},
+numberstyle=\tiny\color{gray},
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3
+}
+% Bibtex Einstellungen
+\usepackage[%defernumbers=true,
+%			%sorting =ydnt,
+			backend=biber,
+%			citestyle=apa,
+%			bibstyle=apa, %apa funktioniert nicht irgendwie
+			style=apa,
+			%isbn=false,
+			%block=space,
+			%doi=true,
+			%url=true,
+			%maxnames=9
+			]{biblatex}
+\DeclareLanguageMapping{german}{german-apa}	
+
+%Einstellungen hyperlink
+\hypersetup{
+    colorlinks=true,
+    filecolor=Purple,    
+    linkcolor = Orange,  
+    urlcolor=MediumSeaGreen,
+    citecolor = black,
+    pdftitle={Seminarplan},
+    pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+% how to use Hyperlinks: https://de.overleaf.com/learn/latex/Hyperlinks
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Anwendung gitlabber \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Gitlabber} ist eine Software, mit der Gruppen aus \textbf{git} gleichzeitig gecloned werden können. Es ermöglicht also der Dozent:in eine einfache Handhabung, wenn Code aus Gruppen ausgelesen werden soll. 
+
+Die Dokumentation zur Installation findet sich \href{https://github.com/ezbz/gitlabber}{\textbf{hier}}.
+
+Um \textbf{gitlabber} zu nutzen, benötigst du einen Personal Access Token (PAT) in gitlab, der sowohl Schreib- als auch Leserechte auf deiner API hat. Dazu gehe unter deinem Profil auf Einstellungen -> Personal Access Token und erstelle einen spezifischen Token, falls du noch keinen hast. 
+
+Wenn du den PAT erstellt hast, kannst du in den Terminal wechseln: Hier lässt du dir erstmal eine Ansicht anzeigen:
+
+\begin{lstlisting}[language=bash]
+gitlabber -t yoursecrettoken -u https://gitlab.ub.uni-giessen.de/ -p
+\end{lstlisting}
+
+Du siehst dann einen Pfadbaum für alle deine Zugriffe in gitlab.
+
+Du willst jetzt aber nur den einen Kurs clonen, hier bei uns ist das \texttt{intro-r-spring22}. Wir schränken daher den Zugriff auf diese Gruppe ein (\texttt{-i "/..."}), wir greifen per \texttt{https}-Zugriff auf gitlab zu (Standard ist SSH bei gitlabber) (\texttt{-m 'http'}) und speichern es in dem Folder, in dem wir gerade sind (\texttt{./}):
+\begin{lstlisting}[language=bash]
+gitlabber -t yoursecrettoken -u https://gitlab.ub.uni-giessen.de/ -i '/intro-r-spring22**' -m 'http' ./
+\end{lstlisting}
+
+Danach sind alle Subgruppen und Projekte der Gruppe \texttt{intro-r-spring22} lokal gecloned. Du kannst dann einzeln (z. B. nach einer Korrektur) zurückpushen. 
+
+\end{document}

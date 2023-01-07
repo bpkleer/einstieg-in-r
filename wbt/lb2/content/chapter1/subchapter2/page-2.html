@@ -1,0 +1,120 @@
+---
+title: "Import von .txt und .csv"  # Titel der Seite
+weight: 122  # Individuelles Gewicht 
+menuTitle: "Text-Import" # Falls Titel zulang ist, hier Kurztitel
+tags: [".txt", "datei", ".csv", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{%attachments style="grey" title="Datensatz" /%}}</p>
+<p>Als erstes werden wir globale Datensatz-Dateiformate importieren. Dies sind <code>.txt</code> und <code>.csv</code>. Beim Format <code>.csv</code> gibt es wieder eine Sprachenbesonderheit. Im Standard (englische Sprachversion am Computer) ist das Trennzeichen der Daten ein <code>,</code> (Komma), auf Computern mit deutscher Spracheinstellung weicht dies ab und das Datentrennzeichen ist ein <code>;</code> (Semikolon).</p>
+<div id="import-einer-.txt-datei" class="section level2">
+<h2>Import einer .txt-Datei</h2>
+<p>Eine <code>.txt</code>-Datei ist eine reine Textdatei in der Daten mit einem Tabulator getrennt sind (siehe Screenshot). Auch hier ist das Format in der Konvention, dass in der Spalte Variablen eingetragen sind und in den Zeilen die Fälle. In der Regel stellt die erste Zeile keinen Fall dar, sondern beinhaltet wie im Beispiel die Variablennamen.</p>
+<p><img src="../img/txt.png" alt="Beispiel .txt-Datei" />
+Im Beispiel haben wir also einen Datensatz mit vier Variablen: <code>age</code>, <code>duration</code>, <code>grade</code> und <code>exam</code>.</p>
+<p>{{% expand "Überlege einmal kurz, was die Variablen wohl bedeuten könnten?" %}}
+In der Regel versuchen Forschenden Variablen möglichst eindeutig zu benennen. <strong>age</strong> beinhaltet das Alter der Befragten, <strong>duration</strong> die Zeitdauer, die die Person für die Prüfung benötigt hat, <strong>grade</strong> die Note, die die Person in der jeweiligen Prüfung erhalten hat und <strong>exam</strong> beinhaltet, um welche Prüfung es sich handelt.
+{{% /expand %}}</p>
+<p>Wenn du Dateien lädtst, musst du dir in Erinnerung rufen, was ein Dateipfad ist. Wenn du das nicht mehr weißt, geh zurück in den <a href="https://lehre.bpkleer.de/statsplus/lb1">Lernblock 1</a>. RStudio Cloud erleichtert uns dies, indem der Pfad sehr leicht angewählt werden kann: In den RStudio Projekte ist immer ein Ordner namens <code>data</code> vorhanden, der wie folgt angesteuert wird: <code>./data/</code> und nach dem zweiten Slash folgt der Dateiname. Wie es bei einer lokalen Installation funktioniert, kannst du ganz unten nachlesen. Das ist aber für den Kurs erstmal nicht relevant, da wir alle mit der RStudio Cloud arbeiten.</p>
+<p>In R ist das <strong>Environment</strong> der Ort, wo wir alle geladenen und gespeicherten Daten und Objekte sehen.</p>
+<p>Um nun die <em>.txt-Datei</em> (<em>tab-separated file</em>) in R zu laden, benötigen wir die Funktion <code>read.table()</code>. Immer wenn man Hilfe zur einer bekannten Funktion benötigt, kann man einfach ein <code>?</code> vor diese setzen und die Argumente leer lassen. Im <strong>Help</strong>-Tab in der <strong>Files</strong>-Kachel öffnen sich dann Hinweise zur Funktion.</p>
+<p>Probieren wir es aus.</p>
+<pre class="r"><code># Falls man Hilfe zur Funktion benötigt:
+?read.table()</code></pre>
+<p>Jetzt wollen wir die Daten in R importieren, damit wir mit diesen arbeiten können. Die Datensätze sind bereits im Ordner <code>data</code> gespeichert. Datensatz-Objekte benennt man am besten so, dass man intuitiv darauf schließen kann, um welche Daten es sich handelt. Innerhalb der Import-Funktion (<code>read.table()</code>) gibst du einfach den gesamten Pfad zur Datei an. Da die erste Zeile in der Datei die Variablennamen beinhaltet, geben wir im letzten Argument <code>header = TRUE</code> an, dass dort die Variablennamen zu finden sind. Das Argument <code>sep = "\t"</code> gibt einfach an, dass das Trennzeichen für die Daten ein Tabulator ist.</p>
+<pre class="r"><code>exam &lt;- read.table(
+  &quot;./data/exam.txt&quot;,
+  sep = &quot;\t&quot;,                        
+  header = TRUE  
+)             </code></pre>
+<p>Wir haben nun die Daten importiert und einen neuen <strong>data frame</strong> importiert, der <code>exam</code> heißt! Dieser ist im <strong>Environment</strong> bei dir nun sichtbar.</p>
+</div>
+<div id="struktur-eines-datensatzes" class="section level2">
+<h2>Struktur eines Datensatzes</h2>
+<p>Es gibt eine Reihe von Helfer-Funktionen, um einen Überblick über importierte Daten zu bekommen. Diese wirst du jetzt kennenlernen.</p>
+<p>Um die Struktur des Datensatzes anzeigen zu lassen, ruft man die folgende Funktion auf:</p>
+<pre class="r"><code>str(exam)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    20 obs. of  4 variables:
+##  $ age     : int  21 29 27 27 34 34 28 23 30 21 ...
+##  $ duration: num  0.889 0.889 1.111 1.778 1.778 ...
+##  $ grade   : chr  &quot;A&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; ...
+##  $ exam    : chr  &quot;StatII&quot; &quot;EmpI&quot; &quot;StatI&quot; &quot;EmpII&quot; ...</code></pre>
+<p>Mit der Funktion <code>head()</code> können wir einen ersten Einblick in die Daten bekommen (die ersten <span class="math inline">\(6\)</span> Fälle):</p>
+<pre class="r"><code>head(exam)</code></pre>
+<pre><code>##   age  duration grade   exam
+## 1  21 0.8888889     A StatII
+## 2  29 0.8888889     C   EmpI
+## 3  27 1.1111111     D  StatI
+## 4  27 1.7777778     D  EmpII
+## 5  34 1.7777778     A StatII
+## 6  34 0.8888889     B   EmpI</code></pre>
+<p>Wir können uns auch mehr als <span class="math inline">\(6\)</span> Fälle anzeigen lassen, dazu fügt man ein zweites Argument hinzu, in dem die Anzahl genannt wird.</p>
+<pre class="r"><code>head(
+  exam,
+  n = 10   # hier kann die Anzahl verändert werden
+)</code></pre>
+<pre><code>##    age  duration grade   exam
+## 1   21 0.8888889     A StatII
+## 2   29 0.8888889     C   EmpI
+## 3   27 1.1111111     D  StatI
+## 4   27 1.7777778     D  EmpII
+## 5   34 1.7777778     A StatII
+## 6   34 0.8888889     B   EmpI
+## 7   28 1.7777778     B  StatI
+## 8   23 0.8888889     C  EmpII
+## 9   30 1.7777778     D StatII
+## 10  21 2.2222222     D   EmpI</code></pre>
+<p>Wir können auch einzelne Variablen innerhalb des Datensatzes ansprechen. Dazu nennen wir den Datensatz und adressieren mit dem <code>$</code> eine einzelne Variable:</p>
+<pre class="r"><code>head(exam$grade)</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<p>So jetzt hast du das geschafft und die Anwendung auf andere Dateiformate ist gar nicht so viel mehr Arbeit. Importieren wir als nächstes eine <code>.csv</code>-Datei.</p>
+</div>
+<div id="import-einer-.csv-file" class="section level2">
+<h2>Import einer .csv-file</h2>
+<p>Um eine <em>.csv-file</em> zu laden, benötigen wir kein weitere <strong>library</strong>. Die Funktion (wie die oben) ist in R-Base enthalten.</p>
+<p>Die Datei inkludiert den gleichen Datensatz, nur als <code>.csv</code>-Datei.</p>
+<p>Wir benötigen die Funktion <code>read.csv()</code> bzw. <code>read.csv2()</code>. Dies hängt davon ab, ob ihr die <code>.csv</code>-Datei bereits einmal auf eurem Rechner (Excel oder LibreOffice) geöffnet habt. Wenn ja und eure Computersprache Deutsch ist, müsst ihr <code>read.csv2()</code> verwenden. Habt ihr die Datei nicht ein einziges Mal geöffnet oder englische Spracheinstellungen nutzt <code>read.csv()</code>.</p>
+<p>Probieren wir es mal aus!</p>
+<pre class="r"><code>examcsv &lt;- read.csv(
+  &quot;./data/exam.csv&quot;, 
+  header = TRUE
+)
+
+examcsv2 &lt;- read.csv2(
+  &quot;./data/exam.csv&quot;, 
+  header = TRUE
+)</code></pre>
+<p>Hier seht ihr einen Screenshot der zwei importierten Datensätze mit den unterschiedlichen Funktionen.</p>
+<div class="figure">
+<img src="../img/examcsv.png" alt="" />
+<p class="caption">exam mit read.csv()</p>
+</div>
+<div class="figure">
+<img src="../img/examcsv2.png" alt="" />
+<p class="caption">exam mit read.csv2()</p>
+</div>
+<p>{{% expand "Schau dir die Screenshots an und überlege kurz (mit dem Wissen von oben), warum dies unterschiedlich importiert wird?" %}}
+Es liegt am Trennzeichen der Daten. Die Funktion <strong>read.csv()</strong> liest in meinem Fall die Daten korrekt, denn ich habe ein englischsprachiges Format und die Daten sind in der Datei mit einem Komma getrennt. Die Funktion <strong>read.csv2()</strong> nimmt ein deutschsprachgies Format als Standard und erwartet daher Semikolon als Daten-Trennzeichen. Da es dieses nicht findet, endet es einfach in jeder Zeile und schreibt nur eine Variable, in der die gesamten Daten mit dem Komma-Trennzeichen inkludiert sind.
+{{% /expand %}}</p>
+<p>Es ist wichtig zu verstehen, welches Dateiformat vorliegt und wie dies zu importieren ist, denn so können Fehler beim Import leicht vermieden werden.</p>
+<p>Gehen wir nun über in die Formate, die R zur Verfügung stellt!</p>
+</div>
+<div id="lokales-arbeiten" class="section level2">
+<h2>Lokales Arbeiten</h2>
+<p>Wenn du mal später lokal arbeitest, musst du immer den direkten Pfad der Datei angeben. Oder du speicherst in einem Objekt den Pfad und nutzt dann dieses Objekt innerhalb der Helfer-Funktion <code>file.path()</code>. Das hat den Vorteil, dass du nicht ständig den Pfad eingeben musst, denn es empfiehlt es alle Datensätze an einem Ort zu speichern. Mit diesem einen zentralen Ort, kannst du einfach ein Objekt erstellen, dass diesen Pfad als Text beinhaltet. Du erstellst also wie im Lernblock 1 einfach ein Objekt, dass <em>character</em> beinhaltet, die hier sinnvoll den Pfad angeben. So muss der Pfad nicht immer neu eingegeben werden.</p>
+<p><strong>Wichtig</strong>: Der Pfad geht nur bis zum Ordner, in dem die Datei liegt. Die Datei wird nicht mit in das <code>path</code>-Objekt gespeichert.</p>
+<p>Lege also ein Objekt an, dass den Pfad beinhaltet. Wir nennen dies in der Regel <code>path</code>.</p>
+<pre class="r"><code>path &lt;- &quot;C:/Dateipfad zum gespeicherten Objekt/&quot; 
+# kopiere dies aus dem Explorer oder Finder und denke daran bei Windows die Backslashes zu Slashes zu ändern</code></pre>
+<p>In der Import-Funktion ergänzt du einfach die Helfer-Funktion <code>file.path()</code>, deren erstes Argument das Objekt <code>path</code> (der Character zu deinem Objekt) und deren zweites Argument der Dateiname ist (hier <code>exam.txt</code>). Alles andere bleibt wie oben!</p>
+<pre class="r"><code>exam &lt;- read.table(
+  file.path(
+    path, 
+    &quot;exam.txt&quot;
+  ),
+  sep = &quot;\t&quot;,                        
+  header = TRUE  
+)   </code></pre>
+</div>

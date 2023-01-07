@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Color und Hyperlink packages
+\usepackage{hyperref}
+\usepackage[svgnames,hyperref]{xcolor}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+% Code highlighting
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{listings}
+\lstset{frame=tb,
+basicstyle=\ttfamily,
+language=R,
+aboveskip=6mm,
+belowskip=6mm,
+showstringspaces=false,
+columns=flexible,
+numbers=none,
+keywordstyle=\color{blue},
+numberstyle=\tiny\color{gray},
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+breaklines=true,
+breakatwhitespace=true,
+tabsize=3
+}
+% Bibtex Einstellungen
+\usepackage[%defernumbers=true,
+%			%sorting =ydnt,
+			backend=biber,
+%			citestyle=apa,
+%			bibstyle=apa, %apa funktioniert nicht irgendwie
+			style=apa,
+			%isbn=false,
+			%block=space,
+			%doi=true,
+			%url=true,
+			%maxnames=9
+			]{biblatex}
+\DeclareLanguageMapping{german}{german-apa}	
+
+%Einstellungen hyperlink
+\hypersetup{
+    colorlinks=true,
+    filecolor=Purple,    
+    linkcolor = Orange,  
+    urlcolor=MediumSeaGreen,
+    citecolor = black,
+    pdftitle={Seminarplan},
+    pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+% how to use Hyperlinks: https://de.overleaf.com/learn/latex/Hyperlinks
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Installationsanleitung git \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Git} ist eine Version-Control von Dateien, es können also Veränderungen von jeder mitarbeitenden Person nachvollzogen werden. \textbf{Gitlab} liefert eine Online-Plattform zum Verwalten und Bearbeiten. An der JLU gibt es eine eigene \href{https://gitlab.ub.uni-giessen.de}{Distribution}.
+
+Sofern man eine lokale Installation von RStudio nutzt, muss man zusätzlich noch \textbf{Git} auf dem Rechner installieren. Hierfür gibt es eine englischsprachige Anleitung (\href{https://happygitwithr.com/install-git.html}{Link}). Die Teilschritte werden aber auch hier erläutert. 
+
+Wenn Sie nur die \textbf{RStudio Cloud} nutzen, müssen Sie \textbf{Git} nicht mehr installieren, da es bereits in der Cloud vorinstalliert ist.
+
+\section*{Installation}
+Für alle Benutzer von Windows, MacOS oder Linux steht unter folgendem \href{http://git-scm.com/downloads}{Link} eine Installationsdatei zur Verfügung. Alternativ ist die Installation per \textit{Commandline} in allen Betriebssystemen (Terminal/Eingabeaufforderung) möglich. Dazu bitte dem oben genanntem Link folgen. 
+
+\section*{Nutzung von git}
+Wie in der Präsentation genannt, können \textit{Git-Repositories} entweder über einen \textbf{HTTPS}- oder \textbf{SSH}-Zugriff angesprochen werden. \textbf{Wichtig:} Die \href{https://gitlab.ub.uni-giessen.de}{JLU-Distribution} ist per \textbf{SSH}-Zugriff nur aus dem VPN erreichbar, wir \textbf{empfehlen} daher die \textbf{HTTPS}-Verbindung zu nutzen, die auch ohne VPN funktioniert. 
+
+\subsection*{Zugriff per HTTPS}
+Wenn man auf die Repositories per \textbf{HTTPS} zugreift, muss man jedes Mal seinen Nutzernamen und Passwort eingeben. Die Eingabe des Nutzernamens kann man umgehen, in dem man einmalig in RStudio oder in der \textit{Commandline} seine Benutzerdaten festlegt. 
+
+\subsubsection*{Einstellung in RStudio}
+\begin{lstlisting}[language=R]
+## install.packages("usethis")
+
+library("usethis")
+use_git_config(
+	user.name = "Jane Doe", #hier den eigenen Namen hinschreiben
+	user.email = "jane@example.org" #hier die E-Mail-Adresse hinschreiben, die in gitlab hinterlegt ist
+)
+\end{lstlisting}
+
+\subsubsection*{Einstellung über Terminal/Eingabeaufforderung}
+\begin{lstlisting}[language=bash]
+git config --global user.name 'Jane Doe'
+git config --global user.email 'jan@example.org'
+git config --global --list
+\end{lstlisting}
+
+Anschließend kann man über den \textbf{HTTPS}-Zugriff die Git-Repositories lokal \textit{clonen}. 
+
+\subsection*{Zugriff per SSH}
+Der Zugriff per \textbf{SSH} ist ebenfalls möglich, aber nur aus dem Universitäts-VPN. Wir empfehlen daher den Zugriff per HTTPS.
+
+Um den \textbf{SSH} Zugriff zu nutzen, muss man zuerst einen \textbf{SSH-Key} erstellen. Einen Key kann man einfach in RStudio erstellen. Dort geht man im Menü einfach auf \texttt{Tools -> Global Options -> Git -> Create RSA Key}. Wenn man einen Key über die \textit{Commandline}, erstellen will, hilft dieser \href{https://www.heise.de/tipps-tricks/SSH-Key-erstellen-so-geht-s-4400280.html}{Link}.
+
+Anschließend klickt man auf \textbf{View Key} und kopiert den Key-Text. 
+
+Dann loggt man sich im \href{https://gitlab.ub.uni-giessn.de}{JLU-Gitlab} unter seinem Profil ein und geht auf \texttt{Einstellungen -> SSH Keys} und kopiert den Text in das große Feld.
+
+Dann gibt man noch einen Namen für diesen Key zur Identifikation ein und klickt auf \textbf{Add Key}. Ggbfs. gibt man ein Ablaufdatum des Keys ein. Jetzt ist alles fertig eingestellt.
+
+Anschließend geht man über den Browser in das entsprechende Projekt und wählt bei Clonen den Link neben SSH aus.
+
+\end{document}

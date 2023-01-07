@@ -1,0 +1,152 @@
+---
+title: "Lagemaße"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Lagemaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["deskriptiv", "lagemaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")   
+```
+
+## Deskriptive Statistik in R
+
+Nun werden einige Funktionen vorgestellt, mit denen deskriptive Statistiken ausgegeben werden.
+
+{{% tabs groupId=\"tab1\" %}}
+{{% tab name=\"Zur Erinnerung\" %}}
+Welche Maßzahlen zentraler Tendenz und der Verteilung gibt es?
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+- Modus, Median, arithm. Mittel
+
+- Spannweite (Range), Interquartilsabstand, Quartile
+
+- Varianz, Standardabweichung
+{{% /tab %}}
+{{% /tabs %}}
+
+### Minimum, Maximum und Spannweite
+Die Funktionen für Minimum, Maximum und Spannweite sind:
+```{R min-max-range, eval=TRUE}
+# Minimum
+min(pss$wkhtot)
+
+# Maximum
+max(pss$wkhtot)
+
+# Spannweite / Range 
+range(pss$wkhtot)
+```
+
+Nun versuche es für die Variable `stfdem`. Was passiert?
+```{r nas, eval = TRUE}
+min(pss$stfdem)
+```
+Es gibt eine Fehlermeldung, dass der Wert nicht berechnet werden kann. Denn in dieser Variable gibt es *missing values* (`NA's`). Manche Personen haben hier also keinen Wert angegeben und dies wird in R mit `NA` gekennzeichnet! Daher kann kein Wert berechnet werden.
+
+$\rightarrow$ Um dennoch einen Wert berechnen zu können, müssen *missing values* exkludiert werden.
+```{r na-stfdem2, eval=TRUE}
+min(
+  pss$stfdem, 
+  na.rm = TRUE
+)       
+## na.rm: NA = missing values, rm = remove      
+```
+
+### Modus, Median und arithm. Mittelwert
+Für den Median und Mittelwert gibt es jeweils R-Base Funktionen, die direkt genutzt werden können:
+```{r median-mean, eval=TRUE}
+## Median
+median(
+  pss$stfdem, 
+  na.rm = TRUE
+) 
+
+## arithm. Mittelwert
+mean(
+  pss$stfdem, 
+  na.rm = TRUE
+)
+```
+
+Für den Modus gibt es das nicht, man kann sich aber mit der Funktion `table()` die Datentabelle einer Variable anzeigen lassen und daraus dann den Modus oder die Modi ablesen:
+```{r modus, eval=TRUE}
+## Modus (no built-in function)
+table(pss$stfdem)
+max(table(pss$stfdem)) # nicht hilfreich bei bimodalen (etc.) Verteilungen
+```
+
+### Quantile
+Manchmal sollen von einer Variable verschiedene Bereiche ausgegeben werden, z.B. das Einkommen in Dezilen oder Quintilen. Hierfür wird die Funktion `quantile()` genutzt. Diese wird dafür mit der Funktion `seq()` kombiniert.
+
+Die Funktion `seq()` liefert eine Reihenfolge von Zahlen, die wir über die drei Argumente *from*, *to* und *by* festsetzen. Das *from*-Argument legt den Startwert fest, das *to*-Argument den Endwert und das *by*-Argument legt die Schritte fest. Wir gehen also im Beispiel von `0` zu `1`, wobei der Schritt jeweils `0.1` ist!
+```{r eval=FALSE}
+seq(
+  from = 0,
+  to = 1, 
+  by = 0.1
+)
+
+seq(
+  by = 0.1, 
+  to = 1, 
+  from = 0
+) 
+
+# wird die Standardreihenfolge (from-to-by) eingehalten, kann man die Argumentbeschriftung auslassen.
+seq(
+  0, 
+  1, 
+  0.1
+)
+```
+
+Nun können Dezile (`0.1`-Schritt) ausgegeben werden:
+```{r eval= FALSE}
+quantile(
+  pss$stfdem, 
+  probs = seq(
+    0,
+    1, 
+    0.1
+  ),    
+  na.rm = TRUE
+) 
+```
+
+### Test
+{{% tabs groupId=\"tab2\" %}}
+{{% tab name=\"Frage\" %}}
+Was muss geändert werden, um Quintile ausgeben zu lassen?
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+Um Quintile zu erreichen, wird in $0.2$-Schritten gegangen, so dass wir fünf Werte von $0$ bis $1$ erhalten.
+
+```{r eval=FALSE}
+quantile(
+  pss$stfdem, 
+  probs = seq(
+    0,
+    1,
+    0.2
+  ),    
+  na.rm = TRUE
+)
+```
+{{% /tab %}}
+{{% /tabs %}}
+
+### Summary()
+Um sich eine Reihe an deskriptiven Werten ausgeben zu lassen, kann man ebenfalls die Funktion `summary()` nutzen: 
+```{r eval=FALSE}
+summary(pss$stfdem)
+```
+
+Weiter zu den Streumaßen!

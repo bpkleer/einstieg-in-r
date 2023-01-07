@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>intro.knit</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"<i class=\"fa fa-times-circle\" style=\"color: #F94144\"><\/i>"})</script>
+    <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="libs/mark.js-8.11.1/mark.min.js"></script>
+    <link href="libs/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"top-right","caseSensitive":false,"showIcon":false,"autoSearch":true}) })</script>
+    <link rel="stylesheet" href="assets/xaringantheme-jlu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+class: title, center, middle
+
+# Statistik&lt;sup&gt;+&lt;/sup&gt;: Einstieg in R leicht gemacht!
+
+## Anwendungsorientierte Statistikvermittlung 
+
+### Philipp Kleer | Institut für Politikwissenschaft | FB 03 | Sommersemester 2022
+
+&lt;!--- Social Media Links, müssen angepasst werden --&gt;
+.social[
+[&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt;](mailto:philipp.kleer@sowi.uni-giessen.de)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57zM300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://orcid.org/0000-0003-1935-387X)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88l94.3 294 94.3-294zm349.4 88l-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://gitlab.ub.uni-giessen.de/bpkleer)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [&lt;svg viewBox="0 0 448 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+
+---
+
+# Starten wir!
+.pull-left[
+.center[
+![:scale 75%](pics/meme.jpg)
+]
+]
+
+???
+- an Bedürfnisse ausgerichtet
+
+- Kenntnisstand stärker berücksichtigt
+
+--
+
+.pull-right[
+Dieser Kurs führt grundsätzlich in das Programmieren und im Besonderen in das Programmieren von statistischen Berechnungen mit R ein. Der Kurs ist daher für alle Studierende zu empfehlen, die grundsätzlich Interesse an einer Programmiersprache haben und verschiedene Instrumente, die während Programmschritten eingesetzt werden, kennenlernen möchten. 
+
+**Kenntnisse aus Statistik I und Statistik II** finden in diesem Kurs Anwendung. Inhalte aus Statistik II erfolgen erst gegen Ende des Semesters, so dass die Übung der Vorlesung nichts vorwegnimmt. 
+
+Der Kurs wurde **neu konzipiert**, um Studierende **ohne breite Computer-/Programmierkenntnisse** das Erlernen von R zu ermöglichen.
+]
+
+???
+Dies kann von Interesse sein, wenn Studierende nach dem Studium eine Beschäftigung im (IT-)Projektbereich anstreben. Der Kurs ist so aufgebaut, dass auch Personen ohne tiefe Computerkenntnisse an dem Kurs teilnehmen können. Einzige Voraussetzung ist das eigene Interesse eine Programmiersprache und mit dieser eben statistische Anwendungen zu lernen.
+
+---
+
+# Was auf Sie zu kommt!
+.pull-left-70[
+.pull-left[
+.center[
+![:scale 15%](pics/rlogo.svg)
+]
+- Programmiersprache
+
+- GNU-Projekt, daher frei erweiterbar, kostenlos und durch die Community immer up-to-date (neuere Methoden etc.)
+]
+
+.pull-right[
+.center[
+![:scale 37%](pics/rstudio.png)
+]
+- Software, in der wir R benutzen
+
+- *Integrated Development Environment* (IDE)
+
+- wir nutzen Cloud-Version (über Uni lizenziert): Zugriff einfach aus dem Browser heraus (keine Installation notwendig )
+
+- in der Einzelanwenderlizenz kostenlos (also auch Installation am eigenen Rechner möglich)
+
+]
+]
+
+--
+
+.pull-right-30[
+.center[
+![:scale 30%](pics/git.png) ![:scale 40%](pics/jlugit.png)
+]
+
+- sogenannte *Version Control*
+
+- erleichtert die gemeinsame Arbeit (kollaborativ) an Programm-Code
+
+- erspart eine Menge Zeit an Datei-Management/-Versand, so dass wir die Zeit wirklich fürs Programieren/Lernen nutzen können (bzw. auf Dozentensicht für's Lehren)
+]
+ 
+---
+
+# Was bedeutet R lernen?
+--
+
+.pull-left[
+Im Gegensatz zu anderen Statistikprogrammen gibt es keine Benutzeroberfläche mit der *Click&amp;Play* möglich ist. Stattdessen muss eine Programmier**sprache** gelernt werden. 
+
+Das heißt wie bei dem Erlernen jeder anderen Sprache auch: Die Lernkurve ist zu Beginn sehr steil.
+
+Auch wenn es zu Beginn schwerer ist R zu erlernen, ist der Nutzen um ein Vielfaches höher, da weiterführende Methoden oder Schritte mit der erlernten Programmier**sprache** später leichter umzusetzen ist. 
+]
+
+--
+.pull-right[
+.center[
+![:scale 100%](pics/lernkurve-r.png)
+]
+]
+???
+Betonung liegt hier auf Sprache
+
+Das Lernen von R ist quasi eine Investition in die Zukunft. 
+
+machine learning
+
+---
+
+# Was wir lernen?
+
+Programmiersprache lernen heißt **Funktionen** lernen. Eine Funktion ist eine Anweisung, die in einer Sprache (*R*) den Computer etwas ausführen lässt. 
+
+Zum Beispiel in der Anwendung von *Statistik I* könnten wir uns den **Mittelwert einer Variable** ausgeben lassen. Nehmen wir als Beispiel einen Datensatz, der das Brutto-Einkommen der Bevölkerung Deutschlands beinhaltet. Der Datensatz heißt `df` und die Variable `income`: 
+
+--
+
+
+```r
+mean(df$income)
+```
+
+???
+d.h. wir sehen hier, dass die Funktionen oftmals englische Namen haben
+--
+
+Wenn wir die Funktion oben ausführen, erhalten wir das Ergebnis: Im Durchschnitt verdienen Personen 
+
+
+```
+[1] 3963.493
+```
+
+---
+
+# Aufbau der Übung
+Ziel der Übung ist es die Anwendungszeit zu maximieren, um so das übliche *troubleshooting* beim Erlernen eines neuen Programms bzw. einer neuen Programmiersprache angenehmer zu gestalten. 
+
+???
+In den üblichen wöchentlichen Kursen stellt ein Dozent:in meist INhalt vor und dann findet in max. 45 oder nur 30 min eine quick &amp; dirty anwendung statt, die aber oftmals mehr Probleme schafft als dass es Studierenden weiterhilft. 
+--
+
+Daher findet der Kurs im **blended-learning**-Format statt. 
+
+In Präsenzzeit findet Anwendung statt und Studierende bereiten Inhalte vor bzw. nach (**Lernbücher**). In der Vor-/Nachbereitung wird mit kleineren Trainingsdatensätzen gearbeitet, in der Präsenzzeit arbeiten wir mit tatsächlich erhobenen sozialwissenschaftlichen Daten. 
+
+???
+
+d.h. in der Präsenzzeit werden wir praktische Anwendung fokussieren und eben die Probelem die dabei auftreten. 
+--
+
+Wie beim Erlernen jeder anderen Sprache auch, müssen *Vokabeln* und die *Grammatik* zuhause gelernt werden und in der Präsenzzeit üben wir das *Sprechen* (Programmieren). 
+
+---
+
+# Aufbau der Übung
+
+&lt;img src="assets/createdpics/aufbau1-1.png" width="15%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Aufbau der Übung
+
+&lt;img src="assets/createdpics/aufbau2-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Aufbau der Übung
+
+&lt;img src="assets/createdpics/aufbau3-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Aufbau der Übung
+
+&lt;img src="assets/createdpics/aufbau4-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Aufbau der Übung
+
+&lt;img src="assets/createdpics/aufbau5-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Blended-Learning (Vor-/Nachbereitung)
+
+&lt;img src="assets/createdpics/aufbau6-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Semesterleistung
+
+&lt;img src="assets/createdpics/aufbau7-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+???
+Ziel ist es so, dass die Studierenden fortlaufend lernen, aber ebenso über die gebündelte Präsenzzeit genug Zeit (unter Kontrolle von Dozent:in und TA's) gibt, sich im Programmieren bzw. der Anwendung zu üben. Ebenso wird durch das zeitliche Freischalten von Inhalten keine Überforderung zu Beginn sichtbar, da neue Inhalte erst folgen, wenn Materialien freigschaltet sind. 
+---
+
+# Lab tasks (Vorleistung)
+
+**Lab tasks** dienen zur Nachbereitung und Einüben von Programmierschritten. Dies ist eine **Gruppenleistung**, denn auch in der normalen Welt werden Programmierprobleme im Team und selten allein gelöst. Dazu werden automatisierte Kontrollen ermöglicht, die ein zeitunabhängiges Kontrollieren, der Übungsaufgabe ermöglicht und auf Fehlerquellen hinweist. 
+
+--
+.pull-left[
+.center[
+![:scale 80%](pics/gitlabci.png)
+]
+]
+
+--
+
+.pull-right[
+.center[
+![:scale 80%](pics/example-cicd.png)
+]
+]
+
+--
+
+**Ziel dieser Arbeit:**
+
+- Gruppe löst Aufgabenstelltung: Team hilft sich gegenseitig, Lernen im Team
+
+- Anwendung von [gitlab](https://gitlab.ub.uni-giessen.de) ermöglicht Vorteile automatisierter Handlungen
+
+
+???
+Reformulierung/Erklärung bringt auch denen etwas, die bereits was wissen
+
+---
+
+# Eigener Input
+
+Wie viel Sie tatsächlich mitnehmen, hängt im Besonderen Maße davon ab, **wie gut Sie mitarbeiten**. 
+
+--
+
+Wenn Sie zum Beispiel die *Grammatik* und *Vokabeln* nicht im Vorfeld lernen, wird es schwer in der Präsenzeinheit dem *Sprechen* (Programmieren) zu folgen. Wie bei jedem anderen Sprachkurs auch. 
+
+--
+
+Der Kurs ist so konzipiert, dass man bei fortlaufender Vor-/Nachbereitung nicht das Maximum der in der Modulbeschreibung angegebenen Zeit erreicht, dem Kurs aber sehr gut folgen kann. 
+
+---
+
+# Ganz schön viel?
+
+Es erscheint erstmal viel, für die **eigene Profilbildung** ist der Kurs aber außerordentlich geeignet. 
+
+--
+
+Sie lernen im Kurs nicht nur quantitative Analyseverfahren in einem Statistikprogramm anzuwenden. Außerdem lernen Sie zusätzlich:
+
+--
+- eine moderne, wandlungsfähige und auch zukünftig intensiv genutzte Programmiersprache (für das weitere Masterstudium oder die berufliche Tätigkeit)
+
+- generelle Skills in einer Programmiersprache, die Sie auf weitere Programmiersprachen anwenden können
+
+--
+
+- eine moderne und übliche Art kollaborativ an Projekten zu arbeiten (**git/gitlab**)
+
+--
+
+- erste Schritte in Gruppenprojekten und Erfahrung wie sich Zusammenarbeit in (IT-)Projekten organisieren lässt (**Lab tasks**)
+
+--
+
+Zwischen den Präsenz- und Anwendungsphasen kann eine wöchentliche **tutorielle Betreuung** genutzt werden, um individuelle Probleme zu lösen.  
+
+
+---
+
+
+class: goodbye, center, middle
+
+# Ich freue mich auf Ihre Teilnahme!
+
+.social[
+[&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"&gt;&lt;/path&gt;&lt;/svg&gt;](mailto:philipp.kleer@sowi.uni-giessen.de)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57zM300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://orcid.org/0000-0003-1935-387X)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M105.2 24.9c-3.1-8.9-15.7-8.9-18.9 0L29.8 199.7h132c-.1 0-56.6-174.8-56.6-174.8zM.9 287.7c-2.6 8 .3 16.9 7.1 22l247.9 184-226.2-294zm160.8-88l94.3 294 94.3-294zm349.4 88l-28.8-88-226.3 294 247.9-184c6.9-5.1 9.7-14 7.2-22zM425.7 24.9c-3.1-8.9-15.7-8.9-18.9 0l-56.6 174.8h132z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://gitlab.ub.uni-giessen.de/bpkleer)     [&lt;svg viewBox="0 0 512 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H60c-6.627 0-12-5.373-12-12v-12H24a8 8 0 0 1-8-8v-16a8 8 0 0 1 4.941-7.392l232-88a7.996 7.996 0 0 1 6.118 0l232 88A8 8 0 0 1 496 128zm-24 304H40c-13.255 0-24 10.745-24 24v16a8 8 0 0 0 8 8h464a8 8 0 0 0 8-8v-16c0-13.255-10.745-24-24-24zM96 192v192H60c-6.627 0-12 5.373-12 12v20h416v-20c0-6.627-5.373-12-12-12h-36V192h-64v192h-64V192h-64v192h-64V192H96z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [&lt;svg viewBox="0 0 448 512" style="position:relative;display:inline-block;top:.1em;height:1.5em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"&gt;&lt;/path&gt;&lt;/svg&gt;](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="./assets/macros.js"></script>
+<script>var slideshow = remark.create({
+"seal": false,
+"highlightStyle": "github",
+"highlightLines": true,
+"highlightLanguage": "r",
+"countIncrementalSlides": false,
+"ratio": "16:9",
+"slideNumberFormat": "<div class=\"progress-bar-container\">\n  <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">\n  </div>\n</div>    \n",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

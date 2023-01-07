@@ -1,0 +1,208 @@
+---
+title: "Annahme 6: Einflussreiche Fälle"  # Titel der Seite
+weight: 307  # Individuelles Gewicht 
+menuTitle: "Einflussreiche Fälle" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "einflussreiche fälle"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("modelsummary")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+Um auf einflussreiche Fälle zu prüfen, nutzen wir wieder die Resdiuen. Hier sind zwei Werte relevant: **Leverage** und **Cook's D(istance)**. Da **Cook's D(istance)** in Teilen auf dem **leverage** beruht, fokussieren wir direkt **Cook's D**.
+
+{{% tabs %}}
+{{% tab name=\"Leverage\" %}}
+
+- Ist die partielle Ableitung des geschätzten $i$-ten Wert der abhängigen Variable $\hat{y_i}$ in Abhängigkeit des gemessenen $i$-ten Wert der abhängigen Variable $y_i$ 
+
+- Der Grad, in dem der $i$-te gemessene Wert den $i$-ten gefitteten Wert beeinflusst wird
+
+- "Ungewöhnlichkeit" der $x$'s
+
+- $h_{ii} = \frac{\partial \hat{y_i}}{\partial y_i}$
+
+- Fall gilt als einflussreich, falls $h_{ii} > .2$
+{{% /tab %}}
+{{% tab name=\"Cook's D\" %}}
+
+- Ist die Distanz der Veränderung, die ein geschätzter Wert innerhalb der Konfidenz-Ellipse bewegt, die die Region plausibler Werte für den Parameter annimmt
+
+- Misst den Einfluss (wie stark ein Fall das Regressionsmodell ändert)
+
+- $D_i = \frac{ \sum_{j=1}^n (\hat{y}_j - \hat{y}_{j(i)})}{p * s^2}$, wobei $p$ Anzahl der Parameter ist
+
+- Klassifiziert als einflussreich, wenn $D_i > \bar{D} *3$
+{{% /tab %}}
+{{% /tabs %}}
+
+Zuerst können wir einfach **Cook's D** plotten. Dazu nutzt du wieder die Funktion `plot()`, gibst das Regressionsmodell an und setzt im zweiten Argument den Wert `4`:
+```{r cooksd, eval=TRUE}
+plot(
+  olsModel2,
+  4
+)
+```
+
+**Grenzwerte**:
+
+$D_i < 1$: keine einzige Beobachtung
+
+$\frac{4}{4890} \approx 0.0008179959$: viele Fälle
+
+$\bar{D} * 3 \approx 0.0005895857$: viele Fälle
+
+Wir können auch direkt **Cook's D** gegen das **leverage** plotten und Linien für die Grenzwerte einziehen:
+```{r eval=FALSE}
+plot(
+  olsModel2, 
+  6
+)
+
+abline(
+  h = 3 * mean(cooks.distance(olsModel2), na.rm = TRUE), 
+  col = "chartreuse4", 
+  lty = 6,  # Grenze Cook's D
+  lwd = 2
+)
+
+abline(
+  v = 2 * (2 + 1) / 2393, 
+  col = "chartreuse4", 
+  lty = 6,  # Grenze leverage
+  lwd = 2
+) 
+```
+
+Um nun zu prüfen, ob diese theoretisch potentiell einflussreichen Fälle wirklich einflussreich sind, berechnen wir das Modell erneut unter Ausschluss dieser Beobachtungen.
+
+Dafür benötigen wir einen Datensatz, der dieselbe Länge hat wie unsere Modellschätzung:
+```{r rerun, eval=TRUE}
+nobs(olsModel2)
+
+ccol <- c(
+  "stfdem",
+  "stfeco",
+  "trstlgl"
+)   
+
+pss2 <- pss[complete.cases(pss[,ccol]),]
+
+dim(pss2)
+```
+
+Nun können wir die Werte des **leverage** (*hat values*) und **Cook's D** dem Datensatz hinzufügen.
+
+```{r hats, eval=TRUE}
+pss2$hats <- hatvalues(olsModel2)    
+
+pss2$cooksd <- cooks.distance(olsModel2)  
+```
+
+Alles, was jetzt folgt, benötigt ein tieferes Verständnis, und insbesonder das Verständnis für Schleifen und *if*-Bedingungen aus dem [Lernblock 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **Aber** wie geschrieben, ist dieses Kapitel extra und wird nicht Teil der verpflichtenden Lab-Übung sein. 
+
+Um nun die potentiell einflussreichen Fälle auszuschließen, benötigen wir einen Dummy, der uns anzeigt, ob der Fall nach den Kriterien einflussreich ist ($1$) oder nicht ($0$): In der Schleife prüfen wir zuerst, ob der jeweilige Wert des Falles über dem Grenzwert ist. Wenn ja, bekommt für das *leverage* die Variable `leverage` den Wert 1 bzw. für Cook's D die Variable `influence`.
+```{r loop, eval=TRUE}
+for (i in 1:dim(pss2)[1]) {   
+if (pss2$hats[i] > (2*(2+1)/dim(pss2)[1])) {
+   pss2$leverage[i] = 1
+} else {
+   pss2$leverage[i] = 0
+}
+}
+
+for (i in 1:dim(pss2)[1]) {
+   if (pss2$cooksd[i] > (3*mean(pss2$cooksd))) {
+      pss2$influence[i] = 1
+   } else {
+      pss2$influence[i] = 0
+   }
+}
+```
+
+Nun können wir das Modell mit dem verkleinerten Datensatz erneut rechnen: Hierbei beschränken wir den Datensatz auf die Fälle, die jeweils in den neu geschaffenen Variablen `leverage` und `influence` den Wert `0` haben, also nicht einflussreich sind. 
+```{r model-rerun, eval=TRUE}
+olsModel2Re <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,  
+  data = pss2[pss2$leverage==0 & pss2$influence==0,]
+)
+```
+
+Um herauszufinden, wie viele Fälle wir ausgeschlossen haben, kannst du folgende einfache Subtraktion machen:
+```{r diff, eval=TRUE}
+nobs(olsModel2Re) - nobs(olsModel2)
+```
+
+Es wurden also 736 Fälle ausgeschlossen. Eine ganze Menge!
+
+Schauen wir uns das Ergebnis des Re-definierten Modells mit `summary()` an:
+**Re-definiertes Modelll**
+```{r model-check, eval=TRUE}
+summary(olsModel2Re)
+```
+Doch weicht das nun ab vom alten Modell? Dazu nehmen wir einfach die Funktion `modelsummary()`, die wir schon kennengelernt haben. Denn in einer Tabelle können wir die Werte besser vergleichen. Wichtig ist hierbei zu prüfen, ob sich die Standardfehler bzw. die Koeffizienten ändern. 
+```{r model-check2, eval=TRUE}
+modelsummary(
+  list(
+    olsModel2, 
+    olsModel2Re
+  ),
+  stars = TRUE
+)
+```
+$\Rightarrow$ Du siehst, dass sich der Koeffizient für den *intercept* als auch für `stfeco` ändert. Der *intercept* wird kleiner, der Effekt von `stfdem` dagegen größer. Die Standardfehler (Werte in Klammern) ändern sich dagegen nicht. 
+
+Wenn wir große Änderungen erkennen, müssen die gefilterten Fälle genauer inspiziert werden. Denn wir können Fälle nicht einfach aufgrund mathematischer Bedingungen exkludieren. 
+
+Um herauszufinden, um welche Fälle es sich handelt, kann man wieder eine Schleife programmieren:
+```{r extract-influentials, eval=TRUE}
+levInfluential <- c()
+cookInfluential <- c()
+allInfluential <- c()
+
+# nur für leverage
+for (i in 1:dim(pss2)[1]) {
+  if (pss2$leverage[i] == 1) {
+    levInfluential <- c(levInfluential, pss2$idno[i])
+  }
+}
+
+# nur für Cook's D
+for (i in 1:dim(pss2)[1]) {
+  if (pss2$influence[i] == 1) {
+    cookInfluential <- c(cookInfluential, pss2$idno[i])
+  }
+}
+
+# für beides
+for (i in 1:dim(pss2)[1]) {
+  if (pss2$leverage[i] == 1 & pss2$influence[i] == 1) {
+    allInfluential <- c(allInfluential, pss2$idno[i])
+  }
+}
+```
+
+Als Ergebnis bekommst du drei Vektoren, die jeweils die einflussreichen Fälle beinhalten:
+```{r result-influential, eval=TRUE}
+levInfluential
+
+cookInfluential
+
+allInfluential
+```
+
+Anschließend könntest du dir die Wertepaare auf den Variablen in der Regression pro Fall genauer anschauen!
+
+Das war's zur Regressionsdiagnostik. In den sechs Schritten kannst du also sichergehen, ob deine Regressionsrechnung nicht aufgrund einer Annahmenverletzung verzerrt ist.

@@ -1,0 +1,89 @@
+---
+title: "Annahme 4: Autokorrelation"  # Titel der Seite
+weight: 305  # Individuelles Gewicht 
+menuTitle: "Autokorrelation" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "autokorrelation"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p><strong>Autokorrelation</strong> kann insbesondere ein Problem in linearen Regression sein, in denen Zeitreihen als Daten vorliegen. Wenn <strong>Autokorrelation</strong> vorliegt, erhalten wir verzerrte Schätzer. <strong>Autokorrelation</strong> heißt, dass der Wert des Residuums den nachfolgenden Wert positiv oder negativ beeinflusst. <strong>Autokorrelation</strong> heißt also, dass der <span class="math inline">\(i\)</span>-te Residualwert den <span class="math inline">\((i+1)\)</span>-ten Residualwert beeinflusst.</p>
+<p><strong>Autokorrelation</strong> indiziert daher zeitliche Bezüge (nicht-lineare Beziehung) oder das Fehlen von Variablen im Modell.</p>
+<p><img src="../img/autocorr_pos.png" /></p>
+<p><img src="../img/autocorr_neg.png" /></p>
+<p>Es gibt vier Möglichkeiten auf <strong>Autokorrelation</strong> zu testen:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>lagged regression</em></p></li>
+<li><p>Durbin-Watson-Test (<span class="math inline">\(lag = 1\)</span>)</p></li>
+<li><p>Breusch-Godfrey-Test (änderbares <em>lag</em>)</p></li>
+<li><p>Grafische Analyse</p></li>
+</ol>
+<div id="variante-1-lagged-regression" class="section level2">
+<h2>Variante 1: <em>lagged regression</em></h2>
+<p>Hierbei wird einfach eine Regression der Residuen gerechnet. Abhängige Variable sind die Residuen in umgekehrter Reihenfolge (<code>res[-n]</code>) und unabhängige Variable ist jeweils vorherige Residuum (<code>res[-1]</code>). Wir sollten einen nicht signifikanten Wert für den Koeffizienten von <code>res[-1]</code> erhalten. Wenn dieser signifikant ist, könnte <strong>Autokorrelation</strong> vorliegen.</p>
+<pre class="r"><code>res &lt;- olsModel2$res  
+
+n &lt;- length(res)       
+
+testmodel &lt;- lm(res[-n] ~ res[-1]) 
+
+summary(testmodel)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = res[-n] ~ res[-1])
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7047 -1.0858  0.0431  1.1619  5.8150 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept) 0.0003331  0.0247593   0.013    0.989
+## res[-1]     0.0045302  0.0142998   0.317    0.751
+## 
+## Residual standard error: 1.732 on 4890 degrees of freedom
+## Multiple R-squared:  2.052e-05,  Adjusted R-squared:  -0.000184 
+## F-statistic: 0.1004 on 1 and 4890 DF,  p-value: 0.7514</code></pre>
+<p><span class="math inline">\(\Rightarrow\)</span> Und wir haben das in diesem Fall erhalten! Wenn der Effekt signifikant ist, weißt du, dass das jeweiligevorherige Residuum einen signifikanten (also mehr als zufälligen) Effekt hat. Und das bedeutet dann, dass Autokorrelation vorliegt.</p>
+</div>
+<div id="variante-2-durbin-watson-test" class="section level2">
+<h2>Variante 2: Durbin-Watson-Test</h2>
+<p>Zweitens kannst du dir die <strong>Durbin-Watson-Statistik</strong> ausgeben lassen. Dazu nutzt du die Funktion <code>dwtest()</code> aus der <strong>library</strong> <code>lmtest</code>.</p>
+<p>Der <strong>Durbin-Watson-Test</strong> ist ein Hypothesentest. Die Nullhypothese lautet dabei:</p>
+<p><span class="math inline">\(H_0\)</span>: Autokorrelation ist gleich <span class="math inline">\(0\)</span>.</p>
+<p>Ziel ist es also einen nicht signifikanten Hypothesentest zu erhalten, um abzulehnen, dass Autokorrelation vorliegt.</p>
+<p>In diesem Test ist das <em>lag</em> (Verzögerung) immer gleich <span class="math inline">\(1\)</span>:</p>
+<pre class="r"><code>dwtest(olsModel2)</code></pre>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  olsModel2
+## DW = 1.9906, p-value = 0.3717
+## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<p><span class="math inline">\(\Rightarrow\)</span> Wie in Variante 1 zeigt der <strong>Durbin-Watson-Test</strong> ebenfalls an, dass keine Autokorrelation vorliegt.</p>
+</div>
+<div id="variante-3-breusch-godfrey-test" class="section level2">
+<h2>Variante 3: Breusch-Godfrey-Test</h2>
+<p>Ein dritter Weg ist die Ausgabe des <strong>Breusch-Godfrey-Test</strong>. In diesem Test können wir die Verzögerung (<em>lag</em>) einstellen. Hierfür nutzen wir die Funktion <code>bgtest()</code> aus der <strong>library</strong> <code>lmtest</code>.</p>
+<p>Auch der <strong>Breusch-Godfrey-Test</strong> ist ein Hypothesentest. Wie auch beim Durbin-Watson-Test ist die Nullhypothese folgende:</p>
+<p><span class="math inline">\(H_0\)</span>: Autokorrelation ist gleich <span class="math inline">\(0\)</span>.</p>
+<p>Ziel ist also wie beim Durbin-Watson-Test auch ein nicht signifikantes Testergebnis!</p>
+<p>Wie zuvor ist im erten Argument der Funktion einfach das Objekt der Regression. Im zweiten Argument (<code>order</code>) kannst du das <em>lag</em> einstellen.</p>
+<pre class="r"><code>bgtest(
+  olsModel2,
+  order = 1
+) </code></pre>
+<pre><code>## 
+##  Breusch-Godfrey test for serial correlation of order up to 1
+## 
+## data:  olsModel2
+## LM test = 0.10042, df = 1, p-value = 0.7513</code></pre>
+<p><span class="math inline">\(\Rightarrow\)</span> Auch hier erhalten wir die Information, dass keine Autokorrelation vorliegt.</p>
+</div>
+<div id="variante-4-grafische-analyse" class="section level2">
+<h2>Variante 4: Grafische Analyse</h2>
+<p>Wir könnten uns auch noch die Residuen plotten, um auf <strong>Autokorrelation</strong> zu prüfen. Dazu nutzt man einfach wieder die <code>plot()</code>-Funktion und gibt nun die Residuen des Models als Dateneingabe ein. Liegt Autokorrelation vor, würdest du ein Muster wie ganz am Anfang auf dieser Seite sehen.</p>
+<pre class="r"><code>plot(olsModel2$residuals)</code></pre>
+<p><img src="/statsplus/lb4/chapter3/page-5_files/figure-html/autocor-plot-1.png" width="672" /></p>
+<p><span class="math inline">\(\Rightarrow\)</span> Du siehst, dass kein Muster wie oben vorliegt. Auch hiermit bestätigst du, dass keine Autokorrelation vorliegt.</p>
+</div>

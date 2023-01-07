@@ -1,0 +1,54 @@
+---
+title: "Wertetypen"
+weight: 201
+menuTitle: "Wertetypen"
+tags: ["datentypen", "numeric", "integer", "character", "boolean"]
+---
+
+<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Wir haben bereits kennengelernt, dass wir direkt Rechnungen in R ausführen können bzw. das Ergebnis direkt in ein Objekt speichern können.</p>
+<p>Wir können aber auch direkt Werte in Objekte speichern, dabei unterscheiden wir vier verschiedene Wertetypen:</p>
+<ol style="list-style-type: decimal">
+<li><p>numeric</p></li>
+<li><p>integer</p></li>
+<li><p>character</p></li>
+<li><p>logical</p></li>
+</ol>
+<div id="numeric" class="section level1">
+<h1>Numeric</h1>
+<p>Dieser Wertetyp umfasst alle möglichen Zahlenwerte. Streng genommen ist <strong>integer</strong> ein Untertyp dieses Zahlenwertes. Wir können also auch Kommawerte so in R speichern. Speichern wir eine einfache Kommazahl im neuen Objekt <code>mathNum</code> und rufen dieses anschließend auf.</p>
+<pre class="r"><code>mathNum &lt;- 2.345
+
+mathNum</code></pre>
+<pre><code>## [1] 2.345</code></pre>
+<p>Wichtig zur Handhabung im Lernmodul: Du kannst den Code direkt kopieren und so in dein eigenes Skript einfügen. In der rechten oberen Ecke findet sich in jedem Code-Schnippsel ein Kopiersymbol. Einfach darauf klicken und dann in dein Skript einfügen (<code>cmd</code> und <code>V</code> bzw. <code>Strg</code> und <code>V</code>).</p>
+<p>{{% expand "Was fällt dir auf bei der Eingabe der Kommazahl?" %}}
+Kommazahlen haben als Trennzeichen einen <code>.</code> (Punkt) und nicht ein <code>,</code> (Komma). Denn R basiert auf englischer Sprache und da ist das Dezimaltrennzeichen nunmal ein <code>.</code> (Punkt).
+{{% /expand %}}</p>
+</div>
+<div id="integer" class="section level1">
+<h1>Integer</h1>
+<p>Diesen Wertetyp kennen wir bereits, denn wir haben ihn im Objekt <code>math</code> genutzt. <strong>Integer</strong> sind ganzzahlige Werte, also im Beispiel von <code>math</code> der Wert <code>7</code>.</p>
+</div>
+<div id="character" class="section level1">
+<h1>Character</h1>
+<p>Als nächstes gibt es noch den Wertetyp <strong>character</strong>. Dies sind Zeichenketten: Das kann sinnhaftes aus Buchstaben sein, aber auch Kombinationen von Buchstabend und Zahlen oder Zeichen. Speichern wir z.B. ein Objekt <code>hometown</code> mit dem Wohnort (in meinem Fall Berlin).</p>
+<pre class="r"><code>hometown &lt;- &quot;Berlin&quot;
+
+hometown</code></pre>
+<pre><code>## [1] &quot;Berlin&quot;</code></pre>
+<p>{{% expand "Was fällt dir auf im Unterschied zum Speichern eines Zahlenwertes des Typs numeric oder integer?" %}}
+Wenn es sich um Text handelt, muss dieser in der Sprache in R in <code>"..."</code> (Anführungsstriche) gesetzt werden. Man kann sowohl die doppelten <code>"..."</code> als auch die einfachen <code>'...'</code> dafür nutzen. <strong>Wichtig:</strong> Bleibe konsistent!
+{{% /expand %}}</p>
+</div>
+<div id="logical" class="section level1">
+<h1>logical</h1>
+<p>Dieser Wertetyp spielt für die Datenverarbeitung eine wichtige Rolle, da wir später Bedingungen nutzen werden, die jeweils den Wertetyp <strong>logical</strong> haben. Es gibt insgesamt zwei Ausprägungen beim Wertetyp <strong>logical</strong>: <code>TRUE</code> und <code>FALSE</code>. <strong>Wichtig:</strong> Diese Worte müssen groß geschrieben werden! Ansonsten erkennt R diese nicht als <strong>logical</strong>. Speichern wir zum Beispiel den Wert <code>TRUE</code> in einem Objekt names <code>truth</code>.</p>
+<pre class="r"><code>truth &lt;- TRUE
+
+truth</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Doch können wir auch mehr als einen Wert speichern?</p>
+</div>

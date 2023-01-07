@@ -1,0 +1,61 @@
+---
+title: "Automatisierte Kontrolle"  # Titel der Seite
+weight: 305  # Individuelles Gewicht 
+menuTitle: "Kontrolle Lab" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Hier zeigen wir dir nun, wie du euer Skript für die Gruppenabgabe automatisiert prüfen kannst. Ihr könnt den Test beliebig oft durchführen, es beansprucht aber etwas Zeit, da dies über einen privaten Server und nicht über die Universität läuft. Deshalb arbeiten wir in den Lab-Aufgaben auch nur mit dem fiktiven Datensatz des PSS.</p>
+<p>Du hast ja gerade schon gelernt, wie du Änderungen an die globale Version sendest. Habt ihr in der Gruppe eine fertige Version, kann sich eine Person der Gruppe in <a href="https://gitlab.ub.uni-giessen.de">gitlab</a> einloggen und dort dann die automatische Kontrolle starten.</p>
+<p>Dazu müsst ihr nur drei kleine Schritte machen:</p>
+<ol style="list-style-type: decimal">
+<li><p>Loggt euch in <a href="https://gitlab.ub.uni-giessen.de">gitlab</a></p></li>
+<li><p>Gehe zu deiner Gruppe (im Beispiel hier Katnyss)</p></li>
+</ol>
+<div class="figure">
+<img src="../img/pipeline1.png" alt="" />
+<p class="caption">Gehe zur Gruppe</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Gehe in das Repository der jeweiligen Lab Task</li>
+</ol>
+<div class="figure">
+<img src="../img/pipeline2.png" alt="" />
+<p class="caption">Gehe zur entsprechenden labtask</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Gehe dann links im Menü auf <strong>CI/CD</strong> -&gt; <strong>Pipelines</strong></li>
+</ol>
+<p><img src="../img/pipeline3.png" alt="Gehe zu Pipelines" />
+5. Klicke dann rechts auf <strong>Run Pipeline</strong>.</p>
+<div class="figure">
+<img src="../img/pipeline4.png" alt="" />
+<p class="caption">Starte Pipeline</p>
+</div>
+<ol start="6" style="list-style-type: decimal">
+<li>Auf der neuen Seite dann einfach nochmal <strong>Run Pipeline</strong> klicken und keine Einstellung verändern.</li>
+</ol>
+<div class="figure">
+<img src="../img/pipeline5.png" alt="" />
+<p class="caption">Starte Pipeline</p>
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>Die Pipeline ist gestartet und du erhältst folgendes Bild:</li>
+</ol>
+<div class="figure">
+<img src="../img/pipeline6.png" alt="" />
+<p class="caption">gestartete Pipeline</p>
+</div>
+<ol start="8" style="list-style-type: decimal">
+<li>Wenn die Pipeline erfolgreich ist, wird <strong>passed</strong> angezeigt, wenn sie nicht erfolgreich war (Lösungen nicht korrekt) erscheint <strong>failed</strong>. Hier im Beispiel erscheint natürlich <strong>failed</strong>, denn das Skript ist noch leer und kann somit nicht korrekt sein.</li>
+</ol>
+<div class="figure">
+<img src="../img/pipeline7.png" alt="" />
+<p class="caption">Failed Pipeline</p>
+</div>
+<p>Wenn eine Pipeline <strong>failed</strong>, musst du weiter am Skript arbeiten und dir nochmal überlegen, was eventuell verändert werden muss. Kommst du oder ihr in der Gruppe nicht weiter, geht in die Sprechstunde der Tutor:innen!</p>
+<p>So einfach kannst du deine Abgabe automatisiert kontrollieren. Dies kannst du zu jeder beliebigen Zeit machen! Bitte beachtet, dass der hinterlegte Server nicht unendlich viel Leistung hat, es daher bei den späteren Aufgaben durchaus 10 bis 20 Minuten dauern kann, bis ihr ein Ergebnis in der Pipeline habt.</p>
+<p>Das war’s! Jetzt bist du auch fit für <strong>gitlab</strong>!</p>

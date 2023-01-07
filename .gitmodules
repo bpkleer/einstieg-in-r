@@ -1,0 +1,27 @@
+[submodule "using-ci-teaching"]
+	path = using-ci-teaching
+	url = https://gitlab.com/bpkleer/ci-cd-teaching.git
+[submodule "theme-lb1"]
+	path = wbt/lb1/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+
+[submodule "theme-lb2"]
+	path = wbt/lb2/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+
+[submodule "theme-lb3"]
+	path = wbt/lb3/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+
+[submodule "theme-lb4"]
+	path = wbt/lb4/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+
+[submodule "theme-lb5"]
+	path = wbt/lb5/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+
+[submodule "theme-main"]
+	path = wbt/main/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+

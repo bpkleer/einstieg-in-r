@@ -1,0 +1,148 @@
+---
+title: "Piping"  # Titel der Seite
+weight: 312 # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "piping"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Nachdem nun die gängigsten Funktionen vorgestellt wurden, stellen wir vor, wie die Modularisierung bzw. das **piping** mit `dplyr` funktioniert. Wie schon oben genannt ist ein immenser Vorteil von `dplyr`, dass die Operationen **gepipt** werden, also in einzelne Bausteine aufgeteilt werden, die leicht nachzuvollziehen sind. 
+
+Über das **Piping** werden Datensätze oder **tibbles** aus vorherigen Operationen weitergegeben. Dies erfolgt über den Operator `%>%`. Schauen wir ein erstes Beispiel an:
+``` {r pipe1, eval = TRUE}
+pss <- pss %>%
+  group_by(district) %>%
+  mutate(
+    wkhtotMean = mean(
+      wkhtot, 
+      na.rm = TRUE
+    )
+  ) %>%
+  ungroup() 
+```
+Zuerst übergeben wir den geladenen Datensatz `pss`. Danach führen wir drei Operationen am Datensatz aus: `group_by()`, `mutate()` und `ungroup()`. Anschließend übergeben wir das bearbeitete Objekt mit den Zuordnungspfeilen `->` wieder an das ursprüngliche Objekt (wir überschreiben es also!). 
+
+Das Beispiel berechnet die durchschnittliche Arbeitszeit nach Distrikt und speichert dies in der neuen Variable `wkhtotMean`. Damit diese auch im Datensatz `pss` gespeichert wird, speichern wir diese Schritte mit dem Zuordnungspfeil wieder in das Objekt `pss`. 
+
+Da wir den Datensatz *übergeben*, müssen wir diesen in den einzelnen Operationen nicht mehr aufrufen. Die Piping-Operatoren muss man nicht immer händisch eingeben, sondern dieser wird automatisch mit `[Strg] + [Shift] + [M]` (Windows) bzw. `[Cmd] + [Shift] = [M]` (Mac) eingefügt.
+
+Im nachfolgenden wollen wir verschiedene Vorbereitungsschritte mit **piping** durchführen.
+
+### Berechnen und Recodieren von Variablen
+Im Beispiel möchten wir nun eine neue Variable schaffen, die danach unterscheidet wie viel Vertrauen Personen in Politiker:innen haben (`trstplt`). So möchten wir zwischen geringem, mittlerem und hohem Vertrauen unterscheiden.
+
+```{r pipe2, eval = TRUE}
+pss <- pss %>%
+  mutate(
+    trstpltG = case_when(
+      trstplt <= 3 ~ "low", 
+      trstplt > 3 & trstplt <= 6 ~ "medium", 
+      trstplt > 6 ~ "high"
+    )
+  )
+table(pss$trstpltG)
+```
+
+Wenn man nun die neue Variable prüft, wird ersichtlich, dass die neue Variable als Typ *character* gespeichert wurde.
+```{r trstplt-str, eval = TRUE}
+str(pss$trstpltG)
+```
+
+Dies kann ganz normal geändert werden, oder man schreibt es direkt ins **Piping**:
+```{r pipe3, eval = TRUE}
+pss <- pss %>%
+  mutate(
+    trstpltG = case_when(
+      trstplt <= 3 ~ "low", 
+      trstplt > 3 & trstplt <= 6 ~ "medium", 
+      trstplt > 6 ~ "high"
+    )
+  ) %>% 
+  mutate(trstpltG = factor(trstpltG)) #Schritt um von Character auf Factor zu kommen!
+
+table(pss$trstpltG)
+
+str(pss$trstpltG)
+```
+
+Jetzt haben wir einen Faktor, aber noch ohne Ordnung, das können wir ebenfalls beheben:
+```{r pipe4, eval = TRUE}
+pss <- pss %>%
+  mutate(
+    trstpltG = case_when(
+      trstplt <= 3 ~ "low", 
+      trstplt > 3 & trstplt <= 6 ~ "medium", 
+      trstplt > 6 ~ "high"
+    )
+  ) %>% 
+  mutate(
+    trstpltG = factor(
+      trstpltG,
+      ordered = TRUE, 
+      levels = c(
+        "low", 
+        "medium", 
+        "high"
+      )
+    ) 
+  )
+
+table(pss$trstpltG)
+
+str(pss$trstpltG)
+```
+
+Etwas komplexer wäre folgende Aufgabe: Wir wollen nicht nur den Mittelwert der Arbeitszeit pro Distrikt berechnen, sondern die Abweichung einer Person im jeweiligen Distrikt vom Mittelwert des Distrikts!
+
+```{r pipe5, eval = TRUE}
+pss <- pss %>%
+  group_by(district) %>%
+  mutate(
+    wkhtotMean = mean(
+      wkhtot, 
+      na.rm = TRUE
+    ),
+    wkhtotDist = wkhtot - wkhtotMean  # wir fügen einfach diese einfache Berechnung des Abstands hinzu
+  ) %>%
+  ungroup()
+
+head(
+  pss[, 
+      c(
+        "district", 
+        "wkhtot",
+        "wkhtotMean",
+        "wkhtotDist"
+      )
+  ]
+)
+```
+
+Hier können wir jetzt auch einen Vorteil des modularen Prinzips erkennen. Wenn wir neue Variablen (hier `wkhtotMean`) berechnen und *weitergeben*, können wir diese in den folgenden Operationen direkt nutzen.
+
+Alternativ könnten wir die Daten auch hierarchisch gruppieren nach Distrikt und Bildung (`edu`) und uns dann einfach die unterschiedlichen Mittelwerte mit `summarize()` ausgeben lassen:
+
+```{r meansdistrictedu, eval = TRUE}
+meansDistriktEdu <- pss %>%
+  group_by(
+    district,
+    edu
+  ) %>%
+  summarize(mean(wkhtot)) 
+
+meansDistriktEdu
+```
+
+Wir gehen jetzt nochmal einen Schritt zurück und schauen uns an, wie wir Datensätze teilen können. Dies ist relevant unter anderem in der Arbeit mit Sekundärdatensätze, da diese manchmal für mehr Personen erhoben wurden, als man selbst für seinen Forschungszweck benötigt. 

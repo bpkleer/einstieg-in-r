@@ -1,0 +1,50 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{article-german}
+
+% Code highlighting
+%\usepackage{minted}
+%\usemintedstyle{monokai}
+%\setminted{bgcolor=black}
+%\setminted{linenos = true}
+
+% Dateibaum
+\usepackage{forest}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+
+\title{Lab 1 \\ \normalsize \textit{Lernblock 1}}
+\author{Meike Schulz-Narres, B. Philipp Kleer}
+\date{\today \\ \small{Version: 0.1}} 
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item Führe folgende Rechnungen in R aus und speichere die Ergebnisse in Objekten. Der Objektname steht jeweils in Klammern!
+	\begin{enumerate}
+		\item $6 * 8 - 2$ (\texttt{sol1a})
+		\item $7 + 9 * 4$ (\texttt{sol1b})
+		\item $18 / 6 * 3^2$ (\texttt{sol1c})
+	\end{enumerate}
+	\item Erstelle Vektoren mit folgendem Inhalt. Benenne die neuen Vektoren wie in den Klammern angezeigt!
+	\begin{enumerate}
+		\item Kairo, Las Vegas, Colombo, Johannesburg, München (\texttt{sol2a})
+		\item $37, 22, 29, 46, 51$ (\texttt{sol2b})
+		\item $1.73, 1.84, 1.61, 2.02, 1.97$ (\texttt{sol2c})
+	\end{enumerate}
+	\item Du hast schon die Rechnungen mit einfachen Zahlen kennengelernt. Das Gleiche kannst du auch mit Objekten machen.
+	\begin{enumerate}
+		\item Subtrahiere \texttt{sol1a} von \texttt{sol1b}. Speichere das Ergebnis in \texttt{sol3a}.
+		\item Multipliziere \texttt{sol1c} mit dem Vektor \texttt{sol2c}. Speichere das Ergebnis in \texttt{sol3b}.
+		\item Dividiere \texttt{sol2b} durch \texttt{sol1b} und multipliziere es mit \texttt{sol2c}. Speichere das Ergebnis in \texttt{sol3c}.
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}

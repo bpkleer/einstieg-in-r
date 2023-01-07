@@ -1,0 +1,92 @@
+---
+title: "Start: Balkendiagramm"  # Titel der Seite
+weight: 111  # Individuelles Gewicht 
+menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Wir starten nun mit Balkendiagrammen. Die Hauptfunktion, die wir durchgehend nutzen, um eine Grafik mit der **library** `ggplot` zu erstellen lautet `ggplot()`! Diese Grafiken kannst du dir direkt ausgeben lassen (einfacher Aufruf der Funktion) und das Bild erscheint dann im **Plots**-Tab bei **Files**. Alternativ kannst du den Plot auch (wie alles andere!) in einem Objekt speichern. 
+
+Das speichern der Grafik in einem Objekt hat mehrere Vorteile: Wie du später merken wirst, besteht ein `ggplot` aus verschiedenen Layern. Willst du etwas ändern oder hinzufügen und speicherst du den vorherigen Plot in einem Objekt musst du nur das Objekt aufrufen und den geänderten oder neuen Layer hinzufügen. Speicherst du dein Plot nicht in einem Objekt, musst du jedes Mal den gesamten Code erneut aufrufen. Im Lernmodul arbeiten wir daher mit Objekten!
+
+
+Kommen wir zu den Balkendiagrammen. Ein **Balkendiagramm** ist ein Plot einer einzelnen kategorialen Variable. Du wirst jetzt ein Balkendiagramm der `edu`-Variable erstellen. 
+
+Zuerst schauen wir uns das Grundgerüst der Funktion `ggplot()` an: Die Funktion hat im ersten Argument das Objekt, in dem die Daten gespeichert sind (`data = pss`). Im zweiten Argument (`mapping`) geben wir die Achsen der Grafik an. Ein Balkendiagramm hat eine zu bestimmende Achse (x-Achse), denn die y-Achse stellt bei einem Balkendiagramm automatisch die Häufigkeiten dar. Du musst also nur die x-Achse hier im `mapping` angeben. 
+
+```{r grundgeruest, eval=FALSE}
+# direkter Output
+ggplot(
+  data = pss,
+  mapping = aes(x = edu)
+)
+
+```
+
+Doch wenn wir uns dieses ausgeben lassen, erscheint folgendes:
+```{r grundgeruest2, eval=TRUE, echo=FALSE}
+# direkter Output
+ggplot(
+  data = pss,
+  mapping = aes(x = edu)
+)
+
+```
+
+{{% expand \"Aber warum ist der Plot leer?\" %}}
+Wir haben in den Zeilen lediglich das Gerüst bestimmt. Nun müssen wir noch spezifizieren, was wir in der Grafik anzeigen wollen (Balken, Punkte, etc.). Für **Balkendiagramme** fügen wir die Funktion `geom_bar()` hinzu. Die einzelnen Zusatzfunktionen und deren Argumente werden in diesem Lernmodul Schritt für Schritt vorgestellt. 
+{{% /expand %}}
+
+Fügen wir also die Anweisung hinzu, dass wir ein Balkendiagramm der angegeben Daten haben möchten. Jetzt speichern wir das ganze auch in einem Objekt.
+
+``` {r barplot1, eval=TRUE}
+barplot1 <- ggplot(
+  data = pss,
+  mapping = aes(x = edu)
+) +
+  geom_bar()
+
+barplot1
+```
+
+Wir haben nun ein **Balkendiagramm**, dass die Häufigkeit der Ausprägungen der Variable `edu` anzeigt. Wenn du stattdessen lieber Prozente anzeigen lassen möchtest, ist dies leicht möglich. Dazu musst du die y-Achse ändern, so dass Prozente angezeigt werden. Dazu gibst du innerhalb des `mapping` Arguments nun auch die y-Achse an (denn du veränderst den Standard!). Hierbei nutzt du einen Shortcut, der in `ggplot` implementiert ist: `..prop..` wird automatisch der Anteil angezeigt. 
+
+## Prozente statt Häufigkeiten
+```{r barplot2, eval=TRUE}
+barplot2 <- ggplot(
+  data = pss, 
+  mapping = aes(
+    x = edu, 
+    y = ..prop.., 
+    group = 1
+  )
+) + 
+  geom_bar()
+
+barplot2
+```
+
+{{% expand \"Innerhalb von `mapping` gibt es noch das Argument `group = 1`, lösche das Argument und probiere aus, was passiert\" %}}
+Das Argument `group = 1` sagt `ggplot`, dass alle Ausprägungen zu einer Gesamtgruppe gehören. Wenn du das Argument entfernst, sind alle Balken gleich hoch, da jeweils der Prozentanteil innerhalb einer Ausprägung ausgegeben wird und das ist logischerweise immer pro Ausprägung 100 Prozent. 
+{{% /expand %}}
+
+Wir reden die ganze Zeit von **Balkendiagrammen** haben aber immer fälschlicherweise **Säulendiagramme** dargestellt. Wir können die Säulen ganz einfach zu Balken ändern mit der zusätzlichen Funktion `coord_flip()`:
+```{r barplot-coord, eval=TRUE}
+ barplot1 + 
+   coord_flip()
+```
+
+Jetzt geben wir dem ganzen etwas Farbe!

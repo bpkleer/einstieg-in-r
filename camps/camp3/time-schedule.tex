@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+% Download font here: https://fonts.google.com/specimen/Fira+Sans
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Zeitplan Camp 3 \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+\center
+\begin{longtable}{p{0.15\textwidth} p{0.1\textwidth} p{0.65\textwidth}}
+	\toprule[2pt]
+	\textbf{Zeit} & \textbf{Dauer} & \textbf{Was?}\\
+	\midrule
+	14:15 – 14:30 & 15 & Rückfragen zur Interpretation Mittelwertvergleich \& Korrelation\\
+	\midrule
+	14:30 – 15:00 & 30 & Vorstellung \texttt{rstatix} \& \texttt{parameters}\\
+	\midrule
+	15:00 – 15:15 & 15 & Variablen raussuchen\\
+	\midrule[2pt]
+	15:15 - 15:45 & 30 & Pause \\
+	\midrule[2pt]
+	15:45 – 17:15 & 90 & Lab-Bearbeitungszeit\\
+	\midrule
+	17:15 – 17:45 & 30 & Vorstellung Lösungen\\
+	\midrule[2pt]
+	17:45 – 18:15 & 30 & Pause\\
+	\midrule[2pt]
+	17:45 – 18:15 & 30 & Vorstellung Lösungen\\
+	\midrule
+	18:15 – 19:45 & 90 & freie Hilfe \& Troubleshooting\\	
+	\bottomrule[2pt]
+\end{longtable}
+\end{document}

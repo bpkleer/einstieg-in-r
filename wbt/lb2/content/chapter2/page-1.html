@@ -1,0 +1,75 @@
+---
+title: "Deskriptive Statistik"  # Titel der Seite
+weight: 201  # Individuelles Gewicht 
+menuTitle: "Allgemein" # Falls Titel zulang ist, hier Kurztitel
+tags: ["deskriptiv"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="struktur-und-informationen-eines-datensatzes" class="section level2">
+<h2>Struktur und Informationen eines Datensatzes</h2>
+<p>Als erstes probieren wir aber das vorhin gelernte aus und laden nun den Datensatz <code>pss</code> in das Environment! In RStudio Cloud ist der Datensatz bereits in deinem Ordner <code>data</code>. Arbeitest du lokal mit RStudio findest du den Datensatz und das Codebook hier:</p>
+<p>{{%attachments style="grey" title="Datensatz" /%}}</p>
+<p>{{% tabs groupId="tab1" %}}
+{{% tab name="Aufgabe" %}}
+Lade den Datensatz in das Environment hinein!
+{{% /tab %}}
+{{% tab name="Code" %}}</p>
+<pre class="r"><code>pss &lt;- readRDS(&quot;./data/pss.rds&quot;)</code></pre>
+<p>{{% /tab %}}
+{{% /tabs %}}</p>
+<p>Zur Erinnerung: Mit der Funktion <code>head()</code> können wir einen ersten Einblick in die Daten bekommen (die ersten <span class="math inline">\(6\)</span> Fälle):</p>
+<pre class="r"><code>head(pss)</code></pre>
+</div>
+<div id="variablen-und-skalenniveau" class="section level2">
+<h2>Variablen und Skalenniveau</h2>
+<p>Im Datensatz <strong>PSS</strong> sind eine Reihe von Variablen vorhanden. Zum Datensatz gibt es ein Codebook, dass in der RStudio Cloud gespeichert ist bzw. über den oberen Link herunterzuladen ist.
+Überlege kurz zu den folgenden Variablen, welches Skalenniveau diese aufweisen und welcher Datentyp in R dafür geeignet wäre.</p>
+<p>{{% tabs groupId="tab2" %}}
+{{% tab name="Variablen im Datensatz" %}}
+Variablen im Datensatz <code>pss</code>:</p>
+<ul>
+<li><p><code>wkhtot</code></p></li>
+<li><p><code>gndr</code></p></li>
+<li><p><code>stfdem</code></p></li>
+<li><p><code>trstprl</code></p></li>
+</ul>
+<p>{{% /tab %}}
+{{% tab name="Auflösung" %}}
+Die Variablen haben folgendes Skalenniveau:</p>
+<ul>
+<li><p><code>wkhtot</code>: metrisch</p></li>
+<li><p><code>gndr</code>: nominal</p></li>
+<li><p><code>stfdem</code>: (pseudo-)metrisch / ordinal</p></li>
+<li><p><code>trstprl</code>: (pseudo-)metrisch / ordinal</p></li>
+</ul>
+<p>{{% /tab %}}
+{{% tab name="Datentyp in R" %}}</p>
+<pre class="r"><code>
+str(pss$wkhtot)
+
+str(pss$gndr)
+
+str(pss$stfdem)
+
+str(pss$trstprl)
+</code></pre>
+<p>{{% /tab %}}
+{{% /tabs %}}</p>
+<p>Bei allen Variablen passt der Datentyp zum Skalenniveau.</p>
+</div>
+<div id="länge-eines-vektors" class="section level2">
+<h2>Länge eines Vektors</h2>
+<p>Um die Länge eines Vektors auszugeben, wird die Funktion <code>length()</code> genutzt. Diese Funktion gibt die Anzahl der Werte in einem Vektor an. Im Fall einer Variable also die Anzahl an Beobachtungen in einer Variable.</p>
+<pre class="r"><code>length(pss$edu)</code></pre>
+<p>{{% expand "Können wir auf die Länge der anderen Vektoren schließen, oder müssen wir uns diese auch nochmal ausgeben lassen?" %}}
+In einem Datensatz bzw. <strong>data frame</strong> haben alle Vektoren dieselbe Länge (denn es ist ja eine Tabelle!). Das heißt von der Länge eines Vektors können wir auf die Länge aller Vektoren schließen. <strong>Aber:</strong> das heißt nicht, dass alle Variablen dieselbe Anzahl gültiger Antworten haben, da ja auch <code>NA's</code> (<em>missing values</em>) vorliegen können.
+{{% /expand %}}</p>
+<p>Alternativ kann man die Länge auch über die Funktion <code>dim()</code> herausfinden. Hierbei muss aber das <strong>data frame</strong>-Objekt aufgerufen werden.</p>
+<pre class="r"><code>dim(pss)</code></pre>
+<pre><code>## [1] 5000   14</code></pre>
+<p>Die erste Dimension sind die Zeilen (Fälle), die zweite Dimension sind die Spalten (Variablen).</p>
+<p>Gehen wir weiter und lassen uns Maße der zentralen Tendenz ausgeben!</p>
+</div>

@@ -1,0 +1,48 @@
+---
+title: "Teilen eines Datensatzes"  # Titel der Seite
+weight: 313  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+pss <- readRDS("./data/pss.rds")
+
+```
+
+Zuerst wiederholen wir noch einmal, wie wir einen Datensatz teilen: Wir filtern die Fälle, die für unsere spätere Analyse relevant sind. Zum Beispiel wollen wir nur männliche Befragte aus Distrikt 5 forschen.
+
+{{% expand \"Welche Funktionen müssen wir anwenden?\" %}}
+Genau wir nutzen filter(). 
+
+```R
+pssD5M <- pss %>%
+  filter(district == "Distrikt 5" & gndr == "male")
+
+head(pssD5M)
+```
+{{% /expand %}}
+
+{{% tabs groupId=\"tab1\" %}}
+{{% tab name=\"Aufgabe\" %}}
+Filtere jetzt einmal den Datensatz nach Personen, die in Distrikt 1 oder 12 leben und mehr als 30h arbeiten! Speichere das Subset in einem neuen Objekt!
+{{% /tab %}}
+{{% tab name=\"Code\" %}}
+```R
+pssD1D12o30 <- pss %>%
+  filter((district == "Distrikt 1" | district == "Distrikt 12") & wkhtot > 30)
+
+head(pssD1D12o30)
+```
+{{% /tab %}}
+{{% /tabs %}}
+
+Manchmal muss man selbst auch Datensätze, die getrennt erhoben wurden, selbst zusammenfügen. Das kannst du auf der nächsten Seite lernen. Die nächste Seite kannst du aber auch überspringen, wenn du findest, dass das für dich nicht relevant ist!

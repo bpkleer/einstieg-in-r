@@ -1,0 +1,20 @@
+---
+title: "Untidy Datensätze"  # Titel der Seite
+weight: 322  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Die folgenden zwei Datensätze zeigen Daten, die jeweils nicht <em>tidy</em> sind. Wir werden diese im Folgenden bereinigen.</p>
+<pre class="r"><code>statclass</code></pre>
+<pre><code>##     name stat1 stat2  r spss
+## 1   momo    12     5  6    9
+## 2    kim    14    10 13   15
+## 3 sascha     7     4  4    1</code></pre>
+<p>Dieser Datensatz ist im sogenannten <em>wide</em>-Format. D.h. wenn wir neue Prüfungen hätten, würden wir einfach weitere Spalten hinzufügen. Dies ist aber für die Verarbeitung mit R teilweise problematisch, denn wir benötigen oft ein <em>long</em>-Format.</p>
+<pre class="r"><code>statclass2</code></pre>
+<p>In diesem Fall haben wir mehrere Probleme: Zum einen sind in den Spalten nicht überall Variablen, sondern Beobachtungen (<code>momo</code>, <code>kim</code>, <code>sascha</code>) und in <code>exam</code> finden wir wiederum Variablennamen.</p>
+<p>Fangen wir mit <code>statclass</code> an.</p>

@@ -1,0 +1,73 @@
+---
+title: "Start: Histogramm"  # Titel der Seite
+weight: 121  # Individuelles Gewicht 
+menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
+tags: ["histogramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+pss <- readRDS("./data/pss.rds")
+```
+
+Um eine einzelne kontinuierliche Variable darzustellen, nutzen wir **Histogramme**. Damit kann die Verteilung der Variable interpretiert werden. Für ein **Histogramm** nutzen wir die Funktion `geom_hist()`.
+```{r hist, eval=TRUE}
+hist <- ggplot(
+  pss, 
+  aes(agea)
+) + 
+  geom_histogram()  
+
+hist
+```
+
+Nun können wir die Grafik etwas anpassen wie zuvor. Beginne mit den Titeln:
+```{r hist-title, eval=TRUE}
+hist <-  ggplot(
+  pss, 
+  aes(agea)
+) + 
+  geom_histogram(
+    color = "lightgray", 
+    fill = "gray"
+  ) + 
+  labs(
+    x = "Age in years", 
+    y = "Frequency", 
+    title = "Histogram of Age (PSS)"
+  )
+
+hist
+```
+
+Oftmals möchten wir die Verteilung interpretieren. Deshalb zeigen wir uns die Verteilung der Dichte zusätzlich an. Dazu fügen wir die Funktion `geom_density()` hinzu. Zusätzlich musst du die Achse in `geom_histogram()` auf `..density..` ändern!
+```{r hist-density, eval=TRUE}
+histDens <- ggplot(
+  pss, 
+  aes(agea)
+) + 
+  geom_histogram(
+    aes(y = ..density..), 
+    color = "lightgray", 
+    fill = "gray"
+  ) + 
+  geom_density(
+    alpha = 0.2, 
+    fill = "lightblue"
+  ) +
+  labs(
+    x = "Age in years", 
+    y = "Density", 
+    title = "Histogram of Age (PSS)"
+       )
+
+histDens
+```
+
+Auch hier können wir gruppieren!

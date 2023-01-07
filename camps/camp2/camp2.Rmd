@@ -1,0 +1,255 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["../assets/xaringantheme-jlu.css"]  #Style sheet
+    nature:
+      beforeInit: "../assets/macros.js"  # individual macros
+      seal: false  # no automatic title slide
+      highlightStyle: github
+      highlightLines: true
+      highlightLanguage: ["r"]
+      countIncrementalSlides: false  # incremental does not count as single slide 
+      ratio: '16:9'  
+      slideNumberFormat: |   # progress bar instead of slide numbers
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>    
+      navigation:
+        scroll: false  #mouse scroll off (otherwise copying code is difficult)
+---
+```{r setup, include=FALSE}
+library("knitr")  
+library("rmarkdown")
+library("tidyverse")
+library("DT")  # Table illustration
+library("icons")  # Social Media Links
+library("RefManageR") # Zitation
+library("xaringanBuilder") # Export
+library("xaringanExtra") # some extras (panels, copyable code, etc.)
+
+# Code Options
+opts_chunk$set(fig.path = "assets/createdpics/", # path for calculated figures
+               fig.align = "center",  # alignment of figure (also possible right, left, default)
+               fig.show = "hold", # how to show figures: hold -> direct at the end of code chunk; animate: all plots in an animation
+               out.width = "50%",
+               echo = TRUE,     # Code is printed
+               eval = FALSE,    # Code is NOT evaluated
+               warning = FALSE, # warnings are NOT displayed
+               message = FALSE, # messages are NOT displayed
+               background = "#E7E7E7", # background color of code chunks
+               comment = "", # no hashtags before output
+               results = "markdown",
+               rows.print = 15
+)
+
+# data table options
+options(DT.options = list(pageLength = 5,
+                          language = list(search = 'Filter:'),
+                          autowidth = TRUE,
+                          lengthChange = FALSE,
+                          formatStyle = (fontSize = "40%"))
+        )
+
+# copyable code
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
+    error_text = "<i class=\"fa fa-times-circle\" style=\"color: #F94144\"></i>"
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+
+# Referenzen
+BibOptions(
+  check.entries = FALSE, 
+  bib.style = "authoryear", 
+  cite.style = "authoryear", 
+  style = "markdown",
+  hyperlink = FALSE, 
+  dashed = FALSE
+)
+
+lit = ReadBib("./assets/lit.bib")
+
+# Suche
+xaringanExtra::use_search(
+  show_icon = FALSE,
+  auto_search = TRUE,
+  position = "top-right"
+  )
+
+income <- rnorm(1000, mean = 3975, sd = 500)
+df <- as.data.frame(cbind(income))
+
+library("essurvey")
+set_email("...")
+ess9 <- import_rounds(9)
+```
+
+class: title, center, middle
+
+# Statistik<sup>+</sup>: Einstieg in R leicht gemacht!
+
+## Anwendungsorientierte Statistikvermittlung 
+
+### Philipp Kleer | Institut für Politikwissenschaft | FB 03 | Sommersemester 2022
+
+<!--- Social Media Links, müssen angepasst werden -->
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 
+
+---
+
+
+# Was haben wir bisher geschafft?
+
+Du hast die ersten Schritte in der Sprache R gelernt und kannst einfache Rechnungen ausführen. 
+
+Du weißt wie du Objekte speicherst und wie du diese aufrufen kannst!
+
+Wir wollen aber nicht nur einfache Rechnungen ausführen, sondern mit Surveydaten arbeiten.
+
+Vorbereitend hast du gelernt: Wie ein Datensatz geladen wird und wie du dir deskriptive Statistik ausgeben lassen kannst!
+
+---
+
+# Git Probleme
+
+Jede Person, die in seinem Lab-Projekt nicht den Reiter **git** sieht, muss das Projekt leider löschen und nochmals eine neue Kopie anlegen (*unklare Fehlerursache*).
+
+Lade vorher die `solution.R`-Datei runter, damit nichts verloren geht. nach der erneuten Erstellung, kann man diese einfach hochladen und die vorhandene leere ersetzen!
+
+???
+Problem mein User.name in config-file (versteckter Ordner .git) gespeichert.
+
+---
+
+# Issues in gitlab nutzen
+
+Bei Problemen im Web-Based-Training, könnt ihr anstatt einer E-Mail auch in gitlab in der Gruppe einfach ein Issue öffnen (im Projekt **course-materials**) und dort beschrieben, welches Problem vorliegt. Bitte immer auch die URL kopieren oder einen Screenshot anfügen. Im gif ist erklärt wie es abläuft.
+
+--
+
+.center[
+![:scale 60%](./assets/pics/issues-erstellen.gif)
+]
+
+---
+
+# Into the real world
+
+Wir wollen uns ja in der Präsenz mit richtigen sozialwissenschaftlichen Fragen beschäftigen und dazu wollen wir nicht mit einem Trainingsdatensatz, sondern mit tatsächlich erhobenen Daten arbeiten. 
+
+Wir nutzen den **European Social Survey**, genauer gesagt die 9. Runde des Surveys aus dem Jahr 2018. 
+
+Finde heraus, was der **European Social Survey** ist, wo und wie du an die Daten kommst, und lade die Daten als Objekt `ess` in dein Environment! Alternativ gibt es auch eine **library**, mit der du den Datensatz laden kannst.
+
+**Zeit: 20 Minuten.**
+
+---
+
+# Technical Details: Datensatz und *Codebook*
+
+Du hast den Datensatz gefunden und in dein RStudio Projekt geladen und bereits als Objekt in das Environment der aktuellen Session geladen, aber die Variablennamen erscheinen etwas kryptisch, nicht?
+
+Variablenbedeutungen kann man mit dem *Codebook* klären. Finde das *Codebook* und finde folgendes heraus: 
+
+1. Frage-Item und Wertebeschriftung von `ppltrst`.
+
+2. Welches Merkmal ist in `prtclede` gespeichert? 
+
+**Zeit: 15 Minuten.**
+
+???
+
+ppltrst: Most people can be trusted or you can't be too careful; 0 -10 (11er Skala!)
+
+prtclede: Which party feel closer to, Germany; 8 Parteien und dann other code (9)
+
+---
+
+# Start in die Analyse: Beschränken des Datensatzes
+
+Der Datensatz lautet ja **European Social Survey**. Doch welche Länder sind denn alles inkludiert in der 9. Runde?
+
+--
+
+```{r countries, eval=TRUE}
+table(ess9$cntry)
+```
+
+--
+
+Wir wollen mit einem etwas kleineren Datensatz arbeiten, daher beschränken wir uns auf ein Land. Welches Land möchtet ihr im Semester untersuchen (und warum)?
+
+---
+
+# Fangen wir mit den Labtasks an!
+.font80[
+Wir sind Sozialwissenschaftler und haben uns jetzt auf ein Land festgelegt. Bisher haben wir nur deskriptive Statistiken kennengelernt, also wie Variablen beschrieben werden können. 
+
+Schau dir im Codebook an, was im **ESS** abgefragt wird und überlege dir, was du während des Semester analysieren möchtest (heute machen wir dafür nur Vorschritte!). Ziel der Analyse ist zum Semesterende die lineare Regression: Also das Erklären einer metrischen Variable durch mehrere andere Variablen (metrisch oder kategoriell). Zum Beispiel könnte man für die Analyse folgende Forschungsfragen wählen:
+
+1. Inwieweit lässt sich die Zufriedenheit mit der Demokratie (`stfdem`) durch wirtschaftliche und soziostrukturelle Merkmale erklären (z.B. `stfeco`, `hinctnta`, `edulvlb`, `gndr`)?
+
+1. Inwiefern beeinflusst die sozialstrukturelle Position (z.B. über `hinctnta`, `edulvlb`, `wkhtot`) das politische Vertrauen (`trstplt`, `trstprt`, `trstprl`)?
+
+1. Inwieweit bestätigt sich ein *Gender Gap* im politischen Vertrauen (`trstplt`, `trstprt`, `trstprl`) unter Kontrolle weiterer sozialstruktureller Variablen (z.B. über `hinctnta`, `edulvlb`, `wkhtot`)?
+]
+
+--
+
+**Zeit: 25 Minuten.**
+
+**Ziel: Forschungsfrage für das Semester.**
+---
+
+# Aufgaben
+
+.font60[
+1. Beschränke den Datensatz so, dass du nur noch die Fälle aus dem ausgesuchten Land vorfindest!
+
+2. Wie viele Fälle hat der Datensatz nun noch?
+
+3. Lass dir sinnvolle Lage-/Streumaße für die Variable deine gewählte **abhängige Variable** ausgeben. Beschreibe die Verteilung auch als Kommentar! Wie verhalten sich die zentralen Maße zueinander? (*linksschief, rechtsschief, normalverteilt, bimodal?*)
+
+4. Finde heraus, was die Variable `lrscale` wiedergibt. Gruppiere die Variable in drei Gruppen und speicher dies in der neuen Variable `lrscaleG`. Lass dir anschließend den Mittelwert deiner gewählten **abhängigen Variable** in Abhängigkeit der geschaffenen Gruppen ausgeben. Was kannst du erkennen?
+
+5. Die Variable `edulvlb` gibt das Bildungslevel der Befragten an. Für unseren Zweck ist die Aufteilung aber zu detailliert. Überlege dir, wie du Gruppen zusammenfassen kannst und speichere dies in der neuen Variable `eduG` im Datensatz! Begründe deine Zusammenfassung.
+
+6. Die Variable `wkhtot` gibt an, wie viel Stunden pro Woche eine Person arbeitet. Nun möchtest du für eine Analyse zwischen Personen, die $< 20$ Stunden und Personen die $\geq 20$ Stunden arbeiten. Schaffe eine neue Variable `wkhtotG`, die anzeigt, ob eine Person $\geq 20$ Stunden arbeitet oder nicht. Lass dir anschließend den Mittelwert deiner **abhängigen Variable** in Abhängigkeit der neu geschaffenen Gruppen ausgeben. 
+
+**Freiwllig:**
+<ol start="7">
+7. In der Variable <code class="r remark-inline-code">region</code> sind die Regionen eines Landes dargestellt. Finde heraus, welche Regionen zu dem ausgewählten Land gehören. Erstelle jeweils ein eigenes Objekt, das nur die Daten einer Region des Landes beinhaltet.
+<br>
+<br> 
+8. Nun machst du den Schritt rückgängig und führst die einzelnen Datensätze für die Regionen wieder in einem einzigen Datensatz für das Land zusammen. 
+</ol>
+]
+
+---
+
+# Lab tasks 2
+
+
+Korrekte Pipeline bis **22. Mai 2022**.
+
+
+Danach Zeit zum Vorbereiten des 3. Camps. 
+
+Nutzt die Issues und nutzt die Tutor:innen-Sprechstunde!
+
+---
+
+class: goodbye, center, middle
+
+# Wir sehen uns in 4 Wochen!
+
+.social[
+[`r icons::icon_style(fontawesome("envelope"), scale = 1.5)`](mailto:philipp.kleer@sowi.uni-giessen.de)     [`r icons::icon_style(fontawesome("orcid"), scale = 1.5)`](https://orcid.org/0000-0003-1935-387X)     [`r icons::icon_style(fontawesome("gitlab"), scale = 1.5)`](https://gitlab.ub.uni-giessen.de/bpkleer)     [`r icons::icon_style(fontawesome("university"), scale = 1.5)`](https://www.uni-giessen.de/faculties/f03/departments/dps/staff/researchers/kleer?set_language=en)     [`r icons::icon_style(fontawesome("researchgate"), scale = 1.5)`](https://www.researchgate.net/profile/Benedikt_Kleer)
+] 

@@ -1,0 +1,219 @@
+---
+title: "Regressionen"  # Titel der Seite
+weight: 306  # Individuelles Gewicht 
+menuTitle: "Regressionen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "regression", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("sjPlot")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Im Beispiel ist es das Ziel eine Untersuchung der Variable `stfdem` in allen Schritten grafisch darzustellen. Zuletzt willst du jetzt ein Regressionmodell auf `stfdem` rechnen, dass die Effekte von `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl` und `agea` inkludiert. 
+
+Als erstes berechnest du nun das Modell, bevor du mit den grafischen Darstellungen beginnen kannst:
+```{r model, eval=TRUE}
+model1 <- lm(
+  stfdem ~ 1 + stfeco + district + gndr + trstlgl + trstprl + agea,
+  pss
+)
+
+summary(model1)
+```
+
+Im Model erkennst du signifikante Effekte von `stfeco`, `gndrmale` sowie `trstlgl`. Diese wollen wir gleich darstellen. Zuerst wiederholst du jetzt aber die Darstellung des Plots aller Regressionskoeffizienten aus Lernblock 4 mit `dwplot()`.
+
+{{% expand \"Probiere es erst selbst und schaue erst danach hier nach!\" %}}
+\`\`\`R
+dwplot(
+  model1,
+  # hier kannst du das Konfidenzintervall ändern
+  ci = 0.95, 
+  # hier kannst du das Erscheinungsbild der Punkte ändern (alles aus geom_point möglich)
+  dot_args = list(
+    size = 3.5,
+    shape = 18
+  ),
+  whisker_args = list(
+    size = 1.25, 
+    lty = "solid"
+  )
+) +
+  geom_vline(
+    xintercept = 0,
+    lty = "dashed",
+    color = beyonce_palette(72)[5]
+    
+  ) +
+  scale_y_discrete(labels = rev(
+    c(
+      "Zufriedenheit \n Ökonomie", 
+      "Distrikt 5 \n(ref: Distrikt 1)",
+      "Distrikt 7 \n(ref: Distrikt 1)",
+      "Distrikt 10 \n(ref: Distrikt 1)",
+      "Distrikt 12 \n(ref: Distrikt 1)",
+      "Male \n(ref: Female)",
+      "Vertrauen Rechtssystem",
+      "Vertrauen Parlament", 
+      "Vertrauen Alter"
+    )
+  )
+  ) + 
+  scale_x_continuous(
+    breaks = seq(
+      -1, 
+      1,
+      0.2
+    ),
+    limits = c(-1, 1)
+  ) +
+  labs(title = "Lin. Regressionsmodelle auf stfdem",
+       caption = "Data: Panem Social Survey."
+  ) +
+  scale_color_manual(values = beyonce_palette(72)[1]) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank()
+  )
+\`\`\`
+{{% /expand %}}
+
+Oftmals ist es nicht nur das Ziel Regressionsmodelle in Tabellen darzustellen, sondern auch spezifische Effekte grafisch darzustellen, z.B. von den signifikanten Effekten. Dazu stellen wir hier eine Möglichkeit vor: manuell über eigene **predictions**. 
+
+Es gibt zwar **libraries** wie `ggraphExtra`, diese können aber nur sehr eingeschränkt plotten. 
+
+Sobald wir aber ein multivariates Modell haben, ist dies nicht mehr direkt so möglich. Da wir die anderen Effekte konstanthalten müssen, um die Abbildung korrekt darzustellen. Aber es ist immer noch leicht umzusetzen, sobald man versteht, was **Konstanthalten** bedeutet.
+
+Wir möchten den Effekt von `stfeco` auf `stfdem` plotten. Dieser Effekt ist immer mit den weiteren Effekten zu interpretieren. Um den Effekt plotten zu können, halten wir den (oder die) weiteren Effekt(e) konstant. Dazu nehmen wir die **library** `sjPlot` und daraus nutzt du die Funktion `plot_model()`. Ebenso must du `ggplot` laden.
+
+```{r sjplot, eval=FALSE}
+install.packages("sjPlot")
+library("sjPlot")
+library("tidyverse")
+```
+
+In der Funktion `plot_model()` rufst du zuerst das Objekt des Regressionsmodels auf (hier `model1`), gibst im zweiten Argument an, dass es sich um ein *marginal plot*, der vorhergesagte Werte beinhaltet, handelt (`type = pred`) und bestimmst dann im Argument `terms`, welcher Effekt geplottet werden soll. Die Funktion stellt automatisch alle metrischen Variablen konstant auf den Mittelwert bzw. kategorielle Variablen auf die Referenzkategorie. 
+
+```{r marginal1, eval=TRUE}
+plot_model(
+  model1, 
+  type = "pred",
+  terms = "stfeco"
+)
+```
+
+Du siehst in der Grafik also den Effekt on `stfeco` auf `stfdem`, unter Konstanthalten (Mittelwert) von `trstlgl`, `trstprl` und `agea` für weibliche (Referenzlevel `gndr`) Personen aus Distrikt 1 (Referenzlevel `district`).
+
+Willst du jetzt den Effekt für unterschiedliche Gruppen der kategoriellen Variablen hinzufügen, gibst du in `terms` einfach die weitere Variable an:
+```{r marginal2, eval=TRUE}
+plot_model(
+  model1, 
+  type = "pred",
+  terms = c(
+    "stfeco",
+    "gndr"
+  )
+)
+```
+
+Genauso leicht könntest du die nächste kategorielle Variable einfach hinzufügen:
+```{r marginal3, eval=TRUE}
+plot_model(
+  model1, 
+  type = "pred",
+  terms = c(
+    "stfeco",
+    "gndr",
+    "district"
+  )
+)
+```
+
+Ebenso kannst du die Ausgabe auf bestimmte `levels` (Ausprägungen einer Variable beschränken), in dem du die `levels` in `[..]` Klammern hinter den Variablennamen setzt (aber innerhalb der `"..."`):
+```{r marginal4, eval=TRUE}
+# levels von district
+levels(pss$district)
+
+plot_model(
+  model1, 
+  type = "pred",
+  terms = c(
+    "stfeco",
+    "gndr",
+    "district[Distrikt 1, Distrikt 12]")
+)
+```
+
+Modifikationen eines `ggplots` funktionieren auch hier: Wir ändern die Achsen und ändern die Farben!
+```{r marginal5, eval=TRUE}
+plot_model(
+  model1, 
+  type = "pred",
+  terms = c(
+    "stfeco",
+    "gndr",
+    "district"
+  )
+) +
+  scale_x_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) +
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) +
+  scale_color_manual(values = beyonce_palette(72))
+```
+
+{{% tabs %}}
+{{% tab name=\"Aufgabe\" %}}
+Stelle jetzt den Zusammenhang zwischen `trstlgl` und `stfdem` dar. Dabei soll für jeden Distrikt jeweils eine eigene Linie abgebildet sein und die Plots nach Geschlecht getrennt sein. Probiere es erst selbst aus, bevor du dir die Lösung anschaust.  
+{{% /tab %}}
+{{% tab name=\"Code\" %}}
+\`\`\`R
+plot_model(
+  model1, 
+  type = "pred",
+  terms = c(
+    "trstlgl",
+    "district",
+    "gndr"
+  )
+) +
+  scale_x_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) +
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) +
+  scale_color_manual(values = beyonce_palette(18))
+\`\`\`
+{{% /tab %}}
+{{% /tabs %}}
+
+So das war's! Du hast in diesem Kapitel geübt für einzelne Methoden Grafiken darzustellen und beherrschst nun erste Schritte mit `ggplot`!

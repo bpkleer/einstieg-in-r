@@ -1,0 +1,69 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
+\usepackage{lmodern}
+\usepackage{csquotes}
+
+%Einstellung Seitenränder
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+% math-umgebung
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Datumspaket
+\usepackage[german]{isodate}
+
+% Table packages
+\usepackage{booktabs}
+\usepackage{longtable}
+
+%New Font
+\usepackage{fontspec} % changing font (unten freimachen für Änderung
+	% \defaultfontfeatures{Mapping = tex-text}
+	\setmainfont{Fira Sans} %user-defined Font.
+% Download font here: https://fonts.google.com/specimen/Fira+Sans
+
+% Name, Titel, etc.
+\author{B. Philipp Kleer}
+\title{%
+  Zeitplan Camp 4 \\
+%  \large Seminarplan \\
+%  WiSe/SoSe
+  }
+
+\author{B. Philipp Kleer}
+\date{\today \\ \small{Version: v1}}
+
+\begin{document}
+
+\maketitle
+
+\center
+\begin{longtable}{p{0.15\textwidth} p{0.1\textwidth} p{0.65\textwidth}}
+	\toprule[2pt]
+	\textbf{Zeit} & \textbf{Dauer} & \textbf{Was?}\\
+	\midrule
+	14:15 – 14:30 & 15 & Rückfragen zur linearen Regression\\
+	\midrule
+	14:30 – 15:15 & 45 & Modellspezifikation \\& Replikation\\
+	\midrule
+	15:15 – 15:30 & 15 & Präsetation Replikation\\
+	\midrule[2pt]
+	15:30 - 16:15 & 45 & Pause \\
+	\midrule[2pt]
+	16:15 – 18:15 & 120 & Eigenes Projekt: Bearbeitungszeit\\
+	\midrule[2pt]
+	18:15 – 18:45 & 30 & Pause\\
+	\midrule[2pt]
+	18:45 – 19:15 & 30 & Vorstellung Lösungen\\
+	\midrule
+	19:15 – 19:45 & 30 & freie Hilfe \& Troubleshooting\\	
+	\bottomrule[2pt]
+\end{longtable}
+\end{document}

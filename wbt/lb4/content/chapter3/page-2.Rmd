@@ -1,0 +1,36 @@
+---
+title: "Annahme 1: Lineare Beziehung"  # Titel der Seite
+weight: 302  # Individuelles Gewicht 
+menuTitle: "lin. Beziehung" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+
+Um die Annahmen einer linearen Regression zu prüfen, kann man sich einen Plot von den geschätzten Werten (*fitted*) und den Residuen ausgeben lassen. In diesem Plot ist eine Linie eingezeichnet. Sofern diese Linie nahezu horizontal ist, kann die Annahme als erfüllt gewertet werden. 
+
+Zur Plot-Erstellung nutzt die Funktion `plot()`, in der du im ersten Argument das zu testende Modell angibst und im zweiten Argument eine `1` (Wahl eines bestimmten Plots, hier `Residuals vs. Fitted`). 
+
+```{r assumption1, eval = TRUE}
+plot(
+  olsModel2,
+  1
+)
+
+```
+
+$\Rightarrow$ der Plot sollte uns eine nahezu horizontale Linie anzeigen; dann ist die Annahme erfüllt und wir können eine lineare Beziehung annehmen.
+

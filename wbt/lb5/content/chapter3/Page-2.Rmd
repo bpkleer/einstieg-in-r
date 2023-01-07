@@ -1,0 +1,197 @@
+---
+title: "Korrelation"  # Titel der Seite
+weight: 302  # Individuelles Gewicht 
+menuTitle: "Korrelation" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "ggpairs", "ggally", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("GGally")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Als nächstes möchtest du den Zusammenhang mit anderen (pseudo-metrischen) Variablen testen. Im [Lernblock 3](https://lehre.bpkleer.de/lb3/) hast du bereits `pairs.panel()` aus der **library** `psych` und `corrplot()` aus der **library** `corrplot` kennengelernt. Jetzt werden wir anstatt mit der **library** `psych` zuerst mit der **library** `GGally` ein Plot erstellen, da dies nach derselben Logik wie alle `ggplots` generiert wird. Dafür nutzt du die Funktion `ggpairs()`. 
+
+Ein Plot mit `ggpairs()` ist genauso wie ein Plot aus `pairs.panel()` aufgebaut:
+
+![Beispiel ggpairs-plot](../img/ggpairs1.png)
+Es ist sozusagen eine Matrix-Darstellung. Es gibt ein unteres Drittel `lower`, ein oberes Drittel `upper` und eine Diagonale `diag`. Für jeden dieser Teile kannst du Einstellungen festlegen, und das in Abhängigkeit davon, ob das Wertepaar in der Zelle der Matrix beides stetige Variablen sind (`continuous`), beides diskrete Variablen (`discrete`) oder eine Kombination (`combo`) vorliegt. 
+
+{{% expand \"Überlege kurz: Können alle dieser drei Kombinationen auch in der Diagonalen vorkommen?\" %}}
+Nein, natürlich nicht! Denn die Diagonale ist ja immer die Darstellung der Variable mit sich selbst - also die Darstellung der Variable. Und die kann entweder stetig oder diskret sein, aber nicht beides. Daher ist das Argument `combo` nur in `upper` und `lower` nutzbar. 
+{{% /expand %}}
+
+Bevor du mit der Challenge startest, eine kurze Einführung in `GGally`. Du kannst einfach die Funktion `ggpairs()` aus der **library** nutzen. 
+
+```{r ggally, eval=FALSE}
+install.packages("GGally")
+library("GGally")
+```
+
+Ein Pairs-Panel erstellst du einfach mit der Funktion `ggpairs()`: Als erstes Argument gibst du den Datensatz ein und im Argument `columns` kannst du die Auswahl auf spezifische Variablen beschränken. Hier erstmal auf `stfdem` `agea` und `gndr`. Ja, du kannst auch kategorielle Variablen inkludieren!
+
+```{r pp1, eval=TRUE}
+ggpairs(
+  pss, 
+  columns = c(
+    "stfdem",
+    "agea",
+    "gndr"
+    )
+)
+```
+
+Somit erhältst du die Standardeinstellungen des Plots. In der Diagonalen wird die Dichte angezeigt, wenn die Variable stetig ist bzw. ein Barplot, wenn die Variable diskret ist. Im oberen Drittel wird, wenn beide Variablen stetig sind die Korrelation angezeigt. Liegt eine Kombination vor (also eine Variable stetig, die andere diskret) siehst du ein Boxplot. Wenn beide Variablen diskret sind (trifft hier nirgends zu) wird einfach die gruppierten Häufigkeiten in einem Balkendiagramm wiedergegeben. Somit erhältst du also direkt einen Überblick über die Variablen. 
+
+Es ist aber auch möglich die einzelnen Bereiche anzupassen: Wir fangen an mit `lower`, denn wir wollen die `binwidth` ändern. Im Argument `lower` benennen wir eine Liste: die beinhaltet, was wir spezifisch auf `continuous`, `combo` oder `discrete` darstellen wollen. Wenn du Änderungen an der Darstellung machen möchtest, musst du die in die Funktion `wrap()` packen und darin kannst du dann Änderungen wie bei normalen `ggplots` vornehmen. Wir legen jetzt fest, dass bei kontinuierlichen Wertepaaren ein Scatterplot angezeigt werden soll (`points`) und bei gemischten Wertepaaren (stetig - diskret) Histogramme in einem Facet (`facethist`), wobei wir die `binwidth` auf $1$ festlegen. Dazu legen wir fest, dass die Farbe nach Kategorie der Variable `gndr` variieren soll (`mapping = aes(color = gndr)`). 
+
+```{r pp2, eval=TRUE}
+ggpairs(
+  pss, 
+  columns = c(
+    "stfdem",
+    "agea",
+    "gndr"
+    ),
+  lower = list(
+    continuous = "points",
+    combo = wrap(
+      "facethist",
+      binwidth = 1
+      ),
+    mapping = aes(color = gndr)
+  )
+)
+```
+Wir sehen das Scatterplot ist noch nicht ganz optimal, da ja eine Variable wieder pseudometrisch ist. Deshalb fügen wir jittern hinzu:
+
+```{r pp3, eval=TRUE}
+ggpairs(
+  pss, 
+  columns = c(
+    "stfdem",
+    "agea",
+    "gndr"
+    ),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(width = 0.5)
+    ),
+    combo = wrap(
+      "facethist",
+      binwidth = 1
+      ),
+    mapping = aes(color = gndr)
+  )
+)
+```
+
+Jetzt sieht das ganze schon besser aus und zeigt, dass wir vermutlich keinen Zusammenhang zwischen Alter und Zufriedenheit mit der Demokratie haben. 
+
+Jetzt passen wir das obere Drittel `upper` an. Wir legen fest, dass die Korrelation für kontinuierliche Paare angezeigt werden soll und ein Boxplot für `combo`-Paare. Auch legen wir wieder fest, dass die Farben nach Geschlecht verschieden sind.
+
+```{r pp4, eval=TRUE}
+ggpairs(
+  pss, 
+  columns = c(
+    "stfdem",
+    "agea",
+    "gndr"
+    ),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(width = 0.5)
+    ),
+    combo = wrap(
+      "facethist",
+      binwidth = 1
+      ),
+    mapping = aes(color = gndr)
+  ),
+  upper = list(
+    continuous = "cor",
+    combo = "box_no_facet",
+    mapping = aes(color = gndr)
+  )
+)
+```
+
+Es gibt für `continuous` in `lower` wie `upper` folgende gute Darstellungsmöglichkeiten (eine komplette Übersicht gibt es [hier](http://ggobi.github.io/ggally/articles/ggally_plots.html)):
+
+- `points`
+- `cor`
+- `density`
+- `smooth` / `smooth_lm`
+
+Für `combo` gibt es in `lower` wie `upper` folgende empfehlenswerte Darstellungsmöglichkeiten:
+- `box_no_facet` / `box`
+- `facethist`
+
+Als nächstes wollen wir die Diagonale anpassen!
+
+```{r pp5, eval=TRUE}
+pp1 <- ggpairs(
+  pss, 
+  columns = c(
+    "stfdem",
+    "agea",
+    "gndr"
+    ),
+  lower = list(
+    continuous = wrap(
+      "points",
+      position = position_jitter(width = 0.5)
+    ),
+    combo = wrap(
+      "facethist",
+      binwidth = 1
+      ),
+    mapping = aes(color = gndr)
+  ),
+  upper = list(
+    continuous = "cor",
+    combo = "box_no_facet",
+    mapping = aes(color = gndr)
+  ),
+  diag = list(
+    continuous = wrap("densityDiag", bw = 1),
+    discrete = "barDiag",
+    mapping = aes(
+      color = gndr, 
+      alpha = 1
+    )
+  )
+)
+
+pp1
+```
+
+Im Argument `diag` gibt es weniger Optionen:
+
+- `barDiag`
+- `densityDiag`
+- `blankDiag` (Diagonale ist leer)
+
+Probiere dich im Code einfach etwas aus und spiele mit den möglichen Optionen herum. 
+
+Wir wollen jetzt hier zuguterletzt noch die Farben anpassen und dazu wiederum die **library** `beyonce` nutzen: Erinnere dich daran, die Farben kannst du manuell mit `scale_color_manual()` bzw. `scale_fill_manual()` anpassen!
+```{r pp6, eval=TRUE}
+library("beyonce")
+
+pp1 +
+  scale_color_manual(values = beyonce_palette(72)) +
+  scale_fill_manual(values = beyonce_palette(72))
+
+```
+
+Auf der nächsten Seite geht's zur Challenge!

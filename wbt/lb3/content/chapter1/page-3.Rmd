@@ -1,0 +1,116 @@
+---
+title: "Zusammenhangsmaße"  # Titel der Seite
+weight: 103  # Individuelles Gewicht 
+menuTitle: "Zusammenhangsmaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["zusammenhangsmaße", "chi-quadrat", "cramers v"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+xfun::pkg_load2(
+                 c("htmltools", "mime")
+               )
+library("xaringanExtra")
+library("DescTools")
+
+pss <- readRDS("./data/pss.rds")
+
+mytable <- table(
+  pss$stfdem, 
+  pss$gndr
+)
+```
+
+Mit Zusammenhangsmaßen kannst du testen, ob und inwieweit zwei Variablen miteinander zusammenhängen. Als ein erstes Maß hast du in der Statistik-Vorlesung $\chi^2$ kennengelernt, dass prüft, ob ein Zusammenhang vorliegt. Als weiteres Maß für die Stärke eines Zusammenhangs kennst du Cramer's V. 
+
+## $\chi^2$-Unabhängigkeitstest
+Mit Kreuztabellen können Zusammenhänge zwischen zwei Variablen dargestellt werden. Dieser Zusammenhang kann auch mit dem $\chi^2$-Unabhängigkeitstest statistisch getestet werden.
+
+Die Nullhypothese des $\chi^2$-Unabhängigkeitstest lautet:
+
+- $H_0:$ Variablen sind statistisch unabhängig.
+
+Wir berechnen den Test mit der Funktion `chisq.test()` und können dabei direkt das Objekt der Kreuztabelle nutzen:
+```{r chi1, eval=TRUE}
+chi1 <- chisq.test(mytable)
+
+chi1
+```
+
+Alternativ kannst du auch die zwei Variablen angeben:
+```{r chi2, eval=FALSE}
+chi2 <- chisq.test(
+  pss$stfdem, 
+  pss$gndr
+)
+
+chi2
+```
+
+{{% expand \"Wie interpretieren wir diesen Test?\" %}}
+Zuerst blickst du auf den p-Wert. Dieser ist im Beispiel $p = 0.1674$ und damit größer als $0.05$. Das heißt, es liegt kein signifikanter Testwert vor und die Nullhypothese kann beibehalten werden. 
+
+Daraus können wir schließen, dass die Variablen statistisch unabhängig sind. 
+{{% /expand %}}
+
+## Annahmen des $\chi^2$-Unabhängigkeitstest
+Die Berechnung des $\chi^2$-Unabhängigkeitstest setzt zwei Annahmen voraus:
+
+1. Mindestens $10$ Beobachtungen in jeder Zelle.
+
+$\Rightarrow$ Kreuztabelle! ($\checkmark$)
+
+2. Mindestens $5$ erwartete Beobachtungen in jeder Zelle.
+
+Die Funktion `chisq.test()` speichert verschiedene Werte. Ein zugeordnetes Objekt hat daher den Datentyp **list**. Dieser Datentyp ist neu für dich. Es ist ein weiterer Datentyp, der eine große Rolle in R spielt. Im Datentyp **list** können mehrere Informationen gespeichert werden, wie du es von einer Liste auf Papier kennst. Mit `str()` kannst du dir anzeigen lassen, was alles in der Liste gespeichert wurde:
+```{r list1, eval=TRUE}
+str(chi1)
+```
+
+Der Datentyp **list** kann verschiedene Elemente als Liste speichern, so dass diese Elemente einzeln ansprechbar sind. Z.B. können verschiedene Vektoren in einer Liste gespeichert werden. Die einzelnen Teile einer Liste können über die Funktion `ls()` ausgegeben werden und werden mit dem `$`-Zeichen angesprochen. 
+
+```{r list2, eval=TRUE}
+ls(chi1)
+```
+
+Um nun die erwarteten Werte zu sehen, greifen wir auf `expected` (*erwartet*) aus dem Objekt `chi1` zu. 
+```{r list3, eval=TRUE}
+chi1$expected
+```
+
+Du siehst, dass also auch die Bedingung, dass es mind. $5$ Fälle in jeder Zelle der erwarteten Werte gibt erfüllt wird. 
+
+## Cramer's V
+Bisher haben wir nur den $\chi^2$-Unabhängigkeitstest durchgeführt. Aber neben dem generellen Zusammenhang ist oftmals von Interesse, wie stark dieser Zusammenhang ist bzw. in welche Richtung dieser Zusammenhang geht. 
+
+Wir berechnen **Cramer's V** für die Stärke des Zusammenhangs zwischen zwei mindestens nominalskalierten Variablen. Wir benutzen die Funktion `CramerV()` aus der **library** `DescTools`. Du gibst die zwei Variablen an und im dritten Argument setzt du das Konfidenzintervall (in diesem Fall $0.95$):
+
+```{r eval=FALSE}
+install.packages("DescTools")
+library("DescTools")
+```
+```{r cramer1, eval=TRUE}
+CramerV(
+  pss$stfdem,       
+  pss$gndr,          
+  conf.level = 0.95 # Konfidenzintervall
+)  
+```
+
+Wir interpretieren den Test wie folgt: In der ersten Spalte ist der Wert für **Cramer's V** angegeben und in der zweiten und dritten Spalte das Konfidenzintervall für diesen Wert. Sofern das Intervall nicht den Wert $0$ schneidet, ist das Ergebnis signifikant. In diesem Fall sehen wir, dass es sich um kein signifikantes Ergebnis handelt.
+
+Für die Interpretation des Wertes gelten folgende Grenzen:
+
+| unteres Ende  | oberes Ende   | Interpretation     |
+| :-----------: | :-----------: | ------------------ |
+| $0$             | $0.1$           | kein Zusammenhang  |
+| $0.1$           | $0.3$           | gering             |
+| $0.3$           | $0.6$           | mittel             |
+| $0.6$           | $1$             | stark              |
+
+Wenn nicht nur die Stärke des Zusammenhangs interpretiert werden soll, sondern auch die Richtung des Zusammenhangs, muss eine Korrelation berechnet werden. 

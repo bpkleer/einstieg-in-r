@@ -1,0 +1,34 @@
+---
+title: "Von der Datenerhebung zum Datensatz"  # Titel der Seite
+weight: 111  # Individuelles Gewicht 
+menuTitle: "Datenerhebung" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datenerhebung", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+In R bearbeitest du meistens bereits erhobene Daten. Um aber das Objekt **data frame** besser zu verstehen, wirst du auf dieser Seite die Schritte von der Datenerhebung zum Datensatz nachvollziehen können. Das hilft dir dabei, das Objekt **data frame** in R besser zu verstehen. 
+
+Im weiteren Verlauf nutzen wir einen fiktiven Trainingsdatensatz *Panem Social Survey*, der angelehnt an den [European Social Survey](https://europeansocialsurvey.com) ist. Vorteil ist, dass du erstmal mit einem deutlich kleineren Trainingsdatensatz üben kannst, bevor wir mit richtigen (größeren) Datensätzen in der Präsenz arbeiten. 
+Den Datensatz und das Codebook des **PSS** findest du bereits im RStudio Projekt. Falls du es nochmal manuell lokal auf deinem Rechner speichern möchtest, findest du es hier:
+
+{{%attachments style=\"grey\" title=\"Data sets\" /%}}
+
+Ebenso findest du in den Attachments eine PDF mit dem Namen `from-survey-to-data.pdf`. Lade diese herunter und schau sie dir an!
+
+In der Datei ist ein Auszug von vier Fragen (Variablen aus dem Datensatz), die in diesem fiktiven Datensatz erhoben wurden. **Tipp:** Im Codebook erhältst du genauere Informationen zu der Art der Messung der einzelnen Variablen. 
+
+{{% expand \"Überlege dir jetzt einmal kurz, welches Skalenniveau die einzelnen Fragen (Variablen) haben und mit welcher Art von Vektor (numeric, integer, character, boolean) du diese in R umsetzen würdest.\" %}}
+
+Die ID-Frage ist auf nominalen Skalenniveau, es können lediglich Unterschiede zwischen den Ausprägungen festgestellt werden. Am besten setzt man dies mit einem *character*-Vektor um. 
+
+Das Geschlecht wird auf nominalem Skalenniveau gemessen. Es empfiehlt sich daher ein *character*-Vektor oder im speziellen ein *factor*. 
+
+Das Alter ist eindeutig auf metrischem Skalenniveau und da wir das Alter in ganzen Jahren messen, reicht ein *integer*-Vektor. Ein *numeric*-Vektor wäre aber ebenso korrekt. 
+
+Das Haushaltseinkommen wird ordinal abgefragt. Es gibt Unterschiede zwischen den Ausprägungen und eine klare Rangfolge, die Abstände sind aber nicht gleich! In R kann man dies als *ordered factor* umsetzen. 
+
+Zuletzt wird noch die Zufriedenheit mit der Demokratie in Panem abgefragt. Dies ist eindeutig auf ordinalem Skalenniveau, da es mehr als zehn Ausprägungen sind, kann man dies auch als pseudometrisches Skalenniveau interpretieren. In R würde man dies dann mit einem *numeric*- oder *integer*-Vektor umsetzen. 
+{{% /expand %}}
+
+Wie du jetzt sicher schon verstanden hast, ist ein Datensatz nichts anderes als eine Sammlung mehrerer Variablen von befragten Personen, die zusammen verarbeitet werden. Deshalb werden Datensätze in Tabellenform verarbeitet bzw. gelesen. Diese Datentabellen haben zwei Dimensionen: **Zeilen** und **Spalten**. 
+
+Den Aufbau einer Datentabelle lernst du auf der nächsten Seite kennen. 

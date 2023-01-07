@@ -1,0 +1,54 @@
+---
+title: "Streumaße"  # Titel der Seite
+weight: 203  # Individuelles Gewicht 
+menuTitle: "Streumaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["deskriptiv", "streumaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="interquartilsabstand" class="section level3 tabset tabset-fade">
+<h3>Interquartilsabstand</h3>
+<p>Der Interquartilsabstand kann mit der Funktion <code>IQR()</code> ausgegeben werden:</p>
+<pre class="r"><code>IQR(
+  pss$stfdem, 
+  na.rm = TRUE
+)</code></pre>
+<p>{{% expand "Wie interpretierst du diese Zahl?" %}}
+Der Abstand zwischen dem ersten und dritten Quartil beträgt 3! Dieser Wert sagt uns noch nicht, wo das erste und das dritte Quartil liegen.</p>
+<p><span class="math display">\[q_{75} - q_{25} = IQR\]</span>
+{{% /expand %}}</p>
+</div>
+<div id="alternative-ausgabe-des-iqr" class="section level3">
+<h3>Alternative Ausgabe des IQR</h3>
+<p>Eine etwas anpassungsfähigere Alternative ist die Kombination der Funktionen <code>diff()</code> und <code>quantile()</code>. In der Funktion<code>quantile()</code> wird die Variable angegeben (<span class="math inline">\(1.\)</span> Argument), die gewünschten Quantile (<span class="math inline">\(2.\)</span> Argument) und zuletzt werden <code>NA's</code> ausgeschlossen. Die Funktion liefert zwei Werte und mit der Funktion <code>diff()</code> wird von diesen zwei Werten dann die Differenz berechnet und ausgegeben.</p>
+<pre class="r"><code>diff(
+  quantile(
+    pss$stfdem, 
+    probs = c(
+      0.25,
+      0.75
+    ),  
+    na.rm = TRUE
+  )
+)   </code></pre>
+</div>
+<div id="standardabweichung-varianz" class="section level3">
+<h3>Standardabweichung &amp; Varianz</h3>
+<p>Die Standardabweichung und die Varianz erhalten wir über die folgenden zwei Funktionen:</p>
+<pre class="r"><code>sd(
+  pss$stfdem, 
+  na.rm = TRUE
+)
+
+var(
+  pss$stfdem, 
+  na.rm = TRUE
+)</code></pre>
+<p>{{% expand "Wie könntest du alternativ von der Standardabweichung auf die Varianz kommen?" %}}
+Du weißt, dass die Standardabweichung nur die Wurzel der Varianz ist. Um also von der Standardabweichung auf die Varianz zu kommen, muss diese einfach quadriert werden. Das kann als einfache Rechnung umgesetzt werden:</p>
+<pre class="r"><code>sd(pss$stfdem, na.rm = TRUE) ^ 2</code></pre>
+<p>{{% /expand %}}</p>
+<p>Nun gehen wir einen Schritt tiefer noch in die Verarbeitung von Datensätzen und betreten das <code>tidyverse</code>!</p>
+</div>

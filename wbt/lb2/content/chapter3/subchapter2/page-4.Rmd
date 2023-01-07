@@ -1,0 +1,70 @@
+---
+title: "tidy up statclass 2"  # Titel der Seite
+weight: 324  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+statclass2 <- readRDS("./data/statclass2.rds")
+```
+
+Wo liegt hier das Problem?
+``` {r statclass2a, eval=TRUE}
+statclass2
+```
+
+> - Namenwerte sind Spaltennamen!
+
+Und hier die Lösung: Auch hier wandeln wir wieder in das *long*-Format um!
+```{r statclass2tidy, eval=TRUE}
+statclass2Tidy <- statclass2 %>%
+  pivot_longer(
+    momo:sascha, 
+    names_to = "names", 
+    values_to = "grade"
+  )
+
+statclass2Tidy
+```
+
+Gibt es evtl. noch mehr Probleme?
+
+> - `exam` beinhaltet keine Werte, sondern Namen von Variablen, nämlich von `exam1` und `exam2`! Variablen, die die Note in der Prüfung angeben, deren Wert noch in `grade` steht. Deshalb nutzen wir hier jetzt `pivot_wider()`, um die Daten final *tidy* zu machen:
+
+``` {r statclass2tidy2, eval=FALSE}
+statclass2Tidy <- statclass2Tidy %>% 
+  pivot_wider(
+    names_from = exam, 
+    values_from = grade
+  ) %>% 
+  relocate(names) %>% 
+  arrange(
+    names,
+    test
+  )
+
+statclass2Tidy
+```
+
+Nur zur Übung könnte man auch dies wiederum in den Ursprungsdatensatz mit `pivot_wider()` verändern:
+
+``` {r statclass2tidy3, eval=FALSE}
+statclass2re <- statclass2Tidy %>% 
+  pivot_wider(
+    names_from = test,
+    values_from = c(
+      exam1, 
+      exam2
+    )
+  )
+```

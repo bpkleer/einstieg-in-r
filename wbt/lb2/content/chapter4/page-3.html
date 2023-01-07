@@ -1,0 +1,156 @@
+---
+title: "Funktionen"  # Titel der Seite
+weight: 403  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["funktionen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="funktionen-in-r-schreiben" class="section level2">
+<h2>Funktionen in R schreiben</h2>
+<p>In R können nicht nur die aus <em>packages</em> zur Verfügung gestellten Funktionen genutzt werden, es können auch sehr leicht eigene Funktionen geschrieben werden. Dazu werden wir zuerst eine eigene Funktion für die Berechnung des Mittelwertes anlegen und anschliessend eine Funktion zur Ausgabe des Interquartilsabstands berechnen.</p>
+<p><br></p>
+<div id="syntax" class="section level3">
+<h3>Syntax</h3>
+<p>Im Folgenden werden wir eigene Funktionen schreiben. Der grundlegende Aufbau des Codes ist wie folgt:</p>
+<pre class="r"><code>my_function &lt;- function(arg1, arg2, ..., argn){
+  # Anweisungen
+}</code></pre>
+<p>Zuerst definieren wir einen Namen für die Funktion (<code>my_function</code>) und weisen dieser eine Funktion zu. In den runden Klammen <code>()</code> werden Argumente an die Funktion übergeben, die in den Anweisungen (alles in geschweiften Klammern <code>{}</code>) genutzt werden. Dies können Datensätze, Variablen oder einzelne Werte sein. Es ist in Abängigkeit, wie man das Argument in den Anweisungen nutzt.</p>
+</div>
+<div id="eigene-funktion-mittelwert" class="section level3">
+<h3>Eigene Funktion: Mittelwert</h3>
+<p>Wir wollen nun mit einer selbstgeschriebenen Funktion den Mittelwert einer Variable berechnen. Dazu sollte der Datensatz <code>statistics</code> (oder ein beliebig anderer Datensatz mit einer metrischen Variable in das <strong>environment</strong> geladen werden). Wir schaffen eine Funktion, in der wir ein Argument übergeben: Die Variable, von der der Mittelwert berechnet werden soll. Dieses Argument benennen wir in der Funktion mit <code>x</code>. Überall in den Anweisungen, wo wir <code>x</code> setzen, wird bei Aufruf der Funktion <code>own_mean()</code> das übergebene Argument genutzt.</p>
+<p>Anschliessend berechnen wir in der ersten Anweisung der neuen Funktion den Mittelwert. Hierbei greifen wir das übergebene Argument (<code>x</code>) auf. Mit der zweiten Anweisung lassen wir diesen Wert ausgeben. Danach können wir die selbst geschaffene Funktion aufrufen und müssen hierbei das eine geforderte Argument (Variable der Berechnung) angeben. Der Mittelwert wird berechnet und ausgegeben.</p>
+<pre class="r"><code>own_mean &lt;- function(x){
+  mean = sum(x) / length(x)
+  
+  print(mean) 
+}
+
+own_mean(statistics$grade)</code></pre>
+<p>Somit haben wir die erste eigene Funktion geschrieben!</p>
+</div>
+<div id="eigene-funktion-interquartilsabstand" class="section level3">
+<h3>Eigene Funktion: Interquartilsabstand</h3>
+<p>Nun wollen wir eine Funktion schreiben, die uns das untere und das obere Quartil ausgibt, sowie den Interquartilsabstand. Wir benötigen also <strong>drei Anweisungen</strong> in der Funktion:</p>
+<ol style="list-style-type: decimal">
+<li><p>die Berechnung des unteren Quartils,</p></li>
+<li><p>die Berechnung des oberen Quartils und</p></li>
+<li><p>die Berechnung des Interquartilsabstands.</p></li>
+</ol>
+<p>Zusätzlich lassen wir diese drei Werte mit der Funktion <code>print()</code> noch ausgeben.</p>
+<pre class="r"><code>own_iqr &lt;- function(x){
+  uGrenze &lt;-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze &lt;- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand &lt;- oGrenze - uGrenze
+  
+  print(paste(&quot;Das untere Quartil liegt bei:&quot;,
+              uGrenze
+              )
+        )
+  
+  print(paste(&quot;Das obere Quartil liegt bei:&quot;,
+              oGrenze
+              )
+        )
+  
+  print(paste(&quot;Der Interquartilsabstand beträgt:&quot;,
+              abstand
+              )
+        )
+}
+
+own_iqr(statistics$grade)</code></pre>
+<p>Wenn wir jetzt aber die errechneten Werte der Funktion in einem neuen Objekt speichern möchten, müssen wir wie oben <code>return</code> nutzen. Zuerst schaffen wir eine neue Liste <code>results</code>, sodass wir als Ziel ein Listenobjekt mit den einzelnen Werten haben. Die einzelnen Listenteile benennen wir wie in der Funktion auch <code>$uGrenze</code>, <code>$oGrenze</code> und <code>$abstand</code>. Die Funktion <code>quantile()</code> speichert automatisch einen <em>named numeric</em>, wir möchten aber nur den Zahlenwert speichern. Daher indexieren wir die Übergabe an unsere Liste mit <code>[[1]]</code>.</p>
+<pre class="r"><code>own_iqr_return &lt;- function(x){
+  uGrenze &lt;-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze &lt;- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand &lt;- oGrenze - uGrenze
+  
+  print(paste(&quot;Das untere Quartil liegt bei:&quot;,
+              uGrenze
+              )
+        )
+  
+  print(paste(&quot;Das obere Quartil liegt bei:&quot;,
+              oGrenze
+              )
+        )
+  
+  print(paste(&quot;Der Interquartilsabstand beträgt:&quot;,
+              abstand
+              )
+        )
+  
+  results &lt;- list()
+  
+  results$uGrenze &lt;- uGrenze[[1]]
+  
+  results$oGrenze &lt;-oGrenze[[1]]
+  
+  results$abstand &lt;- abstand[[1]]
+  
+  return(results) 
+}
+
+test &lt;- own_iqr(statistics$grade)
+
+test</code></pre>
+<p>Das Schreiben eigener Funktionen ist in R leicht umzusetzen und ist in vielen Schritten der Datenanalyse hilfreich, wenn es keine bereits existenten Funktionen für spezifische Anwendungen gibt.</p>
+</div>
+<div id="funktionen-und-schleifen" class="section level3">
+<h3>Funktionen und Schleifen</h3>
+<p>Wir können Schleifen auch gut in Funktionen nutzen. Wir könnten uns zum Beispiel eine Funktion schreiben, die uns die Abweichung vom Mittelwert und den Wert aus einer Variable anzeigen lässt. Dazu nehmen wir wieder den Beispieldatensatz <code>statistics</code>.</p>
+<p>Wir verknüpfen jetzt die Funktion mit einem <strong>for</strong>-loop und einem <strong>if</strong>-Ausdruck. Wir benennen die Funktion <code>showcase</code> und übergeben ein Argument (die Variable, die genutzt werden soll). Anschliessend wird der <strong>for</strong>-loop gestartet. Wenn kein Wert vorliegt, wird eine Nachricht ausgegeben, dass kein Wert vorliegt. Wenn ein Wert vorliegt, wird der Abstand zum <em>mean</em> berechnet und dieser zusammen mit dem erreichten Wert ausgegeben.</p>
+<pre class="r"><code>showcase &lt;- function(x){
+  for (i in 1:length(x)) {
+    if (is.na(x[i])) {
+      print(paste(&quot;Für Student&quot;, 
+                  i, 
+                  &quot;liegt kein Wert vor.&quot;
+                  )
+            )
+      next
+    } else {
+      abstand = mean(x, 
+                     na.rm = TRUE
+                     ) - x[i]
+      
+      print(paste0(&quot;Student &quot;,
+                  i, 
+                  &quot; hat folgenden Wert: &quot;,
+                  x[i], 
+                  &quot; (Abweichung zum Mean: &quot;,
+                  round(abstand, 
+                        2
+                        ),
+                  &quot;)&quot;
+                  )
+            )
+    }
+  }
+}</code></pre>
+<p>Nun können wir uns beispielhaft für die Variable <code>grade</code> und <code>grade2</code> aus dem <code>statistics</code> Datensatz ausgeben lassen.</p>
+<pre class="r"><code>showcase(statistics$grade)</code></pre>
+<pre class="r"><code>showcase(statistics$grade2)</code></pre>
+</div>
+</div>

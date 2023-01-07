@@ -1,0 +1,115 @@
+---
+title: "Datensätze zusammenführen (Fälle hinzufügen)"  # Titel der Seite
+weight: 314  # Individuelles Gewicht 
+menuTitle: "Fälle hinzufügen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+pss1 <- readRDS("./data/pss1.rds")
+pss5 <- readRDS("./data/pss5.rds")
+pss7 <- readRDS("./data/pss7.rds")
+pss10 <- readRDS("./data/pss10.rds")
+pss12 <- readRDS("./data/pss12.rds")
+```
+
+Im nächsten Schritt nehmen wir nun an, dass die Datenerfassung getrennt nach Distrikt durchgeführt wurde und es somit fünf Teildatensätze gibt, die nun zu einem vollständigen Datensatz verbunden werden sollen. Dazu nutzen wir die Funktion `bind_rows()`. In unserem Beispiel haben alle fünf Teildatensätze genau die gleiche Anzahl an Variablen, die dazu auch noch genau gleich benannt sind! Mit dem Argument `.id` erstellen wir eine Variable names `"origin"`, die die Herkunft des Falles erfasst. Dies ist automatisch nummeriert. Mit `mutate()` machen wir daraus einen Faktor, der eine bessere Beschreibung beinhaltet (*process1*, *process2*, *process3*, *process4*, *process5*)
+
+```{r merge1, eval=TRUE}
+pssAll <- pss1 %>%
+  bind_rows(
+    list(
+      pss5,
+      pss7, 
+      pss10, 
+      pss12
+    ), 
+    .id = "origin"
+  ) %>%
+  mutate(
+    origin = factor(
+      origin, 
+      labels = c(
+        "process1", 
+        "process2", 
+        "process3", 
+        "process4",
+        "process5"
+      )
+    )
+  )
+
+table(pssAll$origin)
+head(pssAll$origin)
+``` 
+
+Wir haben hier jetzt also aus fünf Teildatensätzen einen gesamten Datensatz erstellt, der alle Fälle der fünf Teildatensätze enthält. Wichtig, in diesem Fall waren alle Variablennamen gleich!
+
+Nun probieren wir einmal aus, was passiert, wenn es zum Beispiel in einem Teildatensatz einen Typo gibt. Zuerst erstellen wir dazu einfach zwei neue Datensätze, die jeweils nur 3 Fälle inkludieren, und unterschiedliche Variablen.
+
+``` {r merge-prob, eval=TRUE}
+pssA <- pss[1:3, 2:3]
+
+District <- c(
+  "Distrikt 1", 
+  "Distrikt 5",
+  "Distrikt 7"
+)
+
+gndr <- c(
+  "male",
+  "female",
+  "female"
+)
+
+pssB <- data.frame(
+  District, 
+  gndr
+)
+
+head(pssA)
+
+head(pssB)
+``` 
+
+Wir haben also in beiden Datensätzen die zwei Variablen, die Distrikt und Geschlecht angeben. Im Datensatz `pssB` ist aber die Variable des Distrikts anders geschrieben. Probieren wir `bind_rows()` aus. 
+
+ 
+``` {r test-bind-rows, eval=TRUE}
+pssTest <- pssA %>% 
+  bind_rows(pssB)
+
+pssTest
+```
+
+Da die Variablennamen nicht genau gleich sind, werden nun drei Variablen geschaffen: `district`, `gndr` und `District`. Wo die Variable nicht vorliegt, werden automatisch `NAs` erzeugt. Dies ist vorteilhaft, kann aber auch frickelig werden, wenn bei der Datensatzerstellung nicht streng nach einem Codenamen-Schema gearbeitet wurde. **Lösung**: Im Vorfeld Variablen abklären und umbenennen. Andernfalls kann man `full_join()` nutzen.
+
+### Datensätze zusammenführen (unterschiedliche Spaltennamen)
+Dieser Ansatz ist nicht weniger aufwändig, als das Umbenennen von Spaltennamen, bietet aber dennoch eine Alternative. Mit `full_join()` kombinieren wir zwei Datensätze und können im Argument `by` angeben, welche Spalten jeweils denselben Inhalt haben. Schreibaufwand hierbei ist, dass gleiche Spaltennamen auch aufgeführt werden müssen, da ansonsten (hier im Beispiel) die Variablen `gndr.x` und `gndr.y` gebildet werden. Dies liegt daran, da `full_join()` eigentlich dafür gedacht ist, neue/zusätzliche Variablen hinzuzufügen. 
+
+In unserem Beispiel würden wir also angeben, dass aus Datensatz `pssA` die Spalte `district` gleich der Spalte `District` aus dem Datensatz `pssB` ist. Gleiches gilt für die `gndr` Variable. 
+
+```{r full-join, eval=TRUE}
+pssTest2 <- pssA %>% 
+  full_join(
+    pssB,
+    by = c(
+      "district" = "District", 
+      "gndr" = "gndr"
+    )
+  )
+
+head(pssTest2)
+```
+
+So klappt es dann auch mit unterschiedlichen Variablennamen!

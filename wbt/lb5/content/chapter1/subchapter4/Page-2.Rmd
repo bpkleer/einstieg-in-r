@@ -1,0 +1,129 @@
+---
+title: "Gruppierte Scatterplots"  # Titel der Seite
+weight: 142  # Individuelles Gewicht 
+menuTitle: "Gruppen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Gruppen", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+
+```
+
+Auch **Scatterplots** können wir nach einer Gruppenvariable teilen. Hier nutzen wir wieder die Variable der *Distrikte* vom Beginn des Lernmoduls:
+```{r scatter-group, eval=TRUE}
+groupscatter <- ggplot(
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl,
+    color = district
+  )
+) +
+  geom_point() +
+  geom_jitter(
+    width = 1, 
+    height = 1
+  ) +
+  scale_color_manual(
+    name = "Distrikte", 
+    values = beyonce_palette(25)
+  ) +
+  scale_x_continuous(
+    breaks = seq(
+      0, 
+      10,
+      1
+    )
+  ) + 
+  scale_y_continuous( 
+    breaks = seq(
+      0,
+      10,
+      1
+    )
+  ) + 
+  labs(
+    x = "Trust in Politicians", 
+    y = "Trust in Legal System",
+    title = "Group Scatterplot"
+  ) 
+
+groupscatter
+```
+Leider ist hierauf nicht wirklich viel zu erkennen, da trotzdem alles innerhalb eines Plots dargestellt wird. Um das zu umgehen, können wir facets nutzen!
+
+## Facets
+Wir können aber auch vier einzelne Plots in einem darstellen. Dazu nutzen wir die Funktion `facet_grid()` :
+```{r scatter-group-facet-grid, eval=TRUE}
+groupscatter +
+  facet_grid(. ~ district)
+```
+
+Ein weiterer Weg ist mit der Funktion `facet_wrap()` möglich. Dieser schafft sowohl in Spalten als auch Zeilen gleichmäßige Felder, in denen dann die einzelnen Plots dargestellt werden:
+```{r scatter-group-facet-wrap, eval=TRUE}
+groupscatter + 
+  facet_wrap(~district)
+```
+
+Nun haben wir aber die Legende zweimal, daher wollen wir eine loswerden:
+```{r scatter-group-facet-grid2, eval=TRUE}
+groupscatter2 <- ggplot(
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl,
+    color = district
+  )
+) +
+  geom_point() +
+  geom_jitter(
+    width = 1, 
+    height = 1
+  ) +
+  scale_color_manual(values = beyonce_palette(25)) +
+  scale_x_continuous(
+    breaks = seq(
+      0,
+      10,
+      1
+    )
+  ) + 
+  scale_y_continuous(
+    breaks = seq(
+      0,
+      10,
+      1
+    )
+  ) + 
+  labs(
+    x = "Trust in Politicians", 
+    y = "Trust in Legal System",
+    title = "Group Scatterplot"
+  ) +
+  facet_wrap(~ district) +
+  theme(legend.position = "none")
+
+groupscatter2
+```
+
+Zuguterletzt können wir auch hier eine Regressionslinie hinzufügen:
+```{r group-scatter-reg2, eval=TRUE}
+groupscatter2 + 
+  geom_smooth(
+    method = "lm", 
+    se = TRUE,
+    color = "darkgray"
+  )
+```
+
+Gehen wir weiter zu einer anderen Art der Darstellung für pseudo-metrische Daten!

@@ -1,0 +1,125 @@
+---
+title: "ggcorrplot()"  # Titel der Seite
+weight: 304  # Individuelles Gewicht 
+menuTitle: "ggcorrplot()" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "ggcorrplot", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("GGally")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+Auch als `ggplot` können Korrelationsplots erstellt werden. Dazu nutzt du wieder die **library** `GGally`.
+
+```{r install-ggally, eval=FALSE}
+library("GGally")
+```
+
+Hier verwendest du jetzt die Funktion `ggcorr()`: Nicht metrische Variablen werden automatisch ausgeschlossen.
+
+```{r ggcorr, eval=TRUE}
+ggcorr(pss)
+```
+
+Im zusätzlichen Argument `method` kannst du angeben, wie mit `NA's` umgegangen werden soll, und welche Art von Korrelation berechnet werden soll (`pearson`, `spearman`, `kendall`):
+
+```{r ggcorr2, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  )
+)
+```
+
+Zusätzlich kannst du mit `label = TRUE` den Korrelationskoeffizienten auch anzeigen lassen:
+
+```{r ggcorr3, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  ),
+  label = TRUE
+)
+```
+
+Mit dem Argument `label_round` stellst du die Dezimalzeichen fest:
+```{r ggcorr4, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  ),
+  label = TRUE,
+  label_round = 2
+)
+```
+
+Im Argument `geom` kannst du zwischen `tile`, `circle`, `text` oder `blank` auswählen. 
+```{r ggcorr5, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = "circle"
+)
+```
+
+Zuguterletzt kannst du im Argument `palette` noch drei Farben angeben ($-1$, $0$, $1$), die die Farbskala bilden sollen: Ich greife hier wieder auf `beyonce` zurück! **Wichtig:** Du gibst hier nicht die ganze Palette an, sondern eine Farbe aus der jeweiligen Palette, deshalb in `[..]`-Klammern noch eine zusätzliche Zahl!
+```{r ggcorr6, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = "circle",
+  low = beyonce_palette(72)[1],
+  mid = "white", 
+  high = beyonce_palette(72)[2]
+)
+```
+
+Alternativ kannst du auch noch die `limits` ändern. Das kann hilfreich sein, wenn deine Korrelationswerte nicht sehr hoch sind und alle nur sehr schwach farbig sind. Mit `limits = FALSE` werden automatisch die Endpunkte gesetzt (entsprechend den Daten!).
+```{r ggcorr7, eval=TRUE}
+ggcorr(
+  pss,
+  method = c(
+    "pairwise",
+    "pearson"
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = "circle",
+  low = beyonce_palette(72)[1],
+  mid = "white", 
+  high = beyonce_palette(72)[2],
+  limits = FALSE
+)
+```
+
+**Wichtig:** In `ggcorr()` können nicht signifikante Werte nicht ausgeblendet werden, da die Autorin dieser Funktionen (zu Recht) gegen eine Fokussierung auf das Signifikanzniveau ist. 
+
+Mehr zum Funktionsumfang in `ggcorr()` findest du [hier](https://ggobi.github.io/ggally/reference/ggcorr.html?q=ggcorr).
+
+Gehen wir nun weiter zu der Darstellung von Mittelwertvergleichen.

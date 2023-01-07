@@ -1,0 +1,180 @@
+---
+title: "Korrelationen berechnen"  # Titel der Seite
+weight: 104  # Individuelles Gewicht 
+menuTitle: "Korrelationen berechnen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["korrelationen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>Wenn du nicht nur die Stärke des Zusammenhangs interpretieren möchtest, sondern auch die Richtung des Zusammenhangs, kannst du die Korrelation berechnen.</p>
+<p>In diesem Lernblock werden zwei Korrelationsmaße vorgestellt:</p>
+<ul>
+<li><p><strong>Pearson’s r</strong></p></li>
+<li><p><strong>Spearman’s <span class="math inline">\(\rho\)</span></strong></p></li>
+</ul>
+<p>Für die Berechnung von <strong>Pearson’s r</strong> müssen folgende Bedingungen erfüllt sein:</p>
+<ul>
+<li><p>(pseudo-)metrische Variablen</p></li>
+<li><p>lineare (monotone) Beziehung</p></li>
+<li><p>Varianzgleichheit</p></li>
+<li><p>(bivariate Normalverteilung)</p></li>
+</ul>
+<p>Für die Berechnung von <strong>Spearman’s <span class="math inline">\(\rho\)</span></strong> müssen dagegen nur folgende Bedingungen erfüllt sein:</p>
+<ul>
+<li><p>(mind.) ordinale Variablen</p></li>
+<li><p>monotone Beziehung</p></li>
+</ul>
+<div id="lineare-und-nicht-lineare-beziehungen" class="section level2">
+<h2>Lineare und nicht lineare Beziehungen</h2>
+<p>In der Abbildung sind vier Beispiele vorgestellt, die alle nahezu gleiche statistische Maßzahlen ausgeben würden (<em>Ascombe-Quartett</em>).</p>
+<div class="figure">
+<img src="../img/linearity.png" alt="" />
+<p class="caption">Linearität und Nicht-Linearität</p>
+</div>
+<p>Feld A zeigt eine lineare und monotone Beziehung zwischen zwei Variablen. Hier wäre die Anwendung der Berechnung von <strong>Pearson’s r</strong> korrekt. Feld B zeigt zwar eine monotone Beziehung, diese ist aber nicht linear. In diesem Fall kann <strong>Spearman’s <span class="math inline">\(\rho\)</span></strong> berechnet werden. Feld C zeigt, wie ein Ausreißer die Beziehungsstruktur verändern kann und hier würden beide Korrelationsmaße einen verzerrten Wert ausgeben. Feld D zeigt eine nicht lineare wie nicht-monotone Beziehung.</p>
+<p>Deutlich wird hier, dass vor der Berechnung von Maßzahlen die grafische Analyse hilfreich bzw. erforderlich ist!</p>
+</div>
+<div id="beispiel-korrelation" class="section level2">
+<h2>Beispiel Korrelation</h2>
+<p>Nun sollst du die Korrelation zwischen <em>Trust in Parliament</em> (<code>trstprl</code>) und <em>Trust in Politicians</em> (<code>trstplt</code>) aus dem <strong>PSS</strong> berechnen.</p>
+<p>Beide Variablen sind pseudo-metrische Variablen, daher solltest du <strong>Pearson’s r</strong> berechnen.</p>
+<p>Dafür musst du die Annahmen von <strong>Pearson’s r</strong> testen:</p>
+<ul>
+<li><p>Stichprobe von verbundenen Werten <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>beide Variablen metrisch <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>Beziehung zwischen Variablen ist linear</p></li>
+</ul>
+<div id="prüfen-der-annahme" class="section level3">
+<h3>Prüfen der Annahme</h3>
+<p>Du kannst dies einfach prüfen, in dem du einen Scatterplot erstellst. Dazu kannst du die <em>base</em>-Funktion <code>plot()</code> nutzen. Das leistungsstärkere Grafik-<em>library</em> <code>ggplot2</code> lernen wir im letzten Lernblock kennen.</p>
+<pre class="r"><code>plot(
+  pss$trstprl, 
+  pss$trstplt
+)</code></pre>
+<p><img src="/statsplus/lb3/chapter1/page-4_files/figure-html/corr-plot1-1.png" width="672" /></p>
+<p>Da die Daten nur pseudometrisch sind und sich viele Datenpunkte (ganzzahlig) überlappen, kannst du aus dem Plot wenig erkennen.</p>
+<p><strong>Lösung</strong>: Nutze die Funktion <code>jitter()</code> um die Punkte stärker zu streuen:</p>
+<pre class="r"><code>plot(
+  jitter(
+    pss$trstprl, 
+    3
+  ) ~ 
+    jitter(
+      pss$trstplt, 
+      3
+    )
+)</code></pre>
+<p><img src="/statsplus/lb3/chapter1/page-4_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+Diese grafische Analyse bedarf etwas Gewöhnung: Sofern du keine klaren anderen Muster wie im Ascombe-Quartett siehst, kannst du von einer linearen Beziehung ausgehen.</p>
+<p>Abschließend können wir also festhalten, dass die Bedingungen erfüllt sind:</p>
+<ul>
+<li><p>Stichprobe von verbundenen Werten <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>beide Variablen metrisch <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>Beziehung zwischen Variablen ist linear <span class="math inline">\(\checkmark\)</span></p></li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> Du kannst nun <strong>Pearson’s r</strong> berechnen!</p>
+</div>
+<div id="berechnen-des-koeffizienten" class="section level3">
+<h3>Berechnen des Koeffizienten</h3>
+<p>Um den Korrelationskoeffizienten zu berechnen, nutzt du die Funktion <code>cor()</code> (sowohl für <strong>Pearson’s r</strong> als auch für <strong>Spearman’s</strong> <span class="math inline">\(\rho\)</span>). Zuerst musst du die zwei Variablen in der Funktion benennen. Anschliessend solltest du den Korrelationskoeffizient wählen und abschliessend noch auswählen wie mit <code>NA's</code> in den Variablen umgegangen wird. Hier löschst du jede Zeile, die auf eine der zwei Variablen einen <code>NA</code>-Wert hat.</p>
+<pre class="r"><code>cor(
+  pss$trstprl, 
+  pss$trstplt, 
+  method = &quot;pearson&quot;,  # alternativ hier &quot;spearman&quot;  
+  use = &quot;complete.obs&quot;
+)      </code></pre>
+<pre><code>## [1] 0.2318401</code></pre>
+<p>Die Ausgabe zeigt einen Korrelationskoeffizienten von <span class="math inline">\(r \approx 0.232\)</span> an. In dieser Ausgabe ist kein p-Wert inkludiert und du kannst keine Aussage über die Signifikanz treffen.</p>
+</div>
+<div id="berechnen-des-koeffizienten-mit-library-psych" class="section level3">
+<h3>Berechnen des Koeffizienten mit <strong>library</strong> <code>psych</code></h3>
+<p>Mit der <em>library</em> <code>psych</code> kannst du die Funktion <code>corr.test()</code> nutzen, die auch den Signifikanztest liefert:</p>
+<pre class="r"><code>install.packages(&quot;psych&quot;)
+library(&quot;psych&quot;)</code></pre>
+<pre class="r"><code>corr.test(
+  pss$trstprl, 
+  pss$trstplt,
+  method = &quot;pearson&quot;,      
+  use = &quot;complete.obs&quot;
+)     </code></pre>
+<pre><code>## Call:corr.test(x = pss$trstprl, y = pss$trstplt, use = &quot;complete.obs&quot;, 
+##     method = &quot;pearson&quot;)
+## Correlation matrix 
+## [1] 0.23
+## Sample Size 
+## [1] 4954
+## These are the unadjusted probability values.
+##   The probability values  adjusted for multiple tests are in the p.adj object. 
+## [1] 0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+<p>Dieser Test generiert drei Matrizen (Korrelationsmatrix, Matrix der Stichprobengröße, Matrix der p-Werte), die du später für die Visualisierung nutzen kannst.</p>
+<p>Die benötigte weitere Information des p-Werts findet sich an der letzten Stelle. Hier liegt ein p-Wert von <span class="math inline">\(0\)</span> vor.</p>
+<p>{{% expand "Was bedeutet der p-Wert an dieser Stelle?" %}}
+Der p-Wert ist kleiner als <span class="math inline">\(0.05\)</span> und somit liegt ein statistisch signifikanter Zusammenhang zwischen dem Vertrauen in das Parlament und in Politiker:innen vor. Allerdings ist dieser nur schwach (<span class="math inline">\(r=0.23\)</span>)
+{{% /expand %}}</p>
+</div>
+<div id="berechnen-mehrerer-korrelationen" class="section level3">
+<h3>Berechnen mehrerer Korrelationen</h3>
+<p>Mit beiden Funktionen kannst du nicht nur die Korrelation zwischen zwei Variablen berechnen, sondern direkt mehr als zwei Variablen angeben. Es wird dann jeweils paarweise zwischen allen Variablen die Korrelation berechnet. Hierfür nutzt du die Funktion <code>c()</code>, um anzugeben zwischen welchen Variablen du paarweise Korrelationswerte bekommen möchtest:</p>
+<pre class="r"><code>cor(
+  pss[
+    ,
+    c(
+      &quot;trstprl&quot;, 
+      &quot;trstplt&quot;,
+      &quot;trstprt&quot;,
+      &quot;trstlgl&quot;
+    )
+  ],
+  method = &quot;pearson&quot;,
+  use = &quot;complete.obs&quot;
+)  </code></pre>
+<pre><code>##           trstprl    trstplt   trstprt    trstlgl
+## trstprl 1.0000000 0.22712300 0.3824902 0.22536686
+## trstplt 0.2271230 1.00000000 0.3992831 0.05203906
+## trstprt 0.3824902 0.39928307 1.0000000 0.24868786
+## trstlgl 0.2253669 0.05203906 0.2486879 1.00000000</code></pre>
+<pre class="r"><code>corr.test(
+  pss[
+    ,
+    c(
+      &quot;trstprl&quot;,
+      &quot;trstplt&quot;,
+      &quot;trstprt&quot;,
+      &quot;trstlgl&quot;
+    )
+  ],
+  method = &quot;pearson&quot;,
+  use = &quot;complete.obs&quot;
+)  </code></pre>
+<pre><code>## Call:corr.test(x = pss[, c(&quot;trstprl&quot;, &quot;trstplt&quot;, &quot;trstprt&quot;, &quot;trstlgl&quot;)], 
+##     use = &quot;complete.obs&quot;, method = &quot;pearson&quot;)
+## Correlation matrix 
+##         trstprl trstplt trstprt trstlgl
+## trstprl    1.00    0.23    0.38    0.23
+## trstplt    0.23    1.00    0.40    0.05
+## trstprt    0.38    0.40    1.00    0.25
+## trstlgl    0.23    0.05    0.25    1.00
+## Sample Size 
+##         trstprl trstplt trstprt trstlgl
+## trstprl    4965    4954    4948    4953
+## trstplt    4954    4989    4972    4977
+## trstprt    4948    4972    4983    4971
+## trstlgl    4953    4977    4971    4988
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##         trstprl trstplt trstprt trstlgl
+## trstprl       0       0       0       0
+## trstplt       0       0       0       0
+## trstprt       0       0       0       0
+## trstlgl       0       0       0       0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+<p>In beiden Ausgaben erscheint eine Korrelationmatrix. Die Variablennamen sind jeweils in der Spalte angegeben und in den Zeilen. Die Diagonale ist stets <span class="math inline">\(1\)</span>, denn der Zusammenhang zwischen der Variable und sich selbst ist <span class="math inline">\(1\)</span> (also perfekt!).</p>
+<p>{{% expand "Leseprobe! Wie hoch ist der Korrelationskoeffizient für den Zusammenhang zwischen trstplt und trstprt?" %}}
+Der Korrelationskoeffizient beträgt <span class="math inline">\(r = 0.40\)</span> und damit liegt ein mittlerer Zusammenhang zwischen den zwei Variablen vor.
+{{% /expand %}}</p>
+<p>Wie stellen wir nun Korrelationen grafisch dar?</p>
+</div>
+</div>

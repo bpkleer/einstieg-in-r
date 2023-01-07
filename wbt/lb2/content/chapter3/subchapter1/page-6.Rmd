@@ -1,0 +1,50 @@
+---
+title: "Datensätze zusammenführen (neue Variablen)"  # Titel der Seite
+weight: 316  # Individuelles Gewicht 
+menuTitle: "Neue Variablen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+sp <- readRDS("./data/sp.rds")
+```
+
+Will man nur weitere Variablen in einen Datensatz hinzufügen, kann man auch hierfür `full_join()` nutzen. Wir haben zum Beispiel in einem weiteren Datensatz aus Panem, der einen neu eingeführten Social Score pro Person beinhaltet. Diese Daten wollen wir nun dem Datensatz **PSS** hinzufügen. Diese haben wir im Datensatz `sp` getrennt gespeichert und dort wird dieselbe ID-Variable genutzt, die auf die ID-Variable des Datensatzes `pss` matcht. Wir fügen jetzt die Socialpoints dem Datensatz `pss` mit `full_join()` hinzu. Schauen wir uns zuerst nochmal die zwei Datensätze an:
+
+```{r points, eval=TRUE}
+head(sp)
+
+head(pss)
+```
+Wir haben zwar in beiden Variablen eine ID-Variable, allerdings ist die Spalte unterschiedlich benannt. Wir können jetzt - wie zuvor oben - wieder im `by`-Argument dies angeben. Diesmal wollen wir einfach schnell vorher den Spaltennamen in einem der Datensätze anpassen. Dazu nutzen wir einfach `rename()`. Die Logik in der Funktion ist `neuer Name = alter Name`.
+
+``` {r add-points, eval=TRUE}
+sp <- sp %>% 
+  rename(idno = id)
+
+head(sp)
+```
+
+Jetzt sind die Spaltennamen gleich und wir können die Datensätze mergen.
+
+```{r final-merge, eval=TRUE}
+pss <- pss %>% 
+  full_join(
+    sp, 
+    by = "idno"
+  )
+
+head(pss)
+```
+
+Und auch das hast du gemeistert! Jetzt geht's rüber ins nächste Paket des **tidyverse**: `tidyr`!

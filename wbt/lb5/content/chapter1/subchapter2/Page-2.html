@@ -1,0 +1,77 @@
+---
+title: "Gruppieren"  # Titel der Seite
+weight: 122  # Individuelles Gewicht 
+menuTitle: "Gruppieren" # Falls Titel zulang ist, hier Kurztitel
+tags: ["gruppieren", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>Ebenso können wir <strong>Histogramme</strong> einer Variable nach Gruppen trennen, wie wir es mit den Balkendiagrammen zuvor gemacht haben. Hierzu nutzen wir die Extra-Funktion <code>facet_grid()</code>, die den Plot teilt, sodass die Grafiken besser zu erkennen sind. In <code>facet_grid()</code> geben wir einfach nur in einer Formel an (<code>x ~ y</code>) nach welcher Variable auf der x-Achse bzw. y-Achse aufgeteilt werden soll. Wir wollen jetzt nur auf der y-Achse nach Geschlecht aufteilen.</p>
+<pre class="r"><code>histGroup &lt;- ggplot(
+  pss,
+  aes(
+    agea, 
+    fill = gndr
+  )
+) +
+  geom_histogram(
+    aes(y = ..density..),
+    alpha = 0.2
+  ) + 
+  geom_density(alpha = 0.2) +
+  facet_grid(
+    .~ gndr
+  ) + 
+  scale_fill_manual(
+    name = &quot;Gender&quot;, 
+    labels = c(
+      &quot;Female&quot;, 
+      &quot;Male&quot;
+    ),
+    values = beyonce_palette(72)
+  ) +
+  labs(
+    x = &quot;Age in years&quot;, 
+    y = &quot;Density&quot;, 
+    title = &quot;Histogram of Age&quot;
+  )
+
+histGroup</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter2/Page-2_files/figure-html/hist-group-1.png" width="672" /></p>
+<div id="anpassungen" class="section level2">
+<h2>Anpassungen</h2>
+<p>Nun verändern wir noch die Beschriftungen über den <strong>Histogrammen</strong> und entfernen die Legende (weil sonst doppelt!).</p>
+<pre class="r"><code>histGroup &lt;- ggplot(
+  pss,
+  aes(
+    agea, 
+    fill = gndr
+  )
+) +
+  geom_histogram(
+    aes(y = ..density..),
+    alpha = 0.2, 
+    bins = 30, 
+    position = &quot;identity&quot;
+  ) + 
+  geom_density(alpha = 0.2) +
+  facet_grid(
+    .~ gndr 
+  ) + 
+  scale_fill_manual(values = beyonce_palette(72)) +
+  labs(
+    x = &quot;Age in years&quot;, 
+    y = &quot;Density&quot;, 
+    title = &quot;Histogram of Age&quot;
+  ) + 
+  theme(legend.position = &quot;none&quot;)
+
+histGroup</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter2/Page-2_files/figure-html/hist-group2-1.png" width="672" /></p>
+<p>Als Alternative kannst du auch ein Ridgeline-Plot erstellen. Mehr dazu auf der nächsten Seite!</p>
+</div>
