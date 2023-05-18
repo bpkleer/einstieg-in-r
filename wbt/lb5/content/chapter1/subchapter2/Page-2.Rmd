@@ -17,6 +17,12 @@ library("beyonce")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Ebenso können wir **Histogramme** einer Variable nach Gruppen trennen, wie wir es mit den Balkendiagrammen zuvor gemacht haben. Hierzu nutzen wir die Extra-Funktion `facet_grid()`, die den Plot teilt, sodass die Grafiken besser zu erkennen sind. In `facet_grid()` geben wir einfach nur in einer Formel an (`x ~ y`) nach welcher Variable auf der x-Achse bzw. y-Achse aufgeteilt werden soll. Wir wollen jetzt nur auf der y-Achse nach Geschlecht aufteilen. 
 ``` {r hist-group, eval=TRUE}
 histGroup <- ggplot(

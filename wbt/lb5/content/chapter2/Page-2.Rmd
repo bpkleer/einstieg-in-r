@@ -18,6 +18,12 @@ pss <- readRDS("./data/pss.rds")
 
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Neben den ganzen Spielereien möchte man manchmal auch einzelne Bereiche einer Grafik besonders hervorheben oder aber zum Beispiel Beschriftungen der Fälle hinzufügen (bei kleinem n). 
 
 Hierzu gibt es die Funktionen `geom_text()` und `annotate()`, die mit `ggplot` genutzt werden können. Dazu nehmen wir wieder das Scatterplot vom Beginn, begrenzen aber diesmal die Anzahl auf 15, damit wir eine klare Darstellung bekommen. 

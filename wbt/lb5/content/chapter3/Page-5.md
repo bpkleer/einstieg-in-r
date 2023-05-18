@@ -5,6 +5,12 @@ menuTitle: "Mittelwertvergleich" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ggplot", "mittelwertvergleich", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}
+
 Jetzt wollen wir Mittelwertvergleiche darstellen. Eine gute Möglichkeit sind *Rainclouds* (diese hast du schon kennengelernt) und versuchen für folgendes Problem *rainclouds* zu erstellen:
 
 {{< tabs >}}

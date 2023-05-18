@@ -28,6 +28,12 @@ cbp1 <- c(
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Boxplots kennst du aus der Statistik-Vorlesung. In Boxplots sind die Quartile angegeben sowie das Minimum und Maximum (oder Ausreißer). Jetzt lernst du die einzelnen Funktionen genauer kennen, wie du ein Boxplot darstellen kannst. Wir stellen zwei Funktionen vor: `geom_boxplot()` oder `ggboxplot()`. Wir nutzen Boxplots für die Darstellung einer metrischen Variablen. Boxplots einer metrischen Variable können auch nach einer Gruppenvariable aufgeteilt werden.
 
 Zusätzlich stellen wir auf der letzten Seite noch **rainclouds** vor. Diese sind ähnlich einem Boxplot, erhalten aber noch zusätliche Informationen darüber wie die Werte verteilt sind. 

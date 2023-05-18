@@ -5,6 +5,12 @@ menuTitle: "ggpairs()" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ggplot", "ggpairs", "ggally", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}
+
 Kommen wir zu deiner Challenge: Du willst im folgenden Zusammenhang von der Zufriedenheit mit der Demokratie und den Variablen `trstprl`, `trstlgl`, `stfeco` und `agea` testen. Probiere dich mit `ggpairs()` aus!
 
 {{< tabs >}}

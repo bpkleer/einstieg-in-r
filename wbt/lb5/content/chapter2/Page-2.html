@@ -7,6 +7,9 @@ tags: ["ggplot", "annotation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Neben den ganzen Spielereien möchte man manchmal auch einzelne Bereiche einer Grafik besonders hervorheben oder aber zum Beispiel Beschriftungen der Fälle hinzufügen (bei kleinem n).</p>
 <p>Hierzu gibt es die Funktionen <code>geom_text()</code> und <code>annotate()</code>, die mit <code>ggplot</code> genutzt werden können. Dazu nehmen wir wieder das Scatterplot vom Beginn, begrenzen aber diesmal die Anzahl auf 15, damit wir eine klare Darstellung bekommen.</p>
 <p>{{% notice warning %}}
@@ -81,7 +84,7 @@ Innerhalb von <code>geom_text()</code> kann man nun weitere Einstellungen vorneh
     aes(label = idno), 
     data = pss[1:10,]
   )</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-2_files/figure-html/addtext3-1.png" width="672" /></p>
 <p>Weitaus größere Möglichkeiten bietet <code>annotate()</code>. Mit dieser können nicht nur Beschriftungen, sondern auch bestimmte Bereiche innerhalb eines Plots hervorgehoben werden. Nehmen wir wieder das gejitterte Plot und markieren einen bestimmten Bereich im Plot:</p>
 <pre class="r"><code>scatter2 +

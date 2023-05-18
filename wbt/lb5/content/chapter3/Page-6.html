@@ -5,9 +5,11 @@ menuTitle: "Regressionen" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ggplot", "regression", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb5/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Im Beispiel ist es das Ziel eine Untersuchung der Variable <code>stfdem</code> in allen Schritten grafisch darzustellen. Zuletzt willst du jetzt ein Regressionmodell auf <code>stfdem</code> rechnen, dass die Effekte von <code>stfeco</code>, <code>district</code>, <code>gndr</code>, <code>trstlgl</code>, <code>trstprl</code> und <code>agea</code> inkludiert.</p>
 <p>Als erstes berechnest du nun das Modell, bevor du mit den grafischen Darstellungen beginnen kannst:</p>
 <pre class="r"><code>model1 &lt;- lm(
@@ -42,7 +44,7 @@ summary(model1)</code></pre>
 ## 
 ## Residual standard error: 1.734 on 4695 degrees of freedom
 ##   (295 observations deleted due to missingness)
-## Multiple R-squared:  0.4593, Adjusted R-squared:  0.4583 
+## Multiple R-squared:  0.4593,	Adjusted R-squared:  0.4583 
 ## F-statistic: 443.2 on 9 and 4695 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Im Model erkennst du signifikante Effekte von <code>stfeco</code>, <code>gndrmale</code> sowie <code>trstlgl</code>. Diese wollen wir gleich darstellen. Zuerst wiederholst du jetzt aber die Darstellung des Plots aller Regressionskoeffizienten aus Lernblock 4 mit <code>dwplot()</code>.</p>
 <p>{{% expand "Probiere es erst selbst und schaue erst danach hier nach!" %}}
@@ -105,7 +107,7 @@ panel.grid.major = element_blank()
 <pre class="r"><code>install.packages(&quot;sjPlot&quot;)
 library(&quot;sjPlot&quot;)
 library(&quot;tidyverse&quot;)</code></pre>
-<p>In der Funktion <code>plot_model()</code> rufst du zuerst das Objekt des Regressionsmodels auf (hier <code>model1</code>), gibst im zweiten Argument an, das es sich um ein <em>marginal plot</em> der vorhergesagte Werte handelt (<code>type = pred</code>) und bestimmst dann im Argument <code>terms</code>, welcher Effekt geplottet werden soll. Die Funktion stellt automatisch alle metrischen Variablen konstant auf den Mittelwert bzw. kategorielle Variablen auf die Referenzkategorie.</p>
+<p>In der Funktion <code>plot_model()</code> rufst du zuerst das Objekt des Regressionsmodels auf (hier <code>model1</code>), gibst im zweiten Argument an, dass es sich um ein <em>marginal plot</em>, der vorhergesagte Werte beinhaltet, handelt (<code>type = pred</code>) und bestimmst dann im Argument <code>terms</code>, welcher Effekt geplottet werden soll. Die Funktion stellt automatisch alle metrischen Variablen konstant auf den Mittelwert bzw. kategorielle Variablen auf die Referenzkategorie.</p>
 <pre class="r"><code>plot_model(
   model1, 
   type = &quot;pred&quot;,
@@ -123,7 +125,7 @@ library(&quot;tidyverse&quot;)</code></pre>
   )
 )</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-6_files/figure-html/marginal2-1.png" width="672" /></p>
-<p>Genauso leicht könntest du die nächste kategoriellen Variable einfach hinzufügen:</p>
+<p>Genauso leicht könntest du die nächste kategorielle Variable einfach hinzufügen:</p>
 <pre class="r"><code>plot_model(
   model1, 
   type = &quot;pred&quot;,
@@ -175,7 +177,7 @@ levels(pss$district)</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-6_files/figure-html/marginal5-1.png" width="672" /></p>
 <p>{{% tabs %}}
 {{% tab name="Aufgabe" %}}
-Stelle jetzt den Zusammenhang zwischen <code>trstlgl</code> und <code>stfdem</code> dar. Dabei soll der für den Distrikt jeweils eine eigene Linie abgebildet sein und die Plots nach Geschlecht getrennt sein. Probiere es erst selbst aus, bevor du dir die Lösung anschaust.<br />
+Stelle jetzt den Zusammenhang zwischen <code>trstlgl</code> und <code>stfdem</code> dar. Dabei soll für jeden Distrikt jeweils eine eigene Linie abgebildet sein und die Plots nach Geschlecht getrennt sein. Probiere es erst selbst aus, bevor du dir die Lösung anschaust.<br />
 {{% /tab %}}
 {{% tab name="Code" %}}
 ```R
@@ -206,4 +208,4 @@ scale_color_manual(values = beyonce_palette(18))
 ```
 {{% /tab %}}
 {{% /tabs %}}</p>
-<p>So das war’s! Du hast in diesem Kapitel geübt für einzelne Methoden Grafiken darzustellen und beherrscht nun erste Schritte mit <code>ggplot</code>!</p>
+<p>So das war’s! Du hast in diesem Kapitel geübt für einzelne Methoden Grafiken darzustellen und beherrschst nun erste Schritte mit <code>ggplot</code>!</p>

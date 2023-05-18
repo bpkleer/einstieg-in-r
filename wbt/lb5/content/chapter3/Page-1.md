@@ -5,6 +5,12 @@ menuTitle: "Verteilung" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ggplot", "verteilung", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}
+
 Zuerst möchstest du nun die Variable `stfdem` darstellen. Überlege dir kurz wie du diese Variable darstellen kannst und versuche selbstständig Code zu schreiben. Schaue erst im Anschluss auf die möglichen Lösungen. 
 
 {{< tabs groupId="1" >}}

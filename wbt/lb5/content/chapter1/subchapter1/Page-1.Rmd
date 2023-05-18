@@ -18,6 +18,12 @@ library("tidyverse")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wir starten nun mit Balkendiagrammen. Die Hauptfunktion, die wir durchgehend nutzen, um eine Grafik mit der **library** `ggplot` zu erstellen lautet `ggplot()`! Diese Grafiken kannst du dir direkt ausgeben lassen (einfacher Aufruf der Funktion) und das Bild erscheint dann im **Plots**-Tab bei **Files**. Alternativ kannst du den Plot auch (wie alles andere!) in einem Objekt speichern. 
 
 Das speichern der Grafik in einem Objekt hat mehrere Vorteile: Wie du später merken wirst, besteht ein `ggplot` aus verschiedenen Layern. Willst du etwas ändern oder hinzufügen und speicherst du den vorherigen Plot in einem Objekt musst du nur das Objekt aufrufen und den geänderten oder neuen Layer hinzufügen. Speicherst du dein Plot nicht in einem Objekt, musst du jedes Mal den gesamten Code erneut aufrufen. Im Lernmodul arbeiten wir daher mit Objekten!

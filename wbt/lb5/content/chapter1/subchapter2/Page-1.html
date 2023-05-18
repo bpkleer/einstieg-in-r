@@ -7,6 +7,9 @@ tags: ["histogramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Sei
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Um eine einzelne kontinuierliche Variable darzustellen, nutzen wir <strong>Histogramme</strong>. Damit kann die Verteilung der Variable interpretiert werden. Für ein <strong>Histogramm</strong> nutzen wir die Funktion <code>geom_hist()</code>.</p>
 <pre class="r"><code>hist &lt;- ggplot(
   pss, 
@@ -15,7 +18,7 @@ tags: ["histogramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Sei
   geom_histogram()  
 
 hist</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter2/Page-1_files/figure-html/hist-1.png" width="672" /></p>
 <p>Nun können wir die Grafik etwas anpassen wie zuvor. Beginne mit den Titeln:</p>
 <pre class="r"><code>hist &lt;-  ggplot(
@@ -33,7 +36,7 @@ hist</code></pre>
   )
 
 hist</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter2/Page-1_files/figure-html/hist-title-1.png" width="672" /></p>
 <p>Oftmals möchten wir die Verteilung interpretieren. Deshalb zeigen wir uns die Verteilung der Dichte zusätzlich an. Dazu fügen wir die Funktion <code>geom_density()</code> hinzu. Zusätzlich musst du die Achse in <code>geom_histogram()</code> auf <code>..density..</code> ändern!</p>
 <pre class="r"><code>histDens &lt;- ggplot(
@@ -56,7 +59,12 @@ hist</code></pre>
        )
 
 histDens</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(density)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter2/Page-1_files/figure-html/hist-density-1.png" width="672" /></p>
 <p>Auch hier können wir gruppieren!</p>

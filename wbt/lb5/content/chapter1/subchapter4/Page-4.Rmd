@@ -17,6 +17,12 @@ library("beyonce")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 In speziellen Fällen kann man sich auch nicht nur Normalverteilungen einzelner Variablen ausgeben lassen, sondern bivariate Normalverteilungen. Somit lässt sich visualiseren, ob die Verteilung beider Variablen ebenfalls annähnerd normalverteilt ist, oder eben nicht. Dazu nutzen wir die Funktion `geom_bin2d()`:
 ```{r bi, eval=TRUE}
 ggplot(

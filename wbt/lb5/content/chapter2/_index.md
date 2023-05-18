@@ -16,3 +16,9 @@ In diesem Teil des Kurses werden weiterführende Einstellungen innerhalb des Pak
 {{% notice tip %}}
 Eine gute Übersicht bietet auch folgendes [Online-Lernbuch](https://r-graphics.org) (auf Englisch). 
 {{% /notice %}}
+
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}

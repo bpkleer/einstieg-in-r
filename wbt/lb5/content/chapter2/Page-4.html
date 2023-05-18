@@ -7,6 +7,9 @@ tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Mit dem Paket <code>naniar</code> sind die oben dargestellten Schritte viel schneller und leichter darzustellen. Das Paket schafft dabei auch immer einen <code>ggplot</code>, so dass die oben gelernten Anpassungen auch hier möglich sind. Zuerst nutzen wir Funktionen, um uns Tabellen mithilfe von <code>naniar</code> ausgeben zu lassen. Die Erste ist die Funktion <code>miss_var_summary()</code>, die uns die absolute und relative Häufigkeit von <em>missings</em> in den Variablen ausgibt.</p>
 <pre class="r"><code>pss %&gt;%
   miss_var_summary()</code></pre>
@@ -45,16 +48,12 @@ tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, 
 ##  8 Distrikt 1 gndr          0      0  
 ##  9 Distrikt 1 agea          0      0  
 ## 10 Distrikt 1 wkhtot        0      0  
-## # … with 55 more rows</code></pre>
+## # ℹ 55 more rows</code></pre>
 <p>Zuerst können wir uns eine Verteilung der <em>missings</em> im Datensatz ausgeben lassen. Die Funktion <code>gg_miss_var_cumsum()</code> gibt uns die kumulierte Summe der <em>missings</em> pro Variable aus. Hieran kann man also ablesen, wie sich die <em>missings</em> auf die Variablen verteilen.</p>
 <pre class="r"><code>gg_miss_var_cumsum(pss)</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-4_files/figure-html/naniar0-1.png" width="672" /></p>
 <p>Die Funktion <code>vis_miss()</code> visualisiert die <em>missings</em> eines gesamten Datensatzes (außer wir grenzen ein).</p>
 <pre class="r"><code>vis_miss(pss)</code></pre>
-<pre><code>## Warning: `gather_()` was deprecated in tidyr 1.2.0.
-## Please use `gather()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-4_files/figure-html/naniar1-1.png" width="672" /></p>
 <p>Eine weitere ansprechende Alternative ist die Funktion <code>gg_miss_upset()</code> aus dem Paket <code>naniar</code>. Hierbei werden auch die Häufigkeiten der Kombination der <em>missings</em> zwischen den Variablen angezeigt. Aber auch dies wird bei allzu großen Datensätzen schnell unübersichtlich. Für Teilbereich kann das aber aufschlussreich sein (z.B. wenn man prüfen möchte, ob Personen nur Teile einer Itembatterie oder die Itembatterie komplett nicht beantwortet haben).</p>
 <pre class="r"><code>gg_miss_upset(pss)</code></pre>
@@ -92,8 +91,6 @@ tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, 
   pss,
   facet = district
 )</code></pre>
-<pre><code>## Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please
-## use `guide = &quot;none&quot;` instead.</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-4_files/figure-html/ggmissvar-1.png" width="672" />
 Mit der Funktion <code>gg_miss_fct()</code> können <em>missings</em> visuell sehr schön aufbereitet werden.</p>
 <pre class="r"><code>gg_miss_fct(

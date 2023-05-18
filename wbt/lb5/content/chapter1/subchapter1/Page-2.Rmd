@@ -20,6 +20,12 @@ library("RColorBrewer")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Bisher ist unser Balkendiagramm recht fad: Die Achsenbeschriftung ist unklar und in grau schaut es trist aus. Dies ändern wir nun. **Wichtig ist**, dass wir, wenn wir die Konvention in `ggplot` einhalten, erklärende Teile wie `data = ...` oder `mapping = ...` weglassen können. Das heißt weniger Schreibarbeit! Farbe fügen wir einfach hinzu, in dem wir innerhalb von `aes()` das Argument `color` hinzufügen und sagen, nach welcher Variable die Farbe sich unterscheiden soll. 
 
 Zuerst fügen wir etwas Farbe hinzu:

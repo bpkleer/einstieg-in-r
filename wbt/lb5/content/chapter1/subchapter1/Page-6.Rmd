@@ -29,6 +29,12 @@ barplotBeyonce <- ggplot(
   scale_fill_manual(values = beyonce_palette(25))
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Auch eine weitere Gruppenvariable kann einer Grafik leicht hinzugefügt werden. Diese Variable sollte ein Faktor sein, wenn nicht wird die Variable in einen Faktor *coerced*, was manchmal zu Problemen führen kann.
 ```{r bar-grouped, eval=TRUE}
 str(pss$gndr)

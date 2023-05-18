@@ -7,6 +7,9 @@ tags: ["bivariate normalverteilung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>In speziellen Fällen kann man sich auch nicht nur Normalverteilungen einzelner Variablen ausgeben lassen, sondern bivariate Normalverteilungen. Somit lässt sich visualiseren, ob die Verteilung beider Variablen ebenfalls annähnerd normalverteilt ist, oder eben nicht. Dazu nutzen wir die Funktion <code>geom_bin2d()</code>:</p>
 <pre class="r"><code>ggplot(
   pss, 
@@ -20,7 +23,7 @@ tags: ["bivariate normalverteilung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, 
     low = &quot;lavenderblush&quot;, 
     high = &quot;red&quot;
   )</code></pre>
-<pre><code>## Warning: Removed 23 rows containing non-finite values (stat_bin2d).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing non-finite values (`stat_bin2d()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-4_files/figure-html/bi-1.png" width="672" /></p>
 <p>Bivariate Normalverteilungen lassen sich auch über die Dichte darstellen mit der Funktion <code>stat_density_2d()</code>:</p>
 <pre class="r"><code>ggplot(
@@ -38,5 +41,10 @@ tags: ["bivariate normalverteilung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, 
     low = &quot;lavenderblush&quot;, 
     high = &quot;red&quot;
   )</code></pre>
-<pre><code>## Warning: Removed 23 rows containing non-finite values (stat_density2d).</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..level..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(level)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: Removed 23 rows containing non-finite values (`stat_density2d()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-4_files/figure-html/bi2-1.png" width="672" /></p>

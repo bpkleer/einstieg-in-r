@@ -16,6 +16,12 @@ library("tidyverse")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Um eine einzelne kontinuierliche Variable darzustellen, nutzen wir **Histogramme**. Damit kann die Verteilung der Variable interpretiert werden. Für ein **Histogramm** nutzen wir die Funktion `geom_hist()`.
 ```{r hist, eval=TRUE}
 hist <- ggplot(

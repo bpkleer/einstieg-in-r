@@ -7,6 +7,9 @@ tags: ["ggplot", "ggpairs", "ggally", "korrelation", "advanced"]  # Tags hierein
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Als nächstes möchtest du den Zusammenhang mit anderen (pseudo-metrischen) Variablen testen. Im <a href="https://lehre.bpkleer.de/lb3/">Lernblock 3</a> hast du bereits <code>pairs.panel()</code> aus der <strong>library</strong> <code>psych</code> und <code>corrplot()</code> aus der <strong>library</strong> <code>corrplot</code> kennengelernt. Jetzt werden wir anstatt mit der <strong>library</strong> <code>psych</code> zuerst mit der <strong>library</strong> <code>GGally</code> ein Plot erstellen, da dies nach derselben Logik wie alle <code>ggplots</code> generiert wird. Dafür nutzt du die Funktion <code>ggpairs()</code>.</p>
 <p>Ein Plot mit <code>ggpairs()</code> ist genauso wie ein Plot aus <code>pairs.panel()</code> aufgebaut:</p>
 <p><img src="../img/ggpairs1.png" alt="Beispiel ggpairs-plot" />
@@ -26,15 +29,15 @@ library(&quot;GGally&quot;)</code></pre>
     &quot;gndr&quot;
     )
 )</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp1-1.png" width="672" /></p>
 <p>Somit erhältst du die Standardeinstellungen des Plots. In der Diagonalen wird die Dichte angezeigt, wenn die Variable stetig ist bzw. ein Barplot, wenn die Variable diskret ist. Im oberen Drittel wird, wenn beide Variablen stetig sind die Korrelation angezeigt. Liegt eine Kombination vor (also eine Variable stetig, die andere diskret) siehst du ein Boxplot. Wenn beide Variablen diskret sind (trifft hier nirgends zu) wird einfach die gruppierten Häufigkeiten in einem Balkendiagramm wiedergegeben. Somit erhältst du also direkt einen Überblick über die Variablen.</p>
 <p>Es ist aber auch möglich die einzelnen Bereiche anzupassen: Wir fangen an mit <code>lower</code>, denn wir wollen die <code>binwidth</code> ändern. Im Argument <code>lower</code> benennen wir eine Liste: die beinhaltet, was wir spezifisch auf <code>continuous</code>, <code>combo</code> oder <code>discrete</code> darstellen wollen. Wenn du Änderungen an der Darstellung machen möchtest, musst du die in die Funktion <code>wrap()</code> packen und darin kannst du dann Änderungen wie bei normalen <code>ggplots</code> vornehmen. Wir legen jetzt fest, dass bei kontinuierlichen Wertepaaren ein Scatterplot angezeigt werden soll (<code>points</code>) und bei gemischten Wertepaaren (stetig - diskret) Histogramme in einem Facet (<code>facethist</code>), wobei wir die <code>binwidth</code> auf <span class="math inline">\(1\)</span> festlegen. Dazu legen wir fest, dass die Farbe nach Kategorie der Variable <code>gndr</code> variieren soll (<code>mapping = aes(color = gndr)</code>).</p>
@@ -54,15 +57,15 @@ library(&quot;GGally&quot;)</code></pre>
     mapping = aes(color = gndr)
   )
 )</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp2-1.png" width="672" />
 Wir sehen das Scatterplot ist noch nicht ganz optimal, da ja eine Variable wieder pseudometrisch ist. Deshalb fügen wir jittern hinzu:</p>
 <pre class="r"><code>ggpairs(
@@ -84,15 +87,15 @@ Wir sehen das Scatterplot ist noch nicht ganz optimal, da ja eine Variable wiede
     mapping = aes(color = gndr)
   )
 )</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp3-1.png" width="672" /></p>
 <p>Jetzt sieht das ganze schon besser aus und zeigt, dass wir vermutlich keinen Zusammenhang zwischen Alter und Zufriedenheit mit der Demokratie haben.</p>
 <p>Jetzt passen wir das obere Drittel <code>upper</code> an. Wir legen fest, dass die Korrelation für kontinuierliche Paare angezeigt werden soll und ein Boxplot für <code>combo</code>-Paare. Auch legen wir wieder fest, dass die Farben nach Geschlecht verschieden sind.</p>
@@ -120,15 +123,15 @@ Wir sehen das Scatterplot ist noch nicht ganz optimal, da ja eine Variable wiede
     mapping = aes(color = gndr)
   )
 )</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp4-1.png" width="672" /></p>
 <p>Es gibt für <code>continuous</code> in <code>lower</code> wie <code>upper</code> folgende gute Darstellungsmöglichkeiten (eine komplette Übersicht gibt es <a href="http://ggobi.github.io/ggally/articles/ggally_plots.html">hier</a>):</p>
 <ul>
@@ -175,15 +178,15 @@ Wir sehen das Scatterplot ist noch nicht ganz optimal, da ja eine Variable wiede
 )
 
 pp1</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp5-1.png" width="672" /></p>
 <p>Im Argument <code>diag</code> gibt es weniger Optionen:</p>
 <ul>
@@ -200,12 +203,12 @@ pp1 +
   scale_fill_manual(values = beyonce_palette(72))</code></pre>
 <pre><code>## Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
 ## Removed 249 rows containing missing values</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 249 rows containing missing values (geom_point).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_boxplot).</code></pre>
-<pre><code>## Warning: Removed 95 rows containing non-finite values (stat_bin).</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 249 rows containing missing values (`geom_point()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_boxplot()`).</code></pre>
+<pre><code>## Warning: Removed 95 rows containing non-finite values (`stat_bin()`).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values (`stat_bin()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter3/Page-2_files/figure-html/pp6-1.png" width="672" /></p>
 <p>Auf der nächsten Seite geht’s zur Challenge!</p>

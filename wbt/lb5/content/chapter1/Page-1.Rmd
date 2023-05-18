@@ -15,6 +15,12 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Bevor wir mit den grafischen Darstellungen beginnen können, gilt es ein paar Vorbereitungen zu treffen. 
 
 Lade dir zuerst den Datensatz `pss` in dein **Environment**. Zur Erinnerung der Datensatz ist direkt in der RStudio Cloud im Ordner `data` oder alternativ (wenn du lokal arbeitest) hier herunterzuladen:

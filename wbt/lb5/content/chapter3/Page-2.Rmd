@@ -18,6 +18,12 @@ library("GGally")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Als nächstes möchtest du den Zusammenhang mit anderen (pseudo-metrischen) Variablen testen. Im [Lernblock 3](https://lehre.bpkleer.de/lb3/) hast du bereits `pairs.panel()` aus der **library** `psych` und `corrplot()` aus der **library** `corrplot` kennengelernt. Jetzt werden wir anstatt mit der **library** `psych` zuerst mit der **library** `GGally` ein Plot erstellen, da dies nach derselben Logik wie alle `ggplots` generiert wird. Dafür nutzt du die Funktion `ggpairs()`. 
 
 Ein Plot mit `ggpairs()` ist genauso wie ein Plot aus `pairs.panel()` aufgebaut:

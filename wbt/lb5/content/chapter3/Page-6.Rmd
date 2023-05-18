@@ -19,6 +19,12 @@ library("beyonce")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Im Beispiel ist es das Ziel eine Untersuchung der Variable `stfdem` in allen Schritten grafisch darzustellen. Zuletzt willst du jetzt ein Regressionmodell auf `stfdem` rechnen, dass die Effekte von `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl` und `agea` inkludiert. 
 
 Als erstes berechnest du nun das Modell, bevor du mit den grafischen Darstellungen beginnen kannst:

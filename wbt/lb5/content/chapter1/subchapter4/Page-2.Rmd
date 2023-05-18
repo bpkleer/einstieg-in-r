@@ -19,6 +19,13 @@ pss <- readRDS("./data/pss.rds")
 
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
+
 Auch **Scatterplots** können wir nach einer Gruppenvariable teilen. Hier nutzen wir wieder die Variable der *Distrikte* vom Beginn des Lernmoduls:
 ```{r scatter-group, eval=TRUE}
 groupscatter <- ggplot(

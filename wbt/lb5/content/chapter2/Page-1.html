@@ -7,6 +7,9 @@ tags: ["ggplot", "layout", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Innerhalb eines <code>ggplots</code> können nahezu alle dargestellten Teilbereiche verändert und angepasst werden. Einige dieser Änderungen werden wie im nachfolgenden besprechen.</p>
 <p>Dazu schaffen wir uns zuerst nochmal ein ggplot-Objekt mit unserem Scatterplot aus der Einführung in <code>ggplot</code>:</p>
 <pre class="r"><code>scatter &lt;- ggplot(
@@ -36,7 +39,7 @@ tags: ["ggplot", "layout", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf 
   )
 
 scatter</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/base-scatter-1.png" width="672" /></p>
 <p>Zuerst fügen wir nochmals Titel, Achsenbeschriftung und Quellen hinzu.</p>
 <pre class="r"><code>scatterLeg &lt;- scatter +
@@ -48,7 +51,7 @@ scatter</code></pre>
        )
 
 scatterLeg</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/legends-1.png" width="672" /></p>
 <p>Innerhalb der Funktion <code>theme()</code> können wir Teilbereiche des Plots ansprechen und ändern. Dies umfasst u.a. folgende Eigenschaften des Plots:</p>
 <ul>
@@ -71,7 +74,7 @@ Eine komplette Übersicht aller Einstellungen die in <code>theme()</code> genutz
       hjust = 0.5
     )
   )</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/title-1.png" width="672" /></p>
 <p>Dazu haben wir die drei Argumente <code>size</code> (Schriftgröße), <code>face</code> (Erscheinungsbild) und <code>hjust</code> (Position) genutzt.</p>
 <p>Als nächstes wollen wir die Achsentitel bearbeiten.</p>
@@ -101,7 +104,7 @@ Eine komplette Übersicht aller Einstellungen die in <code>theme()</code> genutz
   )
 
 scatterAxes</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/axisticks-1.png" width="672" /></p>
 <p>Anstatt eine Farbe anzugeben, kann man mit der Funktion <code>rgb()</code> auch den Farbton bestimmen. Alternativ kann man auch den HTML-Code der Farbe innerhalb des Arguments <code>color</code> nutzen.</p>
 <pre class="r"><code>scatterLeg +
@@ -123,7 +126,7 @@ scatterAxes</code></pre>
       face = &quot;bold&quot;
     )
   )</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/axisticks2-1.png" width="672" /></p>
 <p>Nun möchten wir weiter experimentieren und die Achsenticks bearbeiten. Dazu nutzen wir <code>axis.ticks.x</code> bzw. <code>axis.ticks.y</code>.</p>
 <pre class="r"><code>scatterTicks &lt;- scatterAxes +
@@ -141,7 +144,7 @@ scatterAxes</code></pre>
   )
 
 scatterTicks</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/axesticks-1.png" width="672" /></p>
 <p>Mit dem Argument <code>angle</code> können wir die Achsenbeschriftungen drehen lassen. Mit <code>hjust</code> und <code>vjust</code> können wir die Startposition des Texts ändern.</p>
 <p>Als nächstes möchten wir das Grid des Plots ändern, also die Linien. Dazu nutzen wir erstmal das Argument <code>panel.grid</code> und innerhalb des Arguments die Funktion <code>element_line()</code></p>
@@ -152,10 +155,14 @@ scatterTicks</code></pre>
       size = 1,
       linetype = &quot;solid&quot; # blank, solid, dashed, dotted, dotdash, longdash, twodash 
     )
-  )
-
-scatterGrid</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+  )</code></pre>
+<pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre class="r"><code>scatterGrid</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/grid1-1.png" width="672" /></p>
 <p>Mit den Argumenten <code>panel.grid.major</code> und <code>panel.grid.minor</code> können die Haupt- und Hilfslinien getrennt bearbeitet werden. Wenn wir zum Beispiel nur die Hauptlinien wollen, machen wir folgendes:</p>
 <pre class="r"><code>scatterGrid &lt;- scatterTicks +
@@ -169,7 +176,7 @@ scatterGrid</code></pre>
   )
 
 scatterGrid</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/grid2-1.png" width="672" /></p>
 <p>Man kann auch die Hilfslinien getrennt nach Achsen bearbeiten. Dazu muss man einfach jeweils <code>.x</code> bzw. <code>.y</code> beifügen.</p>
 <p>Zuletzt kann man noch den Hintergrund des Plots bzw. des Panels ändern. Dies geschieht über die Argumente <code>plot.background</code> bzw. <code>panel.background</code>. Dazu nutzt man die Funktion <code>element_rect()</code> innerhalb des Arguments</p>
@@ -184,7 +191,12 @@ scatterGrid</code></pre>
       fill = &quot;moccasin&quot;
     )
   )</code></pre>
-<pre><code>## Warning: Removed 96 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: Removed 96 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter2/Page-1_files/figure-html/background-1.png" width="672" /></p>
 <p>Es gibt ebenso eine ganze Reihe an vorgefertigten Themes, die dann wiederum individuell angepasst werden können.</p>
 <p>{{% notice tip %}}

@@ -7,6 +7,9 @@ tags: ["coloring", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort,
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Bisher ist unser Balkendiagramm recht fad: Die Achsenbeschriftung ist unklar und in grau schaut es trist aus. Dies ändern wir nun. <strong>Wichtig ist</strong>, dass wir, wenn wir die Konvention in <code>ggplot</code> einhalten, erklärende Teile wie <code>data = ...</code> oder <code>mapping = ...</code> weglassen können. Das heißt weniger Schreibarbeit! Farbe fügen wir einfach hinzu, in dem wir innerhalb von <code>aes()</code> das Argument <code>color</code> hinzufügen und sagen, nach welcher Variable die Farbe sich unterscheiden soll.</p>
 <p>Zuerst fügen wir etwas Farbe hinzu:</p>
 <pre class="r"><code>barplot &lt;- ggplot(

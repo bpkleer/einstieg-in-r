@@ -7,6 +7,9 @@ tags: ["achsen", "titel", "legende", "balkendiagramme", "ggplot"]  # Tags hierei
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <div id="achsen" class="section level2">
 <h2>Achsen</h2>
 <p>Oftmals müssen die Achsen angepasst werden, um die Daten besser darzustellen. Wenn du dich gerade ausprobiert hast und versucht hast die Werte überhalb der Balken anzeigen zu lassen, ist es womöglich passiert, dass nicht mehr alle Werte von jedem Balken angezeigt wurden. Dies lag daran, dass die y-Achse zu kurz ist. Du kannst die Achsen ganz einfach in der Funktion <code>scale_x_continuous()</code> begrenzen. <code>continuous</code> wird hier genutzt, weil es die Hua (Typ <em>integer</em> oder <em>numeric</em>) handelt. Dort nutzt du für die Begrenzung das Argument <code>limits = c(...)</code> und gibst darin das Minimum und das Maximum an.</p>
@@ -26,6 +29,11 @@ tags: ["achsen", "titel", "legende", "balkendiagramme", "ggplot"]  # Tags hierei
   )
 
 barplotBeyonce</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(count)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter1/Page-4_files/figure-html/barplot-axis-1.png" width="672" /></p>
 <p>Ebenso kannst du in der Funktion <code>scale_y_continuous</code> die Achsenmarkierungen bestimmen. Dies machst du im Argument <code>breaks</code> und gibst dort einfach eine Sequenz an.</p>
 <pre class="r"><code>barplotBeyonce &lt;- barplotBeyonce + 

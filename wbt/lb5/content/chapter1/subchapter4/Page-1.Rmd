@@ -16,6 +16,12 @@ library("tidyverse")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wir nutzen **Scatterplots** (Punktewolken), wenn wir zwei (pseudo-)metrische Variablen darstellen möchten. Dazu nutzen wir die Funktion `geom_point()`.
 
 Oftmals haben wir lediglich pseudometrische Variablen, dennoch können wir trotzdem **Scatterplots** zur Visualisierung nutzen. Wir nutzen nun `trstplt` und `trstprt`. Falls du nicht mehr weißt, wofür diese Variablen stehen, schaue im Codebook nach!

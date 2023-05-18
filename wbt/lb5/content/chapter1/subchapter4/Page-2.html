@@ -7,6 +7,9 @@ tags: ["Gruppen", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite p
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Auch <strong>Scatterplots</strong> können wir nach einer Gruppenvariable teilen. Hier nutzen wir wieder die Variable der <em>Distrikte</em> vom Beginn des Lernmoduls:</p>
 <pre class="r"><code>groupscatter &lt;- ggplot(
   pss, 
@@ -46,8 +49,8 @@ tags: ["Gruppen", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite p
   ) 
 
 groupscatter</code></pre>
-<pre><code>## Warning: Removed 23 rows containing missing values (geom_point).
-## Removed 23 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing missing values (`geom_point()`).
+## Removed 23 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-2_files/figure-html/scatter-group-1.png" width="672" />
 Leider ist hierauf nicht wirklich viel zu erkennen, da trotzdem alles innerhalb eines Plots dargestellt wird. Um das zu umgehen, können wir facets nutzen!</p>
 <div id="facets" class="section level2">
@@ -55,14 +58,14 @@ Leider ist hierauf nicht wirklich viel zu erkennen, da trotzdem alles innerhalb 
 <p>Wir können aber auch vier einzelne Plots in einem darstellen. Dazu nutzen wir die Funktion <code>facet_grid()</code> :</p>
 <pre class="r"><code>groupscatter +
   facet_grid(. ~ district)</code></pre>
-<pre><code>## Warning: Removed 23 rows containing missing values (geom_point).
-## Removed 23 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing missing values (`geom_point()`).
+## Removed 23 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-2_files/figure-html/scatter-group-facet-grid-1.png" width="672" /></p>
 <p>Ein weiterer Weg ist mit der Funktion <code>facet_wrap()</code> möglich. Dieser schafft sowohl in Spalten als auch Zeilen gleichmäßige Felder, in denen dann die einzelnen Plots dargestellt werden:</p>
 <pre class="r"><code>groupscatter + 
   facet_wrap(~district)</code></pre>
-<pre><code>## Warning: Removed 23 rows containing missing values (geom_point).
-## Removed 23 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing missing values (`geom_point()`).
+## Removed 23 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-2_files/figure-html/scatter-group-facet-wrap-1.png" width="672" /></p>
 <p>Nun haben wir aber die Legende zweimal, daher wollen wir eine loswerden:</p>
 <pre class="r"><code>groupscatter2 &lt;- ggplot(
@@ -102,8 +105,8 @@ Leider ist hierauf nicht wirklich viel zu erkennen, da trotzdem alles innerhalb 
   theme(legend.position = &quot;none&quot;)
 
 groupscatter2</code></pre>
-<pre><code>## Warning: Removed 23 rows containing missing values (geom_point).
-## Removed 23 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing missing values (`geom_point()`).
+## Removed 23 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-2_files/figure-html/scatter-group-facet-grid2-1.png" width="672" /></p>
 <p>Zuguterletzt können wir auch hier eine Regressionslinie hinzufügen:</p>
 <pre class="r"><code>groupscatter2 + 
@@ -112,9 +115,9 @@ groupscatter2</code></pre>
     se = TRUE,
     color = &quot;darkgray&quot;
   )</code></pre>
-<pre><code>## Warning: Removed 23 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>## Warning: Removed 23 rows containing missing values (geom_point).
-## Removed 23 rows containing missing values (geom_point).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing non-finite values (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 23 rows containing missing values (`geom_point()`).
+## Removed 23 rows containing missing values (`geom_point()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter4/Page-2_files/figure-html/group-scatter-reg2-1.png" width="672" /></p>
 <p>Gehen wir weiter zu einer anderen Art der Darstellung für pseudo-metrische Daten!</p>
 </div>

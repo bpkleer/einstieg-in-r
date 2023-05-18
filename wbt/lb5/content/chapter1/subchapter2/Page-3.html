@@ -7,6 +7,9 @@ tags: ["ridgline", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Eine Alternative zu Histogrammen sind <strong>Ridgeline Plots</strong>, die ebenfalls die Dichte-Verteilung anzeigen. Dazu nutzen wir eine Funktion aus der <strong>library</strong> <code>ggridges</code>. <strong>Ridgeline Plots</strong> stellen immer aufgeteilte Variablen dar, du benötigst also die Angabe einer y-Variable in der <code>ggplot()</code>-Funktion. Du erstellst gleich ein <strong>Ridgeline Plot</strong> des Alters getrennt nach Geschlechtskategorien.</p>
 <pre class="r"><code>install.packages(&quot;ggridges&quot;)
 library(&quot;ggridges&quot;)</code></pre>
@@ -27,7 +30,8 @@ library(&quot;ggridges&quot;)</code></pre>
   theme(legend.position = &quot;none&quot;)
 
 ridgeline</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density_ridges).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values
+## (`stat_density_ridges()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter2/Page-3_files/figure-html/rlplot1-1.png" width="672" /></p>
 <p>Auch dieses kannst du leicht wieder anpassen.</p>
 <pre class="r"><code>ridgeline + 
@@ -50,5 +54,6 @@ ridgeline</code></pre>
     name = &quot;Gender&quot;
   ) +
   theme(axis.text.y = element_blank())</code></pre>
-<pre><code>## Warning: Removed 157 rows containing non-finite values (stat_density_ridges).</code></pre>
+<pre><code>## Warning: Removed 157 rows containing non-finite values
+## (`stat_density_ridges()`).</code></pre>
 <p><img src="/statsplus/lb5/chapter1/subchapter2/Page-3_files/figure-html/rlplot3-1.png" width="672" /></p>
