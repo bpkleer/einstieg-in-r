@@ -7,6 +7,9 @@ tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Ku
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Beim Zwei-Stichproben t-Test musst du unterscheiden, ob es sich um gepaarte oder ungepaarte Stichproben handelt.</p>
 <div id="zwei-stichproben-t-test-ungepaart" class="section level2">
 <h2>Zwei-Stichproben t-Test (ungepaart)</h2>
@@ -51,7 +54,7 @@ Richtig, in diesem Fall kann Varianzgleichheit angenommen werden, da der p-Wert 
   var.equal = TRUE  # Option des Levene-Tests!
 )            </code></pre>
 <pre><code>## 
-##  Two Sample t-test
+## 	Two Sample t-test
 ## 
 ## data:  pss$wkhtot by pss$gndr
 ## t = 1.3509, df = 4998, p-value = 0.1768
@@ -96,7 +99,7 @@ leveneTest(
   var.equal = TRUE
 )</code></pre>
 <pre><code>## 
-##  Two Sample t-test
+## 	Two Sample t-test
 ## 
 ## data:  pss$wkhtot[pss$edu == &quot;ES-ISCED I&quot;] and pss$wkhtot[pss$edu == &quot;ES-ISCED V&quot;]
 ## t = 9.723, df = 1078, p-value &lt; 2.2e-16
@@ -132,16 +135,16 @@ Es ist zu sehen, dass im Durchschnitt Personen mit geringerer Bildung (<em>mean 
   paired = TRUE
 )</code></pre>
 <pre><code>## 
-##  Paired t-test
+## 	Paired t-test
 ## 
 ## data:  pss$trstprl and pss2$trstprl
 ## t = NaN, df = 4964, p-value = NA
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
 ##  NaN NaN
 ## sample estimates:
-## mean of the differences 
-##                       0</code></pre>
+## mean difference 
+##               0</code></pre>
 <p><strong>Ergebnisinterpretation</strong>: Im Durchschnitt unterschieden sich das Vertrauen in das Parlament zwischen den zwei Erhebungen nicht.</p>
 <p>Gehe nun zu Testsituationen mit mehr als zwei Gruppen!</p>
 </div>

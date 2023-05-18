@@ -7,6 +7,9 @@ tags: ["Zusammenhangsmaße", "Korrelationen", "graphische Darstellung", "ggplot"
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Du hast jetzt im Output von R Tabellen erstellt. Oftmals werden Korrelationen aber in Grafiken dargestellt, da diese für das Auge leichter zu verarbeiten sind als eine Tabelle.</p>
 <p>An dieser Stelle wirst du zwei Möglichkeiten kennenlernen, solche zu erstellen: Einmal mit der <strong>library</strong> <code>psych</code> und einmal mit der <strong>library</strong> <code>corrplot</code>.</p>
 <div id="library-psych" class="section level2">
@@ -33,9 +36,9 @@ tags: ["Zusammenhangsmaße", "Korrelationen", "graphische Darstellung", "ggplot"
 <h2>Library <code>corrplot</code></h2>
 <p>Eine weitere Darstellungsmöglichkeit mehrerer Korrelationen ist eine sogenannte <strong>Heat Map</strong>. Um diesen Plot zu erstellen, benötigst du die <strong>library</strong> <code>corrplot</code> und daraus Funktion <code>corrplot()</code>.</p>
 <p>Eine <strong>Heat Map</strong> zeigt die Stärke des Zusammenhangs über die Farbwahl an</p>
-<div class="figure">
-<img src="../img/corrplot.png" alt="" />
-<p class="caption">Heat Map</p>
+<div class="float">
+<img src="../img/corrplot.png" alt="Heat Map" />
+<div class="figcaption">Heat Map</div>
 </div>
 <p>Als erstes lade das <em>package</em> <code>corrplot</code>:</p>
 <pre class="r"><code>install.packages(&quot;corrplot&quot;)
@@ -87,9 +90,9 @@ library(&quot;corrplot&quot;)</code></pre>
   type = &quot;upper&quot;,    # auch lower möglich
   method = &quot;circle&quot; # verschiedene Optionen möglich
 )    </code></pre>
-<div class="figure">
-<img src="../img/corrplot.png" alt="" />
-<p class="caption">Heat Map</p>
+<div class="float">
+<img src="../img/corrplot.png" alt="Heat Map" />
+<div class="figcaption">Heat Map</div>
 </div>
 <p>Die <strong>library</strong> <code>corrplot</code> ermöglicht dir eine Reihe an weiteren Einstellungen, diese kannst du dir <a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html">hier</a> ansehen. Wir werden uns im fünften Lernblock intensiver mit Grafiken beschäftigen.</p>
 </div>

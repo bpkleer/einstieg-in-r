@@ -21,6 +21,12 @@ library("gmodels")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Eine Kreuztabelle gibt Auskunft über eine bivariate Verteilung, also über die Verteilung auf zwei Variablen. Um eine Kreuztabelle zu bekommen, müssen wir nur eine zweite Variable in der `table()`-Funktion hinzufügen: Wir lassen uns hier eine Kreuztabelle zwischen der Zufriedenheit mit der Demokratie und dem Geschlecht ausgeben:
 
 ```{r crosstab1,eval=TRUE}

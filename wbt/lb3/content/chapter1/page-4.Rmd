@@ -20,6 +20,12 @@ library("psych")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wenn du nicht nur die Stärke des Zusammenhangs interpretieren möchtest, sondern auch die Richtung des Zusammenhangs, kannst du die Korrelation berechnen. 
 
 In diesem Lernblock werden zwei Korrelationsmaße vorgestellt:

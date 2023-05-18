@@ -21,6 +21,12 @@ library("corrplot")
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Du hast jetzt im Output von R Tabellen erstellt. Oftmals werden Korrelationen aber in Grafiken dargestellt, da diese für das Auge leichter zu verarbeiten sind als eine Tabelle. 
 
 An dieser Stelle wirst du zwei Möglichkeiten kennenlernen, solche zu erstellen: Einmal mit der **library** `psych` und einmal mit der **library** `corrplot`. 

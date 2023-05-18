@@ -7,6 +7,9 @@ tags: ["mittelwert", "mittelwertvergleiche", "anova", "t-Test"]  # Tags hiereins
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Auf dieser Seite werden Mittelwertvergleiche zwischen mehr als zwei Gruppen vorgestellt. Diese Test-Statistik wird <strong>ANOVA</strong> oder <strong>F-Test</strong> genannt. Wir möchten nun die verschiedenen Gruppen der <code>edu</code>-Variable testen.</p>
 <p><strong>Annahmen</strong>:</p>
 <ol style="list-style-type: decimal">
@@ -40,7 +43,7 @@ Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianz
   var.equal = TRUE
 )</code></pre>
 <pre><code>## 
-##  One-way analysis of means
+## 	One-way analysis of means
 ## 
 ## data:  pss$wkhtot and pss$edu
 ## F = 40.16, num df = 4, denom df = 4643, p-value &lt; 2.2e-16</code></pre>
@@ -51,7 +54,7 @@ Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianz
   p.adj = &quot;holm&quot;  # Korrektur (Standardverwendung)
 ) </code></pre>
 <pre><code>## 
-##  Pairwise comparisons using t tests with pooled SD 
+## 	Pairwise comparisons using t tests with pooled SD 
 ## 
 ## data:  pss$wkhtot and pss$edu 
 ## 

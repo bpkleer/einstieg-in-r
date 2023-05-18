@@ -15,6 +15,12 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Der Einstichproben-t-Test wird berechnet, um zu testen, ob der empirische Wert signifikant vom wahren Wert $\mu$ abweicht. Du benötigst also Kenntnisse über $\mu$.
 
 Nimm an, dass das Statistikamt das offizielle Durchschnittsalter mit $36.8$ Jahren angibt. 

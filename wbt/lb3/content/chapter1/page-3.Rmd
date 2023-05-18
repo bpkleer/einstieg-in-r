@@ -26,6 +26,12 @@ mytable <- table(
 )
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Mit Zusammenhangsmaßen kannst du testen, ob und inwieweit zwei Variablen miteinander zusammenhängen. Als ein erstes Maß hast du in der Statistik-Vorlesung $\chi^2$ kennengelernt, dass prüft, ob ein Zusammenhang vorliegt. Als weiteres Maß für die Stärke eines Zusammenhangs kennst du Cramer's V. 
 
 ## $\chi^2$-Unabhängigkeitstest

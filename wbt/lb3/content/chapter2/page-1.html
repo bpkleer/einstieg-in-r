@@ -7,6 +7,9 @@ tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Ku
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Der Einstichproben-t-Test wird berechnet, um zu testen, ob der empirische Wert signifikant vom wahren Wert <span class="math inline">\(\mu\)</span> abweicht. Du benötigst also Kenntnisse über <span class="math inline">\(\mu\)</span>.</p>
 <p>Nimm an, dass das Statistikamt das offizielle Durchschnittsalter mit <span class="math inline">\(36.8\)</span> Jahren angibt.</p>
 <p>Welchen Wert nimmt das arithm. Mittel des Alters in unserem Datensatz an?
@@ -43,7 +46,7 @@ Im Datensatz wurden nur Personen <span class="math inline">\(\geq 16\)</span> be
   alternative = &quot;two.sided&quot;
 )  </code></pre>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  pss$agea
 ## t = 31.273, df = 4842, p-value &lt; 2.2e-16
@@ -75,7 +78,7 @@ t.test(
   alternative = &quot;greater&quot;
 )</code></pre>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  pss$agea
 ## t = 31.273, df = 4842, p-value &lt; 2.2e-16
@@ -92,7 +95,7 @@ t.test(
   alternative = &quot;less&quot;
 )</code></pre>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  pss$agea
 ## t = 31.273, df = 4842, p-value = 1

@@ -7,6 +7,9 @@ tags: ["kreuztabellen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passs
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Eine Kreuztabelle gibt Auskunft über eine bivariate Verteilung, also über die Verteilung auf zwei Variablen. Um eine Kreuztabelle zu bekommen, müssen wir nur eine zweite Variable in der <code>table()</code>-Funktion hinzufügen: Wir lassen uns hier eine Kreuztabelle zwischen der Zufriedenheit mit der Demokratie und dem Geschlecht ausgeben:</p>
 <pre class="r"><code>table(
   pss$stfdem, 
