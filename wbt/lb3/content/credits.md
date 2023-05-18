@@ -3,7 +3,7 @@ title: Credits
 disableToc: true
 ---
 
-## Contributors Lernblock 3 (WBT Statistik+: Einstieg in R leicht gemacht)
+## Contributors WBT Statistik+: Einstieg in R leicht gemacht
 
 {{% glcontributors %}}
 

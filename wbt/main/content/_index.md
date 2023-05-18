@@ -19,3 +19,11 @@ Hier geht es zu den einzelnen Lernblöcken:
 [Lernblock 4](./lb4/) (Vor- & Nachbereitung)
 
 [Lernblock 5](./lb5/) (Vor- & Nachbereitung)
+
+Über diesen Button {{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}
