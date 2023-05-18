@@ -5,6 +5,12 @@ menuTitle: "SPSS-Import" # Falls Titel zulang ist, hier Kurztitel
 tags: [".sav", "datei", "spss", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 {{%attachments style=\"grey\" title=\"Datensatz\" /%}}
 
 Die Basis-Funktionen in R können SPSS-Dateien nicht importieren. Das bedeutet, dass du jetzt eine weitere **library** benötigst, um eine Funktion zu haben, die die SPSS-Datei importieren kann. Hier gibt es eine Reihe von verschiedenen **libraries**, wir beschränken uns hier auf die **library** `foreign`. 

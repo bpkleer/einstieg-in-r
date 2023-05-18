@@ -19,6 +19,12 @@ pss <- readRDS("./data/pss.rds")
 sp <- readRDS("./data/sp.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Will man nur weitere Variablen in einen Datensatz hinzufügen, kann man auch hierfür `full_join()` nutzen. Wir haben zum Beispiel in einem weiteren Datensatz aus Panem, der einen neu eingeführten Social Score pro Person beinhaltet. Diese Daten wollen wir nun dem Datensatz **PSS** hinzufügen. Diese haben wir im Datensatz `sp` getrennt gespeichert und dort wird dieselbe ID-Variable genutzt, die auf die ID-Variable des Datensatzes `pss` matcht. Wir fügen jetzt die Socialpoints dem Datensatz `pss` mit `full_join()` hinzu. Schauen wir uns zuerst nochmal die zwei Datensätze an:
 
 ```{r points, eval=TRUE}

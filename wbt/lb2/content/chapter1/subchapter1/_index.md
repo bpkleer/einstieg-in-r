@@ -11,3 +11,9 @@ weight: 110
 # Von der Erhebung zum Datensatz
 
 In diesem Kapitel wiederholst du den Weg von der Datenerhebung zum Datensatz und lernst wie ein Datensatz in einer Datei aufgebaut ist. 
+
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}

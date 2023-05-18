@@ -20,6 +20,12 @@ pss <- readRDS("./data/pss.rds")
 pssMacro <- readRDS("./data/pssMacro.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Oftmals haben wir Datensätze auf der Mikroebene (z.B. European Social Survey), die wir mit Makro-Datensätzen (z.B. Wirtschaftsdaten auf Länderebene) kombinieren wollen. Hierfür bietet `dplyr` insgesamt vier Funktionen an, wobei `left_join()` in den meisten Anwendungsfällen genutzt wird. 
 
 Wir nehmen nun folgendes Beispiel: Wir haben zu unserem Datensatz des **PSS** einen zweiten Datensatz bei der Recherche gefunden, der den Anteil der von Armut betroffenen Bewohner eines Distrikts (`poverty`) und den Anteil der Wohnbevölkerung, der eine Mangelernährung aufweist (`nutrition`) aufführt.

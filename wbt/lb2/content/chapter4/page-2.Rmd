@@ -5,6 +5,12 @@ menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
 tags: ["for-loop", "loop"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Mit **Loops** (*Iterationen*) kann man Operationen wiederholen. Die Wiederholungen geschehen dabei *n*-Mal, wobei *n* ein ganzzahliger Laufwert ist (*integer*). Für die Wiederholungen gibt man einen Startwert fest. Wie oben bereits erwähnt, wendet man dies z.B. an, wenn man eigene Rekodierungen schreiben will ohne bereits bestehende Funktionen verwenden zu wollen.
 
 Wir können folgende Arten von Iterationen unterscheiden:

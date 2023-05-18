@@ -5,9 +5,11 @@ menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
 tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>In der Tabelle kann die Note jeder Person aus jeder Prüfung ausgelesen werden. Überlegt kurz, welche Variablen wir bei diesem Satz generieren möchten!</p>
 <pre class="r"><code>statclass</code></pre>
 <pre><code>##     name stat1 stat2  r spss
@@ -35,7 +37,7 @@ tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was a
   )
 
 statclassTidy</code></pre>
-<pre><code>## # A tibble: 12 x 3
+<pre><code>## # A tibble: 12 × 3
 ##    name   course grade
 ##    &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;
 ##  1 kim    r         13

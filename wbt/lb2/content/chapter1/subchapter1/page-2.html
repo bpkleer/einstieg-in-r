@@ -5,11 +5,13 @@ menuTitle: "Data frame" # Falls Titel zulang ist, hier Kurztitel
 tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <link href="/statsplus/lb2/rmarkdown-libs/pagedtable/css/pagedtable.css" rel="stylesheet" />
 <script src="/statsplus/lb2/rmarkdown-libs/pagedtable/js/pagedtable.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Jetzt lernst du den Aufbau einer Datentabelle kennen. Im Screenshot siehst du den Datensatz des <strong>PSS</strong> eingeschränkt auf die vier Beispielfragen (Variablen) von der vorherigen Seite.</p>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -25,14 +27,14 @@ Im 7. Dezil, richtig! In den Zellen der Datentabelle befinden sich also die ents
 <p>Prima, du kannst jetzt also eine Datentabelle bzw. ein <strong>data frame</strong>-Gerüst verstehen!
 {{% /expand %}}</p>
 <p>Du hast jetzt verstanden, wie eine Datentabelle aufgebaut ist, was sich in den Zeilen, Spalten und Zellen befindet. In R werden diese Datentabellen als Objekttyp <strong>data frame</strong> abgelegt.</p>
-<div class="figure">
-<img src="../img/df1.png" alt="" />
-<p class="caption">Beispiel data frame im Environment</p>
+<div class="float">
+<img src="../img/df1.png" alt="Beispiel data frame im Environment" />
+<div class="figcaption">Beispiel data frame im Environment</div>
 </div>
 <p>Im <strong>Environment</strong> siehst du, dass dies unter die Gruppe <strong>data</strong> fällt. Du siehst auch, dass das Objekt <em>ausklappbar</em> ist. Wenn du den Pfeil-Button drückst, erscheinen alle Variablen (jeweils mit einem <code>$</code> davor) auf, die in diesem neuem Objekt zusammengefasst sind. Es ist also einfach zu verstehen, dass ein <strong>data frame</strong> lediglich die Zusammenfassung alle Variablen (bzw. Vektoren in R) einer Befragung ist.</p>
 <p>Mit einem Doppelklick kannst du die Datenansicht öffnen. Dies ist einfach die Datentabelle, wie oben besprochen. In den Spalten befinden sich die Variablen und in den Zeilen die Fälle (außer erste Zeile!).</p>
-<div class="figure">
-<img src="../img/df3.png" alt="" />
-<p class="caption">Beispiel Datenansicht R</p>
+<div class="float">
+<img src="../img/df3.png" alt="Beispiel Datenansicht R" />
+<div class="figcaption">Beispiel Datenansicht R</div>
 </div>
 <p>Aber wie handhabst du nun einen Datensatz in R?</p>

@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Nachdem nun die gängigsten Funktionen vorgestellt wurden, stellen wir vor, wie die Modularisierung bzw. das **piping** mit `dplyr` funktioniert. Wie schon oben genannt ist ein immenser Vorteil von `dplyr`, dass die Operationen **gepipt** werden, also in einzelne Bausteine aufgeteilt werden, die leicht nachzuvollziehen sind. 
 
 Über das **Piping** werden Datensätze oder **tibbles** aus vorherigen Operationen weitergegeben. Dies erfolgt über den Operator `%>%`. Schauen wir ein erstes Beispiel an:

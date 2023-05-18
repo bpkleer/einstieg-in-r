@@ -5,14 +5,16 @@ menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
 tags: ["if-bedingung"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Der <strong>if</strong>-Ausdruck wird dann genutzt, wenn man einen Befehl unter bestimmten Bedingungen ausführen möchte. Dabei wird eine Bedingung (<em>condition</em>) überprüft und sofern diese zutrifft (<code>TRUE</code>), wird die angegebene Operation durchgeführt.</p>
 <p>Die Logik des einfachen <strong>if</strong>-Ausdrucks ist im Schaubild dargestellt:</p>
-<div class="figure">
-<img src="../img/if.PNG" style="width:50.0%" alt="" />
-<p class="caption">Logik der If-Bedingung</p>
+<div class="float">
+<img src="../img/if.PNG" style="width:50.0%" alt="Logik der If-Bedingung" />
+<div class="figcaption">Logik der If-Bedingung</div>
 </div>
 <p>Nehmen wir folgendes Beispiel: Wir haben die Studienmotivation eines Studierenden und möchten (ein Vektor <code>mot</code> mit einem einzigen Wert), sofern dieser auf der Skala (<span class="math inline">\(0\)</span>-<span class="math inline">\(10\)</span>) einen Wert größer gleich <span class="math inline">\(7\)</span> angegeben hat, die Bemerkung <em>sehr motiviert</em> ausgeben.</p>
 <pre class="r"><code>mot &lt;- 9
@@ -29,9 +31,9 @@ if (mot &gt;= 7) {
 <div id="if-else-ausdruck" class="section level3">
 <h3>If-Else-Ausdruck</h3>
 <p>Neben dem einfachen <strong>if</strong>-Ausdruck gibt es auch noch die <strong>else if</strong>-Ausdrücke, mit denen man weitere Bedingungen prüfen kann, falls die vorherige Bedingung nicht zutrifft. Hier durchläuft der Prüfprozess also mehrere Bedingungen. Dies ist im Schaubild dargestellt:</p>
-<div class="figure">
-<img src="../img/ifelse.PNG" style="width:50.0%" alt="" />
-<p class="caption">Logik der If-Bedingung</p>
+<div class="float">
+<img src="../img/ifelse.PNG" style="width:50.0%" alt="Logik der If-Bedingung" />
+<div class="figcaption">Logik der If-Bedingung</div>
 </div>
 <p>Für einen weiteren Fall eines Studierenden, der auf der Motivation nur <span class="math inline">\(5\)</span> angegeben hat, könnten wir folgende <strong>else if</strong>-Ausdruck schreiben:</p>
 <pre class="r"><code>mot &lt;- 5

@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")   
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Datensätze sind vereinfacht ausgedrückt eine Sammlung verschiedener Variablen in einer Datentabelle. In R bedeutet dies, dass wir verschiedene Vektoren gleicher Länge zu einer Datentabelle in einem neuem Objekt speichern. 
 
 {{% expand \"Warum haben die Vektoren in einer Datentabelle alle dieselbe Länge?\" %}}

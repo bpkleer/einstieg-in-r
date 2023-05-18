@@ -25,6 +25,12 @@ rm(x, y)
 pss <- readRDS("./data/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 ## Daten vorbereiten
 
 In aller Regel sind Vorarbeiten am Datensatz notwendig, um Analyseschritte durchzuführen. Diese Schritte sind oft von großer Bedeutung und auch recht zeitintensiv. 

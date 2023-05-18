@@ -5,9 +5,11 @@ menuTitle: "Neue Variablen" # Falls Titel zulang ist, hier Kurztitel
 tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Will man nur weitere Variablen in einen Datensatz hinzufügen, kann man auch hierfür <code>full_join()</code> nutzen. Wir haben zum Beispiel in einem weiteren Datensatz aus Panem, der einen neu eingeführten Social Score pro Person beinhaltet. Diese Daten wollen wir nun dem Datensatz <strong>PSS</strong> hinzufügen. Diese haben wir im Datensatz <code>sp</code> getrennt gespeichert und dort wird dieselbe ID-Variable genutzt, die auf die ID-Variable des Datensatzes <code>pss</code> matcht. Wir fügen jetzt die Socialpoints dem Datensatz <code>pss</code> mit <code>full_join()</code> hinzu. Schauen wir uns zuerst nochmal die zwei Datensätze an:</p>
 <pre class="r"><code>head(sp)</code></pre>
 <pre><code>##   socialpoints    id

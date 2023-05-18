@@ -7,6 +7,9 @@ tags: ["dplyr", "tidyverse", "piping"]  # Tags hiereinsetzen; Kurzwort, was auf 
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Nachdem nun die gängigsten Funktionen vorgestellt wurden, stellen wir vor, wie die Modularisierung bzw. das <strong>piping</strong> mit <code>dplyr</code> funktioniert. Wie schon oben genannt ist ein immenser Vorteil von <code>dplyr</code>, dass die Operationen <strong>gepipt</strong> werden, also in einzelne Bausteine aufgeteilt werden, die leicht nachzuvollziehen sind.</p>
 <p>Über das <strong>Piping</strong> werden Datensätze oder <strong>tibbles</strong> aus vorherigen Operationen weitergegeben. Dies erfolgt über den Operator <code>%&gt;%</code>. Schauen wir ein erstes Beispiel an:</p>
 <pre class="r"><code>pss &lt;- pss %&gt;%
@@ -139,6 +142,6 @@ meansDistriktEdu</code></pre>
 ##  8 Distrikt 5 ES-ISCED II            33.6
 ##  9 Distrikt 5 ES-ISCED III           33.2
 ## 10 Distrikt 5 ES-ISCED IV            32.2
-## # … with 19 more rows</code></pre>
+## # ℹ 19 more rows</code></pre>
 <p>Wir gehen jetzt nochmal einen Schritt zurück und schauen uns an, wie wir Datensätze teilen können. Dies ist relevant unter anderem in der Arbeit mit Sekundärdatensätze, da diese manchmal für mehr Personen erhoben wurden, als man selbst für seinen Forschungszweck benötigt.</p>
 </div>

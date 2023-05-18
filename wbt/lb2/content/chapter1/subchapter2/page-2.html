@@ -7,6 +7,9 @@ tags: [".txt", "datei", ".csv", "import"]  # Tags hiereinsetzen; Kurzwort, was a
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>{{%attachments style="grey" title="Datensatz" /%}}</p>
 <p>Als erstes werden wir globale Datensatz-Dateiformate importieren. Dies sind <code>.txt</code> und <code>.csv</code>. Beim Format <code>.csv</code> gibt es wieder eine Sprachenbesonderheit. Im Standard (englische Sprachversion am Computer) ist das Trennzeichen der Daten ein <code>,</code> (Komma), auf Computern mit deutscher Spracheinstellung weicht dies ab und das Datentrennzeichen ist ein <code>;</code> (Semikolon).</p>
 <div id="import-einer-.txt-datei" class="section level2">
@@ -36,7 +39,7 @@ In der Regel versuchen Forschenden Variablen möglichst eindeutig zu benennen. <
 <p>Es gibt eine Reihe von Helfer-Funktionen, um einen Überblick über importierte Daten zu bekommen. Diese wirst du jetzt kennenlernen.</p>
 <p>Um die Struktur des Datensatzes anzeigen zu lassen, ruft man die folgende Funktion auf:</p>
 <pre class="r"><code>str(exam)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    20 obs. of  4 variables:
+<pre><code>## &#39;data.frame&#39;:	20 obs. of  4 variables:
 ##  $ age     : int  21 29 27 27 34 34 28 23 30 21 ...
 ##  $ duration: num  0.889 0.889 1.111 1.778 1.778 ...
 ##  $ grade   : chr  &quot;A&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; ...
@@ -87,13 +90,13 @@ examcsv2 &lt;- read.csv2(
   header = TRUE
 )</code></pre>
 <p>Hier seht ihr einen Screenshot der zwei importierten Datensätze mit den unterschiedlichen Funktionen.</p>
-<div class="figure">
-<img src="../img/examcsv.png" alt="" />
-<p class="caption">exam mit read.csv()</p>
+<div class="float">
+<img src="../img/examcsv.png" alt="exam mit read.csv()" />
+<div class="figcaption">exam mit read.csv()</div>
 </div>
-<div class="figure">
-<img src="../img/examcsv2.png" alt="" />
-<p class="caption">exam mit read.csv2()</p>
+<div class="float">
+<img src="../img/examcsv2.png" alt="exam mit read.csv2()" />
+<div class="figcaption">exam mit read.csv2()</div>
 </div>
 <p>{{% expand "Schau dir die Screenshots an und überlege kurz (mit dem Wissen von oben), warum dies unterschiedlich importiert wird?" %}}
 Es liegt am Trennzeichen der Daten. Die Funktion <strong>read.csv()</strong> liest in meinem Fall die Daten korrekt, denn ich habe ein englischsprachiges Format und die Daten sind in der Datei mit einem Komma getrennt. Die Funktion <strong>read.csv2()</strong> nimmt ein deutschsprachgies Format als Standard und erwartet daher Semikolon als Daten-Trennzeichen. Da es dieses nicht findet, endet es einfach in jeder Zeile und schreibt nur eine Variable, in der die gesamten Daten mit dem Komma-Trennzeichen inkludiert sind.

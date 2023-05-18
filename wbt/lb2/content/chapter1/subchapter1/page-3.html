@@ -5,16 +5,18 @@ menuTitle: "Data frame in R" # Falls Titel zulang ist, hier Kurztitel
 tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb2/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Datensätze sind vereinfacht ausgedrückt eine Sammlung verschiedener Variablen in einer Datentabelle. In R bedeutet dies, dass wir verschiedene Vektoren gleicher Länge zu einer Datentabelle in einem neuem Objekt speichern.</p>
 <p>{{% expand "Warum haben die Vektoren in einer Datentabelle alle dieselbe Länge?" %}}
 Alle Befragten erhalten dieselben Fragen. Selbst wenn spezifische Fragengruppen nur einem Teil der Befragten präsentiert wurden, haben die anderen Befragten auch einen Wert auf dieser Variable. Nämlich einen <code>NA</code>-Wert. Sie haben also dann ein <em>missing value</em> auf dieser Variablen. Das geschieht auch, wenn Personen es ablehnen einzelne Fragen zu beantworten.
 {{% /expand %}}</p>
 <p>Damit du eine Übersicht über einen Datensatz erhältst, nutze die Funktion <code>str()</code>. <code>str</code> steht hierbei für <em>structure</em>.</p>
 <pre class="r"><code>str(pss)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    5000 obs. of  14 variables:
+<pre><code>## &#39;data.frame&#39;:	5000 obs. of  14 variables:
 ##  $ idno    : num  10000 10001 10002 10003 10004 ...
 ##  $ district: Factor w/ 5 levels &quot;Distrikt 1&quot;,&quot;Distrikt 5&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ gndr    : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 2 1 1 1 2 1 1 2 ...

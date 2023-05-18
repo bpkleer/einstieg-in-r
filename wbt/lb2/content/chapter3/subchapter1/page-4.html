@@ -7,6 +7,9 @@ tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was a
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Im nächsten Schritt nehmen wir nun an, dass die Datenerfassung getrennt nach Distrikt durchgeführt wurde und es somit fünf Teildatensätze gibt, die nun zu einem vollständigen Datensatz verbunden werden sollen. Dazu nutzen wir die Funktion <code>bind_rows()</code>. In unserem Beispiel haben alle fünf Teildatensätze genau die gleiche Anzahl an Variablen, die dazu auch noch genau gleich benannt sind! Mit dem Argument <code>.id</code> erstellen wir eine Variable names <code>"origin"</code>, die die Herkunft des Falles erfasst. Dies ist automatisch nummeriert. Mit <code>mutate()</code> machen wir daraus einen Faktor, der eine bessere Beschreibung beinhaltet (<em>process1</em>, <em>process2</em>, <em>process3</em>, <em>process4</em>, <em>process5</em>)</p>
 <pre class="r"><code>pssAll &lt;- pss1 %&gt;%
   bind_rows(
