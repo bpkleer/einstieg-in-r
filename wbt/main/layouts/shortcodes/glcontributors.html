@@ -24,7 +24,7 @@ padding-left: 4px ;
   {{ range .Site.Data.statsplus }}
   <div>
     <img src="{{.avatar_url}}" class="inline" width="32" height="32" style="height: 32px;height: 32px;margin-bottom:.25em; vertical-align:middle; ">
-    <label><a href="{{.html_url}}">@{{.name}}</a></label>
+    <label><a href="{{.web_url}}">@{{.name}}</a></label>
     <span class="contributions">{{.commits}} commits</span>
   </div>
   {{ end }}
