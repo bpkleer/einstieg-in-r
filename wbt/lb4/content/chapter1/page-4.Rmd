@@ -25,6 +25,12 @@ olsModel2 <- lm(
 )      
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 In den Sozialwissenschaften nutzen wir oftmals Variablen mit nominalem oder ordinalem Skalenniveau. Diese können wir auch in das **lineare Regressionsmodell** als unabhängige Variable hinzufügen. Wir müssen nur verstehen, welchen zusätzlichen Effekt wir berechnen. Wir müssen *Dummy*-Variablen kreieren, die den Unterschied einer Ausprägung auf der Variablen in Referenz zu einer anderen Ausprägung angeben (Referenzkategorie). In der Funktion `lm()` ist dies leicht umzusetzen.
 
 Wir möchten die Variable `gndr` mit in unser Modell aufnehmen (*female*/*male*). Welche theoretische Annahme können wir über den Effekt treffen?

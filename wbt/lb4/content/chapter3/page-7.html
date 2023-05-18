@@ -9,6 +9,9 @@ tags: ["regressionsdiagnostik", "einflussreiche fälle"]  # Tags hiereinsetzen; 
 <link href="/statsplus/lb4/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Um auf einflussreiche Fälle zu prüfen, nutzen wir wieder die Resdiuen. Hier sind zwei Werte relevant: <strong>Leverage</strong> und <strong>Cook’s D(istance)</strong>. Da <strong>Cook’s D(istance)</strong> in Teilen auf dem <strong>leverage</strong> beruht, fokussieren wir direkt <strong>Cook’s D</strong>.</p>
 <p>{{% tabs %}}
 {{% tab name="Leverage" %}}</p>
@@ -121,7 +124,7 @@ for (i in 1:dim(pss2)[1]) {
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 1.536 on 4154 degrees of freedom
-## Multiple R-squared:  0.482,  Adjusted R-squared:  0.4818 
+## Multiple R-squared:  0.482,	Adjusted R-squared:  0.4818 
 ## F-statistic:  1933 on 2 and 4154 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Doch weicht das nun ab vom alten Modell? Dazu nehmen wir einfach die Funktion <code>modelsummary()</code>, die wir schon kennengelernt haben. Denn in einer Tabelle können wir die Werte besser vergleichen. Wichtig ist hierbei zu prüfen, ob sich die Standardfehler bzw. die Koeffizienten ändern.</p>
 <pre class="r"><code>modelsummary(
@@ -137,10 +140,10 @@ for (i in 1:dim(pss2)[1]) {
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -199,12 +202,12 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.013)
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.015)
 </td>
 </tr>

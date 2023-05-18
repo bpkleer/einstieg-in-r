@@ -21,6 +21,13 @@ olsModel2 <- lm(
   data = pss
 )      
 ```
+
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Um auf einflussreiche Fälle zu prüfen, nutzen wir wieder die Resdiuen. Hier sind zwei Werte relevant: **Leverage** und **Cook's D(istance)**. Da **Cook's D(istance)** in Teilen auf dem **leverage** beruht, fokussieren wir direkt **Cook's D**.
 
 {{% tabs %}}

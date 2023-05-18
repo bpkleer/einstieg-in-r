@@ -31,6 +31,12 @@ olsModel3 <- lm(
 )           
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wir können nicht nur dichotome, sondern auch polytome kategorielle Variablen in das Regressionsmodell hinzufügen. Wir möchten nun die Variable `edu` ins Modell aufnehmen. Diese Variable beinhaltet den höchsten Bildungsabschluss der befraten Person. Welche theoretischen Annahmen könnten wir für den Effekt von `edu` treffen?
 
 ## Berechnen des Modells

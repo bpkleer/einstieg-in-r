@@ -7,6 +7,9 @@ tags: ["regression", "kategoriell", "dichotom"]  # Tags hiereinsetzen; Kurzwort,
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>In den Sozialwissenschaften nutzen wir oftmals Variablen mit nominalem oder ordinalem Skalenniveau. Diese können wir auch in das <strong>lineare Regressionsmodell</strong> als unabhängige Variable hinzufügen. Wir müssen nur verstehen, welchen zusätzlichen Effekt wir berechnen. Wir müssen <em>Dummy</em>-Variablen kreieren, die den Unterschied einer Ausprägung auf der Variablen in Referenz zu einer anderen Ausprägung angeben (Referenzkategorie). In der Funktion <code>lm()</code> ist dies leicht umzusetzen.</p>
 <p>Wir möchten die Variable <code>gndr</code> mit in unser Modell aufnehmen (<em>female</em>/<em>male</em>). Welche theoretische Annahme können wir über den Effekt treffen?</p>
 <p>{{% expand "Was gleichen wir in der Regressionsgleichung an?" %}}</p>
@@ -48,7 +51,7 @@ summary(olsModel3)</code></pre>
 ## 
 ## Residual standard error: 1.732 on 4889 degrees of freedom
 ##   (107 observations deleted due to missingness)
-## Multiple R-squared:  0.4601, Adjusted R-squared:  0.4598 
+## Multiple R-squared:  0.4601,	Adjusted R-squared:  0.4598 
 ## F-statistic:  1389 on 3 and 4889 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>{{% tabs %}}
 {{% tab name="Frage" %}}

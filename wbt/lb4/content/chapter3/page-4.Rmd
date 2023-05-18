@@ -22,6 +22,13 @@ olsModel2 <- lm(
   data = pss
 )      
 ```
+
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Die dritte Annahme ist **Homoskedastizität**. **Homoskedastizität** bedeutete, dass die Varianz der Resdiuen annähernd gleich ist und nicht variiert. 
 
 Um zu diagnostizieren, ob die Varianzen der Residuen gleiche Varianzen aufweisen, ändern wir das zweite Argument in der Funktion `plot()` auf den Wert `3`:

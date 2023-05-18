@@ -5,9 +5,11 @@ menuTitle: "Homoskedastizität" # Falls Titel zulang ist, hier Kurztitel
 tags: ["regressionsdiagnostik", "homoskedastizitaet"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb4/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Die dritte Annahme ist <strong>Homoskedastizität</strong>. <strong>Homoskedastizität</strong> bedeutete, dass die Varianz der Resdiuen annähernd gleich ist und nicht variiert.</p>
 <p>Um zu diagnostizieren, ob die Varianzen der Residuen gleiche Varianzen aufweisen, ändern wir das zweite Argument in der Funktion <code>plot()</code> auf den Wert <code>3</code>:</p>
 <pre class="r"><code>plot(
@@ -47,7 +49,7 @@ tags: ["regressionsdiagnostik", "homoskedastizitaet"]  # Tags hiereinsetzen; Kur
 
 bptest(olsModel2)</code></pre>
 <pre><code>## 
-##  studentized Breusch-Pagan test
+## 	studentized Breusch-Pagan test
 ## 
 ## data:  olsModel2
 ## BP = 1.8224, df = 2, p-value = 0.402</code></pre>

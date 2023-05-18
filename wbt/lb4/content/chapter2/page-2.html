@@ -5,15 +5,17 @@ menuTitle: "Export" # Falls Titel zulang ist, hier Kurztitel
 tags: ["regression", "export", "regressionstabelle", "regressionsgrafik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb4/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 <script src="/statsplus/lb4/rmarkdown-libs/kePrint/kePrint.js"></script>
 <link href="/statsplus/lb4/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Oftmals sieht man in Veröffentlichungen nicht nur Regressionstabellen, sondern auch Grafiken der einzelnen Regressionskoeffizienten und deren Konfidenzintervalle. Wir haben bisher nur die Tabellen in der R-Ausgabe. Jetzt lernst du, wie du die Tabellen in dein Text-Dokument für deine Abschlussarbeit oder Hausarbeit bekommst und wie du eine einfache Grafik der Regressionskoeffizienten darstellt. Im letzten Lernblock werden wir dann auch hierzu weiterführende Grafiken einführen.</p>
 <div id="modelle-in-textdateien-exportieren" class="section level2">
 <h2>Modelle in Textdateien exportieren</h2>
-<p>Es gibt verschiedene <strong>libraries</strong> mit denen Ergebnisse aus R Regressionsmodelle in verschiedene Dateiformate exportiert werden können (z.B. als <em>txt</em>-Datei, als Bilddatei, oder als <em>tex</em> Datei für <span class="math inline">\(\LaTeX\)</span>). In diesem Abschnitt wird die <strong>library</strong> <code>modelsummary</code> dargestellt, die es erleichtert Modelle als R grafisch gut aufbereitet in verschiedene Dateiformate zu exportieren. Falls du dich für alternative <strong>libraries</strong> interessiert, gibt es hier zwei Alternativen: <a href="https://github.com/leifeld/texreg"><code>texreg</code></a> und <a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf"><code>stargazer</code></a> vorgestellt.</p>
+<p>Es gibt verschiedene <strong>libraries</strong> mit denen Ergebnisse aus R Regressionsmodelle in verschiedene Dateiformate exportiert werden können (z.B. als <em>txt</em>-Datei, als Bilddatei, oder als <em>tex</em> Datei für <span class="math inline">\(\LaTeX\)</span>). In diesem Abschnitt wird die <strong>library</strong> <code>modelsummary</code> dargestellt, die es erleichtert Modelle aus R grafisch gut aufbereitet in verschiedene Dateiformate zu exportieren. Falls du dich für alternative <strong>libraries</strong> interessiert, gibt es hier zwei Alternativen: <a href="https://github.com/leifeld/texreg"><code>texreg</code></a> und <a href="https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf"><code>stargazer</code></a> vorgestellt.</p>
 <p>Wir können aus der Konsole nicht einfach per <em>copy &amp; paste</em> Tabellen oder Ergebnisse in ein Text-Dokument übertragen. Die <strong>library</strong> <code>modelsummary</code> ermöglicht aber den Export von Regressionstabellen in verschiedene Formate, die dann in Word oder <span class="math inline">\(LaTeX\)</span> genutzt werden können.</p>
 <p>Zuerst musst du die <strong>library</strong> installieren. Dieses Mal fügen wir ein zweites Argument hinzu: <code>dependencies = TRUE</code>. Damit geben wir an, dass alle <strong>libraries</strong>, die <code>modelsummary</code> benötigt und noch nicht installiert sind, automatisch mitinstalliert werden sollen.</p>
 <pre class="r"><code>install.packages(
@@ -30,7 +32,7 @@ library(&quot;modelsummary&quot;)</code></pre>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr>
 </thead>
@@ -59,9 +61,9 @@ stfeco
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.014)
 </td>
 </tr>
@@ -121,12 +123,21 @@ F
 4153.153
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Auch kann man ganz einfach mehrere Modelle gleichzeitig ausgeben lassen. So z.B. die beiden Modelle zeitgleich. Denn die Modelle bauen ja aufeinander auf. Deshalb macht es Sinn, diese in einer Tabelle darzustellen.</p>
 <pre class="r"><code>modelsummary(
-  list(olsModel, 
-       olsModel2
+  list(
+    olsModel, 
+    olsModel2
   )
 )</code></pre>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -135,10 +146,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -196,11 +207,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.013)
 </td>
 </tr>
@@ -281,6 +292,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Alternativ kann man die Liste vorher selbst in einem Objekt speichern und dann das Objekt in <code>modelsummary()</code> aufrufen:</p>
@@ -356,10 +378,10 @@ modelsummary(
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -417,11 +439,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.0132)
 </td>
 </tr>
@@ -500,6 +522,17 @@ F
 </td>
 <td style="text-align:center;">
 2081.151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
 </td>
 </tr>
 </tbody>
@@ -516,10 +549,10 @@ modelsummary(
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -577,11 +610,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.0132)
 </td>
 </tr>
@@ -662,6 +695,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Alternativ kann man auch die wissenschaftliche Notation nutzen:</p>
@@ -676,10 +720,10 @@ modelsummary(
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -737,11 +781,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (1.3188e−02)
 </td>
 </tr>
@@ -822,6 +866,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Wenn man im Output tatsächlich vom Dezimalzeichen <code>.</code> zu <code>,</code> wechseln möchte, muss man dies global ändern. <code>modelsummary()</code> übernimmt diese Einstellung dann. <strong>Wichtig:</strong> Du solltest das anschließend wieder ändern!</p>
@@ -837,7 +892,7 @@ modelsummary(
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 </tr>
 </thead>
@@ -866,9 +921,9 @@ stfeco
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0,01)
 </td>
 </tr>
@@ -928,6 +983,14 @@ F
 4153,153
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1,73
+</td>
+</tr>
 </tbody>
 </table>
 <pre class="r"><code>options(OutDec = &quot;.&quot;)</code></pre>
@@ -948,10 +1011,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -979,12 +1042,12 @@ stfeco
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 trstlgl
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 0.0 [−0.1, 0.0]
 </td>
 </tr>
@@ -1065,6 +1128,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Wir geben nun einfach den Regressionskoeffizienten plus Signifikanzsternchen aus:</p>
@@ -1080,10 +1154,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1111,12 +1185,12 @@ stfeco
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 trstlgl
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 0.0**
 </td>
 </tr>
@@ -1195,6 +1269,17 @@ F
 </td>
 <td style="text-align:center;">
 2081.151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
 </td>
 </tr>
 </tbody>
@@ -1213,10 +1298,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1244,12 +1329,12 @@ stfeco
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 trstlgl
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 0.0**
 </td>
 </tr>
@@ -1330,11 +1415,22 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 <tfoot>
 <tr>
 <td style="padding: 0; " colspan="100%">
-<sup></sup> <span class="math inline">\(^{*} p&amp;lt; 0.1\)</span>, <span class="math inline">\(^{**} p&amp;lt;0.05\)</span>, <span class="math inline">\(^{***} p&amp;lt;0.01\)</span>
+<sup></sup> $^{*} p
 </td>
 </tr>
 </tfoot>
@@ -1344,18 +1440,16 @@ F
   models, 
   stars = TRUE # standardmäßig an!
 ) </code></pre>
-<pre><code>## Warning: In version 0.8.0 of the `modelsummary` package, the default significance markers produced by the `stars=TRUE` argument were changed to be consistent with R&#39;s defaults.
-## This warning is displayed once per session.</code></pre>
 <table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table">
 <thead>
 <tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1413,11 +1507,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.013)
 </td>
 </tr>
@@ -1498,6 +1592,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 <tfoot>
 <tr>
@@ -1520,10 +1625,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1581,11 +1686,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 [−0.1, 0.0]
 </td>
 </tr>
@@ -1664,6 +1769,17 @@ F
 </td>
 <td style="text-align:center;">
 2081.151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
 </td>
 </tr>
 </tbody>
@@ -1688,10 +1804,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1749,11 +1865,11 @@ trstlgl
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 [−0.1, 0.0]
 </td>
 </tr>
@@ -1832,6 +1948,17 @@ F
 </td>
 <td style="text-align:center;">
 2081.151
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
 </td>
 </tr>
 </tbody>
@@ -1858,10 +1985,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -1911,10 +2038,10 @@ t = 7.261
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-p = 0.000
+p =
 </td>
 <td style="text-align:center;">
-p = 0.000
+p =
 </td>
 </tr>
 <tr>
@@ -1962,10 +2089,10 @@ t = 64.468
 <td style="text-align:left;">
 </td>
 <td style="text-align:center;">
-p = 0.000
+p =
 </td>
 <td style="text-align:center;">
-p = 0.000
+p =
 </td>
 </tr>
 <tr>
@@ -2006,11 +2133,11 @@ t = −3.194
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 p = 0.001
 </td>
 </tr>
@@ -2091,6 +2218,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 <p>Oftmals wollen wir in Darstellungen nicht die Variablennamen aus dem Datensatz anzeigen lassen, sondern bessere Strings, die es der Leser:in erleichtern die Tabelle zu verstehen. Hierzu nutzen wir das Argument <code>coef_rename</code>:</p>
@@ -2106,10 +2244,10 @@ F
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Model 1
+ (1)
 </th>
 <th style="text-align:center;">
-Model 2
+  (2)
 </th>
 </tr>
 </thead>
@@ -2167,11 +2305,11 @@ Vertrauen Rechtssystem
 </td>
 </tr>
 <tr>
-<td style="text-align:left;box-shadow: 0px 1px">
+<td style="text-align:left;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 </td>
-<td style="text-align:center;box-shadow: 0px 1px">
+<td style="text-align:center;box-shadow: 0px 1.5px">
 (0.013)
 </td>
 </tr>
@@ -2252,6 +2390,17 @@ F
 2081.151
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+RMSE
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+<td style="text-align:center;">
+1.73
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -2275,7 +2424,7 @@ library(&quot;dotwhisker&quot;)</code></pre>
 )</code></pre>
 <p><img src="/statsplus/lb4/chapter2/page-2_files/figure-html/dwplot2-1.png" width="672" /></p>
 <p>So kannst du auch besser sehen, ob sich Koeffizienten verändern, wenn du zusätzliche Variable oder Kontrollvariablen zum Modell hinzufügst.</p>
-<p>Das sieht noch etwas unschön aus und du kannst das leicht mit <code>ggplot</code> überarbeite: Du siehst hier nun ein Beispiel, wie es genau funktioniert siehst du im Lernblock 5.</p>
+<p>Das sieht noch etwas unschön aus und du kannst das leicht mit <code>ggplot</code> überarbeiten: Du siehst hier nun ein Beispiel, wie es genau funktioniert siehst du im Lernblock 5.</p>
 <p>Wir fügen bei <strong>0</strong> eine Linie ein (Signifikanz), wir ändern die Achsenbeschriftung auf der y-Achese und wir ändern die Skala auf der x-Achse und fügen Titel ein.</p>
 <pre class="r"><code>dwplot(
   list(

@@ -20,6 +20,12 @@ olsModel2 <- lm(
 )      
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Um die Annahmen einer linearen Regression zu prüfen, kann man sich einen Plot von den geschätzten Werten (*fitted*) und den Residuen ausgeben lassen. In diesem Plot ist eine Linie eingezeichnet. Sofern diese Linie nahezu horizontal ist, kann die Annahme als erfüllt gewertet werden. 
 
 Zur Plot-Erstellung nutzt die Funktion `plot()`, in der du im ersten Argument das zu testende Modell angibst und im zweiten Argument eine `1` (Wahl eines bestimmten Plots, hier `Residuals vs. Fitted`). 

@@ -19,6 +19,13 @@ olsModel2 <- lm(
   data = pss
 )      
 ```
+
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Um zu prüfen, ob die Residuen normalverteilt mit Erwartungswert $E=0$ sind, rufen wir den sogenannten *Normal-Q-Q*-Plot auf. Dazu ändern wir einfach das zweite Argument in der Funktion `plot()` einfach auf den Wert `2`:
 
 ```{r assumption2, eval = TRUE}

@@ -5,9 +5,11 @@ menuTitle: "Stand. Koeffizienten" # Falls Titel zulang ist, hier Kurztitel
 tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb4/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>In Statistik I hast du ja bereits die z-Standardisierung kennengelernt und Verteilungen von Variablen besser vergleichen zu können. Die z-Standardisierung rekodiert eine Variable auf die Einheit Standardabweichung, so dass Variablen, die z-standardisiert sind, vergleichbar sind.</p>
 <p>Nicht rekodierte Variablen liefern in R auch nicht-standardisierte Regressionskoeffizienten. Du hast dies an der Interpretation der Regressionsergebnisse gesehen: Du hast immer in der Einheit der Variablen ausgewertet. Nachteil von nicht-standardisierten Variablen ist, dass die Effekte nicht in der Stärke untereinander vergleichbar sind. Dies geht nur mit standardisierten Variablen.</p>
 <p>In manchen (oft komplexeren) Modellen möchten wir die Stärke der einzelnen unabhängigen Variablen bewerten. Da die Variablen nicht dieselbe Einheit besitzen, ist dies wie oben erklärt nicht so einfach möglich. Wir können die Variablen aber standardisieren, so dass alle Variablen dieselbe Einheit besitzen (Standardabweichungen). Dazu nutzt du am besten die Funktion <code>scale()</code> aus dem <strong>tidyverse</strong> (<code>dplyr</code>). In komplexeren Regressionsmodellen oder erweiterten Modellen (wie <em>Multi-Level-Modellen</em>) standardisiert man die Variablen meist vor der Berechnung des Modells.</p>
@@ -42,7 +44,7 @@ tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiere
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.7352 on 4890 degrees of freedom
-##   (107 Beobachtungen als fehlend gelöscht)
-## Multiple R-squared:  0.4598, Adjusted R-squared:  0.4596 
+##   (107 observations deleted due to missingness)
+## Multiple R-squared:  0.4598,	Adjusted R-squared:  0.4596 
 ## F-statistic:  2081 on 2 and 4890 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>Ergebnis</strong>: Mit jedem Anstieg um eine Standardabweichung in <code>stfeco</code> steigt <code>stfdem</code> um <span class="math inline">\(0.697244\)</span> Standardabweichungen. Wie zu sehen ist, ist die Interpretation etwas schwerfälliger. Aber nun können die einzelnen Effekte zwischen metrischen Variablen verglichen werden. Es wird sichtbar, dass der Effekt von <code>stfeco</code> stärker ist als der von <code>trstlgl</code> (<span class="math inline">\(0.697244 &gt; |-0.033592|\)</span>).</p>

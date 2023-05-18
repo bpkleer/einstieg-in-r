@@ -7,6 +7,9 @@ tags: ["regression", "multivariat"]  # Tags hiereinsetzen; Kurzwort, was auf der
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>In der Regel berechnen wir keine bivariaten Modell in den Sozialwissenschaften, da Ursache-Wirkungs-Relationen in sozialen Phänomenen nie bivariat sind. Das vorherige Modell diente lediglich zum leichteten Zugang.</p>
 <p>Nun erweitern wir das Modell und berechnen eine <strong>multivariate lineare Regression</strong>. Wir möchten die Variable <code>trstlgl</code> in das Modell einfügen. Welche Effekt erwartet wir theoretisch von der Variable <code>trstlgl</code>?</p>
 <pre class="r"><code>cor(
@@ -49,7 +52,7 @@ summary(olsModel2)</code></pre>
 ## 
 ## Residual standard error: 1.732 on 4890 degrees of freedom
 ##   (107 observations deleted due to missingness)
-## Multiple R-squared:  0.4598, Adjusted R-squared:  0.4596 
+## Multiple R-squared:  0.4598,	Adjusted R-squared:  0.4596 
 ## F-statistic:  2081 on 2 and 4890 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>{{% tabs %}}
 {{% tab name="Aufgabe" %}}

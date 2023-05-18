@@ -7,6 +7,9 @@ tags: ["regression", "bivariat", "regressionskoeffizienten", "p-wert"]  # Tags h
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Wir nutzen jetzt wieder den Datensatz <strong>PSS</strong>, den wir schon während der gesamten Übung genutzt haben. Wir möchten nun testen, inwieweit die Zufriedenheit mit der ökonomischen Leistung die Zufriedenheit mit der Demokratie erklärt. Die zwei Variablen, die du daher benötigst für diese lineare Regression sind <code>stfeco</code> und <code>stfdem</code>. Die theoretische Prämisse dahinter ist, dass Personen, die ökonomisch zufrieden sind, auch zufriedener mit dem politischen System in Gänze sind.</p>
 <p>{{% expand "Wie sieht die Gleichung für diesen Fall aus?" %}}</p>
 <p><span class="math display">\[Y = \hat{\beta_0} + \hat{\beta_1}*X_1 + \hat{\varepsilon}\]</span></p>
@@ -54,7 +57,7 @@ Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen änder
 ## 
 ## Residual standard error: 1.733 on 4902 degrees of freedom
 ##   (96 observations deleted due to missingness)
-## Multiple R-squared:  0.4587, Adjusted R-squared:  0.4585 
+## Multiple R-squared:  0.4587,	Adjusted R-squared:  0.4585 
 ## F-statistic:  4153 on 1 and 4902 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="interpretation-der-koeffizienten" class="section level2">
@@ -115,9 +118,9 @@ Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen änder
 <p>Zur globalen Bewertung der Modellgüte wird oftmals das Bestimmtheitsmaß <span class="math inline">\(R^2\)</span> angegeben. <span class="math inline">\(R^2\)</span> liefert die Information, wie viel der Varianz der abhängigen Variablen durch das Modell erklärt werden kann.</p>
 <p>Die Gleichung lautet:</p>
 <p><span class="math display">\[R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{erklärte \, Varianz}{gesamte \, Varianz}\]</span></p>
-<div class="figure">
-<img src="../img/r2.png" alt="" />
-<p class="caption"><span class="math inline">\(R^2\)</span></p>
+<div class="float">
+<img src="../img/r2.png" alt="R^2" />
+<div class="figcaption"><span class="math inline">\(R^2\)</span></div>
 </div>
 <p>Die Grafik stellt die Formel nochmal dar: die erklärte Varianz ist die Summe der quadrierte Abstände zwischen geschätztem Wert und dem Mittelwert. Die gesamte Varianz ist die Summe der quadrierten Abstände zwischen beobachtetem Wert und dem Mittelwert.</p>
 <p>{{% tabs %}}
@@ -141,7 +144,7 @@ Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen änder
 ## 
 ## Residual standard error: 1.733 on 4902 degrees of freedom
 ##   (96 observations deleted due to missingness)
-## Multiple R-squared:  0.4587, Adjusted R-squared:  0.4585 
+## Multiple R-squared:  0.4587,	Adjusted R-squared:  0.4585 
 ## F-statistic:  4153 on 1 and 4902 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>{{% /tab %}}
 {{% tab name="Auflösung" %}}</p>

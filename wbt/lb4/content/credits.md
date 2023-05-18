@@ -32,3 +32,8 @@ And a special thanks to [vjeantet](https://github.com/vjeantet) for his work on 
 * [Netlify](https://www.netlify.com) - Continuous deployement and hosting of this documentation
 * [Hugo](https://gohugo.io/)
 
+{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} 
+
+{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}
+
+{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}

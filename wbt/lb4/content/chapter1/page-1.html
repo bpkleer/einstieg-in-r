@@ -7,6 +7,9 @@ tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsier
 
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Mit einer <strong>linearen Regression</strong> schätzen wir die kausale Beziehung zwischen einer (oder mehr) unabhängigen Variablen und einer abhängigen Variable. Das Modell wird i.d.R. mit dem Verfahren <em>Ordinary-Least-Squares</em> (OLS) geschätzt und so erhalten wir den besten linearen Schätzer (<em>Best Linear Unbiased Estimator - BLUE</em>). Dies gilt nur bei Zutreffen der Annahmen.</p>
 <p>Basierend auf theoretischen Annahmen oder empirischer Evidenz anderer Forscher:innen (<em>state of the art</em>) schätzen wir ein Modell. Die unabhängigen Variablen werden oftmals geteilt in Kontrollvariablen und Variablen, über die wir theoretische Annahmen testen möchten.</p>
 <p>Was sollte aus der Erinnerung der Statistik-Vorlesungen hängen geblieben sein?</p>
@@ -41,9 +44,9 @@ tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsier
 <p>In diesem Beispiel nutzen wir einen fiktiven Datensatz <code>statistics</code>, der unter anderem die Note der Statistik I und die Note der Statistik II Prüfung von Studierenden enthält. Wir möchten ein Modell berechnen, in dem wir einen Effekt der Note in der Statistik I Prüfung (<code>grade</code>) auf die Note in der Statistik II Prüfung (<code>grade3</code>) berechnen.</p>
 <p>Was könnte unsere theoretische Annahme dafür sein?</p>
 <p>Eine lineare Beziehung können wir über ein <strong>Scatterplot</strong> testen. Wie wir das erstellen, lernen wir im letzten Lernblock!</p>
-<div class="figure">
-<img src="../img/reg1.png" alt="" />
-<p class="caption">Lineare Beziehung</p>
+<div class="float">
+<img src="../img/reg1.png" alt="Lineare Beziehung" />
+<div class="figcaption">Lineare Beziehung</div>
 </div>
 </div>
 <div id="grundlegende-mathematik" class="section level2">

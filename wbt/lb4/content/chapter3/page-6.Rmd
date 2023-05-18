@@ -22,6 +22,12 @@ olsModel2 <- lm(
 )       
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 **Multikollinearität** bedeutet, dass unter den unabhängigen Variablen lineare Abhängigkeiten vorliegen. Dies prüfst du über den *variance inflation factor* (**VIF**). Wenn der Wert des **VIF** über $10$ liegt, dann ist die **Multikollinearität** hoch und die Schätzung verzerrt (andere empfehlen Richtwert $5$).
 
 Formel des **VIF**:
