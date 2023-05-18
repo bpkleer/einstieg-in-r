@@ -5,15 +5,17 @@ weight: 301  # Individuelles Gewicht
 tags: ["gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Nehmen wir ein einfaches Beispiel: Ihr arbeitet in einer Projektgruppe an einer empirischen Hausarbeit und schreibt auch Code. Ihr habt es bis zu einer finalen Version des Skripts geschafft und macht nun eine finale Kontrolle.</p>
 <p>Dazu teilt A die eigentliche finale Version mit B, C, D. C ist übereifrig und korrigiert noch an einer Stelle und schickt eine weitere finale Version zurück an A, B und D. D findet wiederum einen weiteren Fehler und überarbeitet die finale Version von Person C und schickt sie wieder an A, B und C. B dagegen ist etwas durcheinander und bearbeitet die erste finale Version von A und schickt diese rum an A, C und D.</p>
 <p>Allein vom Text her müsste es jetzt ein Chaos in deinem Kopf geben und du kennst das sicher aus Gruppenarbeiten. In dem Bild unten ist das ganze auch nochmal grafisch dargestellt.</p>
-<div class="figure">
-<img src="../img/projectwork.gif" alt="" />
-<p class="caption">Ablauf finale Version</p>
+<div class="float">
+<img src="../img/projectwork.gif" alt="Ablauf finale Version" />
+<div class="figcaption">Ablauf finale Version</div>
 </div>
 <p>Was hierbei klar wird ist, dass (insbesondere, aber nicht nur) am Ende eines Projekts es elegantere Wege gibt als Dateien per E-Mail oder per Cloud-Server (wie Hessenbox) zu teilen. Auch mit Cloud-Servern wie Hessenbox oder Dropbox ist das Chaos nicht in Gänze zu vermeiden, da hier die synchrone Bearbeitung oftmals zu Problemen führt. Und genau da setzt <strong>gitlab</strong> für uns an.</p>
 <p><strong>Gitlab</strong> ist eine Distribution von <strong>git</strong> (neben z.B. <a href="https://github.com">github</a>), die sowohl in der Wirtschaft als auch in der Wissenschaft genutzt wird. <strong>Gitlab</strong> bietet einen umfangreichen Workflow an, wir beschränken uns auf das wesentliche (Teilen und Bearbeiten von Textdateien). Dennoch ist es hilfreich, hier nun einen Einstieg in <strong>Gitlab</strong> zu haben, da es insbesondere in der (IT-)Projektarbeit von vielen Unternehmen genutzt wird.</p>

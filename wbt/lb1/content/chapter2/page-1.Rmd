@@ -5,6 +5,12 @@ menuTitle: "Wertetypen"
 tags: ["datentypen", "numeric", "integer", "character", "boolean"]
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wir haben bereits kennengelernt, dass wir direkt Rechnungen in R ausführen können bzw. das Ergebnis direkt in ein Objekt speichern können. 
 
 Wir können aber auch direkt Werte in Objekte speichern, dabei unterscheiden wir vier verschiedene Wertetypen:

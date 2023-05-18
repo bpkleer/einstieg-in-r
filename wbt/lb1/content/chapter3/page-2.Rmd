@@ -5,6 +5,12 @@ menuTitle: "Login" # Falls Titel zulang ist, hier Kurztitel
 tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 An der JLU gibt es eine eigene **gitlab**-Distribution, auf der du dich einfach mit deiner s-/j-Kennung einloggen kannst. Falls du das noch nicht gemacht hast, hole es direkt nach und schreib einen der beiden Tutor:innen kurz deine s-/j-Kennung per E-Mail ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) oder [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)). 
 
 Und hier ist der Link zum Login: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)

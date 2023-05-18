@@ -5,6 +5,12 @@ menuTitle: "Kursmaterialien" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Die Kursmaterialien sind als Projekt in RStudio angelegt: **course materials** (im Workspace *Stats<sup>+</sup>: Einstieg in R*). 
 
 Als erstes legst du dir eine eigene Kopie des Projekts an, wie zuvor mit **firststeps**. 

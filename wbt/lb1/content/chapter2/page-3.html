@@ -5,9 +5,11 @@ menuTitle: "Faktoren" # Falls Titel zulang ist, hier Kurztitel
 tags: ["datentypen" , "faktoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p><strong>Faktoren</strong> sind spezielle Vektoren, die vor allem für nominale und ordinale Variablen in den Sozialwissenschaften genutzt werden. <strong>Faktoren</strong> beinhalten <strong>levels</strong>, die die Beschreibung der Werte beinhalten (in SPSS nennt man dies <em>value labels</em>). Den wesentlichen Unterschied zu <strong>character</strong>-Vektoren können wir mit der Funktion <code>as.factor()</code> und dem Objekt <code>char</code> schnell erkennen.</p>
 <pre class="r"><code>as.factor(char)</code></pre>
 <pre><code>## [1] Taipeh Seoul  Berlin Taipeh
@@ -47,9 +49,9 @@ gradeOrd</code></pre>
 <pre><code>## [1] A C D B C A
 ## Levels: D &lt; C &lt; B &lt; A</code></pre>
 <p>Im Environment sehen wir dann bei der Eigenschaft <code>Ord. factor</code> und wiederum die Angabe der <strong>Levels</strong> und deren Ordnung.</p>
-<div class="figure">
-<img src="../img/faktor2.png" alt="" />
-<p class="caption">Ordered Factor im Environment</p>
+<div class="float">
+<img src="../img/faktor2.png" alt="Ordered Factor im Environment" />
+<div class="figcaption">Ordered Factor im Environment</div>
 </div>
 <p>Wie zuvor auch werden zwei Informationen gespeichert: Einmal die Levels mit der Angabe der Noten und dann Zahlenwerte, die mit den Levels korrespondieren. Die Zahlenwerte werden wieder in Reihenfolge der Levels vergeben: Also bekommt <span class="math inline">\(D\)</span> den Wert <span class="math inline">\(1\)</span>, <span class="math inline">\(C\)</span> den Wert <span class="math inline">\(2\)</span>, <span class="math inline">\(B\)</span> den Wert <span class="math inline">\(3\)</span> und <span class="math inline">\(A\)</span> schließlich den Wert <span class="math inline">\(4\)</span>.</p>
 <p>Es bleibt spannend und wir gehen über zu Datensätzen.</p>

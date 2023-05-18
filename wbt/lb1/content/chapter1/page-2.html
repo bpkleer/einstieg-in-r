@@ -5,9 +5,11 @@ weight: 102  # Individuelles Gewicht
 tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Nun starten wir direkt mal in das Programm RStudio. RStudio ist eine Software, die die Sprache R nutzt. Die Oberfläche bietet eine gute Lösung zum Organisieren eigener Projekte und Daten. Wenn du zuvor mit Stata oder SPSS gearbeitet hast, wirst du einige Parallelen erkennen. Alternativ kannst du auch R direkt nutzen, ohne RStudio (nur für fortgeschrittene Nutzer:innen empfohlen). Das Erscheinungsbild von RStudio kann individuell an deine Bedürfnisse angepasst werden.</p>
 <p>Insgesamt bietet R Studio <strong>4 Hauptfenster</strong> (die auch angepasst werden können):</p>
 <ol style="list-style-type: decimal">
@@ -16,54 +18,50 @@ tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwo
 <li><p>Files (auch: Plots, Packages, Help und Viewer)</p></li>
 <li><p>Editor (Skriptfenster)</p></li>
 </ol>
-<p>Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die <a href="https://sso.rstudio.cloud/jlu-fb03-ifp-methods">Login-Seite</a>. Diese Login-Seite funktioniert mit der s-/j-Kennung der Universität Gießen.</p>
-<p>Wenn du dann eingeloggt bist, siehst du direkt die Projekte, denen du zugeteilt bist.</p>
-<div class="figure">
-<img src="" alt="" />
-<p class="caption">Screenshot fehlt</p>
-</div>
+<p>Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die <a href="https://login.rstudio.cloud">Login-Seite</a>. Falls du dir noch keinen Account bei RStudio Cloud gemacht hast, registriere dich zuerst! Leider ist es technisch nicht möglich wie geplant einen Login mit der JLU-Kennung zu ermöglichen.</p>
+<p>Hier siehst du eine Animation, wie der Login-Prozess nach der Registrierung eines Accounts abläuft.
+<img src="../img/login.gif" alt="Login RStudio" /></p>
+<p>Wie du in der GIF siehst, bist du zuerst in deinem persönlichen Workspace und dort siehst du noch keinerlei Projekte. Wenn du links auf den Kurs-Workspace klickst, siehst du das Projekt <strong>course materials</strong> und <strong>firststeps</strong>. Ein Workspace ist eine <em>Verwaltungseinheit</em> in RStudio Cloud, in der verschiedene Projekte zusammengefasst werden können.</p>
 <p>Klicke einfach auf das Projekt <strong>firststeps</strong>. Wenn du das Projekt öffnest, siehst du erstmal folgendes Bild:</p>
-<div class="figure">
-<img src="../img/rstudio.png" alt="" />
-<p class="caption">Start in RStudio</p>
-</div>
+<p><img src="../img/rstudio.png" alt="Start in RStudio" />
+Das <strong>Wichtigste</strong>, wenn du vorbereitete Projekte wie <strong>firststeps</strong> oder <strong>course materials</strong> nutzt, ist das du eine Kopie für deinen Account anlegst! Oben rechts siehst du daher beim ersten Öffnen nur, dass du eine <em>temporary copy</em> geöffnet hast. Damit du aber in dem Projekt arbeiten kannst und deine Änderungen für dich gespeichert werden, musst du einmalig auf <strong>Save a permanent copy</strong> klicken. Das Projekt wird dann erstellt und an deinen Account geknüpft. Nachdem das passiert ist, siehst du auch nicht mehr den roten Schriftzug <em>temporary copy</em>. In diesem kannst du nun arbeiten und du schaust dir jetzt die verschiedenen Bereiche an.</p>
 <p>RStudio hat also ein Kachelmuster mit verschiedenen Kacheln. Links sehen wir die <strong>Console</strong>, rechts oben das <strong>Environment</strong> und rechts unten <strong>Files</strong>. Es gibt noch weitere Tabs in den Kacheln, aber diese lassen wir erstmal außen vor.</p>
 <p>In der <strong>Console</strong> können wir mithilfe der Sprache R direkt Befehle eingeben und ausführen lassen. Gib nun einfach mal eine beliebige Rechnung in die Console ein und bestätige mit <code>Enter</code>.</p>
-<div class="figure">
-<img src="../img/rstudio2.png" alt="" />
-<p class="caption">Einfach Rechnen mit R</p>
+<div class="float">
+<img src="../img/rstudio2.png" alt="Einfach Rechnen mit R" />
+<div class="figcaption">Einfach Rechnen mit R</div>
 </div>
 <p>Im Beispiel siehst du, dass die Sprache R mathematische Rechnungen direkt verarbeiten kann und somit für uns die Rechnung übernehmen kann (auch wenn das im simplen Beispiel vielleicht gar nicht nötig ist). Es gibt auch direkt aus, was das Ergebnis dieser Anweisung ist. Die <code>[1]</code> ist lediglich die Nummerierung der Ausgabe, dies wird relevant, wenn wir längere Ausgaben haben, die über mehrere Zeilen gehen.</p>
 <p>Um das Ergebnis der Rechnung zu erhalten, müssten wir jetzt jedes Mal die Rechnung neu angeben und ausführen. Das wäre etwas mühsam und da kommt der Vorteil der Sprache R zum Vorschein, denn diese ist <strong>objektorientiert</strong>. Das bedeutet einfach, dass wir nahezu alles in einem Objekt speichern können und dann immer, wenn wir wollen dieses Objekt aufrufen können und uns anzeigen lassen können.</p>
 <p>Zuordnungen zu Objekten erfolgen in R mit <code>&lt;-</code>. Am Mac kann man dies über die Tastenkombination <code>option</code> und <code>-</code> erreichen, am Windows-Rechner mit <code>alt</code> und <code>-</code>.</p>
 <p>Wir speichern jetzt die simple Rechnung von oben in einem Objekt, das wir <code>math</code> nennen.</p>
-<div class="figure">
-<img src="../img/rstudio3.png" alt="" />
-<p class="caption">Objekt math</p>
+<div class="float">
+<img src="../img/rstudio3.png" alt="Objekt math" />
+<div class="figcaption">Objekt math</div>
 </div>
 <p>Im Screenshot siehst du jetzt direkt auch, dass du das Objekt aufrufen musst, um das Ergebnis zu sehen. Dies machst du, indem du einfach den Objektnamen in die Console schreibst und nochmals <code>Enter</code> drückst.</p>
 <p>Wir haben jetzt das erste Objekt gespeichert und dies kannst du nun unter <strong>Environment</strong> sehen. Dort kannst du im Laufe einer <em>Session</em> alle Objekte sehen, die du während dieser <em>Session</em> erstellt hast. In dem Fall hier jetzt, sehen wir das gespeicherte Objekt <code>math</code>, das eben den Inhalt der Addition von <code>3 + 4</code> beinhaltet.</p>
-<div class="figure">
-<img src="../img/rstudio4.png" alt="" />
-<p class="caption">Environment</p>
+<div class="float">
+<img src="../img/rstudio4.png" alt="Environment" />
+<div class="figcaption">Environment</div>
 </div>
 <p>Ein Nachteil der Console ist, dass wir den geschriebenen Code nicht daraus kopieren und zum Beispiel mit anderen teilen können. Oftmals ist es aber erforderlich, dass man den geschriebenen Code weitergibt (zum Beispiel in einer Gruppenarbeit oder bei der Abgabe einer Hausarbeit) oder du dir zusätzlich zum Code noch Kommentare hinzufügen musst, damit du später besser verstehst, was du in dem Moment gemacht hast. Dazu gibt es sogenannte <strong>Skripte</strong>. <strong>Skripte</strong> sind Textdateien, in denen wir direkt in der Sprache R schreiben können und in denen wir auch Kommentare zum Code einfügen können. Öffne jetzt eine neue Skriptdatei wie im Screenshot oder nutze einfach die Tastenkombination <code>Cmd</code> und <code>Shift</code> und <code>N</code> bzw. <code>Strg</code> und <code>Shift</code> und <code>N</code>.</p>
-<div class="figure">
-<img src="../img/rstudio5.png" alt="" />
-<p class="caption">Skript öffnen</p>
+<div class="float">
+<img src="../img/rstudio5.png" alt="Skript öffnen" />
+<div class="figcaption">Skript öffnen</div>
 </div>
 <p>In dieser Datei können wir Anweisungen in der Sprache R schreiben. Das werden wir fortan immer machen anstatt in der Console zu arbeiten. Denn so sind die Arbeiten in einer Datei gesichert, sodass wir diese wieder aufrufen können bzw. an andere weitergeben können.</p>
 <p>Die Schritte aus der Console können wir auch im Skript eingeben. Kommentare beginnen immer mit einer <code>#</code>. Die Sprache erkennt so, dass diese Zeile keinen ausführbaren Code beinhaltet, sondern einfach Text.</p>
-<div class="figure">
-<img src="../img/rstudio6.png" alt="" />
-<p class="caption">Skript nutzen</p>
+<div class="float">
+<img src="../img/rstudio6.png" alt="Skript nutzen" />
+<div class="figcaption">Skript nutzen</div>
 </div>
 <p>Um den Code auszuführen, markierst du einfach die auszuführenden Zeilen und drückst die Tastenkombination <code>cmd</code> + <code>Enter</code> bzw. <code>Strg</code> und <code>Enter</code>. Alternativ kannst du auch die Zeile markieren und den Button <code>Run</code> (rechts oben in der Skript-Kachel) drücken.</p>
 <p>Noch haben wir die Datei nicht gespeichert, dies macht man einfach, in dem man die Tastenkombination <code>cmd</code> + <code>S</code> bzw. <code>Strg</code> + <code>S</code> drückt. Du wirst dann aufgefordert einen Dateinamen anzugeben und den Speicherort der Datei (Pfad) festzulegen. Bleibe erstmal einfach in dem vorgeschlagenen Pfad. Wir benennen die Datei mit <code>firsttry</code>.</p>
 <p>In der Kachel <strong>Files</strong> kannst du diese neue Datei jetzt sehen.</p>
-<div class="figure">
-<img src="../img/rstudio7.png" alt="" />
-<p class="caption">Gespeicherte Datei</p>
+<div class="float">
+<img src="../img/rstudio7.png" alt="Gespeicherte Datei" />
+<div class="figcaption">Gespeicherte Datei</div>
 </div>
 <p>Wie du siehst, haben R-Skript-Dateien die Endung <code>.R</code>. Alle Dateien, die so enden, sind R-Skript-Dateien und beinhalten Code in der Sprache R, der mit RStudio ausführbar ist.</p>
 <p>Teste jetzt einfach mal den Gebrauch des Skripts aus und füge zwei neue Codezeilen hinzu, die folgendes beinhalten:</p>
@@ -72,4 +70,14 @@ tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwo
 <li><p>Speichere eine weitere Rechnung im Objekt <code>result</code>, das nur aus einer Subtraktion besteht und als Ergebnis 17 hat.</p></li>
 </ol>
 <p>Schau dir an, was sich im <strong>Environment</strong> geändert hat.</p>
+<p>Als letztes gehst du jetzt aus dem Projekt raus, zurück in den Workspace. Dazu kannst du einfach links im Menü auf den Workspace klicken.</p>
+<p>Du siehst dann, dass es das Projekt <strong>firststeps</strong> zweimal gibt.</p>
+<div class="float">
+<img src="../img/rstudio8.png" alt="Firststeps zweifach" />
+<div class="figcaption">Firststeps zweifach</div>
+</div>
+<p>Das ist nicht falsch, sondern korrekt! Denn einmal gibt es das vorbereitete Projekt von uns (du erkennst es daran, dass Philipp Kleer der <strong>Owner</strong> ist) und dann einmal das von dir kopierte Projekt <strong>firstseps</strong>, in dem du arbeiten kannst. Du siehst dich dort als <strong>Owner</strong> angegeben. Hier im Beispiel ist das der User <strong>Phil friendly</strong>.</p>
+<p>Um nicht durcheinander zu kommen, und Änderungen tatsächlich in seinem eigenen Projekt zu erstellen, kannst du links im Menü einfach <strong>Your Projects</strong> auswählen und es werden nur die Projekte angezeigt, in denen auch deine Änderungen gespeichert werden.</p>
+<p><img src="../img/rstudio9.png" alt="Your Projects" />
+<strong>Wichtig</strong>: Deine eigenen Projekte kannst nur du und der Instruktor sehen!</p>
 <p>Du hast die ersten Schritte erfolgreich gemeistert. Du weißt wie du Objekte speicherst und wie du diese aufrufen kannst! Du kannst auch schon einfache Rechnungen ausführen. Als nächstes werden wir uns mit Objekttypen in R beschäftigen.</p>

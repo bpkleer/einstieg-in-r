@@ -5,9 +5,11 @@ menuTitle: "Vektoren" # Falls Titel zulang ist, hier Kurztitel
 tags: ["datentypen", "vektoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Wenn wir mit Datensätzen arbeiten, beinhaltet eine Variable ja nicht nur einen einzigen Wert, sondern die Werte auf der Variable aller Befragten. Wenn wir eine Variable Einkommen haben, sind in dieser alle Einkommenswerte aller Befragten aufgelistet. Wir sprechen dann dabei auch von einem Vektor: Die einzelnen Werte der Befragten sind die Komponenten des Vektors.</p>
 <p>Nehmen wir ein Beispiel von fünf Personen mit den Einkommenswerten: <span class="math inline">\(1432\)</span>, <span class="math inline">\(982\)</span>, <span class="math inline">\(5139\)</span>, <span class="math inline">\(3210\)</span> und <span class="math inline">\(726\)</span>.</p>
 <p>Als Vektor würde dies wie folgt dargestellt:</p>
@@ -38,9 +40,9 @@ math</code></pre>
 <pre><code>## [1] 0.2 0.4 0.6 0.8 1.0</code></pre>
 <p>In der Ausgabe wird nicht mehr nur ein Wert ausgegeben, sondern eben alle in dem Vektor gespeicherten Werte. Ein Vektor kann beliebig lang sein.</p>
 <p>Im <strong>Environment</strong> sehen wir jetzt, dass neben dem Wert auch der Typ des Vektors angegeben ist (hier <code>num</code>). Nach dem Typ wird die Länge des Vektors angegeben: <code>[1:5]</code>. Wir starten als bei der Zählung des Vektors bei <code>1</code> und es endet bei <code>5</code>. <strong>Wichtig:</strong> In vielen anderen Sprachen beginnt die Zählung bei <code>0</code>.</p>
-<div class="figure">
-<img src="../img/vektor1.png" alt="" />
-<p class="caption">Vektor im Environment</p>
+<div class="float">
+<img src="../img/vektor1.png" alt="Vektor im Environment" />
+<div class="figcaption">Vektor im Environment</div>
 </div>
 <p>Auch mit den anderen Wertetypen können wir Vektoren beliebiger Länge schaffen:</p>
 <pre class="r"><code>logi &lt;- c(
@@ -68,9 +70,9 @@ char &lt;- c(
   &quot;Taipeh&quot;
 )</code></pre>
 <p>Im Environment finden wir dann alle diese Vektoren wieder und den jeweiligen Typ:</p>
-<div class="figure">
-<img src="../img/vektor2.png" alt="" />
-<p class="caption">Vektoren im Environment</p>
+<div class="float">
+<img src="../img/vektor2.png" alt="Vektoren im Environment" />
+<div class="figcaption">Vektoren im Environment</div>
 </div>
 <p>Was passiert wenn wir mehrere Wertetypen in einem Vektor vermischen wollen? Führe den Code aus und schau dir im Environment an, welcher Typ zugeordnet wird.</p>
 <pre class="r"><code>mix &lt;- c(

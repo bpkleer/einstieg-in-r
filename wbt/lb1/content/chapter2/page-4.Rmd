@@ -16,6 +16,12 @@ knitr::opts_chunk$set(
 pss <- readRDS("../../static/files/pss.rds")
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Neben Vektoren und Faktoren und gibt es noch den für uns wichtigen Objekttyp **data frame**. Ein **data frame** ist einfach eine Verbindung mehrerer Vektoren (Variablen) derselben Länge in einer Matrix. Im konventionellen Format (*wide-Format*) sind in den Spalten die Variablen vorzufinden und in den Zeilen die Befragten
 
 - Spalten: Vektoren, Faktoren (Variablen)

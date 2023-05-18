@@ -5,17 +5,19 @@ menuTitle: "Challenge" # Falls Titel zulang ist, hier Kurztitel
 tags: ["challenge"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Wir haben jetzt bereits erste Schritte im Verbinden von einzelnen Werten zu Vektoren (Variablen) gemacht und wir wiederholen dies an dieser Stelle und führen ein paar zusätzliche Schritte ein. Manchmal werden Daten selbstständig erhoben und wir schaffen nun aus erhobenen Daten einen Datensatz. Mit den folgenden Schritten vertiefst du das Verständnis des Objekts <strong>data frame</strong>.</p>
 <p>In einem fiktiven Beispiel befragten wir <span class="math inline">\(5\)</span> Student:innen bezüglich ihrer Zufriedenheit mit der Mensa anhand von <span class="math inline">\(5\)</span> Variablen (Ausprägungen auf einer Likert-Skala von <span class="math inline">\(1\)</span> <em>sehr unzufrieden</em> bis <span class="math inline">\(5\)</span> <em>sehr zufrieden</em>). Diese siehst du in der folgenden Abbildung:</p>
-<div class="figure">
-<img src="../img/df-beispiel.png" alt="" />
-<p class="caption">Beispiel</p>
+<div class="float">
+<img src="../img/df-beispiel.png" alt="Beispiel" />
+<div class="figcaption">Beispiel</div>
 </div>
 <p>Du kannst nun <span class="math inline">\(5\)</span> Vektoren schaffen, so dass jeder Vektor eine Person darstellt. <strong>Wichtig:</strong> Wir stellen eine Lösung unter <strong>Code</strong> zur Verfügung, aber es ist für deinen Lernfortschritt wichtig, dass du dich erst zuerst selbst ausprobierst. Nachdem du es geschafft hast, kannst du die Lösung abgleichen. Aber bedenke: Es gibt in R immer mehr als einen Weg, wenn dein Weg also abweicht, muss er nicht falsch sein, wenn am Ende dasselbe bei herauskommt!</p>
-<p>{{% tabs %}}
+<p>{{% tabs groupId="tab1"%}}
 {{% tab name="Frage" %}}
 Als erstes müssen wir fünf Vektoren (für die fünf Variablen schaffen), die jeweils die Werte aller Personen beinhalten. Diesen Schritt kannst du bereits selbst mit deinem Wissen ausführen. Probiere es zuerst selbst und schaue erst danach in die Lösung.
 {{% /tab %}}

@@ -5,6 +5,12 @@ menuTitle: "Änderungen" # Falls Titel zulang ist, hier Kurztitel
 tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Jetzt müssen wir ein paar Vokabeln für **gitlab** lernen. Wie gesagt, wir haben dank der Konfiguration mit RStudio Cloud alle Einstellungen bereits vorgenommen, dennoch ist es wichtig, dass ihr euch diese Begrifflichkeit anschaut und versteht!
 
 Folgende Begriffe werden hier kurz für dich erklärt. 

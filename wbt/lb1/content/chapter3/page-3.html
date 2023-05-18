@@ -5,9 +5,11 @@ menuTitle: "Änderungen" # Falls Titel zulang ist, hier Kurztitel
 tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
-<script src="/statsplus/lb1/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% button href="https://twitter.com/intent/tweet" icon="fab fa-twitter" %}} {{% /button %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
 <p>Jetzt müssen wir ein paar Vokabeln für <strong>gitlab</strong> lernen. Wie gesagt, wir haben dank der Konfiguration mit RStudio Cloud alle Einstellungen bereits vorgenommen, dennoch ist es wichtig, dass ihr euch diese Begrifflichkeit anschaut und versteht!</p>
 <p>Folgende Begriffe werden hier kurz für dich erklärt.</p>
 <ul>
@@ -26,9 +28,9 @@ tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was 
 <div id="group" class="section level2">
 <h2>Group</h2>
 <p>Eine <strong>Group</strong> in <strong>Gitlab</strong> ist einfach eine Sammlung verschiedener Repositories in einer Gruppe. So ist z.B. dieser <a href="https://gitlab.ub.uni-giessen.de/intro-r-spring21">Kurs</a> eine solche Gruppe, in der es mehrere Subgroups und ein <em>Project</em> gibt: <code>effie</code> bis <code>rue</code> (subgroups) und <code>course-materials</code> (project).</p>
-<div class="figure">
-<img src="../img/groupteaching.png" alt="" />
-<p class="caption">Übersicht einer Gruppe</p>
+<div class="float">
+<img src="../img/groupteaching.png" alt="Übersicht einer Gruppe" />
+<div class="figcaption">Übersicht einer Gruppe</div>
 </div>
 </div>
 <div id="clone" class="section level2">
@@ -44,21 +46,21 @@ tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was 
 <p>Nachdem du das Skript für die Gruppenaufgabe in RStudio bearbeitet hast, kannst du diese Änderungen allen anderen zur Verfügung stellen. Dazu machen wir den <strong>git-Dreischritt</strong>, wobei <strong>commit</strong> der erste Schritt ist.</p>
 <p>Mit <strong>commit</strong> als ersten Schritt geben wir <strong>Git</strong> an, dass die Änderungen, die wir gemacht haben, registriert und in die Server-Versionen hinzugefügt werden sollen.</p>
 <p>In RStudio Cloud muss man dafür einfach in die Kachel <strong>Environment</strong> gehen und dort auf den Tab <strong>Git wechseln</strong>.</p>
-<div class="figure">
-<img src="../img/rstudio-git1.png" alt="" />
-<p class="caption">Ansicht Git in RStudio</p>
+<div class="float">
+<img src="../img/rstudio-git1.png" alt="Ansicht Git in RStudio" />
+<div class="figcaption">Ansicht Git in RStudio</div>
 </div>
 <p>Dort siehst du auch direkt die drei Buttons des <strong>git-Dreischritts</strong>: Commit, Pull und Push.</p>
 <p>Wenn eine Datei von dir verändert wurde (im Vergleich zur Serverversion) wird das direkt in dem Fenster angezeigt.</p>
-<div class="figure">
-<img src="../img/rstudio-git2.png" alt="" />
-<p class="caption">Geänderte Datei</p>
+<div class="float">
+<img src="../img/rstudio-git2.png" alt="Geänderte Datei" />
+<div class="figcaption">Geänderte Datei</div>
 </div>
 <p>Das kleine <code>M</code> bedeutet hierbei <em>modified</em>, also dass du die Datei geändert hast. Fügst du eine Datei hinzu, erscheint ein kleines <code>A</code> neben der Datei (für <em>added</em>) und löscht du eine Datei erscheint ein kleines <code>D</code> (für delete).</p>
 <p>Um den ersten Schritt <strong>committ</strong> auszuführen, klickst du einfach auf den Button <code>commit</code> in RStudio. Es öffnet sich dann ein neues Fenster wie im Screenshot und wir erklären dir nun die Schritte von <strong>commit</strong>.</p>
-<div class="figure">
-<img src="../img/rstudio-git3.png" alt="" />
-<p class="caption">Commit-Fenster</p>
+<div class="float">
+<img src="../img/rstudio-git3.png" alt="Commit-Fenster" />
+<div class="figcaption">Commit-Fenster</div>
 </div>
 <p>Im linken oberen Teil siehst du alle Dateien die geändert wurden. Hier jetzt nur die Datei <code>README.md</code>. Um die Änderungen an dieser Datei zu committen, musst du den Haken neben der Datei setzen. Hast du also mehrere Dateien geändert und möchtest diese gleichzeitig committen, musst du die Haken neben jeder Datei einzeln setzen!</p>
 <p>Als zweites gibt es oben rechts eine <strong>commit message</strong>. Dies ist sehr wichtig und du solltest hier eine möglichst präzise Nachricht hinschreiben. Die <strong>commit message</strong> ist sozusagen eine knappe Kurzbeschreibung, was du geändert hast. Sie erscheint bei der Versionierung und so ist es leichter nachzuvollziehen, was geändert wurde, als nur vom reinen Code her. Hast du z.B. die erste Teilaufgabe hinzugefügt, könntest du hier schreiben: <em>task 1a solved</em>.</p>

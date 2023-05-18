@@ -5,6 +5,12 @@ menuTitle: "Kontrolle Lab" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Hier zeigen wir dir nun, wie du euer Skript für die Gruppenabgabe automatisiert prüfen kannst. Ihr könnt den Test beliebig oft durchführen, es beansprucht aber etwas Zeit, da dies über einen privaten Server und nicht über die Universität läuft. Deshalb arbeiten wir in den Lab-Aufgaben auch nur mit dem fiktiven Datensatz des PSS.
 
 Du hast ja gerade schon gelernt, wie du Änderungen an die globale Version sendest. Habt ihr in der Gruppe eine fertige Version, kann sich eine Person der Gruppe in [gitlab](https://gitlab.ub.uni-giessen.de) einloggen und dort dann die automatische Kontrolle starten. 

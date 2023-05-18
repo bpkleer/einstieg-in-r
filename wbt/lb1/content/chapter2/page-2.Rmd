@@ -16,6 +16,12 @@ knitr::opts_chunk$set(
 #load("") # Dateipfad einfügen!!
 ```
 
+{{% buttonGit href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-r\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonGit %}} 
+
+{{% button href=\"https\:\/\/twitter.com\/intent\/tweet\" icon=\"fab fa-twitter\" %}} {{% /button %}}
+
+{{% buttonGit href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonGit %}}
+
 Wenn wir mit Datensätzen arbeiten, beinhaltet eine Variable ja nicht nur einen einzigen Wert, sondern die Werte auf der Variable aller Befragten. Wenn wir eine Variable Einkommen haben, sind in dieser alle Einkommenswerte aller Befragten aufgelistet. Wir sprechen dann dabei auch von einem Vektor: Die einzelnen Werte der Befragten sind die Komponenten des Vektors. 
 
 Nehmen wir ein Beispiel von fünf Personen mit den Einkommenswerten: $1432$, $982$, $5139$, $3210$ und $726$. 
