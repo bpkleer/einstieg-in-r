@@ -1,6 +1,7 @@
 baseURL = "https://lehre.bpkleer.de/statsplus/lb3/"
 languageCode = "de-DE"
 defaultContentLanguage = "de"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 title = "WBT Statistik<sup>+</sup>: Einstieg in R leicht gemacht"
 theme = "hugo-theme-learn"
