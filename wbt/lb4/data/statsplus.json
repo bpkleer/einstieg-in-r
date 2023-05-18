@@ -2,22 +2,22 @@
   {
     "name": "B. Philipp Kleer",
     "username": "bpkleer",
-    "commits": 14,
+    "commits": 113,
     "web_url": "https://gitlab.ub.uni-giessen.de/bpkleer",
     "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/147/avatar.png"
   },
   {
-    "name": "Meike Schulz-Narres",
-    "username": "J_E8E7E5F",
-    "commits": 0,
-    "web_url": "https://gitlab.ub.uni-giessen.de/J_E8E7E5F",
-    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png"
-  },
-  {
     "name": "Leon Klemm",
     "username": "g32013",
-    "commits": 3,
+    "commits": 27,
     "web_url": "https://gitlab.ub.uni-giessen.de/g32013",
     "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png"
+  },
+  {
+    "name": "Meike Schulz-Narres",
+    "username": "J_E8E7E5F",
+    "commits": 71,
+    "web_url": "https://gitlab.ub.uni-giessen.de/J_E8E7E5F",
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png"
   }
 ]
