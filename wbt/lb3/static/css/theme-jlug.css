@@ -147,6 +147,7 @@ img:hover {
   box-shadow: 0 0 2px 1px rgba(220, 230, 235, 0.9);
 }
 
+
 .ghContributors img {
   min-width: 0rem; !important
 }
@@ -243,4 +244,36 @@ img:hover {
 
 #body .expand {
   background-color: var(--MENU-SECTIONS-EXPAND-color);
+}
+
+.btn-default {
+  color: var(--MAIN-LINK-color) !important;
+  background-color: #fff !important;
+  border-color: #ccc !important;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active {
+  color: #fff !important;
+  background-color: var(--MAIN-LINK-color) !important;
+  border-color: var(--MENU-SECTIONS-LINK-color) !important;
+}
+.btn-default:active {
+  background-image: none !important;
+}
+
+.btn-git {
+  color: var(--MAIN-LINK-color) !important;
+  background-color: #fff !important;
+  border-color: #ccc !important;
+}
+.btn-git:hover,
+.btn-git:focus,
+.btn-git:active {
+  color: #fff !important;
+  background-color: var(--MAIN-LINK-color) !important;
+  border-color: var(--MENU-SECTIONS-LINK-color) !important;
+}
+.btn-git:active {
+  background-image: none !important;
 }
