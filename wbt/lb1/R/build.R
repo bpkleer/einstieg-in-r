@@ -23,63 +23,65 @@ group <-  GET(
 dfGroup <-  fromJSON(rawToChar(group$content))
 dfGroup
 
-# get commits per repository
-lb1 <- GET(
-  paste0(
-    "https://gitlab.ub.uni-giessen.de/api/v4/projects/314/repository/contributors?private_token=",
-    token
+leon <- list(
+  id = 243, 
+  username = "g32013", 
+  name = "Leon Klemm",
+  state = NA,
+  avatar_url = "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png",
+  web_url = "https://gitlab.ub.uni-giessen.de/g32013",
+  access_level = NA, 
+  created_at = NA,
+  expires_at = NA
   )
+
+meike <- list(
+  id = 149, 
+  username = "J_E8E7E5F", 
+  name = "Meike Schulz-Narres",
+  state = NA,
+  avatar_url = "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png",
+  web_url = "https://gitlab.ub.uni-giessen.de/J_E8E7E5F",
+  access_level = NA, 
+  created_at = NA,
+  expires_at = NA
 )
 
-lb1 <-  fromJSON(rawToChar(lb1$content))
-
-# deleted wrong bpkleer
-delrow <- c()
-count <- 0
-for (i in 1:dim(lb1)[1]) {
-  if (lb1$name[i] == "bpkleer") {
-    count <- count + lb1$commits[i]
-    delrow <- c(delrow, i)
-  }
-}
-lb1 <- lb1[-c(delrow), ]
-
-i <- 1
-
-repeat {
-  if (lb1$name[i] != "B. Philipp Kleer") {
-    i <-  i + 1
-  }
-  else if (lb1$name[i] == "B. Philipp Kleer") {
-    lb1$commits[i] <- lb1$commits[i] + count
-    break
-  }
-}
-
-# Back to main df, creating commits var and counting over repositories
-
-# Meikes oder Leons Namen ändern
-for (i in 1:dim(lb1)[1]) {
-  if (lb1$name[i] == "Meike") {
-    lb1$name[i] <-  "Meike Schulz-Narres"
-  }
-  if (lb1$name[i] == "g32013") {
-    lb1$name[i] <-  "Leon Klemm"
-  }
-}
+dfGroup <- rbind(
+  dfGroup,
+  leon,
+  meike
+)
 
 dfGroup$commits <- 0
 
 dfGroup
+
+# transfer old commits
+dfGroup$commits[dfGroup$username == "bpkleer"] <- dfGroup$commits[dfGroup$username == "bpkleer"] + 92
+dfGroup$commits[dfGroup$username == "g32013"] <- dfGroup$commits[dfGroup$username == "g32013"] + 27
+dfGroup$commits[dfGroup$username == "J_E8E7E5F"] <- dfGroup$commits[dfGroup$username == "J_E8E7E5F"] + 71
+
+dfGroup <- dfGroup[,c("name", "username", "commits", "web_url", "avatar_url")]
+
+# adding new commits
+# get commits per new repository
+newrepo <- GET(
+  paste0(
+    "https://gitlab.ub.uni-giessen.de/api/v4/projects/704/repository/contributors?private_token=",
+    token
+  )
+)
+
+newrepo <-  fromJSON(rawToChar(newrepo$content))
+
 for (i in 1:dim(dfGroup)[1]) {
-  for (j in 1:dim(lb1)[1]) {
-    if (dfGroup$name[i] == lb1$name[j]) {
-      dfGroup$commits[i] <- dfGroup$commits[i] + lb1$commits[j]
+  for (j in 1:dim(newrepo)[1]) {
+    if (dfGroup$name[i] == newrepo$name[j]) {
+      dfGroup$commits[i] <- dfGroup$commits[i] + newrepo$commits[j]
     }
   }
 }
-
-dfGroup <- dfGroup[,c("name", "username", "commits", "web_url", "avatar_url")]
 
 dfGroupjson <- toJSON(
   dfGroup, 
