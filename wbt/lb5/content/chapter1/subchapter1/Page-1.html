@@ -1,0 +1,67 @@
+---
+title: "Start: Balkendiagramm"  # Titel der Seite
+weight: 111  # Individuelles Gewicht 
+menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Wir starten nun mit Balkendiagrammen. Die Hauptfunktion, die wir durchgehend nutzen, um eine Grafik mit der <strong>library</strong> <code>ggplot</code> zu erstellen lautet <code>ggplot()</code>! Diese Grafiken kannst du dir direkt ausgeben lassen (einfacher Aufruf der Funktion) und das Bild erscheint dann im <strong>Plots</strong>-Tab bei <strong>Files</strong>. Alternativ kannst du den Plot auch (wie alles andere!) in einem Objekt speichern.</p>
+<p>Das speichern der Grafik in einem Objekt hat mehrere Vorteile: Wie du später merken wirst, besteht ein <code>ggplot</code> aus verschiedenen Layern. Willst du etwas ändern oder hinzufügen und speicherst du den vorherigen Plot in einem Objekt musst du nur das Objekt aufrufen und den geänderten oder neuen Layer hinzufügen. Speicherst du dein Plot nicht in einem Objekt, musst du jedes Mal den gesamten Code erneut aufrufen. Im Lernmodul arbeiten wir daher mit Objekten!</p>
+<p>Kommen wir zu den Balkendiagrammen. Ein <strong>Balkendiagramm</strong> ist ein Plot einer einzelnen kategorialen Variable. Du wirst jetzt ein Balkendiagramm der <code>edu</code>-Variable erstellen.</p>
+<p>Zuerst schauen wir uns das Grundgerüst der Funktion <code>ggplot()</code> an: Die Funktion hat im ersten Argument das Objekt, in dem die Daten gespeichert sind (<code>data = pss</code>). Im zweiten Argument (<code>mapping</code>) geben wir die Achsen der Grafik an. Ein Balkendiagramm hat eine zu bestimmende Achse (x-Achse), denn die y-Achse stellt bei einem Balkendiagramm automatisch die Häufigkeiten dar. Du musst also nur die x-Achse hier im <code>mapping</code> angeben.</p>
+<pre class="r"><code># direkter Output
+ggplot(
+  data = pss,
+  mapping = aes(x = edu)
+)</code></pre>
+<p>Doch wenn wir uns dieses ausgeben lassen, erscheint folgendes:
+<img src="/statsplus/lb5/chapter1/subchapter1/Page-1_files/figure-html/grundgeruest2-1.png" width="672" /></p>
+<p>{{% expand "Aber warum ist der Plot leer?" %}}
+Wir haben in den Zeilen lediglich das Gerüst bestimmt. Nun müssen wir noch spezifizieren, was wir in der Grafik anzeigen wollen (Balken, Punkte, etc.). Für <strong>Balkendiagramme</strong> fügen wir die Funktion <code>geom_bar()</code> hinzu. Die einzelnen Zusatzfunktionen und deren Argumente werden in diesem Lernmodul Schritt für Schritt vorgestellt.
+{{% /expand %}}</p>
+<p>Fügen wir also die Anweisung hinzu, dass wir ein Balkendiagramm der angegeben Daten haben möchten. Jetzt speichern wir das ganze auch in einem Objekt.</p>
+<pre class="r"><code>barplot1 &lt;- ggplot(
+  data = pss,
+  mapping = aes(x = edu)
+) +
+  geom_bar()
+
+barplot1</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-1_files/figure-html/barplot1-1.png" width="672" /></p>
+<p>Wir haben nun ein <strong>Balkendiagramm</strong>, dass die Häufigkeit der Ausprägungen der Variable <code>edu</code> anzeigt. Wenn du stattdessen lieber Prozente anzeigen lassen möchtest, ist dies leicht möglich. Dazu musst du die y-Achse ändern, so dass Prozente angezeigt werden. Dazu gibst du innerhalb des <code>mapping</code> Arguments nun auch die y-Achse an (denn du veränderst den Standard!). Hierbei nutzt du einen Shortcut, der in <code>ggplot</code> implementiert ist: <code>..prop..</code> wird automatisch der Anteil angezeigt.</p>
+<div id="prozente-statt-häufigkeiten" class="section level2">
+<h2>Prozente statt Häufigkeiten</h2>
+<pre class="r"><code>barplot2 &lt;- ggplot(
+  data = pss, 
+  mapping = aes(
+    x = edu, 
+    y = ..prop.., 
+    group = 1
+  )
+) + 
+  geom_bar()
+
+barplot2</code></pre>
+<pre><code>## Warning: The dot-dot notation (`..prop..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(prop)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-1_files/figure-html/barplot2-1.png" width="672" /></p>
+<p>{{% expand "Innerhalb von <code>mapping</code> gibt es noch das Argument <code>group = 1</code>, lösche das Argument und probiere aus, was passiert" %}}
+Das Argument <code>group = 1</code> sagt <code>ggplot</code>, dass alle Ausprägungen zu einer Gesamtgruppe gehören. Wenn du das Argument entfernst, sind alle Balken gleich hoch, da jeweils der Prozentanteil innerhalb einer Ausprägung ausgegeben wird und das ist logischerweise immer pro Ausprägung 100 Prozent.
+{{% /expand %}}</p>
+<p>Wir reden die ganze Zeit von <strong>Balkendiagrammen</strong> haben aber immer fälschlicherweise <strong>Säulendiagramme</strong> dargestellt. Wir können die Säulen ganz einfach zu Balken ändern mit der zusätzlichen Funktion <code>coord_flip()</code>:</p>
+<pre class="r"><code> barplot1 + 
+   coord_flip()</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-1_files/figure-html/barplot-coord-1.png" width="672" /></p>
+<p>Jetzt geben wir dem ganzen etwas Farbe!</p>
+</div>

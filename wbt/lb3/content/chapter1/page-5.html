@@ -1,0 +1,101 @@
+---
+title: "Korrelationen graphisch darstellen"  # Titel der Seite
+weight: 105  # Individuelles Gewicht 
+menuTitle: "Grafiken" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Zusammenhangsmaße", "Korrelationen", "graphische Darstellung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Du hast jetzt im Output von R Tabellen erstellt. Oftmals werden Korrelationen aber in Grafiken dargestellt, da diese für das Auge leichter zu verarbeiten sind als eine Tabelle.</p>
+<p>An dieser Stelle wirst du zwei Möglichkeiten kennenlernen, solche zu erstellen: Einmal mit der <strong>library</strong> <code>psych</code> und einmal mit der <strong>library</strong> <code>corrplot</code>.</p>
+<div id="library-psych" class="section level2">
+<h2>Library <code>psych</code></h2>
+<p>Die <strong>library</strong> <code>psych</code> bietet mit der Funktion <code>pairs.panels()</code> eine gute Funktion, um Korrelationen sowie den Zusammenhang zwischen Variablen grafisch darzustellen. In der Funktion gibst du wie zuvor den Datensatz an bzw. welche Variablen du nutzen möchtest. Danach gibst du die Methode der Korrelation an (<code>pearson</code> oder <code>spearman</code>). Da hier pseudometrische Daten vorliegen, ist es sinnvoll das Argument <code>jiggle = TRUE</code> einzusetzen, da so die Datenpunkte nicht überlappen. Mit dem zusätzlichen Argument <code>stars = TRUE</code> werden die konventionellen Signifikanz-Sternchen angezeigt.</p>
+<p>Dazu gehört die Funktion <code>pairs.panels()</code> aus der <strong>library</strong> <code>psych</code>.</p>
+<pre class="r"><code>pairs.panels(
+  pss[c(
+    &quot;stfdem&quot;,
+    &quot;trstprl&quot;,
+    &quot;trstlgl&quot;,
+    &quot;stfeco&quot;
+  )
+  ],
+  method = &quot;pearson&quot;,   
+  jiggle = TRUE,   # für pseudometrische Daten
+  stars = TRUE  # Konvention für Signifikanzen
+)               </code></pre>
+<p>Das ganze sieht dann grafisch so aus: Im oberen Drittel befinden sich die Korrelationskoeffzienten, in der diagonalen die univariate Verteilung der jeweiligen Variable und im unteren Drittel die bivariate Verteilung des Variablenpaars.
+<img src="../img/pairspanels.png" alt="Pairs Panel" /></p>
+<p>Leider ist die Funktion nicht so leicht anzupassen und zu erweitern wie <code>ggplots</code>, die wir später im Lernblock 5 kennenlernen werden. Dort lernst du auch eine <code>ggplot</code>-Variante kennen, um Pairs-Panels zu erstellen.</p>
+</div>
+<div id="library-corrplot" class="section level2">
+<h2>Library <code>corrplot</code></h2>
+<p>Eine weitere Darstellungsmöglichkeit mehrerer Korrelationen ist eine sogenannte <strong>Heat Map</strong>. Um diesen Plot zu erstellen, benötigst du die <strong>library</strong> <code>corrplot</code> und daraus Funktion <code>corrplot()</code>.</p>
+<p>Eine <strong>Heat Map</strong> zeigt die Stärke des Zusammenhangs über die Farbwahl an</p>
+<div class="float">
+<img src="../img/corrplot.png" alt="Heat Map" />
+<div class="figcaption">Heat Map</div>
+</div>
+<p>Als erstes lade das <em>package</em> <code>corrplot</code>:</p>
+<pre class="r"><code>install.packages(&quot;corrplot&quot;)
+library(&quot;corrplot&quot;)</code></pre>
+<p>Dann erstellst du eine Korrelationsmatrix, dazu nutzt du die Funktion <code>corr.test()</code>:</p>
+<pre class="r"><code>cor2 &lt;- corr.test(
+  pss[c(
+    &quot;trstprl&quot;,
+    &quot;trstplt&quot;,
+    &quot;trstprt&quot;,
+    &quot;trstlgl&quot;
+  )
+  ],
+  method = &quot;pearson&quot;,
+  use = &quot;complete.obs&quot;
+) </code></pre>
+<p>Als Ergebnis erhalten wir wieder ein <strong>list</strong>-Objekt, das drei Matrizen beinhaltet: Den Korrelationswert, die Stichprobengröße und den p-Wert. Wir benötigen für die Heatmap aber nur den Korrelationswert und den p-Wert.</p>
+<pre class="r"><code>cor2</code></pre>
+<pre><code>## Call:corr.test(x = pss[c(&quot;trstprl&quot;, &quot;trstplt&quot;, &quot;trstprt&quot;, &quot;trstlgl&quot;)], 
+##     use = &quot;complete.obs&quot;, method = &quot;pearson&quot;)
+## Correlation matrix 
+##         trstprl trstplt trstprt trstlgl
+## trstprl    1.00    0.23    0.38    0.23
+## trstplt    0.23    1.00    0.40    0.05
+## trstprt    0.38    0.40    1.00    0.25
+## trstlgl    0.23    0.05    0.25    1.00
+## Sample Size 
+##         trstprl trstplt trstprt trstlgl
+## trstprl    4965    4954    4948    4953
+## trstplt    4954    4989    4972    4977
+## trstprt    4948    4972    4983    4971
+## trstlgl    4953    4977    4971    4988
+## Probability values (Entries above the diagonal are adjusted for multiple tests.) 
+##         trstprl trstplt trstprt trstlgl
+## trstprl       0       0       0       0
+## trstplt       0       0       0       0
+## trstprt       0       0       0       0
+## trstlgl       0       0       0       0
+## 
+##  To see confidence intervals of the correlations, print with the short=FALSE option</code></pre>
+<pre class="r"><code>ls(cor2)</code></pre>
+<pre><code>##  [1] &quot;adjust&quot; &quot;Call&quot;   &quot;ci&quot;     &quot;ci.adj&quot; &quot;ci2&quot;    &quot;n&quot;      &quot;p&quot;      &quot;p.adj&quot; 
+##  [9] &quot;r&quot;      &quot;se&quot;     &quot;sef&quot;    &quot;stars&quot;  &quot;sym&quot;    &quot;t&quot;</code></pre>
+<p>Nun kannst du den Plot erstellen:</p>
+<pre class="r"><code>corrplot(
+  cor2$r, 
+  p.mat = cor2$p,    # Matrix mit p-Werten
+  insig = &quot;blank&quot;,   # nicht signifikante = leer
+  type = &quot;upper&quot;,    # auch lower möglich
+  method = &quot;circle&quot; # verschiedene Optionen möglich
+)    </code></pre>
+<div class="float">
+<img src="../img/corrplot.png" alt="Heat Map" />
+<div class="figcaption">Heat Map</div>
+</div>
+<p>Die <strong>library</strong> <code>corrplot</code> ermöglicht dir eine Reihe an weiteren Einstellungen, diese kannst du dir <a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html">hier</a> ansehen. Wir werden uns im fünften Lernblock intensiver mit Grafiken beschäftigen.</p>
+</div>

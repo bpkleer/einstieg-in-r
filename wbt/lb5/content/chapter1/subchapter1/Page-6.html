@@ -1,0 +1,75 @@
+---
+title: "Gruppieren"  # Titel der Seite
+weight: 116  # Individuelles Gewicht 
+menuTitle: "Gruppieren" # Falls Titel zulang ist, hier Kurztitel
+tags: ["gruppieren", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Auch eine weitere Gruppenvariable kann einer Grafik leicht hinzugefügt werden. Diese Variable sollte ein Faktor sein, wenn nicht wird die Variable in einen Faktor <em>coerced</em>, was manchmal zu Problemen führen kann.</p>
+<pre class="r"><code>str(pss$gndr)</code></pre>
+<pre><code>##  Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 2 2 1 1 1 2 1 1 2 ...</code></pre>
+<pre class="r"><code>barGroup &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = gndr
+  )
+) +
+  geom_bar()
+
+barGroup</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-6_files/figure-html/bar-grouped-1.png" width="672" /></p>
+<p>Wir können die Teilbalken auch nebeneinander positionieren, anstatt sie übereinander anzeigen zu lassen:</p>
+<pre class="r"><code>barGroup &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = gndr
+  )
+) +
+  geom_bar(position = position_dodge())
+
+barGroup</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-6_files/figure-html/bar-group2-1.png" width="672" /></p>
+<p>Wie zuvor können wir alle weiteren Optionen ebenso einstellen:</p>
+<pre class="r"><code>barGroup + 
+  scale_y_continuous(
+    breaks = seq(
+      0,
+      800, 
+      100
+    ),
+    limits = c(
+      0, 
+      800
+    )
+  ) + 
+  geom_text(
+    stat = &quot;count&quot;, 
+    aes(label= ..count..), 
+    vjust = -1, 
+    size = 3.5, 
+    position = position_dodge(0.9)
+  ) +
+  labs(
+    x = &quot;Bildungslevel&quot;, 
+    y = &quot;Häufigkeiten&quot;, 
+    title = &quot;My first fancy ggplot&quot;
+  ) +
+  scale_fill_manual(
+    name = &quot;Gender&quot;, 
+    labels = c(
+      &quot;Female&quot;, 
+      &quot;Male&quot;
+    ),
+    values = beyonce_palette(72)
+  )</code></pre>
+<p>So einfach geht das! Auf geht’s zu den anderen Grafiktypen!</p>

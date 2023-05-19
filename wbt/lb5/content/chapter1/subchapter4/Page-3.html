@@ -1,0 +1,52 @@
+---
+title: "Count Plots"  # Titel der Seite
+weight: 143  # Individuelles Gewicht 
+menuTitle: "Count Plots" # Falls Titel zulang ist, hier Kurztitel
+tags: ["count plots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Eine andere gute Möglichkeit, um zwei pseudometrische Variablen darzustellen, ist der <strong>count plot</strong>. Hier werden die Kombinationen, die häufiger vorkommen größer dargestellt. Dazu rufen wir die Funktion <code>geom_count()</code> auf:</p>
+<pre class="r"><code>countplot &lt;- ggplot( 
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl
+  )
+) + 
+  geom_count()
+
+countplot</code></pre>
+<pre><code>## Warning: Removed 23 rows containing non-finite values (`stat_sum()`).</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter4/Page-3_files/figure-html/count-1.png" width="672" /></p>
+<div id="coloring" class="section level2">
+<h2>Coloring</h2>
+<p>Auch hier können wir Farben hinzufügen:</p>
+<pre class="r"><code>ggplot(
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl)) + 
+  geom_count(
+    aes(
+      color = ..n.., 
+      size = ..n..
+    )
+  ) +  
+  guides(color = &quot;legend&quot;)  </code></pre>
+<pre><code>## Warning: The dot-dot notation (`..n..`) was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(n)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: Removed 23 rows containing non-finite values (`stat_sum()`).</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter4/Page-3_files/figure-html/count2-1.png" width="672" /></p>
+<p>Zuguterletzt lernst du noch kennen, wie du eine bivariate Verteilung auch darstellen kannst!</p>
+</div>

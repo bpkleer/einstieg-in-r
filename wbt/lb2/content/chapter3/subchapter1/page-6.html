@@ -1,0 +1,74 @@
+---
+title: "Datensätze zusammenführen (neue Variablen)"  # Titel der Seite
+weight: 316  # Individuelles Gewicht 
+menuTitle: "Neue Variablen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Will man nur weitere Variablen in einen Datensatz hinzufügen, kann man auch hierfür <code>full_join()</code> nutzen. Wir haben zum Beispiel in einem weiteren Datensatz aus Panem, der einen neu eingeführten Social Score pro Person beinhaltet. Diese Daten wollen wir nun dem Datensatz <strong>PSS</strong> hinzufügen. Diese haben wir im Datensatz <code>sp</code> getrennt gespeichert und dort wird dieselbe ID-Variable genutzt, die auf die ID-Variable des Datensatzes <code>pss</code> matcht. Wir fügen jetzt die Socialpoints dem Datensatz <code>pss</code> mit <code>full_join()</code> hinzu. Schauen wir uns zuerst nochmal die zwei Datensätze an:</p>
+<pre class="r"><code>head(sp)</code></pre>
+<pre><code>##   socialpoints    id
+## 1     88.00907 10000
+## 2     90.38817 10001
+## 3     88.43383 10002
+## 4     92.27890 10003
+## 5     93.31521 10004
+## 6     89.57225 10005</code></pre>
+<pre class="r"><code>head(pss)</code></pre>
+<pre><code>##    idno   district   gndr agea         edu wkhtot     income stfdem stfeco
+## 1 10000 Distrikt 1   male   41 ES-ISCED IV     34 7th decile      7      6
+## 2 10001 Distrikt 1   male   65 ES-ISCED II     20 6th decile      8      7
+## 3 10002 Distrikt 1   male   48 ES-ISCED IV     27 7th decile      6      6
+## 4 10003 Distrikt 1 female   49  ES-ISCED V     30 6th decile      5      4
+## 5 10004 Distrikt 1 female   48 ES-ISCED IV     29 5th decile      4      5
+## 6 10005 Distrikt 1 female   64  ES-ISCED V     30 6th decile      6      6
+##   trstprl trstprt trstplt trstlgl lrscale
+## 1       3       5       4       6       4
+## 2       5       5       5       4       3
+## 3       4       4       6       5       6
+## 4       2       7       4       3       6
+## 5       6       6       6       6       2
+## 6       1       3       2       4       7</code></pre>
+<p>Wir haben zwar in beiden Variablen eine ID-Variable, allerdings ist die Spalte unterschiedlich benannt. Wir können jetzt - wie zuvor oben - wieder im <code>by</code>-Argument dies angeben. Diesmal wollen wir einfach schnell vorher den Spaltennamen in einem der Datensätze anpassen. Dazu nutzen wir einfach <code>rename()</code>. Die Logik in der Funktion ist <code>neuer Name = alter Name</code>.</p>
+<pre class="r"><code>sp &lt;- sp %&gt;% 
+  rename(idno = id)
+
+head(sp)</code></pre>
+<pre><code>##   socialpoints  idno
+## 1     88.00907 10000
+## 2     90.38817 10001
+## 3     88.43383 10002
+## 4     92.27890 10003
+## 5     93.31521 10004
+## 6     89.57225 10005</code></pre>
+<p>Jetzt sind die Spaltennamen gleich und wir können die Datensätze mergen.</p>
+<pre class="r"><code>pss &lt;- pss %&gt;% 
+  full_join(
+    sp, 
+    by = &quot;idno&quot;
+  )
+
+head(pss)</code></pre>
+<pre><code>##    idno   district   gndr agea         edu wkhtot     income stfdem stfeco
+## 1 10000 Distrikt 1   male   41 ES-ISCED IV     34 7th decile      7      6
+## 2 10001 Distrikt 1   male   65 ES-ISCED II     20 6th decile      8      7
+## 3 10002 Distrikt 1   male   48 ES-ISCED IV     27 7th decile      6      6
+## 4 10003 Distrikt 1 female   49  ES-ISCED V     30 6th decile      5      4
+## 5 10004 Distrikt 1 female   48 ES-ISCED IV     29 5th decile      4      5
+## 6 10005 Distrikt 1 female   64  ES-ISCED V     30 6th decile      6      6
+##   trstprl trstprt trstplt trstlgl lrscale socialpoints
+## 1       3       5       4       6       4     88.00907
+## 2       5       5       5       4       3     90.38817
+## 3       4       4       6       5       6     88.43383
+## 4       2       7       4       3       6     92.27890
+## 5       6       6       6       6       2     93.31521
+## 6       1       3       2       4       7     89.57225</code></pre>
+<p>Und auch das hast du gemeistert! Jetzt geht’s rüber ins nächste Paket des <strong>tidyverse</strong>: <code>tidyr</code>!</p>

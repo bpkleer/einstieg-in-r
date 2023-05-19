@@ -1,0 +1,138 @@
+---
+title: "Lagemaße"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Lagemaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["deskriptiv", "lagemaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<div id="deskriptive-statistik-in-r" class="section level2">
+<h2>Deskriptive Statistik in R</h2>
+<p>Nun werden einige Funktionen vorgestellt, mit denen deskriptive Statistiken ausgegeben werden.</p>
+<p>{{% tabs groupId="tab1" %}}
+{{% tab name="Zur Erinnerung" %}}
+Welche Maßzahlen zentraler Tendenz und der Verteilung gibt es?
+{{% /tab %}}
+{{% tab name="Auflösung" %}}
+- Modus, Median, arithm. Mittel</p>
+<ul>
+<li><p>Spannweite (Range), Interquartilsabstand, Quartile</p></li>
+<li><p>Varianz, Standardabweichung
+{{% /tab %}}
+{{% /tabs %}}</p></li>
+</ul>
+<div id="minimum-maximum-und-spannweite" class="section level3">
+<h3>Minimum, Maximum und Spannweite</h3>
+<p>Die Funktionen für Minimum, Maximum und Spannweite sind:</p>
+<pre class="r"><code># Minimum
+min(pss$wkhtot)</code></pre>
+<pre><code>## [1] 6</code></pre>
+<pre class="r"><code># Maximum
+max(pss$wkhtot)</code></pre>
+<pre><code>## [1] 65</code></pre>
+<pre class="r"><code># Spannweite / Range 
+range(pss$wkhtot)</code></pre>
+<pre><code>## [1]  6 65</code></pre>
+<p>Nun versuche es für die Variable <code>stfdem</code>. Was passiert?</p>
+<pre class="r"><code>min(pss$stfdem)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>Es gibt eine Fehlermeldung, dass der Wert nicht berechnet werden kann. Denn in dieser Variable gibt es <em>missing values</em> (<code>NA's</code>). Manche Personen haben hier also keinen Wert angegeben und dies wird in R mit <code>NA</code> gekennzeichnet! Daher kann kein Wert berechnet werden.</p>
+<p><span class="math inline">\(\rightarrow\)</span> Um dennoch einen Wert berechnen zu können, müssen <em>missing values</em> exkludiert werden.</p>
+<pre class="r"><code>min(
+  pss$stfdem, 
+  na.rm = TRUE
+)       </code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>## na.rm: NA = missing values, rm = remove      </code></pre>
+</div>
+<div id="modus-median-und-arithm.-mittelwert" class="section level3">
+<h3>Modus, Median und arithm. Mittelwert</h3>
+<p>Für den Median und Mittelwert gibt es jeweils R-Base Funktionen, die direkt genutzt werden können:</p>
+<pre class="r"><code>## Median
+median(
+  pss$stfdem, 
+  na.rm = TRUE
+) </code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>## arithm. Mittelwert
+mean(
+  pss$stfdem, 
+  na.rm = TRUE
+)</code></pre>
+<pre><code>## [1] 4.657492</code></pre>
+<p>Für den Modus gibt es das nicht, man kann sich aber mit der Funktion <code>table()</code> die Datentabelle einer Variable anzeigen lassen und daraus dann den Modus oder die Modi ablesen:</p>
+<pre class="r"><code>## Modus (no built-in function)
+table(pss$stfdem)</code></pre>
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8   9  10 
+## 226 268 436 618 754 850 631 522 338 179  83</code></pre>
+<pre class="r"><code>max(table(pss$stfdem)) # nicht hilfreich bei bimodalen (etc.) Verteilungen</code></pre>
+<pre><code>## [1] 850</code></pre>
+</div>
+<div id="quantile" class="section level3">
+<h3>Quantile</h3>
+<p>Manchmal sollen von einer Variable verschiedene Bereiche ausgegeben werden, z.B. das Einkommen in Dezilen oder Quintilen. Hierfür wird die Funktion <code>quantile()</code> genutzt. Diese wird dafür mit der Funktion <code>seq()</code> kombiniert.</p>
+<p>Die Funktion <code>seq()</code> liefert eine Reihenfolge von Zahlen, die wir über die drei Argumente <em>from</em>, <em>to</em> und <em>by</em> festsetzen. Das <em>from</em>-Argument legt den Startwert fest, das <em>to</em>-Argument den Endwert und das <em>by</em>-Argument legt die Schritte fest. Wir gehen also im Beispiel von <code>0</code> zu <code>1</code>, wobei der Schritt jeweils <code>0.1</code> ist!</p>
+<pre class="r"><code>seq(
+  from = 0,
+  to = 1, 
+  by = 0.1
+)
+
+seq(
+  by = 0.1, 
+  to = 1, 
+  from = 0
+) 
+
+# wird die Standardreihenfolge (from-to-by) eingehalten, kann man die Argumentbeschriftung auslassen.
+seq(
+  0, 
+  1, 
+  0.1
+)</code></pre>
+<p>Nun können Dezile (<code>0.1</code>-Schritt) ausgegeben werden:</p>
+<pre class="r"><code>quantile(
+  pss$stfdem, 
+  probs = seq(
+    0,
+    1, 
+    0.1
+  ),    
+  na.rm = TRUE
+) </code></pre>
+</div>
+<div id="test" class="section level3">
+<h3>Test</h3>
+<p>{{% tabs groupId="tab2" %}}
+{{% tab name="Frage" %}}
+Was muss geändert werden, um Quintile ausgeben zu lassen?
+{{% /tab %}}
+{{% tab name="Auflösung" %}}
+Um Quintile zu erreichen, wird in <span class="math inline">\(0.2\)</span>-Schritten gegangen, so dass wir fünf Werte von <span class="math inline">\(0\)</span> bis <span class="math inline">\(1\)</span> erhalten.</p>
+<pre class="r"><code>quantile(
+  pss$stfdem, 
+  probs = seq(
+    0,
+    1,
+    0.2
+  ),    
+  na.rm = TRUE
+)</code></pre>
+<p>{{% /tab %}}
+{{% /tabs %}}</p>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary()</h3>
+<p>Um sich eine Reihe an deskriptiven Werten ausgeben zu lassen, kann man ebenfalls die Funktion <code>summary()</code> nutzen:</p>
+<pre class="r"><code>summary(pss$stfdem)</code></pre>
+<p>Weiter zu den Streumaßen!</p>
+</div>
+</div>

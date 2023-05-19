@@ -1,0 +1,76 @@
+---
+title: "Zwischen mehr als zwei Gruppen"  # Titel der Seite
+weight: 203  # Individuelles Gewicht 
+menuTitle: "F-Test" # Falls Titel zulang ist, hier Kurztitel
+tags: ["mittelwert", "mittelwertvergleiche", "anova", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Auf dieser Seite werden Mittelwertvergleiche zwischen mehr als zwei Gruppen vorgestellt. Diese Test-Statistik wird <strong>ANOVA</strong> oder <strong>F-Test</strong> genannt. Wir möchten nun die verschiedenen Gruppen der <code>edu</code>-Variable testen.</p>
+<p><strong>Annahmen</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>abhängige Variable ist metrisch<span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>unabhängige Variable ist kategoriell <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>Gruppen sind unabhängig voneinander <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>[Normalverteilung der metr. Variable in jeder Gruppe (nötig nur für <span class="math inline">\(n \leq 25\)</span>)] <span class="math inline">\(\checkmark\)</span></p></li>
+<li><p>Varianzgleichheit zwischen Gruppen</p></li>
+</ol>
+<div id="prüfen-der-annahmen" class="section level3">
+<h3>Prüfen der Annahmen</h3>
+<p>Wir möchten testen, inwieweit die Arbeitsstunden zwischen verschiedenen Bildungsgruppen differieren. Dazu nimmst du die <code>edu</code>-Variable, die mehrere Bildungsgruppen beinhaltet. Zuerst führst du wieder den Levene-Test durch. Da du jetzt alle Gruppen inkludierst, kannst du wieder die Formelschreibweise nutzen:</p>
+<pre class="r"><code>leveneTest(
+  pss$wkhtot ~ pss$edu,
+  center = &quot;mean&quot;
+)</code></pre>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = &quot;mean&quot;)
+##         Df F value Pr(&gt;F)
+## group    4  0.4981 0.7372
+##       4643</code></pre>
+<p>{{% expand "Wie interpretierst du das Ergebnis?" %}}
+Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianzgleichheit angenommen.</p>
+<p><span class="math inline">\(H_0\)</span>: Alle Gruppen haben dieselbe Varianz in der metrischen Variable.
+{{% /expand %}}</p>
+</div>
+<div id="berechnen-des-tests-ungleiche-varianzen" class="section level3">
+<h3>Berechnen des Tests (ungleiche Varianzen)</h3>
+<p>Um den Test zu berechnen, kannst du die Funktionen <code>oneway.test()</code> und <code>pairwise.t.test()</code> nutzen:</p>
+<pre class="r"><code>oneway.test(
+  pss$wkhtot ~ pss$edu,
+  var.equal = TRUE
+)</code></pre>
+<pre><code>## 
+## 	One-way analysis of means
+## 
+## data:  pss$wkhtot and pss$edu
+## F = 40.16, num df = 4, denom df = 4643, p-value &lt; 2.2e-16</code></pre>
+<p>Dieser Test zeigt an (p-Wert), dass es mindestens zwischen zwei Gruppen signifikante Differenzen gibt (p-Wert <span class="math inline">\(&lt; 0.05\)</span>). Um nun festzustellen zwischen welchen Gruppen diese vorliegen, nutzt du die Funktion <code>pairwise.t.test()</code>:</p>
+<pre class="r"><code>pairwise.t.test(
+  pss$wkhtot, # metrische Variable zuerst
+  pss$edu, # Gruppenvariable als zweites
+  p.adj = &quot;holm&quot;  # Korrektur (Standardverwendung)
+) </code></pre>
+<pre><code>## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  pss$wkhtot and pss$edu 
+## 
+##              ES-ISCED I ES-ISCED II ES-ISCED III ES-ISCED IV
+## ES-ISCED II  0.0020     -           -            -          
+## ES-ISCED III 8.3e-12    5.0e-05     -            -          
+## ES-ISCED IV  &lt; 2e-16    2.7e-12     0.0016       -          
+## ES-ISCED V   &lt; 2e-16    1.0e-14     1.3e-07      0.0020     
+## 
+## P value adjustment method: holm</code></pre>
+<p>Im Testergebnis siehst du eine Matrix zwischen den Gruppen, in der die p-Werte für den jeweiligen Vergleich zweier Gruppen eingetragen sind.</p>
+<p>{{% expand "Zwischen welchen Gruppen lassen sich also signifikante Unterschiede feststellen??" %}}
+Richtig, zwischen allen Gruppen!
+{{% /expand %}}</p>
+<p>Das war’s für diesen Lernblock!</p>
+</div>

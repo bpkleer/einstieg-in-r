@@ -1,0 +1,53 @@
+---
+title: "Standardisierte Regressionskoeffizienten"  # Titel der Seite
+weight: 201  # Individuelles Gewicht 
+menuTitle: "Stand. Koeffizienten" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>In Statistik I hast du ja bereits die z-Standardisierung kennengelernt und Verteilungen von Variablen besser vergleichen zu können. Die z-Standardisierung rekodiert eine Variable auf die Einheit Standardabweichung, so dass Variablen, die z-standardisiert sind, vergleichbar sind.</p>
+<p>Nicht rekodierte Variablen liefern in R auch nicht-standardisierte Regressionskoeffizienten. Du hast dies an der Interpretation der Regressionsergebnisse gesehen: Du hast immer in der Einheit der Variablen ausgewertet. Nachteil von nicht-standardisierten Variablen ist, dass die Effekte nicht in der Stärke untereinander vergleichbar sind. Dies geht nur mit standardisierten Variablen.</p>
+<p>In manchen (oft komplexeren) Modellen möchten wir die Stärke der einzelnen unabhängigen Variablen bewerten. Da die Variablen nicht dieselbe Einheit besitzen, ist dies wie oben erklärt nicht so einfach möglich. Wir können die Variablen aber standardisieren, so dass alle Variablen dieselbe Einheit besitzen (Standardabweichungen). Dazu nutzt du am besten die Funktion <code>scale()</code> aus dem <strong>tidyverse</strong> (<code>dplyr</code>). In komplexeren Regressionsmodellen oder erweiterten Modellen (wie <em>Multi-Level-Modellen</em>) standardisiert man die Variablen meist vor der Berechnung des Modells.</p>
+<p>Machen wir diesen Schritt nun für die Variablen im <code>olsModel2</code>:</p>
+<pre class="r"><code>pss &lt;- pss %&gt;% 
+  mutate(
+    stfdemZ = scale(stfdem),
+    stfecoZ = scale(stfeco),
+    trstlglZ = scale(trstlgl)
+  )</code></pre>
+<p>Wir berechnen das Modell anschließend erneut mit den neuen Variablen:</p>
+<pre class="r"><code>olsModel2Z &lt;- lm(
+  stfdemZ ~ 1 + stfecoZ + trstlglZ,   
+  data = pss
+)   </code></pre>
+<p>Wie interpretieren wir das Ergebnis?</p>
+<pre class="r"><code>summary(olsModel2Z)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = stfdemZ ~ 1 + stfecoZ + trstlglZ, data = pss)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.42296 -0.46136  0.01681  0.49498  2.47445 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.004028   0.010511   0.383  0.70155    
+## stfecoZ      0.697244   0.010815  64.468  &lt; 2e-16 ***
+## trstlglZ    -0.033592   0.010517  -3.194  0.00141 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7352 on 4890 degrees of freedom
+##   (107 observations deleted due to missingness)
+## Multiple R-squared:  0.4598,	Adjusted R-squared:  0.4596 
+## F-statistic:  2081 on 2 and 4890 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>Ergebnis</strong>: Mit jedem Anstieg um eine Standardabweichung in <code>stfeco</code> steigt <code>stfdem</code> um <span class="math inline">\(0.697244\)</span> Standardabweichungen. Wie zu sehen ist, ist die Interpretation etwas schwerfälliger. Aber nun können die einzelnen Effekte zwischen metrischen Variablen verglichen werden. Es wird sichtbar, dass der Effekt von <code>stfeco</code> stärker ist als der von <code>trstlgl</code> (<span class="math inline">\(0.697244 &gt; |-0.033592|\)</span>).</p>

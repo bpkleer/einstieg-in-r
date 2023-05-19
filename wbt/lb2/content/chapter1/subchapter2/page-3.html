@@ -1,0 +1,31 @@
+---
+title: "Import von .RData und .rds"  # Titel der Seite
+weight: 123  # Individuelles Gewicht 
+menuTitle: "R-Import" # Falls Titel zulang ist, hier Kurztitel
+tags: [".RData", "datei", ".rds", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>{{%attachments style="grey" title="Datensatz" /%}}</p>
+<p>Wenn Datensätze einmal als R-Daten (<code>.RData</code> oder <code>.rds</code>) gespeichert wurden, können die Daten leichter importiert werden. Wir laden jetzt wieder den Datensatz <code>exam</code> ein weiteres Mal in das <strong>Environment</strong>.</p>
+<p>Dafür räumen wir unser <strong>Environment</strong> aber erstmal auf und entfernen alle Objekte, damit wir die Veränderungen auch sehen. Dafür nutzt man die Funktion <code>rm()</code> (<em>rm</em> steht für <em>remove</em>). In der Funktion gibt man dann einfach mit einem <code>,</code> (Komma) getrennt an, welche Objekte man aus dem Environment löschen möchte. Wir löschen mal alle!</p>
+<pre class="r"><code>rm(
+  exam, 
+  examcsv, 
+  examcsv2, 
+  path
+)</code></pre>
+<p>Wenn wir R-Daten laden, ist dies deutlich leichter, da die Daten direkt in einem Format sind, das für R lesbar ist.
+Laden wir ein einzelnes Objekt (<code>.rds</code>-Datei) nutzen wir die Funktion <code>readRDS()</code>. <strong>Wichtig:</strong> Bei dieser Funktion müssen wir die eingelesenen Daten einem Objekt hinzufügen, damit diese dann auch im <strong>Environment</strong> zur Verfügung stehen. Gut daran ist, dass wir die Daten zu unserem Gefallen umbenennen können und nicht auf den Dateinamen angewiesen sind.</p>
+<pre class="r"><code>exam &lt;- readRDS(&quot;./data/exam.rds&quot;)</code></pre>
+<p>Wir könnten auch ein gesamtes Environment laden. Dies können zum Beispiel alle Objekte einer Session sein, also das, was wir bis gerade gemacht haben. Diese Art von Daten ist im Format <code>.RData</code> gespeichert und wir nutzen einfach die Funktion <code>load()</code>.</p>
+<pre class="r"><code># alternativ gesamter Workspace
+load(&quot;./data/exam.RData&quot;)</code></pre>
+<p>Das war es auch schon, so können wir Daten importieren, die in globalen Formaten vorliegen oder in R-spezifischen Formaten. Als letztes lernen wir jetzt noch den Import von SPSS-Datensätzen kennen, da leider immer noch eine Reihe an Organisationen ihre Datensätze in diesem Format zur Verfügung stellen.</p>

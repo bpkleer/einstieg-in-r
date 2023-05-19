@@ -1,0 +1,174 @@
+---
+title: "Coloring"  # Titel der Seite
+weight: 112  # Individuelles Gewicht 
+menuTitle: "Coloring" # Falls Titel zulang ist, hier Kurztitel
+tags: ["coloring", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Bisher ist unser Balkendiagramm recht fad: Die Achsenbeschriftung ist unklar und in grau schaut es trist aus. Dies ändern wir nun. <strong>Wichtig ist</strong>, dass wir, wenn wir die Konvention in <code>ggplot</code> einhalten, erklärende Teile wie <code>data = ...</code> oder <code>mapping = ...</code> weglassen können. Das heißt weniger Schreibarbeit! Farbe fügen wir einfach hinzu, in dem wir innerhalb von <code>aes()</code> das Argument <code>color</code> hinzufügen und sagen, nach welcher Variable die Farbe sich unterscheiden soll.</p>
+<p>Zuerst fügen wir etwas Farbe hinzu:</p>
+<pre class="r"><code>barplot &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    color = edu
+  )
+) +
+  geom_bar()
+
+barplot</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-clean-1.png" width="672" /></p>
+<p>Wir sehen, dass das Argument <code>color</code> lediglich die Randlinien ändert. Um die Füllung zu ändern, müssen wir das Argument <code>fill</code> benutzen:</p>
+<pre class="r"><code>barplot &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() 
+
+barplot</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-fill-1.png" width="672" /></p>
+<p>So jetzt haben wir die Grafik schonmal bunt gemacht. Du kannst aber auch die Farbwerte festlegen, wenn du selbst bestimmen möchtest wie bunt die Grafik wird. Dies kannst du festlegen, in dem du in der Funktion <code>geom_bar()</code> das Argument <code>fill</code> nutzt. Dort gibst du so viele Farben an, wie du benötigst (nicht mehr und nicht weniger!). Eine Übersicht gängiger Farbcodes findest du hier:</p>
+<p>{{%attachments style="grey" title="Farben in R" /%}}</p>
+<pre class="r"><code>barplot &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar(
+    fill = c(
+      &quot;steelblue&quot;, 
+      &quot;darkgoldenrod&quot;,
+      &quot;seagreen&quot;, 
+      &quot;red4&quot;, 
+      &quot;orange&quot;,
+      &quot;darkslategray2&quot;
+    )
+  ) 
+
+barplot</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-color-1.png" width="672" /></p>
+<p>{{% expand "Du möchtest jetzt aber, dass der zweite Balken die blaue Farbe hat. Wie kannst du das ändern?" %}}
+Richtig, es ist ganz leicht! Du musst einfach nur die Reihenfolge verändern!
+{{% /expand %}}</p>
+<p>Du kannst Farbcodes auch in einem Objekt (Vektor) speichern und diesen dann in der <code>ggplot()</code>-Funktion aufrufen. So bleibt der Plot-Code übersichtlicher. Wichtig ist, dass der Vektor genau dieselbe Länge haben muss wie die Anzahl der Gruppen.</p>
+<pre class="r"><code>educol = c(
+  &quot;steelblue&quot;, 
+  &quot;darkgoldenrod&quot;,
+  &quot;seagreen&quot;, 
+  &quot;red4&quot;, 
+  &quot;orange&quot;,
+  &quot;darkslategray2&quot;
+)
+
+barplot &lt;- ggplot(
+  pss, 
+  aes(
+    x = edu, 
+    fill = edu
+  )
+) +
+  geom_bar(fill = educol) 
+
+barplot</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-color-vektor-1.png" width="672" /></p>
+<p>Wenn du einen Farbvektor nutzt, kannst du auch Farbvektoren nutzen, die von der Anzahl der genauen Ausprägungen abweichen. Gibt es zu wenige Farben im Farbevktor, wiederholen sich die Farben. Diesen kannst du aber nicht im <code>fill</code>-Argument in der Funktion <code>geom_bar()</code> nutzen, sondern du nutzt dafür die zusätzliche Funktion <code>scale_fill_manual()</code>:</p>
+<pre class="r"><code># a colourblind-friendly palettes
+cbp1 &lt;- c(
+  &quot;#999999&quot;, 
+  &quot;#E69F00&quot;,
+  &quot;#56B4E9&quot;,
+  &quot;#009E73&quot;,
+  &quot;#F0E442&quot;, 
+  &quot;#0072B2&quot;,
+  &quot;#D55E00&quot;,
+  &quot;#CC79A7&quot;
+)
+
+barplotCb &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_manual(values = cbp1)
+
+barplotCb</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-colorblind-1.png" width="672" /></p>
+<p>Wenn man Dokumente nicht digital abgeben kann, nutzt man häufig graue Grafiken, um Kosten zu sparen. Hierzu gibt es die Zusatz-Funktion <code>scale_fill_grey()</code>, die den Plot automatisch in Graustufen ausgibt:</p>
+<pre class="r"><code>barplotGray &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_grey()
+
+barplotGray</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-gray-1.png" width="672" /></p>
+<p>Ebenso gibt es einige <strong>libraries</strong>, die vorgefertigte Farbpaletten beinhalten. Zum Beispiel: <code>RColorBrewer</code> oder <a href="https://github.com/dill/beyonce"><code>beyonce</code></a>. Wir nutzen hier jetzt erstmal <code>RColorBrewer</code>. <code>RColorBrewer</code> ist normal zu installieren, die <strong>library</strong> <code>beyonce</code> wird über ein Entwicklertool installiert. Viele <strong>libraries</strong> sind noch im Entwicklungsstadium und sind noch nicht offiziell verfügbar, können aber über ein Entwicklertool dennoch geladen und auch schon genutzt werden.</p>
+<pre class="r"><code>install.packages(&quot;RColorBrewer&quot;)
+
+# Installation Entwicklertool
+install.packages(
+  &quot;devtools&quot;,
+  dependencies = TRUE
+)
+
+# Install beyonce palette
+devtools::install_github(&quot;dill/beyonce&quot;)</code></pre>
+<p>Bei <code>RColorBrewer</code> kannst du dir die Farbpaletten anzeigen lassen:</p>
+<pre class="r"><code>library(&quot;RColorBrewer&quot;)
+
+display.brewer.all()</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/rcolorbrewer-1.png" width="672" /></p>
+<p>Um eine dieser Paletten von <code>RColorBrewer</code> nutzen zu können, nutzt du die Funktion <code>scale_fill_brewer()</code> und legst darin die Farbpalette fest:</p>
+<pre class="r"><code>barplotBrewer &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_brewer(palette = &quot;Dark2&quot;)
+
+barplotBrewer</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-brewer-1.png" width="672" /></p>
+<p>Um die <code>beyonce</code> Farbpalette zu nutzen, gehst du anders vor: Zuerst lass dir mal alle Farbpaletten ausgeben.</p>
+<pre class="r"><code>library(&quot;beyonce&quot;)
+
+# Ausgabe aller Farbpaletten [beginnend bei 1]
+par(mfrow=c(26,5))
+for(i in 1:130) print(beyonce_palette(i))</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/beyonce-1.png" width="672" /></p>
+<p>Im Beispiel entscheiden wir uns für Farbpalette 25. Um die jeweilige Farbpalette aufzurufen, nutzt du die Funktion <code>beyonce_palette()</code> aus der <strong>library</strong> <code>beyonce</code> und als einziges Argument gibst du die Nummer der Farbpalette an. Um diese nun zu nutzen, benutzt du die zusätzliche Funktion <code>scale_fill_manual()</code> im <code>ggplot</code>.</p>
+<pre class="r"><code>barplotBeyonce &lt;- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(values = beyonce_palette(25)) 
+
+barplotBeyonce</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter1/Page-2_files/figure-html/barplot-beyonce-1.png" width="672" /></p>
+<p>Auf geht’s und du fügst Wertebeschriftungen hinzu!</p>
