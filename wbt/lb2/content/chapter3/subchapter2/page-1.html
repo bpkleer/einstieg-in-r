@@ -1,0 +1,25 @@
+---
+title: "Das Gerüst von Datensätzen mit tidyr"  # Titel der Seite
+weight: 321  # Individuelles Gewicht 
+menuTitle: "Gerüst von Datensätzen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Es ist für die Datenverarbeitung wichtig, dass die Datensätz <em>tidy</em> sind, damit die Funktionen in R problemlos mit den Daten laufen. Das bedeutet, dass die Daten in einem bestimmten Format vorliegen müssen, damit die Funktionen in R auch gut mit den Daten funktionieren (weniger <em>troubleshooting</em>).</p>
+<div id="zur-wiederholung-was-ist-ein-datensatz" class="section level2">
+<h2>Zur Wiederholung: Was ist ein Datensatz?</h2>
+<p>Ein Datensatz ist generell immer eine Sammlung von Werten, sei es numerisch oder eine Zeichenkette. Diese Werte sind immer auf zwei Arten organisiert: Jeder Wert gehört zu einer <strong>Variable</strong> und zu einer <strong>Beobachtung</strong>. Eine <strong>Variable</strong> inkludiert alle Werte, die für diese gemessen worden sind (also alle Beobachtungen auf dieser Variable). Eine <strong>Beobachtung</strong> inkludiert alle Werte, die für diese Beobachtung gemessen wurden (also alle Variablenwerte dieser <em>Einheit</em>).</p>
+<p>Damit Daten in R gut mit den Funktionen genutzt werden können, müssen diese in einem <em>tidy</em>-Format vorliegen (auch <em>long</em>-Format genannt). Ein Datensatz ist dann <em>tidy</em>, wenn …</p>
+<blockquote>
+<ul>
+<li>… jede Variable eine Spalte ist,</li>
+<li>… jede Beobachtung eine Zeile ist,</li>
+<li>… und jede Beobachtungseinheit eine Tabelle formt.</li>
+</ul>
+</blockquote>
+</div>

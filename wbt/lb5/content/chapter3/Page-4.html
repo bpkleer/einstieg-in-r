@@ -1,0 +1,112 @@
+---
+title: "ggcorrplot()"  # Titel der Seite
+weight: 304  # Individuelles Gewicht 
+menuTitle: "ggcorrplot()" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "ggcorrplot", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Auch als <code>ggplot</code> können Korrelationsplots erstellt werden. Dazu nutzt du wieder die <strong>library</strong> <code>GGally</code>.</p>
+<pre class="r"><code>library(&quot;GGally&quot;)</code></pre>
+<p>Hier verwendest du jetzt die Funktion <code>ggcorr()</code>: Nicht metrische Variablen werden automatisch ausgeschlossen.</p>
+<pre class="r"><code>ggcorr(pss)</code></pre>
+<pre><code>## Warning in ggcorr(pss): data in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39;
+## are not numeric and were ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr-1.png" width="672" /></p>
+<p>Im zusätzlichen Argument <code>method</code> kannst du angeben, wie mit <code>NA's</code> umgegangen werden soll, und welche Art von Korrelation berechnet werden soll (<code>pearson</code>, <code>spearman</code>, <code>kendall</code>):</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  )
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;)): data in column(s)
+## &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr2-1.png" width="672" /></p>
+<p>Zusätzlich kannst du mit <code>label = TRUE</code> den Korrelationskoeffizienten auch anzeigen lassen:</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  ),
+  label = TRUE
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;), label = TRUE): data
+## in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were
+## ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr3-1.png" width="672" /></p>
+<p>Mit dem Argument <code>label_round</code> stellst du die Dezimalzeichen fest:</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  ),
+  label = TRUE,
+  label_round = 2
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;), label = TRUE, : data
+## in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were
+## ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr4-1.png" width="672" /></p>
+<p>Im Argument <code>geom</code> kannst du zwischen <code>tile</code>, <code>circle</code>, <code>text</code> oder <code>blank</code> auswählen.</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = &quot;circle&quot;
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;), label = TRUE, : data
+## in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were
+## ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr5-1.png" width="672" /></p>
+<p>Zuguterletzt kannst du im Argument <code>palette</code> noch drei Farben angeben (<span class="math inline">\(-1\)</span>, <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>), die die Farbskala bilden sollen: Ich greife hier wieder auf <code>beyonce</code> zurück! <strong>Wichtig:</strong> Du gibst hier nicht die ganze Palette an, sondern eine Farbe aus der jeweiligen Palette, deshalb in <code>[..]</code>-Klammern noch eine zusätzliche Zahl!</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = &quot;circle&quot;,
+  low = beyonce_palette(72)[1],
+  mid = &quot;white&quot;, 
+  high = beyonce_palette(72)[2]
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;), label = TRUE, : data
+## in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were
+## ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr6-1.png" width="672" /></p>
+<p>Alternativ kannst du auch noch die <code>limits</code> ändern. Das kann hilfreich sein, wenn deine Korrelationswerte nicht sehr hoch sind und alle nur sehr schwach farbig sind. Mit <code>limits = FALSE</code> werden automatisch die Endpunkte gesetzt (entsprechend den Daten!).</p>
+<pre class="r"><code>ggcorr(
+  pss,
+  method = c(
+    &quot;pairwise&quot;,
+    &quot;pearson&quot;
+  ),
+  label = TRUE,
+  label_round = 2,
+  geom = &quot;circle&quot;,
+  low = beyonce_palette(72)[1],
+  mid = &quot;white&quot;, 
+  high = beyonce_palette(72)[2],
+  limits = FALSE
+)</code></pre>
+<pre><code>## Warning in ggcorr(pss, method = c(&quot;pairwise&quot;, &quot;pearson&quot;), label = TRUE, : data
+## in column(s) &#39;district&#39;, &#39;gndr&#39;, &#39;edu&#39;, &#39;income&#39; are not numeric and were
+## ignored</code></pre>
+<p><img src="/statsplus/lb5/chapter3/Page-4_files/figure-html/ggcorr7-1.png" width="672" /></p>
+<p><strong>Wichtig:</strong> In <code>ggcorr()</code> können nicht signifikante Werte nicht ausgeblendet werden, da die Autorin dieser Funktionen (zu Recht) gegen eine Fokussierung auf das Signifikanzniveau ist.</p>
+<p>Mehr zum Funktionsumfang in <code>ggcorr()</code> findest du <a href="https://ggobi.github.io/ggally/reference/ggcorr.html?q=ggcorr">hier</a>.</p>
+<p>Gehen wir nun weiter zu der Darstellung von Mittelwertvergleichen.</p>

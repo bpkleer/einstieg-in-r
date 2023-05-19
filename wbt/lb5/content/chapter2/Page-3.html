@@ -1,0 +1,193 @@
+---
+title: "Missing values"  # Titel der Seite
+weight: 203  # Individuelles Gewicht 
+menuTitle: "Missing values" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Oftmals möchte man bevor man die eigentliche Datenanalyse beginnt, zuerst die Daten inspizieren und vor allem die <strong><em>missing values</em></strong> prüfen. Dazu gibt es zwei umfangreiche Pakete, die auf <code>ggplot2</code> aufbauen. Dies sind: <code>naniar</code> und <code>UpSetR</code>.</p>
+<p>Zuerst installieren bzw. laden wir die Pakete:</p>
+<pre class="r"><code>install.packages(&quot;UpSetR&quot;)
+install.packages(&quot;naniar&quot;)
+
+library(&quot;UpSetR&quot;)
+library(&quot;naniar&quot;)</code></pre>
+<p>Wir benutzen nun den Datensatz weiterhin den Datensatz <code>pss</code>. Zuerst wollen wir nun die <em>missings</em> pro Variable darstellen. Dazu filtern wir zuerst den Datensatz auf die ID-Variable und die folgenden vier Variablen: <code>stfdem</code>, <code>stfeco</code>, <code>trstprl</code> und <code>trstlgl</code>. Anschließend bringen wir den Datensatz in ein long-Format und schaffen eine dann dritte Spalte, die angibt, ob es ein <em>missing</em>-Wert ist oder nicht. Dann gruppieren wir nach Variablen und der neuen ditten Spalte und zählen die <em>missings</em> pro Variable (bzw. auch die nicht-<em>missings</em>). Danach schließen wir die nicht-<em>missings</em> aus und sortieren die Tabelle absteigend. Wir sehen dann, wie viele <em>missings</em> in jeder der vier Variablen vorhanden sind.</p>
+<pre class="r"><code>missingValues &lt;- pss %&gt;%
+  select(
+    c(
+      &quot;idno&quot;, 
+      &quot;stfdem&quot;,
+      &quot;stfeco&quot;, 
+      &quot;trstprl&quot;, 
+      &quot;trstlgl&quot;
+    )
+  ) %&gt;% 
+  pivot_longer(
+    everything(),
+    names_to = &quot;variable&quot;,
+    values_to = &quot;val&quot;
+  ) %&gt;%
+  mutate(is.missing = is.na(val)) %&gt;%
+  group_by(
+    variable, 
+    is.missing
+  ) %&gt;%
+  summarize(
+    num.missing = n()
+  ) %&gt;%
+  filter(is.missing == TRUE) %&gt;%
+  select(-is.missing) %&gt;%
+  arrange(desc(num.missing))
+
+missingValues</code></pre>
+<pre><code>## # A tibble: 4 × 2
+## # Groups:   variable [4]
+##   variable num.missing
+##   &lt;chr&gt;          &lt;int&gt;
+## 1 stfdem            95
+## 2 trstprl           35
+## 3 trstlgl           12
+## 4 stfeco             6</code></pre>
+<p>Anschließend kann man sich ein einfaches Balkendiagramm ausgeben lassen mit diesem neuen Datensatz:</p>
+<pre class="r"><code>missingValues %&gt;%
+  ggplot() +
+  geom_bar(
+    aes(
+      variable, 
+      num.missing
+    ), 
+    stat = &#39;identity&#39;
+  ) +
+  labs(
+    x = &#39;Variable&#39;,
+    y = &quot;Anzahl MV&quot;, 
+    title = &#39;Missing Values pro Variable&#39;
+  ) +
+  theme(
+    axis.text.x = element_text(
+      angle = 45, 
+      hjust = 1
+    )
+  )</code></pre>
+<p><img src="/statsplus/lb5/chapter2/Page-3_files/figure-html/missValBarplot-1.png" width="672" /></p>
+<p>Hier kann man alle Spielereien von oben austesten. Wir wollen aber jetzt Prozente ausgeben, um zu sehen, wie viel Prozent der Variable <em>missings</em> sind. Dazu wiederholen wir die Schritte von zuvor, fügen aber einen <code>mutate</code>-Schritt ein, der uns die Prozente angibt.</p>
+<pre class="r"><code>#Prozente
+missingValues &lt;-  pss %&gt;%
+  select(
+    c(
+      &quot;idno&quot;, 
+      &quot;stfdem&quot;,
+      &quot;stfeco&quot;, 
+      &quot;trstprl&quot;, 
+      &quot;trstlgl&quot;
+    )
+  ) %&gt;% 
+  pivot_longer(
+               everything(),
+               names_to = &quot;key&quot;,
+               values_to = &quot;val&quot;
+               ) %&gt;%
+  mutate(isna = is.na(val)) %&gt;%
+  group_by(key) %&gt;%
+  mutate(total = n()) %&gt;%
+  group_by(
+           key, 
+           total,
+           isna
+           ) %&gt;%
+  summarise(num.isna = n()) %&gt;%
+  mutate(pct = num.isna / total * 100)
+
+levels &lt;- (
+           missingValues  %&gt;% 
+             filter(isna == T) %&gt;%     
+             arrange(desc(pct))
+           )$key
+
+missingsPercent &lt;- missingValues %&gt;%
+  ggplot() +
+  geom_bar(
+           aes(
+               x = reorder(
+                           key, 
+                           desc(pct)
+                           ), 
+               y = pct, 
+               fill = isna
+               ), 
+           stat = &#39;identity&#39;,
+           alpha = 0.8) +
+  scale_x_discrete(limits = levels) +
+  scale_fill_manual(
+                    name = &quot;&quot;, 
+                    values = c(
+                               &#39;steelblue&#39;, 
+                               &#39;tomato3&#39;
+                               ), 
+                    labels = c(
+                               &quot;vorhanden&quot;,
+                               &quot;fehlend&quot;
+                               )
+                    ) +
+  coord_flip() +
+  labs(
+       title = &quot;Prozent von missing values&quot;, 
+       x = &#39;Variable&#39;, 
+       y = &quot;% missing values&quot;
+       )
+
+missingsPercent</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (`position_stack()`).</code></pre>
+<p><img src="/statsplus/lb5/chapter2/Page-3_files/figure-html/missValPercent-1.png" width="672" /></p>
+<p>Alternativ kann man auch die <em>missings</em> so anzeigen, dass sichtbar wird, welcher Fall auf welcher Variable <em>missing</em> ist. Bei großen Datensätzen wird das aber schnell unübersichtlich.</p>
+<pre class="r"><code># pro Fall (wird aber bei großen Datensätzen etwas schwer zu lesen)
+rawPlot &lt;-  pss %&gt;%
+  select(
+    c(
+      &quot;idno&quot;, 
+      &quot;stfdem&quot;,
+      &quot;stfeco&quot;, 
+      &quot;trstprl&quot;, 
+      &quot;trstlgl&quot;
+    )
+  ) %&gt;% 
+  pivot_longer(
+               -c(&quot;idno&quot;),
+               names_to = &quot;key&quot;,
+               values_to = &quot;val&quot;
+               ) %&gt;%
+  mutate(isna = is.na(val)) %&gt;%
+  ggplot(
+         aes(
+             key, 
+             idno, 
+             fill = isna)
+        ) +
+  geom_raster(alpha = 0.8) +
+  scale_fill_manual(
+                    name = &quot;&quot;,
+                    values = c(
+                               &quot;steelblue&quot;, 
+                               &quot;tomato3&quot;
+                               ),
+                    labels = c(
+                               &quot;vorhanden&quot;,
+                               &quot;fehlend&quot;
+                               )
+                    ) +
+  scale_x_discrete(limits = levels) +
+  labs(
+       x = &quot;Variable&quot;,
+       y = &quot;Row Number&quot;,
+       title = &quot;Missing values in rows&quot;
+       ) +
+  coord_flip()
+
+rawPlot</code></pre>
+<p>Weiter geht’s zu den <strong>libraries</strong> <code>naniar</code> und <code>UpSetR</code>!</p>

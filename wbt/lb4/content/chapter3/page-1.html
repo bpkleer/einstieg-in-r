@@ -1,0 +1,75 @@
+---
+title: "Regressionsdiagnostik"  # Titel der Seite
+weight: 301  # Individuelles Gewicht 
+menuTitle: "Regressionsdiagnostik" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>In diesem Kapitel werden die Annahmen der <strong>linearen Regression</strong> getestet. Ausgangspunkt ist dabei das Modell <code>olsModel2</code> aus dem vorherigen Teil.</p>
+<p><span class="math inline">\(stfdem_i = \beta_0 + \beta_1*stfeco_i + \beta_2*trstlgl_i + e_i\)</span> (olsModel2)</p>
+<p>Lade das Regressionsmodell in das <strong>Environment</strong> oder berechne das oben genannte Modell neu.</p>
+<p>Für <code>olsModel2</code> erhalten wir folgende Regressionsgleichung:</p>
+<p><span class="math display">\[ stfdem_i = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i + e_i \]</span></p>
+<p>Die Bestandteile der Vorhersage sind:</p>
+<p><span class="math display">\[ \widehat{stfdem_i} = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i \]</span></p>
+<p>{{% tabs %}}
+{{% tab name="Frage" %}}
+1. Was ist der Effekt von <code>stfeco</code>?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Welchen Wert sagt das Modell für eine Person voraus, die die Zufriedenheit mit der ökonomischen Leistung mit <span class="math inline">\(10\)</span> und ein Vertrauen in das Rechtssystem mit <span class="math inline">\(5\)</span> angibt?</li>
+</ol>
+<p>{{% /tab %}}
+{{% tab name="Auflösung" %}}
+1. Der Effekt von <code>stfeco</code> beträgt <span class="math inline">\(0.87361\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math inline">\(\hat{stfdem} = 0.67658 + 0.87361 * 10 - 0.04212 * 5 = 9.20208\)</span>
+{{% /tab %}}
+{{% /tabs %}}</li>
+</ol>
+<div id="annahmen-der-linearen-regression" class="section level2">
+<h2>Annahmen der linearen Regression</h2>
+<p>Als Sozialwissenschaftler:innen berechnen wir Modelle, die wir hinsichtlich der mathematischen Annahmen prüfen müssen. Es gibt eine Reihe an Funktionen mit denen wir die <strong>Regressionsdiagnostik</strong> berechnen können. Da wir in den Sozialwissenschaften selten perfekte Datensätze haben (Non-Response, <code>NA's</code>), sind diese Funktionen oftmals zu restriktiv. In der Anwendung entscheiden wir oft über Annäherung an die Annahmen, und nicht ob die Annahmen voll erfüllt sind. Wir prüfen oft, ob mögliche Verletzungen <em>gering</em> genug sind, so dass die Annahme gilt.</p>
+<p><strong>Dies sind die Annahmen der linearen Regression:</strong>
+{{% tabs %}}
+{{% tab name="Annahmen" %}}
+1. lineare Beziehung</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p><span class="math inline">\(\epsilon_i \sim \mathcal{N}(0, \sigma^2)\)</span></p></li>
+<li><p><span class="math inline">\(Var(\epsilon_i) = \sigma^2\)</span> (<strong>Homoskedastizität</strong>)</p></li>
+<li><p><span class="math inline">\(Cov(\epsilon_i, \epsilon_j) = 0, i \neq j\)</span> (<strong>Auto-Korrelation</strong>)</p></li>
+<li><p>keine lineare Abhängigkeit unter den unabhängigen Variablen (<strong>Multikollinearität</strong>)</p></li>
+<li><p>keine einflussreichen Fälle
+{{% /tab %}}
+{{% tab name="Wirkung bei Verletzung" %}}</p></li>
+<li><p>verzerrte Schätzer</p></li>
+<li><p>invalide Signifikanztest, verzerrte Schätzer</p></li>
+<li><p>verzerrte Schätzer</p></li>
+<li><p>ineffiziente Schätzung</p></li>
+<li><p>verzerrte Schätzer</p></li>
+<li><p>verzerrte Schätzer
+{{% /tab %}}
+{{% tab name="Mögliche Lösung" %}}</p></li>
+<li><p>nicht-lineare Transformation</p></li>
+<li><p><em>nichts!</em></p></li>
+<li><p>Transformation der abhängigen Variable (oder der linearen Gleichung)</p></li>
+<li><p>nicht-lineare Transformation</p></li>
+<li><p>Variablen entfernen</p></li>
+<li><p>Beobachtungen entfernen (muss aber theoretisch begründbar sein!)
+{{% /tab %}}
+{{% tab name="Testvorgehen" %}}</p></li>
+<li><p>Plot Inspektion</p></li>
+<li><p>Plot Inspektion (Shapiro-Wilk-Test)</p></li>
+<li><p>Breusch-Pagan-Test</p></li>
+<li><p>Durbin-Watson-Statistik</p></li>
+<li><p>Korrelation zwischen unabhängigen Variablen sowie VIF / Tolerance factor</p></li>
+<li><p>Cook’s D
+{{% /tab %}}
+{{% /tabs %}}</p></li>
+</ol>
+<p>Auf den nächsten Seiten wirst du Schritt für Schritt die Annahmen testen.</p>
+</div>

@@ -1,0 +1,147 @@
+---
+title: "Zusammenhangsmaße"  # Titel der Seite
+weight: 103  # Individuelles Gewicht 
+menuTitle: "Zusammenhangsmaße" # Falls Titel zulang ist, hier Kurztitel
+tags: ["zusammenhangsmaße", "chi-quadrat", "cramers v"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Mit Zusammenhangsmaßen kannst du testen, ob und inwieweit zwei Variablen miteinander zusammenhängen. Als ein erstes Maß hast du in der Statistik-Vorlesung <span class="math inline">\(\chi^2\)</span> kennengelernt, dass prüft, ob ein Zusammenhang vorliegt. Als weiteres Maß für die Stärke eines Zusammenhangs kennst du Cramer’s V.</p>
+<div id="chi2-unabhängigkeitstest" class="section level2">
+<h2><span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest</h2>
+<p>Mit Kreuztabellen können Zusammenhänge zwischen zwei Variablen dargestellt werden. Dieser Zusammenhang kann auch mit dem <span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest statistisch getestet werden.</p>
+<p>Die Nullhypothese des <span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest lautet:</p>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> Variablen sind statistisch unabhängig.</li>
+</ul>
+<p>Wir berechnen den Test mit der Funktion <code>chisq.test()</code> und können dabei direkt das Objekt der Kreuztabelle nutzen:</p>
+<pre class="r"><code>chi1 &lt;- chisq.test(mytable)
+
+chi1</code></pre>
+<pre><code>## 
+## 	Pearson&#39;s Chi-squared test
+## 
+## data:  mytable
+## X-squared = 14.123, df = 10, p-value = 0.1674</code></pre>
+<p>Alternativ kannst du auch die zwei Variablen angeben:</p>
+<pre class="r"><code>chi2 &lt;- chisq.test(
+  pss$stfdem, 
+  pss$gndr
+)
+
+chi2</code></pre>
+<p>{{% expand "Wie interpretieren wir diesen Test?" %}}
+Zuerst blickst du auf den p-Wert. Dieser ist im Beispiel <span class="math inline">\(p = 0.1674\)</span> und damit größer als <span class="math inline">\(0.05\)</span>. Das heißt, es liegt kein signifikanter Testwert vor und die Nullhypothese kann beibehalten werden.</p>
+<p>Daraus können wir schließen, dass die Variablen statistisch unabhängig sind.
+{{% /expand %}}</p>
+</div>
+<div id="annahmen-des-chi2-unabhängigkeitstest" class="section level2">
+<h2>Annahmen des <span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest</h2>
+<p>Die Berechnung des <span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest setzt zwei Annahmen voraus:</p>
+<ol style="list-style-type: decimal">
+<li>Mindestens <span class="math inline">\(10\)</span> Beobachtungen in jeder Zelle.</li>
+</ol>
+<p><span class="math inline">\(\Rightarrow\)</span> Kreuztabelle! (<span class="math inline">\(\checkmark\)</span>)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Mindestens <span class="math inline">\(5\)</span> erwartete Beobachtungen in jeder Zelle.</li>
+</ol>
+<p>Die Funktion <code>chisq.test()</code> speichert verschiedene Werte. Ein zugeordnetes Objekt hat daher den Datentyp <strong>list</strong>. Dieser Datentyp ist neu für dich. Es ist ein weiterer Datentyp, der eine große Rolle in R spielt. Im Datentyp <strong>list</strong> können mehrere Informationen gespeichert werden, wie du es von einer Liste auf Papier kennst. Mit <code>str()</code> kannst du dir anzeigen lassen, was alles in der Liste gespeichert wurde:</p>
+<pre class="r"><code>str(chi1)</code></pre>
+<pre><code>## List of 9
+##  $ statistic: Named num 14.1
+##   ..- attr(*, &quot;names&quot;)= chr &quot;X-squared&quot;
+##  $ parameter: Named int 10
+##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+##  $ p.value  : num 0.167
+##  $ method   : chr &quot;Pearson&#39;s Chi-squared test&quot;
+##  $ data.name: chr &quot;mytable&quot;
+##  $ observed : &#39;table&#39; int [1:11, 1:2] 117 133 211 287 377 466 311 251 164 82 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:11] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
+##   .. ..$ : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ expected : num [1:11, 1:2] 112 133 217 307 375 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:11] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
+##   .. ..$ : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ residuals: &#39;table&#39; num [1:11, 1:2] 0.4316 -0.0275 -0.3999 -1.1649 0.0992 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:11] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
+##   .. ..$ : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  $ stdres   : &#39;table&#39; num [1:11, 1:2] 0.6233 -0.0398 -0.5909 -1.7577 0.1521 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:11] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; ...
+##   .. ..$ : chr [1:2] &quot;female&quot; &quot;male&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<p>Der Datentyp <strong>list</strong> kann verschiedene Elemente als Liste speichern, so dass diese Elemente einzeln ansprechbar sind. Z.B. können verschiedene Vektoren in einer Liste gespeichert werden. Die einzelnen Teile einer Liste können über die Funktion <code>ls()</code> ausgegeben werden und werden mit dem <code>$</code>-Zeichen angesprochen.</p>
+<pre class="r"><code>ls(chi1)</code></pre>
+<pre><code>## [1] &quot;data.name&quot; &quot;expected&quot;  &quot;method&quot;    &quot;observed&quot;  &quot;p.value&quot;   &quot;parameter&quot;
+## [7] &quot;residuals&quot; &quot;statistic&quot; &quot;stdres&quot;</code></pre>
+<p>Um nun die erwarteten Werte zu sehen, greifen wir auf <code>expected</code> (<em>erwartet</em>) aus dem Objekt <code>chi1</code> zu.</p>
+<pre class="r"><code>chi1$expected</code></pre>
+<pre><code>##     
+##         female      male
+##   0  112.42406 113.57594
+##   1  133.31702 134.68298
+##   2  216.88889 219.11111
+##   3  307.42508 310.57492
+##   4  375.07849 378.92151
+##   5  422.83384 427.16616
+##   6  313.89195 317.10805
+##   7  259.66972 262.33028
+##   8  168.13863 169.86137
+##   9   89.04383  89.95617
+##   10  41.28848  41.71152</code></pre>
+<p>Du siehst, dass also auch die Bedingung, dass es mind. <span class="math inline">\(5\)</span> Fälle in jeder Zelle der erwarteten Werte gibt erfüllt wird.</p>
+</div>
+<div id="cramers-v" class="section level2">
+<h2>Cramer’s V</h2>
+<p>Bisher haben wir nur den <span class="math inline">\(\chi^2\)</span>-Unabhängigkeitstest durchgeführt. Aber neben dem generellen Zusammenhang ist oftmals von Interesse, wie stark dieser Zusammenhang ist bzw. in welche Richtung dieser Zusammenhang geht.</p>
+<p>Wir berechnen <strong>Cramer’s V</strong> für die Stärke des Zusammenhangs zwischen zwei mindestens nominalskalierten Variablen. Wir benutzen die Funktion <code>CramerV()</code> aus der <strong>library</strong> <code>DescTools</code>. Du gibst die zwei Variablen an und im dritten Argument setzt du das Konfidenzintervall (in diesem Fall <span class="math inline">\(0.95\)</span>):</p>
+<pre class="r"><code>install.packages(&quot;DescTools&quot;)
+library(&quot;DescTools&quot;)</code></pre>
+<pre class="r"><code>CramerV(
+  pss$stfdem,       
+  pss$gndr,          
+  conf.level = 0.95 # Konfidenzintervall
+)  </code></pre>
+<pre><code>##   Cramer V     lwr.ci     upr.ci 
+## 0.05365996 0.00000000 0.06613029</code></pre>
+<p>Wir interpretieren den Test wie folgt: In der ersten Spalte ist der Wert für <strong>Cramer’s V</strong> angegeben und in der zweiten und dritten Spalte das Konfidenzintervall für diesen Wert. Sofern das Intervall nicht den Wert <span class="math inline">\(0\)</span> schneidet, ist das Ergebnis signifikant. In diesem Fall sehen wir, dass es sich um kein signifikantes Ergebnis handelt.</p>
+<p>Für die Interpretation des Wertes gelten folgende Grenzen:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">unteres Ende</th>
+<th align="center">oberes Ende</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0\)</span></td>
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td>kein Zusammenhang</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td align="center"><span class="math inline">\(0.3\)</span></td>
+<td>gering</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0.3\)</span></td>
+<td align="center"><span class="math inline">\(0.6\)</span></td>
+<td>mittel</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(0.6\)</span></td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td>stark</td>
+</tr>
+</tbody>
+</table>
+<p>Wenn nicht nur die Stärke des Zusammenhangs interpretiert werden soll, sondern auch die Richtung des Zusammenhangs, muss eine Korrelation berechnet werden.</p>
+</div>

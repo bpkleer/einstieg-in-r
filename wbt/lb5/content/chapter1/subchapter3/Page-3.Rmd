@@ -23,61 +23,23 @@ set.seed(2021)
 data <- tibble(
   group = factor(
     c(
-      rep(
-        "Group 1",
-        100
-      ), 
-      rep(
-        "Group 2",
-        250
-      ), 
-      rep(
-        "Group 3",
-        25
-      )
+      rep("Group 1", 100), 
+      rep("Group 2", 250), 
+      rep("Group 3", 25)
     )
   ),
   value = c(
-    seq(
-      0,
-      20,
-      length.out = 100
-    ),
+    seq(0, 20, length.out = 100),
     c(
-      rep(
-        0,
-        5), 
-      rnorm(
-        30,
-        2, 
-        .1
-      ),
-      rnorm(
-        90,
-        5.4,
-        .1
-      ),
-      rnorm(
-        90, 
-        14.6,
-        .1
-      ),
-      rnorm(
-        30,
-        18, 
-        .1
-      ), 
-      rep(
-        20,
-        5
-      )
+      rep(0, 5), 
+      rnorm(30, 2, .1),
+      rnorm(90, 5.4, .1),
+      rnorm(90, 14.6, .1),
+      rnorm(30, 18, .1), 
+      rep(20, 5)
     ),
     rep(
-      seq(
-        0,
-        20,
-        length.out = 5
-      ),
+      seq(0, 20, length.out = 5),
       5
     )
   )
@@ -165,7 +127,7 @@ data <- tibble(
 
 Wir haben einen fiktiven Datensatz, der folgendes Boxplot ergibt:
 ```{r bp1, eval=TRUE, echo=FALSE}
-ggplot(
+plot <- ggplot(
   data, 
   aes(
     x = group, 
@@ -173,6 +135,8 @@ ggplot(
   )
 ) +
   geom_boxplot(fill = "grey92")
+
+plot
 ```
 Es sieht also erstmal von den Kennzahlen des Boxplots so aus, dass die Daten ähnlich sind. Fügen wir jetzt mal die Fallzahlen hinzu:
 ```{r bp2, eval=TRUE, echo=FALSE}

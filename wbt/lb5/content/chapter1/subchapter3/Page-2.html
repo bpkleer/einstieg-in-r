@@ -1,0 +1,60 @@
+---
+title: "ggboxplot()"  # Titel der Seite
+weight: 132  # Individuelles Gewicht 
+menuTitle: "ggboxplot()" # Falls Titel zulang ist, hier Kurztitel
+tags: ["`ggboxplot()`", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Alternativ kannst du die Funktion <code>ggboxplot()</code> aus der <strong>library</strong> <code>ggpubr</code>: Installiere die <strong>library</strong> zuerst und aktiviere sie dann. Wir lassen uns nun die Arbeitszeit nach Geschlecht ausgeben.</p>
+<pre class="r"><code>ggbox &lt;- ggboxplot(
+  pss,
+  x = &quot;gndr&quot;,              
+  y = &quot;wkhtot&quot;,             
+  color = &quot;ivory4&quot;,
+  fill = &quot;gndr&quot;,
+  palette = c(
+    &quot;lightblue&quot;, 
+    &quot;pink&quot;
+  ),
+  ylab = &quot;Total work hours (incl. overtime)&quot;,
+  xlab = &quot;Gender (1:male, 2:female)&quot;,
+  na.rm = TRUE
+) 
+
+ggbox</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter3/Page-2_files/figure-html/bp1-1.png" width="672" /></p>
+<p>Auch hier können wir einfach Feinsteuerungen vornehmen: Wir können zum Beispiel mit einer horizontalen Linie (<code>geom_hline()</code>) noch den Mittelwert für jede Gruppe einzeichnen.</p>
+<pre class="r"><code>ggbox +
+  geom_hline(
+    aes(
+      yintercept = mean(
+        wkhtot[gndr == &quot;male&quot;], 
+        na.rm = TRUE
+      )
+    ),
+    lty = 2,
+    lwd = 1,
+    color = &quot;lightblue&quot;) + 
+  geom_hline(
+    aes(
+      yintercept = mean(
+        wkhtot[gndr == &quot;female&quot;], 
+        na.rm = TRUE
+      )
+    ),
+    lty = 2,
+    lwd = 1, 
+    color = &quot;pink&quot;
+  ) +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="/statsplus/lb5/chapter1/subchapter3/Page-2_files/figure-html/bp2-1.png" width="672" /></p>
+<p>Kopiere den Code in dein Skript und probiere verschiedene Zahlenwerte in den Argumenten <code>lwd</code> und <code>lty</code> aus.</p>
+<p>{{% expand "Wofür stehen die Argumente lwd und lty?" %}}
+<code>lwd</code> steht für <em>line width</em>. Damit gibst du die Dicke der Linie an. <code>lty</code> steht für <em>linetype</em>, womit du verschiedene Linientypen auswählen kannst. Eine Übersicht findest du <a href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">hier</a>.
+{{% /expand %}}</p>
+<p>Als nächstes kannst du dir noch <code>rainclouds</code> als bessere Visualisierungsmöglichkeit anschauen! Das ist aber <strong>freiwillig</strong>!</p>

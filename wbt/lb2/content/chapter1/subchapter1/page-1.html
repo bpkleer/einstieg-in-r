@@ -1,0 +1,27 @@
+---
+title: "Von der Datenerhebung zum Datensatz"  # Titel der Seite
+weight: 111  # Individuelles Gewicht 
+menuTitle: "Datenerhebung" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datenerhebung", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>In R bearbeitest du meistens bereits erhobene Daten. Um aber das Objekt <strong>data frame</strong> besser zu verstehen, wirst du auf dieser Seite die Schritte von der Datenerhebung zum Datensatz nachvollziehen können. Das hilft dir dabei, das Objekt <strong>data frame</strong> in R besser zu verstehen.</p>
+<p>Im weiteren Verlauf nutzen wir einen fiktiven Trainingsdatensatz <em>Panem Social Survey</em>, der angelehnt an den <a href="https://europeansocialsurvey.com">European Social Survey</a> ist. Vorteil ist, dass du erstmal mit einem deutlich kleineren Trainingsdatensatz üben kannst, bevor wir mit richtigen (größeren) Datensätzen in der Präsenz arbeiten.
+Den Datensatz und das Codebook des <strong>PSS</strong> findest du bereits im RStudio Projekt. Falls du es nochmal manuell lokal auf deinem Rechner speichern möchtest, findest du es hier:</p>
+<p>{{%attachments style="grey" title="Data sets" /%}}</p>
+<p>Ebenso findest du in den Attachments eine PDF mit dem Namen <code>from-survey-to-data.pdf</code>. Lade diese herunter und schau sie dir an!</p>
+<p>In der Datei ist ein Auszug von vier Fragen (Variablen aus dem Datensatz), die in diesem fiktiven Datensatz erhoben wurden. <strong>Tipp:</strong> Im Codebook erhältst du genauere Informationen zu der Art der Messung der einzelnen Variablen.</p>
+<p>{{% expand "Überlege dir jetzt einmal kurz, welches Skalenniveau die einzelnen Fragen (Variablen) haben und mit welcher Art von Vektor (numeric, integer, character, boolean) du diese in R umsetzen würdest." %}}</p>
+<p>Die ID-Frage ist auf nominalen Skalenniveau, es können lediglich Unterschiede zwischen den Ausprägungen festgestellt werden. Am besten setzt man dies mit einem <em>character</em>-Vektor um.</p>
+<p>Das Geschlecht wird auf nominalem Skalenniveau gemessen. Es empfiehlt sich daher ein <em>character</em>-Vektor oder im speziellen ein <em>factor</em>.</p>
+<p>Das Alter ist eindeutig auf metrischem Skalenniveau und da wir das Alter in ganzen Jahren messen, reicht ein <em>integer</em>-Vektor. Ein <em>numeric</em>-Vektor wäre aber ebenso korrekt.</p>
+<p>Das Haushaltseinkommen wird ordinal abgefragt. Es gibt Unterschiede zwischen den Ausprägungen und eine klare Rangfolge, die Abstände sind aber nicht gleich! In R kann man dies als <em>ordered factor</em> umsetzen.</p>
+<p>Zuletzt wird noch die Zufriedenheit mit der Demokratie in Panem abgefragt. Dies ist eindeutig auf ordinalem Skalenniveau, da es mehr als zehn Ausprägungen sind, kann man dies auch als pseudometrisches Skalenniveau interpretieren. In R würde man dies dann mit einem <em>numeric</em>- oder <em>integer</em>-Vektor umsetzen.
+{{% /expand %}}</p>
+<p>Wie du jetzt sicher schon verstanden hast, ist ein Datensatz nichts anderes als eine Sammlung mehrerer Variablen von befragten Personen, die zusammen verarbeitet werden. Deshalb werden Datensätze in Tabellenform verarbeitet bzw. gelesen. Diese Datentabellen haben zwei Dimensionen: <strong>Zeilen</strong> und <strong>Spalten</strong>.</p>
+<p>Den Aufbau einer Datentabelle lernst du auf der nächsten Seite kennen.</p>

@@ -1,0 +1,154 @@
+---
+title: "Bivariate lineare Regression"  # Titel der Seite
+weight: 102  # Individuelles Gewicht 
+menuTitle: "Bivariates Beispiel" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "bivariat", "regressionskoeffizienten", "p-wert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+
+
+<p>{{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonGit %}}</p>
+<p>{{% buttonGit href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonGit %}}</p>
+<p>Wir nutzen jetzt wieder den Datensatz <strong>PSS</strong>, den wir schon während der gesamten Übung genutzt haben. Wir möchten nun testen, inwieweit die Zufriedenheit mit der ökonomischen Leistung die Zufriedenheit mit der Demokratie erklärt. Die zwei Variablen, die du daher benötigst für diese lineare Regression sind <code>stfeco</code> und <code>stfdem</code>. Die theoretische Prämisse dahinter ist, dass Personen, die ökonomisch zufrieden sind, auch zufriedener mit dem politischen System in Gänze sind.</p>
+<p>{{% expand "Wie sieht die Gleichung für diesen Fall aus?" %}}</p>
+<p><span class="math display">\[Y = \hat{\beta_0} + \hat{\beta_1}*X_1 + \hat{\varepsilon}\]</span></p>
+<p><span class="math display">\[stfdem = \hat{\beta_0} + \hat{\beta_1}*stfeco + \hat{\varepsilon}\]</span>
+{{% /expand %}}</p>
+<p>{{% tabs %}}
+{{% tab name="Frage" %}}
+Könnten wir auch ein Modell berechnen, dass die Zufriedenheit mit der ökonomischen Leistung durch die Zufriedenheit mit der Demokratie erklärt!</p>
+<p>{{% /tab %}}
+{{% tab name="Auflösung" %}}
+Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen ändern. Du siehst also, dass statistische Modelle nicht autark sind, sondern immer einen theoretischen Bezugspunkt haben!
+{{% /tab %}}
+{{% /tabs %}}</p>
+<div id="berechnung-des-beispiels" class="section level2">
+<h2>Berechnung des Beispiels</h2>
+<p>In R nutzen wir die Funktion <code>lm()</code> um ein <strong>lineares Regressionsmodell</strong> zu berechnen. Es ist wichtig die Formel zu kennen, da wir das Modell als Formel in der Funktion angeben.</p>
+<p>Wir speichern das Ergebnis der Modellberechnung in einem Objekt! In der Funktion <code>lm()</code> gibst du im ersten Argument die Formel der linearen Regression an und im zweiten Argument gibst du das Datenobjekt an, in diesem Fall <code>pss</code>. Der Datensatz ist im RStudio Projekt im Ordner <code>data</code> vorhanden. Falls du mit einer lokalen Version arbeitest, kannst du den Datensatz hier herunterladen:</p>
+<p>{{%attachments style="grey" title="Datensatz" /%}}</p>
+<pre class="r"><code>olsModel &lt;- lm(
+  stfdem ~ 1 + stfeco, #Formel der Regression
+  data = pss # Datenobjekt
+)  </code></pre>
+<p>Wir erhalten im Modell verschiedene Werte, die wir interpretieren müssen: <em>Coefficients</em>, <em>t-value(or pr(&gt;|t|))</em> und <em>(adjusted) R-Squared</em>.</p>
+<p>Folgende Fragen sollten am Ende zu jedem Modell beantwortet werden:</p>
+<ul>
+<li><p>Wie viel kann das Modell erklären?</p></li>
+<li><p>Welche Effekte haben die einzelnen Variablen?</p></li>
+</ul>
+<p>Die einzelnen Werte werden nun Schritt für Schritt interpretiert. Die Ergebnisse werden mit der Funktion <code>summary()</code> aufgerufen:</p>
+<pre class="r"><code>summary(olsModel) </code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = stfdem ~ 1 + stfeco, data = pss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7171 -1.0990  0.0283  1.1556  5.7737 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.48085    0.06939    6.93 4.75e-12 ***
+## stfeco       0.87271    0.01354   64.44  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.733 on 4902 degrees of freedom
+##   (96 observations deleted due to missingness)
+## Multiple R-squared:  0.4587,	Adjusted R-squared:  0.4585 
+## F-statistic:  4153 on 1 and 4902 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="interpretation-der-koeffizienten" class="section level2">
+<h2>Interpretation der Koeffizienten</h2>
+<pre class="r"><code>coef(olsModel)</code></pre>
+<pre><code>## (Intercept)      stfeco 
+##   0.4808475   0.8727124</code></pre>
+<p>Wie interpretieren wir den Wert für <code>stfeco</code>?</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Mit jedem Anstieg um eine Einheit in <code>stfeco</code>, steigt auch <code>stfdem</code> um <span class="math inline">\(0.8727124\)</span> Punkte.</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Eine Person, die den Wert <span class="math inline">\(0\)</span> in <code>stfeco</code> hat, erreicht den Wert <span class="math inline">\(0.4808475\)</span> in <code>stfdem</code> (<em>Intercept</em>).</p>
+<p>Mit der Funktion <code>confint()</code> erhalten wir die geschätzten Intervalle (in <code>summary()</code> erhalten wir nur den <em>t-value</em> und <em>p-value</em>):</p>
+<pre class="r"><code>confint(olsModel)</code></pre>
+<pre><code>##                 2.5 %    97.5 %
+## (Intercept) 0.3448187 0.6168763
+## stfeco      0.8461641 0.8992608</code></pre>
+<p>In den Sozialwissenschaften ist die Interpretation des <em>Intercepts</em> in den meisten Fällen weniger relevant. Deshalb schauen wir primär auf den Einfluss von <code>grade</code>. Das Konfidenzintervall geht von <span class="math inline">\([0.8461641, 0.8992608]\)</span> und inkludiert nicht den Wert <span class="math inline">\(0\)</span>. Dieser Effekt ist daher signifikant. Wir verwerfen die Nullhypothese, dass dieser Effekt gleich <span class="math inline">\(0\)</span> ist (<span class="math inline">\(\beta_1 =0\)</span>).</p>
+<div id="konfidenzintervallen-p-wert" class="section level3">
+<h3>Konfidenzintervallen &amp; p-Wert</h3>
+<p>Was sagen uns das Konfidenzintervall und der p-Wert?</p>
+<ul>
+<li><p>Wir haben den <em>mean effect</em> von <code>stfeco</code> auf <code>stfdem</code> berechnet und das Konfidenzintervall dieses Effekts</p></li>
+<li><p>Mit Signifikanztests (in den meisten Fällen t-Tests) schließen wir aus, dass der Populationswert (<span class="math inline">\(\mu\)</span>) dieser Berechnung gleich <span class="math inline">\(0\)</span> ist (signifikanter p-Wert): Es ist dann sehr unwahrscheinlich (<span class="math inline">\(95 %\)</span>), dass <span class="math inline">\(\mu = 0\)</span>.</p></li>
+<li><p>Der p-Wert erlaubt uns nicht zu sagen, dass der wahre Wert dem berechneten Wert entspricht (z.B. mit <span class="math inline">\(95 %\)</span> Sicherheit ist der wahre Mittelwert innerhalb des berechneten Konfidenzintervalls). Denn wir wissen nicht, ob unsere Stichprobe eine der Stichproben ist, die den wahren Wert (<span class="math inline">\(\mu\)</span>) inkludiert (<span class="math inline">\(95 %\)</span> der Stichproben inkludieren den Wert)</p></li>
+<li><p>Nicht-signifikante Werte sagen uns daher, dass wir nicht ausschließen können, dass der wahre Populationswert (<span class="math inline">\(\mu\)</span>) gleich <span class="math inline">\(0\)</span> ist; wir können aber nicht sagen, dass der wahre Wert gleich <span class="math inline">\(0\)</span> ist.</p></li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> Verwirrt? Einfach daran erinnern, dass es hier um Falsifikation und nicht um Verifikation geht (Grundlage der empirischen Sozialforschung!).</p>
+</div>
+<div id="weitere-ausgabemöglichkeiten" class="section level3">
+<h3>Weitere Ausgabemöglichkeiten</h3>
+<p>Wenn wir die Berechnung in einem Objekt gespeichert haben, können wir verschiedene Teile des Modells ansprechen (z.B. Koeffizienten, geschätzte Werte oder Residuen):</p>
+<pre class="r"><code>olsModel$coefficients # Koeffizienten</code></pre>
+<pre><code>## (Intercept)      stfeco 
+##   0.4808475   0.8727124</code></pre>
+<pre class="r"><code>head(olsModel$fitted.values) # geschätzte Werte</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 5.717122 6.589834 5.717122 3.971697 4.844410 5.717122</code></pre>
+<pre class="r"><code>head(olsModel$residuals) # Residuen</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  1.2828780  1.4101656  0.2828780  1.0283029 -0.8444096  0.2828780</code></pre>
+<p>Wir können auch die folgenden Funktionen stattdessen nutzen: <code>coef()</code>, <code>fitted()</code>, <code>resid()</code> or <code>confint()</code>.</p>
+<pre class="r"><code>coef(olsModel) # Koeffizienten</code></pre>
+<pre><code>## (Intercept)      stfeco 
+##   0.4808475   0.8727124</code></pre>
+<pre class="r"><code>head(fitted(olsModel)) # ersten 6 geschätzten Werte</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 5.717122 6.589834 5.717122 3.971697 4.844410 5.717122</code></pre>
+<pre class="r"><code>head(resid(olsModel)) # Residuen</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  1.2828780  1.4101656  0.2828780  1.0283029 -0.8444096  0.2828780</code></pre>
+<pre class="r"><code>confint(olsModel) # Konfidenzintervalle</code></pre>
+<pre><code>##                 2.5 %    97.5 %
+## (Intercept) 0.3448187 0.6168763
+## stfeco      0.8461641 0.8992608</code></pre>
+</div>
+</div>
+<div id="globale-bewertung-des-modells" class="section level2">
+<h2>Globale Bewertung des Modells</h2>
+<p>Zur globalen Bewertung der Modellgüte wird oftmals das Bestimmtheitsmaß <span class="math inline">\(R^2\)</span> angegeben. <span class="math inline">\(R^2\)</span> liefert die Information, wie viel der Varianz der abhängigen Variablen durch das Modell erklärt werden kann.</p>
+<p>Die Gleichung lautet:</p>
+<p><span class="math display">\[R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{erklärte \, Varianz}{gesamte \, Varianz}\]</span></p>
+<div class="float">
+<img src="../img/r2.png" alt="R^2" />
+<div class="figcaption"><span class="math inline">\(R^2\)</span></div>
+</div>
+<p>Die Grafik stellt die Formel nochmal dar: die erklärte Varianz ist die Summe der quadrierte Abstände zwischen geschätztem Wert und dem Mittelwert. Die gesamte Varianz ist die Summe der quadrierten Abstände zwischen beobachtetem Wert und dem Mittelwert.</p>
+<p>{{% tabs %}}
+{{% tab name="Frage" %}}</p>
+<p>Wie beschreiben wir nun das Ergebnis? <span class="math inline">\(R^2\)</span> ist in der vorletzten Zeile angegeben.</p>
+<pre class="r"><code>summary(olsModel)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = stfdem ~ 1 + stfeco, data = pss)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7171 -1.0990  0.0283  1.1556  5.7737 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.48085    0.06939    6.93 4.75e-12 ***
+## stfeco       0.87271    0.01354   64.44  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.733 on 4902 degrees of freedom
+##   (96 observations deleted due to missingness)
+## Multiple R-squared:  0.4587,	Adjusted R-squared:  0.4585 
+## F-statistic:  4153 on 1 and 4902 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>{{% /tab %}}
+{{% tab name="Auflösung" %}}</p>
+<p>Das Modell erklärt <span class="math inline">\(45.85 %\)</span> der Varianz von der Zufriedenheit mit der Demokratie (<code>stfdem</code>) (<span class="math inline">\(R^2\)</span>). Eine höhere Zufriedenheit mit der ökonomischen Leistung (<code>stfeco</code>) ist positiv verbunden mit der Zufriedenheit mit der Demokratie (<code>stfdem</code>). Mit jedem Anstieg um eine Einheit in der Zufriedenheit mit der ökonomischen Leistung, steigt der Wert der der Zufriedenheit mit der Demokratie um <span class="math inline">\(0.87271\)</span>. Der Effekt von <code>stfeco</code> auf <code>stfdem</code> ist signifikant (<span class="math inline">\(p&lt;0.001\)</span>).
+{{% /tab %}}
+{{% /tabs %}}</p>
+</div>
