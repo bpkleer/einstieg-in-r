@@ -1,4 +1,4 @@
-baseURL = "https://lehre.bpkleer.de/statsplus/lb5/"
+baseURL = "https://ilias.uni-giessen.de/data/JLUG/lm_data/lm_746772/lb5/"
 languageCode = "de-DE"
 defaultContentLanguage = "de"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -10,7 +10,6 @@ metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= false
 
 [params]
-  baseURL = "https://lehre.bpkleer.de/statsplus/lb5/"
   themeVariant = "jlug"
   description = "WBT Statistik<sup>+</sup>"
   author = "B. Philipp Kleer"
@@ -28,37 +27,37 @@ home = [ "HTML", "RSS", "JSON"]
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 1"
-url = "https://lehre.bpkleer.de/statsplus/lb1/"
+url = "../lb1/index.html"
 weight = 10
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 2"
-url = "https://lehre.bpkleer.de/statsplus/lb2/"
+url = "../lb2/index.html"
 weight = 20
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 3"
-url = "https://lehre.bpkleer.de/statsplus/lb3/"
+url = "../lb3/index.html"
 weight = 30
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 4"
-url = "https://lehre.bpkleer.de/statsplus/lb4/"
+url = "../lb4/index.html"
 weight = 40
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 5"
-url = "https://lehre.bpkleer.de/statsplus/lb5/"
+url = "../lb5/index.html"
 weight = 50
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
-url = "/credits"
+url = "/credits/index.html"
 weight = 60
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Tags"
-url = "/tags"
+url = "/tags/index.html"
 weight = 70
 
 [[menu.shortcuts]]

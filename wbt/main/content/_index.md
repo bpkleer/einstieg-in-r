@@ -10,15 +10,15 @@ Bitte wundere dich nicht, falls ein Lernblock noch nicht online ist, wir werden 
 
 Hier geht es zu den einzelnen Lernblöcken: 
 
-[Lernblock 1](./lb1/) (nur Nachbereitung)
+[Lernblock 1](./lb1/index.html) (nur Nachbereitung)
 
-[Lernblock 2](./lb2/) (Vor- & Nachbereitung)
+[Lernblock 2](./lb2/index.html) (Vor- & Nachbereitung)
 
-[Lernblock 3](./lb3/) (Vor- & Nachbereitung)
+[Lernblock 3](./lb3/index.html) (Vor- & Nachbereitung)
 
-[Lernblock 4](./lb4/) (Vor- & Nachbereitung)
+[Lernblock 4](./lb4/index.html) (Vor- & Nachbereitung)
 
-[Lernblock 5](./lb5/) (Vor- & Nachbereitung)
+[Lernblock 5](./lb5/index.html) (Vor- & Nachbereitung)
 
 Über diesen Button {{% buttonGit href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonGit %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
 
