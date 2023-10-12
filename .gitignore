@@ -56,3 +56,20 @@ wbt/**/public
 
 # ignore wbt-bookdown
 wbt-bookdown/**
+
+**/.DS_Store
+.DS_Store
+/wbt/lb1/public/
+/wbt/lb2/public/
+/wbt/lb3/public/
+/wbt/lb4/public/
+/wbt/lb5/public/
+/wbt/main/public/
+
+/wbt/lb1/content/**/*.html
+/wbt/lb2/content/**/*.html
+/wbt/lb3/content/**/*.html
+/wbt/lb4/content/**/*.html
+/wbt/lb5/content/**/*.html
+/wbt/main/content/**/*.html
+
