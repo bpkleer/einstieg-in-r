@@ -14,7 +14,7 @@ Nachdem du die Grundger√ºste kennengelernt hast und auch schon individuelle Ver√
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
-{{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
+{{% buttonShare href="mailto:?subject=Veja%20isso%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://t.me/share/url?url=" icon="fab fa-telegram" %}} {{% /buttonShare %}}
 
