@@ -6,7 +6,7 @@ title: "Lernblock 1"
 
 # Einführung in den Lernblock 1
 
-Dieser Lernblock wiederholt nochmals die ersten Schritte mit R bzw. RStudio, die wir im ersten Lernblock gemeinsam gemacht haben. Zur Einübung in R lohnt es sich, diese Schritte nochmals zu wiederholen, bevor du dich mit dem zweiten Lernblock als Vorbereitung auf unser zweites Präsenztreffen vorbereitest.
+Willkommen in diesem Lernblock! Wir steigen hiermit in R ein und du kannst zusätzlich auch lernen, wie Git funktioniert (sofern erforderlich für dich oder in deinem Kurs).
 
 Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
 

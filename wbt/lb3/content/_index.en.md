@@ -6,7 +6,7 @@ title: "Lernblock 3"
 
 # Lernblock 3
 
-Willkommen in diesen Lernblock! Dieser Lernblock dient in erster Linie zur **Vorbereitung** und auch zur Nachbereitung des Inhalts. Bitte geh den Inhalt sorgfältig durch! Falls du an einer Stelle nicht weiterkommst, schreib dir das Problem auf und bring es mit in den dritten Präsenzblock. Denn dort besprechen wir die Anwendungsprobleme, die ihr in R habt. Du kannst das Anwendungsproblem auch in das Etherpad stellen, oder im Vorfeld schon in der Sprechstunde der Tutor:innen klären. 
+Willkommen in diesen Lernblock! Hier lernst du, wie du Zusammenhangsmaße berechnest und Mittelwertvergleiche durchführst. Du bekommst also einen Überblick über bivariate Zusammenhänge.
 
 Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
 
