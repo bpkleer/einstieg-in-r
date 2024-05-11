@@ -5,7 +5,7 @@ disableToc: true
 
 ## Contributors WBT Statistik+: Einstieg in R leicht gemacht
 
-{{% glcontributors "https://bpkleer.de/files/statsplus.json" %}}
+{{% glcontributors %}}
 
 ## Contributors (Hugo Theme Learner)
 
