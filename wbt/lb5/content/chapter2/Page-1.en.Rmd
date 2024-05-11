@@ -1,0 +1,236 @@
+---
+title: "Layout-Fragen"  # Titel der Seite
+weight: 201  # Individuelles Gewicht 
+menuTitle: "Layout" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "layout", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.ub.uni-giessen.de\/methoden-politik\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Innerhalb eines `ggplots` können nahezu alle dargestellten Teilbereiche verändert und angepasst werden. Einige dieser Änderungen werden wie im nachfolgenden besprechen.
+
+Dazu schaffen wir uns zuerst nochmal ein ggplot-Objekt mit unserem Scatterplot aus der Einführung in `ggplot`:
+``` {r base-scatter, eval=TRUE}
+scatter <- ggplot(
+  pss, 
+  aes(
+    stfeco, 
+    stfdem
+  )
+) +  
+  geom_jitter(
+    alpha = .2, 
+    col = "blue"
+  ) +
+  scale_x_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) +
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  )
+
+scatter
+``` 
+
+Zuerst fügen wir nochmals Titel, Achsenbeschriftung und Quellen hinzu. 
+``` {r legends, eval=TRUE}
+scatterLeg <- scatter +
+  labs(
+       x = "Satisfaction with Economy",
+       y = "Satisfaction with Democracy",
+       title = "Correlation Plot",
+       caption = "Data: Panem Social Survey.\n Data jittered."
+       )
+
+scatterLeg
+```
+
+Innerhalb der Funktion `theme()` können wir Teilbereiche des Plots ansprechen und ändern. Dies umfasst u.a. folgende Eigenschaften des Plots:
+
+- `plot.title`
+- `axis.title.x` / `axis.title.y`
+- `axis.text.x` / `axis.text.y`
+- `panel.grid` / `panel.grid.minor` / `panel.grid.major`
+- `plot.background` / `panel.background`
+
+{{% notice tip %}}
+Eine komplette Übersicht aller Einstellungen die in `theme()` genutzt werden können findet sich in der
+[User-Dokumentation](https://ggplot2.tidyverse.org/reference/theme.html).
+{{% /notice %}}
+
+Wir werden jetzt nach und nach Veränderungen vornehmen. Zuerst werden wir die Schriftgröße, Position und das Erscheinungsbild des Titels ändern. Dies machen wir über `plot.title` in `theme()`. Dazu verwenden wir die Funktion `element_text()`:
+``` {r title, eval=TRUE}
+scatterLeg +
+  theme(
+    plot.title = element_text(
+      size = 25,
+      face = "italic",
+      hjust = 0.5
+    )
+  )
+```
+
+Dazu haben wir die drei Argumente `size` (Schriftgröße), `face` (Erscheinungsbild) und `hjust` (Position) genutzt. 
+
+Als nächstes wollen wir die Achsentitel bearbeiten. 
+
+``` {r axisticks, eval=TRUE}
+scatterAxes <- scatterLeg +
+  theme(
+    plot.title = element_text(
+      size = 25,
+      face = "italic",
+      hjust = 0.5
+    ),
+    axis.title.x = element_text(
+      size = 16, 
+      color = "seagreen", 
+      hjust = 0
+    ),
+    axis.title.y = element_text(
+      size = 8, 
+      color = rgb(
+        0, 
+        105, 
+        179, 
+        maxColorValue = 255
+      ), 
+      hjust = 1, 
+      face = "bold"
+    )
+  )
+
+scatterAxes
+```
+
+Anstatt eine Farbe anzugeben, kann man mit der Funktion `rgb()` auch den Farbton bestimmen. Alternativ kann man auch den HTML-Code der Farbe innerhalb des Arguments `color` nutzen.
+
+``` {r axisticks2, eval=TRUE}
+scatterLeg +
+  theme(
+    plot.title = element_text(
+      size = 25,
+      face = "italic",
+      hjust = 0.5
+    ),
+    axis.title.x = element_text(
+      size = 16, 
+      color = "seagreen", 
+      hjust = 0
+    ),
+    axis.title.y = element_text(
+      size = 8, 
+      color = "#0069B3", 
+      hjust = 1, 
+      face = "bold"
+    )
+  )
+```
+
+Nun möchten wir weiter experimentieren und die Achsenticks bearbeiten. Dazu nutzen wir `axis.ticks.x` bzw. `axis.ticks.y`.
+
+```{r axesticks, eval=TRUE}
+scatterTicks <- scatterAxes +
+  theme(
+    axis.text.x = element_text(
+      size = 12, 
+      angle = 45,
+      color = "darkgrey"
+    ),
+    axis.text.y = element_text(
+      size = 11, 
+      hjust = 0,
+      vjust = 1
+    )
+  )
+
+scatterTicks
+```
+
+Mit dem Argument `angle` können wir die Achsenbeschriftungen drehen lassen. Mit `hjust` und `vjust` können wir die Startposition des Texts ändern. 
+
+Als nächstes möchten wir das Grid des Plots ändern, also die Linien. Dazu nutzen wir erstmal das Argument `panel.grid` und innerhalb des Arguments die Funktion `element_line()`
+```{r grid1, eval=TRUE}
+scatterGrid <- scatterTicks +
+  theme(
+    panel.grid = element_line(
+      color = "green",
+      size = 1,
+      linetype = "solid" # blank, solid, dashed, dotted, dotdash, longdash, twodash 
+    )
+  )
+
+scatterGrid
+```
+
+Mit den Argumenten `panel.grid.major` und `panel.grid.minor` können die Haupt- und Hilfslinien getrennt bearbeitet werden. Wenn wir zum Beispiel nur die Hauptlinien wollen, machen wir folgendes:
+```{r grid2, eval=TRUE}
+scatterGrid <- scatterTicks +
+  theme(
+    panel.grid.major = element_line(
+      color = "green",
+      size = 1,
+      linetype = "solid" # blank, solid, dashed, dotted, dotdash, longdash, twodash 
+    ),
+    panel.grid.minor = element_blank()
+  )
+
+scatterGrid
+```
+
+Man kann auch die Hilfslinien getrennt nach Achsen bearbeiten. Dazu muss man einfach jeweils `.x` bzw. `.y` beifügen.
+
+Zuletzt kann man noch den Hintergrund des Plots bzw. des Panels ändern. Dies geschieht über die Argumente `plot.background` bzw. `panel.background`. Dazu nutzt man die Funktion `element_rect()` innerhalb des Arguments
+
+```{r background, eval=TRUE}
+scatterGrid +
+  theme(
+    plot.background = element_rect(
+      color ="darkgray",
+      size = 2,
+      fill = "lightpink"
+    ),
+    panel.background = element_rect(
+      fill = "moccasin"
+    )
+  )
+```
+ 
+Es gibt ebenso eine ganze Reihe an vorgefertigten Themes, die dann wiederum individuell angepasst werden können. 
+
+{{% notice tip %}}
+Eine Übersicht über vorhandene Themes gibt es [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+{{% /notice %}}
+

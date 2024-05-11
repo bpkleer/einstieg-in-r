@@ -1,0 +1,88 @@
+---
+title: "Tabellen"  # Titel der Seite
+weight: 101  # Individuelles Gewicht 
+menuTitle: "Tabellen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tabellen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+xfun::pkg_load2(
+                 c("htmltools", "mime")
+               )
+library("xaringanExtra")
+library("summarytools")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Bevor du dich an die Berechnung von Zusammenhangsmaßen machst, erstellst du nun zuerst Tabellen. Dies ist manchmal für die grafische Darstellung relevant. Oftmals werden zur Darstellung Tabellen gewählt, die Häufigkeiten von Variablen ausgeben. Für eine einfache (Häufigkeits-)Tabelle rufen wir die Funktion `table()` auf:
+```{r table1, eval=TRUE}
+table(pss$stfdem)
+```
+Die erste Zeile beinhaltet die Code-Werte, die zweite die Häufigkeiten. Aufgelistet sind hier die gültigen Fälle, also die jeder Ausprägung, die nicht *NA* gesetzt ist. 
+
+Wie viele gültige Fälle haben wir? Wie viele NA's?
+
+Um dies zu testen, nutzen wir die Funktionen `sum()` und `length()`:
+```{r table2, eval=TRUE}
+# gültige Fälle aus der Tabelle
+sum(
+  table(
+    pss$stfdem
+  )
+) 
+
+# Summe der NA's
+sum(
+  is.na(
+    pss$stfdem
+  )
+)
+
+# Gesamtlänge: Gültige Fälle + NA's
+length(pss$stfdem)
+```
+
+Alternativ kann man die Funktion `table()` auch um das Argument `useNA = "ifany"` erweitern:
+```{r table3, eval=TRUE}
+table(
+  pss$stfdem,
+  useNA = "ifany"
+)
+```
+
+## Tabelle mit **library** `summarytools`
+Um eine strukturierte Ausgabe zu erhalten, kann die **library** `summarytools` genutzt werden. Man erhält in etwa eine Ansicht wie in SPSS. Die **library** muss zuerst installiert bzw. geladen werden:
+```{r eval=FALSE}
+install.packages("summarytools")
+library("summarytools")
+```
+
+Dann wird die Funktion `freq()` genutzt:
+```{r st-freq, eval=TRUE}
+freq(pss$stfdem)
+```
+
+In der ersten Spalte sind die Code-Werte eingetragen. In der zweiten sind die Häufigkeiten angegeben, in der dritten die Prozente (von gültigen Fällen) und in der vierten Spalte die kumulierten Prozente (von gültigen Fällen). Spalte $5$ und $6$ geben die Prozente bzw. kumulierten Prozente von allen Fällen (auch `NA's`) wieder.
+
+Im nächsten Schritt lernst du Kreuztabellen kennen!

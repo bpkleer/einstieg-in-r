@@ -1,0 +1,31 @@
+---
+title: "Das Gerüst von Datensätzen mit tidyr"  # Titel der Seite
+weight: 321  # Individuelles Gewicht 
+menuTitle: "Gerüst von Datensätzen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Es ist für die Datenverarbeitung wichtig, dass die Datensätz *tidy* sind, damit die Funktionen in R problemlos mit den Daten laufen. Das bedeutet, dass die Daten in einem bestimmten Format vorliegen müssen, damit die Funktionen in R auch gut mit den Daten funktionieren (weniger *troubleshooting*). 
+
+## Zur Wiederholung: Was ist ein Datensatz?
+Ein Datensatz ist generell immer eine Sammlung von Werten, sei es numerisch oder eine Zeichenkette. Diese Werte sind immer auf zwei Arten organisiert: Jeder Wert gehört zu einer **Variable** und zu einer **Beobachtung**. Eine **Variable** inkludiert alle Werte, die für diese gemessen worden sind (also alle Beobachtungen auf dieser Variable). Eine **Beobachtung** inkludiert alle Werte, die für diese Beobachtung gemessen wurden (also alle Variablenwerte dieser *Einheit*). 
+
+Damit Daten in R gut mit den Funktionen genutzt werden können, müssen diese in einem *tidy*-Format vorliegen (auch *long*-Format genannt). Ein Datensatz ist dann *tidy*, wenn ...
+
+> - ... jede Variable eine Spalte ist,
+> - ... jede Beobachtung eine Zeile ist,
+> - ... und jede Beobachtungseinheit eine Tabelle formt.

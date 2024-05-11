@@ -1,0 +1,84 @@
+---
+title: "2 Datensätze kombinieren"  # Titel der Seite
+weight: 315  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+library("rmarkdown")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+pssMacro <- readRDS("./data/pssMacro.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Oftmals haben wir Datensätze auf der Mikroebene (z.B. European Social Survey), die wir mit Makro-Datensätzen (z.B. Wirtschaftsdaten auf Länderebene) kombinieren wollen. Hierfür bietet `dplyr` insgesamt vier Funktionen an, wobei `left_join()` in den meisten Anwendungsfällen genutzt wird. 
+
+Wir nehmen nun folgendes Beispiel: Wir haben zu unserem Datensatz des **PSS** einen zweiten Datensatz bei der Recherche gefunden, der den Anteil der von Armut betroffenen Bewohner eines Distrikts (`poverty`) und den Anteil der Wohnbevölkerung, der eine Mangelernährung aufweist (`nutrition`) aufführt.
+
+```{r, echo=FALSE, eval=TRUE}
+kable(
+  pssMacro,
+  caption =  "Makrodaten pro Distrikt"
+)
+```
+
+Nehmen wir an, wir möchten nun in einem Mehrebenenmodell inkludieren, wie sich diese Faktoren des Distrikts auf die Zufriedenheit mit der Demokratie auswirken. Dazu sollen die zwei Variablen `maxsem` in den `pss`-Datensatz ergänzt werden. Dazu nutzen wir `left_join()`:
+```{r merging, eval=TRUE}
+pssMerged <- pss %>%
+  left_join(
+    pssMacro, 
+    by = "district"
+  )
+```
+```{r merging-table, eval=TRUE, echo=FALSE}
+paged_table(
+  pssMerged,
+  options = list(
+    rows.print = 15,
+    cols.print = 16
+  )
+)
+``` 
+
+Auch könnte man hier `right_join()` verwenden:
+```{r merging2, eval=TRUE}
+pssMerged2 <- pssMacro %>%
+  right_join(
+    pss, 
+    by = "district"
+  ) 
+```
+```{r merging2-table, eval= TRUE, echo=FALSE}
+paged_table(
+  pssMerged2,
+  options = list(
+    rows.print = 15,
+    cols.print = 16
+  )
+)
+``` 
+
+So könnten wir beispielsweise in Mehrebenemodellen neben individuellen Effekten wie Studiengang und Abiturnote auch den Effekt der Betreuungsquote und der Seminargröße berechnen.

@@ -1,0 +1,154 @@
+---
+title: "Bivariate lineare Regression"  # Titel der Seite
+weight: 102  # Individuelles Gewicht 
+menuTitle: "Bivariates Beispiel" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "bivariat", "regressionskoeffizienten", "p-wert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}}  
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Wir nutzen jetzt wieder den Datensatz **PSS**, den wir schon während der gesamten Übung genutzt haben. Wir möchten nun testen, inwieweit die Zufriedenheit mit der ökonomischen Leistung die Zufriedenheit mit der Demokratie erklärt. Die zwei Variablen, die du daher benötigst für diese lineare Regression sind `stfeco` und `stfdem`. Die theoretische Prämisse dahinter ist, dass Personen, die ökonomisch zufrieden sind, auch zufriedener mit dem politischen System in Gänze sind. 
+
+{{% expand \"Wie sieht die Gleichung für diesen Fall aus?\" %}}
+
+$$Y = \hat{\beta_0} + \hat{\beta_1}*X_1 + \hat{\varepsilon}$$
+
+$$stfdem = \hat{\beta_0} + \hat{\beta_1}*stfeco + \hat{\varepsilon}$$
+{{% /expand %}}
+
+{{% tabs %}}
+{{% tab name=\"Frage\" %}}
+Könnten wir auch ein Modell berechnen, dass die Zufriedenheit mit der ökonomischen Leistung durch die Zufriedenheit mit der Demokratie erklärt!
+
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen ändern. Du siehst also, dass statistische Modelle nicht autark sind, sondern immer einen theoretischen Bezugspunkt haben!
+{{% /tab %}}
+{{% /tabs %}}
+
+## Berechnung des Beispiels
+In R nutzen wir die Funktion `lm()` um ein **lineares Regressionsmodell** zu berechnen. Es ist wichtig die Formel zu kennen, da wir das Modell als Formel in der Funktion angeben. 
+
+Wir speichern das Ergebnis der Modellberechnung in einem Objekt! In der Funktion `lm()` gibst du im ersten Argument die Formel der linearen Regression an und im zweiten Argument gibst du das Datenobjekt an, in diesem Fall `pss`. Der Datensatz ist im RStudio Projekt im Ordner `data` vorhanden. Falls du mit einer lokalen Version arbeitest, kannst du den Datensatz hier herunterladen:
+
+{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+
+
+```{r linreg1, eval=TRUE}
+olsModel <- lm(
+  stfdem ~ 1 + stfeco, #Formel der Regression
+  data = pss # Datenobjekt
+)  
+```
+
+Wir erhalten im Modell verschiedene Werte, die wir interpretieren müssen: *Coefficients*, *t-value(or pr(>|t|))* und *(adjusted) R-Squared*.
+
+Folgende Fragen sollten am Ende zu jedem Modell beantwortet werden:
+
+- Wie viel kann das Modell erklären?
+
+- Welche Effekte haben die einzelnen Variablen?
+
+Die einzelnen Werte werden nun Schritt für Schritt interpretiert. Die Ergebnisse werden mit der Funktion `summary()` aufgerufen:
+```{r linreg2, eval=TRUE, echo=TRUE}
+summary(olsModel) 
+```
+
+## Interpretation der Koeffizienten
+
+```{r linreg3, eval=TRUE}
+coef(olsModel)
+```
+Wie interpretieren wir den Wert für `stfeco`?
+
+$\Rightarrow$ Mit jedem Anstieg um eine Einheit in `stfeco`, steigt auch `stfdem` um $0.8727124$ Punkte.
+
+$\Rightarrow$ Eine Person, die den Wert $0$ in `stfeco` hat, erreicht den Wert $0.4808475$ in `stfdem` (*Intercept*).
+
+Mit der Funktion `confint()` erhalten wir die geschätzten Intervalle (in `summary()` erhalten wir nur den *t-value* und *p-value*):
+```{r linreg4, eval=TRUE}
+confint(olsModel)
+```
+In den Sozialwissenschaften ist die Interpretation des *Intercepts* in den meisten Fällen weniger relevant. Deshalb schauen wir primär auf den Einfluss von `grade`. Das Konfidenzintervall geht von $[0.8461641, 0.8992608]$ und inkludiert nicht den Wert $0$. Dieser Effekt ist daher signifikant. Wir verwerfen die Nullhypothese, dass dieser Effekt gleich $0$ ist ($\beta_1 =0$).
+
+### Konfidenzintervallen & p-Wert
+Was sagen uns das Konfidenzintervall und der p-Wert?
+
+- Wir haben den *mean effect* von `stfeco` auf `stfdem` berechnet und das Konfidenzintervall dieses Effekts
+
+- Mit Signifikanztests (in den meisten Fällen t-Tests) schließen wir aus, dass der Populationswert ($\mu$) dieser Berechnung gleich $0$ ist (signifikanter p-Wert): Es ist dann sehr unwahrscheinlich ($95 %$), dass $\mu = 0$.
+
+- Der p-Wert erlaubt uns nicht zu sagen, dass der wahre Wert dem berechneten Wert entspricht (z.B. mit $95 %$ Sicherheit ist der wahre Mittelwert innerhalb des berechneten Konfidenzintervalls). Denn wir wissen nicht, ob unsere Stichprobe eine der Stichproben ist, die den wahren Wert ($\mu$) inkludiert ($95 %$ der Stichproben inkludieren den Wert)
+
+- Nicht-signifikante Werte sagen uns daher, dass wir nicht ausschließen können, dass der wahre Populationswert ($\mu$) gleich $0$ ist; wir können aber nicht sagen, dass der wahre Wert gleich $0$ ist. 
+
+$\Rightarrow$ Verwirrt? Einfach daran erinnern, dass es hier um Falsifikation und nicht um Verifikation geht (Grundlage der empirischen Sozialforschung!).
+
+### Weitere Ausgabemöglichkeiten
+Wenn wir die Berechnung in einem Objekt gespeichert haben, können wir verschiedene Teile des Modells ansprechen (z.B. Koeffizienten, geschätzte Werte oder Residuen):
+```{r linreg5, eval=TRUE}
+olsModel$coefficients # Koeffizienten
+
+head(olsModel$fitted.values) # geschätzte Werte
+
+head(olsModel$residuals) # Residuen
+```
+
+Wir können auch die folgenden Funktionen stattdessen nutzen: `coef()`, `fitted()`, `resid()` or `confint()`.
+```{r linreg6, eval=TRUE}
+coef(olsModel) # Koeffizienten
+
+head(fitted(olsModel)) # ersten 6 geschätzten Werte
+
+head(resid(olsModel)) # Residuen
+
+confint(olsModel) # Konfidenzintervalle
+```
+
+## Globale Bewertung des Modells
+Zur globalen Bewertung der Modellgüte wird oftmals das Bestimmtheitsmaß $R^2$ angegeben. $R^2$ liefert die Information, wie viel der Varianz der abhängigen Variablen durch das Modell erklärt werden kann. 
+
+Die Gleichung lautet:
+
+$$R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{erklärte \, Varianz}{gesamte \, Varianz}$$
+
+![$R^2$](../img/r2.png)
+
+Die Grafik stellt die Formel nochmal dar: die erklärte Varianz ist die Summe der quadrierte Abstände zwischen geschätztem Wert und dem Mittelwert. Die gesamte Varianz ist die Summe der quadrierten Abstände zwischen beobachtetem Wert und dem Mittelwert.
+
+{{% tabs %}}
+{{% tab name=\"Frage\" %}}
+
+Wie beschreiben wir nun das Ergebnis? $R^2$ ist in der vorletzten Zeile angegeben.
+```{r linreg7, eval=TRUE}
+summary(olsModel)
+```
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+
+Das Modell erklärt $45.85 %$ der Varianz von der Zufriedenheit mit der Demokratie (`stfdem`) ($R^2$). Eine höhere Zufriedenheit mit der ökonomischen Leistung (`stfeco`) ist positiv verbunden mit der Zufriedenheit mit der Demokratie (`stfdem`). Mit jedem Anstieg um eine Einheit in der Zufriedenheit mit der ökonomischen Leistung, steigt der Wert der der Zufriedenheit mit der Demokratie um $0.87271$. Der Effekt von `stfeco` auf `stfdem` ist signifikant ($p<0.001$). 
+{{% /tab %}}
+{{% /tabs %}}
+

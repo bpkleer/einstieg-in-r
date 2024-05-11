@@ -1,0 +1,62 @@
+---
+title: "Import von .RData und .rds"  # Titel der Seite
+weight: 123  # Individuelles Gewicht 
+menuTitle: "R-Import" # Falls Titel zulang ist, hier Kurztitel
+tags: [".RData", "datei", ".rds", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+exam <- readRDS("../data/exam.rds")   
+load("../data/exam.RData")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+
+Wenn Datensätze einmal als R-Daten (`.RData` oder `.rds`) gespeichert wurden, können die Daten leichter importiert werden. Wir laden jetzt wieder den Datensatz `exam` ein weiteres Mal in das **Environment**. 
+
+Dafür räumen wir unser **Environment** aber erstmal auf und entfernen alle Objekte, damit wir die Veränderungen auch sehen. Dafür nutzt man die Funktion `rm()` (*rm* steht für *remove*). In der Funktion gibt man dann einfach mit einem `,` (Komma) getrennt an, welche Objekte man aus dem Environment löschen möchte. Wir löschen mal alle!
+
+```{r clean-env, eval=FALSE}
+rm(
+  exam, 
+  examcsv, 
+  examcsv2, 
+  path
+)
+```
+
+Wenn wir R-Daten laden, ist dies deutlich leichter, da die Daten direkt in einem Format sind, das für R lesbar ist. 
+Laden wir ein einzelnes Objekt (`.rds`-Datei) nutzen wir die Funktion `readRDS()`.  **Wichtig:** Bei dieser Funktion müssen wir die eingelesenen Daten einem Objekt hinzufügen, damit diese dann auch im **Environment** zur Verfügung stehen. Gut daran ist, dass wir die Daten zu unserem Gefallen umbenennen können und nicht auf den Dateinamen angewiesen sind. 
+```{r import-rds, eval=FALSE}
+exam <- readRDS("./data/exam.rds")
+```
+
+Wir könnten auch ein gesamtes Environment laden. Dies können zum Beispiel alle Objekte einer Session sein, also das, was wir bis gerade gemacht haben. Diese Art von Daten ist im Format `.RData` gespeichert und wir nutzen einfach die Funktion `load()`.
+
+```{r import-rdata, eval-FALSE}
+# alternativ gesamter Workspace
+load("./data/exam.RData")
+```
+
+Das war es auch schon, so können wir Daten importieren, die in globalen Formaten vorliegen oder in R-spezifischen Formaten. Als letztes lernen wir jetzt noch den Import von SPSS-Datensätzen kennen, da leider immer noch eine Reihe an Organisationen ihre Datensätze in diesem Format zur Verfügung stellen. 

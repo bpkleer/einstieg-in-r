@@ -1,0 +1,142 @@
+---
+title: "Start: Scatterplot"  # Titel der Seite
+weight: 141  # Individuelles Gewicht 
+menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Scatterplots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Wir nutzen **Scatterplots** (Punktewolken), wenn wir zwei (pseudo-)metrische Variablen darstellen möchten. Dazu nutzen wir die Funktion `geom_point()`.
+
+Oftmals haben wir lediglich pseudometrische Variablen, dennoch können wir trotzdem **Scatterplots** zur Visualisierung nutzen. Wir nutzen nun `trstplt` und `trstprt`. Falls du nicht mehr weißt, wofür diese Variablen stehen, schaue im Codebook nach!
+
+```{r scatter1, eval=TRUE}
+scatter <- ggplot(
+  pss, 
+  aes(
+    trstplt, 
+    trstprt
+  )
+) + 
+  geom_point()
+
+scatter
+```
+
+## Jitter
+Um nun mehr auf dem Plot erkennen zu können, müssen wir die Datenpunkte streuen, damit sie nicht alle überlappen. Denn auf einer pseudo-metrischen Variablen haben wir ja meist nur ganzzahlige Werte, so dass Datenpaare überlappen.  Dazu nutzen wir die Funktion `geom_jitter()`:
+
+```{r scatter2, eval=TRUE}
+scatter <- scatter +
+  geom_jitter(
+    width = 0.3,
+    height = 0.3
+  )
+
+scatter
+```
+
+In den Argumenten in `geom_jitter()` gibst du an, wie weit die Datenpunkte jittern sollen. Probiere es einfach ein paar Mal mit unterschiedlichen Werten aus. 
+
+## Beschriftungen
+Nun fügen wir noch Beschriftungen und Titel hinzu.
+```{r scatter3, eval=FALSE}
+scatter +
+  geom_point() +
+  geom_jitter(
+              width = 0.3, 
+              height = 0.3
+              ) +
+  labs(
+       x = "Trust in Politicians", 
+       y = "Trust in Legal System", 
+       title = "Trust Scatterplot"
+       )
+```
+
+Und verändern das Erscheinungsbild des Titels: Innerhalb der Funktion `theme()` ändern wir noch die Darstellung, was die Argumente genau machen, lernst du Kapitel 3 kennen!
+
+```{r scatter4, eval=TRUE}
+scatter <- scatter +
+  labs(
+    x = "Trust in Politicians",
+    y = "Trust in Legal System", 
+    title = "Trust Scatterplot"
+  ) +
+  theme(
+    plot.title = element_text(
+      face = "bold", 
+      hjust = 0.5, 
+      size = 16
+    )
+  )
+scatter
+```
+
+Die Datenquelle geben wir auch an. Dies fügen wir mit der Funktion `lab()`und dem Argument `caption` hinzu:
+```{r scatter5, eval=TRUE}
+scatter <- scatter + 
+  labs(caption = "Data source: Panem Social Survey.")
+
+scatter
+```
+
+## Achsen
+Die Variable hat nur ganzzahlige Werte, die Markierungen sind aber immer im Halbpunkt. Das ändern wir nun:
+```{r scatter6, eval=TRUE}
+scatter <- scatter +
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      10, 
+      1
+    )
+  ) + 
+  scale_x_continuous(
+    breaks = seq(
+      0,
+      10,
+      1
+    )
+  )
+
+scatter
+```
+
+## Regressionslinie
+Ebenso können wir bereits eine Regressionlinie für den Zusammenhang zwischen den zwei Variablen einzeichnen. Dazu nutzen wir die Funktion `geom_smooth()`. Im Argument `method` geben wir an, dass es sich um ein lineares Modell handelt (`lm`), das Konfidenzintervall soll eingezeichnet werden (`se = TRUE`) und wir legen Farben fest. 
+```{r scatter7, eval=TRUE}
+scatter + 
+  geom_smooth(
+    method = "lm", 
+    se = TRUE, 
+    color = "darkred",
+    fill = "orange"
+  )
+```
+
+Weiter geht's und du fügst jetzt eine Gruppenvariable hinzu!

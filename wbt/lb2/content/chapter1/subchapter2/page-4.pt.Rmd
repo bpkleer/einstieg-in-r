@@ -1,0 +1,57 @@
+---
+title: "Import von SPSS"  # Titel der Seite
+weight: 124  # Individuelles Gewicht 
+menuTitle: "SPSS-Import" # Falls Titel zulang ist, hier Kurztitel
+tags: [".sav", "datei", "spss", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+
+Die Basis-Funktionen in R können SPSS-Dateien nicht importieren. Das bedeutet, dass du jetzt eine weitere **library** benötigst, um eine Funktion zu haben, die die SPSS-Datei importieren kann. Hier gibt es eine Reihe von verschiedenen **libraries**, wir beschränken uns hier auf die **library** `foreign`. 
+
+Wenn man eine zusätzliche **library** benötigt, muss man diese zuerst **einmalig** installieren. Dies geht über die Funktion `install.packages()` und als Argument gibt man den Namen der **library** ein - in unserem Fall also `foreign`. 
+
+```{r install-foreign, eval=FALSE}
+install.packages("foreign")
+```
+
+{{% expand \"Überlege kurz, warum der Name im Argument in Anführungszeichen gesetzt werden muss!\" %}}
+Der Name muss in Anführungszeichen gesetzt werden, weil wir Text in die Funktion übergeben. Die Funktion sucht dann eine **library** namens `foreign`. Lässt du die Anführungszeichen weg, würde die Funktion ein Objekt namens `foreign` suchen und es kommt zu einer Fehlermeldung.
+{{% /expand %}}
+
+Jetzt hast du die zusätzlichen Funktionen aus dem Paket `foreign` installiert. Damit du diese nutzen kannst, musst du jedes Mal, wenn du diese in einer R-Session verwenden willst, kurz laden. Dies geschieht mit der Funktion `library()`, wobei als Argument wieder der Name des Pakets genutzt wird. 
+
+```{r library-load, eval=TRUE}
+library("foreign")
+```
+
+Wir laden jetzt wieder den `exam`-Datensatz in R, aber diesmal eben im SPSS-Format. Die Besonderheit an SPSS ist, dass es oftmals Beschreibungen von Code-Werten enthält oder Beschreibungstext für Variablen. Beides nutzen wir in R aber nicht, sondern nutzen dafür das Codebook eines Datensatzes. In den späteren Beispielen wirst du die Arbeit mit dem Codebook kennenlernen, in diesem simplen Trainngsdatensatz lassen wir das erstmal aus. 
+
+Aus der library `foreign` nutzen wir die Funktion `read.spss()`, in der wir auch wieder die Funktion `file.path()` nutzen, um das `path`-Objekt nutzen zu können. Wir haben zwei weitere Argumente in der `read.spss()`-Funktion, die neu sind: `use.value.labels` und `to.data.frame`. Letztere gibt einfach nur an, dass das finale Objekt ein Datensatz sein soll und keine Matrix. Mit dem Argument `use.value.labels = FALSE` schalten wir aus, dass die Wertebeschriftungen übernommen werden. So erhalten wir keine Probleme beim Import, denn in SPSS sind oftmals nur die Endpunkte einer Skala beschriftet und wir würden dann vermischte Variablen erhalten, die alle als *character* gelesen werden würden, obwohl sie numerisch sind. 
+
+Der Import funktioniert dann ganz einfach:
+```{r eval=FALSE}
+examspss <- read.spss(
+  "./data/exam.sav", 
+  use.value.labels = FALSE,       
+  to.data.frame = TRUE
+)            
+```
+
+So, das war's erstmal zum Datenimport!
+
+

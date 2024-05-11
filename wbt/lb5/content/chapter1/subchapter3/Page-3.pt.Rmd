@@ -1,0 +1,377 @@
+---
+title: "Rainclouds"  # Titel der Seite
+weight: 133  # Individuelles Gewicht 
+menuTitle: "Rainclouds" # Falls Titel zulang ist, hier Kurztitel
+tags: ["rainclouds", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("ggdist")
+library("gghalves")
+
+pss <- readRDS("./data/pss.rds")
+
+set.seed(2021)
+
+data <- tibble(
+  group = factor(
+    c(
+      rep("Group 1", 100), 
+      rep("Group 2", 250), 
+      rep("Group 3", 25)
+    )
+  ),
+  value = c(
+    seq(0, 20, length.out = 100),
+    c(
+      rep(0, 5), 
+      rnorm(30, 2, .1),
+      rnorm(90, 5.4, .1),
+      rnorm(90, 14.6, .1),
+      rnorm(30, 18, .1), 
+      rep(20, 5)
+    ),
+    rep(
+      seq(0, 20, length.out = 5),
+      5
+    )
+  )
+) %>% 
+  rowwise() %>%
+  mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Sogenannte **Rainclouds** beinhalten nicht nur die Verteilungsinformationen aus einem Boxplot, sondern auch die Verteilung der Rohwerte. Denn verschiedene Verteilungen können zu einem gleichen Boxplot führen. Das folgende Beispiel ist aus einem Blogbeitrag con [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), in dem (auf Englisch) sehr gut erklärt wird, warum Boxplots manchmal nicht so gut sind. 
+
+{{% expand \"Code zum Erstellen des fiktiven Datensatze\" %}}
+\`\`\`R
+data <- tibble(
+  group = factor(
+    c(
+      rep(
+        "Group 1",
+        100
+      ), 
+      rep(
+        "Group 2",
+        250
+      ), 
+      rep(
+        "Group 3",
+        25
+      )
+    )
+  ),
+  value = c(
+    seq(
+      0,
+      20,
+      length.out = 100
+    ),
+    c(
+      rep(
+        0,
+        5), 
+      rnorm(
+        30,
+        2, 
+        .1
+      ),
+      rnorm(
+        90,
+        5.4,
+        .1
+      ),
+      rnorm(
+        90, 
+        14.6,
+        .1
+      ),
+      rnorm(
+        30,
+        18, 
+        .1
+      ), 
+      rep(
+        20,
+        5
+      )
+    ),
+    rep(
+      seq(
+        0,
+        20,
+        length.out = 5
+      ),
+      5
+    )
+  )
+) %>% 
+  rowwise() %>%
+  mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
+\`\`\`
+{{% /expand %}}
+
+Wir haben einen fiktiven Datensatz, der folgendes Boxplot ergibt:
+```{r bp1, eval=TRUE, echo=FALSE}
+plot <- ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+  )
+) +
+  geom_boxplot(fill = "grey92")
+
+plot
+```
+Es sieht also erstmal von den Kennzahlen des Boxplots so aus, dass die Daten ähnlich sind. Fügen wir jetzt mal die Fallzahlen hinzu:
+```{r bp2, eval=TRUE, echo=FALSE}
+# Funktion zur Angabe der Gruppengrüße
+n_fun <- function(x){
+  return(
+    data.frame(
+      y = median(x) - 1.25, 
+      label = paste0(
+        "n = ",
+        length(x)
+        )
+      )
+    )
+}
+
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+  )
+) +
+  geom_boxplot(fill = "grey92") +
+  ## use summary function to add text labels
+  stat_summary(
+    geom = "text",
+    fun.data = n_fun,
+    size = 5
+  )
+```
+
+Obwohl dasselbe Boxplot entsteht, sind die Fallzahlen pro Gruppe sehr unterschiedlich. Jetzt fügen wir mal die Rohwerte (`geom_point()`) hinzu:
+
+```{r bp4, eval=TRUE}
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+  )
+) +
+  geom_boxplot(fill = "grey92") +
+  geom_point(
+    size = 2,
+    alpha = .3,
+    position = position_jitter(
+      seed = 1,
+      width = .2
+    )
+  )
+```
+Beim ersten Anblick wird schon deutlich, dass die Verteilung zwischen den Gruppen gar nicht so ähnlich ist, wie es die Boxplots möglicherweise angedeutet haben. 
+
+Um diese Informationen in einem **Raincloud**-Plot einzuschließen, werden sowohl die Rohdaten eingezeichnet als auch die Verteilung. Dazu musst du die **library** `ggdist` installieren und aktivieren:
+
+```{r ggdist, eval=FALSE}
+install.packages("ggdist")
+library("ggdist")
+```
+
+Aus der **library** `ggdist` nutzt du die Funktion `stat_halfeye()` um die Verteilung auszugeben. Machen wir diesen ersten Schritt:
+```{r raincloud, eval=TRUE}
+ggplot(data, aes(x = group, y = value)) + 
+  ## add half-violin from {ggdist} package
+  stat_halfeye(
+    ## custom bandwidth
+    adjust = .5, 
+    ## adjust height
+    width = .6, 
+    ## move geom to the right
+    justification = -.2, 
+    ## remove slab interval
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA ## `outlier.shape = NA` works as well
+  )
+```
+
+Du siehst jetzt also neben dem Boxplot noch die Verteilung. Aber die Information der Rohdatenpunkte war ebenfalls sehr hilfreich um die Daten visuell zu verstehen. Dazu nutzt du die Funktion `stat_dots()` aus `ggdist`. 
+
+```{r raincloud2, eval=TRUE}
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+    )
+  ) + 
+  stat_halfeye(
+    adjust = .5, 
+    width = .6, 
+    justification = -.2, 
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    outlier.color = NA 
+  ) +
+  ## Rohdatenpunkte hinzfügen
+  stat_dots(
+    # in welche Richtung die Punkt sich türmen sollen, probiere right einfach aus!
+    side = "left", 
+    # leichtes Einrücken von geom_boxplot()
+    justification = 1.1, 
+    # Größe der Punkte
+    binwidth = .25
+  )
+```
+
+Als letztes kann man noch den *white space* entfernen, indem du die x-Achse beschränkst:
+```{r raincloud3, eval=TRUE}
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+    )
+  ) + 
+  stat_halfeye(
+    adjust = .5, 
+    width = .6, 
+    justification = -.2, 
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    outlier.color = NA 
+  ) +
+  ## Rohdatenpunkte hinzfügen
+  stat_dots(
+    # in welche Richtung die Punkt sich türmen sollen, probiere right einfach aus!
+    side = "left", 
+    # leichtes Einrücken von geom_boxplot()
+    justification = 1.1, 
+    # Größe der Punkte
+    binwidth = .25
+  ) + 
+  # Entferne white space
+  coord_cartesian(
+  xlim = c(
+      1.2,
+      NA
+    )
+  )
+```
+
+Wenn du viele Datenpunkte hast und viele Gruppen, ist die Ansicht mit `stat_dots()` manchmal zu unübersichtlich. Alternativ eignet sich: `geom_halfpoint()`!
+
+```{r raincloud4, eval=TRUE}
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+    )
+  ) + 
+  stat_halfeye(
+    adjust = .5, 
+    width = .6, 
+    justification = -.2, 
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    outlier.color = NA 
+  ) +
+  geom_half_point(
+    # links ausgerichtet
+    side = "l", 
+    ## horizontale Linien anstatt Punkten
+    shape = 95,
+    # kein jittern
+    range_scale = 0,
+    size = 10, 
+    alpha = .2
+  ) + 
+  # Entferne white space
+  coord_cartesian(
+  xlim = c(
+      1.2,
+      NA
+    )
+  )
+```
+
+Oder aber mit gejitterten Punkten:
+```{r raincloud5, eval=TRUE}
+ggplot(
+  data, 
+  aes(
+    x = group, 
+    y = value
+    )
+  ) + 
+  stat_halfeye(
+    adjust = .5, 
+    width = .6, 
+    justification = -.2, 
+    .width = 0, 
+    point_colour = NA
+  ) + 
+  geom_boxplot(
+    width = .12, 
+    outlier.color = NA 
+  ) +
+  geom_half_point(
+    # Ausrichtung links
+    side = "l", 
+    # jittering
+    range_scale = .4, 
+    # Transparenz
+    alpha = .3
+  ) + 
+  coord_cartesian(
+  xlim = c(
+      1.2,
+      NA
+    )
+  )
+```
+
+Eine **Raincloud** gibt dir also eine deutlich bessere Übersicht als ein Boxplot!

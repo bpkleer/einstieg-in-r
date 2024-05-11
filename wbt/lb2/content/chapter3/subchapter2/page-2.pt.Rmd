@@ -1,0 +1,50 @@
+---
+title: "Untidy Datensätze"  # Titel der Seite
+weight: 322  # Individuelles Gewicht 
+menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
+tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+statclass <- readRDS("./data/statclass.rds")
+statclass2 <- readRDS("./data/statclass2.rds")
+
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Die folgenden zwei Datensätze zeigen Daten, die jeweils nicht *tidy* sind. Wir werden diese im Folgenden bereinigen.
+```{r statclass, eval=TRUE}
+statclass
+```
+
+Dieser Datensatz ist im sogenannten *wide*-Format. D.h. wenn wir neue Prüfungen hätten, würden wir einfach weitere Spalten hinzufügen. Dies ist aber für die Verarbeitung mit R teilweise problematisch, denn wir benötigen oft ein *long*-Format.
+
+``` {r statclass2, eval=FALSE}
+statclass2
+```
+
+In diesem Fall haben wir mehrere Probleme: Zum einen sind in den Spalten nicht überall Variablen, sondern Beobachtungen (`momo`, `kim`, `sascha`) und in `exam` finden wir wiederum Variablennamen. 
+
+Fangen wir mit `statclass` an. 

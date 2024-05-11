@@ -1,0 +1,67 @@
+---
+title: "Count Plots"  # Titel der Seite
+weight: 143  # Individuelles Gewicht 
+menuTitle: "Count Plots" # Falls Titel zulang ist, hier Kurztitel
+tags: ["count plots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Eine andere gute Möglichkeit, um zwei pseudometrische Variablen darzustellen, ist der **count plot**. Hier werden die Kombinationen, die häufiger vorkommen größer dargestellt. Dazu rufen wir die Funktion `geom_count()` auf:
+
+```{r count, eval=TRUE}
+countplot <- ggplot( 
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl
+  )
+) + 
+  geom_count()
+
+countplot
+```
+
+## Coloring
+Auch hier können wir Farben hinzufügen:
+```{r count2, eval=TRUE}
+ggplot(
+  pss, 
+  aes(
+    trstplt, 
+    trstlgl)) + 
+  geom_count(
+    aes(
+      color = ..n.., 
+      size = ..n..
+    )
+  ) +  
+  guides(color = "legend")  
+```
+
+Zuguterletzt lernst du noch kennen, wie du eine bivariate Verteilung auch darstellen kannst!

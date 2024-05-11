@@ -1,0 +1,83 @@
+---
+title: "Zwischen mehr als zwei Gruppen"  # Titel der Seite
+weight: 203  # Individuelles Gewicht 
+menuTitle: "F-Test" # Falls Titel zulang ist, hier Kurztitel
+tags: ["mittelwert", "mittelwertvergleiche", "anova", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+library("car")
+pss <-  readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Auf dieser Seite werden Mittelwertvergleiche zwischen mehr als zwei Gruppen vorgestellt. Diese Test-Statistik wird **ANOVA** oder **F-Test** genannt. Wir möchten nun die verschiedenen Gruppen der `edu`-Variable testen. 
+
+**Annahmen**:
+
+1. abhängige Variable ist metrisch$\checkmark$
+
+2. unabhängige Variable ist kategoriell $\checkmark$
+
+3. Gruppen sind unabhängig voneinander $\checkmark$
+
+4. [Normalverteilung der metr. Variable in jeder Gruppe (nötig nur für $n \leq 25$)] $\checkmark$
+
+5. Varianzgleichheit zwischen Gruppen
+
+### Prüfen der Annahmen
+Wir möchten testen, inwieweit die Arbeitsstunden zwischen verschiedenen Bildungsgruppen differieren. Dazu nimmst du die `edu`-Variable, die mehrere Bildungsgruppen beinhaltet. Zuerst führst du wieder den Levene-Test durch. Da du jetzt alle Gruppen inkludierst, kannst du wieder die Formelschreibweise nutzen:
+```{r levene, eval=TRUE}
+leveneTest(
+  pss$wkhtot ~ pss$edu,
+  center = "mean"
+)
+```
+
+{{% expand \"Wie interpretierst du das Ergebnis?\" %}}
+Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianzgleichheit angenommen. 
+
+$H_0$: Alle Gruppen haben dieselbe Varianz in der metrischen Variable.
+{{% /expand %}}
+
+### Berechnen des Tests (ungleiche Varianzen)
+Um den Test zu berechnen, kannst du die Funktionen `oneway.test()` und `pairwise.t.test()` nutzen:
+```{r oneway, eval=TRUE}
+oneway.test(
+  pss$wkhtot ~ pss$edu,
+  var.equal = TRUE
+)
+```
+Dieser Test zeigt an (p-Wert), dass es mindestens zwischen zwei Gruppen signifikante Differenzen gibt (p-Wert $< 0.05$). Um nun festzustellen zwischen welchen Gruppen diese vorliegen, nutzt du die Funktion `pairwise.t.test()`:
+```{r pairwise, eval = TRUE}
+pairwise.t.test(
+  pss$wkhtot, # metrische Variable zuerst
+  pss$edu, # Gruppenvariable als zweites
+  p.adj = "holm"  # Korrektur (Standardverwendung)
+) 
+```
+Im Testergebnis siehst du eine Matrix zwischen den Gruppen, in der die p-Werte für den jeweiligen Vergleich zweier Gruppen eingetragen sind. 
+
+{{% expand \"Zwischen welchen Gruppen lassen sich also signifikante Unterschiede feststellen??\" %}}
+Richtig, zwischen allen Gruppen!
+{{% /expand %}}
+
+Das war's für diesen Lernblock!

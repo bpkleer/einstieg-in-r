@@ -1,0 +1,119 @@
+---
+title: "geom_boxplot()"  # Titel der Seite
+weight: 131  # Individuelles Gewicht 
+menuTitle: "geom_boxplot()" # Falls Titel zulang ist, hier Kurztitel
+tags: ["geom_boxplot", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+
+cbp1 <- c(
+  "#999999", 
+  "#E69F00",
+  "#56B4E9",
+  "#009E73",
+  "#F0E442", 
+  "#0072B2",
+  "#D55E00",
+  "#CC79A7"
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Boxplots kennst du aus der Statistik-Vorlesung. In Boxplots sind die Quartile angegeben sowie das Minimum und Maximum (oder Ausreißer). Jetzt lernst du die einzelnen Funktionen genauer kennen, wie du ein Boxplot darstellen kannst. Wir stellen zwei Funktionen vor: `geom_boxplot()` oder `ggboxplot()`. Wir nutzen Boxplots für die Darstellung einer metrischen Variablen. Boxplots einer metrischen Variable können auch nach einer Gruppenvariable aufgeteilt werden.
+
+Zusätzlich stellen wir auf der letzten Seite noch **rainclouds** vor. Diese sind ähnlich einem Boxplot, erhalten aber noch zusätliche Informationen darüber wie die Werte verteilt sind. 
+
+## Boxplots mit `geom_boxplot()`
+Die Boxplots des Alters können wir ganz einfach erstellen. Hierzu nutzen wir die Funktion `geom_boxplot()`: 
+```{r boxplot, eval=TRUE}
+boxplot <- ggplot(
+  pss, 
+  aes(agea)
+) +
+  geom_boxplot()
+
+boxplot
+```
+Auf der x-Achse ist nun die metrische Variable Alter angegeben. Die Darstellung der y-Achse ist hier etwas verwirrend, da diese inhaltlich nicht interpretiert wird. `ggplot` benötigt diese aber zur Darstellung. Daher kann man diese einfach anpassen und das Boxplot drehen:
+```{r boxplot2, eval=TRUE}
+boxplot <- ggplot(
+  pss, 
+  aes(agea)
+) +
+  geom_boxplot() +
+  coord_flip() +
+  scale_y_continuous(breaks = NULL)
+
+boxplot
+```
+
+Im Folgenden werden wir das Boxplot von Alter in Abhängigkeit vom Distrikt ausgeben lassen. Oftmals will man die Verteilung einer metrischen Variable auf einer kategoriellen Variable ausgeben lassen. Dazu fügst du innerhalb der `ggplot()` Funktion im Argument `aes` einfach die Gruppenvariable hinzu. **Denk dran**: Wir haben die Achsen getauscht, also ist die Gruppenvariable auf der x-Achse (1. Argument in `aes`), auch wenn es im Plot auf der y-Achse auftaucht!
+```{r boxplot-district, eval=TRUE}
+boxplotDistrict <- ggplot(
+  pss, 
+  aes(
+    district, 
+    agea, 
+    fill = district
+  )
+) +
+  geom_boxplot() 
+
+boxplotDistrict
+```
+
+Wie zuvor können wir den Plot leicht anpassen:
+```{r boxplot-adjustments, eval=TRUE}
+boxplotDistrict +
+  scale_fill_manual(
+                    name = "Distrikt", 
+                    values = cbp1
+                    ) +
+  scale_x_discrete(
+                   limits = c(
+                              "Distrikt 10", 
+                              "Distrikt 7", 
+                              "Distrikt 12", 
+                              "Distrikt 5",
+                              "Distrikt 1"
+                              )
+                   ) + 
+  scale_y_continuous(
+    breaks = seq(
+      0, 
+      100, 
+      5
+    )
+  ) + 
+  labs(
+    x = "District", 
+    y = "Age in years",
+    title = "Boxplots of Age by District"
+  ) +
+  coord_flip()
+```
+
+Auf der nächsten Seite lernst du eine Alternative kennen!

@@ -1,0 +1,78 @@
+---
+title: "Multivariate lineare Regression"  # Titel der Seite
+weight: 103  # Individuelles Gewicht 
+menuTitle: "Multivariates Beispiel" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "multivariat"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}}  
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+In der Regel berechnen wir keine bivariaten Modell in den Sozialwissenschaften, da Ursache-Wirkungs-Relationen in sozialen Phänomenen nie bivariat sind. Das vorherige Modell diente lediglich zum leichteten Zugang. 
+
+Nun erweitern wir das Modell und berechnen eine **multivariate lineare Regression**. Wir möchten die Variable `trstlgl` in das Modell einfügen. Welche Effekt erwartet wir theoretisch von der Variable `trstlgl`?
+```{r eval=FALSE}
+cor(
+  pss$trstlgl, 
+  pss$stfdem,
+  method = "pearson", 
+  use = "complete.obs"
+)
+```
+
+Wie interpretieren wir das Ergebnis?  
+
+$\Rightarrow$ Der Korrelationswert zwischen `trstlgl` und `stfdem` zeigt uns an, dass eine negative Korrelation vorliegt, die aber nahe $0$ liegt, so dass man davon ausgehen kann, dass kein Zusammenhang zwischen den zwei Variablen vorliegt.
+
+### Erweitern des Modells 
+Wir erweitern das Modell um die Variable `trstlgl`. 
+
+{{% expand \"Wie sieht unsere lineare Gleichung aus?\" %}}
+
+$$Y = \beta_0 + \beta_1*X_1 + \beta_2*X_2 + e$$
+
+$$stfdem = \beta_0 + \beta_1*stfeco + \beta_2*trstlgl + e$$
+{{% /expand %}}
+
+Dies setzen wir einfach in der `lm()`-Funktion um:
+```{r linreg1, eval=TRUE}
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)            
+
+summary(olsModel2)
+```
+
+{{% tabs %}}
+{{% tab name=\"Aufgabe\" %}}
+Wie interpretieren wir das Ergebnis? Schreibe ein paar Zeilen in dein Skript!
+
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+Das Modell kann $45.96 %$ der Varianz in `stfdem` erklären. Mit jedem Anstieg in `stfeco` (Zufriedenheit mit der ökonomischen Leistung) steigt `stfdem` um $0.87361$ Punkte. Mit jedem Anstieg im Vertrauen zum Rechtssystem (`trstlgl`) sinkt die Zufriedenheit mit der Demokratie um $-0.04212$. Beide Effekte sind signifikant ($p<0.05$).
+{{% /tab %}}
+{{% /tabs %}}
+
+Du kannst also jetzt auch schon multivariate Modelle berechnen und weißt wie du diese interpretieren kannst!

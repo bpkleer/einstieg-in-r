@@ -1,0 +1,158 @@
+---
+title: "Zwischen zwei Gruppen"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Zwei-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
+tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+pss2 <- readRDS("./data/pss.rds")
+library("car")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Beim Zwei-Stichproben t-Test musst du unterscheiden, ob es sich um gepaarte oder ungepaarte Stichproben handelt. 
+
+## Zwei-Stichproben t-Test (ungepaart)
+In dieser Testsituation werden zwei verschiedene Gruppen innerhalb einer Stichprobe (z.B. nach Geschlecht) getestet. Beide Gruppen sind nicht verbunden bzw. nicht gepaart. Die Antwort des einen Falles ist nicht durch die Antwort anderer Fälle beeinflusst bzw. steht nicht in Verbindung dazu. 
+
+Wir möchten testen, inwieweit die vertragliche Arbeitszeit (`wkhtot`) sich zwischen Männern und Frauen (`gndr`) in der Stichprobe unterscheidet. 
+
+Wie sind die Variablen kodiert? Prüfe es im Codebook:
+{{%attachments style=\"grey\" title=\"Codebook PSS\" /%}}
+
+### Annahmen
+Um den Test zu berechnen, müssen zwei Annahmen geprüft werden:
+
+1. Varianzgleichheit (Levene-Test)
+
+2. Normalverteilung der metrischen Variable (uV)
+
+Die zweite Annahme muss nur getestet werden, wenn $n < 30$. In Situationen mit $n > 30$ liefert der Test asymptotisch korrekte Ergebnisse. 
+
+Um zu prüfen, ob Varianzgleichheit vorliegt, berechnest du den **Levene-Test**. Hierzu nutzt du die Funktion `leveneTest()` aus der **library** `car`:
+```{r car, eval=FALSE}
+install.packages("car")
+library("car")
+```
+
+```{r levene, eval=TRUE}
+leveneTest(
+  pss$wkhtot,      
+  pss$gndr,        
+  center = "mean"
+)   
+```
+
+Wie wird der Test interpretiert?
+
+Die Nullhypothese des Tests ($H_0$) lautet, dass beide Gruppen in der metrischen Variable gleiche Varianzen haben. Ein p-Wert unter $0.05$ erfordert die Ablehnung der Nullhypothese und daher sind keine gleichen Varianzen anzunehmen. In der Berechnung des Tests musst du diese Eigenschaft angeben. 
+
+{{% expand \"Was sagt also der Test hier aus?\" %}}
+Richtig, in diesem Fall kann Varianzgleichheit angenommen werden, da der p-Wert $>0.05$ ist. 
+{{% /expand %}}
+
+### Durchführung des Tests
+Nun nutzt du wieder die Funktion `t.test()`, um den Test zu berechnen. Dabei werden die zwei Variablen nicht über ein Komma als Argument getrennt, sondern als Formel angegeben. Hierbei steht die metrische Variable zuerst, als zweites folgt die kategorielle Variable (mit nur zwei Gruppen!). Getrennt wird dies durch eine `~` (Tilde). Du nimmst standardmäßig eine Differenz von $0$ an (`mu = 0`) und im Argument `paired = FALSE` gibst du an, dass es sich um ungepaarte Stichproben handelt. Das Ergebnis des Levene-Tests wird im letzten Argument angegeben: `var.equal = TRUE`, denn es liegt ja Varianzgleichheit vor.
+```{r ttest1, eval = TRUE}
+t.test(
+  pss$wkhtot ~ pss$gndr,     
+  mu = 0,                        
+  alternative = "two.sided",     
+  paired = FALSE,    # ungepaarte Stichproben!            
+  var.equal = TRUE  # Option des Levene-Tests!
+)            
+```
+
+Du siehst jetzt die folgenden Werte:
+
+- $t = 1.3509$ (**t-value**)
+
+- $p \approx 0.1768$ (**p-value**)
+
+- $CI\approx[-0.1436357, 0.7803096]$ (**confidence interval**)
+
+- Group female $\approx 34.46080$
+
+- Group male $\approx 34.14246$
+
+Im Durchschnitt haben Männer etwas weniger ($0.31834$), aber die Differenz ist nicht statistisch signifikant.
+
+### Durchführung des Test (polytome Variable)
+Nun möchten wir diesen Test mit einer Variable durchführen, die mehr als zwei Ausprägungen (also Gruppen) inkludiert. Um einen **t-Test** berechnen zu können, musst du zwei Gruppen festlegen.
+Wir möchten nun den Unterschied nach Bildungsabschluss testen (`edu`). Die Kodierungen können dem Codebook entnommen werden. Insgesamt hat die Variable $5$ Ausprägungen. Wir wählen einfach zwei Gruppen aus, die wir vergleichen möchten.
+
+Auch hier musst du wieder den Test auf Varianzgleichheit zuerst durchführen: 
+```{r leven2, eval=TRUE}
+# Test of homogeneity of variances
+leveneTest(
+  pss$wkhtot,
+  pss$edu,
+  center = "mean"
+)
+```
+
+Nun kannst du den **t-Test** durchführen. Bevor du diesen durchführst, musst du dich noch für zwei Gruppen aus der neuen Variable entscheiden. Du vergleichst den niedrigsten und den höchsten Abschluss. Da wir nur bestimmte Gruppen vergleichen, können wir nicht die Formelschreibweise verwenden. Stattdessen gibst du die metrische Variable zweimal an, wobei du die Daten mit **[]** auf die jeweilige Gruppe beschränkst:
+```{r ttest3, eval = TRUE}
+t.test(
+  pss$wkhtot[pss$edu == "ES-ISCED I"],
+  pss$wkhtot[pss$edu == "ES-ISCED V"], 
+  mu = 0, 
+  alternative = "two.sided", 
+  paired = FALSE, 
+  var.equal = TRUE
+)
+```
+
+{{% tabs %}}
+{{% tab name=\"Frage\" %}}
+Wie interpretierst du das Ergebnis? Was ist die Differenz?
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+Es ist zu sehen, dass im Durchschnitt Personen mit geringerer Bildung (*mean of x*) mehr arbeiten als Personen mit höherer Bildung (*mean of y*). Der Effekt ist signifikant und die Differenz beträgt $5.62773$ Stunden. 
+{{% /tab %}}
+{{% /tabs %}}
+
+## Zwei-Stichproben t-Test (gepaart)
+Nun soll ein gepaarter Zwei-Stichproben **t-Test** durchgeführt werden. Gepaart bedeutet, dass die Werte der einen Gruppe in Relation zu den Werten der anderen Gruppe stehen. Dies ist z.B. der Fall wenn ein:e Befragte:r eine Frage an zwei verschiedenen Zeitpunkten beantwortet hat, oder jede Person aus Gruppe A eine Person aus Gruppe B zugeordnet werden kann (Mutter <-> Kind, Partner). Es gibt den Datensatz `pss2`, der zwei Jahre nach dem eigentlichen Datensatz (mit denselben Befragten) erhoben wurde und wir möchten nun testen, ob sich die Mittelwerte im zeitlichen Verlauf signifikant unterschieden
+
+**Überprüfen der Annahmen**
+
+1. Variablen sind metrisch $\checkmark$
+
+2. Differenz folgt einer Normalverteilung (relevant für $n \leq 30$) ($\checkmark$)
+
+Es ist ganz leicht, denn jetzt nutzt du wieder die Funktion `t.test()`. Du musst nur das Argument `paired` ändern:
+```{r ttestpaired1, eval=TRUE}
+t.test(
+  pss$trstprl,
+  pss2$trstprl, 
+  alternative = "two.sided", 
+  paired = TRUE
+)
+```
+
+**Ergebnisinterpretation**: Im Durchschnitt unterschieden sich das Vertrauen in das Parlament zwischen den zwei Erhebungen nicht. 
+
+Gehe nun zu Testsituationen mit mehr als zwei Gruppen!

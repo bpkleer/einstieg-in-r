@@ -1,0 +1,102 @@
+---
+title: "Wertebeschriftungen"  # Titel der Seite
+weight: 113  # Individuelles Gewicht 
+menuTitle: "Wertebeschriftungen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["wertebeschriftungen", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+
+pss <- readRDS("./data/pss.rds")
+
+
+barplotBeyonce <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(values = beyonce_palette(25)) 
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Du kannst die einzelnen Häufigkeiten pro Ausprägung hinzufügen. Dazu nutzt du die Funktion `geom_text()` und fügst diese einfach dem letzten Plot hinzu: Das erste Argument gibt an, dass hier die Häufigkeiten genutzt werden und im zweiten Argument gibst du an, dass die Ausgabe eben die gezählte Häufigkeit sein soll (label = ..count..`):
+
+```{r barplot-text, eval=TRUE}
+barplotBeyonce +
+   geom_text(
+     stat = "count", 
+     aes(label =  ..count..)
+   )
+   
+```
+
+Jetzt ist es so, dass die Zahlen teils nicht lesbar sind. Verschieben wir die Zahlenwerte und ändern die Schriftfarbe! Die Position und das Erscheinungsbild können wir mit verschiedenen Argumenten innerhalb von `geom_text()` verändern:
+
+```{R barplot-text2, eval=TRUE}
+barplotBeyonce +
+  geom_text(
+    stat = "count", 
+    aes(label = ..count..), 
+    vjust = 1.5, 
+    color = "white"
+  )
+
+```
+
+{{% tabs %}}
+{{% tab name=\"Jetzt bist du dran!\" %}}
+Verändere den Code oben so, dass die Zahlen über den Balken sind und die Schriftart `darkblue` ist! Probier dich erst ein bisschen aus, bevor du auf die Lösung schaust!
+{{% /tab %}}
+{{% tab name=\"Code\" %}}
+\`\`\`R
+barplotBeyonce +
+  geom_text(
+    stat = "count", 
+    aes(label = ..count..), 
+    vjust = -0.5, 
+    color = "darkblue"
+  )
+\`\`\`
+{{% /tab %}}
+{{% /tabs %}}
+
+Die Größe des Texts kannst du zusätzlich über das Argument `size` anpassen. Ändere im Code einfach mal die Werte, um zu sehen, wie es sich verändert!
+
+```{r barplot-text3, eval=TRUE}
+barplotBeyonce +
+  geom_text(
+    stat = "count", 
+    aes(label = ..count..), 
+    vjust = 1.5, 
+    size = 8,
+    color = "white"
+  )
+
+```
+
+Weiter geht's zu den letzten Einstellungen!

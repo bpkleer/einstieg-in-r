@@ -1,0 +1,74 @@
+---
+title: "Standardisierte Regressionskoeffizienten"  # Titel der Seite
+weight: 201  # Individuelles Gewicht 
+menuTitle: "Stand. Koeffizienten" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel <- lm(
+  stfdem ~ 1 + stfeco, #Formel der Regression
+  data = pss # Datenobjekt
+)  
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+In Statistik I hast du ja bereits die z-Standardisierung kennengelernt und Verteilungen von Variablen besser vergleichen zu können. Die z-Standardisierung rekodiert eine Variable auf die Einheit Standardabweichung, so dass Variablen, die z-standardisiert sind, vergleichbar sind. 
+
+Nicht rekodierte Variablen liefern in R auch nicht-standardisierte Regressionskoeffizienten. Du hast dies an der Interpretation der Regressionsergebnisse gesehen: Du hast immer in der Einheit der Variablen ausgewertet. Nachteil von nicht-standardisierten Variablen ist, dass die Effekte nicht in der Stärke untereinander vergleichbar sind. Dies geht nur mit standardisierten Variablen. 
+
+In manchen (oft komplexeren) Modellen möchten wir die Stärke der einzelnen unabhängigen Variablen bewerten. Da die Variablen nicht dieselbe Einheit besitzen, ist dies wie oben erklärt nicht so einfach möglich. Wir können die Variablen aber standardisieren, so dass alle Variablen dieselbe Einheit besitzen (Standardabweichungen). Dazu nutzt du am besten die Funktion `scale()` aus dem **tidyverse** (`dplyr`). In komplexeren Regressionsmodellen oder erweiterten Modellen (wie *Multi-Level-Modellen*) standardisiert man die Variablen meist vor der Berechnung des Modells.
+
+Machen wir diesen Schritt nun für die Variablen im `olsModel2`:
+```{r scale, eval=TRUE}
+pss <- pss %>% 
+  mutate(
+    stfdemZ = scale(stfdem),
+    stfecoZ = scale(stfeco),
+    trstlglZ = scale(trstlgl)
+  )
+
+```
+
+Wir berechnen das Modell anschließend erneut mit den neuen Variablen:
+```{r olsM2Z, eval=TRUE}
+olsModel2Z <- lm(
+  stfdemZ ~ 1 + stfecoZ + trstlglZ,   
+  data = pss
+)   
+```
+
+Wie interpretieren wir das Ergebnis?
+```{r eval=TRUE, echo=TRUE}
+summary(olsModel2Z)
+```
+
+**Ergebnis**: Mit jedem Anstieg um eine Standardabweichung in `stfeco` steigt `stfdem` um $0.697244$ Standardabweichungen. Wie zu sehen ist, ist die Interpretation etwas schwerfälliger. Aber nun können die einzelnen Effekte zwischen metrischen Variablen verglichen werden. Es wird sichtbar, dass der Effekt von `stfeco` stärker ist als der von `trstlgl` ($0.697244 > |-0.033592|$).

@@ -1,0 +1,226 @@
+---
+title: "Coloring"  # Titel der Seite
+weight: 112  # Individuelles Gewicht 
+menuTitle: "Coloring" # Falls Titel zulang ist, hier Kurztitel
+tags: ["coloring", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("beyonce")
+library("RColorBrewer")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Bisher ist unser Balkendiagramm recht fad: Die Achsenbeschriftung ist unklar und in grau schaut es trist aus. Dies ändern wir nun. **Wichtig ist**, dass wir, wenn wir die Konvention in `ggplot` einhalten, erklärende Teile wie `data = ...` oder `mapping = ...` weglassen können. Das heißt weniger Schreibarbeit! Farbe fügen wir einfach hinzu, in dem wir innerhalb von `aes()` das Argument `color` hinzufügen und sagen, nach welcher Variable die Farbe sich unterscheiden soll. 
+
+Zuerst fügen wir etwas Farbe hinzu:
+```{r barplot-clean, eval=TRUE}
+barplot <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    color = edu
+  )
+) +
+  geom_bar()
+
+barplot
+```
+
+Wir sehen, dass das Argument `color` lediglich die Randlinien ändert. Um die Füllung zu ändern, müssen wir das Argument `fill` benutzen:
+```{r barplot-fill, eval=TRUE}
+barplot <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() 
+
+barplot
+```
+
+So jetzt haben wir die Grafik schonmal bunt gemacht. Du kannst aber auch die Farbwerte festlegen, wenn du selbst bestimmen möchtest wie bunt die Grafik wird. Dies kannst du festlegen, in dem du in der Funktion `geom_bar()` das Argument `fill` nutzt. Dort gibst du so viele Farben an, wie du benötigst (nicht mehr und nicht weniger!). Eine Übersicht gängiger Farbcodes findest du hier: 
+ 
+{{%attachments style=\"grey\" title=\"Farben in R\" /%}}
+
+```{r barplot-color, eval=TRUE}
+barplot <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar(
+    fill = c(
+      "steelblue", 
+      "darkgoldenrod",
+      "seagreen", 
+      "red4", 
+      "orange",
+      "darkslategray2"
+    )
+  ) 
+
+barplot
+```
+
+{{% expand \"Du möchtest jetzt aber, dass der zweite Balken die blaue Farbe hat. Wie kannst du das ändern?\" %}}
+Richtig, es ist ganz leicht! Du musst einfach nur die Reihenfolge verändern!
+{{% /expand %}}
+
+Du kannst Farbcodes auch in einem Objekt (Vektor) speichern und diesen dann in der `ggplot()`-Funktion aufrufen. So bleibt der Plot-Code übersichtlicher. Wichtig ist, dass der Vektor genau dieselbe Länge haben muss wie die Anzahl der Gruppen.
+```{r barplot-color-vektor, eval=TRUE}
+educol = c(
+  "steelblue", 
+  "darkgoldenrod",
+  "seagreen", 
+  "red4", 
+  "orange",
+  "darkslategray2"
+)
+
+barplot <- ggplot(
+  pss, 
+  aes(
+    x = edu, 
+    fill = edu
+  )
+) +
+  geom_bar(fill = educol) 
+
+barplot
+```
+
+Wenn du einen Farbvektor nutzt, kannst du auch Farbvektoren nutzen, die von der Anzahl der genauen Ausprägungen abweichen. Gibt es zu wenige Farben im Farbevktor, wiederholen sich die Farben. Diesen kannst du aber nicht im `fill`-Argument in der Funktion `geom_bar()` nutzen, sondern du nutzt dafür die zusätzliche Funktion `scale_fill_manual()`:
+```{r barplot-colorblind, eval=TRUE}
+# a colourblind-friendly palettes
+cbp1 <- c(
+  "#999999", 
+  "#E69F00",
+  "#56B4E9",
+  "#009E73",
+  "#F0E442", 
+  "#0072B2",
+  "#D55E00",
+  "#CC79A7"
+)
+
+barplotCb <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_manual(values = cbp1)
+
+barplotCb
+```
+
+Wenn man Dokumente nicht digital abgeben kann, nutzt man häufig graue Grafiken, um Kosten zu sparen. Hierzu gibt es die Zusatz-Funktion `scale_fill_grey()`, die den Plot automatisch in Graustufen ausgibt:
+```{r barplot-gray, eval=TRUE}
+barplotGray <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_grey()
+
+barplotGray
+```
+
+Ebenso gibt es einige **libraries**, die vorgefertigte Farbpaletten beinhalten. Zum Beispiel: `RColorBrewer` oder [`beyonce`](https://github.com/dill/beyonce). Wir nutzen hier jetzt erstmal `RColorBrewer`. `RColorBrewer` ist normal zu installieren, die **library** `beyonce` wird über ein Entwicklertool installiert. Viele **libraries** sind noch im Entwicklungsstadium und sind noch nicht offiziell verfügbar, können aber über ein Entwicklertool dennoch geladen und auch schon genutzt werden. 
+
+```{r barplot-install-palettes}
+install.packages("RColorBrewer")
+
+# Installation Entwicklertool
+install.packages(
+  "devtools",
+  dependencies = TRUE
+)
+
+# Install beyonce palette
+devtools::install_github("dill/beyonce")
+```
+
+Bei `RColorBrewer` kannst du dir die Farbpaletten anzeigen lassen:
+```{r rcolorbrewer, eval=TRUE}
+library("RColorBrewer")
+
+display.brewer.all()
+```
+
+Um eine dieser Paletten von `RColorBrewer` nutzen zu können, nutzt du die Funktion `scale_fill_brewer()` und legst darin die Farbpalette fest:
+```{r barplot-brewer, eval=TRUE}
+barplotBrewer <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) + 
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2")
+
+barplotBrewer
+```
+
+Um die `beyonce` Farbpalette zu nutzen, gehst du anders vor: Zuerst lass dir mal alle Farbpaletten ausgeben.
+
+```{r beyonce, eval=TRUE}
+library("beyonce")
+
+# Ausgabe aller Farbpaletten [beginnend bei 1]
+par(mfrow=c(26,5))
+for(i in 1:130) print(beyonce_palette(i))
+```
+
+Im Beispiel entscheiden wir uns für Farbpalette 25. Um die jeweilige Farbpalette aufzurufen, nutzt du die Funktion `beyonce_palette()` aus der **library** `beyonce` und als einziges Argument gibst du die Nummer der Farbpalette an. Um diese nun zu nutzen, benutzt du die zusätzliche Funktion `scale_fill_manual()` im `ggplot`.
+
+```{r barplot-beyonce, eval=TRUE}
+barplotBeyonce <- ggplot(
+  pss, 
+  aes(
+    edu, 
+    fill = edu
+  )
+) +
+  geom_bar() +
+  scale_fill_manual(values = beyonce_palette(25)) 
+
+barplotBeyonce
+
+```
+
+Auf geht's und du fügst Wertebeschriftungen hinzu!

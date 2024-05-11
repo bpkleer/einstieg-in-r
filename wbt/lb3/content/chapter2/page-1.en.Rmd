@@ -1,0 +1,114 @@
+---
+title: "Ein-Stichproben-T-Test"  # Titel der Seite
+weight: 201  # Individuelles Gewicht 
+menuTitle: "Ein-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
+tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Der Einstichproben-t-Test wird berechnet, um zu testen, ob der empirische Wert signifikant vom wahren Wert $\mu$ abweicht. Du benötigst also Kenntnisse über $\mu$.
+
+Nimm an, dass das Statistikamt das offizielle Durchschnittsalter mit $36.8$ Jahren angibt. 
+
+Welchen Wert nimmt das arithm. Mittel des Alters in unserem Datensatz an?
+Die Variable des Alters heißt `agea`.
+
+{{% tabs groupID=\"q1\" %}}
+{{% tab name=\"Aufgabe\"%}}
+Berechne den arithmetischen Mittelwert des Alters aus dem Datensatz **PSS**!
+{{% /tab %}}
+{{% tab name=\"Code\" %}}
+\`\`\`R
+mean(
+  pss$agea,
+  na.rm = TRUE
+)
+\`\`\`
+{{% /tab %}}
+{{% tab name=\"Lösung\" %}}
+Im Datensatz liegt das Durchschnittsalter bei $42.83006$ Jahren. Der Wert weicht also im Datensatz ab. 
+{{% /tab %}}
+{{% /tabs %}}
+
+{{% expand \"Überlege dir kurz, warum der Wert im Datensatz abweichen könnte!\" %}}
+Im Datensatz wurden nur Personen $\geq 16$ befragt. Somit ist klar, dass das Durchschnittsalter nach oben abweicht.
+{{% /expand %}}
+
+Jetzt möchtest du testen, ob diese Abweichung statistisch signifikant ist. Dafür gibt es bei jedem Mittelwertvergleich zwei Testsituationen:
+
+- *zweiseitig*
+
+- *einseitig* (größer oder kleiner)
+
+Du möchtest erstmal nur wissen, ob der Wert signifikant abweicht. Über die Richtung gibt es keine Annahme. Daher führst du einen *zweiseitigen* Test durch. 
+
+Das kannst du mit der Funktion `t.test()` machen:
+
+```{r ttest1, eval=TRUE}
+t.test(
+  pss$agea, 
+  mu = 36.8,
+  alternative = "two.sided"
+)  
+```
+
+Dann siehst du den **t-value**, den **p-value**, das **confidence interval** und den **mean**.
+
+Der p-Wert ist kleiner als $0.05$ und damit erhälst du ein signifikantes Testergebnis. Als Wert siehst du in der Ausgabe `2.2e-16`. Das ist nichts anderes als `2.2*10^{-16}` und das bedeutet nur, dass du das Komma um 16 Stellen nach links verschieben musst. Es ist also ein Wert sehr nahe an $0$. Du kannst also darauf schließen, dass der Mittelwert des Alters aus der Stichprobe signifikant von $\mu$ abweicht. Woran das liegen könnte, haben wir oben schon geklärt!
+
+Du kannst die Differenz auch mithilfe von R ausrechnen lassen:
+```{r ttest2, eval=TRUE}
+diff_age <- mean(pss$agea, na.rm = TRUE) - 36.8
+
+diff_age
+```
+
+Die Differenz beträgt $6.030064$. Da $\mu$ sich auf alle Personen in Panem bezieht und die Stichprobe dagegen nur Personen ab $16$ inkludiert, ist diese Differenz leicht zu erklären. 
+
+### Testalternativen
+Alternativ kann auch *einseitig* getestet werden: 
+
+- wenn wir annehmen, dass der Wert größer als $\mu$ ist `greater` 
+
+- wenn wir annehmen, dass der Wert kleiner als $\mu$ ist `less`.
+
+``` {r ttest4, eval=TRUE}
+# one-sided, greater
+t.test(
+  pss$agea, 
+  mu = 36.8, 
+  alternative = "greater"
+)
+
+# one-sided, lower
+t.test(
+  pss$agea,
+  mu = 36.8, 
+  alternative = "less"
+)
+```
+
+Gehen wir über zum t-Test für zwei Stichproben!

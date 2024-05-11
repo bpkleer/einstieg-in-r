@@ -1,0 +1,98 @@
+---
+title: "ggboxplot()"  # Titel der Seite
+weight: 132  # Individuelles Gewicht 
+menuTitle: "ggboxplot()" # Falls Titel zulang ist, hier Kurztitel
+tags: ["`ggboxplot()`", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("tidyverse")
+library("ggpubr")
+
+cbp1 <- c(
+  "#999999", 
+  "#E69F00",
+  "#56B4E9",
+  "#009E73",
+  "#F0E442", 
+  "#0072B2",
+  "#D55E00",
+  "#CC79A7"
+)
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Alternativ kannst du die Funktion `ggboxplot()` aus der **library** `ggpubr`: Installiere die **library** zuerst und aktiviere sie dann. Wir lassen uns nun die Arbeitszeit nach Geschlecht ausgeben.
+```{r bp1, eval=TRUE}
+ggbox <- ggboxplot(
+  pss,
+  x = "gndr",              
+  y = "wkhtot",             
+  color = "ivory4",
+  fill = "gndr",
+  palette = c(
+    "lightblue", 
+    "pink"
+  ),
+  ylab = "Total work hours (incl. overtime)",
+  xlab = "Gender (1:male, 2:female)",
+  na.rm = TRUE
+) 
+
+ggbox
+```
+
+Auch hier können wir einfach Feinsteuerungen vornehmen: Wir können zum Beispiel mit einer horizontalen Linie (`geom_hline()`) noch den Mittelwert für jede Gruppe einzeichnen. 
+```{r bp2, eval=TRUE}
+ggbox +
+  geom_hline(
+    aes(
+      yintercept = mean(
+        wkhtot[gndr == "male"], 
+        na.rm = TRUE
+      )
+    ),
+    lty = 2,
+    lwd = 1,
+    color = "lightblue") + 
+  geom_hline(
+    aes(
+      yintercept = mean(
+        wkhtot[gndr == "female"], 
+        na.rm = TRUE
+      )
+    ),
+    lty = 2,
+    lwd = 1, 
+    color = "pink"
+  ) +
+  theme(legend.position = "none")
+```
+
+Kopiere den Code in dein Skript und probiere verschiedene Zahlenwerte in den Argumenten `lwd` und `lty` aus.
+
+{{% expand \"Wofür stehen die Argumente lwd und lty?\" %}}
+`lwd` steht für *line width*. Damit gibst du die Dicke der Linie an. `lty` steht für *linetype*, womit du verschiedene Linientypen auswählen kannst. Eine Übersicht findest du [hier](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
+{{% /expand %}}
+
+Als nächstes kannst du dir noch `rainclouds` als bessere Visualisierungsmöglichkeit anschauen! Das ist aber **freiwillig**!

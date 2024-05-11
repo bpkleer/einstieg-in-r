@@ -1,0 +1,53 @@
+---
+title: "Annahme 5: Multikollinearität"  # Titel der Seite
+weight: 306  # Individuelles Gewicht 
+menuTitle: "Multikollinearität" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regressionsdiagnostik", "multikollinearität"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+library("car")
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)       
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+**Multikollinearität** bedeutet, dass unter den unabhängigen Variablen lineare Abhängigkeiten vorliegen. Dies prüfst du über den *variance inflation factor* (**VIF**). Wenn der Wert des **VIF** über $10$ liegt, dann ist die **Multikollinearität** hoch und die Schätzung verzerrt (andere empfehlen Richtwert $5$).
+
+Formel des **VIF**:
+$$VIF_i = \frac{1}{1-R^2_i}$$
+
+Um den **VIF** zu berechnen, rufen wir die Funktion `vif()` aus der **library** `car` auf. Für jede unabhängige Variable erhälst du den **VIF**-Wert:
+```{r car, eval=FALSE}
+install.packages("car")
+library("car")
+```
+```{r vif, eval=TRUE}
+vif(olsModel2)
+```
+
+$\Rightarrow$ Wir erhalten hier keine Werte, die über den empfohlenem Grenzwert liegen. Also weiterhin alles okay!

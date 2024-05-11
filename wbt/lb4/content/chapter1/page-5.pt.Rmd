@@ -1,0 +1,108 @@
+---
+title: "Multivariate lin. Regression mit polytomen kategoriellen Variablen"  # Titel der Seite
+weight: 105  # Individuelles Gewicht 
+menuTitle: "Polytome kategorielle Variablen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["regression", "kategoriell", "polytom"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+
+olsModel <- lm(
+  stfdem ~ 1 + stfeco, #Formel der Regression
+  data = pss # Datenobjekt
+)  
+
+olsModel2 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl,   
+  data = pss
+)      
+
+olsModel3 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl + gndr,   
+  data = pss
+)           
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Wir können nicht nur dichotome, sondern auch polytome kategorielle Variablen in das Regressionsmodell hinzufügen. Wir möchten nun die Variable `edu` ins Modell aufnehmen. Diese Variable beinhaltet den höchsten Bildungsabschluss der befraten Person. Welche theoretischen Annahmen könnten wir für den Effekt von `edu` treffen?
+
+## Berechnen des Modells
+Wir fügen einfach die Variable, wie zuvor, in der `lm()`-Funktion hinzu:
+```{r olsModel4, eval=TRUE}
+olsModel4 <- lm(
+    stfdem ~ 1 + stfeco + trstlgl + gndr + edu,   
+    data = pss
+)
+summary(olsModel4)
+```
+
+{{% tabs %}}
+{{% tab name=\"Frage\" %}}
+Wie hat die Funktion `lm()` die polytome Variable in das Modell eingefügt? 
+
+Was ist die Referenzkategorie?
+
+Und wie würde die Gleichung der Regression aussehen?
+{{% /tab %}}
+{{% tab name=\"Auflösung\" %}}
+Es wird der zusätzliche Effekt von den vier höchsten Ausprägungen (`ES-ISCED II`, `ES-ISCED III`, `ES-ISCED IV` und `ES-ISCED V`) gegenüber der niedrigsten Ausprägung (`ES-ISCED I`) berechnet. 
+
+Die Referenzkategorie ist daher `ES-ISCED I` (ausgelassene Ausprägung).
+
+$$\begin{align*}stfdem = &\beta_0 + \beta_1*stfeco + \beta_2*trstlgl + \beta_3*gndr + \\ &\beta_4*eduLevelII + \beta_5*eduLevelIII + \\ &\beta_6*eduLevelIV + \beta_7*eduLevelV + \\&e \end{align*}$$
+{{% /tab %}}
+{{% /tabs %}}
+
+## Ändern der Referenzkategorie
+In diesem Beispiel wurde automatisch die niedrigste (bzw. erste) Ausprägung als Referenzkategorie gewählt. Doch was, wenn du z.B. die mittlere Kategorie (`ES-ISCED III`) als Referenz haben möchtest? Dies kannst du einfach mit der Funktion `relevel()` ändern. Dazu gibst du im ersten Argument die Datenquelle an (Variable `pss$edu`) und im zweiten Argument `ref` die entsprechende Ausprägung (also `"ES-ISCED III"`). **Wichtig:** Du musst das natürlich mit den Anweisungpfeil in der Variable im Datensatz speichern!
+
+```{r relevel, eval=TRUE}
+pss$edu <- relevel(
+  pss$edu, 
+  ref = "ES-ISCED III"
+) 
+```
+
+Dann musst du nur das Modell erneut berechnen:
+```{r olsModel5, eval=TRUE}
+olsModel5 <- lm(
+  stfdem ~ 1 + stfeco + trstlgl + gndr + edu,
+  data = pss
+)
+
+summary(olsModel5)
+```
+
+{{% tabs %}}
+{{% tab name=\"Interpretation\" %}}
+Interpretiere das respezifizierte Modell. Schreibe ein paar Sätze in das Skript. 
+
+{{% /tab %}}
+{{% tab name=\"Musterlösung\" %}}
+
+Das Modell erklärt $46.35 %$ der Varianz in `stfdem`. Der Effekt von `stfeco` ist positiv und signifikant ($p<0.001$). Personen mit höherem Vertrauen in das Rechtssystem haben eine geringe Zufriedenheit ($\beta_2 = -0.044393$, $p<0.01$). Männliche und weibliche Befragte haben keine unterschiedliche Zufriedenheit ($\beta_3 = 0.001836$. $p>0.05$). Im Vergleich zu Personen mit mittlerem Bildungsabschluss, haben Personen mit sehr niedrigem Abschluss (`ES-ISCED I`) und niedrigem Bildungsabschluss (`ES-ISCED II`) ein geringeres Vertrauen ($\beta_4 = -0.343037$ bzw. $\beta_5 = -0.174643$). Beide Effekte sind signifikant. Personen mit dem höchsten Bildungsabschluss haben ein deutlich höheres Vertrauen als Personen mit mittlerem Bildungsabschluss ($\beta_7 = 0.527465$, $p<0.001$). Personen mit dem zweithöchsten Abschluss haben ein geringfügig höheres Vertrauen ($\beta_6 = 0.076024$), dieser Effekt ist aber nicht signifikant. 
+{{% /tab %}}
+{{% /tabs %}}
+
+So du kannst jetzt also auch schon polytome kategorielle Variablen hinzufügen und das Regressionsmodell in der Ausgabe in R interpretieren!

@@ -1,0 +1,120 @@
+---
+title: "Kreuztabellen"  # Titel der Seite
+weight: 102  # Individuelles Gewicht 
+menuTitle: "Kreuztabellen" # Falls Titel zulang ist, hier Kurztitel
+tags: ["kreuztabellen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+xfun::pkg_load2(
+                 c("htmltools", "mime")
+               )
+library("xaringanExtra")
+library("gmodels")
+
+pss <- readRDS("./data/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Eine Kreuztabelle gibt Auskunft über eine bivariate Verteilung, also über die Verteilung auf zwei Variablen. Um eine Kreuztabelle zu bekommen, müssen wir nur eine zweite Variable in der `table()`-Funktion hinzufügen: Wir lassen uns hier eine Kreuztabelle zwischen der Zufriedenheit mit der Demokratie und dem Geschlecht ausgeben:
+
+```{r crosstab1,eval=TRUE}
+table(
+  pss$stfdem, 
+  pss$gndr
+)
+```
+
+{{% expand \"Welche Variable ist die Spaltenvariable?\" %}}
+Die zweite Variable in der Funktion ist die Spaltenvariable (hier `gndr`). Denn die Konvention in der Erstellung von Kreuztabellen fordert, dass die unabhängige Variable in die Spalte kommt. Wir nehmen also an, dass das Geschlecht einen Effekt darauf hat, wie zufrieden wir mit der Demokratie sind. 
+{{% /expand %}}
+
+Wie bei allem in R, können wir diese Tabelle auch als Objekt speichern:
+```{r crosstab2, eval=TRUE}
+mytable <- table(
+  pss$stfdem, 
+  pss$gndr
+)
+```
+
+Um anstatt der Häufigkeiten Prozente ausgeben zu lassen, wird die Funktion `prop.table()` genutzt. Diese kann die Spalten-, Zeilen- oder die Gesamtprozentuierung ausgeben. Wir können entweder ein Tabellenobjekt aufrufen, oder in der Funktion die Funktion `table()` nutzen. Hier rufen wir im letzten Argument mit dem Wert $1$die Zeilenprozentuierung auf.
+```{r crosstab3, eval=TRUE}
+# Zeilenprozentuierung
+prop.table(
+  mytable, 
+  1
+) 
+```
+```{r crosstab4, eval=FALSE}
+# alternativer Weg mit table()-Funktion
+prop.table(
+  table(
+    pss$stfdem, 
+    pss$gndr
+  ), 
+  1
+)
+```
+
+Die Spaltenprozentuierung kann ausgegeben werden, indem das zweite Argument auf den Wert $2$ geändert wird:
+```{r crosstab5, eval=TRUE}
+prop.table(
+  mytable,
+  2
+)
+```
+
+Wenn kein zweites Argument geliefert wird, wird automatisch die Gesamtprozentuierung ausgegeben:
+```{r crosstab6, eval=TRUE}
+prop.table(mytable)
+```
+
+## Randhäufigkeiten
+Die Randhäufigkeiten können mit der Funktion `margin.table()` ausgegeben werden. Auch hier gilt wieder, dass der Wert $1$ im zweiten Argument für Zeilenrandhäufikgeiten steht und der Wert $2$ die Spaltenrandhäufigkeiten ausgibt: 
+```{r crosstab7, eval=TRUE}
+# Zeilenrandhäufigkeiten
+margin.table(
+  mytable, 
+  1
+)
+
+# Spaltenrandhäufigkeiten
+margin.table(
+  mytable, 
+  2
+)
+```
+
+## Andere Libraries
+Es gibt verschiedene **libraries**, mit denen sich relative Häufigkeiten *schöner* darstellen lassen. Eins davon ist die *library* `gmodels`:
+```{r gmodels, eval=FALSE}
+if(!require("gmodels")) install.packages("gmodels")
+library("gmodels")
+```
+
+Aus der **library** nutzen wir die Funktion `CrossTable()`. Diese gibt alle oben aufgeführten Informationen auf einmal aus:
+```{r gmodels2, eval=TRUE}
+CrossTable(
+  pss$stfdem, 
+  pss$gndr
+)
+```
