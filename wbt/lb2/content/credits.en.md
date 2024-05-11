@@ -3,7 +3,7 @@ title: Credits
 disableToc: true
 ---
 
-## Contributors WBT Statistik+: Einstieg in R leicht gemacht
+## Contributors (Make the start with R easy)
 
 {{% glcontributors %}}
 

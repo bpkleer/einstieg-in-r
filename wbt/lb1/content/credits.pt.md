@@ -3,19 +3,19 @@ title: Credits
 disableToc: true
 ---
 
-## Contributors WBT Statistik+: Einstieg in R leicht gemacht
+## Contribuintes (Começar a utilizar o R de forma simples)
 
 {{% glcontributors %}}
 
-## Contributors (Hugo Theme Learner)
+## Contribuintes (Hugo Theme Learner)
 
-Thanks to them <i class="fas fa-heart"></i> for making Open Source Software a better place!
+Obrigado a eles <i class=“fas fa-heart”></i> por tornarem o software de código aberto um lugar melhor!
 
 {{% ghcontributors "https://api.github.com/repos/matcornic/hugo-theme-learn/contributors?per_page=100" %}}
 
-And a special thanks to [vjeantet](https://github.com/vjeantet) for his work on [docdock](https://github.com/vjeantet/hugo-theme-docdock), a fork of hugo-theme-learn. v2.0.0 of this theme is inspired by his work.
+E um agradecimento especial a [vjeantet](https://github.com/vjeantet) por seu trabalho no [docdock](https://github.com/vjeantet/hugo-theme-docdock), uma bifurcação do hugo-theme-learn. A versão 2.0.0 deste tema é inspirada em seu trabalho.
 
-## Packages and libraries
+## Pacotes e bibliotecas
 * [mermaid](https://mermaid-js.github.io/) - generation of diagram and flowchart from text in a similar manner as markdown
 * [font awesome](http://fontawesome.io/) - the iconic font and CSS framework
 * [jQuery](https://jquery.com) - The Write Less, Do More, JavaScript Library
@@ -31,7 +31,6 @@ And a special thanks to [vjeantet](https://github.com/vjeantet) for his work on 
 
 * [Netlify](https://www.netlify.com) - Continuous deployement and hosting of this documentation
 * [Hugo](https://gohugo.io/)
-
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
