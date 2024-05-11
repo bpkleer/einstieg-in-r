@@ -10,19 +10,19 @@ Bitte wundere dich nicht, falls ein Lernblock noch nicht online ist, wir werden 
 
 Hier geht es zu den einzelnen Lernblöcken: 
 
-[Lernblock 1](./lb1/index.html) (nur Nachbereitung)
+[Lernblock 1](./lb1/de/index.html)  
 
-[Lernblock 2](./lb2/index.html) (Vor- & Nachbereitung)
+[Lernblock 2](./lb2/de/index.html)  
 
-[Lernblock 3](./lb3/index.html) (Vor- & Nachbereitung)
+[Lernblock 3](./lb3/de/index.html)  
 
-[Lernblock 4](./lb4/index.html) (Vor- & Nachbereitung)
+[Lernblock 4](./lb4/de/index.html)  
 
-[Lernblock 5](./lb5/index.html) (Vor- & Nachbereitung)
+[Lernblock 5](./lb5/de/index.html) 
 
-Über diesen Button {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
