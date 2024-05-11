@@ -12,7 +12,7 @@ weight: 300
 
 In diesem Kapitel werden erste Pakete des **tidyverse** vorgestellt.
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

@@ -11,7 +11,7 @@ weight: 200
 
 In diesem Kapitel lernst du wie du Modelle mit standardisierten Koeffizienten ausgeben lässt und wie du die Ergebnisse von R in deine Textdateien exportieren kannst.
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

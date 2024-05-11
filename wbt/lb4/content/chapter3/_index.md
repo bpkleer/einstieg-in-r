@@ -11,7 +11,7 @@ weight: 300
 
 In diesem Kapitel lernst du, wie du die Annahmen der linearen Regression testest. Dieses Kapitel ist ein *Extra*-Kapitel und gehört nicht zur verpflichtenden Bearbeitung!
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

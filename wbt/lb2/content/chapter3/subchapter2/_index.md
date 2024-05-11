@@ -12,7 +12,7 @@ weight: 320
 
 In diesem Kapitel wird die Bearbeitung von Datensätzen mit dem tidyr-Package vorgestellt. Dieses Kapitel ist nur für dich **relevant**, wenn du daran interessiert bist, einen vertieften Umgang mit Datensätzen kennenzulernen. Wenn dich das nicht interessiert, kannst du dieses Kapitel überspringen.
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:?subject=Schau%20dir%20das%20mal%20an%3A%20" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
