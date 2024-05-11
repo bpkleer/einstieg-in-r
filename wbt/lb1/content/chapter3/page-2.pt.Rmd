@@ -1,0 +1,33 @@
+---
+title: "Login in Gitlab"  # Titel der Seite
+weight: 302  # Individuelles Gewicht 
+menuTitle: "Login" # Falls Titel zulang ist, hier Kurztitel
+tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+An der JLU gibt es eine eigene **gitlab**-Distribution, auf der du dich einfach mit deiner s-/j-Kennung einloggen kannst. Falls du das noch nicht gemacht hast, hole es direkt nach und schreib einen der beiden Tutor:innen kurz deine s-/j-Kennung per E-Mail ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) oder [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)). 
+
+Und hier ist der Link zum Login: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
+
+Du kannst dann, wenn du möchtest dein Profil bearbeiten, indem du rechts oben auf den Kreis klickst und dann **Edit profile** klickst. Du kannst dort ein Bild einstellen, deine Pronomen festlegen, Social-Media-Kontakte festlegen oder auch eine 2-Faktor-Authentifizierung aktivieren.
+
+![Profil editieren](../img/editprofile.png)
+
+Ebenso kannst du links unter **Menu** (Menü), weiter auf  **Groups** (Gruppen) und weiter auf **Your Groups** (deine Gruppen) dann unseren Kurs sehen: **intro-r-spring22**. Du kannst einfach auf diese Gruppe klicken. In der Gruppe siehst du dann wiederum Gruppen: Einmal fünf Gruppen für die Einteilung der Gruppenarbeiten (Einteilung läuft über [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) und dann eine Gruppe mit dem Namen **course-materials**. In **course-materials** befinden sich alle Dateien für den Kurs. **ABER:** Man kann Dateien hier über das Web steuern, wir machen aber alles aus RStudio, denn dort haben wir das schon für dich eingerichtet und du musst selbst nur mehr deinen Benutzernamen angeben! 
+
+![Gruppen](../img/groups.png)
+Lediglich für die automatische Kontrolle musst du in das Web-Interface. Wie das funktioniert zeigen wir dir am Ende des Kapitels!

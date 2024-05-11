@@ -1,0 +1,46 @@
+---
+title: "Dataframes"  # Titel der Seite
+weight: 204  # Individuelles Gewicht 
+menuTitle: "Dataframes" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datentypen" , "dataframes"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("../../static/files/pss.rds")
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Neben Vektoren und Faktoren und gibt es noch den für uns wichtigen Objekttyp **data frame**. Ein **data frame** ist einfach eine Verbindung mehrerer Vektoren (Variablen) derselben Länge in einer Matrix. Im konventionellen Format (*wide-Format*) sind in den Spalten die Variablen vorzufinden und in den Zeilen die Befragten
+
+- Spalten: Vektoren, Faktoren (Variablen)
+
+- Zeilen: Fälle (einzelne Beobachtungseinheiten, z.B. Befragte)
+
+Machen wir das ganze am Beispiel des Datensatzes, den wir während des Kurses benutzen werden: **Panem Social Survey** (`pss`). Dies ist ein Trainingsdatensatz ausgerichtet am European Social Survey, der aber deutlich weniger Variablen/Fälle beinhaltet (hier nur 10 Fälle und 4 Variablen):
+```{r df1, eval=TRUE, echo=FALSE}
+knitr::kable(pss[1:10, c("idno", "district", "gndr", "agea")])
+```
+
+Hier im Beispiel haben wir im Datensatz vier Variablen: `idno`, `district`, `gndr` sowie `agea`. Diese sind selbsterklärend: `idno` ist die unique ID, `district` ist der Bezirk des Befragten, `gndr` das Geschlecht und `agea` das Alter. Oftmals sind Variablen nicht intuitiv herleitbar, so dass man ein Codebook konsultieren muss. Mit dem Handling von größeren Datensätzen werden wir uns im nächsten Lernblock beschäftigen. 
+
+Auf geht's zur abschließenden Challenge!

@@ -1,0 +1,35 @@
+---
+title: "Kursmaterialien"  # Titel der Seite
+weight: 306  # Individuelles Gewicht 
+menuTitle: "Kursmaterialien" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Die Kursmaterialien sind als Projekt in RStudio angelegt: **course materials** (im Workspace *Stats<sup>+</sup>: Einstieg in R*). 
+
+Als erstes legst du dir eine eigene Kopie des Projekts an, wie zuvor mit **firststeps**. 
+
+![Kopieren **course materials**](../img/course-project.gif)
+
+Jetzt hast du das Projekt kopiert und kannst selbst darin arbeiten und zum Beispiel Kommentare in die Skripte hinzufügen. Du findest unter `instructions.Rmd` eine Anleitung, wie du den Ordner handhabst. Wir fügen nach und nach Kursmaterialien hinzu. Das Projekt ist mit **gitlab** verbunden und daher kannst du Updates ganz einfach **pullen**. 
+![Lesen der Anweisungen](../img/read-instructions.gif)
+
+Um nun Updates zu erhalten, öffnest du eine neues Skript und führst die Schritte aus den Instruktionen durch. Danach gehst du bei **Environment** zum Tab **Git** und klickst einfach **nur** auf **pull**. Wichtig: Hier musst du nicht den Dreischritt ausführen, da deine persönliche Kommentare ja nicht allen zur Verfügung gestellt werden sollen. Daher nur **pullen**!
+
+![Updaten der Kursmaterialien](../img/git-pull.gif)
+
+Das war's! Jetzt bist du auch fit für **gitlab**!

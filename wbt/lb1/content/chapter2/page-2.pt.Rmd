@@ -1,0 +1,158 @@
+---
+title: "Vektoren"  # Titel der Seite
+weight: 202  # Individuelles Gewicht 
+menuTitle: "Vektoren" # Falls Titel zulang ist, hier Kurztitel
+tags: ["datentypen", "vektoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+#load("") # Dateipfad einfügen!!
+```
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:?subject=Schau\%20dir\%20das\%20mal\%20an\%3A\%20\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+Wenn wir mit Datensätzen arbeiten, beinhaltet eine Variable ja nicht nur einen einzigen Wert, sondern die Werte auf der Variable aller Befragten. Wenn wir eine Variable Einkommen haben, sind in dieser alle Einkommenswerte aller Befragten aufgelistet. Wir sprechen dann dabei auch von einem Vektor: Die einzelnen Werte der Befragten sind die Komponenten des Vektors. 
+
+Nehmen wir ein Beispiel von fünf Personen mit den Einkommenswerten: $1432$, $982$, $5139$, $3210$ und $726$. 
+
+Als Vektor würde dies wie folgt dargestellt: 
+
+$$ income = \left(\begin{array}{c} 1432 \\ 982 \\ 5139 \\ 3210 \\ 726 \end{array}\right) $$
+Ein **Vektor** ist sozusagen eine *Kette* von Werten.
+
+## Vektoren in R
+Ein **Vektor** kann jede beliebige Anzahl von Nummern, Buchstaben oder einer Kombination aus beiden beinhalten. Er kann also aus einem der vier Wertetypen bestehen, die du zuvor kennengelernt hast.
+
+Zur Erinnerung hier nochmal die Wertetypen:
+
+- `numeric`: $1.456783135786$, $2.5467$, $-3.45786$
+
+- `integer`: $1$, $27$, $1453$, $-144$, $545$
+
+- `character`: jeder beliebige Buchstabe/Zeichen oder eine Kombination von Zeichen und Ziffern
+
+- `logical`: `TRUE` oder `FALSE`
+
+In R führen wir verschiedene Werte mit einer Funktion in einem Objekt zusammen, das neue Objekt ist dann nicht mehr ein einfacher Wert, sondern ein Vektor. Eine Funktion ist eine bereits programmierte Anweisung, die über den spezifischen Befehl aufgerufen und angewendet werden kann. R bietet umfassende **libraries** (was das ist, lernen wir nächstes Mal!) mit mehreren tausenden Funktionen. Aber keine Sorge, niemand kennt diese alle auswendig. Der wichtigste Skill im R-Kurs ist es, Programmieren zu verstehen, denn so kann man sich neue Funktionen oder vergessene Funktionen wieder aneignen. 
+
+Die Funktion, die wir jetzt nutzen wollen, wird mit `c()` aufgerufen. In der Klammer werden alle Werte aufgeführt, die wir in einem Objekt zu einem Vektor verbinden wollen. Das, was in einer Funktion in Klammern steht, wird auch **Argument** genannt. Wir trennen die Werte/Argumente mit einem Komma. 
+
+Machen wir ein Beispiel, in dem wir mehrere numerische Werte verbinden:
+
+```{r vector1, eval=TRUE}
+math <- c(
+  0.2, 
+  0.4, 
+  0.6, 
+  0.8, 
+  1.0
+)
+
+math
+```
+
+In der Ausgabe wird nicht mehr nur ein Wert ausgegeben, sondern eben alle in dem Vektor gespeicherten Werte. Ein Vektor kann beliebig lang sein. 
+
+Im **Environment** sehen wir jetzt, dass neben dem Wert auch der Typ des Vektors angegeben ist (hier `num`). Nach dem Typ wird die Länge des Vektors angegeben: `[1:5]`. Wir starten als bei der Zählung des Vektors bei `1` und es endet bei `5`. **Wichtig:** In vielen anderen Sprachen beginnt die Zählung bei `0`. 
+
+![Vektor im Environment](../img/vektor1.png)
+
+Auch mit den anderen Wertetypen können wir Vektoren beliebiger Länge schaffen:
+```{r vector2, eval=TRUE}
+logi <- c(
+  TRUE, 
+  FALSE
+)
+
+numbers <- c(
+  1,
+  2, 
+  3, 
+  4, 
+  5, 
+  6, 
+  7, 
+  8, 
+  9, 
+  10
+)
+
+char <- c(
+  "Taipeh", 
+  "Seoul",
+  "Berlin",
+  "Taipeh"
+)
+```
+
+Im Environment finden wir dann alle diese Vektoren wieder und den jeweiligen Typ:
+
+![Vektoren im Environment](../img/vektor2.png)
+
+Was passiert wenn wir mehrere Wertetypen in einem Vektor vermischen wollen? Führe den Code aus und schau dir im Environment an, welcher Typ zugeordnet wird.
+
+```{r vektor3, eval=TRUE}
+mix <- c(
+  1.231, 
+  "Berlin",
+  TRUE
+)
+
+```
+
+
+## Eine zweite Funktion
+Nun lernen wir eine weitere Funktion bzw. vier weitere Funktionen kennen, mit denen wir den Typ eines Objekts testen können. Diese Funktionen lauten:
+
+1. `is.numeric()`, 
+
+1. `is.integer()`,
+
+1. `is.character()` und 
+
+1. `is.logical()`
+
+In der Klammer geben wir ein zu testendes Objekt ein, das wir im **Environment** gespeichert haben. Es gibt also nur ein einziges Argument in dieser Funktion. In der Ausgabe erhalten wir einen logischen Wert: `TRUE` oder `FALSE`. Je nachdem, ob es zutrifft oder nicht. 
+
+Versuche es mit den gespeicherten Objekten von oben. Wann trifft die Eigenschaft zu? Kopiere den Code einfach in dein Skript und führe die Funktionen/Befehle dann aus!
+```{r eval=FALSE}
+is.numeric(numbers)
+
+is.integer(math)
+
+is.logical(logi)
+
+is.character(logi)
+```
+
+## Einzelne Elemente innerhalb eines Vektors
+Manchmal möchten wir wissen, was der x-te Wert eines Vektors ist. Dies können wir mit Bedingungen auf einem Objekt lösen. Bedingungen auf einem Objekt werden in eckigen Klammern angegeben `[]`. Bei Vektoren haben wir nur eine Dimension, das heißt wir können hier nur ein Argument angeben. 
+
+Wir wollen zum Beispiel wissen, welche Stadt Person $3$ in der Variable `char` angegeben hat. Wir nutzen das Objekt und geben (ohne Leerzeichen) in eckigen Klammern die gewünschte Position aus (hier dann $3$):
+```{r vektorposition, eval=TRUE}
+char[3]
+```
+Person $3$ hat also die Stadt Berlin angegeben.
+
+Diese kleine Anwendung wird später beim Rekodieren und Bearbeiten von Variablen wichtig, daher schau es dir ruhig ein zweites Mal an oder probiere mit den anderen Objekten und anderen Stellen aus. 
+
+Was gibt es denn neben Vektoren noch als Objekttyp in R?
