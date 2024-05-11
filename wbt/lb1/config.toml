@@ -1,13 +1,11 @@
 baseURL = "https://ilias.uni-giessen.de/data/JLUG/lm_data/lm_746772/lb1/"
 languageCode = "de-DE"
 defaultContentLanguage = "de"
+defaultContentLanguageInSubdir = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-
-title = "WBT Statistik<sup>+</sup>: Einstieg in R leicht gemacht"
 theme = "hugo-theme-learn"
 themesdir = "./themes/"
 metaDataFormat = "yaml"
-defaultContentLanguageInSubdir= false
 
 [params]
   themeVariant = "jlug"
@@ -26,76 +24,143 @@ defaultContentLanguageInSubdir= false
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
-[[menu.shortcuts]]
+[Languages]
+[Languages.de]
+title = "Einstieg in R leicht gemacht"
+weight = 1
+languageName = "Deutsch"
+
+[Languages.en]
+title = "Make the start with R easy"
+weight = 2
+languageName = "English"
+
+[Languages.pt]
+title = "Começar a utilizar o R de forma simples"
+weight = 3
+languageName = "Português"
+
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 1"
 url = "../lb1/index.html"
 weight = 10
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 2"
 url = "../lb2/index.html"
 weight = 20
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 3"
 url = "../lb3/index.html"
 weight = 30
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 4"
 url = "../lb4/index.html"
 weight = 40
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 5"
 url = "../lb5/index.html"
-weight = 50
+weight = 40
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
 url = "/credits/index.html"
 weight = 60
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Tags"
 url = "/tags/index.html"
 weight = 70
 
-[[menu.shortcuts]]
+[[Languages.de.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
 url = "https://gitlab.com/bpkleer/stats-with-r/"
 weight = 80
 
-# no different languages so far
-#[Languages]
-#[Languages.en]
-#title = "Documentation for Hugo Learn Theme"
-#weight = 1
-#languageName = "English"
-#landingPageURL = "/en"
-#landingPageName = "<i class='fas fa-home'></i> Home"
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 1"
+url = "../lb1/index.html"
+weight = 10
 
-#[[Languages.en.menu.shortcuts]]
-#name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
-#identifier = "ds"
-#url = "https://github.com/matcornic/hugo-theme-learn"
-#weight = 10
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 2"
+url = "../lb2/index.html"
+weight = 20
 
-#[[Languages.en.menu.shortcuts]]
-#name = "<i class='fas fa-fw fa-camera'></i> Showcases"
-#url = "showcase"
-#weight = 11
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 3"
+url = "../lb3/index.html"
+weight = 30
 
-#[[Languages.en.menu.shortcuts]]
-#name = "<i class='fas fa-fw fa-bookmark'></i> Hugo Documentation"
-#identifier = "hugodoc"
-#url = "https://gohugo.io/"
-#weight = 20
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 4"
+url = "../lb4/index.html"
+weight = 40
 
-#[[Languages.en.menu.shortcuts]]
-#name = "<i class='fas fa-fw fa-bullhorn'></i> Credits"
-#url = "/credits"
-#weight = 30
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 5"
+url = "../lb5/index.html"
+weight = 40
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-bullhorn'></i> Credits"
+url = "/credits/index.html"
+weight = 60
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fas fa-tags'></i> Tags"
+url = "/tags/index.html"
+weight = 70
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-gitlab'></i> Gitlab"
+url = "https://gitlab.com/bpkleer/stats-with-r/"
+weight = 80
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 1"
+url = "../lb1/index.html"
+weight = 10
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 2"
+url = "../lb2/index.html"
+weight = 20
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 3"
+url = "../lb3/index.html"
+weight = 30
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 4"
+url = "../lb4/index.html"
+weight = 40
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 5"
+url = "../lb5/index.html"
+weight = 40
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-bullhorn'></i> Créditos"
+url = "/credits/index.html"
+weight = 60
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fas fa-tags'></i> Etiquetas"
+url = "/tags/index.html"
+weight = 70
+
+[[Languages.pt.menu.shortcuts]]
+name = "<i class='fab fa-gitlab'></i> Gitlab"
+url = "https://gitlab.com/bpkleer/stats-with-r/"
+weight = 80
+
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

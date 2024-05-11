@@ -3,8 +3,6 @@ languageCode = "de-DE"
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
-
-title = "WBT Statistik<sup>+</sup>: Einstieg in R leicht gemacht"
 theme = "hugo-theme-learn"
 themesdir = "./themes/"
 metaDataFormat = "yaml"
@@ -26,7 +24,7 @@ metaDataFormat = "yaml"
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
-# no different languages so far
+# Multilingual support
 [Languages]
 [Languages.de]
 title = "Einstieg in R leicht gemacht"
