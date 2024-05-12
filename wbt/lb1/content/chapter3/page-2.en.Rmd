@@ -25,11 +25,11 @@ And here is the link to log in: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
 
 After logging in, you can edit your profile by clicking on the circle at the top right and then selecting **Edit profile**. You can set a profile picture, define your pronouns, set up social media contacts, or activate two-factor authentication.
 
-![Edit Profile](../img/editprofile.png)
+![Edit Profile](../img/editprofile.en.png)
 
 Similarly, on the left under **Menu**, go to **Groups** and then **Your Groups** to find our course: **intro-r-spring22**. Simply click on this group. Within the group, you will see five groups for group work assignments (assignments are managed through [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) and a group named **course-materials**. All course files are located in **course-materials**. **BUT:** While you can control files here via the web, we do everything from RStudio, as we have already set it up for you, and you only need to provide your username! 
 
 
 
-![Groups](../img/groups.png)
+![Groups](../img/groups.en.png)
 You only need to go to the web interface for automatic checking. We will show you how this works at the end of the chapter!

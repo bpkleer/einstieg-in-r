@@ -41,13 +41,13 @@ Um **Projeto** (**Repositório**) é como uma pasta na Hessenbox ou DropBox. **P
 
 Um **Projeto Git** é, por exemplo, os [materiais do curso](https://gitlab.ub.uni-giessen.de/intro-r-spring21/course-materials). Este **Projeto** contém os materiais do curso. Esta é a versão global (*server-side*) hospedada no **JLU Gitlab**. Você pode editar os arquivos diretamente no servidor, mas geralmente não é recomendado. Vamos editar e modificar todos os arquivos no RStudio Cloud.
 
-## Grupo {/examples}
+## Grupo 
 
 Um **Gitlab**, um **Grupo** é simplesmente uma coleção de diferentes repositórios em um grupo. Por exemplo, este [curso](https://gitlab.ub.uni-giessen.de/intro-r-spring21) é um tal grupo, onde existem várias subgrupos e um *Projeto*: `effie` até `rue` (subgrupos) e `materiais-do-curso` (projeto).
 
-![Visão geral de um grupo](../img/groupteaching.png)
+![Visão geral de um grupo](../img/groupteaching.pt.png)
 
-## Clonar {/examples}
+## Clonar 
 
 No RStudio Cloud, as pastas já estão clonadas nos projetos correspondentes, então você não precisa fazer esse passo sozinho. No entanto, para entender, é útil ter uma breve compreensão do que é **clonar**.
 
@@ -55,7 +55,7 @@ Para poder editar arquivos localmente, é necessário salvar a versão do servid
 
 Dessa forma, cada pessoa de uma equipe pode trabalhar de forma autônoma no respectivo **Clone** local. No entanto, para disponibilizar as alterações para todos novamente, é necessário seguir o **três passos do git**, que consiste em **commit**, **pull** e **push**.
 
-## Três passos do Git: Commit, Pull & Push {/examples}
+## Três passos do Git: Commit, Pull & Push 
 
 ### Commit
 
@@ -65,19 +65,19 @@ Com o **commit** como primeiro passo, informamos ao **Git** que as alterações 
 
 No RStudio Cloud, basta ir para o painel **Environment** e clicar na guia **Git**.
 
-![Visualização do Git no RStudio](../img/rstudio-git1.png)
+![Visualização do Git no RStudio](../img/rstudio-git1.pt.png)
 
 Lá você também verá diretamente os três botões dos **três passos do git**: Commit, Pull e Push.
 
 Se um arquivo foi alterado por você (em comparação com a versão do servidor), isso será mostrado diretamente na janela.
 
-![Arquivo modificado](../img/rstudio-git2.png)
+![Arquivo modificado](../img/rstudio-git2.pt.png)
 
 O pequeno `M` significa *modificado*, ou seja, que você alterou o arquivo. Se você adicionar um arquivo, um pequeno `A` aparecerá ao lado do arquivo (para *adicionado*), e se você excluir um arquivo, um pequeno `D` aparecerá (para *delete*).
 
 Para executar o primeiro passo de **commit**, basta clicar no botão `commit` no RStudio. Uma nova janela será aberta, como mostrado na captura de tela, e agora explicaremos os passos do **commit**.
 
-![Janela de Commit](../img/rstudio-git3.png)
+![Janela de Commit](../img/rstudio-git3.pt.png)
 
 Na parte superior esquerda, você verá todos os arquivos que foram alterados. Aqui, apenas o arquivo `README.md` foi alterado. Para cometer as alterações neste arquivo, você precisa marcar a caixa ao lado do arquivo. Portanto, se você tiver alterado vários arquivos e deseja comitá-los ao mesmo tempo, você precisa marcar as caixas ao lado de cada arquivo individualmente!
 
@@ -98,5 +98,3 @@ Portanto, depois de registrar suas alterações com **commit**, depois de carreg
 Com o **push**, você envia suas alterações registradas de volta para o servidor ou para os outros. Se você seguir os três passos do git, não deverá haver problemas. Se ocorrer algum, entre em contato conosco!
 
 Agora você está pronto e sabe como compartilhar alterações no RStudio durante o trabalho em grupo. Na próxima e última página, vamos explicar como você pode usar o controle automático no **gitlab**. 
-
-{ /* examples */ }

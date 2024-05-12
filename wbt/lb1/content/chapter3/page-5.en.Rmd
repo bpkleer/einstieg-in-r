@@ -23,13 +23,13 @@ The course materials are set up as a project in RStudio: **course materials** (i
 
 First, make a copy of the project for yourself, just like with **firststeps**.
 
-![Copying **course materials**](../img/course-project.gif)
+![Copying **course materials**](../img/course-project.en.gif)
 
 Now that you have copied the project, you can work on it yourself and, for example, add comments to the scripts. You will find instructions on how to handle the folder in `instructions.Rmd`. We will gradually add course materials. The project is connected to **GitLab**, so you can easily pull updates.
-![Reading the instructions](../img/read-instructions.gif)
+![Reading the instructions](../img/read-instructions.en.gif)
 
 To get updates, open a new script and follow the steps from the instructions. Then, go to the **Git** tab under **Environment** and simply click on **pull**. Important: You do not need to go through the three-step process here, as your personal comments should not be shared with everyone. Therefore, just **pull**!
 
-![Updating the course materials](../img/git-pull.gif)
+![Updating the course materials](../img/git-pull.en.gif)
 
 That's it! Now you are also ready for **GitLab**!

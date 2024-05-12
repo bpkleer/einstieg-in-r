@@ -50,7 +50,7 @@ Para relembrar, aqui estão os tipos de valores:
 
 - `caractere`: qualquer letra/símbolo ou uma combinação de letras e números
 
-- `lógico`: `VERDADEIRO` ou `FALSO`
+- `lógico`: `TRUE` ou `FALSE`
 
 Em R, combinamos diferentes valores em um objeto usando uma função, e o novo objeto não é mais um valor simples, mas sim um vetor. Uma função é uma instrução já programada que pode ser chamada e aplicada por meio de um comando específico. R oferece extensas **bibliotecas** (vamos aprender o que é isso na próxima vez!) com milhares de funções. Mas não se preocupe, ninguém conhece todas elas de cor. A habilidade mais importante no curso de R é entender a programação, pois assim podemos aprender novas funções ou relembrar funções esquecidas.
 
@@ -74,7 +74,7 @@ Na saída, não é mais exibido apenas um valor, mas sim todos os valores armaze
 
 No **Ambiente**, agora vemos que, além do valor, o tipo do vetor é indicado (aqui `num`). Após o tipo, é indicado o comprimento do vetor: `[1:5]`. Começamos a contar os elementos do vetor a partir de `1` e terminamos em `5`. **Importante:** Em muitas outras linguagens, a contagem começa em `0`.
 
-![Vetor no Ambiente](../img/vektor1.png)
+![Vetor no Ambiente](../img/vektor1.pt.png)
 
 Também podemos criar vetores de comprimento variável com os outros tipos de valores:
 ```{r vector2, eval=TRUE}
@@ -106,7 +106,7 @@ char <- c(
 
 No Ambiente, encontramos todos esses vetores novamente, juntamente com o tipo correspondente:
 
-![Vetores no Ambiente](../img/vektor2.png)
+![Vetores no Ambiente](../img/vektor2.pt.png)
 
 O que acontece se quisermos misturar vários tipos de valores em um vetor? Execute o código e veja no Ambiente qual tipo é atribuído.
 

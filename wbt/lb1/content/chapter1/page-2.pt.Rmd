@@ -34,20 +34,20 @@ No total, o R Studio possui **4 janelas principais** (que também podem ser pers
 Para usar o RStudio, acesse a versão em nuvem ou a [página de login](https://login.rstudio.cloud). Se você ainda não tem uma conta no RStudio Cloud, registre-se primeiro! Infelizmente, não é tecnicamente possível permitir o login com a identificação da JLU como planejado.
 
 Aqui está uma animação mostrando como o processo de login ocorre após o registro de uma conta. 
-![Login RStudio](../img/login.gif)
+![Login RStudio](../img/login.pt.gif)
 
 Como você pode ver no GIF, você estará inicialmente em seu espaço de trabalho pessoal e não verá nenhum projeto lá. Ao clicar no espaço de trabalho do curso à esquerda, você verá os projetos **materiais do curso** e **primeiros passos**. Um espaço de trabalho é uma *unidade de gerenciamento* no RStudio Cloud, onde vários projetos podem ser agrupados.
 
 Basta clicar no projeto **primeiros passos**. Ao abrir o projeto, você verá a seguinte imagem:
 
-![Começando no RStudio](../img/rstudio.png)
+![Começando no RStudio](../img/rstudio.pt.png)
 O **mais importante** ao usar projetos preparados como **primeiros passos** ou **materiais do curso** é que você faça uma cópia para a sua conta! Portanto, quando você abrir pela primeira vez, verá apenas que abriu uma *cópia temporária*. No entanto, para poder trabalhar no projeto e salvar suas alterações, você precisa clicar uma vez em **Salvar uma cópia permanente**. O projeto será então criado e vinculado à sua conta. Depois disso, você não verá mais a mensagem em vermelho *cópia temporária*. Agora você pode trabalhar no projeto e explorar as diferentes áreas.
 
 O RStudio tem um padrão de mosaico com diferentes azulejos. À esquerda, vemos o **Console**, acima à direita o **Ambiente** e abaixo à direita **Arquivos**. Existem mais abas nos azulejos, mas vamos deixá-las de lado por enquanto.
 
 No **Console**, podemos inserir e executar comandos diretamente usando a linguagem R. Agora, basta digitar uma equação qualquer no console e pressionar `Enter`.
 
-![Fazendo Cálculos com R](../img/rstudio2.png)
+![Fazendo Cálculos com R](../img/rstudio2.pt.png)
 
 No exemplo, você pode ver que a linguagem R pode processar equações matemáticas diretamente e, assim, fazer os cálculos para nós (mesmo que não seja necessário no exemplo simples). Ele também mostra diretamente qual é o resultado dessa instrução. O `[1]` é apenas a numeração da saída, o que se torna relevante quando temos saídas mais longas que ocupam várias linhas.
 
@@ -57,23 +57,23 @@ As atribuições de objetos são feitas em R com `<-`. No Mac, você pode fazer 
 
 Agora vamos armazenar o cálculo simples acima em um objeto chamado `math`.
 
-![Objeto math](../img/rstudio3.png)
+![Objeto math](../img/rstudio3.pt.png)
 
 Na captura de tela, você pode ver que precisa chamar o objeto para ver o resultado. Você faz isso simplesmente escrevendo o nome do objeto no console e pressionando `Enter` novamente.
 
 Agora temos o primeiro objeto armazenado e você pode vê-lo em **Ambiente**. Lá, ao longo de uma *sessão*, você pode ver todos os objetos que criou durante essa *sessão*. Neste caso, vemos o objeto armazenado `math`, que contém a adição de `3 + 4`.
 
-![Ambiente](../img/rstudio4.png)
+![Ambiente](../img/rstudio4.pt.png)
 
 Uma desvantagem do console é que não podemos copiar o código escrito dele e compartilhá-lo com outras pessoas, por exemplo. No entanto, muitas vezes é necessário compartilhar o código escrito (por exemplo, em um trabalho em grupo ou ao enviar um trabalho acadêmico) ou adicionar comentários ao código para que você possa entender melhor o que fez naquele momento. Para isso, existem os chamados **scripts**. **Scripts** são arquivos de texto nos quais podemos escrever diretamente na linguagem R e também adicionar comentários ao código. Abra agora um novo arquivo de script como na captura de tela ou simplesmente use a combinação de teclas `Cmd` e `Shift` e `N` ou `Ctrl` e `Shift` e `N`.
 
-![Abrir Script](../img/rstudio5.png)
+![Abrir Script](../img/rstudio5.pt.png)
 
 Neste arquivo, podemos escrever instruções na linguagem R. Daqui em diante, faremos isso sempre em vez de trabalhar no Console. Dessa forma, o trabalho fica salvo em um arquivo, para que possamos acessá-lo novamente ou compartilhá-lo com outras pessoas.
 
 Os passos que executamos no Console também podem ser inseridos no script. Comentários sempre começam com `#`. A linguagem reconhece que essa linha não contém código executável, mas apenas texto.
 
-![Usando o script](../img/rstudio6.png)
+![Usando o script](../img/rstudio6.pt.png)
 
 Para executar o código, basta selecionar as linhas a serem executadas e pressionar a combinação de teclas `cmd` + `Enter` ou `Ctrl` + `Enter`. Alternativamente, você também pode selecionar a linha e clicar no botão `Run` (no canto superior direito da tela do script).
 
@@ -81,7 +81,7 @@ Ainda não salvamos o arquivo, o que pode ser feito facilmente pressionando a co
 
 Na aba **Files**, você poderá ver esse novo arquivo.
 
-![Arquivo salvo](../img/rstudio7.png)
+![Arquivo salvo](../img/rstudio7.pt.png)
 
 Como você pode ver, os arquivos de script do R têm a extensão `.R`. Todos os arquivos que terminam assim são arquivos de script do R e contêm código na linguagem R, que pode ser executado com o RStudio.
 
@@ -97,13 +97,13 @@ Por fim, saia do projeto e retorne ao Workspace. Para fazer isso, basta clicar n
 
 Você verá que o projeto **firststeps** aparece duas vezes.
 
-![Firststeps duplicado](../img/rstudio8.png)
+![Firststeps duplicado](../img/rstudio8.pt.png)
 
 Isso não está errado, mas correto! Uma vez que há o projeto preparado por nós (você pode identificá-lo pelo fato de Philipp Kleer ser o **Proprietário**) e o projeto **firstseps** que você copiou, onde você pode trabalhar. Você será listado como **Proprietário** lá. Neste exemplo, o usuário é **Phil friendly**.
 
 Para não se confundir e realmente fazer alterações em seu próprio projeto, você pode simplesmente selecionar **Seus Projetos** no menu e apenas os projetos nos quais suas alterações são salvas serão exibidos.
 
-![Seus Projetos](../img/rstudio9.png)
+![Seus Projetos](../img/rstudio9.pt.png)
 **Importante**: Apenas você e o instrutor podem ver seus próprios projetos!
 
 Você completou com sucesso os primeiros passos. Você sabe como salvar objetos e como acessá-los! Você também já pode realizar cálculos simples. Em seguida, vamos nos concentrar nos tipos de objetos em R.

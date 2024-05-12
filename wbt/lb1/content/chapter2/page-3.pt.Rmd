@@ -49,7 +49,7 @@ charFator <- as.factor(char)
 
 Criamos um fator no objeto `charFactor`. No ambiente, podemos ver o seguinte:
 
-![Fator no ambiente](../img/faktor1.png)
+![Fator no ambiente](../img/faktor1.pt.png)
 
 Na propriedade, agora é indicado que se trata de um fator com três diferentes manifestações. No vetor em si, são utilizados valores numéricos que são atribuídos aos respectivos **níveis**. A ordem segue a listagem dos níveis: Berlim tem o valor $1$, Seul tem o valor $2$ e Taipé $3$. Esse tipo é frequentemente usado para variáveis que possuem nível de escala nominal ou ordinal. **Importante:** Um fator em si não implica em uma ordem entre os valores, mas apenas inclui as diferenças. Estritamente falando, esse tipo deve ser usado apenas para variáveis nominais.
 
@@ -90,7 +90,7 @@ gradeOrd
 
 No ambiente, veremos a propriedade `Fator ord.` e novamente a especificação dos **níveis** e sua ordem.
 
-![Fator Ordenado no Ambiente](../img/faktor2.png)
+![Fator Ordenado no Ambiente](../img/faktor2.pt.png)
 
 Assim como antes, duas informações são armazenadas: uma vez os níveis com a especificação das notas e depois os valores numéricos que correspondem aos níveis. Os valores numéricos são atribuídos novamente na ordem dos níveis: portanto, $D$ recebe o valor $1$, $C$ recebe o valor $2$, $B$ recebe o valor $3$ e finalmente $A$ recebe o valor $4$.
 

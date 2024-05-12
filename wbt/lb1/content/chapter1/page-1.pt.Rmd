@@ -32,10 +32,10 @@ Por exemplo, eu tenho o arquivo **syllabus.pdf** (plano de curso deste curso) sa
 O primeiro passo é procurar no Finder (Mac) ou no Explorer (Windows). Depois de encontrar o arquivo, podemos exibir o caminho único.
 
 No computador Mac, isso se parece com o seguinte:
-![Exemplo de Caminho](../img/path.png)
+![Exemplo de Caminho](../img/path.pt.png)
 
 No computador Windows, é semelhante a isso:
-![Exemplo de Caminho no Windows](../img/path-win.png)
+![Exemplo de Caminho no Windows](../img/path-win.pt.png)
 
 O endereço do arquivo nem sempre é diretamente visível. No Mac, ele está na parte inferior da janela e no Windows, na parte superior. Clicando com o botão direito, é possível copiar o caminho tanto no Finder quanto no Explorer, obtendo assim o endereço único de um arquivo.
 

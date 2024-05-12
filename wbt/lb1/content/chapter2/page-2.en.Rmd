@@ -74,7 +74,7 @@ The output will no longer display just one value, but all the values stored in t
 
 In the **Environment**, we can now see that in addition to the value, the type of the vector is specified (here `num`). After the type, the length of the vector is indicated: `[1:5]`. We start counting the vector at `1` and it ends at `5`. **Important:** In many other languages, counting starts at `0`.
 
-![Vector in the Environment](../img/vektor1.png)
+![Vector in the Environment](../img/vektor1.en.png)
 
 We can also create vectors of arbitrary length with the other data types:
 ```{r vector2, eval=TRUE}
@@ -106,7 +106,7 @@ char <- c(
 
 In the Environment, we will find all these vectors again along with their respective types:
 
-![Vectors in the Environment](../img/vektor2.png)
+![Vectors in the Environment](../img/vektor2.en.png)
 
 What happens if we try to mix multiple data types in a vector? Run the code and check in the Environment to see which type is assigned.
 

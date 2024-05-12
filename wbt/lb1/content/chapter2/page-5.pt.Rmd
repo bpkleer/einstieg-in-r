@@ -34,17 +34,15 @@ Já demos os primeiros passos na conexão de valores individuais para vetores (v
 
 Em um exemplo fictício, entrevistamos $5$ estudantes sobre sua satisfação com o refeitório usando $5$ variáveis (avaliações em uma escala Likert de $1$ *muito insatisfeito* a $5$ *muito satisfeito*). Você pode ver isso na seguinte imagem:
 
-![Exemplo](../img/df-beispiel.png)
+![Exemplo](../img/df-beispiel.pt.png)
 
 Agora você pode criar $5$ vetores, onde cada vetor representa uma pessoa. **Importante:** Fornecemos uma solução no **Código**, mas é importante para o seu progresso de aprendizado tentar por si mesmo primeiro. Depois de conseguir, você pode verificar a solução. Mas lembre-se: em R, há sempre mais de um caminho, então se o seu caminho for diferente, não significa que está errado, desde que o resultado final seja o mesmo! 
 
-
-
-{{% tabs groupId="tab1"%}}
-{{% tab name="Frage" %}}
+{{% tabs groupId=\"tab1\"%}}
+{{% tab name=\"Frage\" %}}
 Como primeiro passo, precisamos criar cinco vetores (para as cinco variáveis), cada um contendo os valores de todas as pessoas. Você pode realizar este passo com seu conhecimento. Tente fazer por conta própria primeiro e só depois confira a solução.
 {{% /tab %}}
-{{% tab name="Código" %}}
+{{% tab name=\"Código\" %}}
 ```{r eval=TRUE}
 auswahl <- c(
   4, 

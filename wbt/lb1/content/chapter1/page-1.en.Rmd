@@ -25,8 +25,6 @@ Data is usually stored as **files** in a *local* location on the computer (deskt
 
 Files always have an extension that determines the type of the file. For example, Word documents typically have the extension *.docx* and PowerPoint files have the extension *.pptx*. Image files also have specific extensions such as *.jpg* or *.png*. The extension of a file indicates how to read the file or with which program to open it. This is usually set in the automatic settings (in Windows or Mac). 
 
-{ /* examples */ }
-
 A second piece of information we need about files when working with them is the *path*. The *path* is like the home address of the file. Each file is stored at a specific local location, and there is always a unique address that makes the file accessible or locatable. This may be difficult to understand on a tablet, but it becomes clear quickly on a desktop/laptop.
 
 For example, I have the file **syllabus.pdf** (course schedule for this course) saved locally on my computer. But how do we find out where the file is saved?
@@ -34,10 +32,10 @@ For example, I have the file **syllabus.pdf** (course schedule for this course) 
 The first step is to search for it in Finder (Mac) or Explorer (Windows). Once we have found the file, we can also display the unique path.
 
 On a Mac computer, it looks like this:
-![Example Path](../img/path.png)
+![Example Path](../img/path.en.png)
 
 Similarly, on a Windows computer, it looks like this:
-![Example Path Win](../img/path-win.png)
+![Example Path Win](../img/path-win.en.png)
 
 The file's address is not necessarily directly visible. On a Mac, it is at the bottom of the window, and on Windows, it is at the top of the window. By right-clicking, you can copy the path from Finder or Explorer, obtaining the unique address of a file.
 

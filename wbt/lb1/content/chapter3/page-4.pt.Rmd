@@ -29,30 +29,30 @@ Para isso, você só precisa seguir três pequenos passos:
 
 2. Vá para o seu grupo (no exemplo aqui, Katnyss)
 
-![Ir para o grupo](../img/pipeline1.png)
+![Ir para o grupo](../img/pipeline1.pt.png)
 
 3. Acesse o repositório da respectiva tarefa de laboratório
 
-![Ir para a tarefa de laboratório correspondente](../img/pipeline2.png)
+![Ir para a tarefa de laboratório correspondente](../img/pipeline2.pt.png)
 
-4. Em seguida, no menu à esquerda, vá para **CI/CD** -> **Pipelines** {/examples}
+4. Em seguida, no menu à esquerda, vá para **CI/CD** -> **Pipelines**  
 
-![Ir para Pipelines](../img/pipeline3.png)
+![Ir para Pipelines](../img/pipeline3.pt.png)
 5. Em seguida, clique à direita em **Executar Pipeline**.
 
-![Iniciar Pipeline](../img/pipeline4.png)
+![Iniciar Pipeline](../img/pipeline4.pt.png)
 
 6. Na nova página, clique novamente em **Executar Pipeline** e não altere nenhuma configuração.
 
-![Iniciar Pipeline](../img/pipeline5.png)
+![Iniciar Pipeline](../img/pipeline5.pt.png)
 
 7. A Pipeline foi iniciada e você verá a seguinte imagem:
 
-![Pipeline iniciada](../img/pipeline6.png)
+![Pipeline iniciada](../img/pipeline6.pt.png)
 
 8. Se a Pipeline for bem-sucedida, será exibido **passed**; se não for bem-sucedida (soluções incorretas), será exibido **failed**. Neste exemplo, é claro que será exibido **failed**, pois o script ainda está vazio e, portanto, não pode estar correto.
 
-![Pipeline falhou](../img/pipeline7.png)
+![Pipeline falhou](../img/pipeline7.pt.png)
 
 Se uma Pipeline **falhar**, você precisará continuar trabalhando no script e reconsiderar o que pode precisar ser alterado. Se você ou seu grupo não conseguirem avançar, vá até o horário de atendimento dos tutores!
 

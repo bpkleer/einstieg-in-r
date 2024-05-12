@@ -25,9 +25,9 @@ E aqui está o link para fazer login: [JLU Gitlab](https://gitlab.ub.uni-giessen
 
 Você pode então, se desejar, editar seu perfil, clicando no círculo no canto superior direito e em seguida em **Editar perfil**. Lá você pode adicionar uma foto, definir seus pronomes, configurar contatos de redes sociais ou ativar autenticação de dois fatores.
 
-![Editar perfil](../img/editprofile.png)
+![Editar perfil](../img/editprofile.pt.png)
 
 Da mesma forma, você pode clicar em **Menu**, depois em **Grupos** e em seguida em **Seus Grupos** para ver nosso curso: **intro-r-spring22**. Basta clicar neste grupo. Dentro do grupo, você verá cinco grupos para a divisão dos trabalhos em grupo (a divisão é feita através do [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) e um grupo chamado **course-materials**. Em **course-materials**, estão todos os arquivos do curso. **MAS:** Você não deve controlar os arquivos aqui pela web, pois faremos tudo pelo RStudio, onde já configuramos tudo para você e você só precisa fornecer seu nome de usuário!
 
-![Grupos](../img/groups.png)
+![Grupos](../img/groups.pt.png)
 Apenas para fins de verificação automática, você precisa acessar a interface web. Mostraremos como fazer isso no final do capítulo!

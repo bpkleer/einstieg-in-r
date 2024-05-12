@@ -49,7 +49,7 @@ charFactor <- as.factor(char)
 
 We have now created a factor in the object `charFactor`. In the environment, we can see the following:
 
-![Factor in the Environment](../img/faktor1.png)
+![Factor in the Environment](../img/faktor1.en.png)
 
 The property now indicates that it is a factor with three different levels. In the vector itself, numerical values are used that are assigned to the respective **levels**. The order is based on the listing of the levels: Berlin has the value $1$, Seoul has the value $2$, and Taipei has $3$. This type is often used for variables that have nominal or ordinal scale levels. **Important:** A factor itself does not imply any order between the values, but only contains the differences. Strictly speaking, this type should only be used for nominal variables.
 
@@ -90,7 +90,7 @@ gradeOrd
 
 In the environment, we then see the property `Ord. factor` and again the specification of the **levels** and their order.
 
-![Ordered Factor in Environment](../img/factor2.png)
+![Ordered Factor in Environment](../img/factor2.en.png)
 
 As before, two pieces of information are stored: once the levels with the grades and then numerical values corresponding to the levels. The numerical values are assigned again in the order of the levels: So $D$ gets the value $1$, $C$ gets the value $2$, $B$ gets the value $3$, and finally $A$ gets the value $4$.
 

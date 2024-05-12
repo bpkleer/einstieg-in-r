@@ -41,12 +41,10 @@ A **Project** (**Repository**) is like a folder in Hessenbox or DropBox. **Proje
 
 A **Git project** is, for example, the [course materials](https://gitlab.ub.uni-giessen.de/intro-r-spring21/course-materials). This **Project** contains the course materials for the course. This is the global version (*server-side*) hosted on **JLU Gitlab**. You can edit the files directly on the server, but you usually don't do that. We will edit all the files in RStudio Cloud and make changes there as well. 
 
-{ /* examples */ }
-
 ## Group
 A **Group** in **Gitlab** is simply a collection of different repositories within a group. For example, this [course](https://gitlab.ub.uni-giessen.de/intro-r-spring21) is such a group, where there are several subgroups and a *Project*: `effie` to `rue` (subgroups) and `course-materials` (project).
 
-![Overview of a Group](../img/groupteaching.png)
+![Overview of a Group](../img/groupteaching.en.png)
 
 ## Clone
 In RStudio Cloud, the folders are already cloned in the respective projects, so you don't need to do this step yourself. However, for understanding purposes, it is still useful to briefly understand what **cloning** is.
@@ -64,19 +62,19 @@ With **commit** as the first step, we inform **Git** that the changes we have ma
 
 In RStudio Cloud, you simply need to go to the **Environment** pane and switch to the **Git tab**.
 
-![View of Git in RStudio](../img/rstudio-git1.png)
+![View of Git in RStudio](../img/rstudio-git1.en.png)
 
 There you will also see the three buttons of the **git three-step process**: Commit, Pull, and Push.
 
 If a file has been changed by you (compared to the server version), it will be displayed directly in the window.
 
-![Modified File](../img/rstudio-git2.png)
+![Modified File](../img/rstudio-git2.en.png)
 
 The small `M` means *modified*, indicating that you have changed the file. If you add a file, a small `A` will appear next to the file (for *added*), and if you delete a file, a small `D` will appear (for delete).
 
 To execute the first step **commit**, simply click on the `commit` button in RStudio. A new window will open, as shown in the screenshot, and we will now explain the steps of **commit**.
 
-![Commit Window](../img/rstudio-git3.png)
+![Commit Window](../img/rstudio-git3.en.png)
 
 In the upper left part, you will see all the files that have been changed. Here, only the file `README.md` is shown. To commit the changes to this file, you need to check the box next to the file. So, if you have made changes to multiple files and want to commit them simultaneously, you need to check the boxes next to each file individually!
 
@@ -97,5 +95,3 @@ So, after registering your changes with **commit** and then loading the latest v
 With **push**, you send your registered changes back to the server or others. If you follow the git three-step process, there should be no issues. If there are any problems, feel free to contact us!
 
 Now you are ready and know how to share changes in RStudio during group work. On the next and final page, we will explain how you can utilize the automatic check in **GitLab**. 
-
-{ /* examples */ }

@@ -29,30 +29,30 @@ To do this, you just need to follow three simple steps:
 
 2. Go to your group (in this example, Katnyss)
 
-![Go to the group](../img/pipeline1.png)
+![Go to the group](../img/pipeline1.en.png)
 
 3. Go to the repository of the respective lab task
 
-![Go to the corresponding lab task](../img/pipeline2.png)
+![Go to the corresponding lab task](../img/pipeline2.en.png)
 
 4. Then go to the left menu **CI/CD** -> **Pipelines** 
 
-![Go to Pipelines](../img/pipeline3.png)
+![Go to Pipelines](../img/pipeline3.en.png)
 5. Then click on **Run Pipeline** on the right.
 
-![Start Pipeline](../img/pipeline4.png)
+![Start Pipeline](../img/pipeline4.en.png)
 
 6. On the new page, simply click **Run Pipeline** again without changing any settings.
 
-![Start Pipeline](../img/pipeline5.png)
+![Start Pipeline](../img/pipeline5.en.png)
 
 7. The pipeline has started, and you will see the following image:
 
-![Started Pipeline](../img/pipeline6.png)
+![Started Pipeline](../img/pipeline6.en.png)
 
 8. If the pipeline is successful, it will show **passed**; if it was not successful (solutions are not correct), it will show **failed**. In this example, **failed** will naturally appear because the script is still empty and therefore cannot be correct.
 
-![Failed Pipeline](../img/pipeline7.png)
+![Failed Pipeline](../img/pipeline7.en.png)
 
 If a pipeline **failed**, you need to continue working on the script and reconsider what may need to be changed. If you or your group are stuck, attend the tutors' office hours!
 

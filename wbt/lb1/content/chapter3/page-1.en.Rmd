@@ -25,7 +25,7 @@ A shares the actual final version with B, C, D. C is overzealous and corrects on
 
 Just from the text, there should be chaos in your mind now, and you probably know this from group work. The image below also graphically illustrates the whole process.
 
-![Flow of Final Version](../img/projectwork.gif)
+![Flow of Final Version](../img/projectwork.en.gif)
 
 What becomes clear here is that (especially, but not only) at the end of a project, there are more elegant ways than sharing files via email or through a cloud server (like Hessenbox). Even with cloud servers like Hessenbox or Dropbox, chaos cannot be completely avoided, as synchronous editing often leads to problems. And that's exactly where **Gitlab** comes in for us. 
 

@@ -25,7 +25,7 @@ Para isso, A compartilha a versão final real com B, C, D. C está muito empolga
 
 Apenas lendo o texto, deve haver um caos em sua mente agora e você provavelmente está familiarizado com isso em trabalhos em grupo. Na imagem abaixo, tudo isso é representado graficamente.
 
-![Fluxo da versão final](../img/projectwork.gif)
+![Fluxo da versão final](../img/projectwork.pt.gif)
 
 O que fica claro aqui é que (especialmente, mas não apenas) no final de um projeto, existem maneiras mais elegantes de compartilhar arquivos do que por e-mail ou por servidores de nuvem (como Hessenbox). Mesmo com servidores de nuvem como Hessenbox ou Dropbox, o caos não pode ser totalmente evitado, pois a edição síncrona muitas vezes causa problemas. E é exatamente aí que o **Gitlab** entra em ação para nós.
 

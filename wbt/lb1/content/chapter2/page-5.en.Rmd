@@ -34,17 +34,15 @@ We have already taken the first steps in connecting individual values to vectors
 
 In a fictional example, we surveyed $5$ students regarding their satisfaction with the cafeteria using $5$ variables (ratings on a Likert scale from $1$ *very dissatisfied* to $5$ *very satisfied*). You can see this in the following image:
 
-![Example](../img/df-example.png)
+![Example](../img/df-beispiel.en.png)
 
 You can now create $5$ vectors, each representing a person. **Important:** We provide a solution under **Code**, but for your learning progress, it is important that you first try it yourself. After you have succeeded, you can check the solution. Remember: In R, there is always more than one way, so if your approach is different, it does not have to be wrong as long as you get the same result in the end! 
 
-
-
-{{% tabs groupId="tab1"%}}
-{{% tab name="Question" %}}
+{{% tabs groupId=\"tab1\"%}}
+{{% tab name=\"Question\" %}}
 First, we need to create five vectors (for the five variables), each containing the values of all individuals. You can perform this step on your own with your current knowledge. Try it yourself first and then check the solution.
 {{% /tab %}}
-{{% tab name="Code" %}}
+{{% tab name=\"Code\" %}}
 ```{r eval=TRUE}
 auswahl <- c(
   4, 

@@ -58,7 +58,7 @@ hometown <- "Berlin"
 hometown
 ```
 
-{{% expand "What do you notice as a difference when storing a numeric or integer value compared to storing text of type character?" %}}
+{{% expand \"What do you notice as a difference when storing a numeric or integer value compared to storing text of type character?\" %}}
 When dealing with text, it needs to be enclosed in `"..."` (quotation marks) in the R language. You can use either double `"..."` or single `'...'` for this purpose. **Important:** Stay consistent!
 {{% /expand %}}
 

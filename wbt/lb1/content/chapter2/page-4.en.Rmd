@@ -42,6 +42,4 @@ knitr::kable(pss[1:10, c("idno", "district", "gndr", "agea")])
 
 In this example dataset, we have four variables: `idno`, `district`, `gndr`, and `agea`. These are self-explanatory: `idno` is the unique ID, `district` is the district of the respondent, `gndr` is the gender, and `agea` is the age. Often, variables are not intuitively understandable, so you may need to consult a codebook. Handling larger datasets will be covered in the next learning block. 
 
-{ /* examples */ }
-
 Let's go to the final challenge!

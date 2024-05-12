@@ -42,6 +42,4 @@ knitr::kable(pss[1:10, c("idno", "district", "gndr", "agea")])
 
 Neste exemplo, temos quatro variáveis no conjunto de dados: `idno`, `district`, `gndr` e `agea`. Estes são autoexplicativos: `idno` é o ID único, `district` é o distrito do entrevistado, `gndr` é o gênero e `agea` é a idade. Muitas vezes, as variáveis não são intuitivas, então é necessário consultar um livro de códigos. Lidaremos com conjuntos de dados maiores no próximo bloco de aprendizado. 
 
-{ /*examples*/ }
-
 Vamos para o desafio final!

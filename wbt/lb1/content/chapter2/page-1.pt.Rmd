@@ -1,7 +1,7 @@
 ---
 title: "Tipos de Dados"
 weight: 201
-menuTitle: "Tipos de Dados"
+menuTitle: 'Tipos de Dados'
 tags: ["tipos de dados", "numérico", "inteiro", "caractere", "lógico"]
 ---
 
@@ -47,11 +47,11 @@ Os números decimais têm um `.` (ponto) como separador, e não uma vírgula `,`
 {{% /expand %}}
 
 
-# Inteiro {/examples}
+# Inteiro 
 
 Este tipo de valor já conhecemos, pois o utilizamos no objeto `math`. **Inteiro** são valores inteiros, como no exemplo de `math`, o valor `7`.
 
-# Caractere {/examples}
+# Caractere 
 
 Em seguida, temos o tipo de valor **caractere**. Estes são cadeias de caracteres: podem ser significativos em letras, mas também combinações de letras e números ou caracteres. Por exemplo, podemos armazenar um objeto `hometown` com a cidade de origem (no meu caso, Berlim).
 
@@ -61,11 +61,11 @@ hometown <- "Berlim"
 hometown
 ```
 
-{{% expand "O que você percebe de diferente ao armazenar um valor textual do tipo numérico ou inteiro?" %}}
+{{% expand \"O que você percebe de diferente ao armazenar um valor textual do tipo numérico ou inteiro?\" %}}
 Quando se trata de texto, ele deve ser colocado entre `"..."` (aspas) na linguagem R. Você pode usar tanto as aspas duplas `"..."` quanto as simples `'...'` para isso. **Importante:** Mantenha a consistência!
 {{% /expand %}}
 
-# lógico {/examples}
+# lógico 
 
 Este tipo de valor desempenha um papel importante no processamento de dados, pois mais tarde usaremos condições que terão o tipo de valor **lógico**. Existem dois valores possíveis para o tipo de valor **lógico**: `TRUE` e `FALSE`. **Importante:** Essas palavras devem ser escritas em maiúsculas! Caso contrário, o R não as reconhecerá como **lógicas**. Por exemplo, podemos armazenar o valor `TRUE` em um objeto chamado `truth`.
 
