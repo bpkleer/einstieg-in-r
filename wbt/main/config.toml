@@ -74,14 +74,9 @@ url = "/credits/index.html"
 weight = 60
 
 [[Languages.de.menu.shortcuts]]
-name = "<i class='fas fa-tags'></i> Tags"
-url = "/tags/index.html"
-weight = 70
-
-[[Languages.de.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
 url = "https://gitlab.com/bpkleer/stats-with-r/"
-weight = 80
+weight = 70
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 1"
@@ -114,14 +109,9 @@ url = "/credits/index.html"
 weight = 60
 
 [[Languages.en.menu.shortcuts]]
-name = "<i class='fas fa-tags'></i> Tags"
-url = "/tags/index.html"
-weight = 70
-
-[[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
 url = "https://gitlab.com/bpkleer/stats-with-r/"
-weight = 80
+weight = 70
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 1"
@@ -154,14 +144,9 @@ url = "/credits/index.html"
 weight = 60
 
 [[Languages.pt.menu.shortcuts]]
-name = "<i class='fas fa-tags'></i> Etiquetas"
-url = "/tags/index.html"
-weight = 70
-
-[[Languages.pt.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
 url = "https://gitlab.com/bpkleer/stats-with-r/"
-weight = 80
+weight = 70
 
 [markup]
   [markup.highlight]
