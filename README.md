@@ -1,7 +1,7 @@
 # Statistik<sup>+</sup>: Einstieg in R leicht gemacht
 #### Ein überarbeiteter und neu-ausgerichteter Kurs für die Einführung in R als Start in die empirische Datenanalyse
 
-## Multilingual Support under construction!
+## Multilingual Support (EN/PT) under construction!
 
 ## Projektziel
 In diesem Projekt wird ein neuer Einführungskurs in R konzipiert, der Studierenden ohne tiefe Computer-/IT-Kenntnisse den Einstieg in R erleichtern soll (neue Kursstruktur, Kursmaterialien sowie erweiterte Lernmaterialien). Der neue Kurs hat das Ziel Studierende stärker in die Programmiersprache/-logik einzuführen, damit Studierende einen besseren Lernerfolg haben und besser motiviert für das Lernen sind. Ebenso ermöglicht es Studierenden dann, nachfolgend selbst weiterführenede Methoden zu lernen oder weiterführende Methodenkurse im Master zu wählen. Neben dieser Fokussierung auf das Programmieren soll das Arbeiten in Teams sowie das Arbeiten in Projekten gefördert werden. Die Teilnehmenden arbeiten fortlaufend im Semester an einem spezifischen Datensatz und erkunden die einzelnen Programmierverfahren bzw. Methoden anhand ausgewählter Variablen. Dabei wird mithilfe der Verknüpfung zu gitlab eine automatisierte Kontrolle ermöglicht (*pipelines*), die den Studierenden als Programmier-Beginner nochmals den iterativen Prozess im Programmieren verdeutlicht (fortlaufendes *troubleshooting*).
