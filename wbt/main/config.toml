@@ -66,7 +66,7 @@ weight = 40
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 5"
 url = "../lb5/de/index.html"
-weight = 40
+weight = 50
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
@@ -75,7 +75,7 @@ weight = 60
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
-url = "https://gitlab.com/bpkleer/stats-with-r/"
+url = "https://gitlab.com/bpkleer/einstieg-in-r/"
 weight = 70
 
 [[Languages.en.menu.shortcuts]]
@@ -101,7 +101,7 @@ weight = 40
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 5"
 url = "../lb5/en/index.html"
-weight = 40
+weight = 50
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
@@ -110,7 +110,7 @@ weight = 60
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
-url = "https://gitlab.com/bpkleer/stats-with-r/"
+url = "https://gitlab.com/bpkleer/einstieg-in-r/"
 weight = 70
 
 [[Languages.pt.menu.shortcuts]]
@@ -136,7 +136,7 @@ weight = 40
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 5"
 url = "../lb5/pt/index.html"
-weight = 40
+weight = 50
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Créditos"
@@ -145,7 +145,7 @@ weight = 60
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fab fa-gitlab'></i> Gitlab"
-url = "https://gitlab.com/bpkleer/stats-with-r/"
+url = "https://gitlab.com/bpkleer/einstieg-in-r/"
 weight = 70
 
 [markup]
