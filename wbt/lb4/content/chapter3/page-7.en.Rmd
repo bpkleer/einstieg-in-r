@@ -126,9 +126,9 @@ pss2$hats <- hatvalues(olsModel2)
 pss2$cooksd <- cooks.distance(olsModel2)  
 ```
 
-Everything that follows now requires a deeper understanding, especially of loops and *if* conditions from [Learning Block 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **But** as mentioned, this chapter is extra and will not be part of the mandatory lab exercise.
+Everything that follows now requires a deeper understanding, especially of loops and *if* conditions. **But** as mentioned, this chapter is extra and will not be part of the mandatory lab exercise.
 
-To exclude the potentially influential cases, we need a dummy variable that indicates whether the case is influential according to the criteria ($1$) or not ($0): In the loop, we first check if the respective case value is above the threshold. If yes, the variable `leverage` is assigned the value 1 for leverage or `influence` for Cook's D.
+To exclude the potentially influential cases, we need a dummy variable that indicates whether the case is influential according to the criteria ($1$) or not ($0$): In the loop, we first check if the respective case value is above the threshold. If yes, the variable `leverage` is assigned the value 1 for leverage or `influence` for Cook's D.
 ```{r loop, eval=TRUE}
 for (i in 1:dim(pss2)[1]) {   
 if (pss2$hats[i] > (2*(2+1)/dim(pss2)[1])) {
@@ -221,5 +221,3 @@ allInfluential
 Then you could take a closer look at the value pairs on the variables in the regression for each case!
 
 That's it for regression diagnostics. In these six steps, you can ensure that your regression calculation is not biased due to a violation of assumptions.
-
-Please paste the Markdown content you would like me to translate.

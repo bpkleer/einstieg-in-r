@@ -40,9 +40,9 @@ olsModel2 <- lm(
 
 **Autocorrelação** indica, portanto, relações temporais (relação não linear) ou a falta de variáveis no modelo.
 
-![](../img/autocorr_pos.png)
+![](../img/autocorr_pos.pt.png)
 
-![](../img/autocorr_neg.png)
+![](../img/autocorr_neg.pt.png)
 
 Existem quatro maneiras de testar a **autocorrelação**:
 

@@ -47,8 +47,6 @@ In R, non-standardized variables also yield non-standardized regression coeffici
 
 In some (often more complex) models, we want to evaluate the strength of the individual independent variables. Since the variables do not have the same unit, as explained above, this is not easily achievable. However, we can standardize the variables so that all variables have the same unit (standard deviations). For this, it is best to use the `scale()` function from the **tidyverse** (`dplyr`). In more complex regression models or advanced models (such as *Multi-Level Models*), variables are usually standardized before calculating the model. 
 
-{ /* examples */ }
-
 Let's take this step now for the variables in `olsModel2`:
 ```{r scale, eval=TRUE}
 pss <- pss %>% 

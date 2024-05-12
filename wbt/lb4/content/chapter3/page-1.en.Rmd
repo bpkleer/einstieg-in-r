@@ -53,7 +53,7 @@ As social scientists, we calculate models that need to be tested for the mathema
 
 **These are the assumptions of linear regression:**
 {{% tabs %}}
-{{% tab name="Assumptions" %}}
+{{% tab name=\"Assumptions\" %}}
 1. linear relationship
 
 2. $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$
@@ -66,7 +66,7 @@ As social scientists, we calculate models that need to be tested for the mathema
 
 6. no influential cases
 {{% /tab %}}
-{{% tab name="Effects of Violation" %}}
+{{% tab name=\"Effects of Violation\" %}}
 1. biased estimators
 
 2. invalid significance tests, biased estimators
@@ -79,7 +79,7 @@ As social scientists, we calculate models that need to be tested for the mathema
 
 6. biased estimators
 {{% /tab %}}
-{{% tab name="Possible Solutions" %}}
+{{% tab name=\"Possible Solutions\" %}}
 1. non-linear transformation
 
 2. *nothing!*
@@ -92,7 +92,7 @@ As social scientists, we calculate models that need to be tested for the mathema
 
 6. remove observations (but must be theoretically justifiable!)
 {{% /tab %}}
-{{% tab name="Testing Procedure" %}}
+{{% tab name=\"Testing Procedure\" %}}
 1. Plot inspection
 
 2. Plot inspection (Shapiro-Wilk test)

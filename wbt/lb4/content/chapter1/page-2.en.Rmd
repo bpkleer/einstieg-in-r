@@ -43,7 +43,7 @@ $$stfdem = \hat{\beta_0} + \hat{\beta_1}*stfeco + \hat{\varepsilon}$$
 Could we also calculate a model that explains satisfaction with economic performance through satisfaction with democracy?
 
 {{% /tab %}}
-{{% tab name="Resolution" %}}
+{{% tab name=\"Resolution\" %}}
 Yes, that's possible! However, you would then change the theoretical assumptions here. So, you see that statistical models are not autonomous but always have a theoretical reference point!
 {{% /tab %}}
 {{% /tabs %}}
@@ -53,7 +53,7 @@ In R, we use the function `lm()` to calculate a **linear regression model**. It 
 
 We store the result of the model calculation in an object! In the `lm()` function, you specify the formula of the linear regression in the first argument and the data object in the second argument, in this case, `pss`. The dataset is available in the `data` folder in the RStudio project. If you are working with a local version, you can download the dataset here:
 
-{{%attachments style="grey" title="Dataset" /%}}
+{{%attachments style=\"grey\" title=\"Dataset\" /%}}
 
 
 ```{r linreg1, eval=TRUE}
@@ -134,19 +134,19 @@ The equation is:
 
 $$R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{explained \, variance}{total \, variance}$$
 
-![$R^2$](../img/r2.png)
+![$R^2$](../img/r2.en.png)
 
 The graph illustrates the formula again: the explained variance is the sum of squared distances between estimated value and the mean. The total variance is the sum of squared distances between observed value and the mean.
 
 {{% tabs %}}
-{{% tab name="Question" %}}
+{{% tab name=\"Question\" %}}
 
 How do we now describe the result? $R^2$ is given in the penultimate line.
 ```{r linreg7, eval=TRUE}
 summary(olsModel)
 ```
 {{% /tab %}}
-{{% tab name="Solution" %}}
+{{% tab name=\"Solution\" %}}
 
 The model explains $45.85\%$ of the variance in satisfaction with democracy (`stfdem`) ($R^2$). Higher satisfaction with economic performance (`stfeco`) is positively associated with satisfaction with democracy (`stfdem`). For every one-unit increase in satisfaction with economic performance, the value of satisfaction with democracy increases by $0.87271$. The effect of `stfeco` on `stfdem` is significant ($p<0.001$).
 {{% /tab %}}

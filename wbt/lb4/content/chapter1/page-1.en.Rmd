@@ -66,7 +66,7 @@ What could our theoretical assumption be for this?
 
 We can test a linear relationship using a **scatterplot**. We will learn how to create this in the final learning block!
 
-![Linear Relationship](../img/reg1.png)
+![Linear Relationship](../img/reg1.en.png)
 
 ## Basic Mathematics
 In our example, we first calculate a bivariate linear regression:
@@ -93,7 +93,7 @@ $Y$ is the dependent variable, $X$ is the independent variable, and $\varepsilon
 
 2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ means that these errors are normally distributed. Some residuals are positive, others negative. In total, they have a mean of $0$ and a variance of $\sigma^2$.
 
-![Residuals in Regression](../img/reg4.png)
+![Residuals in Regression](../img/reg4.en.png)
 {{% /tab %}}
 {{% /tabs %}}
 

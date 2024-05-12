@@ -53,7 +53,7 @@ No R, usamos a função `lm()` para calcular um **modelo de regressão linear**.
 
 Nós armazenamos o resultado do cálculo do modelo em um objeto! No argumento da função `lm()`, você fornece a fórmula da regressão linear como primeiro argumento e o objeto de dados como segundo argumento, neste caso `pss`. O conjunto de dados está disponível no projeto do RStudio na pasta `data`. Se estiver trabalhando com uma versão local, você pode baixar o conjunto de dados aqui:
 
-{{%attachments style="grey" title="Conjunto de Dados" /%}}
+{{%attachments style=\"grey\" title=\"Conjunto de Dados\" /%}}
 
 
 ```{r linreg1, eval=TRUE}
@@ -134,19 +134,19 @@ A equação é a seguinte:
 
 $$R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{variância \, explicada}{variância \, total}$$
 
-![$R^2$](../img/r2.png)
+![$R^2$](../img/r2.pt.png)
 
 O gráfico representa a fórmula novamente: a variância explicada é a soma dos quadrados das distâncias entre o valor estimado e a média. A variância total é a soma dos quadrados das distâncias entre o valor observado e a média.
 
 {{% tabs %}}
-{{% tab name="Pergunta" %}}
+{{% tab name=\"Pergunta\" %}}
 
 Como descrevemos agora o resultado? $R^2$ é fornecido na penúltima linha.
 ```{r linreg7, eval=TRUE}
 summary(olsModel)
 ```
 {{% /tab %}}
-{{% tab name="Resolução" %}}
+{{% tab name=\"Resolução\" %}}
 
 O modelo explica $45.85 %$ da variância da satisfação com a democracia (`stfdem`) ($R^2$). Uma maior satisfação com o desempenho econômico (`stfeco`) está positivamente relacionada com a satisfação com a democracia (`stfdem`). Para cada aumento de uma unidade na satisfação com o desempenho econômico, o valor da satisfação com a democracia aumenta em $0.87271$. O efeito de `stfeco` em `stfdem` é significativo ($p<0.001$). 
 {{% /tab %}}

@@ -3,6 +3,7 @@ title: "Multivariate lin. Regression with polytomous categorical variables"  # P
 weight: 105  # Custom weight
 menuTitle: "Polychotomous Categorical Variables" # Short title if the title is too long
 tags: ["regression", "categorical", "polytomous"]  # Tags: brief description of the content
+---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(

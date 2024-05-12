@@ -66,7 +66,7 @@ Qual poderia ser nossa suposição teórica para isso?
 
 Podemos testar uma relação linear por meio de um **gráfico de dispersão**. Como fazer isso, aprenderemos no último bloco de aprendizado!
 
-![Relação Linear](../img/reg1.png)
+![Relação Linear](../img/reg1.pt.png)
 
 ## Matemática Básica
 Em nosso exemplo, primeiro calculamos uma regressão linear bivariada:
@@ -93,7 +93,7 @@ $Y$ é a variável dependente, $X$ é a variável independente e $\varepsilon$ r
 
 2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ significa que esses erros são distribuídos normalmente. Algumas distâncias são positivas, outras negativas. No entanto, no total, elas têm média de $0$ e variância de $\sigma^2$.
 
-![Resíduo na Regressão](../img/reg4.png)
+![Resíduo na Regressão](../img/reg4.pt.png)
 {{% /tab %}}
 {{% /tabs %}}
 

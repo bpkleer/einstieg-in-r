@@ -47,8 +47,6 @@ Variáveis não padronizadas também fornecem coeficientes de regressão não pa
 
 Em alguns modelos (geralmente mais complexos), queremos avaliar a magnitude das variáveis independentes individualmente. Como as variáveis não têm a mesma unidade, como explicado acima, isso não é tão simples. No entanto, podemos padronizar as variáveis para que todas tenham a mesma unidade (desvios padrão). Para isso, é melhor usar a função `scale()` do **tidyverse** (`dplyr`). Em modelos de regressão mais complexos ou modelos avançados (como *Modelos Multinível*), as variáveis geralmente são padronizadas antes do cálculo do modelo. 
 
-{ /* examples */ }
-
 Vamos agora fazer esse passo para as variáveis no `olsModel2`:
 ```{r scale, eval=TRUE}
 pss <- pss %>% 

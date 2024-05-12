@@ -47,8 +47,6 @@ Often in publications, you not only see regression tables but also plots of indi
 ## Exporting Models to Text Files
 There are various **libraries** that allow you to export results from R regression models into different file formats (e.g., as a *txt* file, as an image file, or as a *tex* file for $\LaTeX$). In this section, we will focus on the `modelsummary` **library**, which makes it easier to export models from R in a visually appealing way to different file formats. If you are interested in alternative **libraries**, here are two options: [`texreg`](https://github.com/leifeld/texreg) and [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) are also available. 
 
-{ /* examples */ }
-
 We cannot simply copy and paste tables or results from the console into a text document. However, the **library** `modelsummary` allows for the export of regression tables in various formats that can be used in Word or $LaTeX$.
 
 First, you need to install the **library**. This time, we add a second argument: `dependencies = TRUE`. This indicates that all **libraries** needed by `modelsummary` and not yet installed should be automatically installed.

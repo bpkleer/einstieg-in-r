@@ -43,7 +43,7 @@ In social sciences, we often use variables with nominal or ordinal scale levels.
 
 We want to include the variable `gndr` in our model (*female*/*male*). What theoretical assumption can we make about the effect?
 
-{{% expand "What do we equalize in the regression equation?" %}}
+{{% expand \"What do we equalize in the regression equation?\" %}}
 
 $$Y = \beta_0 + \beta_1*X_1 + \beta_2*X_2 + \beta_3*X_3+ e$$
 
@@ -70,29 +70,29 @@ summary(olsModel3)
 ```
 
 {{% tabs %}}
-{{% tab name="Question" %}}
+{{% tab name=\"Question\" %}}
 What is the reference category?
 
 What effect are we calculating with the variable `gndrmale`?
 
 {{% /tab %}}
-{{% tab name="Solution" %}}
+{{% tab name=\"Solution\" %}}
 The reference category is *female*, meaning female respondents.
 
 The additional effect is calculated for individuals who are male (compared to female individuals). Therefore, male individuals have a satisfaction level $-0.08020$ lower than female individuals.
 {{% /tab %}}
-{{% tab name="Interpreting the Model" %}}
+{{% tab name=\"Interpreting the Model\" %}}
 How do we interpret the model?
 
 Write a few lines in the script!
 {{% /tab %}}
-{{% tab name="Sample Solution" %}}
+{{% tab name=\"Sample Solution\" %}}
 
 The model explains $45.98 %$ of the variance in the variable `stfdem`. Satisfaction with economic performance (`stfeco`) and trust in the legal system (`trstlgl`) have a significant effect on satisfaction with democracy (`stfdem`). The effect of `stfeco` is positive ($\beta_1 = 0.87435$), the effect of trust in the legal system ($\beta_2 = -0.04137$), and the effect for male individuals ($\beta_3 = -0.08020$) are both negative. Individuals with higher trust or who are male have slightly lower satisfaction.
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% expand "If you compare the formula above with the task again, something should catch your attention! What needs to be changed in the formula to actually fit the regression model?" %}}
+{{% expand \"If you compare the formula above with the task again, something should catch your attention! What needs to be changed in the formula to actually fit the regression model?\" %}}
 In the equation above, the variable gender (`gndr`) is listed. However, we actually add a variable `gndrmale`, which indicates in category `1` that the person is male and in category `0` that the person is not male (so in this dichotomous example, *female*).
 
 The formula would therefore be correct as follows:

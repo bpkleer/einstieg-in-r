@@ -127,7 +127,7 @@ pss2$hats <- hatvalues(olsModel2)
 pss2$cooksd <- cooks.distance(olsModel2)  
 ```
 
-Tudo o que segue requer um entendimento mais profundo, especialmente o entendimento de loops e condições *if* do [Bloco de Aprendizagem 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **Mas** como mencionado, este capítulo é adicional e não fará parte do exercício de laboratório obrigatório.
+Tudo o que segue requer um entendimento mais profundo, especialmente o entendimento de loops e condições *if*. **Mas** como mencionado, este capítulo é adicional e não fará parte do exercício de laboratório obrigatório.
 
 Agora, para excluir os casos potencialmente influentes, precisamos de um indicador que nos mostre se o caso é influente de acordo com os critérios ($1$) ou não ($0$): No loop, primeiro verificamos se o valor do caso está acima do limite. Se sim, atribuímos o valor 1 para a variável `leverage` ou para Cook's D a variável `influence`.
 ```{r loop, eval=TRUE}
@@ -222,5 +222,3 @@ allInfluential
 Em seguida, você pode examinar mais de perto os pares de valores nas variáveis da regressão por caso!
 
 Isso conclui a diagnóstico de regressão. Com os seis passos, você pode garantir que sua análise de regressão não esteja distorcida devido a uma violação de pressupostos.
-
-Please provide the Markdown content you would like me to translate into Brazilian Portuguese.

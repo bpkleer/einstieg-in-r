@@ -40,9 +40,9 @@ olsModel2 <- lm(
 
 **Autocorrelation** indicates temporal relationships (non-linear relationship) or the absence of variables in the model.
 
-![](../img/autocorr_pos.png)
+![](../img/autocorr_pos.en.png)
 
-![](../img/autocorr_neg.png)
+![](../img/autocorr_neg.en.png)
 
 There are four ways to test for **autocorrelation**:
 
