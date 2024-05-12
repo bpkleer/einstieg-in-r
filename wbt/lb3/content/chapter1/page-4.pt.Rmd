@@ -61,7 +61,7 @@ Para calcular o **$\rho$ de Spearman**, por outro lado, apenas as seguintes cond
 ## Relações Lineares e Não Lineares
 Na figura, são apresentados quatro exemplos que dariam quase os mesmos valores estatísticos (*Quarteto de Anscombe*).
 
-![Linearidade e Não Linearidade](../img/linearity.png)
+![Linearidade e Não Linearidade](../img/linearity.pt.png)
 
 O Campo A mostra uma relação linear e monótona entre duas variáveis. Neste caso, a aplicação do cálculo do **r de Pearson** seria apropriada. O Campo B mostra uma relação monótona, mas não linear. Neste caso, o **$\rho$ de Spearman** pode ser calculado. O Campo C mostra como um valor atípico pode alterar a estrutura da relação e, aqui, ambos os coeficientes de correlação dariam um valor distorcido. O Campo D mostra uma relação não linear e não monótona.
 

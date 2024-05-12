@@ -42,8 +42,6 @@ Neste ponto, você aprenderá duas maneiras de criar essas representações: uma
 ## Biblioteca `psych`
 A **biblioteca** `psych` oferece a função `pairs.panels()`, que é uma ótima maneira de representar graficamente as correlações e a associação entre variáveis. Na função, você fornece o conjunto de dados ou as variáveis que deseja usar. Em seguida, você especifica o método de correlação (`pearson` ou `spearman`). Como os dados são pseudométricos aqui, é útil usar o argumento `jiggle = TRUE` para evitar que os pontos de dados se sobreponham. Com o argumento adicional `stars = TRUE`, os asteriscos de significância convencionais são exibidos. 
 
-{ /* examples */ }
-
 Dazu inclui a função `pairs.panels()` da **biblioteca** `psych`.
 ```{r pairs-panels, eval=FALSE}
 pairs.panels(
@@ -60,7 +58,7 @@ pairs.panels(
 )               
 ```
 A representação gráfica é a seguinte: No terço superior estão os coeficientes de correlação, na diagonal a distribuição univariada de cada variável e no terço inferior a distribuição bivariada do par de variáveis.
-![Painel de Pares](../img/pairspanels.png)
+![Painel de Pares](../img/pairspanels.pt.png)
 
 Infelizmente, a função não é tão fácil de adaptar e expandir como os `ggplots`, que aprenderemos mais tarde no bloco de aprendizado 5. Lá você também aprenderá uma variante de `ggplot` para criar Painéis de Pares.
 
@@ -69,7 +67,7 @@ Outra forma de representar várias correlações é através de um **Mapa de Cal
 
 Um **Mapa de Calor** mostra a força da relação através da escolha de cores.
 
-![Mapa de Calor](../img/corrplot.png)
+![Mapa de Calor](../img/corrplot.pt.png)
 
 Primeiro, carregue o *pacote* `corrplot`:
 ```{r corrplot1, eval=FALSE}
@@ -110,6 +108,6 @@ corrplot(
 )    
 ```
 
-![Mapa de Calor](../img/corrplot.png)
+![Mapa de Calor](../img/corrplot.pt.png)
 
 A **biblioteca** `corrplot` oferece uma série de outras configurações, que você pode ver [aqui](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html). Vamos nos aprofundar em gráficos no quinto bloco de aprendizado.

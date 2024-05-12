@@ -47,7 +47,7 @@ To perform the test, two assumptions need to be checked:
 
 1. Equality of variances (Levene's Test)
 
-2. Normal distribution of the metric variable (uV)
+2. Normal distribution of the metric variable (iv)
 
 The second assumption only needs to be tested if $n < 30$. In situations with $n > 30$, the test provides asymptotically correct results. 
 
@@ -69,7 +69,7 @@ How is the test interpreted?
 
 The null hypothesis of the test ($H_0$) states that both groups in the metric variable have equal variances. A p-value below $0.05$ requires rejecting the null hypothesis, indicating unequal variances. You must specify this property in the test calculation.
 
-{{% expand "What does the test indicate in this case?" %}}
+{{% expand \"What does the test indicate in this case?\" %}}
 Correct, in this case, homogeneity of variances can be assumed since the p-value is $>0.05$.
 {{% /expand %}}
 
@@ -127,10 +127,10 @@ t.test(
 ```
 
 {{% tabs %}}
-{{% tab name="Question" %}}
+{{% tab name=\"Question\" %}}
 How do you interpret the result? What is the difference?
 {{% /tab %}}
-{{% tab name="Solution" %}}
+{{% tab name=\"Solution\" %}}
 It can be seen that on average, individuals with lower education (*mean of x*) work more hours than individuals with higher education (*mean of y*). The effect is significant, and the difference is $5.62773$ hours.
 {{% /tab %}}
 {{% /tabs %}}

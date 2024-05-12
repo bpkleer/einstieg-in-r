@@ -61,7 +61,7 @@ For the calculation of **Spearman's $\rho$**, only the following conditions need
 ## Linear and Non-linear Relationships
 The figure presents four examples that would all yield nearly identical statistical measures (*Anscombe's quartet*).
 
-![Linearity and Non-linearity](../img/linearity.png)
+![Linearity and Non-linearity](../img/linearity.en.png)
 
 Panel A shows a linear and monotonic relationship between two variables. In this case, calculating **Pearson's r** would be appropriate. Panel B, although showing a monotonic relationship, is not linear. In this case, **Spearman's $\rho$** can be calculated. Panel C demonstrates how an outlier can alter the relationship structure, leading both correlation measures to provide a biased value. Panel D shows a non-linear and non-monotonic relationship. 
 
@@ -128,7 +128,7 @@ cor(
 )      
 ```
 
-The output shows a correlation coefficient of $r \approx 0.232. In this output, there is no p-value included, and you cannot make a statement about significance.
+The output shows a correlation coefficient of $r \approx 0.232$. In this output, there is no p-value included, and you cannot make a statement about significance.
 
 ### Calculating the coefficient with the **library** `psych`
 With the *library* `psych`, you can use the function `corr.test()`, which also provides the significance test:
@@ -150,7 +150,7 @@ This test generates three matrices (correlation matrix, sample size matrix, p-va
 
 The additional information needed for the p-value is found at the last position. Here, a p-value of $0$ is present.
 
-{{% expand "What does the p-value at this point mean?" %}}
+{{% expand \"What does the p-value at this point mean?\" %}}
 The p-value is less than $0.05$, indicating a statistically significant relationship between trust in parliament and trust in politicians. However, this relationship is weak ($r=0.23$).
 {{% /expand %}}
 
@@ -188,7 +188,7 @@ corr.test(
 
 Both outputs show a correlation matrix. The variable names are given in the columns and rows. The diagonal is always $1$ because the relationship between the variable and itself is $1$ (perfect!).
 
-{{% expand "Example! What is the correlation coefficient for the relationship between trstplt and trstprt?" %}}
+{{% expand \"Example! What is the correlation coefficient for the relationship between trstplt and trstprt?\" %}}
 The correlation coefficient is $r = 0.40$, indicating a moderate relationship between the two variables.
 {{% /expand %}}
 

@@ -42,8 +42,6 @@ Here, you will learn two ways to create such visualizations: once using the **li
 ## Library `psych`
 The **library** `psych` provides a useful function, `pairs.panels()`, to graphically represent correlations and the relationships between variables. In this function, you specify the dataset or the variables you want to use as before. Then, you indicate the correlation method (`pearson` or `spearman`). Since pseudo-metric data is involved here, it is advisable to use the argument `jiggle = TRUE` to prevent data points from overlapping. Additionally, setting `stars = TRUE` will display the conventional significance stars. 
 
-{ /* examples */ }
-
 The function `pairs.panels()` from the **library** `psych` is part of it.
 ```{r pairs-panels, eval=FALSE}
 pairs.panels(
@@ -60,7 +58,7 @@ pairs.panels(
 )               
 ```
 The whole thing looks graphically like this: The correlation coefficients are in the upper third, the univariate distribution of each variable is in the diagonal, and the bivariate distribution of the pair of variables is in the lower third.
-![Pairs Panel](../img/pairspanels.png)
+![Pairs Panel](../img/pairspanels.en.png)
 
 Unfortunately, the function is not as easy to adapt and expand as `ggplots`, which we will learn about later in learning block 5. There you will also learn about a `ggplot` variant to create Pairs Panels.
 
@@ -69,7 +67,7 @@ Another way to visualize multiple correlations is a so-called **Heat Map**. To c
 
 A **Heat Map** shows the strength of the relationship through the choice of colors.
 
-![Heat Map](../img/corrplot.png)
+![Heat Map](../img/corrplot.en.png)
 
 First, load the *package* `corrplot`:
 ```{r corrplot1, eval=FALSE}
@@ -110,6 +108,6 @@ corrplot(
 )    
 ```
 
-![Heat Map](../img/corrplot.png)
+![Heat Map](../img/corrplot.en.png)
 
 The **library** `corrplot` offers you a range of additional settings, which you can view [here](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html). We will delve deeper into graphics in the fifth learning block.

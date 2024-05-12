@@ -66,7 +66,7 @@ chi2 <- chisq.test(
 chi2
 ```
 
-{{% expand "How do we interpret this test?" %}}
+{{% expand \"How do we interpret this test?\" %}}
 First, look at the p-value. In this example, $p = 0.1674$, which is greater than $0.05$. This means that there is no significant test value, and the null hypothesis can be retained.
 
 From this, we can conclude that the variables are statistically independent.
@@ -128,5 +128,3 @@ The following boundaries apply for interpreting the value:
 | $0.6$         | $1$           | strong            |
 
 If not only the strength of the association should be interpreted but also the direction of the relationship, a correlation must be calculated. 
-
-{/*examples*/}

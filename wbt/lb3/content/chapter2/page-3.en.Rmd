@@ -52,7 +52,7 @@ leveneTest(
 )
 ```
 
-{{% expand "How do you interpret the result?" %}}
+{{% expand \"How do you interpret the result?\" %}}
 There are no significant differences between any pair of groups, hence homogeneity of variances is assumed.
 
 $H_0$: All groups have the same variance in the metric variable.
@@ -76,7 +76,7 @@ pairwise.t.test(
 ```
 In the test result, you will see a matrix between the groups, where the p-values for the comparison of two groups are entered.
 
-{{% expand "So, between which groups can significant differences be observed?" %}}
+{{% expand \"So, between which groups can significant differences be observed?\" %}}
 Correct, between all groups!
 {{% /expand %}}
 

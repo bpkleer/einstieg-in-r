@@ -130,10 +130,10 @@ t.test(
 ```
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
+{{% tab name=\"Pergunta\" %}}
 Como você interpreta o resultado? Qual é a diferença?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
+{{% tab name=\"Resposta\" %}}
 É possível observar que, em média, pessoas com menor nível de educação (*média de x*) trabalham mais do que pessoas com maior nível de educação (*média de y*). O efeito é significativo e a diferença é de $5.62773$ horas. 
 {{% /tab %}}
 {{% /tabs %}}

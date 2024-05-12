@@ -112,5 +112,3 @@ t.test(
 ```
 
 Let's move on to the t-test for two samples! 
-
-{/*examples*/}
