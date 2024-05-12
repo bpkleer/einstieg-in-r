@@ -1,5 +1,4 @@
 baseURL = "https://ilias.uni-giessen.de/data/JLUG/lm_data/lm_746772/lb1/"
-languageCode = "de-DE"
 defaultContentLanguage = "de"
 defaultContentLanguageInSubdir = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -28,16 +27,19 @@ home = [ "HTML", "RSS", "JSON"]
 [Languages.de]
 title = "Einstieg in R leicht gemacht"
 weight = 1
+languageCode = "de-DE"
 languageName = "Deutsch"
 
 [Languages.en]
 title = "Make the start with R easy"
 weight = 2
+languageCode = "en-US"
 languageName = "English"
 
 [Languages.pt]
 title = "Começar a utilizar o R de forma simples"
 weight = 3
+languageCode = "pt-BR"
 languageName = "Português"
 
 [[Languages.de.menu.shortcuts]]
