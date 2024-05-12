@@ -73,7 +73,7 @@ var(
 )
 ```
 
-{{% expand "Como você poderia chegar à variância a partir do desvio padrão de forma alternativa?" %}}
+{{% expand \"Como você poderia chegar à variância a partir do desvio padrão de forma alternativa?\" %}}
 Você sabe que o desvio padrão é apenas a raiz quadrada da variância. Portanto, para chegar à variância a partir do desvio padrão, basta elevar ao quadrado. Isso pode ser implementado como um cálculo simples:
 
 ```{R}

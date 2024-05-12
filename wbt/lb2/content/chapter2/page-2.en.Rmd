@@ -3,6 +3,7 @@ title: "Measures of Central Tendency"  { /*examples*/ }
 weight: 202  
 menuTitle: "Measures of Central Tendency" 
 tags: ["descriptive", "measures of central tendency"]  
+---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -136,11 +137,11 @@ quantile(
 ```
 
 ### Test
-{{% tabs groupId="tab2" %}}
-{{% tab name="Question" %}}
+{{% tabs groupId=\"tab2\" %}}
+{{% tab name=\"Question\" %}}
 What needs to be changed to output quintiles?
 {{% /tab %}}
-{{% tab name="Resolution" %}}
+{{% tab name=\"Resolution\" %}}
 To achieve quintiles, we go in steps of $0.2$, resulting in five values from $0$ to $1$.
 
 ```{r eval=FALSE}

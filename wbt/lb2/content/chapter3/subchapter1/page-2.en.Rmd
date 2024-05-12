@@ -160,5 +160,3 @@ meansDistriktEdu
 ```
 
 Let's take a step back and see how we can divide datasets. This is relevant, especially when working with secondary datasets, as they are sometimes collected for more individuals than needed for one's research purposes.
-
-Please provide the Markdown content you would like me to translate.

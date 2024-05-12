@@ -47,7 +47,7 @@ You got it right! In a data table, the variables are represented in the columns 
 
 If you take a closer look at the variable `stfdem` now, you will see that only numerical values are entered there. Even for the code values `0` and `10`, the value labels from the PDF are not used, but the code value! **This is an important insight.** Because only when numerical values are used for all variations, the variable can be used as a metric scale level and stored in a *numeric* or *integer* vector. Because: All statistical calculations require *numeric* or *integer* vectors, as standard deviation cannot be calculated with letters.
 
-{{% expand "In which income target is the person with ID number 10020 located?" %}}
+{{% expand \"In which income target is the person with ID number 10020 located?\" %}}
 In the 7th decile, correct! So, the cells of the data table contain the corresponding values of a surveyed person for the respective variable.
 
 Great, you can now understand a data table or a **data frame** structure!
@@ -55,12 +55,12 @@ Great, you can now understand a data table or a **data frame** structure!
 
 You have now understood how a data table is structured, what is contained in the rows, columns, and cells. In R, these data tables are stored as objects of type **data frame**.
 
-![Example data frame in the Environment](../img/df1.png)
+![Example data frame in the Environment](../img/df1.en.png)
 
 In the **Environment**, you can see that this falls under the group **data**. You also see that the object is *expandable*. If you click the arrow button, all variables (each with a `$` in front) that are summarized in this new object will appear. It is easy to understand that a **data frame** is simply the summary of all variables (or vectors in R) of a survey.
 
 You can open the data view with a double-click. This is simply the data table as discussed above. The variables are in the columns and the cases are in the rows (except the first row!).
 
-![Example Data View in R](../img/df3.png)
+![Example Data View in R](../img/df3.en.png)
 
 But how do you handle a dataset in R?

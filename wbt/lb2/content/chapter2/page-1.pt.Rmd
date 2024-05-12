@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   warnings = FALSE # warnings werden nicht angezeigt
 )
 
-pss <- readRDS("./data/pss.rds")   
+pss <- readRDS("/../../files/data/pss.rds")   
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -55,8 +55,8 @@ head(pss)
 No conjunto de dados **PSS**, existem várias variáveis. Há um livro de códigos para o conjunto de dados, que está armazenado no RStudio Cloud ou pode ser baixado através do link acima. 
 Pense brevemente sobre as seguintes variáveis, qual nível de escala elas possuem e qual tipo de dado em R seria adequado para elas.
 
-{{% tabs groupId="tab2" %}}
-{{% tab name="Variáveis no conjunto de dados" %}}
+{{% tabs groupId=\"tab2\" %}}
+{{% tab name=\"Variáveis no conjunto de dados\" %}}
 Variáveis no conjunto de dados `pss`:
 
 - `wkhtot`
@@ -68,7 +68,7 @@ Variáveis no conjunto de dados `pss`:
 - `trstprl`
 
 {{% /tab %}}
-{{% tab name="Resolução" %}}
+{{% tab name=\"Resolução\" %}}
 As variáveis têm os seguintes níveis de escala:
 
 - `wkhtot`: métrica
@@ -80,7 +80,8 @@ As variáveis têm os seguintes níveis de escala:
 - `trstprl`: (pseudo-)métrica / ordinal
 
 {{% /tab %}}
-{{% tab name="Tipo de dados no R" %}}
+{{% tab name=\"Tipo de dados no R\" %}}
+```
 
 str(pss$wkhtot)
 
@@ -102,7 +103,7 @@ Para exibir o comprimento de um vetor, utiliza-se a função `length()`. Esta fu
 length(pss$edu)
 ```
 
-{{% expand "Podemos inferir o comprimento dos outros vetores, ou precisamos exibi-los novamente?" %}}
+{{% expand \"Podemos inferir o comprimento dos outros vetores, ou precisamos exibi-los novamente?\" %}}
 Em um conjunto de dados ou **data frame**, todos os vetores têm o mesmo comprimento (pois é uma tabela!). Isso significa que, a partir do comprimento de um vetor, podemos inferir o comprimento de todos os vetores. **No entanto:** isso não significa que todas as variáveis tenham o mesmo número de respostas válidas, pois podem existir `NA's` (*valores ausentes*).
 {{% /expand %}}
 

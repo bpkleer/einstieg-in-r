@@ -13,8 +13,8 @@ knitr::opts_chunk$set(
   warnings = FALSE # warnings werden nicht angezeigt
 )
 
-exam <- readRDS("../data/exam.rds")   
-load("../data/exam.RData")
+exam <- readRDS("./files/data/exam.rds")   
+load("./files/data/exam.RData")
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -54,7 +54,7 @@ exam <- readRDS("./data/exam.rds")
 
 Wir könnten auch ein gesamtes Environment laden. Dies können zum Beispiel alle Objekte einer Session sein, also das, was wir bis gerade gemacht haben. Diese Art von Daten ist im Format `.RData` gespeichert und wir nutzen einfach die Funktion `load()`.
 
-```{r import-rdata, eval-FALSE}
+```{r import-rdata, eval=FALSE}
 # alternativ gesamter Workspace
 load("./data/exam.RData")
 ```

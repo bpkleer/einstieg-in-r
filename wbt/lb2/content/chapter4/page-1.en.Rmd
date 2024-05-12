@@ -3,6 +3,7 @@ title: "If Condition"  # Page title
 weight: 401  # Custom weight 
 menuTitle: "" # Short title if the title is too long
 tags: ["if-condition"]  # Tags to describe the content of the page
+---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 

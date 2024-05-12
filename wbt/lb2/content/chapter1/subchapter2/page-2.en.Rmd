@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 
 exam <- read.table(
-  "../data/exam.txt", 
+  "./data/exam.txt", 
   sep = "\t",                        
   header = TRUE
 )   
@@ -41,12 +41,10 @@ First, we will import global dataset file formats. These are `.txt` and `.csv`. 
 
 A `.txt` file is a plain text file where data is separated by a tab (see screenshot). Here, too, the convention is that variables are entered in the columns and cases in the rows. Typically, the first row does not represent a case but contains, as in the example, the variable names.
 
-![Example .txt File](../img/txt.png)
+![Example .txt File](../img/txt.en.png)
 In the example, we have a dataset with four variables: `age`, `duration`, `grade`, and `exam`. 
 
-{ /* examples */ }
-
-{{% expand "Take a moment to think about what the variables could mean." %}}
+{{% expand \"Take a moment to think about what the variables could mean.\" %}}
 Researchers typically try to name variables as clearly as possible. **age** contains the age of the respondents, **duration** the time it took the person to complete the exam, **grade** the grade the person received in the respective exam, and **exam** indicates which exam it is. 
 {{% /expand %}}
 
@@ -63,8 +61,6 @@ Let's give it a try.
 ```
 
 Now we want to import the data into R so that we can work with it. The datasets are already stored in the `data` folder. It's best to name dataset objects in a way that intuitively indicates what data they contain. Within the import function (`read.table()`), you simply provide the full path to the file. Since the first line in the file contains the variable names, we specify `header = TRUE` in the last argument to indicate that the variable names are there. The argument `sep = "\t"` simply specifies that the delimiter for the data is a tab.
-
-```
 
 We have now imported the data and created a new **data frame** named `exam`! This is now visible in the **Environment**.
 
@@ -119,9 +115,9 @@ examcsv2 <- read.csv2(
 
 Here you can see a screenshot of the two imported datasets using the different functions.
 
-![exam with read.csv()](../img/examcsv.png)
+![exam with read.csv()](../img/examcsv.en.png)
 
-![exam with read.csv2()](../img/examcsv2.png)
+![exam with read.csv2()](../img/examcsv2.en.png)
 
 {{% expand \"Take a look at the screenshots and briefly consider (with the knowledge above) why they are imported differently.\" %}}
 It is due to the delimiter of the data. The function **read.csv()** reads the data correctly in my case because I have an English format and the data in the file is separated by a comma. The function **read.csv2()** assumes a German format as default and therefore expects a semicolon as the data delimiter. Since it does not find this, it simply ends in each line and writes only one variable including all the data with the comma delimiter.

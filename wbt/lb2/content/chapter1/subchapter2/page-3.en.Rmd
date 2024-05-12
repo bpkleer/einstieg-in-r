@@ -3,6 +3,7 @@ title: "Importing .RData and .rds"  # Page title
 weight: 123  # Custom weight
 menuTitle: "R-Import" # Short title if necessary
 tags: [".RData", "file", ".rds", "import"]  # Tags: brief description of page content
+---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -12,8 +13,8 @@ knitr::opts_chunk$set(
   warnings = FALSE # warnings werden nicht angezeigt
 )
 
-exam <- readRDS("../data/exam.rds")   
-load("../data/exam.RData")
+exam <- readRDS("./files/data/exam.rds")   
+load("./files/data/exam.RData")
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -53,7 +54,7 @@ exam <- readRDS("./data/exam.rds")
 
 We could also load an entire environment. This could be, for example, all objects of a session, so what we have just done. This type of data is saved in the `.RData` format and we simply use the `load()` function.
 
-```{r import-rdata, eval-FALSE}
+```{r import-rdata, eval=FALSE}
 # alternatively entire workspace
 load("./data/exam.RData")
 ```

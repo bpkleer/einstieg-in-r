@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 
 exam <- read.table(
-  "../data/exam.txt", 
+  "./data/exam.txt", 
   sep = "\t",                        
   header = TRUE
 )   
@@ -41,7 +41,7 @@ Primeiramente, vamos importar formatos de arquivo de conjunto de dados globais. 
 
 Um arquivo `.txt` é um arquivo de texto puro onde os dados são separados por tabulação (veja a captura de tela). Aqui também, o formato segue a convenção de ter as variáveis nas colunas e os casos nas linhas. Geralmente, a primeira linha não representa um caso, mas contém, como no exemplo, os nomes das variáveis.
 
-![Exemplo de arquivo .txt](../img/txt.png)
+![Exemplo de arquivo .txt](../img/txt.pt.png)
 No exemplo, temos um conjunto de dados com quatro variáveis: `idade`, `duração`, `nota` e `exame`.
 
 {{% expand \"Pense por um momento no que as variáveis poderiam significar?\" %}}
@@ -62,8 +62,6 @@ Vamos tentar.
 ```
 
 Agora queremos importar os dados para o R para poder trabalhar com eles. Os conjuntos de dados já estão salvos na pasta `data`. É melhor nomear os objetos de conjunto de dados de forma que seja intuitivo entender sobre quais dados estamos falando. Dentro da função de importação (`read.table()`), basta fornecer o caminho completo para o arquivo. Como a primeira linha do arquivo contém os nomes das variáveis, especificamos em `header = TRUE` que os nomes das variáveis estão lá. O argumento `sep = "\t"` indica que o separador de dados é uma tabulação.
-
-```
 
 Temos agora os dados importados e um novo **data frame** importado, chamado `exam`! Este está visível no **Environment** para você.
 
@@ -118,9 +116,9 @@ examcsv2 <- read.csv2(
 
 Aqui está uma captura de tela dos dois conjuntos de dados importados com as diferentes funções.
 
-![exam com read.csv()](../img/examcsv.png)
+![exam com read.csv()](../img/examcsv.pt.png)
 
-![exam com read.csv2()](../img/examcsv2.png)
+![exam com read.csv2()](../img/examcsv2.pt.png)
 
 {{% expand \"Veja as capturas de tela e pense um pouco (com o conhecimento acima), por que elas são importadas de forma diferente?\" %}}
 Isso se deve ao separador de dados. A função **read.csv()** lê os dados corretamente no meu caso, pois estou usando um formato em inglês e os dados no arquivo estão separados por vírgula. A função **read.csv2()** assume um formato em alemão como padrão e espera ponto e vírgula como separador de dados. Como não encontra isso, ele simplesmente termina em cada linha e escreve apenas uma variável, na qual os dados completos com o separador de vírgula são incluídos.

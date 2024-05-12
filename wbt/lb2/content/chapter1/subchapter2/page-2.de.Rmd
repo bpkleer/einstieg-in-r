@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 
 exam <- read.table(
-  "../data/exam.txt", 
+  "./data/exam.txt", 
   sep = "\t",                        
   header = TRUE
 )   

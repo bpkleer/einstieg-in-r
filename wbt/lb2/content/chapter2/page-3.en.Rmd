@@ -73,7 +73,7 @@ var(
 )
 ```
 
-{{% expand "How could you alternatively derive the variance from the standard deviation?" %}}
+{{% expand \"How could you alternatively derive the variance from the standard deviation?\" %}}
 You know that the standard deviation is just the square root of the variance. So, to derive the variance from the standard deviation, you simply need to square it. This can be implemented as a simple calculation:
 
 ```{R}

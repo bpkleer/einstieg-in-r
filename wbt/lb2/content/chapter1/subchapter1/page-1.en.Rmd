@@ -3,6 +3,7 @@ title: "From Data Collection to Dataset"  # Page title
 weight: 111  # Custom weight
 menuTitle: "Data Collection" # Short title if necessary
 tags: ["data collection", "dataset"]  # Tags describing the content of the page
+---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
@@ -27,11 +28,9 @@ You can already find the dataset and the codebook for **PSS** in the RStudio pro
 
 You will also find a PDF named `from-survey-to-data.pdf` in the attachments. Download it and take a look! 
 
-{ /* examples */ }
-
 In the file is an excerpt of four questions (variables from the dataset) that were collected in this fictional dataset. **Tip:** In the codebook, you will get more detailed information about the type of measurement of each variable.
 
-{{% expand "Now take a moment to consider the scale level of each question (variable) and with what type of vector (numeric, integer, character, boolean) you would implement them in R." %}}
+{{% expand \"Now take a moment to consider the scale level of each question (variable) and with what type of vector (numeric, integer, character, boolean) you would implement them in R.\" %}}
 
 The ID question is at a nominal scale level, only differences between the manifestations can be identified. It is best to implement this with a *character* vector.
 

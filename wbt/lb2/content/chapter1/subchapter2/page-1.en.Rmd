@@ -33,13 +33,9 @@ In R, there are two important file formats: `.RData` and `.rds`. Files with the 
 
 Unfortunately, some publicly available datasets are only provided in an SPSS-compliant file format (`.sav`). However, this is not a problem because with the help of a **library**, we can add RStudio functions that can also read this file format. 
 
-{ /* examples */ }
-
 **What is a library, actually?**
 R is an *open-source language* where any user can write new functions and make them available to the world. During installation, only the *base* functions are installed, representing only a fraction of the application scope. This is one of its **strengths** compared to SPSS or Stata, as it allows for the inclusion of many use cases. However, it can also be overwhelming at first, as many people have encountered similar problems, resulting in more than one solution or more than one possible **library** that can be added. In this course, we will not provide a complete overview of various **libraries** for the same problem but will always introduce our preferred **library**. However, this should not deter you from searching for another **library** and finding the solution path through it.
 
 As of March 2022, the official **library** website lists 18,994 different **libraries** that contain additional functions to perform statistical applications. Additionally, there are numerous **libraries** in the development stage, which can usually already be used. However, this is more suitable for experienced users - like you after completing this course.
 
 Next, we will import different dataset file formats into R to work with them afterward. 
-
-{ /* examples */ }

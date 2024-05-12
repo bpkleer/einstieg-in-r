@@ -55,10 +55,8 @@ head(pss)
 In the **PSS** dataset, there are several variables available. There is a codebook for the dataset, which is stored in RStudio Cloud or can be downloaded via the link above. 
 Briefly consider the following variables, what scale level they exhibit, and which data type in R would be suitable for them. 
 
-{ /* examples */ }
-
-{{% tabs groupId="tab2" %}}
-{{% tab name="Variables in the Dataset" %}}
+{{% tabs groupId=\"tab2\" %}}
+{{% tab name=\"Variables in the Dataset\" %}}
 Variables in the dataset `pss`:
 
 - `wkhtot`
@@ -70,7 +68,7 @@ Variables in the dataset `pss`:
 - `trstprl`
 
 {{% /tab %}}
-{{% tab name="Resolution" %}}
+{{% tab name=\"Resolution\" %}}
 The variables have the following scale levels:
 
 - `wkhtot`: metric
@@ -82,7 +80,8 @@ The variables have the following scale levels:
 - `trstprl`: (pseudo-)metric / ordinal
 
 {{% /tab %}}
-{{% tab name="Data Type in R" %}}
+{{% tab name=\"Data Type in R\" %}}
+```
 
 str(pss$wkhtot)
 

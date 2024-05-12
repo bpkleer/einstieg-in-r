@@ -60,5 +60,3 @@ head(pssD1D12o30)
 {{% /tabs %}}
 
 Sometimes you may need to merge datasets that were collected separately. You can learn that on the next page. However, feel free to skip the next page if you don't find it relevant for you! 
-
-{ /* examples */ }

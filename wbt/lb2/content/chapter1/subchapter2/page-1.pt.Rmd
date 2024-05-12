@@ -33,8 +33,6 @@ No R, existem dois formatos de arquivo importantes: `.RData` e `.rds`. Arquivos 
 
 Infelizmente, ainda há casos em que conjuntos de dados disponíveis publicamente são fornecidos apenas em um formato de arquivo compatível com o SPSS (`.sav`). No entanto, isso não é um problema, pois com a ajuda de uma **biblioteca** podemos adicionar funções ao RStudio que podem ler esse formato de arquivo também. 
 
-{ /*examples*/ }
-
 **O que é uma biblioteca afinal?**
 R é uma *linguagem de código aberto*, na qual qualquer usuário pode escrever novas funções e disponibilizá-las para o mundo. Ao instalar, apenas as funções *básicas* são incluídas, representando apenas uma fração da gama de aplicações. Esta é uma das **fortalezas** em comparação com o SPSS ou Stata, pois muitos casos de uso podem ser incluídos. No entanto, isso também pode ser um grande desafio no início, pois muitas pessoas encontraram os mesmos problemas, resultando em mais de uma solução ou mais de uma possível **biblioteca** que pode ser adicionada. Neste curso, não forneceremos uma visão geral completa de diferentes **bibliotecas** para o mesmo problema, mas sempre apresentaremos apenas a **biblioteca** que preferimos. Isso não deve impedi-lo de procurar por outra **biblioteca** e encontrar a solução por meio dela.
 

@@ -160,5 +160,3 @@ meansDistriktEdu
 ```
 
 Agora vamos dar um passo para trás e ver como podemos dividir conjuntos de dados. Isso é relevante, por exemplo, ao trabalhar com conjuntos de dados secundários, pois às vezes eles foram coletados para mais pessoas do que o necessário para o propósito da pesquisa.
-
-Please paste the Markdown content you would like me to translate into Brazilian Portuguese.

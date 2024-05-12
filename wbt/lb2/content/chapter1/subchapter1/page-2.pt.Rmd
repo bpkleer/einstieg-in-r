@@ -3,6 +3,7 @@ title: "Conjunto de Dados em Data Frame"  # Título da página
 weight: 112  # Peso personalizado
 menuTitle: "Data Frame" # Título curto, se necessário
 tags: ["conjunto de dados", "data frame"]  # Tags: palavras-chave relacionadas à página
+---
 
 ```{r setup, include = FALSE}
 library("rmarkdown")
@@ -55,12 +56,12 @@ No 7º decil, correto! Portanto, as células da tabela de dados contêm os valor
 
 Agora que você entende como uma tabela de dados é estruturada, o que está nas linhas, colunas e células. No R, essas tabelas de dados são armazenadas como objetos do tipo **data frame**.
 
-![Exemplo de data frame no Environment](../img/df1.png)
+![Exemplo de data frame no Environment](../img/df1.pt.png)
 
 No **Environment**, você pode ver que isso está sob o grupo **data**. Você também pode ver que o objeto é *expansível*. Ao clicar na seta, todas as variáveis (cada uma com um `$` na frente) contidas nesse novo objeto são exibidas. Portanto, é fácil entender que um **data frame** é simplesmente a compilação de todas as variáveis (ou vetores no R) de uma pesquisa.
 
 Com um clique duplo, você pode abrir a visualização dos dados. Isso é simplesmente a tabela de dados, como discutido anteriormente. As variáveis estão nas colunas e os casos nas linhas (exceto a primeira linha!).
 
-![Exemplo de visualização de dados no R](../img/df3.png)
+![Exemplo de visualização de dados no R](../img/df3.pt.png)
 
 Mas como você manipula um conjunto de dados no R?
