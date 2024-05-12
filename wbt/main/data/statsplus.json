@@ -1,30 +1,30 @@
 [
   {
-    "name": ["Philipp Kleer"],
-    "email": ["philipp.kleer@posteo.com"],
+    "name": "Philipp Kleer",
+    "email": "philipp.kleer@posteo.com",
     "commits": 94,
-    "avatar_url": ["https://gitlab.com/uploads/-/system/user/avatar/8463659/avatar.png"],
-    "web_url": ["https://gitlab.com/bpkleer"]
+    "avatar_url": "https://gitlab.com/uploads/-/system/user/avatar/8463659/avatar.png",
+    "web_url": "https://gitlab.com/bpkleer"
   },
   {
-    "name": ["Meike Schulz-Narres"],
-    "email": ["meike.schulz-narres@sowi.uni-giessen.de"],
+    "name": "Meike Schulz-Narres",
+    "email": "meike.schulz-narres@sowi.uni-giessen.de",
     "commits": 71,
-    "avatar_url": ["https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png"],
-    "web_url": ["https://gitlab.ub.uni-giessen.de/J_E8E7E5F"]
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png",
+    "web_url": "https://gitlab.ub.uni-giessen.de/J_E8E7E5F"
   },
   {
-    "name": ["Leon Klemm"],
-    "email": ["leon.p.klemm@sowi.uni-giessen.de"],
+    "name": "Leon Klemm",
+    "email": "leon.p.klemm@sowi.uni-giessen.de",
     "commits": 27,
-    "avatar_url": ["https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png"],
-    "web_url": ["https://gitlab.ub.uni-giessen.de/g32013"]
+    "avatar_url": "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png",
+    "web_url": "https://gitlab.ub.uni-giessen.de/g32013"
   },
   {
-    "name": ["Johannes Keyser"],
-    "email": ["johannes.keyser@sport.uni-giessen.de"],
+    "name": "Johannes Keyser",
+    "email": "johannes.keyser@sport.uni-giessen.de",
     "commits": 1,
-    "avatar_url": ["https://secure.gravatar.com/avatar/63c96e9ea6de4f13cb10204f82494786c78bce9f041eac4ece17120510359fac?s=80&d=identicon"],
-    "web_url": [null]
+    "avatar_url": "https://secure.gravatar.com/avatar/63c96e9ea6de4f13cb10204f82494786c78bce9f041eac4ece17120510359fac?s=80&d=identicon",
+    "web_url": null
   }
 ]

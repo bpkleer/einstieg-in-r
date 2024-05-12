@@ -86,7 +86,8 @@ dfGroup <- dfGroup |>
 
 dfGroupjson <- toJSON(
   dfGroup, 
-  pretty = TRUE
+  pretty = TRUE,
+  auto_unbox = TRUE
 )
 
 # save file into data-folder
