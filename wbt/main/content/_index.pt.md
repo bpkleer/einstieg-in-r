@@ -10,15 +10,15 @@ O treinamento baseado na Web pode ser usado para autoaprendizagem ou como materi
 
 Aqui estão os links para os diferentes unidades: 
 
-[Unidade 1](./lb1/pt/index.html)  
+[Unidade 1](./lb1/pt/index.html): Introdução em R/RStudio e Git  
 
-[Unidade 2](./lb2/pt/index.html)  
+[Unidade 2](./lb2/pt/index.html): Descrição e transformações de dados
 
-[Unidade 3](./lb3/pt/index.html)  
+[Unidade 3](./lb3/pt/index.html): Análises bivariadas
 
-[Unidade 4](./lb4/pt/index.html)  
+[Unidade 4](./lb4/pt/index.html): Regressão linearia
 
-[Unidade 5](./lb5/pt/index.html) 
+[Unidade 5](./lb5/pt/index.html): Visualizações
 
 Você pode relatar erros diretamente para nós clicando neste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}. Para isso, você precisa registrar em GitLab. Você encontrará o botão em cada página.
 

@@ -11,15 +11,15 @@ The web-based training can be used by self-learners or in higher education teach
 
 Here are the links to the individual learning modules:
 
-[Study unit 1](./lb1/en/index.html)  
+[Study unit 1](./lb1/en/index.html): Introduction to R/RStudio and Git
 
-[Study unit 2](./lb2/en/index.html)  
+[Study unit 2](./lb2/en/index.html): Description and transformation of data
 
-[Study unit 3](./lb3/en/index.html) 
+[Study unit 3](./lb3/en/index.html): Bivariate analyses
 
-[Study unit 4](./lb4/en/index.html)  
+[Study unit 4](./lb4/en/index.html): Linear Regression
 
-[study unit 5](./lb5/en/index.html)  
+[study unit 5](./lb5/en/index.html): Visualizations  
 
 Via this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} you can directly address errors on that site. If you haven't yet a GitLab-account, you need to create one. 
 
