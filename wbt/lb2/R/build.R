@@ -76,7 +76,13 @@ for (i in 1:dim(newrepo)[1]) {
   }
 }
 
-dfGroup <- rbind(dfGroup, newrepo)
+dfGroup <- as.data.frame(rbind(dfGroup, newrepo))
+
+rownames(dfGroup) <- NULL
+dfGroup$commits <- as.numeric(dfGroup$commits)
+
+dfGroup <- dfGroup |> 
+  arrange(desc(commits))
 
 dfGroupjson <- toJSON(
   dfGroup, 
