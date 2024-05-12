@@ -51,6 +51,33 @@ copy_change_rmd <- function(source_folder, destination_folder, new_extension) {
 
 }
 
+copy_change_png <- function(source_folder, destination_folder, new_extension) {
+  # Check if destination folder exists, create if not
+  if (!file.exists(destination_folder)) {
+    dir.create(destination_folder)
+  }
+  
+  # List all .md files in the source folder
+  md_files <- list.files(source_folder, pattern = "\\.png$", full.names = TRUE)
+  
+  # Iterate through each .md file
+  for (file in md_files) {
+    # Get the file name
+    file_name <- basename(file)
+    
+    # Get the file name without extension
+    file_name_without_extension <- tools::file_path_sans_ext(file_name)
+    
+    # Get the full path of the destination file with new extension
+    destination_file_path <- file.path(destination_folder, paste0(file_name_without_extension, new_extension))
+    
+    # Copy the .md file to the destination folder and rename it with new extension
+    file.copy(file, destination_file_path)
+    
+  }
+  
+}
+
 transfer <- function(source_folder, destination_folder) {
   # delete old files in source folder
   files <- list.files(source_folder, pattern = "\\.md$", full.names = TRUE)
@@ -89,8 +116,8 @@ transfer <- function(source_folder, destination_folder) {
 
 languages <- c("de", "en", "pt")
 
-source_folder <- "./content/chapter3"
-destination_folder <- "./content/chapter3/new"
+source_folder <- "./content/chapter2/"
+destination_folder <- "./content/chapter2/new"
 
 for (i in 1:3) {
   new_extension_md <- paste0(".", languages[i], ".md")
@@ -102,5 +129,10 @@ for (i in 1:3) {
 
 transfer(source_folder, destination_folder)
 
+# for pngs in img
+source_folder <- "./content/chapter1/img"
+destination_folder <- "./content/chapter1/img"
 
+new_extension_png <- ".pt.png"
+copy_change_png(source_folder, destination_folder, new_extension_png)
 
