@@ -101,7 +101,7 @@ weight = 40
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 5"
 url = "../lb5/en/index.html"
-weight = 50
+weight = 50 
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
