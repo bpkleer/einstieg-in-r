@@ -69,61 +69,23 @@ As chamadas **Nuvens de Chuva** não apenas incluem as informações de distribu
 data <- tibble(
   group = factor(
     c(
-      rep(
-        "Grupo 1",
-        100
-      ), 
-      rep(
-        "Grupo 2",
-        250
-      ), 
-      rep(
-        "Grupo 3",
-        25
-      )
+      rep("Grupo 1", 100), 
+      rep("Grupo 2", 250), 
+      rep("Grupo 3", 25)
     )
   ),
   value = c(
-    seq(
-      0,
-      20,
-      length.out = 100
-    ),
+    seq(0, 20, length.out = 100),
     c(
-      rep(
-        0,
-        5), 
-      rnorm(
-        30,
-        2, 
-        .1
-      ),
-      rnorm(
-        90,
-        5.4,
-        .1
-      ),
-      rnorm(
-        90, 
-        14.6,
-        .1
-      ),
-      rnorm(
-        30,
-        18, 
-        .1
-      ), 
-      rep(
-        20,
-        5
-      )
+      rep(0, 5), 
+      rnorm(30, 2, .1),
+      rnorm(90, 5.4, .1),
+      rnorm(90, 14.6, .1),
+      rnorm(30, 18, .1), 
+      rep(20, 5)
     ),
     rep(
-      seq(
-        0,
-        20,
-        length.out = 5
-      ),
+      seq(0, 20, length.out = 5),
       5
     )
   )

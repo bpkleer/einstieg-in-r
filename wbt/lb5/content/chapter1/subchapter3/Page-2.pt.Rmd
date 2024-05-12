@@ -96,5 +96,3 @@ Copie o código para o seu script e experimente diferentes valores numéricos no
 {{% /expand %}}
 
 Em seguida, você pode dar uma olhada nos `rainclouds` como uma opção de visualização melhor! Mas isso é **opcional**!
-
-Please provide the Markdown content you would like me to translate into Brazilian Portuguese.

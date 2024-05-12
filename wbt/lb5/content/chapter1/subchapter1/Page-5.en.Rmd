@@ -126,5 +126,3 @@ ggsave("./img/mffggplot.png",
 ```
 
 As a final step with bar charts, we want to group them by another variable! 
-
-Please paste the Markdown content you would like me to translate.

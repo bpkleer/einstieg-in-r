@@ -62,8 +62,6 @@ scatter
 
 Nos argumentos de `geom_jitter()`, você especifica o quão longe os pontos de dados devem ser espalhados. Experimente algumas vezes com valores diferentes. 
 
-{ /* examples */ }
-
 ## Legendas
 Agora vamos adicionar legendas e títulos.
 ```{r scatter3, eval=FALSE}

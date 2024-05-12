@@ -36,12 +36,10 @@ Next, you want to test the relationship with other (pseudo-metric) variables. In
 
 A plot with `ggpairs()` is structured the same way as a plot from `pairs.panel()`:
 
-![Example ggpairs plot](../img/ggpairs1.png)
+![Example ggpairs plot](../img/ggpairs1.en.png)
 It is a matrix representation. There is a lower third `lower`, an upper third `upper`, and a diagonal `diag`. For each of these parts, you can set settings based on whether the pair of values in the cell of the matrix are both continuous variables (`continuous`), both discrete variables (`discrete`), or a combination (`combo`). 
 
-{ /* examples */ }
-
-{{% expand "Think briefly: Can all three of these combinations also occur in the diagonal?" %}}
+{{% expand \"Think briefly: Can all three of these combinations also occur in the diagonal?\" %}}
 No, of course not! Because the diagonal always represents the variable with itself - so the representation of the variable. And it can either be continuous or discrete, but not both. Therefore, the argument `combo` is only usable in `upper` and `lower`.
 {{% /expand %}}
 

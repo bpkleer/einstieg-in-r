@@ -97,5 +97,3 @@ histGroup
 ```
 
 Alternatively, you can also create a Ridgeline plot. More on that on the next page! 
-
-{ /* examples */ }

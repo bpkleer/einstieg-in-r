@@ -96,5 +96,3 @@ Copy the code into your script and try different numerical values for the `lwd` 
 {{% /expand %}}
 
 Next, you can explore `rainclouds` as a better visualization option! However, this is **optional**!
-
-I'm ready to start the translation once you provide the Markdown content.

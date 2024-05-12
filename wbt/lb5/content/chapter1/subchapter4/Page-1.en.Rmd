@@ -62,8 +62,6 @@ scatter
 
 In the arguments of `geom_jitter()`, specify how far you want the data points to jitter. Just try a few times with different values. 
 
-{ /* examples */ }
-
 ## Labels
 Now we add labels and titles.
 ```{r scatter3, eval=FALSE}

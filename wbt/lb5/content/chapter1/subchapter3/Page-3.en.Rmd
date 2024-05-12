@@ -64,72 +64,34 @@ data <- tibble(
 
 So-called **Rainclouds** not only include the distribution information from a box plot but also the distribution of the raw values. Because different distributions can lead to the same box plot. The following example is from a blog post by [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), where it is very well explained (in English) why box plots are sometimes not so good.
 
-{{% expand "Code to create the fictitious dataset" %}}
+{{% expand \"Code to create the fictitious dataset\" %}}
 \`\`\`R
 data <- tibble(
   group = factor(
     c(
-      rep(
-        "Group 1",
-        100
-      ), 
-      rep(
-        "Group 2",
-        250
-      ), 
-      rep(
-        "Group 3",
-        25
-      )
+      rep("Grupo 1", 100), 
+      rep("Grupo 2", 250), 
+      rep("Grupo 3", 25)
     )
   ),
   value = c(
-    seq(
-      0,
-      20,
-      length.out = 100
-    ),
+    seq(0, 20, length.out = 100),
     c(
-      rep(
-        0,
-        5), 
-      rnorm(
-        30,
-        2, 
-        .1
-      ),
-      rnorm(
-        90,
-        5.4,
-        .1
-      ),
-      rnorm(
-        90, 
-        14.6,
-        .1
-      ),
-      rnorm(
-        30,
-        18, 
-        .1
-      ), 
-      rep(
-        20,
-        5
-      )
+      rep(0, 5), 
+      rnorm(30, 2, .1),
+      rnorm(90, 5.4, .1),
+      rnorm(90, 14.6, .1),
+      rnorm(30, 18, .1), 
+      rep(20, 5)
     ),
     rep(
-      seq(
-        0,
-        20,
-        length.out = 5
-      ),
+      seq(0, 20, length.out = 5),
       5
     )
   )
 ) %>% 
   rowwise() %>%
-  mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
+  mutate(value = if_else(group == "Grupo 2", value + rnorm(1, 0, .4), value))
 \`\`\`
 {{% /expand %}}
 

@@ -58,7 +58,7 @@ ggplot(
 
 ```
 
-{{% expand "But why is the plot empty?" %}}
+{{% expand \"But why is the plot empty?\" %}}
 We have only defined the structure in the lines. Now we need to specify what we want to display in the plot (bars, points, etc.). For **bar charts**, we add the `geom_bar()` function. The individual additional functions and their arguments will be introduced step by step in this learning module.
 {{% /expand %}}
 

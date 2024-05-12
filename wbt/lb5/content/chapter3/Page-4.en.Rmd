@@ -137,5 +137,3 @@ ggcorr(
 For more information on the functionality in `ggcorr()`, you can find it [here](https://ggobi.github.io/ggally/reference/ggcorr.html?q=ggcorr).
 
 Now let's move on to the representation of mean comparisons. 
-
-{ /*examples*/ }

@@ -3,6 +3,7 @@ title: "Distribution"  # Page title
 weight: 301  # Custom weight 
 menuTitle: "Distribution" # Short title if necessary
 tags: ["ggplot", "distribution", "advanced"]  # Tags: abbreviation of content
+---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

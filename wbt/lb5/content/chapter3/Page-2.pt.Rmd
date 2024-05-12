@@ -36,10 +36,8 @@ A seguir, você deseja testar a correlação com outras variáveis (pseudo-métr
 
 Um gráfico com `ggpairs()` é estruturado da mesma forma que um gráfico com `pairs.panel()`:
 
-![Exemplo de gráfico ggpairs](../img/ggpairs1.png)
+![Exemplo de gráfico ggpairs](../img/ggpairs1.pt.png)
 É essencialmente uma representação matricial. Há um terço inferior `lower`, um terço superior `upper` e uma diagonal `diag`. Para cada uma dessas partes, você pode definir configurações, dependendo se o par de valores na célula da matriz são ambas variáveis contínuas (`continuous`), ambas variáveis discretas (`discrete`) ou uma combinação (`combo`). 
-
-{ /* examples */ }
 
 {{% expand \"Pense rapidamente: Todas essas três combinações também podem ocorrer na diagonal?\" %}}
 Não, claro que não! Porque a diagonal sempre representa a variável consigo mesma - ou seja, a representação da variável. E isso pode ser contínuo ou discreto, mas não ambos. Portanto, o argumento `combo` só é utilizável em `upper` e `lower`.

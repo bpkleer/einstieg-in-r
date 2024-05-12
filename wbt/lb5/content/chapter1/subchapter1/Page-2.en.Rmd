@@ -224,5 +224,3 @@ barplotBeyonce
 ```
 
 Let's go and add value labels! 
-
-{/*examples*/}

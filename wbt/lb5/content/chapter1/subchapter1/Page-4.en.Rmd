@@ -1,15 +1,16 @@
 ---
-title: "Axes, Legend & Title"  # Page title
-weight: 114  # Custom weight 
-menuTitle: "Axes, Legend & Title" # Short title if the main title is too long
-tags: ["axes", "title", "legend", "bar charts", "ggplot"]  # Tags: brief description of the content
+title: "Axes, Legend & Title"   
+weight: 114  
+menuTitle: "Axes, Legend & Title"  
+tags: ["axes", "title", "legend", "bar charts", "ggplot"]   
+---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE,   # Code wird angezeigt
-  eval = FALSE,  # Code wird nicht ausgeführt
-  message = FALSE, # Messages werden nicht angezeigt
-  warnings = FALSE # warnings werden nicht angezeigt
+  echo = TRUE,    
+  eval = FALSE,  
+  message = FALSE,  
+  warnings = FALSE  
 )
 
 library("tidyverse")
@@ -27,6 +28,7 @@ barplotBeyonce <- ggplot(
   geom_bar() +
   scale_fill_manual(values = beyonce_palette(25))
 ```
+
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
@@ -100,11 +102,11 @@ barplotBeyonce
 ```
 So, for non-continuous variables, you need to display the categories that should be shown.
 
-{{% expand "Think about or try how you can exclude the `NA` category?" %}}
+{{% expand \"Think about or try how you can exclude the `NA` category?\" %}}
 You may not always want to display the `NA` category. By simply excluding it from the `scale_x_discrete()` function, it will no longer be displayed in the plot.
 {{% /expand %}}
 
-{{% expand "You want to change the order from the highest to the lowest category. How can you do that?" %}}
+{{% expand \"You want to change the order from the highest to the lowest category. How can you do that?\" %}}
 Exactly! You just need to change the order within the `scale_x_discrete()` function!
 {{% /expand %}}
 
@@ -132,7 +134,8 @@ barplotBeyonce +
   )
 ```
 
-## Title
+## Titles 
+
 Now, we just need customized axis labels and titles!
 ```{r barplot-titles, eval=TRUE}
 barplotBeyonce + 
@@ -144,3 +147,4 @@ barplotBeyonce +
 ```
 
 Everything clear? Keep going!
+

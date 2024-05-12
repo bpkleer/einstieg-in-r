@@ -126,5 +126,3 @@ ggsave("./img/mffggplot.png",
 ```
 
 Como último passo com gráficos de barras, queremos agrupá-los por outra variável!
-
-Please paste the Markdown content you would like me to translate into Brazilian Portuguese.

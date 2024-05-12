@@ -3,6 +3,7 @@ title: "Using ggpairs()"  # Page title
 weight: 303  # Custom weight 
 menuTitle: "ggpairs()" # Short title if needed
 tags: ["ggplot", "ggpairs", "ggally", "correlation", "advanced"]  # Tags: brief description of page content
+---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

@@ -101,11 +101,11 @@ barplotBeyonce
 ```
 Portanto, ao lidar com variáveis não contínuas, você precisa mostrar as categorias que deseja exibir.
 
-{{% expand "Pense ou experimente como excluir a categoria `NA`." %}}
+{{% expand \"Pense ou experimente como excluir a categoria `NA`.\" %}}
 Não é sempre que se deseja exibir a categoria `NA`. Ao simplesmente excluí-la da função `scale_x_discrete()`, ela também não será mais exibida no gráfico.
 {{% /expand %}}
 
-{{% expand "Você deseja alterar a ordem, da maior para a menor categoria. Como você pode fazer isso?" %}}
+{{% expand \"Você deseja alterar a ordem, da maior para a menor categoria. Como você pode fazer isso?\" %}}
 Exatamente! Você só precisa alterar a ordem dentro da função `scale_x_discrete()`.
 {{% /expand %}}
 

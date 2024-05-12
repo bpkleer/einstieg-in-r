@@ -67,8 +67,6 @@ dwplot(
     xintercept = 0,
     lty = "dashed",
     color = beyonce_palette(72)[5] 
-
-```markdown
   ) +
   scale_y_discrete(labels = rev(
     c(
@@ -118,7 +116,6 @@ library("tidyverse")
 ```
 
 In the `plot_model()` function, you first call the object of the regression model (here `model1`), specify in the second argument that it is a *marginal plot* containing predicted values (`type = pred`), and then determine in the `terms` argument which effect to plot. The function automatically holds all metric variables constant at their mean and categorical variables at the reference category.
-```
 
 ```{r marginal1, eval=TRUE}
 plot_model(
@@ -199,11 +196,11 @@ plot_model(
 ```
 
 {{% tabs %}}
-{{% tab name="Task" %}}
+{{% tab name=\"Task\" %}}
 Now, represent the relationship between `trstlgl` and `stfdem`. Each district should have its own line, and the plots should be separated by gender. Try it out yourself before looking at the solution.
 {{% /tab %}}
-{{% tab name="Code" %}}
-```R
+{{% tab name=\"Code\" %}}
+\`\`\`R
 plot_model(
   model1, 
   type = "pred",
@@ -228,7 +225,7 @@ plot_model(
     )
   ) +
   scale_color_manual(values = beyonce_palette(18))
-```
+\`\`\`
 {{% /tab %}}
 {{% /tabs %}}
 

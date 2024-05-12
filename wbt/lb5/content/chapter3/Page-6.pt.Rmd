@@ -67,8 +67,6 @@ dwplot(
     xintercept = 0,
     lty = "dashed",
     color = beyonce_palette(72)[5]
-
-```r
   ) +
   scale_y_discrete(labels = rev(
     c(
@@ -100,7 +98,8 @@ dwplot(
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank()
   )
-```
+\`\`\`
+{{% /expand %}}
 
 Frequentemente, o objetivo não é apenas apresentar modelos de regressão em tabelas, mas também representar graficamente efeitos específicos, como os efeitos significativos. Aqui apresentamos uma maneira de fazer isso: manualmente através de suas próprias **previsões**.
 
@@ -110,14 +109,14 @@ No entanto, uma vez que temos um modelo multivariado, não é mais tão simples.
 
 Queremos plotar o efeito de `stfeco` em `stfdem`. Esse efeito deve ser interpretado juntamente com os outros efeitos. Para plotar o efeito, mantemos o(s) outro(s) efeito(s) constante(s). Para isso, usamos a **biblioteca** `sjPlot` e a função `plot_model()`. Você também precisa carregar o `ggplot`.
 
-```r
+```{r sjplot, eval=FALSE}
 install.packages("sjPlot")
 library("sjPlot")
 library("tidyverse")
 ```
 
 Na função `plot_model()`, primeiro você chama o objeto do modelo de regressão (aqui `model1`), indica no segundo argumento que é um *gráfico marginal*, que inclui valores previstos (`type = pred`), e então especifica no argumento `terms` qual efeito deve ser plotado. A função automaticamente mantém todas as variáveis métricas no valor médio e as variáveis categóricas na categoria de referência. 
-```
+
 
 ```{r marginal1, eval=TRUE}
 plot_model(
@@ -198,11 +197,11 @@ plot_model(
 ```
 
 {{% tabs %}}
-{{% tab name="Tarefa" %}}
+{{% tab name=\"Tarefa\" %}}
 Agora represente a relação entre `trstlgl` e `stfdem`. Para cada distrito, uma linha própria deve ser exibida e os gráficos devem ser separados por sexo. Experimente primeiro por conta própria antes de ver a solução.
 {{% /tab %}}
-{{% tab name="Código" %}}
-```R
+{{% tab name=\"Código\" %}}
+\`\`\`R
 plot_model(
   model1, 
   type = "pred",
@@ -227,7 +226,7 @@ plot_model(
     )
   ) +
   scale_color_manual(values = beyonce_palette(18))
-```
+\`\`\`
 {{% /tab %}}
 {{% /tabs %}}
 
