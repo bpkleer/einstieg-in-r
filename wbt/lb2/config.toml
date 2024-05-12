@@ -9,7 +9,7 @@ metaDataFormat = "yaml"
 [params]
   themeVariant = "jlug"
   description = "WBT Statistik<sup>+</sup>"
-  author = "B. Philipp Kleer"
+  author = "Philipp Kleer"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
@@ -43,37 +43,37 @@ languageName = "Português"
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 1"
-url = "../lb1/index.html"
+url = "../../lb1/de/index.html"
 weight = 10
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 2"
-url = "../lb2/index.html"
+url = "../de/index.html"
 weight = 20
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 3"
-url = "../lb3/index.html"
+url = "../../lb3/de/index.html"
 weight = 30
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 4"
-url = "../lb4/index.html"
+url = "../../lb4/de/index.html"
 weight = 40
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Lernblock 5"
-url = "../lb5/index.html"
+url = "../../lb5/de/index.html"
 weight = 40
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
-url = "/credits/index.html"
+url = "./credits/index.html"
 weight = 60
 
 [[Languages.de.menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Tags"
-url = "/tags/index.html"
+url = "./tags/index.html"
 weight = 70
 
 [[Languages.de.menu.shortcuts]]
@@ -83,37 +83,37 @@ weight = 80
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 1"
-url = "../lb1/index.html"
+url = "../../lb1/en/index.html"
 weight = 10
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 2"
-url = "../lb2/index.html"
+url = "../en/index.html"
 weight = 20
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 3"
-url = "../lb3/index.html"
+url = "../../lb3/en/index.html"
 weight = 30
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 4"
-url = "../lb4/index.html"
+url = "../../lb4/en/index.html"
 weight = 40
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Study unit 5"
-url = "../lb5/index.html"
+url = "../../lb5/en/index.html"
 weight = 40
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Credits"
-url = "/credits/index.html"
+url = "../en/credits/index.html"
 weight = 60
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Tags"
-url = "/tags/index.html"
+url = "../en/tags/index.html"
 weight = 70
 
 [[Languages.en.menu.shortcuts]]
@@ -123,37 +123,37 @@ weight = 80
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 1"
-url = "../lb1/index.html"
+url = "../../lb1/pt/index.html"
 weight = 10
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 2"
-url = "../lb2/index.html"
+url = "../pt/index.html"
 weight = 20
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 3"
-url = "../lb3/index.html"
+url = "../../lb3/pt/index.html"
 weight = 30
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 4"
-url = "../lb4/index.html"
+url = "../../lb4/pt/index.html"
 weight = 40
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-chalkboard-teacher'></i> Unidade 5"
-url = "../lb5/index.html"
+url = "../../lb5/pt/index.html"
 weight = 40
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-bullhorn'></i> Créditos"
-url = "/credits/index.html"
+url = "../pt/credits/index.html"
 weight = 60
 
 [[Languages.pt.menu.shortcuts]]
 name = "<i class='fas fa-tags'></i> Etiquetas"
-url = "/tags/index.html"
+url = "../pt/tags/index.html"
 weight = 70
 
 [[Languages.pt.menu.shortcuts]]
