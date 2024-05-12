@@ -24,25 +24,27 @@ dfGroup <-  fromJSON(rawToChar(group$content))
 dfGroup
 
 leon <- list(
-  id = 243, 
-  username = "g32013", 
+  id = 243,
+  username = "g32013",
   name = "Leon Klemm",
   state = NA,
+  locked = NA,
   avatar_url = "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/243/avatar.png",
   web_url = "https://gitlab.ub.uni-giessen.de/g32013",
-  access_level = NA, 
+  access_level = NA,
   created_at = NA,
   expires_at = NA
   )
 
 meike <- list(
-  id = 149, 
-  username = "J_E8E7E5F", 
+  id = 149,
+  username = "J_E8E7E5F",
   name = "Meike Schulz-Narres",
   state = NA,
+  locked = NA,
   avatar_url = "https://gitlab.ub.uni-giessen.de/uploads/-/system/user/avatar/149/avatar.png",
   web_url = "https://gitlab.ub.uni-giessen.de/J_E8E7E5F",
-  access_level = NA, 
+  access_level = NA,
   created_at = NA,
   expires_at = NA
 )
