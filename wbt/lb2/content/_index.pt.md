@@ -1,12 +1,12 @@
 ---
-title: "Bloco de Aprendizagem 2"
+title: "Unidade 2"
 ---
 
 <center><h4>WBT Estatísticas+: Comece a usar o R de forma fácil!</h4></center>
 
-# Bloco de Aprendizagem 2
+# Unidade 2
 
-Bem-vindo a este bloco de aprendizagem. Primeiro, vamos revisar o que é um conjunto de dados e como uma tabela de dados é visualizada no R. Em seguida, vamos descrever as primeiras variáveis de forma descritiva. Depois, vamos aprender sobre transformações de conjuntos de dados. Se ainda estiver interessado, pode dar uma olhada nos fundamentos das funções no R.
+Bem-vindo a este bloco de aprendizagem. Primeiro, vamos revisar o que é um conjunto de dados e como uma tabela de dados é visualizada no R. Em seguida, vamos descrever as primeiras variáveis de forma descritiva. Depois, vamos aprender sobre transformações de conjuntos de dados. Se ainda estiver interessado, pode dar uma olhada nos fundamentos das funções no R. **Por favor, observe**: Até o momento, a tradução é feita de forma ingênua pelo ChatGPT. Se quiser trabalhar nas traduções, entre em contato comigo por meio do repositório do GitLab.
 
 Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 

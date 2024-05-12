@@ -7,6 +7,8 @@ title: "Make the start with R easy"
 
 The web-based training can be used by self-learners or in higher education teaching as companion (*blended learning*). The content is structured into five study units. You can find the links to the learning modules either directly below this text or in the menu on the left.
 
+**Please note**: So far, the translation is naively done by ChatGPT. If you want to work on the translations, contact me via the GitLab repository.
+
 Here are the links to the individual learning modules:
 
 [Study unit 1](./lb1/en/index.html)  

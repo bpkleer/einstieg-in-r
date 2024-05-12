@@ -1,11 +1,11 @@
 ---
-title: "Learning Block 4"
+title: "Study unit 4"
 ---
 
 <center><h4>WBT Statistics+: Easy Introduction to R!</h4></center>
 
-# Learning Block 4
-Welcome to this learning block! In this block, we will learn the basics of linear regression in R.
+# Study unit 4
+Welcome to this learning block! In this block, we will learn the basics of linear regression in R. **Please note**: So far, the translation is naively done by ChatGPT. If you want to work on the translations, contact me via the GitLab repository.
 
 Use this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} to report errors directly to us on pages. You need to log in once with the JLU ID. You can find the button on every page.
 

@@ -1,12 +1,12 @@
 ---
-title: "Learning Block 5"
+title: "Study unit 5"
 ---
 
 <center><h4>WBT Statistics+: Easy Introduction to R!</h4></center>
 
-# Learning Block 5
+# Study unit 5
 
-Welcome to this final learning block! In this block, we will create graphics and learn about various options for graphics.
+Welcome to this final learning block! In this block, we will create graphics and learn about various options for graphics. **Please note**: So far, the translation is naively done by ChatGPT. If you want to work on the translations, contact me via the GitLab repository.
 
 Use this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} to report errors directly to us on pages. You need to log in once with the JLU identifier. You will find the button on every page.
 

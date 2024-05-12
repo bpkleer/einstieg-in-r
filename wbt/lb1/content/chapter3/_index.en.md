@@ -10,7 +10,7 @@ weight: 300
 
 # Introduction to Gitlab
 
-In this chapter, you will build a basic understanding of Gitlab and learn how to use it for group work.
+In this chapter, you will build a basic understanding of Gitlab and learn how to use it for group work. You can skip this chapter, if your course does not use Git or you are not interested in using Git. 
 
 {{% buttonShare href="https://gitlab.com/bpkleer/introduction-to-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

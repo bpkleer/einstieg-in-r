@@ -10,7 +10,7 @@ weight: 300
 
 # Introdução ao Gitlab
 
-Neste capítulo, você irá desenvolver uma compreensão básica do Gitlab e entender como utilizá-lo para trabalhos em grupo.
+Neste capítulo, você irá desenvolver uma compreensão básica do Gitlab e entender como utilizá-lo para trabalhos em grupo. Se seu curso não usa Git ou você não tem interesse em aprender Git, você pode omitir este capítulo. 
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

@@ -1,12 +1,12 @@
 ---
-title: "Bloco de Aprendizagem 3"
+title: "Unidade 3"
 ---
 
 <center><h4>WBT Estatísticas+: Facilitando a entrada no R!</h4></center>
 
-# Bloco de Aprendizagem 3
+# Unidade 3
 
-Bem-vindo a este bloco de aprendizagem! Aqui você aprenderá como calcular medidas de associação e realizar comparações de médias. Você terá uma visão geral sobre relações bivariadas.
+Bem-vindo a este bloco de aprendizagem! Aqui você aprenderá como calcular medidas de associação e realizar comparações de médias. Você terá uma visão geral sobre relações bivariadas. **Por favor, observe**: Até o momento, a tradução é feita de forma ingênua pelo ChatGPT. Se quiser trabalhar nas traduções, entre em contato comigo por meio do repositório do GitLab.
 
 Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 

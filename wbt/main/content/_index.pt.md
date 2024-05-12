@@ -6,6 +6,8 @@ title: "Começar a utilizar o R de forma simples"
 
 O treinamento baseado na Web pode ser usado para autoaprendizagem ou como material adicional no ensino para preparação e acompanhamento (*blended learning*). O conteúdo está dividido em cinco blocos de aprendizado que se baseiam uns nos outros. Você encontrará os links para os blocos de aprendizagem logo abaixo do texto ou no menu à esquerda.
 
+**Por favor, observe**: Até o momento, a tradução é feita de forma ingênua pelo ChatGPT. Se quiser trabalhar nas traduções, entre em contato comigo por meio do repositório do GitLab.
+
 Aqui estão os links para os diferentes unidades: 
 
 [Unidade 1](./lb1/pt/index.html)  

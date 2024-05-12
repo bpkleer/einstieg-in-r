@@ -1,11 +1,11 @@
 ---
-title: "Bloco de Aprendizagem 4"
+title: "Unidade 4"
 ---
 
 <center><h4>WBT Estatística+: Comece a usar o R facilmente!</h4></center>
 
-# Bloco de Aprendizagem 4
-Bem-vindo a este bloco de aprendizagem! Neste bloco, vamos aprender o básico da regressão linear no R.
+# Unidade 4
+Bem-vindo a este bloco de aprendizagem! Neste bloco, vamos aprender o básico da regressão linear no R. **Por favor, observe**: Até o momento, a tradução é feita de forma ingênua pelo ChatGPT. Se quiser trabalhar nas traduções, entre em contato comigo por meio do repositório do GitLab.
 
 Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros nas páginas diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 

@@ -1,12 +1,12 @@
 ---
-title: "Learning Block 1"
+title: "Study Unit 1"
 ---
 
 <h4><center>WBT Statistics+: Easy Introduction to R!</center></h4> 
 
-# Introduction to Learning Block 1
+# Introduction to study unit 1
 
-Welcome to this learning block! We are diving into R, and you can also learn how Git works (if necessary for you or in your course).
+Welcome to this learning block! We are diving into R, and you can also learn how Git works (if necessary for you or in your course). **Please note**: So far, the translation is naively done by ChatGPT. If you want to work on the translations, contact me via the GitLab repository.
 
 You can report errors on pages directly to us using this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}. To do this, you need to log in once with the JLU ID. You will find the button on every page.
 

@@ -10,7 +10,7 @@ weight: 300
 
 # Einstieg in Gitlab
 
-In diesem Kapitel wirst du ein Grundverständnis für Gitlab aufbauen und verstehen wie du es für die Gruppenarbeiten anwendest. 
+In diesem Kapitel wirst du ein Grundverständnis für GitLab aufbauen und verstehen wie du es für die Gruppenarbeiten anwendest. Dies ist nur nötig, wenn Git in deinem Kurs genutzt wird oder du selbst Interesse daran hast. Andernfalls überspringe dieses Kapitel.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
