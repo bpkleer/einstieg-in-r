@@ -8,15 +8,15 @@ Das Web-Based-Training kann zum Selbstlernen oder als Zusatzmaterial in der Lehr
 
 Hier geht es zu den einzelnen Lernblöcken: 
 
-[Lernblock 1](./lb1/de/index.html): Einstieg in R/RStudio und Git
+[Lernblock 1](../lb1/de/index.html): Einstieg in R/RStudio und Git
 
-[Lernblock 2](./lb2/de/index.html): Deskription und Transformation von Daten
+[Lernblock 2](../lb2/de/index.html): Deskription und Transformation von Daten
 
-[Lernblock 3](./lb3/de/index.html): Bivariate Analysen
+[Lernblock 3](../lb3/de/index.html): Bivariate Analysen
 
-[Lernblock 4](./lb4/de/index.html): Lineare Regression
+[Lernblock 4](../lb4/de/index.html): Lineare Regression
 
-[Lernblock 5](./lb5/de/index.html): Visualisierung
+[Lernblock 5](../lb5/de/index.html): Visualisierung
 
 Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt melden. Falls du noch keinen GitLab-Account hast, musst du diesen einmalig anlegen.
 
