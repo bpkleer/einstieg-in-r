@@ -1,8 +1,8 @@
 ---
-title: "Multivariate lineare Regression"  # Titel der Seite
-weight: 103  # Individuelles Gewicht 
-menuTitle: "Multivariates Beispiel" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "multivariat"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Regressão Linear Multivariada"  # Título da página
+weight: 103  # Peso individual
+menuTitle: "Exemplo Multivariado" # Se o título for muito longo, use um título curto aqui
+tags: ["regressão", "multivariado"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,9 +29,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In der Regel berechnen wir keine bivariaten Modell in den Sozialwissenschaften, da Ursache-Wirkungs-Relationen in sozialen Phänomenen nie bivariat sind. Das vorherige Modell diente lediglich zum leichteten Zugang. 
+Normalmente, não calculamos modelos bivariados nas ciências sociais, pois as relações de causa e efeito em fenômenos sociais nunca são bivariadas. O modelo anterior serviu apenas para facilitar o acesso.
 
-Nun erweitern wir das Modell und berechnen eine **multivariate lineare Regression**. Wir möchten die Variable `trstlgl` in das Modell einfügen. Welche Effekt erwartet wir theoretisch von der Variable `trstlgl`?
+Agora vamos expandir o modelo e calcular uma **regressão linear multivariada**. Queremos incluir a variável `trstlgl` no modelo. Qual efeito teoricamente esperamos da variável `trstlgl`?
 ```{r eval=FALSE}
 cor(
   pss$trstlgl, 
@@ -41,21 +41,21 @@ cor(
 )
 ```
 
-Wie interpretieren wir das Ergebnis?  
+Como interpretamos o resultado?
 
-$\Rightarrow$ Der Korrelationswert zwischen `trstlgl` und `stfdem` zeigt uns an, dass eine negative Korrelation vorliegt, die aber nahe $0$ liegt, so dass man davon ausgehen kann, dass kein Zusammenhang zwischen den zwei Variablen vorliegt.
+$\Rightarrow$ O valor de correlação entre `trstlgl` e `stfdem` indica que há uma correlação negativa, mas próxima de $0$, o que sugere que não há relação entre as duas variáveis.
 
-### Erweitern des Modells 
-Wir erweitern das Modell um die Variable `trstlgl`. 
+### Expansão do Modelo
+Vamos expandir o modelo incluindo a variável `trstlgl`.
 
-{{% expand \"Wie sieht unsere lineare Gleichung aus?\" %}}
+{{% expand \"Como fica nossa equação linear?\" %}}
 
 $$Y = \beta_0 + \beta_1*X_1 + \beta_2*X_2 + e$$
 
 $$stfdem = \beta_0 + \beta_1*stfeco + \beta_2*trstlgl + e$$
 {{% /expand %}}
 
-Dies setzen wir einfach in der `lm()`-Funktion um:
+Vamos implementar isso facilmente na função `lm()`:
 ```{r linreg1, eval=TRUE}
 olsModel2 <- lm(
   stfdem ~ 1 + stfeco + trstlgl,   
@@ -67,12 +67,12 @@ summary(olsModel2)
 
 {{% tabs %}}
 {{% tab name=\"Aufgabe\" %}}
-Wie interpretieren wir das Ergebnis? Schreibe ein paar Zeilen in dein Skript!
+Como interpretamos o resultado? Escreva algumas linhas no seu script!
 
 {{% /tab %}}
 {{% tab name=\"Auflösung\" %}}
-Das Modell kann $45.96 %$ der Varianz in `stfdem` erklären. Mit jedem Anstieg in `stfeco` (Zufriedenheit mit der ökonomischen Leistung) steigt `stfdem` um $0.87361$ Punkte. Mit jedem Anstieg im Vertrauen zum Rechtssystem (`trstlgl`) sinkt die Zufriedenheit mit der Demokratie um $-0.04212$. Beide Effekte sind signifikant ($p<0.05$).
+O modelo pode explicar $45.96 %$ da variância em `stfdem`. Para cada aumento em `stfeco` (satisfação com o desempenho econômico), `stfdem` aumenta em $0.87361$ pontos. Para cada aumento na confiança no sistema legal (`trstlgl`), a satisfação com a democracia diminui em $-0.04212$. Ambos os efeitos são significativos ($p<0.05$).
 {{% /tab %}}
 {{% /tabs %}}
 
-Du kannst also jetzt auch schon multivariate Modelle berechnen und weißt wie du diese interpretieren kannst!
+Agora você já pode calcular modelos multivariados e sabe como interpretá-los!

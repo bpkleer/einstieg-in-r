@@ -1,8 +1,8 @@
 ---
-title: "Rainclouds"  # Titel der Seite
+title: "Nuvens de Chuva"  # Titel der Seite
 weight: 133  # Individuelles Gewicht 
-menuTitle: "Rainclouds" # Falls Titel zulang ist, hier Kurztitel
-tags: ["rainclouds", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+menuTitle: "Nuvens de Chuva" # Falls Titel zulang ist, hier Kurztitel
+tags: ["nuvens de chuva", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -62,23 +62,23 @@ data <- tibble(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Sogenannte **Rainclouds** beinhalten nicht nur die Verteilungsinformationen aus einem Boxplot, sondern auch die Verteilung der Rohwerte. Denn verschiedene Verteilungen können zu einem gleichen Boxplot führen. Das folgende Beispiel ist aus einem Blogbeitrag con [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), in dem (auf Englisch) sehr gut erklärt wird, warum Boxplots manchmal nicht so gut sind. 
+As chamadas **Nuvens de Chuva** não apenas incluem as informações de distribuição de um Boxplot, mas também a distribuição dos valores brutos. Pois diferentes distribuições podem levar a um mesmo Boxplot. O exemplo a seguir é de um post de blog de [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), onde é explicado (em inglês) muito bem por que os Boxplots às vezes não são tão bons.
 
-{{% expand \"Code zum Erstellen des fiktiven Datensatze\" %}}
+{{% expand \"Código para criar o conjunto de dados fictício\" %}}
 \`\`\`R
 data <- tibble(
   group = factor(
     c(
       rep(
-        "Group 1",
+        "Grupo 1",
         100
       ), 
       rep(
-        "Group 2",
+        "Grupo 2",
         250
       ), 
       rep(
-        "Group 3",
+        "Grupo 3",
         25
       )
     )
@@ -129,11 +129,11 @@ data <- tibble(
   )
 ) %>% 
   rowwise() %>%
-  mutate(value = if_else(group == "Group 2", value + rnorm(1, 0, .4), value))
+  mutate(value = if_else(group == "Grupo 2", value + rnorm(1, 0, .4), value))
 \`\`\`
 {{% /expand %}}
 
-Wir haben einen fiktiven Datensatz, der folgendes Boxplot ergibt:
+Temos um conjunto de dados fictício que resulta no seguinte Boxplot:
 ```{r bp1, eval=TRUE, echo=FALSE}
 plot <- ggplot(
   data, 
@@ -146,7 +146,7 @@ plot <- ggplot(
 
 plot
 ```
-Es sieht also erstmal von den Kennzahlen des Boxplots so aus, dass die Daten ähnlich sind. Fügen wir jetzt mal die Fallzahlen hinzu:
+Portanto, à primeira vista, os dados parecem ser semelhantes com base nas estatísticas do Boxplot. Vamos adicionar agora os números de casos:
 ```{r bp2, eval=TRUE, echo=FALSE}
 # Funktion zur Angabe der Gruppengrüße
 n_fun <- function(x){
@@ -177,7 +177,7 @@ ggplot(
   )
 ```
 
-Obwohl dasselbe Boxplot entsteht, sind die Fallzahlen pro Gruppe sehr unterschiedlich. Jetzt fügen wir mal die Rohwerte (`geom_point()`) hinzu:
+Embora o mesmo Boxplot seja gerado, o número de casos por grupo é muito diferente. Agora vamos adicionar os valores brutos (`geom_point()`):
 
 ```{r bp4, eval=TRUE}
 ggplot(
@@ -197,16 +197,16 @@ ggplot(
     )
   )
 ```
-Beim ersten Anblick wird schon deutlich, dass die Verteilung zwischen den Gruppen gar nicht so ähnlich ist, wie es die Boxplots möglicherweise angedeutet haben. 
+À primeira vista, já é evidente que a distribuição entre os grupos não é tão semelhante como os Boxplots podem ter sugerido.
 
-Um diese Informationen in einem **Raincloud**-Plot einzuschließen, werden sowohl die Rohdaten eingezeichnet als auch die Verteilung. Dazu musst du die **library** `ggdist` installieren und aktivieren:
+Para incluir essas informações em um **Raincloud**-Plot, os dados brutos e a distribuição são plotados. Para isso, você precisa instalar e carregar a **biblioteca** `ggdist`:
 
 ```{r ggdist, eval=FALSE}
 install.packages("ggdist")
 library("ggdist")
 ```
 
-Aus der **library** `ggdist` nutzt du die Funktion `stat_halfeye()` um die Verteilung auszugeben. Machen wir diesen ersten Schritt:
+Da **biblioteca** `ggdist`, você utiliza a função `stat_halfeye()` para exibir a distribuição. Vamos dar esse primeiro passo:
 ```{r raincloud, eval=TRUE}
 ggplot(data, aes(x = group, y = value)) + 
   ## add half-violin from {ggdist} package
@@ -228,7 +228,7 @@ ggplot(data, aes(x = group, y = value)) +
   )
 ```
 
-Du siehst jetzt also neben dem Boxplot noch die Verteilung. Aber die Information der Rohdatenpunkte war ebenfalls sehr hilfreich um die Daten visuell zu verstehen. Dazu nutzt du die Funktion `stat_dots()` aus `ggdist`. 
+Agora você vê a distribuição ao lado do Boxplot. Mas a informação dos pontos de dados brutos também foi muito útil para entender visualmente os dados. Para isso, você utiliza a função `stat_dots()` de `ggdist`.
 
 ```{r raincloud2, eval=TRUE}
 ggplot(
@@ -260,7 +260,7 @@ ggplot(
   )
 ```
 
-Als letztes kann man noch den *white space* entfernen, indem du die x-Achse beschränkst:
+Por último, você pode remover o *white space* limitando o eixo x:
 ```{r raincloud3, eval=TRUE}
 ggplot(
   data, 
@@ -298,7 +298,7 @@ ggplot(
   )
 ```
 
-Wenn du viele Datenpunkte hast und viele Gruppen, ist die Ansicht mit `stat_dots()` manchmal zu unübersichtlich. Alternativ eignet sich: `geom_halfpoint()`!
+Quando você tem muitos pontos de dados e muitos grupos, a visualização com `stat_dots()` às vezes pode ser confusa. Alternativamente, você pode usar: `geom_halfpoint()`!
 
 ```{r raincloud4, eval=TRUE}
 ggplot(
@@ -338,7 +338,7 @@ ggplot(
   )
 ```
 
-Oder aber mit gejitterten Punkten:
+Ou com pontos jitterizados:
 ```{r raincloud5, eval=TRUE}
 ggplot(
   data, 
@@ -374,4 +374,4 @@ ggplot(
   )
 ```
 
-Eine **Raincloud** gibt dir also eine deutlich bessere Übersicht als ein Boxplot!
+Portanto, um **Raincloud** fornece uma visão muito melhor do que um Boxplot!

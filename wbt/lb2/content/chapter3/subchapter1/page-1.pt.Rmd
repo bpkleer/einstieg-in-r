@@ -1,8 +1,8 @@
 ---
-title: "Häufigste Funktionen"  # Titel der Seite
-weight: 311  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "funktionen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Funções Mais Comuns"  # Título da página
+weight: 311  # Peso Individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["dplyr", "tidyverse", "funções"]  # Insira as tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -39,26 +39,26 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Daten vorbereiten
+## Preparando os Dados
 
-In aller Regel sind Vorarbeiten am Datensatz notwendig, um Analyseschritte durchzuführen. Diese Schritte sind oft von großer Bedeutung und auch recht zeitintensiv. 
+Geralmente, é necessário realizar preparações nos dados antes de executar etapas de análise. Essas etapas são frequentemente de grande importância e também bastante demoradas.
 
-Es gibt einige Pakete, die das Bearbeiten von Datensätzen ermöglichen. Eines der bekanntesten und aufgrund seiner Verständlichkeit oft genutzten Pakete ist `dplyr`. Die Idee hinter `dplyr` ist das zum einen nur Tabellen (**data frames** oder **tibbles**) verarbeitet werden und zum anderen die Verarbeitung über das sogenannte **pipen** erleichtert wird. Der Code wird in `dplyr` in eine lange Kette gefasst, was zuerst eventuell unnötig erscheint. Aber dadurch ist der Code gut lesbar und es müssen nur wenige Funktionen gelernt werden, die aber in Kombination die gängigsten Verarbeitungsschritte abbilden können. Durch diese Zerlegung in Teilschritte haben wir in den einzelnen Funktionen einen umgrenzten Funktionsumfang, der leicht verständlich ist. Durch die Kombination mehrer Funktionen können aber auch komplexere Schritte vollzogen werden. Auch liefern Funktionen aus dem Paket `dplyr` immer einen **tibble** (Tabelle) aus. 
+Existem alguns pacotes que permitem a manipulação de conjuntos de dados. Um dos pacotes mais conhecidos e frequentemente utilizado devido à sua compreensibilidade é o `dplyr`. A ideia por trás do `dplyr` é que ele processa apenas tabelas (**data frames** ou **tibbles**) e facilita o processamento através do chamado **pipe**. O código no `dplyr` é encadeado em uma longa sequência, o que pode parecer desnecessário a princípio. No entanto, isso torna o código legível e é necessário aprender apenas algumas funções que podem representar as etapas de processamento mais comuns quando combinadas. Com essa divisão em etapas menores, cada função tem um escopo bem definido e é facilmente compreensível. Ao combinar várias funções, também é possível realizar etapas mais complexas. Além disso, as funções do pacote `dplyr` sempre retornam um **tibble** (tabela).
 
-Die umfangreiche Dokumentation zu `dplyr` findet sich [hier](https://dplyr.tidyverse.org/).
+A extensa documentação do `dplyr` pode ser encontrada [aqui](https://dplyr.tidyverse.org/).
 
-## Häufigste Funktionen
+## Funções Mais Comuns
 
-Die häufigsten Funktionen, die mit `dplyr` genutzt werden sind die folgenden:
+As funções mais comuns utilizadas com o `dplyr` são as seguintes:
 ```{r relevant-functions, eval=TRUE, echo=FALSE}
 kable(data)
 ```
 
-Diese werden dir nun Schritt für Schritt vorgestellt, bevor wir das **piping**, das zweite Prinzip von `dplyr` kennenlernen. Diese Beispiele sind in gewisserweise künstlich, da man `dplyr` fast ausschließlich mit **piping** nutzt. Für das Verständnis der Funktionen ist es aber hilfreich, diese erstmal vorab kennenzulernen.
+Estas serão apresentadas passo a passo, antes de aprendermos sobre o **piping**, o segundo princípio do `dplyr`. Estes exemplos são de certa forma artificiais, pois o `dplyr` é quase exclusivamente utilizado com **piping**. No entanto, para entender as funções, é útil conhecê-las antecipadamente.
 
-In allen Beispiel nutzen wir einen fiktiven Datensatz, der die Studienmotivation (`mot`) von Studierenden der Universitäten Gießen, Marburg und Frankfurt abgefragt hat. 
+Em todos os exemplos, utilizamos um conjunto de dados fictício que questionou a motivação dos estudantes das universidades de Gießen, Marburg e Frankfurt.
 
-Einen Überblick in den Datensatz gibt es erstmal hier:
+Uma visão geral do conjunto de dados está disponível aqui:
 ```{r dataframe, echo=FALSE, eval=TRUE}
 paged_table(
   pss,
@@ -66,9 +66,9 @@ paged_table(
 )
 ```
 
-Im Datensatz wurde u.a. die Zufriedenheit mit der Demokratie (`stfdem`), der Distrikt (`district`), das Vertrauen in das Parlament (`trstprl`) und das Geschlecht (`gndr`) abgefragt. 
+No conjunto de dados, foram questionados, entre outros, a satisfação com a democracia (`stfdem`), o distrito (`district`), a confiança no parlamento (`trstprl`) e o gênero (`gndr`).
 
-Das *package* `dplyr` kann einzeln geladen werden, es empfiehlt sich aber das *package* `tidyverse` zu laden, das weitere Pakete wie `ggplot2` direkt mitlädt. 
+O *package* `dplyr` pode ser carregado individualmente, mas é recomendável carregar o *package* `tidyverse`, que carrega diretamente outros pacotes como `ggplot2`.
 ```{r eval=FALSE}
 # install.packages(
 #   "tidyverse", 
@@ -78,9 +78,9 @@ library("tidyverse")
 ```
 
 ### select()
-Mit der `select()` Funktion können einzelne oder mehrere Spalten aus einem Datensatz ausgewählt werden. Die Ausgabe ist immer ein **tibble**.
+Com a função `select()`, é possível selecionar uma ou várias colunas de um conjunto de dados. A saída é sempre um **tibble**.
 
-Im Beispiel wollen wir uns nur die Variablen Geschlecht (`gndr`) und den Distrikt (`district`) anzeigen lassen.
+No exemplo, queremos visualizar apenas as variáveis gênero (`gndr`) e distrito (`district`).
 
 ```{r head, eval=TRUE}
 head(pss)
@@ -108,7 +108,7 @@ paged_table(
 ```
 
 ### slice()
-Dagegen können wir mit `slice()` einzelne Zeilen ausgeben lassen. So zum Beispiel Zeile $50$ bis $55$ oder in Kombination mit der Funktion `seq()` jede $100.$ Zeile. 
+Por outro lado, com `slice()`, podemos exibir linhas individuais. Por exemplo, as linhas de $50$ a $55$ ou em combinação com a função `seq()`, a cada $100.$ linha.
 
 ```{r slice, eval = TRUE}
 slice(
@@ -129,7 +129,7 @@ slice(
 ```
 
 ### filter()
-Neben der Auswahl von bestimmten Zeilen (Fällen) oder Spalten (Variablen) können wir mit `filter()` den Datensatz eingrenzen. So können wir zum Beispiel uns nur die Fälle anzeigen lassen, die in Distrikt 1 leben. 
+Além da seleção de linhas (casos) ou colunas (variáveis) específicas, podemos restringir o conjunto de dados com `filter()`. Por exemplo, podemos exibir apenas os casos que vivem no Distrito 1.
 
 ```{r filter, eval=FALSE, echo=TRUE}
 filter(
@@ -147,7 +147,7 @@ paged_table(
 )
 ```
 
-Auch können wir mehrere Bedingungen einführen. Zum Beispiel nur Personen, die in Distrikt 5 leben und männlich (*male*) sind.
+Também podemos introduzir várias condições. Por exemplo, apenas pessoas que vivem no Distrito 5 e são do sexo masculino (*male*).
 
 ```{r filter2, eval = FALSE, echo=TRUE}
 filter(
@@ -165,26 +165,26 @@ paged_table(
 )
 ```
 
-Alle bereits bekannten logischen Verbindungen funktionieren auch hier. Zur Erinnerung hier nochmal die logischen Konnektoren:  
+Todas as conexões lógicas conhecidas funcionam aqui também. Como lembrete, aqui estão os conectores lógicos novamente:
 
-* logisches *und*: `&`
+* *e* lógico: `&`
 
-* logisches *oder*: `|` 
+* *ou* lógico: `|`
 
-* logisches *gleich*: `==`
- 
-* logisches *ungleich*: `!=`
+* *igual a* lógico: `==`
 
-* logisches *größer*: `>`
+* *diferente de* lógico: `!=`
 
-* logisches *kleiner*: `<`
+* *maior que* lógico: `>`
 
-* logisches *kleiner gleich*: `<=`
+* *menor que* lógico: `<`
 
-* logisches *größer gleich*: `>=`
+* *menor ou igual a* lógico: `<=`
+
+* *maior ou igual a* lógico: `>=`
 
 ### arrange()
-Zur Ordnung von Datensätzen kann die Funktion `arrange()` genutzt werden. Hierbei kann man entweder aufsteigend oder absteigend sortieren lassen. Zum Beispiel nach den Arbeitsstunden:
+Para ordenar conjuntos de dados, a função `arrange()` pode ser usada. Aqui, você pode ordenar de forma ascendente ou descendente. Por exemplo, por horas de trabalho:
 
 ```{r arrange1, eval =TRUE}
 pssAsc <- arrange(
@@ -194,7 +194,7 @@ pssAsc <- arrange(
 head(pssAsc)
 ```
 
-Über die Funktion `desc()` innerhalb von `arrange()`werden die Fälle absteigend sortiert. `desc` steht für *descending*, also absteigend. Alternativ kann man einfach ein Minuszeichen vor den Variablennamen setzen und erhält ebenfalls absteigend sortierte Fälle.
+Usando a função `desc()` dentro de `arrange()`, os casos são classificados em ordem decrescente. `desc` significa *descending*, ou seja, descendente. Alternativamente, você pode simplesmente adicionar um sinal de menos antes do nome da variável e também obter casos classificados em ordem decrescente.
 
 ```{r arrange2, eval = TRUE}
 pssDesc <- arrange(
@@ -211,8 +211,8 @@ pssDesc2 <- arrange(
 )
 ```
 
-### mutate() 
-Um neue Variablen zu berechnen oder eine Variable zu rekodieren, wird `mutate()` verwendet. Wir berechnen im Beispiel eine Variable, die die Differenz zur durchschnittlichen Arbeitszeit innerhalb unserer Erhebung ausgibt. 
+### mutate()
+Para calcular novas variáveis ou recodificar uma variável, usamos `mutate()`. No exemplo, calculamos uma variável que mostra a diferença em relação ao tempo médio de trabalho em nossa pesquisa.
 ``` {r mutate1, eval=FALSE}
 mutate(
   pss, 
@@ -229,7 +229,7 @@ paged_table(
 )
 ```
 
-Wenn wir Dummy- oder kategoriale Variablen neu erschaffen möchten, benötigen wir die Funktion `case_when()` zusätzlich. In der Funktion `case_when()` gibt man hierarchisch fest, welche Bedingung geprüft und wie rekodiert werden soll. Wir könnten zum Beispiel die Variable `district` recoden und aus der *character*-Variable eine *integer*-Variable machen. Wichtig hierbei ist, dass die Überprüfung wie in einer **if-Bedingung** nacheinander geprüft werden. Dabei sollte man von der spezifischten Bedingung zur allgemeinen Bedingung codieren (andernfalls gibt es unsinnige Variablen!).
+Se quisermos criar novas variáveis dummy ou categóricas, precisamos usar a função `case_when()` adicionalmente. Na função `case_when()`, especificamos hierarquicamente quais condições devem ser verificadas e como devem ser recodificadas. Por exemplo, poderíamos recodificar a variável `district` e transformar a variável *character* em uma variável *integer*. É importante que as verificações sejam feitas em ordem hierárquica, como em uma **condição if**, do mais específico para o mais geral (caso contrário, teremos variáveis sem sentido!).
 
 ```{r mutate3, eval=FALSE}
 mutate(
@@ -259,7 +259,7 @@ paged_table(
 )
 ```
 
-Auch können hierbei mehrere Bedingungen verknüpft werden: Jetzt wollen wir einen Dummy berechnen, der anzeigt, ob Personen in Distrikt 12 leben und weiblich (*female*) sind.
+Aqui também é possível combinar várias condições: Agora queremos calcular um dummy que indica se as pessoas vivem no Distrito 12 e são do sexo feminino (*female*).
 
 ```{r mutate4, eval=FALSE}
 mutate(
@@ -281,7 +281,7 @@ paged_table(
   options = list(rows.print = 15)
 )
 ```
-In diesem Beispiel haben wir jetzt nur die eine Bedingung für den Wert `1` auf der neuen Variable angegeben. Wie wir sehen, wird dann allen anderen Fälle automatisch `NA`zugeordnet. Wir wollen aber allen anderen Fällen den Wert `0` zuordnen. Um jetzt nicht die verschiedenen Kombinationen aufschreiben zu müssen bedienen wir uns eines weiteren Arguments der Funktion `case_when()`:
+Neste exemplo, agora especificamos apenas uma condição para atribuir o valor `1` à nova variável. Como podemos ver, todos os outros casos são automaticamente atribuídos como `NA`. No entanto, queremos atribuir o valor `0` a todos os outros casos. Para não ter que escrever as diferentes combinações, usamos outro argumento da função `case_when()`:
 
 ```{r mutate5, eval=FALSE}
 mutate(
@@ -304,10 +304,10 @@ paged_table(
   options = list(rows.print = 15)
 )
 ```
-Mit dem Argument `TRUE ~ 0` legen wir fest, dass alle anderen Werte den Wert `0` zugeordnet bekommen. So müssen nicht alle anderen Kombinationen als Code geschrieben werden.
+Com o argumento `TRUE ~ 0`, definimos que todos os outros valores recebem o valor `0`. Assim, não é necessário escrever todos as outras combinações como código.
 
 ### summarize()
-Die Funktion `summarize()` erlaubt es uns aus Spalten einen Wert zusammenzufassen. So zum Beispiel den Mittelwert einer Spalte. 
+A função `summarize()` nos permite resumir um valor de colunas. Por exemplo, a média de uma coluna.
 ``` {r summarize, eval = TRUE}
 summarize(
   pss, 
@@ -315,10 +315,10 @@ summarize(
 )
 ```
 
-Nutzbar ist jede Funktion, die eine Spalte als Input verlangt: Also unter anderen `first()`, `last()`, `nth()`, `n()`, `n_distinct()`, `IQR()`, `min()`, `max()`, `mean()`, `median()`, `var()` und `sd()`.
+Qualquer função que exija uma coluna como entrada pode ser usada: Portanto, entre outras, `first()`, `last()`, `nth()`, `n()`, `n_distinct()`, `IQR()`, `min()`, `max()`, `mean()`, `median()`, `var()` e `sd()`.
 
 ### group_by()
-Oft haben wir in Datensätzen kategoriale Variablen nach denen wir den Datensatz gruppieren wollen. So könnten wir zum Beispiel den Datensatz nach dem Studienfach gruppieren. Dies machen wir mit der Funktion `group_by()`:
+Muitas vezes, temos variáveis categóricas nos conjuntos de dados pelas quais queremos agrupar o conjunto de dados. Por exemplo, poderíamos agrupar o conjunto de dados por área de estudo. Fazemos isso com a função `group_by()`:
 
 ```{r group-by, eval = FALSE}
 group_by(
@@ -328,7 +328,7 @@ group_by(
 
 ```
 
-Scheinbar hat sich im Datensatz nichts geändert, aber hier ist der wichtige Unterschied zu `arrange()`: `group_by()` sortiert nicht den Datensatz, sondern gruppiert den Datensatz. Die Ausgabe ändert sich daher nicht. Wenn wir uns zum Beispiel den Mittelwert der Semester nach Studiengang anzeigen lassen möchten, verketten wir `group_by()` und `summarize()` (weiter unten machen wir das eleganter mit dem **Piping-Operator**):
+Parece que nada mudou no conjunto de dados, mas aqui está a diferença importante em relação ao `arrange()`: `group_by()` não classifica o conjunto de dados, mas o agrupa. Portanto, a saída não muda. Se quisermos, por exemplo, exibir a média dos semestres por área de estudo, concatenamos `group_by()` e `summarize()` (mais adiante faremos isso de forma mais elegante com o **Operador de Tubulação**):
 ```{r sum-groups, eval = TRUE}
 summarize(
   group_by(
@@ -340,5 +340,6 @@ summarize(
 
 ```
 
-Hier sehen wir nun was `group_by()` macht: Anstatt eines Mittelwertes erhalten wir hier nun vier Mittelwerte (für jeden Studiengang im Datensatz einen). **Wichtig**: Das Gruppieren sollte immer im Nachfolgenden mit der Funktion `ungroup()` gelöst werden.
+Aqui está o texto traduzido para o português brasileiro:
 
+Aqui vemos agora o que `group_by()` faz: Em vez de uma média, agora obtemos quatro médias (uma para cada curso no conjunto de dados). **Importante**: A desagregação deve sempre ser resolvida posteriormente com a função `ungroup()`.

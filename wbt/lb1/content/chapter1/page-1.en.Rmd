@@ -1,8 +1,8 @@
 ---
-title: "Basics: Neues & Recap"  # Titel der Seite
-menuTitle: "Basics" # Falls Titel zulang ist, hier Kurztitel
-weight: 101  # Individuelles Gewicht 
-tags: ["datei", "dateimanagement", "dateipfad"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Basics: New & Recap"  # Page title
+menuTitle: "Basics" # Short title if the title is too long
+weight: 101  # Custom weight
+tags: ["file", "file management", "file path"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,43 +19,47 @@ tags: ["datei", "dateimanagement", "dateipfad"]  # Tags hiereinsetzen; Kurzwort,
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In der praktischen Datenanalyse, in der wir Berechnungen nicht händisch durchführen (wie z. B. in der Vorlesung zu Statistik), nutzen wir die Rechnerleistung eines Computers, um Daten zu bearbeiten, einfache Berechnungen oder auch kompliziertere statische Modelle zu berechnen. Wir verwenden dabei Daten, die wir in Dateien gespeichert haben. Doch was sind eigentlich nochmal Dateien und wie lassen sich diese finden?
+In practical data analysis, where we do not perform calculations manually (as in a statistics lecture), we use the computing power of a computer to process data, perform simple calculations, or even calculate more complex statistical models. We use data that we have stored in files. But what are files again and how can they be found?
 
-Daten werden in der Regel als **Dateien** an einem *lokalen* Ort auf dem Computer (Desktop oder Laptop) oder Tablet gespeichert. *Lokal* meint dabei, dass die Dateien physisch auf deinem Rechner abgelegt sind. Das Gegenteil Dateien, die zum Beispiel in einer Cloud (wie der Hessenbox) gespeichert sind und nur temporär bei Bearbeitung der Dateien lokal gespeichert werden. 
+Data is usually stored as **files** in a *local* location on the computer (desktop or laptop) or tablet. *Local* means that the files are physically stored on your machine. In contrast, files that are stored in a cloud (like the Hessenbox) and are only temporarily stored locally when editing the files.
 
-Dateien haben immer eine Endung, die den Typ der Datei festlegt. So haben Word-Dokumente in der Regel die Endung *.docx* bzw. Powerpoint-Dateien die Endung *.pptx*. Auch Bilddateien haben festgelegte Endungen wie *.jpg* oder *.png*. Die Endung einer Datei gibt Aufschluss, wie diese Datei zu lesen ist bzw. mit welchem Programm die Datei geöffnet wird. Dies ist meist in den automatischen Einstellungen (in Windows oder Mac) festgelegt. 
+Files always have an extension that determines the type of the file. For example, Word documents typically have the extension *.docx* and PowerPoint files have the extension *.pptx*. Image files also have specific extensions such as *.jpg* or *.png*. The extension of a file indicates how to read the file or with which program to open it. This is usually set in the automatic settings (in Windows or Mac). 
 
-Eine zweite Information, die wir über Dateien benötigen, wenn wir mit diesen arbeiten möchten ist der *Pfad*. Der *Pfad* ist sozusagen die Wohnadresse der Datei. Jede Datei ist an einem bestimmten lokalen Ort gespeichert und dazu gibt es immer eine eindeutige Adresse, mit der die Datei ansprechbar bzw. auffindbar ist. Das ist auf dem Tablet eventuell schwer nachvollziehbar, am Desktop/Laptop wird dies aber schnell klar. 
+{ /* examples */ }
 
-Ich habe zum Beispiel die Datei **syllabus.pdf** (Kursplan dieses Kurses) lokal auf meinem Computer gespeichert. Doch wie finden wir heraus, wo wir die Datei gespeichert haben? 
+A second piece of information we need about files when working with them is the *path*. The *path* is like the home address of the file. Each file is stored at a specific local location, and there is always a unique address that makes the file accessible or locatable. This may be difficult to understand on a tablet, but it becomes clear quickly on a desktop/laptop.
 
-Der erste Schritt ist sicher im Finder (Mac) oder Explorer (Windows) danach zu suchen. Haben wir die Datei gefunden, können wir auch den eindeutigen Pfad anzeigen lassen. 
+For example, I have the file **syllabus.pdf** (course schedule for this course) saved locally on my computer. But how do we find out where the file is saved?
 
-Auf dem Mac-Rechner sieht das wie folgt aus:
-![Beispiel Pfad](../img/path.png)
+The first step is to search for it in Finder (Mac) or Explorer (Windows). Once we have found the file, we can also display the unique path.
 
-Analog sieht es auf dem Windows-Rechner wie folgt aus:
-![Beispiel Pfad Win](../img/path-win.png)
+On a Mac computer, it looks like this:
+![Example Path](../img/path.png)
 
-Die Adresse der Datei ist nicht unbedingt direkt sichtbar. Sie befindet sich bei Mac am unteren Ende des Fensters bzw. bei Windows am oberen Ende des Fenster. Durch Rechtsklick kann man aus dem Finder als auch dem Explorer den Pfad kopieren und hat somit die eindeutige Adresse einer Datei.
+Similarly, on a Windows computer, it looks like this:
+![Example Path Win](../img/path-win.png)
 
-Auf dem Mac-Rechner ist die Adresse (Pfad) im Beispiel: 
+The file's address is not necessarily directly visible. On a Mac, it is at the bottom of the window, and on Windows, it is at the top of the window. By right-clicking, you can copy the path from Finder or Explorer, obtaining the unique address of a file.
+
+On a Mac computer, the address (path) in the example is:
 ```
 /Users/jlug/Documents/Teaching/syllabus.pdf
 ```
 
-Auf dem Windows-Rechner ist die Adresse (Pfad) im Beispiel: 
+On a Windows computer, the address (path) in the example is:
 ```
 D:\g31442\Teaching\syllabus.pdf
 ```
 
-Einen wichtigen Unterschied sehen wir jetzt hier schon. Bei Windows-Rechnern mit deutscher Spracheinstellung wird ein Backslash `\` zur Unterscheidung von Ordnern genutzt, bei Mac-Rechnern ein einfacher Slash `/`. Das liegt an den Spracheinstellungen meines Windows-Rechner, der auf eine deutsche Systemsprache eingestellt ist. Wenn du mit einem Windows-Rechner arbeitest, ist es wichtig, dass diese Backslashes in der Benutzung in R immer zu normalen Slash umgestellt werden. Denn R arbeitet nur mit der englischen Spracheinstellung und in der werden Pfade immer mit Slashes `/` angegeben. 
+We can already see an important difference here. Windows computers with German language settings use a backslash `\` to differentiate folders, while Mac computers use a simple slash `/`. This is due to the language settings of my Windows computer, which is set to German system language. If you are working with a Windows computer, it is important to convert these backslashes to normal slashes when using them in R. This is because R only works with the English language setting, where paths are always specified with slashes `/`.
 
-Wir müssen also den oberen Pfad wie folgt ändern:
+We need to change the upper path as follows:
 ```
 D:/g31442/Teaching/syllabus.pdf
 ```
 
-Es ist wichtig, dass du diesen ersten Schritt verstanden hast. Am besten probierst du einmal selbst aus, den Dateifpad von einer beliebigen Datei in ein Word-Dokument zu kopieren. 
+It is important that you have understood this first step. It's best to try copying the file path of any file into a Word document yourself.
 
-Falls du Fragen dazu hast, melde dich in der Präsenzzeit. Wir werden in den späteren Lernblöcken Pfade nutzen, um Daten in R zu bearbeiten und auch Ergebnisse aus R auf dem Computer zu speichern. 
+If you have any questions, please contact us during office hours. We will use paths in later learning blocks to manipulate data in R and also to save results from R on the computer. 
+
+

@@ -1,8 +1,8 @@
 ---
-title: "Ab ins kalte Wasser!"  # Titel der Seite
-menuTitle: "RStudio" # Falls Titel zulang ist, hier Kurztitel
-weight: 102  # Individuelles Gewicht 
-tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Dive into the Cold Water!"  # Title of the page
+menuTitle: "RStudio" # If the title is too long, use a short title here
+weight: 102  # Custom weight 
+tags: ["tiles", "console", "environment", "files"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,91 +19,95 @@ tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwo
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Nun starten wir direkt mal in das Programm RStudio. RStudio ist eine Software, die die Sprache R nutzt. Die Oberfläche bietet eine gute Lösung zum Organisieren eigener Projekte und Daten. Wenn du zuvor mit Stata oder SPSS gearbeitet hast, wirst du einige Parallelen erkennen. Alternativ kannst du auch R direkt nutzen, ohne RStudio (nur für fortgeschrittene Nutzer:innen empfohlen). Das Erscheinungsbild von RStudio kann individuell an deine Bedürfnisse angepasst werden. 
+Now let's dive right into the RStudio program. RStudio is a software that uses the R language. The interface provides a good solution for organizing your own projects and data. If you have worked with Stata or SPSS before, you will recognize some parallels. Alternatively, you can also use R directly without RStudio (recommended for advanced users only). The appearance of RStudio can be customized to suit your needs.
 
-Insgesamt bietet R Studio **4 Hauptfenster** (die auch angepasst werden können):
+Overall, RStudio offers **4 main windows** (which can also be customized):
 
-1. Console (auch: Terminal, Jobs)
+1. Console (also: Terminal, Jobs)
 
-1. Environment (auch: History, Connections)
+1. Environment (also: History, Connections)
 
-1. Files (auch: Plots, Packages, Help und Viewer)
+1. Files (also: Plots, Packages, Help, and Viewer)
 
-1. Editor (Skriptfenster)
+1. Editor (Script window)
 
-Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die [Login-Seite](https://login.rstudio.cloud). Falls du dir noch keinen Account bei RStudio Cloud gemacht hast, registriere dich zuerst! Leider ist es technisch nicht möglich wie geplant einen Login mit der JLU-Kennung zu ermöglichen. 
+To use RStudio, we go to the cloud version or the [login page](https://login.rstudio.cloud). If you haven't created an account on RStudio Cloud yet, please register first! Unfortunately, it is not technically possible to enable login with the JLU account as planned. 
 
-Hier siehst du eine Animation, wie der Login-Prozess nach der Registrierung eines Accounts abläuft. 
+
+
+Here is an animation showing the login process after registering an account.
+
 ![Login RStudio](../img/login.gif)
 
-Wie du in der GIF siehst, bist du zuerst in deinem persönlichen Workspace und dort siehst du noch keinerlei Projekte. Wenn du links auf den Kurs-Workspace klickst, siehst du das Projekt **course materials** und **firststeps**. Ein Workspace ist eine *Verwaltungseinheit* in RStudio Cloud, in der verschiedene Projekte zusammengefasst werden können. 
+As you can see in the GIF, you are first in your personal workspace and there are no projects visible. When you click on the course workspace on the left, you will see the projects **course materials** and **firststeps**. A workspace is a *management unit* in RStudio Cloud where different projects can be grouped together.
 
-Klicke einfach auf das Projekt **firststeps**. Wenn du das Projekt öffnest, siehst du erstmal folgendes Bild:
+Simply click on the **firststeps** project. When you open the project, you will initially see the following image:
 
 ![Start in RStudio](../img/rstudio.png)
-Das **Wichtigste**, wenn du vorbereitete Projekte wie **firststeps** oder **course materials** nutzt, ist das du eine Kopie für deinen Account anlegst! Oben rechts siehst du daher beim ersten Öffnen nur, dass du eine *temporary copy* geöffnet hast. Damit du aber in dem Projekt arbeiten kannst und deine Änderungen für dich gespeichert werden, musst du einmalig auf **Save a permanent copy** klicken. Das Projekt wird dann erstellt und an deinen Account geknüpft. Nachdem das passiert ist, siehst du auch nicht mehr den roten Schriftzug *temporary copy*. In diesem kannst du nun arbeiten und du schaust dir jetzt die verschiedenen Bereiche an. 
 
-RStudio hat also ein Kachelmuster mit verschiedenen Kacheln. Links sehen wir die **Console**, rechts oben das **Environment** und rechts unten **Files**. Es gibt noch weitere Tabs in den Kacheln, aber diese lassen wir erstmal außen vor. 
+The **most important** thing when using prepared projects like **firststeps** or **course materials** is to create a copy for your account! Therefore, when you first open it, you will only see a *temporary copy* in the top right corner. To be able to work in the project and have your changes saved for you, you need to click on **Save a permanent copy** once. The project will then be created and linked to your account. After this, you will no longer see the red text *temporary copy*. Now you can work in this project and explore the different areas.
 
-In der **Console** können wir mithilfe der Sprache R direkt Befehle eingeben und ausführen lassen. Gib nun einfach mal eine beliebige Rechnung in die Console ein und bestätige mit `Enter`. 
+RStudio has a tile pattern with different tiles. On the left, we see the **Console**, on the top right the **Environment**, and on the bottom right the **Files**. There are more tabs in the tiles, but let's leave those aside for now.
 
-![Einfach Rechnen mit R](../img/rstudio2.png)
+In the **Console**, we can directly enter and execute commands using the R language. Now, simply enter any arithmetic operation in the console and confirm with `Enter`.
 
-Im Beispiel siehst du, dass die Sprache R mathematische Rechnungen direkt verarbeiten kann und somit für uns die Rechnung übernehmen kann (auch wenn das im simplen Beispiel vielleicht gar nicht nötig ist). Es gibt auch direkt aus, was das Ergebnis dieser Anweisung ist. Die `[1]` ist lediglich die Nummerierung der Ausgabe, dies wird relevant, wenn wir längere Ausgaben haben, die über mehrere Zeilen gehen. 
+![Simple Math with R](../img/rstudio2.png)
 
-Um das Ergebnis der Rechnung zu erhalten, müssten wir jetzt jedes Mal die Rechnung neu angeben und ausführen. Das wäre etwas mühsam und da kommt der Vorteil der Sprache R zum Vorschein, denn diese ist **objektorientiert**. Das bedeutet einfach, dass wir nahezu alles in einem Objekt speichern können und dann immer, wenn wir wollen dieses Objekt aufrufen können und uns anzeigen lassen können. 
+In the example, you can see that the R language can directly process mathematical calculations and handle the computation for us (even if it may not be necessary in this simple example). It also immediately outputs the result of this instruction. The `[1]` is just the numbering of the output, which becomes relevant when we have longer outputs spanning multiple lines.
 
-Zuordnungen zu Objekten erfolgen in R mit `<-`. Am Mac kann man dies über die Tastenkombination `option` und `-` erreichen, am Windows-Rechner mit `alt` und `-`.
+To obtain the result of the calculation, we would have to specify and execute the calculation each time. That would be somewhat tedious, and this is where the advantage of the R language comes into play, as it is **object-oriented**. This simply means that we can store almost everything in an object and then call this object whenever we want and display its contents.
 
-Wir speichern jetzt die simple Rechnung von oben in einem Objekt, das wir `math` nennen. 
+Assignments to objects in R are done with `<-`. On a Mac, you can achieve this using the `option` and `-` key combination, and on a Windows computer, you can use `alt` and `-`.
 
-![Objekt math](../img/rstudio3.png)
+Now we will store the simple calculation from above in an object that we will name `math`.
 
-Im Screenshot siehst du jetzt direkt auch, dass du das Objekt aufrufen musst, um das Ergebnis zu sehen. Dies machst du, indem du einfach den Objektnamen in die Console schreibst und nochmals `Enter` drückst. 
+![Object math](../img/rstudio3.png)
 
-Wir haben jetzt das erste Objekt gespeichert und dies kannst du nun unter **Environment** sehen. Dort kannst du im Laufe einer *Session* alle Objekte sehen, die du während dieser *Session* erstellt hast. In dem Fall hier jetzt, sehen wir das gespeicherte Objekt `math`, das eben den Inhalt der Addition von `3 + 4` beinhaltet. 
+In the screenshot, you can see that you need to call the object to see the result. You can do this by simply typing the object name into the console and pressing `Enter` again.
+
+We have now saved the first object, and you can see this under **Environment**. There, during a *session*, you can see all the objects you have created in that *session*. In this case, we see the saved object `math`, which contains the result of the addition of `3 + 4`.
 
 ![Environment](../img/rstudio4.png)
 
-Ein Nachteil der Console ist, dass wir den geschriebenen Code nicht daraus kopieren und zum Beispiel mit anderen teilen können. Oftmals ist es aber erforderlich, dass man den geschriebenen Code weitergibt (zum Beispiel in einer Gruppenarbeit oder bei der Abgabe einer Hausarbeit) oder du dir zusätzlich zum Code noch Kommentare hinzufügen musst, damit du später besser verstehst, was du in dem Moment gemacht hast. Dazu gibt es sogenannte **Skripte**. **Skripte** sind Textdateien, in denen wir direkt in der Sprache R schreiben können und in denen wir auch Kommentare zum Code einfügen können. Öffne jetzt eine neue Skriptdatei wie im Screenshot oder nutze einfach die Tastenkombination `Cmd` und `Shift` und `N` bzw. `Strg` und `Shift` und `N`.
+One disadvantage of the console is that we cannot copy the written code from it and share it with others, for example. However, it is often necessary to pass on the written code (for example, in group work or when submitting an assignment), or you may need to add comments to the code so that you can better understand what you did at that moment. For this purpose, there are so-called **scripts**. **Scripts** are text files in which we can write directly in the R language and where we can also add comments to the code. Now open a new script file as shown in the screenshot or simply use the key combination `Cmd` and `Shift` and `N` or `Ctrl` and `Shift` and `N`.
 
-![Skript öffnen](../img/rstudio5.png)
+![Open script](../img/rstudio5.png)
 
-In dieser Datei können wir Anweisungen in der Sprache R schreiben. Das werden wir fortan immer machen anstatt in der Console zu arbeiten. Denn so sind die Arbeiten in einer Datei gesichert, sodass wir diese wieder aufrufen können bzw. an andere weitergeben können. 
+In this file, we can write instructions in the R language. We will always do this from now on instead of working in the console. This way, the work is saved in a file, allowing us to recall it or share it with others.
 
-Die Schritte aus der Console können wir auch im Skript eingeben. Kommentare beginnen immer mit einer `#`. Die Sprache erkennt so, dass diese Zeile keinen ausführbaren Code beinhaltet, sondern einfach Text. 
+The steps from the console can also be entered in the script. Comments always start with a `#`. The language recognizes that this line does not contain executable code but simply text.
 
-![Skript nutzen](../img/rstudio6.png)
+![Using script](../img/rstudio6.png)
 
-Um den Code auszuführen, markierst du einfach die auszuführenden Zeilen und drückst die Tastenkombination `cmd` + `Enter` bzw. `Strg` und `Enter`. Alternativ kannst du auch die Zeile markieren und den Button `Run` (rechts oben in der Skript-Kachel) drücken. 
+To execute the code, simply select the lines to be executed and press the key combination `cmd` + `Enter` or `Ctrl` + `Enter`. Alternatively, you can also select the line and press the `Run` button (top right in the script tile).
 
-Noch haben wir die Datei nicht gespeichert, dies macht man einfach, in dem man die Tastenkombination `cmd` + `S` bzw. `Strg` + `S` drückt. Du wirst dann aufgefordert einen Dateinamen anzugeben und den Speicherort der Datei (Pfad) festzulegen. Bleibe erstmal einfach in dem vorgeschlagenen Pfad. Wir benennen die Datei mit `firsttry`.
+We haven't saved the file yet, which can be done simply by pressing the key combination `cmd` + `S` or `Ctrl` + `S`. You will then be prompted to provide a file name and specify the file location (path). For now, just stay in the suggested path. We will name the file `firsttry`.
 
-In der Kachel **Files** kannst du diese neue Datei jetzt sehen.
+In the **Files** tile, you can now see this new file.
 
-![Gespeicherte Datei](../img/rstudio7.png)
+![Saved file](../img/rstudio7.png)
 
-Wie du siehst, haben R-Skript-Dateien die Endung `.R`. Alle Dateien, die so enden, sind R-Skript-Dateien und beinhalten Code in der Sprache R, der mit RStudio ausführbar ist. 
+As you can see, R script files have the extension `.R`. All files ending in this way are R script files containing code in the R language that is executable with RStudio.
 
-Teste jetzt einfach mal den Gebrauch des Skripts aus und füge zwei neue Codezeilen hinzu, die folgendes beinhalten:
+Now, simply test the use of the script and add two new lines of code that include the following:
 
-1. Führe eine Berechnung aus, die eine Multiplikation und Addition beinhaltet und als Ergebnis 20 hat.
+1. Perform a calculation that involves multiplication and addition, resulting in 20.
 
-2. Speichere eine weitere Rechnung im Objekt `result`, das nur aus einer Subtraktion besteht und als Ergebnis 17 hat. 
+2. Save another calculation in the object `result`, which consists only of a subtraction resulting in 17.
 
-Schau dir an, was sich im **Environment** geändert hat. 
+See what has changed in the **Environment**.
 
-Als letztes gehst du jetzt aus dem Projekt raus, zurück in den Workspace. Dazu kannst du einfach links im Menü auf den Workspace klicken. 
+Finally, exit the project and return to the workspace. You can do this by simply clicking on the Workspace in the menu on the left.
 
-Du siehst dann, dass es das Projekt **firststeps** zweimal gibt. 
+You will then see that the project **firststeps** appears twice.
 
-![Firststeps zweifach](../img/rstudio8.png)
+![Firststeps duplicated](../img/rstudio8.png)
 
-Das ist nicht falsch, sondern korrekt! Denn einmal gibt es das vorbereitete Projekt von uns (du erkennst es daran, dass Philipp Kleer der **Owner** ist) und dann einmal das von dir kopierte Projekt **firstseps**, in dem du arbeiten kannst. Du siehst dich dort als **Owner** angegeben. Hier im Beispiel ist das der User **Phil friendly**. 
+This is not incorrect but correct! Once there is the prepared project from us (you can recognize it by Philipp Kleer being the **Owner**), and then there is the project **firstseps** copied by you, where you can work. You will be listed as the **Owner** there. In this example, the user is **Phil friendly**.
 
-Um nicht durcheinander zu kommen, und Änderungen tatsächlich in seinem eigenen Projekt zu erstellen, kannst du links im Menü einfach **Your Projects** auswählen und es werden nur die Projekte angezeigt, in denen auch deine Änderungen gespeichert werden. 
+To avoid confusion and actually make changes in your own project, you can simply select **Your Projects** in the menu, and only the projects where your changes will be saved will be displayed.
 
 ![Your Projects](../img/rstudio9.png)
-**Wichtig**: Deine eigenen Projekte kannst nur du und der Instruktor sehen!
+**Important**: Only you and the instructor can see your own projects!
 
-Du hast die ersten Schritte erfolgreich gemeistert. Du weißt wie du Objekte speicherst und wie du diese aufrufen kannst! Du kannst auch schon einfache Rechnungen ausführen. Als nächstes werden wir uns mit Objekttypen in R beschäftigen.
+You have successfully mastered the first steps. You know how to save objects and how to call them! You can already perform simple calculations. Next, we will focus on object types in R.

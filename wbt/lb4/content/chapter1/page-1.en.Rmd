@@ -1,8 +1,8 @@
 ---
-title: "Grundlagen der linearen Regression"  # Titel der Seite
-weight: 101  # Individuelles Gewicht 
-menuTitle: "Grundlagen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Fundamentals of Linear Regression"  # Page title
+weight: 101  # Custom weight 
+menuTitle: "Basics" # Short title if the main title is too long
+tags: ["regression"]  # Tags; brief description of the content
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,105 +19,105 @@ tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsier
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Mit einer **linearen Regression** schätzen wir die kausale Beziehung zwischen einer (oder mehr) unabhängigen Variablen und einer abhängigen Variable. Das Modell wird i.d.R. mit dem Verfahren  *Ordinary-Least-Squares* (OLS) geschätzt und so erhalten wir den besten linearen Schätzer (*Best Linear Unbiased Estimator - BLUE*). Dies gilt nur bei Zutreffen der Annahmen.
+With **linear regression**, we estimate the causal relationship between one (or more) independent variable(s) and a dependent variable. The model is typically estimated using the *Ordinary Least Squares* (OLS) method, giving us the Best Linear Unbiased Estimator (BLUE). This holds true only under certain assumptions.
 
-Basierend auf theoretischen Annahmen oder empirischer Evidenz anderer Forscher:innen (*state of the art*) schätzen wir ein Modell. Die unabhängigen Variablen werden oftmals geteilt in Kontrollvariablen und Variablen, über die wir theoretische Annahmen testen möchten. 
+Based on theoretical assumptions or empirical evidence from other researchers (*state of the art*), we estimate a model. The independent variables are often divided into control variables and variables we want to test theoretical assumptions about.
 
-Was sollte aus der Erinnerung der Statistik-Vorlesungen hängen geblieben sein?
+What should you remember from your statistics lectures?
 
-- Ziel der linearen Regression
+- Purpose of linear regression
 
-- Eigenschaften der linearen Regression
+- Characteristics of linear regression
 
-- lineare Beziehungen
+- Linear relationships
 
-- grundlegende Mathematik hinter der linearen Regression
+- Basic mathematics behind linear regression
 
-- (OLS Annahmen)
+- (OLS assumptions)
 
-## Ziele
-Mit der linearen Regression können wir folgende Fragen beantworten:
+## Objectives
+With linear regression, we can answer the following questions:
 
-1. Kann das Modell Varianz in der abhängigen Variable erklären?
+1. Can the model explain variance in the dependent variable?
 
-2. Wie viel kann das Modell erklären?
+2. How much can the model explain?
 
-3. Ist der Effekt der unabhängigen Variable signifikant?
+3. Is the effect of the independent variable significant?
 
-4. In welche Richtung wirkt der Effekt der unabhängigen Variable?
+4. In which direction does the effect of the independent variable act?
 
-5. Wie stark ist der Effekt der unabhängigen Variable (und wie stark ist er in Relation zu weiteren unabhängigen Variablen)? 
+5. How strong is the effect of the independent variable (and how strong is it in relation to other independent variables)?
 
-$\Rightarrow$ Mit all diesen Fragen werden in den Sozialwissenschaften gebildete Hypothesen aus dem theoretischen Rahmen getestet. D.h. vor der Datenanalyse steht eine Theorie!
+$\Rightarrow$ All these questions test hypotheses formed from the theoretical framework in the social sciences. That is, before data analysis, there is a theory!
 
-## Eigenschaften
-Folgende Bedingungen müssen vorliegen, um eine lineare Regression berechnen zu können:
+## Characteristics
+The following conditions must be met in order to calculate a linear regression:
 
-$\checkmark$ abhängige Variable muss (pseudo-)metrisch sein
+$\checkmark$ The dependent variable must be (pseudo-)metric.
 
-$\checkmark$ unabhängige Variablen können (pseudo-)metrisch oder kategoriell sein
+$\checkmark$ Independent variables can be (pseudo-)metric or categorical.
 
-$\checkmark$ die Beziehung zwischen jeder unabhängigen Variable und der abhängigen Variable muss linear sein
+$\checkmark$ The relationship between each independent variable and the dependent variable must be linear.
 
-## Beispiel einer linearen Regression
-In diesem Beispiel nutzen wir einen fiktiven Datensatz `statistics`, der unter anderem die Note der Statistik I und die Note der Statistik II Prüfung von Studierenden enthält. Wir möchten ein Modell berechnen, in dem wir einen Effekt der Note in der Statistik I Prüfung (`grade`) auf die Note in der Statistik II Prüfung (`grade3`) berechnen.
+## Example of a linear regression
+In this example, we use a fictional dataset `statistics`, which includes, among other things, the grade of Statistics I and the grade of Statistics II exams for students. We want to calculate a model where we determine an effect of the grade in the Statistics I exam (`grade`) on the grade in the Statistics II exam (`grade3`).
 
-Was könnte unsere theoretische Annahme dafür sein?
+What could our theoretical assumption be for this?
 
-Eine lineare Beziehung können wir über ein **Scatterplot** testen. Wie wir das erstellen, lernen wir im letzten Lernblock!
+We can test a linear relationship using a **scatterplot**. We will learn how to create this in the final learning block!
 
-![Lineare Beziehung](../img/reg1.png)
+![Linear Relationship](../img/reg1.png)
 
-## Grundlegende Mathematik
-Wir berechnen in unserem Beispiel zuerst eine bivariate lineare Regression:
+## Basic Mathematics
+In our example, we first calculate a bivariate linear regression:
 
-- abhängige Variable: `grade3` ($y$)
+- Dependent variable: `grade3` ($y$)
 
-- unabhängige Variable: `grade` ($x_1$)
+- Independent variable: `grade` ($x_1$)
 
-Die Gleichung dieses (bivariaten) Regressionsmodells lautet daher:
+Therefore, the equation of this (bivariate) regression model is:
 
 $Y = \beta_0 + \beta_1 * X_1 + \varepsilon, \varepsilon \sim \mathcal{N}(0, \sigma^2)$
 
-$Y$ ist die unabhängige Variable, $X$ die abhängige Variable und $\varepsilon$ stellt die Residuen dar. 
+$Y$ is the dependent variable, $X$ is the independent variable, and $\varepsilon$ represents the residuals.
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
+{{% tab name=\"Question\" %}}
 
-1. Was ist nochmal $\varepsilon$?
+1. What is $\varepsilon$ again?
 
-2. Und was bedeutet dieser Ausdruck $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ nochmal?
+2. And what does this expression $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ mean again?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-1. $\varepsilon$ umfasst die Residuen. Dies sind die Abstände zwischen geschätztem Wert ($\hat{y}$, grüne Punkte) und beobachtetem Wert ($y$, blaue Punkte).
+{{% tab name=\"Resolution\" %}}
+1. $\varepsilon$ includes the residuals. These are the distances between the estimated value ($\hat{y}$, green points) and the observed value ($y$, blue points).
 
-2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ bedeutet, dass diese Fehler normalverteilt sind. Manche Abstände sind positiv, andere negativ. In Summe haben diese aber den Mittelwert $0$ und die Varianz $\sigma^2$.
+2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ means that these errors are normally distributed. Some residuals are positive, others negative. In total, they have a mean of $0$ and a variance of $\sigma^2$.
 
-![Residuum in Regression](../img/reg4.png)
+![Residuals in Regression](../img/reg4.png)
 {{% /tab %}}
 {{% /tabs %}}
 
-## Gleichung der linearen Regression
-Wiederholen wir kurz die Gleichung der linearen Regression:
+## Equation of Linear Regression
+Let's briefly review the equation of linear regression:
 
 $Y = \beta_0 + \beta_1*X_1 + \varepsilon$
 
-Wir können die Gleichung auch für jeden Fall aufstellen, mit einem Laufindex `i`: 
+We can also set up the equation for each case, with an index `i`:
 
 $y_i = \beta_0 + \beta_1 * {x_1}_i + \epsilon_i$
 
-**Lineare Regressionen** werden standardmäßig mit dem *Ordinary-Least-Squared*-Verfahren (OLS) berechnet. Was heißt das nochmal?
+**Linear regressions** are typically calculated using the *Ordinary Least Squares* (OLS) method. What does that mean again?
 
 $\sum_{i=1}^n(\hat{y_i} - y_i)^2 \to min.$
 
-$\Rightarrow$ Das Modell wählt die Linie, die die summierten quadrierten Abstände minimiert.
+$\Rightarrow$ The model chooses the line that minimizes the sum of squared distances.
 
-Wir können für die Darstellung auch Matrix-Algebra nutzen. Dies hilft (manchen) es besser in R zu verstehen, da wir hier auch mit Vektoren, Matrizen und **data frames** (als spezielle Form einer Matrix) arbeiten:
+We can also use matrix algebra for representation. This helps (some) to better understand it in R, as we work here with vectors, matrices, and **data frames** (as a special form of a matrix):
 
 $Y = X\beta + E$
 
 $\begin{bmatrix}y_1 \\y_2 \\... \\y_n \\\end{bmatrix} = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ 1 & ...\\ 1 & x_n\\ \end{bmatrix} \begin{bmatrix}\beta_0 \\ \beta_1\\\end{bmatrix} + \begin{bmatrix}\epsilon_1 \\ \epsilon_2 \\ ... \\ \epsilon_n \\ \end{bmatrix}$
 
-Das Modell berechnet die Matrix $\beta$ - im bivariaten Fall zwei Koeffizienten: Konstante (*intercept*) und Steigung (*slope*) der unabhängigen Variable. Als Ergebnis der Berechnung der Koeffizienten ergibt sich $E$ (Residuum, Differenz zu beobachteten Werten). 
+The model calculates the matrix $\beta$ - in the bivariate case, two coefficients: intercept and slope of the independent variable. As a result of calculating the coefficients, we get $E$ (residuals, the difference from observed values).
 
-Auf der nächsten Seite schauen wir uns mal ein konkretes Beispiel an!
+On the next page, let's take a look at a concrete example!

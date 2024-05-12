@@ -1,8 +1,8 @@
 ---
-title: "Wertetypen"
+title: "Data Types"
 weight: 201
-menuTitle: "Wertetypen"
-tags: ["datentypen", "numeric", "integer", "character", "boolean"]
+menuTitle: "Data Types"
+tags: ["data types", "numeric", "integer", "character", "boolean"]
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,9 +19,9 @@ tags: ["datentypen", "numeric", "integer", "character", "boolean"]
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir haben bereits kennengelernt, dass wir direkt Rechnungen in R ausführen können bzw. das Ergebnis direkt in ein Objekt speichern können. 
+We have already learned that we can perform calculations directly in R or store the result directly in an object.
 
-Wir können aber auch direkt Werte in Objekte speichern, dabei unterscheiden wir vier verschiedene Wertetypen:
+However, we can also directly store values in objects, distinguishing four different data types:
 
 1. numeric
 
@@ -32,7 +32,7 @@ Wir können aber auch direkt Werte in Objekte speichern, dabei unterscheiden wir
 1. logical
 
 # Numeric
-Dieser Wertetyp umfasst alle möglichen Zahlenwerte. Streng genommen ist **integer** ein Untertyp dieses Zahlenwertes. Wir können also auch Kommawerte so in R speichern. Speichern wir eine einfache Kommazahl im neuen Objekt `mathNum` und rufen dieses anschließend auf. 
+This data type includes all possible numerical values. Strictly speaking, **integer** is a subtype of this numerical value. Therefore, we can also store decimal values in R. Let's store a simple decimal number in the new object `mathNum` and then call it.
 
 ```{r numeric1, eval=TRUE}
 mathNum <- 2.345
@@ -40,17 +40,17 @@ mathNum <- 2.345
 mathNum
 ```
 
-Wichtig zur Handhabung im Lernmodul: Du kannst den Code direkt kopieren und so in dein eigenes Skript einfügen. In der rechten oberen Ecke findet sich in jedem Code-Schnippsel ein Kopiersymbol. Einfach darauf klicken und dann in dein Skript einfügen (`cmd` und `V` bzw. `Strg` und `V`).
+Important for handling in the learning module: You can directly copy the code and paste it into your own script. In the top right corner of each code snippet, there is a copy symbol. Simply click on it and then paste it into your script (`cmd` and `V` or `Ctrl` and `V`).
 
-{{% expand \"Was fällt dir auf bei der Eingabe der Kommazahl?\" %}}
-Kommazahlen haben als Trennzeichen einen `.` (Punkt) und nicht ein `,` (Komma). Denn R basiert auf englischer Sprache und da ist das Dezimaltrennzeichen nunmal ein `.` (Punkt).
+{{% expand \"What do you notice about entering the decimal number?\" %}}
+Decimal numbers use a `.` (period) as the separator, not a `,` (comma). This is because R is based on the English language, where the decimal separator is a `.` (period).
 {{% /expand %}}
 
 # Integer
-Diesen Wertetyp kennen wir bereits, denn wir haben ihn im Objekt `math` genutzt. **Integer** sind ganzzahlige Werte, also im Beispiel von `math` der Wert `7`. 
+We already know this data type, as we used it in the `math` object. **Integer** are whole number values, like the value `7` in the `math` example.
 
 # Character
-Als nächstes gibt es noch den Wertetyp **character**. Dies sind Zeichenketten: Das kann sinnhaftes aus Buchstaben sein, aber auch Kombinationen von Buchstabend und Zahlen oder Zeichen. Speichern wir z.B. ein Objekt `hometown` mit dem Wohnort (in meinem Fall Berlin). 
+Next, we have the data type **character**. These are character strings: they can be meaningful words made up of letters, or combinations of letters and numbers or symbols. For example, let's store an object `hometown` with the place of residence (in my case, Berlin).
 
 ```{r character1, eval=TRUE}
 hometown <- "Berlin"
@@ -58,12 +58,12 @@ hometown <- "Berlin"
 hometown
 ```
 
-{{% expand \"Was fällt dir auf im Unterschied zum Speichern eines Zahlenwertes des Typs numeric oder integer?\" %}}
-Wenn es sich um Text handelt, muss dieser in der Sprache in R in `"..."` (Anführungsstriche) gesetzt werden. Man kann sowohl die doppelten `"..."` als auch die einfachen `'...'` dafür nutzen. **Wichtig:** Bleibe konsistent! 
+{{% expand "What do you notice as a difference when storing a numeric or integer value compared to storing text of type character?" %}}
+When dealing with text, it needs to be enclosed in `"..."` (quotation marks) in the R language. You can use either double `"..."` or single `'...'` for this purpose. **Important:** Stay consistent!
 {{% /expand %}}
 
 # logical
-Dieser Wertetyp spielt für die Datenverarbeitung eine wichtige Rolle, da wir später Bedingungen nutzen werden, die jeweils den Wertetyp **logical** haben. Es gibt insgesamt zwei Ausprägungen beim Wertetyp **logical**: `TRUE` und `FALSE`. **Wichtig:** Diese Worte müssen groß geschrieben werden! Ansonsten erkennt R diese nicht als **logical**. Speichern wir zum Beispiel den Wert `TRUE` in einem Objekt names `truth`. 
+This data type plays an important role in data processing, as we will later use conditions that each have the data type **logical**. There are two possible values for the **logical** data type: `TRUE` and `FALSE`. **Important:** These words must be capitalized! Otherwise, R will not recognize them as **logical**. For example, let's store the value `TRUE` in an object named `truth`.
 
 ```{r logical1, eval=TRUE}
 truth <- TRUE
@@ -71,4 +71,4 @@ truth <- TRUE
 truth
 ```
 
-Doch können wir auch mehr als einen Wert speichern?
+But can we store more than one value?

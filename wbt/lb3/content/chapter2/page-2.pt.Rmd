@@ -1,8 +1,8 @@
 ---
-title: "Zwischen zwei Gruppen"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Zwei-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Entre dois grupos"  # Título da página
+weight: 202  # Peso individual
+menuTitle: "Teste t de duas amostras" # Se o título for muito longo, use um título curto aqui
+tags: ["média", "comparação de médias", "Teste t"]  # Insira tags aqui; Palavra-chave que descreve o que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -32,26 +32,28 @@ library("car")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Beim Zwei-Stichproben t-Test musst du unterscheiden, ob es sich um gepaarte oder ungepaarte Stichproben handelt. 
+No Teste t de duas amostras, você precisa distinguir se são amostras pareadas ou não pareadas.
 
-## Zwei-Stichproben t-Test (ungepaart)
-In dieser Testsituation werden zwei verschiedene Gruppen innerhalb einer Stichprobe (z.B. nach Geschlecht) getestet. Beide Gruppen sind nicht verbunden bzw. nicht gepaart. Die Antwort des einen Falles ist nicht durch die Antwort anderer Fälle beeinflusst bzw. steht nicht in Verbindung dazu. 
+## Teste t de duas amostras (não pareado)
+Nesta situação de teste, duas diferentes grupos dentro de uma amostra (por exemplo, por gênero) são testados. Ambos os grupos não estão conectados ou pareados. A resposta de um caso não é influenciada pela resposta de outros casos ou não está relacionada a ela.
 
-Wir möchten testen, inwieweit die vertragliche Arbeitszeit (`wkhtot`) sich zwischen Männern und Frauen (`gndr`) in der Stichprobe unterscheidet. 
+Queremos testar até que ponto o tempo de trabalho contratual (`wkhtot`) difere entre homens e mulheres (`gndr`) na amostra.
 
-Wie sind die Variablen kodiert? Prüfe es im Codebook:
+Como as variáveis estão codificadas? Verifique no Codebook:
 {{%attachments style=\"grey\" title=\"Codebook PSS\" /%}}
 
-### Annahmen
-Um den Test zu berechnen, müssen zwei Annahmen geprüft werden:
+### Pressupostos
+Para calcular o teste, dois pressupostos devem ser verificados:
 
-1. Varianzgleichheit (Levene-Test)
+1. Igualdade de variâncias (Teste de Levene)
 
-2. Normalverteilung der metrischen Variable (uV)
+2. Distribuição normal da variável métrica (uV)
 
-Die zweite Annahme muss nur getestet werden, wenn $n < 30$. In Situationen mit $n > 30$ liefert der Test asymptotisch korrekte Ergebnisse. 
+O segundo pressuposto só precisa ser testado se $n < 30$. Em situações com $n > 30$, o teste fornece resultados assintoticamente corretos. 
 
-Um zu prüfen, ob Varianzgleichheit vorliegt, berechnest du den **Levene-Test**. Hierzu nutzt du die Funktion `leveneTest()` aus der **library** `car`:
+
+
+Para verificar se há igualdade de variâncias, você calcula o **Teste de Levene**. Para isso, utilize a função `leveneTest()` da **biblioteca** `car`:
 ```{r car, eval=FALSE}
 install.packages("car")
 library("car")
@@ -65,16 +67,16 @@ leveneTest(
 )   
 ```
 
-Wie wird der Test interpretiert?
+Como interpretar o teste?
 
-Die Nullhypothese des Tests ($H_0$) lautet, dass beide Gruppen in der metrischen Variable gleiche Varianzen haben. Ein p-Wert unter $0.05$ erfordert die Ablehnung der Nullhypothese und daher sind keine gleichen Varianzen anzunehmen. In der Berechnung des Tests musst du diese Eigenschaft angeben. 
+A hipótese nula do teste ($H_0$) é que ambos os grupos na variável métrica têm variâncias iguais. Um valor p abaixo de $0.05$ requer a rejeição da hipótese nula e, portanto, não se pode assumir variâncias iguais. Na realização do teste, você deve especificar essa propriedade.
 
-{{% expand \"Was sagt also der Test hier aus?\" %}}
-Richtig, in diesem Fall kann Varianzgleichheit angenommen werden, da der p-Wert $>0.05$ ist. 
+{{% expand \"O que o teste está indicando aqui?\" %}}
+Correto, neste caso, a igualdade de variâncias pode ser assumida, pois o valor p é $>0.05$.
 {{% /expand %}}
 
-### Durchführung des Tests
-Nun nutzt du wieder die Funktion `t.test()`, um den Test zu berechnen. Dabei werden die zwei Variablen nicht über ein Komma als Argument getrennt, sondern als Formel angegeben. Hierbei steht die metrische Variable zuerst, als zweites folgt die kategorielle Variable (mit nur zwei Gruppen!). Getrennt wird dies durch eine `~` (Tilde). Du nimmst standardmäßig eine Differenz von $0$ an (`mu = 0`) und im Argument `paired = FALSE` gibst du an, dass es sich um ungepaarte Stichproben handelt. Das Ergebnis des Levene-Tests wird im letzten Argument angegeben: `var.equal = TRUE`, denn es liegt ja Varianzgleichheit vor.
+### Realização do Teste
+Agora, você usará novamente a função `t.test()` para calcular o teste. As duas variáveis não são separadas por uma vírgula como argumento, mas são especificadas como uma fórmula. A variável métrica vem primeiro, seguida pela variável categórica (com apenas dois grupos!). Elas são separadas por um `~` (til). Você assume uma diferença de $0$ por padrão (`mu = 0`) e no argumento `paired = FALSE`, você indica que são amostras não pareadas. O resultado do Teste de Levene é especificado no último argumento: `var.equal = TRUE`, pois há igualdade de variâncias.
 ```{r ttest1, eval = TRUE}
 t.test(
   pss$wkhtot ~ pss$gndr,     
@@ -85,23 +87,25 @@ t.test(
 )            
 ```
 
-Du siehst jetzt die folgenden Werte:
+Agora você verá os seguintes valores:
 
-- $t = 1.3509$ (**t-value**)
+- $t = 1.3509$ (**valor-t**)
 
-- $p \approx 0.1768$ (**p-value**)
+- $p \approx 0.1768$ (**valor p**)
 
-- $CI\approx[-0.1436357, 0.7803096]$ (**confidence interval**)
+- $IC\approx[-0.1436357, 0.7803096]$ (**intervalo de confiança**)
 
-- Group female $\approx 34.46080$
+- Grupo feminino $\approx 34.46080$
 
-- Group male $\approx 34.14246$
+- Grupo masculino $\approx 34.14246$
 
-Im Durchschnitt haben Männer etwas weniger ($0.31834$), aber die Differenz ist nicht statistisch signifikant.
+Em média, os homens têm um pouco menos ($0.31834), mas a diferença não é estatisticamente significativa.
 
-### Durchführung des Test (polytome Variable)
-Nun möchten wir diesen Test mit einer Variable durchführen, die mehr als zwei Ausprägungen (also Gruppen) inkludiert. Um einen **t-Test** berechnen zu können, musst du zwei Gruppen festlegen.
-Wir möchten nun den Unterschied nach Bildungsabschluss testen (`edu`). Die Kodierungen können dem Codebook entnommen werden. Insgesamt hat die Variable $5$ Ausprägungen. Wir wählen einfach zwei Gruppen aus, die wir vergleichen möchten.
+### Realização do Teste (Variável politômica)
+Agora queremos realizar este teste com uma variável que inclui mais de duas categorias (ou grupos). Para calcular um **Teste t**, você precisa definir dois grupos.
+Agora queremos testar a diferença com base no nível de educação (`edu`). As codificações podem ser encontradas no livro de códigos. No total, a variável tem $5$ categorias. Vamos simplesmente escolher dois grupos para comparar.
+
+Aqui está a tradução para o português brasileiro:
 
 Auch hier musst du wieder den Test auf Varianzgleichheit zuerst durchführen: 
 ```{r leven2, eval=TRUE}
@@ -113,7 +117,7 @@ leveneTest(
 )
 ```
 
-Nun kannst du den **t-Test** durchführen. Bevor du diesen durchführst, musst du dich noch für zwei Gruppen aus der neuen Variable entscheiden. Du vergleichst den niedrigsten und den höchsten Abschluss. Da wir nur bestimmte Gruppen vergleichen, können wir nicht die Formelschreibweise verwenden. Stattdessen gibst du die metrische Variable zweimal an, wobei du die Daten mit **[]** auf die jeweilige Gruppe beschränkst:
+Agora você pode realizar o **Teste t**. Antes de realizá-lo, você precisa selecionar duas grupos da nova variável. Você irá comparar o menor e o maior nível de escolaridade. Como estamos comparando grupos específicos, não podemos usar a notação de fórmula. Em vez disso, você deve inserir a variável métrica duas vezes, restringindo os dados a cada grupo com **[]**:
 ```{r ttest3, eval = TRUE}
 t.test(
   pss$wkhtot[pss$edu == "ES-ISCED I"],
@@ -127,23 +131,23 @@ t.test(
 
 {{% tabs %}}
 {{% tab name=\"Frage\" %}}
-Wie interpretierst du das Ergebnis? Was ist die Differenz?
+Como você interpreta o resultado? Qual é a diferença?
 {{% /tab %}}
 {{% tab name=\"Auflösung\" %}}
-Es ist zu sehen, dass im Durchschnitt Personen mit geringerer Bildung (*mean of x*) mehr arbeiten als Personen mit höherer Bildung (*mean of y*). Der Effekt ist signifikant und die Differenz beträgt $5.62773$ Stunden. 
+É possível observar que, em média, pessoas com menor nível de educação (*média de x*) trabalham mais do que pessoas com maior nível de educação (*média de y*). O efeito é significativo e a diferença é de $5.62773$ horas. 
 {{% /tab %}}
 {{% /tabs %}}
 
-## Zwei-Stichproben t-Test (gepaart)
-Nun soll ein gepaarter Zwei-Stichproben **t-Test** durchgeführt werden. Gepaart bedeutet, dass die Werte der einen Gruppe in Relation zu den Werten der anderen Gruppe stehen. Dies ist z.B. der Fall wenn ein:e Befragte:r eine Frage an zwei verschiedenen Zeitpunkten beantwortet hat, oder jede Person aus Gruppe A eine Person aus Gruppe B zugeordnet werden kann (Mutter <-> Kind, Partner). Es gibt den Datensatz `pss2`, der zwei Jahre nach dem eigentlichen Datensatz (mit denselben Befragten) erhoben wurde und wir möchten nun testen, ob sich die Mittelwerte im zeitlichen Verlauf signifikant unterschieden
+## Teste t de duas amostras (pareado)
+Agora vamos realizar um **Teste t de duas amostras pareadas**. Pareado significa que os valores de um grupo estão relacionados aos valores do outro grupo. Isso ocorre, por exemplo, quando um entrevistado responde a uma pergunta em dois momentos diferentes, ou quando cada pessoa do Grupo A pode ser associada a uma pessoa do Grupo B (mãe <-> filho, parceiro). Existe o conjunto de dados `pss2`, que foi coletado dois anos após o conjunto de dados original (com os mesmos entrevistados) e agora queremos testar se as médias diferem significativamente ao longo do tempo.
 
-**Überprüfen der Annahmen**
+**Verificação das premissas**
 
-1. Variablen sind metrisch $\checkmark$
+1. Variáveis são métricas $\checkmark$
 
-2. Differenz folgt einer Normalverteilung (relevant für $n \leq 30$) ($\checkmark$)
+2. A diferença segue uma distribuição normal (relevante para $n \leq 30$) ($\checkmark$)
 
-Es ist ganz leicht, denn jetzt nutzt du wieder die Funktion `t.test()`. Du musst nur das Argument `paired` ändern:
+É muito simples, pois agora você irá novamente usar a função `t.test()`. Você só precisa alterar o argumento `paired`:
 ```{r ttestpaired1, eval=TRUE}
 t.test(
   pss$trstprl,
@@ -153,6 +157,6 @@ t.test(
 )
 ```
 
-**Ergebnisinterpretation**: Im Durchschnitt unterschieden sich das Vertrauen in das Parlament zwischen den zwei Erhebungen nicht. 
+**Interpretação do resultado**: Em média, a confiança no Parlamento não diferiu entre as duas pesquisas.
 
-Gehe nun zu Testsituationen mit mehr als zwei Gruppen!
+Vá agora para situações de teste com mais de dois grupos!

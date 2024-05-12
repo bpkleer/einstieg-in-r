@@ -1,0 +1,178 @@
+---
+title: "For-Loop"  # Page Title
+weight: 402  # Custom Weight 
+menuTitle: "" # Short Title if the title is too long
+tags: ["for-loop", "loop"]  # Tags; Short word describing the content of the page
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+With **Loops** (*Iterations*), you can repeat operations. The repetitions occur *n* times, where *n* is an integer value. For the repetitions, you specify a starting value. As mentioned above, this is useful, for example, when you want to write your own recodings without wanting to use existing functions.
+
+We can distinguish between the following types of iterations:
+
+1. **for**
+
+2. **while**
+
+3. **repeat** (**do while**)
+
+In this unit, we will only look at the for-loop.
+
+## For-Loop
+
+In a **for** loop, operations are performed until the end of a predefined sequence is reached (e.g., over all observations in a dataset). With this loop, we set a start and an end, and the operations are executed within this sequence.
+
+The logic of the **for-loop** is illustrated in the diagram below.
+
+<center>
+![for-loop](../img/for.PNG){width=50%}
+</center>
+
+<br>
+
+### Syntax
+The general syntax is as follows:
+
+```{r for, eval=FALSE}
+for (i in 0:5) {
+  print(i)
+}
+```
+
+The structure is similar to the **if** structure:
+
+1. We initiate the loop and set the desired sequence in parentheses: `for (i in 0:5)`
+
+2. Then, we set the instructions to be executed for each iteration within curly braces: `{ print(i) }`
+
+The sequence includes a changing index (`i`), which increases with each iteration of the loop, following the sequence specification (`in 0:n`). In this example, the loop is intended to run six times, from **0** to **5**. `i` starts with the value **0** and once it reaches **6**, the loop terminates. **Important**: In **for** loops, `i` iteratively increases by **1**.
+
+Alternatively, objects can be specified as the start or end. To do this, these objects must be declared beforehand and can be used within the loop. First, we create a target value with `n <- 5`, which we then utilize within the loop through the object.
+
+```{r for2, eval=FALSE}
+# Beispiel Zielwert
+n <- 5
+
+for (i in 0:n) {
+  print(i)
+}
+
+# Beispiel Startwert
+start <- 3
+
+for (i in start:n) {
+  print(i)
+}
+```
+
+### Example For-Loop
+We create a simple **for** loop that outputs the value of a vector `teacher`, which contains the teachers for a course. In total, we have $5$ teachers. In this example, we determine the end of the loop simply by the length of the vector we are using. This ensures that all cases are processed. We sequentially output the names of the teachers:
+
+``` {r for3, eval=FALSE}
+teacher <- c("Baecker", 
+             "Mueller",
+             "Kaufmann",
+             "Bauer",
+             "Schuster"
+             )
+
+for (i in 1:length(teacher)) {
+  print(paste0("Dozent:in ", 
+               i, 
+               " ist ",
+               teacher[i]
+               )
+        )
+}
+```
+
+Here, we use the `paste0()` function, which can concatenate text with objects as output. The `paste0()` function does not include a space between elements in the function (the `paste()` function inserts a space (or a specified separator in the `sep` argument) between all elements.)
+
+### For-Loop with Else-If Statement
+Let's consider the example from the **if** statements. Now, we want to create a new variable in the dataset that uses a value description. Therefore, we need the **else if** condition from the previous section and loop through the length of the dataset using a **for** loop. The result is stored in a new variable `motText` and each case is individually printed using `print()`. For clarity, we take two steps here: first, we store the description in `motivation` and then transfer it to the value in `statistics$motText`. **It is important** not to forget the running index in `statistics$motText`, as we only want to assign the specific case with the new value.
+
+```{r for-elseif, eval=FALSE}
+for (i in 1:length(statistics$mot)) {
+  if (statistics$mot[i] >= 7) {
+    motivation <- "sehr motiviert"
+    statistics$motText[i] <-  motivation
+  } else if (statistics$mot[i] >= 4 & statistics$mot[i] < 7) {
+    motivation <- "motiviert"
+    statistics$motText[i] <-  motivation
+  } else if (statistics$mot[i] >= 0 & statistics$mot[i] < 4) {
+    motivation <- "nicht motiviert"
+    statistics$motText[i] <-  motivation
+  }
+  
+  print(paste0("Student:in ", 
+               i, 
+               " ist ",
+               motivation
+               )
+        )
+}
+```
+
+**A small task**: As mentioned above, we have written too many lines here unnecessarily. Try to streamline the loop!
+
+
+
+### For-Loop with Next
+As a second example, we now want to create a new variable that includes descriptions of `grade2` depending on the grade value. Just a reminder: the variable `grade2` contains `NA's`. This is just a functional example of combining **for** loops and **if** statements. It is recommended to use functions from the `dplyr` package (`case_when()`) or `car` (`recode()`) for recoding.
+
+``` {r table, eval=FALSE}
+table(statistics$grade2, 
+      useNA = "ifany"
+      )
+```
+
+In the **for** loop, we only want to insert labels into a new variable if there is no `NA`. This can be controlled using an **else if** statement.
+
+In the example, we see that we have used two **if** statements. First, we check if the observation contains `NA` in `grade2`. The function `is.na()` returns a logical value (`TRUE`, `FALSE`). If it is `TRUE`, we assign `NA` to the new variable and jump to the next case with the `next` command (loop starts with the next `i` from the beginning). With `next`, we skip the next instructions, and the loop starts the next iteration from the beginning. If there is no `NA`, the second **if** statement is checked, where we assign the text labels using multiple **else if** statements.
+
+``` {r for-next, eval=FALSE}
+for (i in 1:length(statistics$grade2)) {
+  if (is.na(statistics$grade2[i])) {
+    statistics$g2text[i] <- NA
+    next
+  } 
+  
+  if (statistics$grade2[i] >= 13) {
+    statistics$g2text[i] <- "sehr gut"
+  } else if (statistics$grade2[i] >= 10 & statistics$grade2[i] < 13) {
+    statistics$g2text[i] <- "gut"
+  } else if (statistics$grade2[i] >= 7 & statistics$grade2[i] < 10) {
+    statistics$g2text[i] <- "befriedigend"
+  } else if (statistics$grade2[i] >= 5 & statistics$grade2[i] < 7) {
+    statistics$g2text[i] <- "ausreichend"
+  } else {
+    statistics$g2text[i] <- "nicht bestanden"
+  }
+}
+
+table(statistics$g2text)
+
+```
+
+**A small task**: Instead of using `next`, you could achieve the same result here using only **if** statements. Rewrite the loop so that it works without `next`.
+
+<br>
+
+### Advantages & Disadvantages
+**for** loops are quite commonly used and can also be nested. **for** loops cannot be used when the number of iterations is not known ($\rightarrow$ **while** loop). One disadvantage of **for** loops is that they are generally very slow. Also, in nested **for** loops, it is often difficult to understand exactly what is being done. This means that troubleshooting can sometimes be tedious.
+
+As an alternative to **for** loops, you can use the `apply()` functions (functionality has been verified by developers). More information about the `apply()` functions can be found [here](https://en.wikibooks.org/wiki/GNU_R:_apply). However, in some situations, custom functions can rely on **for** loops, so it is useful to also be familiar with these basic functions.  
+

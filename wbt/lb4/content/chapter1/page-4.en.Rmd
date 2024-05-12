@@ -1,8 +1,8 @@
 ---
-title: "Multivariate lin. Regression mit dichotomen kategoriellen Variablen"  # Titel der Seite
-weight: 104  # Individuelles Gewicht 
-menuTitle: "Dichotome kategorielle Variablen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "kategoriell", "dichotom"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Multivariate lin. Regression with dichotomous categorical variables"  # Page title
+weight: 104  # Custom weight 
+menuTitle: "Dichotomous Categorical Variables" # Short title if the title is too long
+tags: ["regression", "categorical", "dichotomous"]  # Tags; brief description of the content
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -39,28 +39,27 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In den Sozialwissenschaften nutzen wir oftmals Variablen mit nominalem oder ordinalem Skalenniveau. Diese können wir auch in das **lineare Regressionsmodell** als unabhängige Variable hinzufügen. Wir müssen nur verstehen, welchen zusätzlichen Effekt wir berechnen. Wir müssen *Dummy*-Variablen kreieren, die den Unterschied einer Ausprägung auf der Variablen in Referenz zu einer anderen Ausprägung angeben (Referenzkategorie). In der Funktion `lm()` ist dies leicht umzusetzen.
+In social sciences, we often use variables with nominal or ordinal scale levels. We can also add these to the **linear regression model** as independent variables. We just need to understand the additional effect we are calculating. We need to create *dummy* variables that indicate the difference of one attribute of the variable in reference to another attribute (reference category). This is easy to implement in the `lm()` function.
 
-Wir möchten die Variable `gndr` mit in unser Modell aufnehmen (*female*/*male*). Welche theoretische Annahme können wir über den Effekt treffen?
+We want to include the variable `gndr` in our model (*female*/*male*). What theoretical assumption can we make about the effect?
 
-{{% expand \"Was gleichen wir in der Regressionsgleichung an?\" %}}
+{{% expand "What do we equalize in the regression equation?" %}}
 
 $$Y = \beta_0 + \beta_1*X_1 + \beta_2*X_2 + \beta_3*X_3+ e$$
 
 $$stfdem = \beta_0 + \beta_1*stfeco + \beta_2*trstlgl + \beta_3*gndr + e$$
 {{% /expand %}}
 
-Wie wir bereits wissen, hat eine dichotome Variable keine lineare Beziehung zu einer metrischen Variable. Deshalb benötigen wir **Dummy-Variablen**. Wir berechnen ein Modell, in dem der zusätzliche Effekt einer Ausprägung gegenüber der anderen Ausprägung geschätzt wird. Dieser Effekt ist ein 
-konstanter Effekt!. 
+As we already know, a dichotomous variable does not have a linear relationship with a metric variable. Therefore, we need **dummy variables**. We calculate a model where the additional effect of one category compared to the other category is estimated. This effect is a constant effect!.
 
-Die Variable `gndr` hat folgende Ausprägungen:
+The variable `gndr` has the following categories:
 
 - *female*
 
 - *male*
 
-## Berechnen des Modells
-Auch hier müssen wir entsprechend der erweiterten Gleichung nur die Variable `gndr` hinzufügen:
+## Calculating the Model
+Here, we only need to add the variable `gndr` according to the extended equation:
 ```{r olsModel3, eval=TRUE}
 olsModel3 <- lm(
   stfdem ~ 1 + stfeco + trstlgl + gndr,   
@@ -71,33 +70,33 @@ summary(olsModel3)
 ```
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-Was ist die Referenzkategorie? 
+{{% tab name="Question" %}}
+What is the reference category?
 
-Welchen Effekt berechnen wir mit der Variable `gndrmale`?
+What effect are we calculating with the variable `gndrmale`?
 
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Die Referenzkategorie ist *female*, also weibliche Befragte.
+{{% tab name="Solution" %}}
+The reference category is *female*, meaning female respondents.
 
-Der zusätzliche Effekt ist für Personen berechnet, die männlich sind (gegenüber weiblichen Personen). Männliche Personen haben also eine um $-0.08020$ niedrige Zufriedenheit als weibliche Personen.
+The additional effect is calculated for individuals who are male (compared to female individuals). Therefore, male individuals have a satisfaction level $-0.08020$ lower than female individuals.
 {{% /tab %}}
-{{% tab name=\"Interpretation des Modells\" %}}
-Wie interpretieren wir das Modell?
+{{% tab name="Interpreting the Model" %}}
+How do we interpret the model?
 
-Schreibe ein paar Zeilen in das Skript!
+Write a few lines in the script!
 {{% /tab %}}
-{{% tab name=\"Musterlösung\" %}}
+{{% tab name="Sample Solution" %}}
 
-Das Modell erklärt $45.98 %$ der Varianz in der Variable `stfdem`. Die Zufriedenheit mit der ökonomischen Leistung (`stfeco`) sowie das Vertrauen in das Rechtssystem (`trstlgl`) haben einen signifikanten Effekt auf die Zufriedenheit mit der Demokratie (`stfdem`). Der Effekt von `stfeco` ist positiv ($\beta_1 = 0.87435$), der Effekt von Vertrauen in das Rechtssystem ($\beta_2 = -0.04137$) und der Effekt für männliche Personen ($\beta_3 = -0.08020$) sind beide negativ. Personen, die ein höheres Vertrauen haben oder männlich sind, haben also einge leicht geringere Zufriedenheit. 
+The model explains $45.98 %$ of the variance in the variable `stfdem`. Satisfaction with economic performance (`stfeco`) and trust in the legal system (`trstlgl`) have a significant effect on satisfaction with democracy (`stfdem`). The effect of `stfeco` is positive ($\beta_1 = 0.87435$), the effect of trust in the legal system ($\beta_2 = -0.04137$), and the effect for male individuals ($\beta_3 = -0.08020$) are both negative. Individuals with higher trust or who are male have slightly lower satisfaction.
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% expand \"Wenn du jetzt nochmal die Formel oben vergleichst mit der Aufgabe, sollte dir etwas auffallen! Was muss an der Formel geändert werden, damit diese tatsächlich auf das Regressionmodell passt?\" %}}
-In der Gleichung oben ist die Variable Geschlecht (`gndr`) aufgeführt. Tatsächlich aber fügen wir eine Variable `gndrmale` hinzu, die eben in der Ausprägung `1` angibt, dass die Person männlich ist und in der Ausprägung `0`, dass die Person nicht männlich (also in diesem dichotomen Beispiel *female*) ist. 
+{{% expand "If you compare the formula above with the task again, something should catch your attention! What needs to be changed in the formula to actually fit the regression model?" %}}
+In the equation above, the variable gender (`gndr`) is listed. However, we actually add a variable `gndrmale`, which indicates in category `1` that the person is male and in category `0` that the person is not male (so in this dichotomous example, *female*).
 
-Die Formel wäre daher wie folgt korrekt:
+The formula would therefore be correct as follows:
 $$stfdem = \beta_0 + \beta_1*stfeco + \beta_2*trstlgl + \beta_3*male + e$$
 {{% /expand %}}
 
-Warum das relevant ist, siehst du auf der nächsten Seite! Jetzt hast du gelernt, wie du dichotome kategorielle Variablen in das Regressionsmodell aufnimmst, doch wie funktioniert es mit polytomen kategoriellen Variablen?
+Why this is relevant, you will see on the next page! Now you have learned how to include dichotomous categorical variables in the regression model, but how does it work with polytomous categorical variables?

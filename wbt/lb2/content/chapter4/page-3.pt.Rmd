@@ -1,0 +1,192 @@
+---
+title: "Funções"  # Título da página
+weight: 403  # Peso individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["funções"]  # Insira tags aqui; abreviação do que acontece na página
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+## Escrevendo Funções em R
+
+Em R, não só podemos usar as funções fornecidas pelos *packages*, mas também é muito fácil escrever nossas próprias funções. Primeiro, vamos criar uma função própria para calcular a média e, em seguida, uma função para calcular a amplitude interquartil.
+
+<br> 
+
+### Sintaxe
+A seguir, vamos escrever nossas próprias funções. A estrutura básica do código é a seguinte: 
+```{r function, eval=FALSE}
+my_function <- function(arg1, arg2, ..., argn){
+  # Instruções
+}
+```
+
+Primeiro, definimos um nome para a função (`my_function`) e atribuímos uma função a ela. Entre parênteses `()` são passados argumentos para a função, que são utilizados nas instruções (tudo entre chaves `{}`). Estes podem ser conjuntos de dados, variáveis ou valores individuais, dependendo de como o argumento é utilizado nas instruções.
+
+### Função Própria: Média
+Agora queremos calcular a média de uma variável com uma função escrita por nós mesmos. Para isso, o conjunto de dados `statistics` (ou qualquer outro conjunto de dados com uma variável métrica) deve ser carregado no **ambiente**. Vamos criar uma função onde passamos um argumento: a variável da qual queremos calcular a média. Este argumento é nomeado na função como `x`. Em todas as instruções, onde usamos `x`, o argumento passado será utilizado quando chamarmos a função `own_mean()`.
+
+Em seguida, calculamos a média na primeira instrução da nova função. Aqui, acessamos o argumento fornecido (`x`). Com a segunda instrução, exibimos esse valor. Em seguida, podemos chamar a função criada por nós mesmos e devemos fornecer o argumento exigido (variável do cálculo). A média será calculada e exibida.
+```{r function2, eval=FALSE}
+own_mean <- function(x){
+  mean = sum(x) / length(x)
+  
+  print(mean) 
+}
+
+own_mean(statistics$grade)
+```
+
+Assim, escrevemos nossa primeira função personalizada!
+
+
+### Função Personalizada: Amplitude Interquartil
+Agora queremos escrever uma função que nos forneça o quartil inferior e superior, bem como a amplitude interquartil. Portanto, precisamos de **três instruções** na função:
+
+1. cálculo do quartil inferior,
+
+2. cálculo do quartil superior e
+
+3. cálculo da amplitude interquartil.
+
+Além disso, vamos exibir esses três valores com a função `print()`.
+
+```{r function3, eval=FALSE}
+own_iqr <- function(x){
+  uGrenze <-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze <- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand <- oGrenze - uGrenze
+  
+  print(paste("Das untere Quartil liegt bei:",
+              uGrenze
+              )
+        )
+  
+  print(paste("Das obere Quartil liegt bei:",
+              oGrenze
+              )
+        )
+  
+  print(paste("Der Interquartilsabstand beträgt:",
+              abstand
+              )
+        )
+}
+
+own_iqr(statistics$grade)
+```
+
+No entanto, se quisermos armazenar os valores calculados da função em um novo objeto, precisamos usar `return` como acima. Primeiro, criamos uma nova lista `results`, para que tenhamos como objetivo um objeto de lista com os valores individuais. Nomeamos as partes individuais da lista como na função `$uGrenze`, `$oGrenze` e `$abstand`. A função `quantile()` armazena automaticamente um *named numeric*, mas queremos armazenar apenas o valor numérico. Portanto, indexamos a atribuição à nossa lista com `[[1]]`.
+
+``` {r function4, eval=FALSE}
+own_iqr_return <- function(x){
+  uGrenze <-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze <- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand <- oGrenze - uGrenze
+  
+  print(paste("Das untere Quartil liegt bei:",
+              uGrenze
+              )
+        )
+  
+  print(paste("Das obere Quartil liegt bei:",
+              oGrenze
+              )
+        )
+  
+  print(paste("Der Interquartilsabstand beträgt:",
+              abstand
+              )
+        )
+  
+  results <- list()
+  
+  results$uGrenze <- uGrenze[[1]]
+  
+  results$oGrenze <-oGrenze[[1]]
+  
+  results$abstand <- abstand[[1]]
+  
+  return(results) 
+}
+
+test <- own_iqr(statistics$grade)
+
+test
+```
+
+Escrever funções personalizadas é fácil de implementar em R e é útil em muitas etapas da análise de dados quando não há funções existentes para aplicações específicas.
+
+### Funções e Loops
+Também podemos usar loops em funções. Por exemplo, poderíamos escrever uma função que nos mostra a diferença entre a média e o valor de uma variável. Para isso, usamos novamente o conjunto de dados de exemplo `statistics`.
+
+Wir agora vamos vincular a função a um **for**-loop e a uma expressão **if**. Nomeamos a função como `showcase` e passamos um argumento (a variável a ser usada). Em seguida, o **for**-loop é iniciado. Se nenhum valor estiver presente, uma mensagem será exibida informando que nenhum valor está presente. Se um valor estiver presente, a distância até a *média* será calculada e esse valor será exibido juntamente com o valor alcançado.
+
+```{r function-loop, eval = FALSE}
+showcase <- function(x){
+  for (i in 1:length(x)) {
+    if (is.na(x[i])) {
+      print(paste("Für Student", 
+                  i, 
+                  "liegt kein Wert vor."
+                  )
+            )
+      next
+    } else {
+      abstand = mean(x, 
+                     na.rm = TRUE
+                     ) - x[i]
+      
+      print(paste0("Student ",
+                  i, 
+                  " hat folgenden Wert: ",
+                  x[i], 
+                  " (Abweichung zum Mean: ",
+                  round(abstand, 
+                        2
+                        ),
+                  ")"
+                  )
+            )
+    }
+  }
+}
+```
+
+Agora podemos exemplificar a variável `grade` e `grade2` do conjunto de dados `statistics`.
+
+```{r, eval=FALSE}
+showcase(statistics$grade)
+```
+
+```{r, eval=FALSE}
+showcase(statistics$grade2)
+```

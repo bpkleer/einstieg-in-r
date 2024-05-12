@@ -1,8 +1,8 @@
 ---
-title: "Speicherarten von Daten"  # Titel der Seite
-weight: 121  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["daten"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Tipos de Armazenamento de Dados"  # Título da página
+weight: 121  # Peso personalizado
+menuTitle: "" # Se o título for muito longo, insira um título curto aqui
+tags: ["dados"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,23 +19,25 @@ tags: ["daten"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wie bereits in Lernblock 1 besprochen, haben Dateien immer **Dateiendungen**, die auf das Lese-/Schreibformat hinweisen. Dies waren zur Erinnerung zum Beispiel `.docx` für Word-Dateien oder `.pptx` für Powerpoint-Dateien. 
+Como discutido no Bloco de Aprendizagem 1, os arquivos sempre têm **extensões de arquivo** que indicam o formato de leitura/escrita. Para lembrar, por exemplo, `.docx` para arquivos do Word ou `.pptx` para arquivos do Powerpoint.
 
-Für Datensätze gibt es globale Dateiformate, die von den meisten Programmen gelesen werden können, aber auch programmspezifische Dateiformate. 
+Para conjuntos de dados, existem formatos de arquivo globais que podem ser lidos pela maioria dos programas, mas também formatos de arquivo específicos de programas.
 
-Globale Dateiformate sind zum Beispiel:
+Os formatos de arquivo globais incluem:
 
-- `.txt` (Textdateien, in der Daten meist mit einem Tabulator getrennt sind)
+- `.txt` (arquivos de texto, onde os dados geralmente são separados por tabulação)
 
-- `.csv` (Komma-getrennte Werte)
+- `.csv` (valores separados por vírgula)
 
-In R gibt es zwei wichtige Dateiformate: `.RData` und `.rds`. Dateien mit der Endung `.RData` können mehrere Objekte beinhalten, dies nutzt man zum Beispiel, wenn man am Ende seines Skripts alle Objekte in einer einzigen Datei speichern möchte. Das Format `.rds` ist ein komprimiertes Dateiformat, in dem immer nur ein einziges Objekt gespeichert werden kann. Für die Verbreitung von Datensätzen ist dies das häufigste Format, das in R genutzt wird. 
+No R, existem dois formatos de arquivo importantes: `.RData` e `.rds`. Arquivos com a extensão `.RData` podem conter vários objetos, o que é útil, por exemplo, quando se deseja salvar todos os objetos em um único arquivo no final do script. O formato `.rds` é um formato de arquivo comprimido no qual apenas um único objeto pode ser salvo. Para distribuição de conjuntos de dados, este é o formato mais comum usado no R.
 
-Leider ist es immer noch so, dass manche öffentlich zugängliche Datensätze lediglich in einem SPSS-konformen Dateiformat (`.sav`) zur Verfügung gestellt werden. Dies ist aber kein Problem, denn mithilfe einer **library** können wir RStudio Funktionen hinzufügen, die auch dieses Dateiformat lesen können. 
+Infelizmente, ainda há casos em que conjuntos de dados disponíveis publicamente são fornecidos apenas em um formato de arquivo compatível com o SPSS (`.sav`). No entanto, isso não é um problema, pois com a ajuda de uma **biblioteca** podemos adicionar funções ao RStudio que podem ler esse formato de arquivo também. 
 
-**Was ist eigentlich eine library?**
-R ist eine *open-source-language*, in der jede Anwender:in neue Funktionen schreiben kann und diese der Welt zur Verfügung stellen kann. Bei der Installation werden lediglich die *Basis*-Funktionen mit installiert, die nur einen Bruchteil des Anwendungsumfangs darstellen. Dies ist eine der **Stärken** gegenüber SPSS oder auch Stata, denn so können viele Anwendungsfälle inkludiert werden. Es ist aber auch gleichzeitig am Anfang ein großer Dschungel, denn da viele Personen auf gleiche Probleme gestoßen sind, gibt es immer mehr als eine Lösung bzw. mehr als eine mögliche **library**, die hinzugefügt werden kann. In diesem Kurs werden wir keinen kompletten Überblick über verschiedene **libraries** für das gleiche Problem darstellen, sondern immer nur die von uns präferierte **library** vorstellen. Das muss dich aber nicht abhalten, nach einer anderen **library** zu suchen und den Lösungsweg darüber zu finden. 
+{ /*examples*/ }
 
-Åuf der offiziellen **Library**-Website werden derzeit (Stand: März 2022) 18994 verschiedene **libraries** gelistet, die zusätzliche Funktionen beinhalten, um so statistische Anwendungen durchzuführen. Daneben gibt es noch etliche **libraries** im Entwicklungsstadium, die man aber auch bereits meist nutzen kann. Das ist aber wiedeurm nur etwas für erfahrene Nutzer:innen - also für dich nach diesem Kurs. 
+**O que é uma biblioteca afinal?**
+R é uma *linguagem de código aberto*, na qual qualquer usuário pode escrever novas funções e disponibilizá-las para o mundo. Ao instalar, apenas as funções *básicas* são incluídas, representando apenas uma fração da gama de aplicações. Esta é uma das **fortalezas** em comparação com o SPSS ou Stata, pois muitos casos de uso podem ser incluídos. No entanto, isso também pode ser um grande desafio no início, pois muitas pessoas encontraram os mesmos problemas, resultando em mais de uma solução ou mais de uma possível **biblioteca** que pode ser adicionada. Neste curso, não forneceremos uma visão geral completa de diferentes **bibliotecas** para o mesmo problema, mas sempre apresentaremos apenas a **biblioteca** que preferimos. Isso não deve impedi-lo de procurar por outra **biblioteca** e encontrar a solução por meio dela.
 
-Im folgenden werden wir jetzt unterschiedliche Datensatz-Dateiformate in R importieren, um im Anschluss damit zu arbeiten. 
+No site oficial da **biblioteca**, atualmente (até março de 2022), estão listadas 18994 **bibliotecas** diferentes, que incluem funções adicionais para realizar aplicações estatísticas. Além disso, existem muitas **bibliotecas** em fase de desenvolvimento, que geralmente já podem ser utilizadas. No entanto, isso é algo apenas para usuários experientes - ou seja, para você após este curso.
+
+A seguir, importaremos diferentes formatos de arquivos de conjunto de dados no R para trabalhar com eles posteriormente.

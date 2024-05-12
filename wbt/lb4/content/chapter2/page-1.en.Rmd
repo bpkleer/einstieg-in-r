@@ -1,8 +1,8 @@
 ---
-title: "Standardisierte Regressionskoeffizienten"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Stand. Koeffizienten" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Standardized Regression Coefficients"  # Page title
+weight: 201  # Custom weight 
+menuTitle: "Std. Coefficients" # Short title if the main title is too long
+tags: ["regression", "regression coefficients", "standardized"]  # Tags to describe the content of the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -41,13 +41,15 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In Statistik I hast du ja bereits die z-Standardisierung kennengelernt und Verteilungen von Variablen besser vergleichen zu können. Die z-Standardisierung rekodiert eine Variable auf die Einheit Standardabweichung, so dass Variablen, die z-standardisiert sind, vergleichbar sind. 
+In Statistics I, you have already learned about z-standardization to compare distributions of variables more effectively. Z-standardization recodes a variable to the unit standard deviation, making variables that are z-standardized comparable.
 
-Nicht rekodierte Variablen liefern in R auch nicht-standardisierte Regressionskoeffizienten. Du hast dies an der Interpretation der Regressionsergebnisse gesehen: Du hast immer in der Einheit der Variablen ausgewertet. Nachteil von nicht-standardisierten Variablen ist, dass die Effekte nicht in der Stärke untereinander vergleichbar sind. Dies geht nur mit standardisierten Variablen. 
+In R, non-standardized variables also yield non-standardized regression coefficients. You have seen this in the interpretation of regression results: you always evaluated in the unit of the variables. The disadvantage of non-standardized variables is that the effects are not comparable in strength. This can only be achieved with standardized variables.
 
-In manchen (oft komplexeren) Modellen möchten wir die Stärke der einzelnen unabhängigen Variablen bewerten. Da die Variablen nicht dieselbe Einheit besitzen, ist dies wie oben erklärt nicht so einfach möglich. Wir können die Variablen aber standardisieren, so dass alle Variablen dieselbe Einheit besitzen (Standardabweichungen). Dazu nutzt du am besten die Funktion `scale()` aus dem **tidyverse** (`dplyr`). In komplexeren Regressionsmodellen oder erweiterten Modellen (wie *Multi-Level-Modellen*) standardisiert man die Variablen meist vor der Berechnung des Modells.
+In some (often more complex) models, we want to evaluate the strength of the individual independent variables. Since the variables do not have the same unit, as explained above, this is not easily achievable. However, we can standardize the variables so that all variables have the same unit (standard deviations). For this, it is best to use the `scale()` function from the **tidyverse** (`dplyr`). In more complex regression models or advanced models (such as *Multi-Level Models*), variables are usually standardized before calculating the model. 
 
-Machen wir diesen Schritt nun für die Variablen im `olsModel2`:
+{ /* examples */ }
+
+Let's take this step now for the variables in `olsModel2`:
 ```{r scale, eval=TRUE}
 pss <- pss %>% 
   mutate(
@@ -58,7 +60,7 @@ pss <- pss %>%
 
 ```
 
-Wir berechnen das Modell anschließend erneut mit den neuen Variablen:
+Next, we calculate the model again with the new variables:
 ```{r olsM2Z, eval=TRUE}
 olsModel2Z <- lm(
   stfdemZ ~ 1 + stfecoZ + trstlglZ,   
@@ -66,9 +68,9 @@ olsModel2Z <- lm(
 )   
 ```
 
-Wie interpretieren wir das Ergebnis?
+How do we interpret the result?
 ```{r eval=TRUE, echo=TRUE}
 summary(olsModel2Z)
 ```
 
-**Ergebnis**: Mit jedem Anstieg um eine Standardabweichung in `stfeco` steigt `stfdem` um $0.697244$ Standardabweichungen. Wie zu sehen ist, ist die Interpretation etwas schwerfälliger. Aber nun können die einzelnen Effekte zwischen metrischen Variablen verglichen werden. Es wird sichtbar, dass der Effekt von `stfeco` stärker ist als der von `trstlgl` ($0.697244 > |-0.033592|$).
+**Result**: With each increase of one standard deviation in `stfeco`, `stfdem` increases by $0.697244$ standard deviations. As can be seen, the interpretation is somewhat cumbersome. But now the individual effects between metric variables can be compared. It becomes apparent that the effect of `stfeco` is stronger than that of `trstlgl` ($0.697244 > |-0.033592|$).

@@ -1,8 +1,8 @@
 ---
-title: "geom_boxplot()"  # Titel der Seite
-weight: 131  # Individuelles Gewicht 
-menuTitle: "geom_boxplot()" # Falls Titel zulang ist, hier Kurztitel
-tags: ["geom_boxplot", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "geom_boxplot()"  # Título da página
+weight: 131  # Peso individual
+menuTitle: "geom_boxplot()" # Se o título for muito longo, use um título curto aqui
+tags: ["geom_boxplot", "ggplot"]  # Tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -42,12 +42,12 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Boxplots kennst du aus der Statistik-Vorlesung. In Boxplots sind die Quartile angegeben sowie das Minimum und Maximum (oder Ausreißer). Jetzt lernst du die einzelnen Funktionen genauer kennen, wie du ein Boxplot darstellen kannst. Wir stellen zwei Funktionen vor: `geom_boxplot()` oder `ggboxplot()`. Wir nutzen Boxplots für die Darstellung einer metrischen Variablen. Boxplots einer metrischen Variable können auch nach einer Gruppenvariable aufgeteilt werden.
+Você conhece os boxplots da aula de Estatística. Nos boxplots, os quartis são indicados, bem como o mínimo e o máximo (ou outliers). Agora você aprenderá mais sobre as funções individuais, como representar um boxplot. Apresentamos duas funções: `geom_boxplot()` ou `ggboxplot()`. Usamos boxplots para representar uma variável métrica. Os boxplots de uma variável métrica também podem ser divididos por uma variável de grupo.
 
-Zusätzlich stellen wir auf der letzten Seite noch **rainclouds** vor. Diese sind ähnlich einem Boxplot, erhalten aber noch zusätliche Informationen darüber wie die Werte verteilt sind. 
+Além disso, na última página, apresentamos também **rainclouds**. Eles são semelhantes a um boxplot, mas fornecem informações adicionais sobre como os valores estão distribuídos.
 
-## Boxplots mit `geom_boxplot()`
-Die Boxplots des Alters können wir ganz einfach erstellen. Hierzu nutzen wir die Funktion `geom_boxplot()`: 
+## Boxplots com `geom_boxplot()`
+Podemos facilmente criar os boxplots da idade. Para isso, usamos a função `geom_boxplot()`:
 ```{r boxplot, eval=TRUE}
 boxplot <- ggplot(
   pss, 
@@ -57,7 +57,7 @@ boxplot <- ggplot(
 
 boxplot
 ```
-Auf der x-Achse ist nun die metrische Variable Alter angegeben. Die Darstellung der y-Achse ist hier etwas verwirrend, da diese inhaltlich nicht interpretiert wird. `ggplot` benötigt diese aber zur Darstellung. Daher kann man diese einfach anpassen und das Boxplot drehen:
+A variável métrica Idade está agora representada no eixo x. A representação do eixo y pode ser um pouco confusa aqui, pois não é interpretada de forma significativa. No entanto, o `ggplot` precisa dela para a representação. Portanto, você pode simplesmente ajustá-la e girar o boxplot:
 ```{r boxplot2, eval=TRUE}
 boxplot <- ggplot(
   pss, 
@@ -70,7 +70,7 @@ boxplot <- ggplot(
 boxplot
 ```
 
-Im Folgenden werden wir das Boxplot von Alter in Abhängigkeit vom Distrikt ausgeben lassen. Oftmals will man die Verteilung einer metrischen Variable auf einer kategoriellen Variable ausgeben lassen. Dazu fügst du innerhalb der `ggplot()` Funktion im Argument `aes` einfach die Gruppenvariable hinzu. **Denk dran**: Wir haben die Achsen getauscht, also ist die Gruppenvariable auf der x-Achse (1. Argument in `aes`), auch wenn es im Plot auf der y-Achse auftaucht!
+A seguir, vamos exibir o boxplot da idade em relação ao distrito. Muitas vezes, queremos visualizar a distribuição de uma variável métrica em relação a uma variável categórica. Para fazer isso, basta adicionar a variável de grupo dentro da função `ggplot()` no argumento `aes`. **Lembre-se**: Invertemos os eixos, então a variável de grupo estará no eixo x (1º argumento em `aes`), mesmo que apareça no gráfico no eixo y!
 ```{r boxplot-district, eval=TRUE}
 boxplotDistrict <- ggplot(
   pss, 
@@ -85,7 +85,7 @@ boxplotDistrict <- ggplot(
 boxplotDistrict
 ```
 
-Wie zuvor können wir den Plot leicht anpassen:
+Assim como antes, podemos ajustar o gráfico facilmente:
 ```{r boxplot-adjustments, eval=TRUE}
 boxplotDistrict +
   scale_fill_manual(
@@ -116,4 +116,4 @@ boxplotDistrict +
   coord_flip()
 ```
 
-Auf der nächsten Seite lernst du eine Alternative kennen!
+Na próxima página, você aprenderá uma alternativa!

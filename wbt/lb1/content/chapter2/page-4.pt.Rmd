@@ -1,8 +1,8 @@
 ---
-title: "Dataframes"  # Titel der Seite
-weight: 204  # Individuelles Gewicht 
-menuTitle: "Dataframes" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datentypen" , "dataframes"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Dataframes"  # Título da página
+weight: 204  # Peso individual
+menuTitle: "Dataframes" # Se o título for muito longo, use um título curto aqui
+tags: ["tipos-de-dados", "dataframes"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -30,17 +30,18 @@ pss <- readRDS("../../static/files/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Neben Vektoren und Faktoren und gibt es noch den für uns wichtigen Objekttyp **data frame**. Ein **data frame** ist einfach eine Verbindung mehrerer Vektoren (Variablen) derselben Länge in einer Matrix. Im konventionellen Format (*wide-Format*) sind in den Spalten die Variablen vorzufinden und in den Zeilen die Befragten
+Além de vetores e fatores, há o tipo de objeto **data frame** que é importante para nós. Um **data frame** é simplesmente uma combinação de vários vetores (variáveis) do mesmo comprimento em uma matriz. No formato convencional (*formato largo*), as variáveis estão nas colunas e os respondentes nas linhas.
 
-- Spalten: Vektoren, Faktoren (Variablen)
+- Colunas: Vetores, fatores (variáveis)
+- Linhas: Casos (unidades de observação individuais, por exemplo, entrevistados)
 
-- Zeilen: Fälle (einzelne Beobachtungseinheiten, z.B. Befragte)
-
-Machen wir das ganze am Beispiel des Datensatzes, den wir während des Kurses benutzen werden: **Panem Social Survey** (`pss`). Dies ist ein Trainingsdatensatz ausgerichtet am European Social Survey, der aber deutlich weniger Variablen/Fälle beinhaltet (hier nur 10 Fälle und 4 Variablen):
+Vamos exemplificar com o conjunto de dados que usaremos durante o curso: **Panem Social Survey** (`pss`). Este é um conjunto de dados de treinamento baseado no European Social Survey, mas com muito menos variáveis/casos (apenas 10 casos e 4 variáveis):
 ```{r df1, eval=TRUE, echo=FALSE}
 knitr::kable(pss[1:10, c("idno", "district", "gndr", "agea")])
 ```
 
-Hier im Beispiel haben wir im Datensatz vier Variablen: `idno`, `district`, `gndr` sowie `agea`. Diese sind selbsterklärend: `idno` ist die unique ID, `district` ist der Bezirk des Befragten, `gndr` das Geschlecht und `agea` das Alter. Oftmals sind Variablen nicht intuitiv herleitbar, so dass man ein Codebook konsultieren muss. Mit dem Handling von größeren Datensätzen werden wir uns im nächsten Lernblock beschäftigen. 
+Neste exemplo, temos quatro variáveis no conjunto de dados: `idno`, `district`, `gndr` e `agea`. Estes são autoexplicativos: `idno` é o ID único, `district` é o distrito do entrevistado, `gndr` é o gênero e `agea` é a idade. Muitas vezes, as variáveis não são intuitivas, então é necessário consultar um livro de códigos. Lidaremos com conjuntos de dados maiores no próximo bloco de aprendizado. 
 
-Auf geht's zur abschließenden Challenge!
+{ /*examples*/ }
+
+Vamos para o desafio final!

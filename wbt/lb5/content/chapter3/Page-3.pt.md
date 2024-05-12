@@ -1,8 +1,8 @@
 ---
-title: "ggpairs() nutzen"  # Titel der Seite
+title: "Utilizando ggpairs()"  # Titel der Seite
 weight: 303  # Individuelles Gewicht 
 menuTitle: "ggpairs()" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "ggpairs", "ggally", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+tags: ["ggplot", "ggpairs", "ggally", "correlação", "avançado"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
@@ -19,11 +19,11 @@ tags: ["ggplot", "ggpairs", "ggally", "korrelation", "advanced"]  # Tags hierein
 
 {{% button href="https://bmc.link/bpkleerw" icon="fa-solid fa-beer-mug-empty" %}} {{% /button %}}
 
-Kommen wir zu deiner Challenge: Du willst im folgenden Zusammenhang von der Zufriedenheit mit der Demokratie und den Variablen `trstprl`, `trstlgl`, `stfeco` und `agea` testen. Probiere dich mit `ggpairs()` aus!
+Vamos para o seu desafio: Você deseja testar a satisfação com a democracia e as variáveis `trstprl`, `trstlgl`, `stfeco` e `agea` no contexto seguinte. Experimente usar `ggpairs()`!
 
 {{< tabs >}}
-{{% tab name = "Start" %}}
-Probier dich aus, bevor du in die anderen Tabs schaust!
+{{% tab name = "Início" %}}
+Experimente antes de olhar para as outras abas!
 {{% /tab %}}
 {{% tab name="ggpairs()" %}}
 ```R
@@ -103,4 +103,4 @@ corrplot(
 {{% /tab %}}
 {{< /tabs >}}
 
-Auf der nächsten Seite kannst du noch eine `ggplot` Alternative zu `corrplot` kennenlernen oder du überspringst diese und gehst über zur Darstellung von Mittelwertvergleichen!
+Na próxima página, você pode conhecer uma alternativa de `ggplot` para `corrplot` ou pular essa parte e seguir para a representação das comparações de médias!

@@ -1,8 +1,8 @@
 ---
-title: "2 Datensätze kombinieren"  # Titel der Seite
-weight: 315  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "2 Combining Datasets"  # Page Title
+weight: 315  # Custom Weight 
+menuTitle: "" # Short Title if the title is too long
+tags: ["dplyr", "tidyverse", "dataset"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -34,9 +34,9 @@ pssMacro <- readRDS("./data/pssMacro.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Oftmals haben wir Datensätze auf der Mikroebene (z.B. European Social Survey), die wir mit Makro-Datensätzen (z.B. Wirtschaftsdaten auf Länderebene) kombinieren wollen. Hierfür bietet `dplyr` insgesamt vier Funktionen an, wobei `left_join()` in den meisten Anwendungsfällen genutzt wird. 
+Often, we have micro-level datasets (e.g., European Social Survey) that we want to combine with macro datasets (e.g., country-level economic data). For this purpose, `dplyr` offers a total of four functions, with `left_join()` being used in most cases.
 
-Wir nehmen nun folgendes Beispiel: Wir haben zu unserem Datensatz des **PSS** einen zweiten Datensatz bei der Recherche gefunden, der den Anteil der von Armut betroffenen Bewohner eines Distrikts (`poverty`) und den Anteil der Wohnbevölkerung, der eine Mangelernährung aufweist (`nutrition`) aufführt.
+Let's consider the following example: We have found a second dataset during our research that lists the percentage of residents in a district affected by poverty (`poverty`) and the percentage of the population experiencing malnutrition (`nutrition`) in addition to our **PSS** dataset.
 
 ```{r, echo=FALSE, eval=TRUE}
 kable(
@@ -45,7 +45,7 @@ kable(
 )
 ```
 
-Nehmen wir an, wir möchten nun in einem Mehrebenenmodell inkludieren, wie sich diese Faktoren des Distrikts auf die Zufriedenheit mit der Demokratie auswirken. Dazu sollen die zwei Variablen `maxsem` in den `pss`-Datensatz ergänzt werden. Dazu nutzen wir `left_join()`:
+Suppose we now want to include in a multilevel model how these district factors affect satisfaction with democracy. To do this, the two variables `maxsem` should be added to the `pss` dataset. We will use `left_join()` for this purpose:
 ```{r merging, eval=TRUE}
 pssMerged <- pss %>%
   left_join(
@@ -63,7 +63,7 @@ paged_table(
 )
 ``` 
 
-Auch könnte man hier `right_join()` verwenden:
+Also, you could use `right_join()` here:
 ```{r merging2, eval=TRUE}
 pssMerged2 <- pssMacro %>%
   right_join(
@@ -81,4 +81,4 @@ paged_table(
 )
 ``` 
 
-So könnten wir beispielsweise in Mehrebenemodellen neben individuellen Effekten wie Studiengang und Abiturnote auch den Effekt der Betreuungsquote und der Seminargröße berechnen.
+For example, in multilevel models, we could calculate the effects of individual factors such as field of study and high school grades, as well as the effects of supervision ratio and seminar size.

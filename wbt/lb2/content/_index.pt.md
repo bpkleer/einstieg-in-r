@@ -1,14 +1,14 @@
 ---
-title: "Lernblock 2"
+title: "Bloco de Aprendizagem 2"
 ---
 
-<center><h4>WBT Statistik+: Einstieg in R leicht gemacht!</h4></center>
+<center><h4>WBT Estatísticas+: Comece a usar o R de forma fácil!</h4></center>
 
-# Lernblock 2
+# Bloco de Aprendizagem 2
 
-Willkommen in diesen Lernblock. Zuerst wiederholen wir nochmal, was ein Datensatz ist und wie eine Datentabelle in R aussieht. Anschließend werden wir erste Variablen deskriptiv beschreiben. Danach lernen wir noch Transformationen von Datensätzen kennen. Wenn du noch Lust hast, kannst du dir die Grundlagen von Funktionen in R anschauen. 
+Bem-vindo a este bloco de aprendizagem. Primeiro, vamos revisar o que é um conjunto de dados e como uma tabela de dados é visualizada no R. Em seguida, vamos descrever as primeiras variáveis de forma descritiva. Depois, vamos aprender sobre transformações de conjuntos de dados. Se ainda estiver interessado, pode dar uma olhada nos fundamentos das funções no R.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

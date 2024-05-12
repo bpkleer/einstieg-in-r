@@ -1,18 +1,18 @@
 ---
-title: "Einstieg in die Datenwelt"
+title: "Introduction to the World of Data"
 menuTitle: "Start"
 chapter: true
 pre: "1. "
 weight: 100
 ---
 
-### Kapitel 1 
+### Chapter 1
 
-# Einstieg in die Datenwelt
+# Introduction to the World of Data
 
-In diesem Kapitel werden wir kurz Grundlegendes zum Umgang mit Dateien wiederholen und den Einstieg in RStudio machen. 
+In this chapter, we will briefly review the basics of working with files and get started with RStudio.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/introduction-to-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
@@ -20,7 +20,7 @@ In diesem Kapitel werden wir kurz Grundlegendes zum Umgang mit Dateien wiederhol
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

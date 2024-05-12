@@ -1,8 +1,8 @@
 ---
-title: "Bivariate Normalverteilung"  # Titel der Seite
-weight: 144  # Individuelles Gewicht 
-menuTitle: "Bivariate Normalverteilung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["bivariate normalverteilung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Bivariate Normal Distribution"  # Page Title
+weight: 144  # Custom Weight 
+menuTitle: "Bivariate Normal Distribution" # Short Title if the Title is too long
+tags: ["bivariate normal distribution", "ggplot"]  # Tags: brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -31,7 +31,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In speziellen Fällen kann man sich auch nicht nur Normalverteilungen einzelner Variablen ausgeben lassen, sondern bivariate Normalverteilungen. Somit lässt sich visualiseren, ob die Verteilung beider Variablen ebenfalls annähnerd normalverteilt ist, oder eben nicht. Dazu nutzen wir die Funktion `geom_bin2d()`:
+In special cases, it is possible to not only output normal distributions of individual variables but also bivariate normal distributions. This allows us to visualize whether the distribution of both variables is also approximately normally distributed or not. To do this, we use the `geom_bin2d()` function:
 ```{r bi, eval=TRUE}
 ggplot(
   pss, 
@@ -47,7 +47,7 @@ ggplot(
   )
 ```
 
-Bivariate Normalverteilungen lassen sich auch über die Dichte darstellen mit der Funktion `stat_density_2d()`:
+Bivariate normal distributions can also be represented through density using the `stat_density_2d()` function:
 ```{r bi2, eval=TRUE}
 ggplot(
   pss, 

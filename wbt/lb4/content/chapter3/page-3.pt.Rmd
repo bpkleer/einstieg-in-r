@@ -1,8 +1,8 @@
 ---
-title: "Annahme 2: Normalverteilung Residuen"  # Titel der Seite
-weight: 303  # Individuelles Gewicht 
-menuTitle: "Normalverteilung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Hipótese 2: Distribuição Normal dos Resíduos"  # Título da página
+weight: 303  # Peso Individual
+menuTitle: "Distribuição Normal" # Se o título for muito longo, use um título curto aqui
+tags: ["diagnóstico de regressão"]  # Insira tags aqui; Palavra curta que descreve o que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,7 +34,7 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um zu prüfen, ob die Residuen normalverteilt mit Erwartungswert $E=0$ sind, rufen wir den sogenannten *Normal-Q-Q*-Plot auf. Dazu ändern wir einfach das zweite Argument in der Funktion `plot()` einfach auf den Wert `2`:
+Para verificar se os resíduos estão distribuídos normalmente com média $E=0$, chamamos o chamado *Gráfico Q-Q Normal*. Para isso, simplesmente alteramos o segundo argumento na função `plot()` para o valor `2`:
 
 ```{r assumption2, eval = TRUE}
 plot(
@@ -44,9 +44,9 @@ plot(
 
 ```
 
-$\Rightarrow$ Die Punkte sollten der Diagonalen folgen bzw. eng an der Linie liegen. Wir können also auch hier asymptotisch die Annahme als erfüllt ansehen. 
+$\Rightarrow$ Os pontos devem seguir a diagonal ou estar próximos da linha. Portanto, também podemos considerar a hipótese como satisfeita de forma assintótica aqui.
 
-Wir können auch die Dichte-Funktion der Residuen analysieren: 
+Também podemos analisar a função de densidade dos resíduos:
 ```{r assumption2b, eval = TRUE}
 plot(density(olsModel2$residuals))
 
@@ -62,4 +62,4 @@ curve(
 )
 ```
 
-$\Rightarrow$ Verteilung sollte der grünen Linie folgen. Das ganze ist hier etwas ungenau, da wir pseudo-metrische Daten haben!
+$\Rightarrow$ A distribuição deve seguir a linha verde. Isso é um pouco impreciso aqui, pois temos dados pseudo-métricos!

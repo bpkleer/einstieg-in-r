@@ -1,8 +1,8 @@
 ---
-title: "Vorbereitungen"  # Titel der Seite
-weight: 101  # Individuelles Gewicht 
-menuTitle: "Vorbereitungen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["vorbereitung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Preparations"  # Title of the page
+weight: 101  # Custom weight
+menuTitle: "Preparations" # Short title if the title is too long
+tags: ["preparation", "ggplot"]  # Insert tags here; abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,17 +29,17 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Bevor wir mit den grafischen Darstellungen beginnen können, gilt es ein paar Vorbereitungen zu treffen. 
+Before we can start with the graphical representations, we need to make some preparations.
 
-Lade dir zuerst den Datensatz `pss` in dein **Environment**. Zur Erinnerung der Datensatz ist direkt in der RStudio Cloud im Ordner `data` oder alternativ (wenn du lokal arbeitest) hier herunterzuladen:
+First, load the dataset `pss` into your **Environment**. As a reminder, the dataset is directly available in the RStudio Cloud in the `data` folder or alternatively (if you are working locally) download it from here:
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Dataset\" /%}}
 
-`ggplot` ist Teil des [`tidyverse`](https://www.tidyverse.org) und somit kompatibel zu den anderen **libraries** aus `tidyverse`, die wir bisher genutzt haben (`dplyr` und `tidyr`). Eine genaue Beschreibung der **library** und des Funktionsumfangs findet sich [hier](https://ggplot2.tidyverse.org).
+`ggplot` is part of the [`tidyverse`](https://www.tidyverse.org) and thus compatible with the other **libraries** from `tidyverse` that we have used so far (`dplyr` and `tidyr`). A detailed description of the **library** and its functionality can be found [here](https://ggplot2.tidyverse.org).
 
-Im Lernmodul werden alle Veränderungen Schritt für Schritt durchgeführt und du kannst diese immer direkt im Output der Grafik sehen. Zuerst werden wir uns mit vier Arten von Grafiken beschäftigen, an diesen dann Erweiterungen vornehmen und im letzten Kapitel Grafiken entsprechend dem Output von spezifischen Methoden erstellen. 
+In the learning module, all changes are made step by step, and you can always see them directly in the output of the graph. First, we will focus on four types of graphs, make extensions to them, and in the final chapter, create graphs according to the output of specific methods. 
 
-Um mit `ggplot` zu starten, musst du nur mehr die **library** laden. Dies kannst du entweder über `tidyverse` machen (empfohlen) oder singulär:
+To start with `ggplot`, you just need to load the **library**. You can do this either through `tidyverse` (recommended) or individually:
 
 ```{r library-load, eval = FALSE}
 # tidyverse
@@ -48,5 +48,3 @@ library("tidyverse")
 # singulär
 library("ggplot2")
 ```
-
-

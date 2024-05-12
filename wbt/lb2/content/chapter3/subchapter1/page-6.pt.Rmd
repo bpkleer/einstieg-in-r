@@ -1,8 +1,8 @@
 ---
-title: "Datensätze zusammenführen (neue Variablen)"  # Titel der Seite
-weight: 316  # Individuelles Gewicht 
-menuTitle: "Neue Variablen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Combinação de conjuntos de dados (novas variáveis)"  # Título da página
+weight: 316  # Peso personalizado
+menuTitle: "Novas Variáveis" # Se o título for muito longo, use um título curto aqui
+tags: ["dplyr", "tidyverse", "conjunto de dados"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -33,14 +33,14 @@ sp <- readRDS("./data/sp.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Will man nur weitere Variablen in einen Datensatz hinzufügen, kann man auch hierfür `full_join()` nutzen. Wir haben zum Beispiel in einem weiteren Datensatz aus Panem, der einen neu eingeführten Social Score pro Person beinhaltet. Diese Daten wollen wir nun dem Datensatz **PSS** hinzufügen. Diese haben wir im Datensatz `sp` getrennt gespeichert und dort wird dieselbe ID-Variable genutzt, die auf die ID-Variable des Datensatzes `pss` matcht. Wir fügen jetzt die Socialpoints dem Datensatz `pss` mit `full_join()` hinzu. Schauen wir uns zuerst nochmal die zwei Datensätze an:
+Se deseja adicionar apenas novas variáveis a um conjunto de dados, você também pode usar `full_join()` para isso. Por exemplo, temos outro conjunto de dados de Panem que inclui uma nova pontuação social introduzida por pessoa. Agora queremos adicionar esses dados ao conjunto de dados **PSS**. Esses dados estão armazenados separadamente no conjunto `sp` e usam a mesma variável de ID que corresponde à variável de ID do conjunto de dados `pss`. Vamos agora adicionar os pontos sociais ao conjunto de dados `pss` usando `full_join()`. Primeiro, vamos dar uma olhada nos dois conjuntos de dados:
 
 ```{r points, eval=TRUE}
 head(sp)
 
 head(pss)
 ```
-Wir haben zwar in beiden Variablen eine ID-Variable, allerdings ist die Spalte unterschiedlich benannt. Wir können jetzt - wie zuvor oben - wieder im `by`-Argument dies angeben. Diesmal wollen wir einfach schnell vorher den Spaltennamen in einem der Datensätze anpassen. Dazu nutzen wir einfach `rename()`. Die Logik in der Funktion ist `neuer Name = alter Name`.
+Embora ambos os conjuntos de dados tenham uma variável de ID, as colunas têm nomes diferentes. Podemos especificar isso novamente no argumento `by`, como fizemos anteriormente. Desta vez, vamos primeiro ajustar rapidamente o nome da coluna em um dos conjuntos de dados. Para isso, usamos simplesmente `rename()`. A lógica na função é `novo nome = nome antigo`.
 
 ``` {r add-points, eval=TRUE}
 sp <- sp %>% 
@@ -49,7 +49,7 @@ sp <- sp %>%
 head(sp)
 ```
 
-Jetzt sind die Spaltennamen gleich und wir können die Datensätze mergen.
+Agora que os nomes das colunas estão iguais, podemos mesclar os conjuntos de dados.
 
 ```{r final-merge, eval=TRUE}
 pss <- pss %>% 
@@ -61,4 +61,4 @@ pss <- pss %>%
 head(pss)
 ```
 
-Und auch das hast du gemeistert! Jetzt geht's rüber ins nächste Paket des **tidyverse**: `tidyr`!
+E você também conseguiu! Agora vamos para o próximo pacote do **tidyverse**: `tidyr`!

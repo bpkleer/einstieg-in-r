@@ -1,8 +1,8 @@
 ---
-title: "Zwischen mehr als zwei Gruppen"  # Titel der Seite
-weight: 203  # Individuelles Gewicht 
-menuTitle: "F-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "anova", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Entre mais de dois grupos"  # Título da página
+weight: 203  # Peso individual
+menuTitle: "Teste F" # Se o título for muito longo, use um título curto aqui
+tags: ["média", "comparação de médias", "anova", "teste t"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,22 +29,22 @@ pss <-  readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Auf dieser Seite werden Mittelwertvergleiche zwischen mehr als zwei Gruppen vorgestellt. Diese Test-Statistik wird **ANOVA** oder **F-Test** genannt. Wir möchten nun die verschiedenen Gruppen der `edu`-Variable testen. 
+Nesta página, são apresentadas comparações de médias entre mais de dois grupos. Esta estatística de teste é chamada de **ANOVA** ou **Teste F**. Agora queremos testar os diferentes grupos da variável `edu`.
 
-**Annahmen**:
+**Pressupostos**:
 
-1. abhängige Variable ist metrisch$\checkmark$
+1. Variável dependente é métrica$\checkmark$
 
-2. unabhängige Variable ist kategoriell $\checkmark$
+2. Variável independente é categórica $\checkmark$
 
-3. Gruppen sind unabhängig voneinander $\checkmark$
+3. Grupos são independentes um do outro $\checkmark$
 
-4. [Normalverteilung der metr. Variable in jeder Gruppe (nötig nur für $n \leq 25$)] $\checkmark$
+4. [Distribuição normal da variável métrica em cada grupo (necessária apenas para $n \leq 25$)] $\checkmark$
 
-5. Varianzgleichheit zwischen Gruppen
+5. Igualdade de variâncias entre os grupos
 
-### Prüfen der Annahmen
-Wir möchten testen, inwieweit die Arbeitsstunden zwischen verschiedenen Bildungsgruppen differieren. Dazu nimmst du die `edu`-Variable, die mehrere Bildungsgruppen beinhaltet. Zuerst führst du wieder den Levene-Test durch. Da du jetzt alle Gruppen inkludierst, kannst du wieder die Formelschreibweise nutzen:
+### Verificação dos Pressupostos
+Queremos testar até que ponto as horas de trabalho diferem entre diferentes grupos educacionais. Para isso, você usará a variável `edu`, que inclui vários grupos educacionais. Primeiro, você realizará o teste de Levene novamente. Como agora está incluindo todos os grupos, pode usar a notação de fórmula novamente:
 ```{r levene, eval=TRUE}
 leveneTest(
   pss$wkhtot ~ pss$edu,
@@ -52,21 +52,21 @@ leveneTest(
 )
 ```
 
-{{% expand \"Wie interpretierst du das Ergebnis?\" %}}
-Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianzgleichheit angenommen. 
+{{% expand \"Como você interpreta o resultado?\" %}}
+Não há diferenças significativas entre nenhum par de grupos, portanto, a igualdade de variâncias é assumida.
 
-$H_0$: Alle Gruppen haben dieselbe Varianz in der metrischen Variable.
+$H_0$: Todos os grupos têm a mesma variância na variável métrica.
 {{% /expand %}}
 
-### Berechnen des Tests (ungleiche Varianzen)
-Um den Test zu berechnen, kannst du die Funktionen `oneway.test()` und `pairwise.t.test()` nutzen:
+### Cálculo do teste (variâncias desiguais)
+Para calcular o teste, você pode usar as funções `oneway.test()` e `pairwise.t.test()`:
 ```{r oneway, eval=TRUE}
 oneway.test(
   pss$wkhtot ~ pss$edu,
   var.equal = TRUE
 )
 ```
-Dieser Test zeigt an (p-Wert), dass es mindestens zwischen zwei Gruppen signifikante Differenzen gibt (p-Wert $< 0.05$). Um nun festzustellen zwischen welchen Gruppen diese vorliegen, nutzt du die Funktion `pairwise.t.test()`:
+Este teste mostra (valor-p) que há diferenças significativas entre pelo menos dois grupos (valor-p $< 0.05$). Para determinar entre quais grupos essas diferenças ocorrem, você pode usar a função `pairwise.t.test()`:
 ```{r pairwise, eval = TRUE}
 pairwise.t.test(
   pss$wkhtot, # metrische Variable zuerst
@@ -74,10 +74,10 @@ pairwise.t.test(
   p.adj = "holm"  # Korrektur (Standardverwendung)
 ) 
 ```
-Im Testergebnis siehst du eine Matrix zwischen den Gruppen, in der die p-Werte für den jeweiligen Vergleich zweier Gruppen eingetragen sind. 
+No resultado do teste, você verá uma matriz entre os grupos, onde os valores de p para a comparação entre dois grupos são registrados.
 
-{{% expand \"Zwischen welchen Gruppen lassen sich also signifikante Unterschiede feststellen??\" %}}
-Richtig, zwischen allen Gruppen!
+{{% expand \"Entre quais grupos, então, podemos observar diferenças significativas?\" %}}
+Isso mesmo, entre todos os grupos!
 {{% /expand %}}
 
-Das war's für diesen Lernblock!
+Isso é tudo para este bloco de aprendizado!

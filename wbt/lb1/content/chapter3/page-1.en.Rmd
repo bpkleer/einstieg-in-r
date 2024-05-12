@@ -1,8 +1,8 @@
 ---
-title: "Was ist Gitlab?"  # Titel der Seite
-menuTitle: "Was ist Gitlab?" # Falls Titel zulang ist, hier Kurztitel
-weight: 301  # Individuelles Gewicht 
-tags: ["gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "What is Gitlab?"  # Page title
+menuTitle: "What is Gitlab?" # Short title if the title is too long
+weight: 301  # Custom weight 
+tags: ["gitlab"]  # Tags; abbreviation of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,18 +19,20 @@ tags: ["gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Nehmen wir ein einfaches Beispiel: Ihr arbeitet in einer Projektgruppe an einer empirischen Hausarbeit und schreibt auch Code. Ihr habt es bis zu einer finalen Version des Skripts geschafft und macht nun eine finale Kontrolle. 
+Let's take a simple example: You are working in a project group on an empirical paper and writing code. You have reached a final version of the script and are now doing a final check.
 
-Dazu teilt A die eigentliche finale Version mit B, C, D. C ist übereifrig und korrigiert noch an einer Stelle und schickt eine weitere finale Version zurück an A, B und D. D findet wiederum einen weiteren Fehler und überarbeitet die finale Version von Person C und schickt sie wieder an A, B und C. B dagegen ist etwas durcheinander und bearbeitet die erste finale Version von A und schickt diese rum an A, C und D. 
+A shares the actual final version with B, C, D. C is overzealous and corrects one more thing and sends another final version back to A, B, and D. D finds another error and revises the final version from person C and sends it back to A, B, and C. On the other hand, B is a bit confused and edits the initial final version from A and sends it around to A, C, and D.
 
-Allein vom Text her müsste es jetzt ein Chaos in deinem Kopf geben und du kennst das sicher aus Gruppenarbeiten. In dem Bild unten ist das ganze auch nochmal grafisch dargestellt. 
+Just from the text, there should be chaos in your mind now, and you probably know this from group work. The image below also graphically illustrates the whole process.
 
-![Ablauf finale Version](../img/projectwork.gif)
+![Flow of Final Version](../img/projectwork.gif)
 
-Was hierbei klar wird ist, dass (insbesondere, aber nicht nur) am Ende eines Projekts es elegantere Wege gibt als Dateien per E-Mail oder per Cloud-Server (wie Hessenbox) zu teilen. Auch mit Cloud-Servern wie Hessenbox oder Dropbox ist das Chaos nicht in Gänze zu vermeiden, da hier die synchrone Bearbeitung oftmals zu Problemen führt. Und genau da setzt **gitlab** für uns an. 
+What becomes clear here is that (especially, but not only) at the end of a project, there are more elegant ways than sharing files via email or through a cloud server (like Hessenbox). Even with cloud servers like Hessenbox or Dropbox, chaos cannot be completely avoided, as synchronous editing often leads to problems. And that's exactly where **Gitlab** comes in for us. 
 
-**Gitlab** ist eine Distribution von **git** (neben z.B. [github](https://github.com)), die sowohl in der Wirtschaft als auch in der Wissenschaft genutzt wird. **Gitlab** bietet einen umfangreichen Workflow an, wir beschränken uns auf das wesentliche (Teilen und Bearbeiten von Textdateien). Dennoch ist es hilfreich, hier nun einen Einstieg in **Gitlab** zu haben, da es insbesondere in der (IT-)Projektarbeit von vielen Unternehmen genutzt wird. 
+{ /* examples */ }
 
-In unserer Konfiguration ist es das Ziel mit **gitlab** Änderungen in textbasierten Dateien nachverfolgen zu können, also im konkreten Fall in den R-Skripten (`.R`). Personen können gleichzeitig an Dateien arbeiten und es gibt keinen großen Clash wie i.d.R. in der Hessenbox und alle Änderungen werden global gespeichert, sind nachvollziehbar und können allen zur Verfügung gestellt werden. Es ist also das perfekte Tool, um gemeinsam und kollaborativ an einem Projekt (wie der Gruppenabgabe in der Übung) zu arbeiten! Zum Verständnis hier: Du bearbeitest die Dateien nur lokal an deinem Rechner bzw. in RStudio und nachdem du fertig bist, gibst du deine Änderungen frei, so dass auch die anderen deine Änderungen sehen. Wie der Prozess genau abläuft, erfährst du am Ende dieses Kapitels. 
+**Gitlab** is a distribution of **git** (alongside [github](https://github.com), for example) that is used in both business and academia. **Gitlab** offers an extensive workflow, but we will focus on the essentials (sharing and editing text files). Nevertheless, it is helpful to have an introduction to **Gitlab** here, as it is widely used in (IT) project work by many companies.
 
-Auf geht's zur JLU-Distribution von **gitlab**!
+In our configuration, the goal with **gitlab** is to be able to track changes in text-based files, specifically in the R scripts (`.R`) in this case. Individuals can work on files simultaneously without major clashes as typically seen in Hessenbox, and all changes are globally saved, traceable, and can be made available to everyone. It is the perfect tool for working together collaboratively on a project (such as the group assignment in the exercise)! Just to clarify, you edit the files only locally on your computer or in RStudio, and once you are done, you release your changes so that others can see them too. You will learn the exact process at the end of this chapter.
+
+Let's dive into the JLU distribution of **gitlab**!

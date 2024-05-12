@@ -1,8 +1,8 @@
 ---
-title: "Was ist tidyverse?"  # Titel der Seite
-weight: 301  # Individuelles Gewicht 
-menuTitle: "Was ist es?" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "funktionen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "O que é tidyverse?"  # Título da página
+weight: 301  # Peso individual
+menuTitle: "O que é?" # Se o título for longo, use um título curto aqui
+tags: ["dplyr", "tidyverse", "funções"]  # Insira as tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -30,41 +30,41 @@ knitr::opts_chunk$set(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Tidyverse** ist ein Paket, dass mehrere **libraries** beinhaltet, die alle nach ähnlicher Syntax funktionieren und untereinander kompatibel sind. Es bietet somit einen sehr großen Funktionsumfang und wird daher auch viel genutzt.
+**Tidyverse** é um pacote que contém várias **bibliotecas** que funcionam com uma sintaxe semelhante e são compatíveis entre si. Ele oferece uma ampla gama de funcionalidades e, portanto, é amplamente utilizado.
 
-![The tidyverse](../img/tidyverse.png)
+![O tidyverse](../img/tidyverse.png)
 
-**Tidyverse** beinhaltet Kernpakete, die allesamt mit dem Befehl `library("tidyverse")` geladen werden. Dies sind:
+**Tidyverse** inclui pacotes principais, todos carregados com o comando `library("tidyverse")`. Estes são:
 
-- **dplyr** (Datenbereinigung)
+- **dplyr** (Limpeza de dados)
  
-- **tidyr** (Umgang mit Datensätzen)
+- **tidyr** (Manipulação de conjuntos de dados)
  
-- ggplot2 (Grafiken)
+- ggplot2 (Gráficos)
 
-- stringr (Umgang mit Textdaten)
+- stringr (Manipulação de dados de texto)
 
-- forcats (Umgang mit Faktoren)
+- forcats (Manipulação de fatores)
 
-- tibble (Tabellentool)
+- tibble (Ferramenta de tabela)
 
-- readr (Import von Daten)
+- readr (Importação de dados)
 
-- purrr (Umgang mit Funktionen und Vektoren)
+- purrr (Manipulação de funções e vetores)
 
-Im Laufe dieses Lernblocks lernst du `dplyr` und `tidyr` kennen!
+Ao longo deste bloco de aprendizado, você aprenderá sobre `dplyr` e `tidyr`!
 
-![The core tidyverse](../img/coretidy.png) 
+![O núcleo do tidyverse](../img/coretidy.png) 
 
-Zu allen `tidyverse`-Librariyes gibt es umfangreiche Dokumentationen aber auch kurze Cheat-Sheets. Die Cheatsheets zu den zwei hier nun vorgestellten Libraries findest du hier:
+Para todas as bibliotecas `tidyverse`, existem documentações extensas e também folhas de dicas curtas. As folhas de dicas para as duas bibliotecas apresentadas aqui podem ser encontradas aqui:
 
-![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)](../img/dplyr.png) 
 
-![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) ](../img/tidyr.png) 
+![[Folha de Dicas](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)](../img/dplyr.png) 
 
-`dplyr` beinhaltet eine Grammatik, um Datenmanipulationen zu machen. Es besticht dabei durch seine Einfachheit und der Kombinationsmöglichkeit der Grundbefehle. Für eine erste Dateneinsicht ist dies meist hilfreich zu nutzen, oder um die Daten umzustrukturieren (manipulieren). 
+![[Folha de Dicas](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) ](../img/tidyr.png) 
 
-`tidyr` beinhaltet eine Grammatik, um Datensätze in ein *tidy* Format zu bringen. Ziel ist es, dass jede 
-Spalte eine Variable ist, jede Zeile eine Beobachtung und jede Zelle einen Wert beinhaltet. Hier gibt es das zu `tidyr`.
+`dplyr` inclui uma gramática para fazer manipulações de dados. Ele se destaca por sua simplicidade e pela capacidade de combinar comandos básicos. Geralmente é útil para uma primeira análise de dados ou para reestruturar (manipular) os dados.
 
-Jetzt kannst du mit `dplyr` starten!
+`tidyr` inclui uma gramática para transformar conjuntos de dados em um formato *tidy*. O objetivo é que cada coluna seja uma variável, cada linha seja uma observação e cada célula contenha um valor. Aqui está o link para `tidyr`.
+
+Agora você pode começar com o `dplyr`!

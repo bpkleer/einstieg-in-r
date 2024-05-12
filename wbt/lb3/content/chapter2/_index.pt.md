@@ -1,23 +1,23 @@
 ---
-weight: 200  # Individuelles Gewicht 
+weight: 200  # Peso individual
 pre: "2. "
 chapter: true
-title: "Mittelwertvergleiche"
-menuTitle: "Mittelwertvergleiche" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "Mittelwertvergleiche"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Comparação de Médias"
+menuTitle: "Comparação de Médias" # Se o título for muito longo, coloque o título curto aqui
+tags: ["média", "Comparação de Médias"]  # Insira as tags aqui; Palavra curta que descreve o que acontece na página
 ---
 
-### Kapitel 2 
+### Capítulo 2
 
-# Mittelwertvergleiche
+# Comparação de Médias
 
-In diesem Kapitel werden Mittelwertvergleiche vorgestellt. Bei Mittelwertvergleichen werden verschiedene Testsituationen unterschieden:
+Neste capítulo, serão apresentadas as comparações de médias. Nas comparações de médias, diferentes situações de teste são distinguíveis:
 
 <ol class="index-list">
-  <li>eine Stichprobe: Ein-Stichproben t-Test</li>
-  <li>zwei Stichproben (ungepaart): ungepaarter t-Test</li>
-  <li>zwei Stichproben (gepaart): gepaarter t-Test</li>
-  <li>mehr als zwei Gruppen (ungepaart): ANOVA</li>
+  <li>uma amostra: Teste t de uma amostra</li>
+  <li>duas amostras (não pareadas): Teste t não pareado</li>
+  <li>duas amostras (pareadas): Teste t pareado</li>
+  <li>mais de dois grupos (não pareados): ANOVA</li>
 </ol>
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 

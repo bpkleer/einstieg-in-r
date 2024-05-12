@@ -1,8 +1,8 @@
 ---
-title: "Mittelwertvergleiche"  # Titel der Seite
-weight: 305  # Individuelles Gewicht 
-menuTitle: "Mittelwertvergleich" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "mittelwertvergleich", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Mean Comparisons"  # Page title
+weight: 305  # Custom weight 
+menuTitle: "Mean Comparison" # Short title if the title is too long
+tags: ["ggplot", "mean comparisons", "advanced"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
@@ -19,11 +19,11 @@ tags: ["ggplot", "mittelwertvergleich", "advanced"]  # Tags hiereinsetzen; Kurzw
 
 {{% button href="https://bmc.link/bpkleerw" icon="fa-solid fa-beer-mug-empty" %}} {{% /button %}}
 
-Jetzt wollen wir Mittelwertvergleiche darstellen. Eine gute Möglichkeit sind *Rainclouds* (diese hast du schon kennengelernt) und versuchen für folgendes Problem *rainclouds* zu erstellen:
+Now we want to present mean comparisons. A good way to do this is with *Rainclouds* (which you have already learned about) and try to create *rainclouds* for the following problem:
 
 {{< tabs >}}
-{{% tab name="Frage" %}}
-Du willst jetzt testen, ob sich die Zufriedenheit mit der Demokratie nach Distrikt unterscheidet, dazu hast du einen Mittelwertvergleich gerechnet, möchtest dies jetzt aber auch noch grafisch darstellen. 
+{{% tab name="Question" %}}
+You now want to test if satisfaction with democracy differs by district. You have calculated a mean comparison and now want to graphically represent this as well.
 {{% /tab %}}
 {{% tab name="Solution 1" %}}
 ```R
@@ -97,4 +97,4 @@ ggplot(
 {{% /tab %}}
 {{< /tabs >}}
 
-Weiter geht's zu Regressionen!
+Next up, we move on to regressions!

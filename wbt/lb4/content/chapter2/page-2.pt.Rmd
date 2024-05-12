@@ -1,8 +1,8 @@
 ---
-title: "Export Tabellen & Grafiken"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Export" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "export", "regressionstabelle", "regressionsgrafik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Exportar Tabelas e Gráficos"  # Título da página
+weight: 202  # Peso individual
+menuTitle: "Exportar" # Se o título for muito longo, use um título curto aqui
+tags: ["regressão", "exportar", "tabela de regressão", "gráfico de regressão"]  # Tags: palavras-chave relacionadas ao conteúdo da página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -42,14 +42,14 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Oftmals sieht man in Veröffentlichungen nicht nur Regressionstabellen, sondern auch Grafiken der einzelnen Regressionskoeffizienten und deren Konfidenzintervalle. Wir haben bisher nur die Tabellen in der R-Ausgabe. Jetzt lernst du, wie du die Tabellen in dein Text-Dokument für deine Abschlussarbeit oder Hausarbeit bekommst und wie du eine einfache Grafik der Regressionskoeffizienten darstellt. Im letzten Lernblock werden wir dann auch hierzu weiterführende Grafiken einführen. 
+Muitas vezes, em publicações, não vemos apenas tabelas de regressão, mas também gráficos dos coeficientes de regressão individuais e seus intervalos de confiança. Até agora, só vimos as tabelas na saída do R. Agora você aprenderá como inserir essas tabelas em seu documento de texto para sua tese ou trabalho acadêmico e como criar um gráfico simples dos coeficientes de regressão. No último bloco de aprendizado, introduziremos gráficos mais avançados sobre esse tema.
 
-## Modelle in Textdateien exportieren
-Es gibt verschiedene **libraries** mit denen Ergebnisse aus R Regressionsmodelle in verschiedene Dateiformate exportiert werden können (z.B. als *txt*-Datei, als Bilddatei, oder als *tex* Datei für $\LaTeX$). In diesem Abschnitt wird die **library** `modelsummary` dargestellt, die es erleichtert Modelle aus R grafisch gut aufbereitet in verschiedene Dateiformate zu exportieren. Falls du dich für alternative **libraries** interessiert, gibt es hier zwei Alternativen: [`texreg`](https://github.com/leifeld/texreg) und [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) vorgestellt. 
+## Exportando Modelos em Arquivos de Texto
+Existem várias **bibliotecas** que permitem exportar os resultados de modelos de regressão do R para diferentes formatos de arquivo (por exemplo, como um arquivo *txt*, como uma imagem, ou como um arquivo *tex* para $\LaTeX$). Nesta seção, apresentaremos a **biblioteca** `modelsummary`, que facilita a exportação de modelos do R de forma visualmente atraente para diferentes formatos de arquivo. Se você estiver interessado em alternativas, aqui estão duas opções: [`texreg`](https://github.com/leifeld/texreg) e [`stargazer`](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf).  { /*examples*/ }
 
-Wir können aus der Konsole nicht einfach per *copy & paste* Tabellen oder Ergebnisse in ein Text-Dokument übertragen. Die **library** `modelsummary` ermöglicht aber den Export von Regressionstabellen in verschiedene Formate, die dann in Word oder $LaTeX$ genutzt werden können.
+Não podemos simplesmente copiar e colar tabelas ou resultados da console em um documento de texto. A **biblioteca** `modelsummary` permite exportar tabelas de regressão em diferentes formatos, que podem ser utilizados no Word ou no $LaTeX$.
 
-Zuerst musst du die **library** installieren. Dieses Mal fügen wir ein zweites Argument hinzu: `dependencies = TRUE`. Damit geben wir an, dass alle **libraries**, die `modelsummary` benötigt und noch nicht installiert sind, automatisch mitinstalliert werden sollen. 
+Primeiro, você precisa instalar a **biblioteca**. Desta vez, adicionaremos um segundo argumento: `dependencies = TRUE`. Isso indica que todas as **bibliotecas** necessárias para o `modelsummary` que ainda não estão instaladas serão automaticamente instaladas.
 ```{r modelsummary, eval=FALSE}
 install.packages(
   "modelsummary",
@@ -58,15 +58,15 @@ install.packages(
 library("modelsummary")
 ```
 
-Aus der **library** nutzt du die Funktion `modelsummary()`, um dir Modelle ausgeben zu lassen. Wir nutzen hierbei die Ergebnisse der Regressionsberechnung aus dem vorherigen Kapitel. Dies waren die Modelle `olsModel` und `olsModel2`. 
+Na **biblioteca**, você usará a função `modelsummary()` para exibir os modelos. Aqui, usaremos os resultados do cálculo de regressão do capítulo anterior, que foram os modelos `olsModel` e `olsModel2`.
 
-Um nun diese Tabelle in einem exportierbares Format zu bringen, ruft man einfach die Funktion `modelsummary()` auf.
+Para trazer essa tabela em um formato exportável, basta chamar a função `modelsummary()`.
 
 ```{r ms1, eval=TRUE}
 modelsummary(olsModel)
 ```
 
-Auch kann man ganz einfach mehrere Modelle gleichzeitig ausgeben lassen. So z.B. die beiden Modelle zeitgleich. Denn die Modelle bauen ja aufeinander auf. Deshalb macht es Sinn, diese in einer Tabelle darzustellen.
+Também é possível exibir vários modelos simultaneamente. Por exemplo, os dois modelos ao mesmo tempo, pois os modelos são construídos em sequência. Portanto, faz sentido apresentá-los em uma tabela.
 
 ```{r ms2, eval = TRUE}
 modelsummary(
@@ -77,7 +77,7 @@ modelsummary(
 )
 ```
 
-Alternativ kann man die Liste vorher selbst in einem Objekt speichern und dann das Objekt in `modelsummary()` aufrufen:
+Alternativamente, você pode salvar a lista em um objeto antes e então chamar o objeto em `modelsummary()`:
 ```{r ms3, eval=TRUE}
 models <- list(
   olsModel, 
@@ -88,10 +88,10 @@ models <- list(
 modelsummary(models)
 ```
 
-## Exportformate
-In `modelsummary` kannst du dir entweder direkt ein fertiges Dateiformat ausgeben lassen, oder den *rohen* Code für die Ausgabe. Im neuen (zweiten) Argument gibst du die Datei an, in der die Ausgabe gespeichert werden soll. Diese wird automatisch im **working directory** gespeichert. 
+## Formatos de Exportação
+Com o `modelsummary`, você pode obter diretamente um formato de arquivo pronto para exportação ou o código *bruto* para a saída. No novo (segundo) argumento, você especifica o arquivo onde a saída será salva. Ele será automaticamente salvo no **diretório de trabalho**.
 
-Als fertige Formate gibt es folgende Ausgabeoptionen:
+Os formatos de saída disponíveis são:
 ```{r ms5, eval=FALSE}
 modelsummary(
   models, 
@@ -124,9 +124,9 @@ modelsummary(
 )
 ```
 
-Wie du siehst, gibt es für jeden Bedarf ein Format!
+Como você pode ver, há um formato para cada necessidade!
 
-Wenn du mit Textprogrammen arbeitest, die auf Code basieren (z.B. LaTeX oder Websites), kannst du dir die Ausgabe auch in der Konsole ausgeben lassen und dann von dort kopieren. Du gibst dann im zweiten Argument keine Datei an, sondern nur ein Schlagwort!
+Se você trabalha com programas de texto baseados em código (por exemplo, LaTeX ou sites), também pode exibir a saída no console e copiá-la de lá. Nesse caso, você não especifica um arquivo no segundo argumento, apenas uma palavra-chave!
 ```{r ms6, eval=FALSE}
 modelsummary(
   models, 
@@ -144,10 +144,10 @@ modelsummary(
 )
 ```
 
-## Ausgabe anpassen
+## Ajuste de saída
 
-### Anzahl Dezimalzeichen
-Als erste kann man mit dem Argument `fmt` die Darstellung der Werte anpassen:
+### Número de casas decimais
+Como primeiro passo, é possível ajustar a apresentação dos valores com o argumento `fmt`:
 ```{r adjustment1, eval=TRUE}
 # 4 Dezimalstellen nach dem Dezimaltrennzeichen
 modelsummary(
@@ -156,7 +156,7 @@ modelsummary(
 )
 ```
 
-Sollten im oberen Block der Koeffizienten Zahlen vorhanden sein, die in der vierten Nachkommastelle eine $0$ haben, enden diese nach drei Nachkommastellen. Um das zu vereinheitlichen, kannst du dann du folgendes eingeben:
+Se houver números no bloco acima com zeros na quarta casa decimal, eles serão truncados após três casas decimais. Para padronizar isso, você pode inserir o seguinte:
 ```{r adjustment2, eval=TRUE}
 # 4 Dezimalzeichen und 0 am Ende
 modelsummary(
@@ -164,7 +164,7 @@ modelsummary(
   fmt = "%.4f"
 )
 ```
-Alternativ kann man auch die wissenschaftliche Notation nutzen:
+Alternativamente, você também pode usar a notação científica:
 ```{r adjustments3, eval=TRUE}
 # wissenschaftliche Notation
 modelsummary(
@@ -173,7 +173,7 @@ modelsummary(
 )
 ```
 
-Wenn man im Output tatsächlich vom Dezimalzeichen `.` zu `,` wechseln möchte, muss man dies global ändern. `modelsummary()` übernimmt diese Einstellung dann. **Wichtig:** Du solltest das anschließend wieder ändern!
+Se desejar mudar globalmente o ponto decimal `.` para `,` na saída, você deve alterar essa configuração globalmente. `modelsummary()` adotará essa configuração. **Importante:** Lembre-se de reverter isso posteriormente!
 ```{r adjustments4, eval=TRUE}
 options(OutDec = ",")
 
@@ -185,10 +185,10 @@ modelsummary(
 options(OutDec = ".")
 ```
 
-### Koeffizienten anpassen
-In der Standardeinstellung wird jeder Koeffizient bzw. Wert in einer einzelnen Zeile dargestellt. Darunter ist jeweils der Standardfehler in runden `()` (Klammern) angegeben. Abweichend davon kann man individuelle Einstellungen vornehmen und auch das Konfidenzintervall ausgeben lassen. 
+### Ajuste de coeficientes
+Por padrão, cada coeficiente ou valor é exibido em uma única linha. Abaixo, o erro padrão é indicado entre parênteses arredondados `()`. No entanto, é possível fazer ajustes individuais e também exibir o intervalo de confiança.
 
-Dazu nutzen wir zwei neue Argumente: `estimates` und `statistics`. Bei `estimate` geben wir in geschweiften `{...}` Klammern an, was angezeigt werden soll in der Zeile der jeweiligen Variable. Im Beispiel lassen wir den Koeffizienten und dann in eckigen Klammern **[]** die untere und obere Grenze des Konfidenzintervvalls ausgeben. Alternativ könnte man auch den p-Wert (`{p.value}`) oder Signifikanzsternchen (`{stars}`) ausgeben lassen. Die gesamten Optionen können im [Nutzerguide](https://cran.r-project.org/web/packages/modelsummary/modelsummary.pdf) nachgeschlagen werden. Mit dem Argument `statistics = NULL` schalten wir die vorher vorhandene zweite Zeile nach jeder Variablen aus. 
+Para isso, usamos dois novos argumentos: `estimates` e `statistics`. Com `estimate`, especificamos entre chaves `{...}` o que deve ser exibido na linha da variável correspondente. No exemplo, exibimos o coeficiente e, em colchetes **[]**, os limites inferior e superior do intervalo de confiança. Alternativamente, você poderia exibir o valor-p (`{p.value}`) ou asteriscos de significância (`{stars}`). Todas as opções podem ser consultadas no [Guia do Usuário](https://cran.r-project.org/web/packages/modelsummary/modelsummary.pdf). Com o argumento `statistics = NULL`, desativamos a segunda linha que era exibida após cada variável.
 ```{r adjustments5, eval=TRUE}
 modelsummary(
   models,
@@ -198,7 +198,7 @@ modelsummary(
 )
 ```
 
-Wir geben nun einfach den Regressionskoeffizienten plus Signifikanzsternchen aus:
+Agora, vamos simplesmente exibir o coeficiente de regressão juntamente com os asteriscos de significância:
 ```{r adjustments6, eval=TRUE}
 modelsummary(
   models,
@@ -208,7 +208,7 @@ modelsummary(
 )
 ```
 
-Wie man nun sieht ist aber keine Legende hinzugefügt für die Signifikanzsternchen. Immer wenn man manuell die Option `{stars}` hinzufügt, muss auch manuell über das Argument `notes` die Legende hinzugefügt werden:
+Como podemos ver, não foi adicionada legenda para os asteriscos de significância. Sempre que você manualmente adicionar a opção `{stars}`, a legenda também deve ser adicionada manualmente através do argumento `notes`:
 ```{r adjustments7, eval=TRUE}
 modelsummary(
   models,
@@ -220,7 +220,7 @@ modelsummary(
 
 ```
 
-Alternativ kann man das Argument `stars` nutzen, so wird automatisch eine *Caption* hinzugefügt.
+Alternativamente, você pode usar o argumento `stars`, que adicionará automaticamente uma *Legenda*:
 ```{r adjustments8, eval=TRUE}
 modelsummary(
   models, 
@@ -228,7 +228,7 @@ modelsummary(
 ) 
 ```
 
-Zuguterletzt könnten wir in einer zweiten Zeile auch noch das Konfidenzintervall ausgeben lassen. Dies geschieht im Argument `statistics`:
+Por fim, podemos também exibir o intervalo de confiança em uma segunda linha. Isso é feito no argumento `statistics`:
 
 ```{r adjustments9, eval= TRUE}
 modelsummary(
@@ -239,15 +239,13 @@ modelsummary(
 )
 ```
 
-Für das Argument `statistics` gibt es die folgenden hilfreichen Standardausgaben: 
+Para o argumento `statistics`, existem as seguintes saídas padrão úteis:
 
-- `statistics = "conf.int"` (Konfidenzintervall), 
+- `statistics = "conf.int"` (Intervalo de Confiança),
+- `statistics = "p.value"` (Valor-p),
+- `statistics = "std.err"` (Erro Padrão),
 
-- `statistics = "p.value"` (P-Wert),
-
-- `statistics = "std.err"` (Standardfehler), 
-
-Wenn wir die Option `statistics = "conf.int"` kann man zusätzlich noch über das Argument `conf_level` das Intervall angeben:
+Se usarmos a opção `statistics = "conf.int"`, também podemos especificar o intervalo através do argumento `conf_level`:
 
 ```{r adjustments10, eval=TRUE}
 modelsummary(
@@ -259,7 +257,7 @@ modelsummary(
 )
 ```
 
-Man kann auch verschiedene Ausgaben kombinieren und auch mehrere Zeilen ausgeben lassen. Dazu nutzt du die Funktion `c()` innerhalb des Arguments `statistic`:
+Também é possível combinar diferentes saídas e exibir várias linhas. Para isso, você usa a função `c()` dentro do argumento `statistic`:
 
 ```{r adjustments11, eval= TRUE}
 modelsummary(
@@ -272,7 +270,7 @@ modelsummary(
 )
 ```
 
-Oftmals wollen wir in Darstellungen nicht die Variablennamen aus dem Datensatz anzeigen lassen, sondern bessere Strings, die es der Leser:in erleichtern die Tabelle zu verstehen. Hierzu nutzen wir das Argument `coef_rename`:
+Frequentemente, em visualizações, não queremos exibir os nomes das variáveis do conjunto de dados, mas strings mais descritivas que facilitem a compreensão da tabela pelo leitor. Para isso, usamos o argumento `coef_rename`:
 ```{r adjustment12, eval=TRUE}
 modelsummary(
   models, 
@@ -284,9 +282,9 @@ modelsummary(
 ```
 
 ## Dotwhisker
-Als Alternative zur Tabellenausgabe werden vermehrt sogenannte Koeffizientenplots genutzt, In diesen ist der Regressionskoeffizient sowie dessen Konfidenzintervall abgebildet. Dazu kann man die **library** `dotwhisker` nutzen. Mithilfe dieser **library** können Objekte aus `lm()`-Funktionen direkt geplottet werden. 
+Como alternativa à saída de tabela, os chamados gráficos de coeficientes estão sendo cada vez mais utilizados. Neles, o coeficiente de regressão e seu intervalo de confiança são representados. Para isso, você pode usar a **biblioteca** `dotwhisker`. Com essa **biblioteca**, objetos de funções `lm()` podem ser plotados diretamente.
 
-Zuerst installierst und lädtst du das Paket:
+Primeiro, você instala e carrega o pacote:
 
 ```{r dotwhisker, eval=FALSE}
 install.packages("dotwhisker")
@@ -294,14 +292,13 @@ install.packages("dotwhisker")
 library("dotwhisker")
 ```
 
-
-Anschließend ruft man die Funktion `dwplot()` auf, die die Koeffizienten grafisch darstellt. Dies ist ebenfalls ein `ggplot`, dessen Funktionsumfang du im fünften Lernblock kennenlernst. 
+Em seguida, você chama a função `dwplot()`, que visualiza graficamente os coeficientes. Este também é um `ggplot`, cujas funcionalidades você aprenderá no quinto bloco de aprendizado.
 
 ``` {r dwplot, eval=TRUE}
 dwplot(olsModel2)
 ```
 
-Du kannst auch direkt mehrere aufeinander aufbauende Modelle in den Plot integrieren. Dazu nutzt du einfach wieder die Funktion `list()`:
+Também é possível integrar vários modelos em cascata no gráfico. Para isso, basta usar a função `list()` novamente:
 ```{r dwplot2, eval=TRUE}
 dwplot(
   list(
@@ -311,11 +308,11 @@ dwplot(
 )
 ```
 
-So kannst du auch besser sehen, ob sich Koeffizienten verändern, wenn du zusätzliche Variable oder Kontrollvariablen zum Modell hinzufügst. 
+Isso permite que você veja se os coeficientes mudam ao adicionar variáveis adicionais ou variáveis de controle ao modelo.
 
-Das sieht noch etwas unschön aus und du kannst das leicht mit `ggplot` überarbeiten: Du siehst hier nun ein Beispiel, wie es genau funktioniert siehst du im Lernblock 5. 
+Ainda parece um pouco desorganizado e você pode facilmente melhorar isso com o `ggplot`: Aqui está um exemplo de como fazer isso, você pode ver exatamente como funciona no Bloco de Aprendizagem 5.
 
-Wir fügen bei **0** eine Linie ein (Signifikanz), wir ändern die Achsenbeschriftung auf der y-Achese und wir ändern die Skala auf der x-Achse und fügen Titel ein. 
+Adicionamos uma linha em **0** (significância), alteramos a legenda no eixo y, ajustamos a escala no eixo x e adicionamos um título.
 
 ```{r dwplot3, eval=TRUE}
 dwplot(
@@ -352,4 +349,5 @@ dwplot(
        )
 ```
 
-So erstellst du einfache Grafiken und Tabellen in R, die du leicht in deiner Abschlussarbeit oder in Hausarbeiten nutzen kannst. 
+Dessa forma, você pode criar gráficos e tabelas simples no R, que podem ser facilmente utilizados em sua tese de conclusão de curso ou em trabalhos acadêmicos. 
+```

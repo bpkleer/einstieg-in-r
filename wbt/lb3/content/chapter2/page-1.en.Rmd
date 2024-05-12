@@ -1,8 +1,8 @@
 ---
-title: "Ein-Stichproben-T-Test"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Ein-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "One-Sample T-Test"  # Title of the page
+weight: 201  # Custom weight
+menuTitle: "One-Sample T-Test" # Short title if the title is too long
+tags: ["mean", "mean comparisons", "t-Test"]  # Insert tags here; abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,16 +29,16 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Der Einstichproben-t-Test wird berechnet, um zu testen, ob der empirische Wert signifikant vom wahren Wert $\mu$ abweicht. Du benötigst also Kenntnisse über $\mu$.
+The one-sample t-test is calculated to test if the empirical value significantly deviates from the true value $\mu$. Therefore, you need knowledge about $\mu$.
 
-Nimm an, dass das Statistikamt das offizielle Durchschnittsalter mit $36.8$ Jahren angibt. 
+Assume that the statistics office states the official average age as $36.8$ years.
 
-Welchen Wert nimmt das arithm. Mittel des Alters in unserem Datensatz an?
-Die Variable des Alters heißt `agea`.
+What value does the arithmetic mean of age in our dataset take?
+The variable for age is `agea`.
 
 {{% tabs groupID=\"q1\" %}}
-{{% tab name=\"Aufgabe\"%}}
-Berechne den arithmetischen Mittelwert des Alters aus dem Datensatz **PSS**!
+{{% tab name=\"Task\"%}}
+Calculate the arithmetic mean of age from the dataset **PSS**!
 {{% /tab %}}
 {{% tab name=\"Code\" %}}
 \`\`\`R
@@ -48,24 +48,24 @@ mean(
 )
 \`\`\`
 {{% /tab %}}
-{{% tab name=\"Lösung\" %}}
-Im Datensatz liegt das Durchschnittsalter bei $42.83006$ Jahren. Der Wert weicht also im Datensatz ab. 
+{{% tab name=\"Solution\" %}}
+In the dataset, the average age is $42.83006$ years. So, the value deviates in the dataset.
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% expand \"Überlege dir kurz, warum der Wert im Datensatz abweichen könnte!\" %}}
-Im Datensatz wurden nur Personen $\geq 16$ befragt. Somit ist klar, dass das Durchschnittsalter nach oben abweicht.
+{{% expand \"Take a moment to think about why the value could deviate in the dataset!\" %}}
+Only individuals $\geq 16$ were surveyed in the dataset. Therefore, it is clear that the average age deviates upwards.
 {{% /expand %}}
 
-Jetzt möchtest du testen, ob diese Abweichung statistisch signifikant ist. Dafür gibt es bei jedem Mittelwertvergleich zwei Testsituationen:
+Now you want to test whether this deviation is statistically significant. There are two testing situations for each mean comparison:
 
-- *zweiseitig*
+- *two-sided*
 
-- *einseitig* (größer oder kleiner)
+- *one-sided* (greater or smaller)
 
-Du möchtest erstmal nur wissen, ob der Wert signifikant abweicht. Über die Richtung gibt es keine Annahme. Daher führst du einen *zweiseitigen* Test durch. 
+You just want to know if the value significantly deviates at first. There is no assumption about the direction. Therefore, you conduct a *two-sided* test.
 
-Das kannst du mit der Funktion `t.test()` machen:
+You can do this with the function `t.test()`:
 
 ```{r ttest1, eval=TRUE}
 t.test(
@@ -75,27 +75,27 @@ t.test(
 )  
 ```
 
-Dann siehst du den **t-value**, den **p-value**, das **confidence interval** und den **mean**.
+Then you will see the **t-value**, the **p-value**, the **confidence interval**, and the **mean**.
 
-Der p-Wert ist kleiner als $0.05$ und damit erhälst du ein signifikantes Testergebnis. Als Wert siehst du in der Ausgabe `2.2e-16`. Das ist nichts anderes als `2.2*10^{-16}` und das bedeutet nur, dass du das Komma um 16 Stellen nach links verschieben musst. Es ist also ein Wert sehr nahe an $0$. Du kannst also darauf schließen, dass der Mittelwert des Alters aus der Stichprobe signifikant von $\mu$ abweicht. Woran das liegen könnte, haben wir oben schon geklärt!
+The p-value is less than $0.05$, giving you a significant test result. In the output, you see `2.2e-16`. This is nothing but `2.2*10^{-16}`, meaning you need to move the decimal point 16 places to the left. So, it is a value very close to $0$. You can conclude that the mean age in the sample significantly deviates from $\mu$. We have already discussed the possible reasons for this above!
 
-Du kannst die Differenz auch mithilfe von R ausrechnen lassen:
+You can also calculate the difference using R:
 ```{r ttest2, eval=TRUE}
 diff_age <- mean(pss$agea, na.rm = TRUE) - 36.8
 
 diff_age
 ```
 
-Die Differenz beträgt $6.030064$. Da $\mu$ sich auf alle Personen in Panem bezieht und die Stichprobe dagegen nur Personen ab $16$ inkludiert, ist diese Differenz leicht zu erklären. 
+The difference is $6.030064$. Since $\mu$ refers to all individuals in Panem while the sample only includes individuals aged $16$ and above, this difference is easily explained.
 
-### Testalternativen
-Alternativ kann auch *einseitig* getestet werden: 
+### Test Alternatives
+Alternatively, you can also test *one-sided*:
 
-- wenn wir annehmen, dass der Wert größer als $\mu$ ist `greater` 
+- if we assume the value is greater than $\mu$, use `greater`
 
-- wenn wir annehmen, dass der Wert kleiner als $\mu$ ist `less`.
+- if we assume the value is smaller than $\mu`, use `less`.
 
-``` {r ttest4, eval=TRUE}
+```{r ttest4, eval=TRUE}
 # one-sided, greater
 t.test(
   pss$agea, 
@@ -111,4 +111,6 @@ t.test(
 )
 ```
 
-Gehen wir über zum t-Test für zwei Stichproben!
+Let's move on to the t-test for two samples! 
+
+{/*examples*/}

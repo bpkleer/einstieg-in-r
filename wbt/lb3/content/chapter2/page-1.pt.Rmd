@@ -1,8 +1,8 @@
 ---
-title: "Ein-Stichproben-T-Test"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Ein-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Teste T de Amostra Única"  # Título da página
+weight: 201  # Peso individual
+menuTitle: "Teste T de Amostra Única" # Título curto, se o título for longo
+tags: ["média", "comparação de médias", "teste t"]  # Tags; Palavras-chave para o que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,18 +29,18 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Der Einstichproben-t-Test wird berechnet, um zu testen, ob der empirische Wert signifikant vom wahren Wert $\mu$ abweicht. Du benötigst also Kenntnisse über $\mu$.
+O Teste T de Amostra Única é calculado para testar se o valor empírico difere significativamente do valor verdadeiro $\mu$. Portanto, você precisa ter conhecimento sobre $\mu$.
 
-Nimm an, dass das Statistikamt das offizielle Durchschnittsalter mit $36.8$ Jahren angibt. 
+Suponha que o órgão de estatísticas tenha indicado a idade média oficial como $36.8$ anos.
 
-Welchen Wert nimmt das arithm. Mittel des Alters in unserem Datensatz an?
-Die Variable des Alters heißt `agea`.
+Qual valor a média aritmética da idade em nosso conjunto de dados assume?
+A variável de idade é chamada `agea`.
 
 {{% tabs groupID=\"q1\" %}}
-{{% tab name=\"Aufgabe\"%}}
-Berechne den arithmetischen Mittelwert des Alters aus dem Datensatz **PSS**!
+{{% tab name=\"Tarefa\"%}}
+Calcule a média aritmética da idade no conjunto de dados **PSS**!
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
+{{% tab name=\"Código\" %}}
 \`\`\`R
 mean(
   pss$agea,
@@ -48,24 +48,28 @@ mean(
 )
 \`\`\`
 {{% /tab %}}
-{{% tab name=\"Lösung\" %}}
-Im Datensatz liegt das Durchschnittsalter bei $42.83006$ Jahren. Der Wert weicht also im Datensatz ab. 
+{{% tab name=\"Solução\" %}}
+No conjunto de dados, a idade média é de $42.83006$ anos. Portanto, o valor difere no conjunto de dados.
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% expand \"Überlege dir kurz, warum der Wert im Datensatz abweichen könnte!\" %}}
-Im Datensatz wurden nur Personen $\geq 16$ befragt. Somit ist klar, dass das Durchschnittsalter nach oben abweicht.
+{{% expand \"Pense rapidamente por que o valor pode diferir no conjunto de dados!\" %}}
+Apenas pessoas com idade $\geq 16$ foram entrevistadas no conjunto de dados. Portanto, é evidente que a idade média está acima.
 {{% /expand %}}
 
-Jetzt möchtest du testen, ob diese Abweichung statistisch signifikant ist. Dafür gibt es bei jedem Mittelwertvergleich zwei Testsituationen:
+Agora, a tradução para o português brasileiro:
 
-- *zweiseitig*
+---
 
-- *einseitig* (größer oder kleiner)
+Agora você quer testar se essa discrepância é estatisticamente significativa. Para isso, em cada comparação de médias, existem duas situações de teste:
 
-Du möchtest erstmal nur wissen, ob der Wert signifikant abweicht. Über die Richtung gibt es keine Annahme. Daher führst du einen *zweiseitigen* Test durch. 
+- *bilateral*
 
-Das kannst du mit der Funktion `t.test()` machen:
+- *unilateral* (maior ou menor)
+
+Você quer apenas saber se o valor difere significativamente. Não há suposição sobre a direção. Portanto, você realiza um teste *bilateral*.
+
+Você pode fazer isso com a função `t.test()`:
 
 ```{r ttest1, eval=TRUE}
 t.test(
@@ -75,25 +79,26 @@ t.test(
 )  
 ```
 
-Dann siehst du den **t-value**, den **p-value**, das **confidence interval** und den **mean**.
+Então você verá o **valor-t**, o **valor-p**, o **intervalo de confiança** e a **média**.
 
-Der p-Wert ist kleiner als $0.05$ und damit erhälst du ein signifikantes Testergebnis. Als Wert siehst du in der Ausgabe `2.2e-16`. Das ist nichts anderes als `2.2*10^{-16}` und das bedeutet nur, dass du das Komma um 16 Stellen nach links verschieben musst. Es ist also ein Wert sehr nahe an $0$. Du kannst also darauf schließen, dass der Mittelwert des Alters aus der Stichprobe signifikant von $\mu$ abweicht. Woran das liegen könnte, haben wir oben schon geklärt!
+O valor-p é menor que $0.05$ e, portanto, você obtém um resultado de teste significativo. O valor exibido é `2.2e-16`. Isso significa simplesmente `2.2*10^{-16}`, indicando que você precisa mover a vírgula 16 casas para a esquerda. Portanto, é um valor muito próximo de $0$. Você pode concluir que a média de idade da amostra difere significativamente de $\mu$. Já discutimos as possíveis razões para isso anteriormente!
 
-Du kannst die Differenz auch mithilfe von R ausrechnen lassen:
+Você também pode calcular a diferença usando R:
+
 ```{r ttest2, eval=TRUE}
-diff_age <- mean(pss$agea, na.rm = TRUE) - 36.8
+diff_idade <- mean(pss$agea, na.rm = TRUE) - 36.8
 
-diff_age
+diff_idade
 ```
 
-Die Differenz beträgt $6.030064$. Da $\mu$ sich auf alle Personen in Panem bezieht und die Stichprobe dagegen nur Personen ab $16$ inkludiert, ist diese Differenz leicht zu erklären. 
+A diferença é de $6.030064$. Como $\mu$ se refere a todas as pessoas em Panem e a amostra inclui apenas pessoas a partir de $16$ anos, essa diferença é facilmente explicável.
 
-### Testalternativen
-Alternativ kann auch *einseitig* getestet werden: 
+### Alternativas de Teste
+Também é possível realizar um teste *unilateral*:
 
-- wenn wir annehmen, dass der Wert größer als $\mu$ ist `greater` 
+- se assumirmos que o valor é maior que $\mu$ `greater`
 
-- wenn wir annehmen, dass der Wert kleiner als $\mu$ ist `less`.
+- se assumirmos que o valor é menor que $\mu$ `less`.
 
 ``` {r ttest4, eval=TRUE}
 # one-sided, greater
@@ -111,4 +116,4 @@ t.test(
 )
 ```
 
-Gehen wir über zum t-Test für zwei Stichproben!
+Vamos agora para o teste t de duas amostras!

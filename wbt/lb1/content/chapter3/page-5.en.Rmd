@@ -1,11 +1,11 @@
 ---
-title: "Kursmaterialien"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Kursmaterialien" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Course Materials"  # Title of the page
+weight: 306  # Custom weight 
+menuTitle: "Course Materials" # Short title if the title is too long
+tags: ["ci", "course materials", "gitlab"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
-{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/introduction-to-statistics\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
 
@@ -19,17 +19,17 @@ tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was 
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Die Kursmaterialien sind als Projekt in RStudio angelegt: **course materials** (im Workspace *Stats<sup>+</sup>: Einstieg in R*). 
+The course materials are set up as a project in RStudio: **course materials** (in the workspace *Stats<sup>+</sup>: Introduction to R*).
 
-Als erstes legst du dir eine eigene Kopie des Projekts an, wie zuvor mit **firststeps**. 
+First, make a copy of the project for yourself, just like with **firststeps**.
 
-![Kopieren **course materials**](../img/course-project.gif)
+![Copying **course materials**](../img/course-project.gif)
 
-Jetzt hast du das Projekt kopiert und kannst selbst darin arbeiten und zum Beispiel Kommentare in die Skripte hinzufügen. Du findest unter `instructions.Rmd` eine Anleitung, wie du den Ordner handhabst. Wir fügen nach und nach Kursmaterialien hinzu. Das Projekt ist mit **gitlab** verbunden und daher kannst du Updates ganz einfach **pullen**. 
-![Lesen der Anweisungen](../img/read-instructions.gif)
+Now that you have copied the project, you can work on it yourself and, for example, add comments to the scripts. You will find instructions on how to handle the folder in `instructions.Rmd`. We will gradually add course materials. The project is connected to **GitLab**, so you can easily pull updates.
+![Reading the instructions](../img/read-instructions.gif)
 
-Um nun Updates zu erhalten, öffnest du eine neues Skript und führst die Schritte aus den Instruktionen durch. Danach gehst du bei **Environment** zum Tab **Git** und klickst einfach **nur** auf **pull**. Wichtig: Hier musst du nicht den Dreischritt ausführen, da deine persönliche Kommentare ja nicht allen zur Verfügung gestellt werden sollen. Daher nur **pullen**!
+To get updates, open a new script and follow the steps from the instructions. Then, go to the **Git** tab under **Environment** and simply click on **pull**. Important: You do not need to go through the three-step process here, as your personal comments should not be shared with everyone. Therefore, just **pull**!
 
-![Updaten der Kursmaterialien](../img/git-pull.gif)
+![Updating the course materials](../img/git-pull.gif)
 
-Das war's! Jetzt bist du auch fit für **gitlab**!
+That's it! Now you are also ready for **GitLab**!

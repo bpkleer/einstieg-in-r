@@ -1,8 +1,8 @@
 ---
-title: "Annahme 1: Lineare Beziehung"  # Titel der Seite
-weight: 302  # Individuelles Gewicht 
-menuTitle: "lin. Beziehung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Pressuposição 1: Relação Linear"  # Título da página
+weight: 302  # Peso Individual
+menuTitle: "Rel. Linear" # Se o título for muito longo, use um título curto aqui
+tags: ["diagnóstico de regressão"]  # Insira tags aqui; Palavra curta que descreve o que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,9 +34,9 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um die Annahmen einer linearen Regression zu prüfen, kann man sich einen Plot von den geschätzten Werten (*fitted*) und den Residuen ausgeben lassen. In diesem Plot ist eine Linie eingezeichnet. Sofern diese Linie nahezu horizontal ist, kann die Annahme als erfüllt gewertet werden. 
+Para verificar as pressuposições de uma regressão linear, você pode plotar os valores estimados (*fitted*) e os resíduos. Neste gráfico, uma linha é desenhada. Se essa linha for quase horizontal, a pressuposição é considerada atendida.
 
-Zur Plot-Erstellung nutzt die Funktion `plot()`, in der du im ersten Argument das zu testende Modell angibst und im zweiten Argument eine `1` (Wahl eines bestimmten Plots, hier `Residuals vs. Fitted`). 
+Para criar o gráfico, utilize a função `plot()`, onde no primeiro argumento você especifica o modelo a ser testado e no segundo argumento um `1` (escolha de um gráfico específico, neste caso `Residuals vs. Fitted`).
 
 ```{r assumption1, eval = TRUE}
 plot(
@@ -46,5 +46,4 @@ plot(
 
 ```
 
-$\Rightarrow$ der Plot sollte uns eine nahezu horizontale Linie anzeigen; dann ist die Annahme erfüllt und wir können eine lineare Beziehung annehmen.
-
+$\Rightarrow$ o gráfico deve nos mostrar uma linha quase horizontal; então a pressuposição é atendida e podemos assumir uma relação linear.

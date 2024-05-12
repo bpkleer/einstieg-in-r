@@ -1,8 +1,8 @@
 ---
-title: "Start: Histogramm"  # Titel der Seite
-weight: 121  # Individuelles Gewicht 
-menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
-tags: ["histogramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Start: Histogram"  # Page title
+weight: 121  # Custom weight 
+menuTitle: "Start" # Short title in case the title is too long
+tags: ["histograms", "ggplot"]  # Insert tags here; Brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -30,7 +30,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um eine einzelne kontinuierliche Variable darzustellen, nutzen wir **Histogramme**. Damit kann die Verteilung der Variable interpretiert werden. Für ein **Histogramm** nutzen wir die Funktion `geom_hist()`.
+To represent a single continuous variable, we use **histograms**. This allows us to interpret the distribution of the variable. To create a **histogram**, we use the `geom_hist()` function.
 ```{r hist, eval=TRUE}
 hist <- ggplot(
   pss, 
@@ -41,7 +41,7 @@ hist <- ggplot(
 hist
 ```
 
-Nun können wir die Grafik etwas anpassen wie zuvor. Beginne mit den Titeln:
+Now, we can customize the graph as before. Start with the titles:
 ```{r hist-title, eval=TRUE}
 hist <-  ggplot(
   pss, 
@@ -60,7 +60,7 @@ hist <-  ggplot(
 hist
 ```
 
-Oftmals möchten wir die Verteilung interpretieren. Deshalb zeigen wir uns die Verteilung der Dichte zusätzlich an. Dazu fügen wir die Funktion `geom_density()` hinzu. Zusätzlich musst du die Achse in `geom_histogram()` auf `..density..` ändern!
+Often, we want to interpret the distribution. Therefore, we also display the density distribution. To do this, we add the `geom_density()` function. Additionally, you need to change the axis in `geom_histogram()` to `..density..`!
 ```{r hist-density, eval=TRUE}
 histDens <- ggplot(
   pss, 
@@ -84,4 +84,5 @@ histDens <- ggplot(
 histDens
 ```
 
-Auch hier können wir gruppieren!
+Here, too, we can group! 
+

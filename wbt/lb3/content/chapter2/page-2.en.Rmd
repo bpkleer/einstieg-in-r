@@ -1,8 +1,8 @@
 ---
-title: "Zwischen zwei Gruppen"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Zwei-Stichproben-T-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Between Two Groups"  # Page Title
+weight: 202  # Custom Weight 
+menuTitle: "Two-Sample T-Test" # Short Title if the main one is too long
+tags: ["mean", "mean comparisons", "t-Test"]  # Tags: brief description of the page content
 ---
 
 ```{r setup, include = FALSE}
@@ -32,26 +32,26 @@ library("car")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Beim Zwei-Stichproben t-Test musst du unterscheiden, ob es sich um gepaarte oder ungepaarte Stichproben handelt. 
+When conducting a two-sample t-test, you need to differentiate between paired and unpaired samples.
 
-## Zwei-Stichproben t-Test (ungepaart)
-In dieser Testsituation werden zwei verschiedene Gruppen innerhalb einer Stichprobe (z.B. nach Geschlecht) getestet. Beide Gruppen sind nicht verbunden bzw. nicht gepaart. Die Antwort des einen Falles ist nicht durch die Antwort anderer Fälle beeinflusst bzw. steht nicht in Verbindung dazu. 
+## Two-Sample T-Test (Unpaired)
+In this testing scenario, two different groups within a sample (e.g., based on gender) are compared. Both groups are not related or paired. The response of one case is not influenced by the response of other cases or connected to it.
 
-Wir möchten testen, inwieweit die vertragliche Arbeitszeit (`wkhtot`) sich zwischen Männern und Frauen (`gndr`) in der Stichprobe unterscheidet. 
+We want to test how the contractual working hours (`wkhtot`) differ between men and women (`gndr`) in the sample.
 
-Wie sind die Variablen kodiert? Prüfe es im Codebook:
+How are the variables coded? Check the codebook for details:
 {{%attachments style=\"grey\" title=\"Codebook PSS\" /%}}
 
-### Annahmen
-Um den Test zu berechnen, müssen zwei Annahmen geprüft werden:
+### Assumptions
+To perform the test, two assumptions need to be checked:
 
-1. Varianzgleichheit (Levene-Test)
+1. Equality of variances (Levene's Test)
 
-2. Normalverteilung der metrischen Variable (uV)
+2. Normal distribution of the metric variable (uV)
 
-Die zweite Annahme muss nur getestet werden, wenn $n < 30$. In Situationen mit $n > 30$ liefert der Test asymptotisch korrekte Ergebnisse. 
+The second assumption only needs to be tested if $n < 30$. In situations with $n > 30$, the test provides asymptotically correct results. 
 
-Um zu prüfen, ob Varianzgleichheit vorliegt, berechnest du den **Levene-Test**. Hierzu nutzt du die Funktion `leveneTest()` aus der **library** `car`:
+To check for homogeneity of variances, you calculate the **Levene test**. For this purpose, you use the `leveneTest()` function from the **library** `car`:
 ```{r car, eval=FALSE}
 install.packages("car")
 library("car")
@@ -65,16 +65,16 @@ leveneTest(
 )   
 ```
 
-Wie wird der Test interpretiert?
+How is the test interpreted?
 
-Die Nullhypothese des Tests ($H_0$) lautet, dass beide Gruppen in der metrischen Variable gleiche Varianzen haben. Ein p-Wert unter $0.05$ erfordert die Ablehnung der Nullhypothese und daher sind keine gleichen Varianzen anzunehmen. In der Berechnung des Tests musst du diese Eigenschaft angeben. 
+The null hypothesis of the test ($H_0$) states that both groups in the metric variable have equal variances. A p-value below $0.05$ requires rejecting the null hypothesis, indicating unequal variances. You must specify this property in the test calculation.
 
-{{% expand \"Was sagt also der Test hier aus?\" %}}
-Richtig, in diesem Fall kann Varianzgleichheit angenommen werden, da der p-Wert $>0.05$ ist. 
+{{% expand "What does the test indicate in this case?" %}}
+Correct, in this case, homogeneity of variances can be assumed since the p-value is $>0.05$.
 {{% /expand %}}
 
-### Durchführung des Tests
-Nun nutzt du wieder die Funktion `t.test()`, um den Test zu berechnen. Dabei werden die zwei Variablen nicht über ein Komma als Argument getrennt, sondern als Formel angegeben. Hierbei steht die metrische Variable zuerst, als zweites folgt die kategorielle Variable (mit nur zwei Gruppen!). Getrennt wird dies durch eine `~` (Tilde). Du nimmst standardmäßig eine Differenz von $0$ an (`mu = 0`) und im Argument `paired = FALSE` gibst du an, dass es sich um ungepaarte Stichproben handelt. Das Ergebnis des Levene-Tests wird im letzten Argument angegeben: `var.equal = TRUE`, denn es liegt ja Varianzgleichheit vor.
+### Conducting the Test
+Now, you again use the `t.test()` function to calculate the test. The two variables are not separated by a comma as an argument but are specified as a formula. The metric variable comes first, followed by the categorical variable (with only two groups!) as the second. These are separated by a `~` (tilde). You assume a difference of $0$ by default (`mu = 0`), and in the argument `paired = FALSE`, you specify that it is unpaired samples. The result of the Levene test is specified in the last argument: `var.equal = TRUE`, as homogeneity of variances is assumed.
 ```{r ttest1, eval = TRUE}
 t.test(
   pss$wkhtot ~ pss$gndr,     
@@ -85,7 +85,7 @@ t.test(
 )            
 ```
 
-Du siehst jetzt die folgenden Werte:
+You now see the following values:
 
 - $t = 1.3509$ (**t-value**)
 
@@ -97,13 +97,13 @@ Du siehst jetzt die folgenden Werte:
 
 - Group male $\approx 34.14246$
 
-Im Durchschnitt haben Männer etwas weniger ($0.31834$), aber die Differenz ist nicht statistisch signifikant.
+On average, men have slightly less ($0.31834), but the difference is not statistically significant.
 
-### Durchführung des Test (polytome Variable)
-Nun möchten wir diesen Test mit einer Variable durchführen, die mehr als zwei Ausprägungen (also Gruppen) inkludiert. Um einen **t-Test** berechnen zu können, musst du zwei Gruppen festlegen.
-Wir möchten nun den Unterschied nach Bildungsabschluss testen (`edu`). Die Kodierungen können dem Codebook entnommen werden. Insgesamt hat die Variable $5$ Ausprägungen. Wir wählen einfach zwei Gruppen aus, die wir vergleichen möchten.
+### Conducting the Test (polytomic Variable)
+Now we want to perform this test with a variable that includes more than two values (i.e., groups). To calculate a **t-test**, you need to specify two groups. We now want to test the difference based on educational attainment (`edu`). The codes can be found in the codebook. The variable has a total of $5$ values. We simply choose two groups to compare.
 
-Auch hier musst du wieder den Test auf Varianzgleichheit zuerst durchführen: 
+You must again perform the test for equality of variances first:
+
 ```{r leven2, eval=TRUE}
 # Test of homogeneity of variances
 leveneTest(
@@ -113,7 +113,8 @@ leveneTest(
 )
 ```
 
-Nun kannst du den **t-Test** durchführen. Bevor du diesen durchführst, musst du dich noch für zwei Gruppen aus der neuen Variable entscheiden. Du vergleichst den niedrigsten und den höchsten Abschluss. Da wir nur bestimmte Gruppen vergleichen, können wir nicht die Formelschreibweise verwenden. Stattdessen gibst du die metrische Variable zweimal an, wobei du die Daten mit **[]** auf die jeweilige Gruppe beschränkst:
+Now you can perform the **t-test**. Before conducting this test, you need to choose two groups from the new variable. You compare the lowest and highest education levels. Since we are only comparing specific groups, we cannot use the formula notation. Instead, you specify the metric variable twice, restricting the data to each group using **[]**:
+
 ```{r ttest3, eval = TRUE}
 t.test(
   pss$wkhtot[pss$edu == "ES-ISCED I"],
@@ -126,24 +127,25 @@ t.test(
 ```
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-Wie interpretierst du das Ergebnis? Was ist die Differenz?
+{{% tab name="Question" %}}
+How do you interpret the result? What is the difference?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Es ist zu sehen, dass im Durchschnitt Personen mit geringerer Bildung (*mean of x*) mehr arbeiten als Personen mit höherer Bildung (*mean of y*). Der Effekt ist signifikant und die Differenz beträgt $5.62773$ Stunden. 
+{{% tab name="Solution" %}}
+It can be seen that on average, individuals with lower education (*mean of x*) work more hours than individuals with higher education (*mean of y*). The effect is significant, and the difference is $5.62773$ hours.
 {{% /tab %}}
 {{% /tabs %}}
 
-## Zwei-Stichproben t-Test (gepaart)
-Nun soll ein gepaarter Zwei-Stichproben **t-Test** durchgeführt werden. Gepaart bedeutet, dass die Werte der einen Gruppe in Relation zu den Werten der anderen Gruppe stehen. Dies ist z.B. der Fall wenn ein:e Befragte:r eine Frage an zwei verschiedenen Zeitpunkten beantwortet hat, oder jede Person aus Gruppe A eine Person aus Gruppe B zugeordnet werden kann (Mutter <-> Kind, Partner). Es gibt den Datensatz `pss2`, der zwei Jahre nach dem eigentlichen Datensatz (mit denselben Befragten) erhoben wurde und wir möchten nun testen, ob sich die Mittelwerte im zeitlichen Verlauf signifikant unterschieden
+## Two-Sample t-Test (Paired)
+Now a paired two-sample **t-test** should be conducted. Paired means that the values of one group are related to the values of the other group. This is the case, for example, when a respondent answers a question at two different time points, or each person from Group A can be matched with a person from Group B (mother <-> child, partner). There is a dataset `pss2`, collected two years after the original dataset (with the same respondents), and we now want to test if the mean values differed significantly over time.
 
-**Überprüfen der Annahmen**
+**Checking the Assumptions**
 
-1. Variablen sind metrisch $\checkmark$
+1. Variables are metric $\checkmark$
 
-2. Differenz folgt einer Normalverteilung (relevant für $n \leq 30$) ($\checkmark$)
+2. Difference follows a normal distribution (relevant for $n \leq 30$) ($\checkmark$)
 
-Es ist ganz leicht, denn jetzt nutzt du wieder die Funktion `t.test()`. Du musst nur das Argument `paired` ändern:
+It's very easy because now you use the `t.test()` function again. You just need to change the `paired` argument:
+
 ```{r ttestpaired1, eval=TRUE}
 t.test(
   pss$trstprl,
@@ -153,6 +155,6 @@ t.test(
 )
 ```
 
-**Ergebnisinterpretation**: Im Durchschnitt unterschieden sich das Vertrauen in das Parlament zwischen den zwei Erhebungen nicht. 
+**Result Interpretation**: On average, the trust in parliament did not differ between the two surveys.
 
-Gehe nun zu Testsituationen mit mehr als zwei Gruppen!
+Now move on to test situations with more than two groups!

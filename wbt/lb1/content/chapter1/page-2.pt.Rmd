@@ -19,91 +19,91 @@ tags: ["tiles", "console", "environment", "files"]  # Tags hiereinsetzen; Kurzwo
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Nun starten wir direkt mal in das Programm RStudio. RStudio ist eine Software, die die Sprache R nutzt. Die Oberfläche bietet eine gute Lösung zum Organisieren eigener Projekte und Daten. Wenn du zuvor mit Stata oder SPSS gearbeitet hast, wirst du einige Parallelen erkennen. Alternativ kannst du auch R direkt nutzen, ohne RStudio (nur für fortgeschrittene Nutzer:innen empfohlen). Das Erscheinungsbild von RStudio kann individuell an deine Bedürfnisse angepasst werden. 
+Vamos mergulhar diretamente no programa RStudio. RStudio é um software que utiliza a linguagem R. A interface oferece uma boa solução para organizar seus próprios projetos e dados. Se você já trabalhou com Stata ou SPSS anteriormente, notará algumas semelhanças. Alternativamente, você também pode usar o R diretamente, sem o RStudio (recomendado apenas para usuários avançados). A aparência do RStudio pode ser personalizada de acordo com suas necessidades.
 
-Insgesamt bietet R Studio **4 Hauptfenster** (die auch angepasst werden können):
+No total, o R Studio possui **4 janelas principais** (que também podem ser personalizadas):
 
-1. Console (auch: Terminal, Jobs)
+1. Console (também conhecido como Terminal, Jobs)
 
-1. Environment (auch: History, Connections)
+1. Environment (também conhecido como History, Connections)
 
-1. Files (auch: Plots, Packages, Help und Viewer)
+1. Files (também conhecido como Plots, Packages, Help e Viewer)
 
-1. Editor (Skriptfenster)
+1. Editor (janela de script)
 
-Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die [Login-Seite](https://login.rstudio.cloud). Falls du dir noch keinen Account bei RStudio Cloud gemacht hast, registriere dich zuerst! Leider ist es technisch nicht möglich wie geplant einen Login mit der JLU-Kennung zu ermöglichen. 
+Para usar o RStudio, acesse a versão em nuvem ou a [página de login](https://login.rstudio.cloud). Se você ainda não tem uma conta no RStudio Cloud, registre-se primeiro! Infelizmente, não é tecnicamente possível permitir o login com a identificação da JLU como planejado.
 
-Hier siehst du eine Animation, wie der Login-Prozess nach der Registrierung eines Accounts abläuft. 
+Aqui está uma animação mostrando como o processo de login ocorre após o registro de uma conta. 
 ![Login RStudio](../img/login.gif)
 
-Wie du in der GIF siehst, bist du zuerst in deinem persönlichen Workspace und dort siehst du noch keinerlei Projekte. Wenn du links auf den Kurs-Workspace klickst, siehst du das Projekt **course materials** und **firststeps**. Ein Workspace ist eine *Verwaltungseinheit* in RStudio Cloud, in der verschiedene Projekte zusammengefasst werden können. 
+Como você pode ver no GIF, você estará inicialmente em seu espaço de trabalho pessoal e não verá nenhum projeto lá. Ao clicar no espaço de trabalho do curso à esquerda, você verá os projetos **materiais do curso** e **primeiros passos**. Um espaço de trabalho é uma *unidade de gerenciamento* no RStudio Cloud, onde vários projetos podem ser agrupados.
 
-Klicke einfach auf das Projekt **firststeps**. Wenn du das Projekt öffnest, siehst du erstmal folgendes Bild:
+Basta clicar no projeto **primeiros passos**. Ao abrir o projeto, você verá a seguinte imagem:
 
-![Start in RStudio](../img/rstudio.png)
-Das **Wichtigste**, wenn du vorbereitete Projekte wie **firststeps** oder **course materials** nutzt, ist das du eine Kopie für deinen Account anlegst! Oben rechts siehst du daher beim ersten Öffnen nur, dass du eine *temporary copy* geöffnet hast. Damit du aber in dem Projekt arbeiten kannst und deine Änderungen für dich gespeichert werden, musst du einmalig auf **Save a permanent copy** klicken. Das Projekt wird dann erstellt und an deinen Account geknüpft. Nachdem das passiert ist, siehst du auch nicht mehr den roten Schriftzug *temporary copy*. In diesem kannst du nun arbeiten und du schaust dir jetzt die verschiedenen Bereiche an. 
+![Começando no RStudio](../img/rstudio.png)
+O **mais importante** ao usar projetos preparados como **primeiros passos** ou **materiais do curso** é que você faça uma cópia para a sua conta! Portanto, quando você abrir pela primeira vez, verá apenas que abriu uma *cópia temporária*. No entanto, para poder trabalhar no projeto e salvar suas alterações, você precisa clicar uma vez em **Salvar uma cópia permanente**. O projeto será então criado e vinculado à sua conta. Depois disso, você não verá mais a mensagem em vermelho *cópia temporária*. Agora você pode trabalhar no projeto e explorar as diferentes áreas.
 
-RStudio hat also ein Kachelmuster mit verschiedenen Kacheln. Links sehen wir die **Console**, rechts oben das **Environment** und rechts unten **Files**. Es gibt noch weitere Tabs in den Kacheln, aber diese lassen wir erstmal außen vor. 
+O RStudio tem um padrão de mosaico com diferentes azulejos. À esquerda, vemos o **Console**, acima à direita o **Ambiente** e abaixo à direita **Arquivos**. Existem mais abas nos azulejos, mas vamos deixá-las de lado por enquanto.
 
-In der **Console** können wir mithilfe der Sprache R direkt Befehle eingeben und ausführen lassen. Gib nun einfach mal eine beliebige Rechnung in die Console ein und bestätige mit `Enter`. 
+No **Console**, podemos inserir e executar comandos diretamente usando a linguagem R. Agora, basta digitar uma equação qualquer no console e pressionar `Enter`.
 
-![Einfach Rechnen mit R](../img/rstudio2.png)
+![Fazendo Cálculos com R](../img/rstudio2.png)
 
-Im Beispiel siehst du, dass die Sprache R mathematische Rechnungen direkt verarbeiten kann und somit für uns die Rechnung übernehmen kann (auch wenn das im simplen Beispiel vielleicht gar nicht nötig ist). Es gibt auch direkt aus, was das Ergebnis dieser Anweisung ist. Die `[1]` ist lediglich die Nummerierung der Ausgabe, dies wird relevant, wenn wir längere Ausgaben haben, die über mehrere Zeilen gehen. 
+No exemplo, você pode ver que a linguagem R pode processar equações matemáticas diretamente e, assim, fazer os cálculos para nós (mesmo que não seja necessário no exemplo simples). Ele também mostra diretamente qual é o resultado dessa instrução. O `[1]` é apenas a numeração da saída, o que se torna relevante quando temos saídas mais longas que ocupam várias linhas.
 
-Um das Ergebnis der Rechnung zu erhalten, müssten wir jetzt jedes Mal die Rechnung neu angeben und ausführen. Das wäre etwas mühsam und da kommt der Vorteil der Sprache R zum Vorschein, denn diese ist **objektorientiert**. Das bedeutet einfach, dass wir nahezu alles in einem Objekt speichern können und dann immer, wenn wir wollen dieses Objekt aufrufen können und uns anzeigen lassen können. 
+Para obter o resultado do cálculo, teríamos que reescrever e executar o cálculo toda vez. Isso seria um pouco tedioso e é aí que entra a vantagem da linguagem R, pois ela é **orientada a objetos**. Isso significa simplesmente que podemos armazenar quase tudo em um objeto e, em seguida, sempre que quisermos, podemos chamar esse objeto e exibi-lo.
 
-Zuordnungen zu Objekten erfolgen in R mit `<-`. Am Mac kann man dies über die Tastenkombination `option` und `-` erreichen, am Windows-Rechner mit `alt` und `-`.
+As atribuições de objetos são feitas em R com `<-`. No Mac, você pode fazer isso pressionando `option` e `-`, no computador com Windows, pressione `alt` e `-`.
 
-Wir speichern jetzt die simple Rechnung von oben in einem Objekt, das wir `math` nennen. 
+Agora vamos armazenar o cálculo simples acima em um objeto chamado `math`.
 
-![Objekt math](../img/rstudio3.png)
+![Objeto math](../img/rstudio3.png)
 
-Im Screenshot siehst du jetzt direkt auch, dass du das Objekt aufrufen musst, um das Ergebnis zu sehen. Dies machst du, indem du einfach den Objektnamen in die Console schreibst und nochmals `Enter` drückst. 
+Na captura de tela, você pode ver que precisa chamar o objeto para ver o resultado. Você faz isso simplesmente escrevendo o nome do objeto no console e pressionando `Enter` novamente.
 
-Wir haben jetzt das erste Objekt gespeichert und dies kannst du nun unter **Environment** sehen. Dort kannst du im Laufe einer *Session* alle Objekte sehen, die du während dieser *Session* erstellt hast. In dem Fall hier jetzt, sehen wir das gespeicherte Objekt `math`, das eben den Inhalt der Addition von `3 + 4` beinhaltet. 
+Agora temos o primeiro objeto armazenado e você pode vê-lo em **Ambiente**. Lá, ao longo de uma *sessão*, você pode ver todos os objetos que criou durante essa *sessão*. Neste caso, vemos o objeto armazenado `math`, que contém a adição de `3 + 4`.
 
-![Environment](../img/rstudio4.png)
+![Ambiente](../img/rstudio4.png)
 
-Ein Nachteil der Console ist, dass wir den geschriebenen Code nicht daraus kopieren und zum Beispiel mit anderen teilen können. Oftmals ist es aber erforderlich, dass man den geschriebenen Code weitergibt (zum Beispiel in einer Gruppenarbeit oder bei der Abgabe einer Hausarbeit) oder du dir zusätzlich zum Code noch Kommentare hinzufügen musst, damit du später besser verstehst, was du in dem Moment gemacht hast. Dazu gibt es sogenannte **Skripte**. **Skripte** sind Textdateien, in denen wir direkt in der Sprache R schreiben können und in denen wir auch Kommentare zum Code einfügen können. Öffne jetzt eine neue Skriptdatei wie im Screenshot oder nutze einfach die Tastenkombination `Cmd` und `Shift` und `N` bzw. `Strg` und `Shift` und `N`.
+Uma desvantagem do console é que não podemos copiar o código escrito dele e compartilhá-lo com outras pessoas, por exemplo. No entanto, muitas vezes é necessário compartilhar o código escrito (por exemplo, em um trabalho em grupo ou ao enviar um trabalho acadêmico) ou adicionar comentários ao código para que você possa entender melhor o que fez naquele momento. Para isso, existem os chamados **scripts**. **Scripts** são arquivos de texto nos quais podemos escrever diretamente na linguagem R e também adicionar comentários ao código. Abra agora um novo arquivo de script como na captura de tela ou simplesmente use a combinação de teclas `Cmd` e `Shift` e `N` ou `Ctrl` e `Shift` e `N`.
 
-![Skript öffnen](../img/rstudio5.png)
+![Abrir Script](../img/rstudio5.png)
 
-In dieser Datei können wir Anweisungen in der Sprache R schreiben. Das werden wir fortan immer machen anstatt in der Console zu arbeiten. Denn so sind die Arbeiten in einer Datei gesichert, sodass wir diese wieder aufrufen können bzw. an andere weitergeben können. 
+Neste arquivo, podemos escrever instruções na linguagem R. Daqui em diante, faremos isso sempre em vez de trabalhar no Console. Dessa forma, o trabalho fica salvo em um arquivo, para que possamos acessá-lo novamente ou compartilhá-lo com outras pessoas.
 
-Die Schritte aus der Console können wir auch im Skript eingeben. Kommentare beginnen immer mit einer `#`. Die Sprache erkennt so, dass diese Zeile keinen ausführbaren Code beinhaltet, sondern einfach Text. 
+Os passos que executamos no Console também podem ser inseridos no script. Comentários sempre começam com `#`. A linguagem reconhece que essa linha não contém código executável, mas apenas texto.
 
-![Skript nutzen](../img/rstudio6.png)
+![Usando o script](../img/rstudio6.png)
 
-Um den Code auszuführen, markierst du einfach die auszuführenden Zeilen und drückst die Tastenkombination `cmd` + `Enter` bzw. `Strg` und `Enter`. Alternativ kannst du auch die Zeile markieren und den Button `Run` (rechts oben in der Skript-Kachel) drücken. 
+Para executar o código, basta selecionar as linhas a serem executadas e pressionar a combinação de teclas `cmd` + `Enter` ou `Ctrl` + `Enter`. Alternativamente, você também pode selecionar a linha e clicar no botão `Run` (no canto superior direito da tela do script).
 
-Noch haben wir die Datei nicht gespeichert, dies macht man einfach, in dem man die Tastenkombination `cmd` + `S` bzw. `Strg` + `S` drückt. Du wirst dann aufgefordert einen Dateinamen anzugeben und den Speicherort der Datei (Pfad) festzulegen. Bleibe erstmal einfach in dem vorgeschlagenen Pfad. Wir benennen die Datei mit `firsttry`.
+Ainda não salvamos o arquivo, o que pode ser feito facilmente pressionando a combinação de teclas `cmd` + `S` ou `Ctrl` + `S. Você será solicitado a fornecer um nome de arquivo e escolher o local de salvamento do arquivo (caminho). Por enquanto, mantenha o caminho sugerido. Vamos nomear o arquivo como `firsttry`.
 
-In der Kachel **Files** kannst du diese neue Datei jetzt sehen.
+Na aba **Files**, você poderá ver esse novo arquivo.
 
-![Gespeicherte Datei](../img/rstudio7.png)
+![Arquivo salvo](../img/rstudio7.png)
 
-Wie du siehst, haben R-Skript-Dateien die Endung `.R`. Alle Dateien, die so enden, sind R-Skript-Dateien und beinhalten Code in der Sprache R, der mit RStudio ausführbar ist. 
+Como você pode ver, os arquivos de script do R têm a extensão `.R`. Todos os arquivos que terminam assim são arquivos de script do R e contêm código na linguagem R, que pode ser executado com o RStudio.
 
-Teste jetzt einfach mal den Gebrauch des Skripts aus und füge zwei neue Codezeilen hinzu, die folgendes beinhalten:
+Agora, experimente usar o script e adicione duas novas linhas de código que contenham o seguinte:
 
-1. Führe eine Berechnung aus, die eine Multiplikation und Addition beinhaltet und als Ergebnis 20 hat.
+1. Execute um cálculo que envolva multiplicação e adição, resultando em 20.
 
-2. Speichere eine weitere Rechnung im Objekt `result`, das nur aus einer Subtraktion besteht und als Ergebnis 17 hat. 
+2. Armazene outro cálculo no objeto `result`, que consiste apenas em uma subtração e resulta em 17.
 
-Schau dir an, was sich im **Environment** geändert hat. 
+Observe as alterações no **Environment**.
 
-Als letztes gehst du jetzt aus dem Projekt raus, zurück in den Workspace. Dazu kannst du einfach links im Menü auf den Workspace klicken. 
+Por fim, saia do projeto e retorne ao Workspace. Para fazer isso, basta clicar no Workspace no menu à esquerda.
 
-Du siehst dann, dass es das Projekt **firststeps** zweimal gibt. 
+Você verá que o projeto **firststeps** aparece duas vezes.
 
-![Firststeps zweifach](../img/rstudio8.png)
+![Firststeps duplicado](../img/rstudio8.png)
 
-Das ist nicht falsch, sondern korrekt! Denn einmal gibt es das vorbereitete Projekt von uns (du erkennst es daran, dass Philipp Kleer der **Owner** ist) und dann einmal das von dir kopierte Projekt **firstseps**, in dem du arbeiten kannst. Du siehst dich dort als **Owner** angegeben. Hier im Beispiel ist das der User **Phil friendly**. 
+Isso não está errado, mas correto! Uma vez que há o projeto preparado por nós (você pode identificá-lo pelo fato de Philipp Kleer ser o **Proprietário**) e o projeto **firstseps** que você copiou, onde você pode trabalhar. Você será listado como **Proprietário** lá. Neste exemplo, o usuário é **Phil friendly**.
 
-Um nicht durcheinander zu kommen, und Änderungen tatsächlich in seinem eigenen Projekt zu erstellen, kannst du links im Menü einfach **Your Projects** auswählen und es werden nur die Projekte angezeigt, in denen auch deine Änderungen gespeichert werden. 
+Para não se confundir e realmente fazer alterações em seu próprio projeto, você pode simplesmente selecionar **Seus Projetos** no menu e apenas os projetos nos quais suas alterações são salvas serão exibidos.
 
-![Your Projects](../img/rstudio9.png)
-**Wichtig**: Deine eigenen Projekte kannst nur du und der Instruktor sehen!
+![Seus Projetos](../img/rstudio9.png)
+**Importante**: Apenas você e o instrutor podem ver seus próprios projetos!
 
-Du hast die ersten Schritte erfolgreich gemeistert. Du weißt wie du Objekte speicherst und wie du diese aufrufen kannst! Du kannst auch schon einfache Rechnungen ausführen. Als nächstes werden wir uns mit Objekttypen in R beschäftigen.
+Você completou com sucesso os primeiros passos. Você sabe como salvar objetos e como acessá-los! Você também já pode realizar cálculos simples. Em seguida, vamos nos concentrar nos tipos de objetos em R.

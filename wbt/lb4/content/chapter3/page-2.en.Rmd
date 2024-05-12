@@ -1,8 +1,8 @@
 ---
-title: "Annahme 1: Lineare Beziehung"  # Titel der Seite
-weight: 302  # Individuelles Gewicht 
-menuTitle: "lin. Beziehung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assumption 1: Linear Relationship"  # Page title
+weight: 302  # Custom weight
+menuTitle: "Lin. Relationship" # Short title if needed
+tags: ["regression diagnostics"]  # Tags describing the content of the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,9 +34,9 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um die Annahmen einer linearen Regression zu prüfen, kann man sich einen Plot von den geschätzten Werten (*fitted*) und den Residuen ausgeben lassen. In diesem Plot ist eine Linie eingezeichnet. Sofern diese Linie nahezu horizontal ist, kann die Annahme als erfüllt gewertet werden. 
+To check the assumptions of a linear regression, you can create a plot of the estimated values (*fitted*) and the residuals. In this plot, a line is drawn. If this line is nearly horizontal, the assumption can be considered fulfilled.
 
-Zur Plot-Erstellung nutzt die Funktion `plot()`, in der du im ersten Argument das zu testende Modell angibst und im zweiten Argument eine `1` (Wahl eines bestimmten Plots, hier `Residuals vs. Fitted`). 
+To create the plot, use the `plot()` function, where you specify the model to be tested in the first argument and a `1` in the second argument (selecting a specific plot, here `Residuals vs. Fitted`).
 
 ```{r assumption1, eval = TRUE}
 plot(
@@ -46,5 +46,4 @@ plot(
 
 ```
 
-$\Rightarrow$ der Plot sollte uns eine nahezu horizontale Linie anzeigen; dann ist die Annahme erfüllt und wir können eine lineare Beziehung annehmen.
-
+$\Rightarrow$ the plot should show us a nearly horizontal line; then the assumption is met, and we can assume a linear relationship.

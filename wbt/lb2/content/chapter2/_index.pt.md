@@ -1,17 +1,17 @@
 ---
-title: "Deskriptive Statistik"
-menuTitle: "Deskr. Statistik"
+title: "Estatística Descritiva"
+menuTitle: "Estat. Descritiva"
 chapter: true
 pre: "2. "
 weight: 200
 ---
 
-### Kapitel 2 
+### Capítulo 2
 
-# Deskriptive Statistik 
-In diesem Kapitel werden wir lernen, Daten zu importieren, deskriptive Statistiken zu erstellen.
+# Estatística Descritiva
+Neste capítulo, vamos aprender a importar dados e criar estatísticas descritivas.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
@@ -19,7 +19,7 @@ In diesem Kapitel werden wir lernen, Daten zu importieren, deskriptive Statistik
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

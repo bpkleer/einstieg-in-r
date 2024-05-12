@@ -1,8 +1,8 @@
 ---
-title: "Grundlagen der linearen Regression"  # Titel der Seite
-weight: 101  # Individuelles Gewicht 
-menuTitle: "Grundlagen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Fundamentos da Regressão Linear"  # Título da página
+weight: 101  # Peso individual
+menuTitle: "Fundamentos" # Se o título for muito longo, use um título curto aqui
+tags: ["regressão"]  # Insira tags aqui; palavra curta que descreve o que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,105 +19,105 @@ tags: ["regression"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsier
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Mit einer **linearen Regression** schätzen wir die kausale Beziehung zwischen einer (oder mehr) unabhängigen Variablen und einer abhängigen Variable. Das Modell wird i.d.R. mit dem Verfahren  *Ordinary-Least-Squares* (OLS) geschätzt und so erhalten wir den besten linearen Schätzer (*Best Linear Unbiased Estimator - BLUE*). Dies gilt nur bei Zutreffen der Annahmen.
+Com uma **regressão linear** estimamos a relação causal entre uma (ou mais) variável independente e uma variável dependente. O modelo é geralmente estimado pelo método *Ordinary-Least-Squares* (OLS) e assim obtemos o melhor estimador linear (*Best Linear Unbiased Estimator - BLUE*). Isso é válido apenas se as suposições forem atendidas.
 
-Basierend auf theoretischen Annahmen oder empirischer Evidenz anderer Forscher:innen (*state of the art*) schätzen wir ein Modell. Die unabhängigen Variablen werden oftmals geteilt in Kontrollvariablen und Variablen, über die wir theoretische Annahmen testen möchten. 
+Com base em suposições teóricas ou evidências empíricas de outros pesquisadores (*estado da arte*), estimamos um modelo. As variáveis independentes são frequentemente divididas em variáveis de controle e variáveis sobre as quais queremos testar suposições teóricas.
 
-Was sollte aus der Erinnerung der Statistik-Vorlesungen hängen geblieben sein?
+O que deve ter sido retido das aulas de estatística?
 
-- Ziel der linearen Regression
+- Objetivo da regressão linear
 
-- Eigenschaften der linearen Regression
+- Propriedades da regressão linear
 
-- lineare Beziehungen
+- Relações lineares
 
-- grundlegende Mathematik hinter der linearen Regression
+- Matemática básica por trás da regressão linear
 
-- (OLS Annahmen)
+- (Suposições de OLS)
 
-## Ziele
-Mit der linearen Regression können wir folgende Fragen beantworten:
+## Objetivos
+Com a regressão linear, podemos responder às seguintes perguntas:
 
-1. Kann das Modell Varianz in der abhängigen Variable erklären?
+1. O modelo pode explicar a variância na variável dependente?
 
-2. Wie viel kann das Modell erklären?
+2. Quanto o modelo pode explicar?
 
-3. Ist der Effekt der unabhängigen Variable signifikant?
+3. O efeito da variável independente é significativo?
 
-4. In welche Richtung wirkt der Effekt der unabhängigen Variable?
+4. Em que direção o efeito da variável independente atua?
 
-5. Wie stark ist der Effekt der unabhängigen Variable (und wie stark ist er in Relation zu weiteren unabhängigen Variablen)? 
+5. Quão forte é o efeito da variável independente (e quão forte é em relação a outras variáveis independentes)?
 
-$\Rightarrow$ Mit all diesen Fragen werden in den Sozialwissenschaften gebildete Hypothesen aus dem theoretischen Rahmen getestet. D.h. vor der Datenanalyse steht eine Theorie!
+$\Rightarrow$ Todas essas perguntas testam hipóteses formadas a partir do quadro teórico nas ciências sociais. Ou seja, antes da análise de dados, há uma teoria!
 
-## Eigenschaften
-Folgende Bedingungen müssen vorliegen, um eine lineare Regression berechnen zu können:
+## Características
+As seguintes condições devem ser atendidas para calcular uma regressão linear:
 
-$\checkmark$ abhängige Variable muss (pseudo-)metrisch sein
+$\checkmark$ A variável dependente deve ser (pseudo-)métrica
 
-$\checkmark$ unabhängige Variablen können (pseudo-)metrisch oder kategoriell sein
+$\checkmark$ As variáveis independentes podem ser (pseudo-)métricas ou categóricas
 
-$\checkmark$ die Beziehung zwischen jeder unabhängigen Variable und der abhängigen Variable muss linear sein
+$\checkmark$ A relação entre cada variável independente e a variável dependente deve ser linear
 
-## Beispiel einer linearen Regression
-In diesem Beispiel nutzen wir einen fiktiven Datensatz `statistics`, der unter anderem die Note der Statistik I und die Note der Statistik II Prüfung von Studierenden enthält. Wir möchten ein Modell berechnen, in dem wir einen Effekt der Note in der Statistik I Prüfung (`grade`) auf die Note in der Statistik II Prüfung (`grade3`) berechnen.
+## Exemplo de regressão linear
+Neste exemplo, usamos um conjunto de dados fictício `estatísticas`, que inclui, entre outras coisas, a nota da prova de Estatística I e a nota da prova de Estatística II dos alunos. Queremos calcular um modelo em que avaliamos o efeito da nota na prova de Estatística I (`nota`) na nota da prova de Estatística II (`nota3`).
 
-Was könnte unsere theoretische Annahme dafür sein?
+Qual poderia ser nossa suposição teórica para isso?
 
-Eine lineare Beziehung können wir über ein **Scatterplot** testen. Wie wir das erstellen, lernen wir im letzten Lernblock!
+Podemos testar uma relação linear por meio de um **gráfico de dispersão**. Como fazer isso, aprenderemos no último bloco de aprendizado!
 
-![Lineare Beziehung](../img/reg1.png)
+![Relação Linear](../img/reg1.png)
 
-## Grundlegende Mathematik
-Wir berechnen in unserem Beispiel zuerst eine bivariate lineare Regression:
+## Matemática Básica
+Em nosso exemplo, primeiro calculamos uma regressão linear bivariada:
 
-- abhängige Variable: `grade3` ($y$)
+- variável dependente: `nota3` ($y$)
 
-- unabhängige Variable: `grade` ($x_1$)
+- variável independente: `nota` ($x_1$)
 
-Die Gleichung dieses (bivariaten) Regressionsmodells lautet daher:
+Portanto, a equação deste modelo de regressão (bivariado) é:
 
 $Y = \beta_0 + \beta_1 * X_1 + \varepsilon, \varepsilon \sim \mathcal{N}(0, \sigma^2)$
 
-$Y$ ist die unabhängige Variable, $X$ die abhängige Variable und $\varepsilon$ stellt die Residuen dar. 
+$Y$ é a variável dependente, $X$ é a variável independente e $\varepsilon$ representa os resíduos.
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
+{{% tab name=\"Pergunta\" %}}
 
-1. Was ist nochmal $\varepsilon$?
+1. O que é novamente $\varepsilon$?
 
-2. Und was bedeutet dieser Ausdruck $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ nochmal?
+2. E o que significa essa expressão $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ novamente?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-1. $\varepsilon$ umfasst die Residuen. Dies sind die Abstände zwischen geschätztem Wert ($\hat{y}$, grüne Punkte) und beobachtetem Wert ($y$, blaue Punkte).
+{{% tab name=\"Resolução\" %}}
+1. $\varepsilon$ inclui os resíduos. Estes são as distâncias entre o valor estimado ($\hat{y}$, pontos verdes) e o valor observado ($y$, pontos azuis).
 
-2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ bedeutet, dass diese Fehler normalverteilt sind. Manche Abstände sind positiv, andere negativ. In Summe haben diese aber den Mittelwert $0$ und die Varianz $\sigma^2$.
+2. $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ significa que esses erros são distribuídos normalmente. Algumas distâncias são positivas, outras negativas. No entanto, no total, elas têm média de $0$ e variância de $\sigma^2$.
 
-![Residuum in Regression](../img/reg4.png)
+![Resíduo na Regressão](../img/reg4.png)
 {{% /tab %}}
 {{% /tabs %}}
 
-## Gleichung der linearen Regression
-Wiederholen wir kurz die Gleichung der linearen Regression:
+## Equação da Regressão Linear
+Vamos recapitular a equação da regressão linear:
 
 $Y = \beta_0 + \beta_1*X_1 + \varepsilon$
 
-Wir können die Gleichung auch für jeden Fall aufstellen, mit einem Laufindex `i`: 
+Também podemos escrever a equação para cada caso, com um índice de execução `i`:
 
 $y_i = \beta_0 + \beta_1 * {x_1}_i + \epsilon_i$
 
-**Lineare Regressionen** werden standardmäßig mit dem *Ordinary-Least-Squared*-Verfahren (OLS) berechnet. Was heißt das nochmal?
+As **Regressões Lineares** são calculadas por padrão com o método de *Mínimos Quadrados Ordinários* (OLS). O que isso significa novamente?
 
 $\sum_{i=1}^n(\hat{y_i} - y_i)^2 \to min.$
 
-$\Rightarrow$ Das Modell wählt die Linie, die die summierten quadrierten Abstände minimiert.
+$\Rightarrow$ O modelo escolhe a linha que minimiza a soma dos quadrados das distâncias.
 
-Wir können für die Darstellung auch Matrix-Algebra nutzen. Dies hilft (manchen) es besser in R zu verstehen, da wir hier auch mit Vektoren, Matrizen und **data frames** (als spezielle Form einer Matrix) arbeiten:
+Também podemos usar Álgebra de Matrizes para representar isso. Isso ajuda (alguns) a entender melhor em R, já que trabalhamos com vetores, matrizes e **data frames** (como uma forma especial de matriz):
 
 $Y = X\beta + E$
 
 $\begin{bmatrix}y_1 \\y_2 \\... \\y_n \\\end{bmatrix} = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ 1 & ...\\ 1 & x_n\\ \end{bmatrix} \begin{bmatrix}\beta_0 \\ \beta_1\\\end{bmatrix} + \begin{bmatrix}\epsilon_1 \\ \epsilon_2 \\ ... \\ \epsilon_n \\ \end{bmatrix}$
 
-Das Modell berechnet die Matrix $\beta$ - im bivariaten Fall zwei Koeffizienten: Konstante (*intercept*) und Steigung (*slope*) der unabhängigen Variable. Als Ergebnis der Berechnung der Koeffizienten ergibt sich $E$ (Residuum, Differenz zu beobachteten Werten). 
+O modelo calcula a matriz $\beta$ - no caso bivariado, dois coeficientes: Interceptação (*intercept*) e Inclinação (*slope*) da variável independente. Como resultado do cálculo dos coeficientes, obtemos $E$ (Resíduo, Diferença em relação aos valores observados).
 
-Auf der nächsten Seite schauen wir uns mal ein konkretes Beispiel an!
+Na próxima página, vamos ver um exemplo concreto!

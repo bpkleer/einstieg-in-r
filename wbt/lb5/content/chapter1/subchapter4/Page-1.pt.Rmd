@@ -1,8 +1,8 @@
 ---
-title: "Start: Scatterplot"  # Titel der Seite
+title: "Início: Gráfico de Dispersão"  # Titel der Seite
 weight: 141  # Individuelles Gewicht 
-menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
-tags: ["Scatterplots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+menuTitle: "Início" # Falls Titel zulang ist, hier Kurztitel
+tags: ["Gráficos de Dispersão", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -30,9 +30,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir nutzen **Scatterplots** (Punktewolken), wenn wir zwei (pseudo-)metrische Variablen darstellen möchten. Dazu nutzen wir die Funktion `geom_point()`.
+Nós usamos **Gráficos de Dispersão** (Scatterplots) quando queremos representar duas variáveis (pseudo-)métricas. Para isso, utilizamos a função `geom_point()`.
 
-Oftmals haben wir lediglich pseudometrische Variablen, dennoch können wir trotzdem **Scatterplots** zur Visualisierung nutzen. Wir nutzen nun `trstplt` und `trstprt`. Falls du nicht mehr weißt, wofür diese Variablen stehen, schaue im Codebook nach!
+Muitas vezes, temos apenas variáveis pseudo-métricas, no entanto, ainda podemos usar **Gráficos de Dispersão** para visualização. Agora vamos usar `trstplt` e `trstprt`. Se você não se lembra mais do que essas variáveis representam, consulte o Codebook!
 
 ```{r scatter1, eval=TRUE}
 scatter <- ggplot(
@@ -48,7 +48,7 @@ scatter
 ```
 
 ## Jitter
-Um nun mehr auf dem Plot erkennen zu können, müssen wir die Datenpunkte streuen, damit sie nicht alle überlappen. Denn auf einer pseudo-metrischen Variablen haben wir ja meist nur ganzzahlige Werte, so dass Datenpaare überlappen.  Dazu nutzen wir die Funktion `geom_jitter()`:
+Para poder identificar mais informações no gráfico, precisamos espalhar os pontos de dados para que não se sobreponham. Pois em uma variável pseudo-métrica, geralmente temos apenas valores inteiros, fazendo com que pares de dados se sobreponham. Para isso, utilizamos a função `geom_jitter()`:
 
 ```{r scatter2, eval=TRUE}
 scatter <- scatter +
@@ -60,10 +60,12 @@ scatter <- scatter +
 scatter
 ```
 
-In den Argumenten in `geom_jitter()` gibst du an, wie weit die Datenpunkte jittern sollen. Probiere es einfach ein paar Mal mit unterschiedlichen Werten aus. 
+Nos argumentos de `geom_jitter()`, você especifica o quão longe os pontos de dados devem ser espalhados. Experimente algumas vezes com valores diferentes. 
 
-## Beschriftungen
-Nun fügen wir noch Beschriftungen und Titel hinzu.
+{ /* examples */ }
+
+## Legendas
+Agora vamos adicionar legendas e títulos.
 ```{r scatter3, eval=FALSE}
 scatter +
   geom_point() +
@@ -78,7 +80,7 @@ scatter +
        )
 ```
 
-Und verändern das Erscheinungsbild des Titels: Innerhalb der Funktion `theme()` ändern wir noch die Darstellung, was die Argumente genau machen, lernst du Kapitel 3 kennen!
+E alteramos a aparência do título: Dentro da função `theme()`, vamos modificar a apresentação. Para entender exatamente o que os argumentos fazem, você aprenderá no Capítulo 3!
 
 ```{r scatter4, eval=TRUE}
 scatter <- scatter +
@@ -97,7 +99,7 @@ scatter <- scatter +
 scatter
 ```
 
-Die Datenquelle geben wir auch an. Dies fügen wir mit der Funktion `lab()`und dem Argument `caption` hinzu:
+Também vamos especificar a fonte de dados. Isso é feito usando a função `lab()` com o argumento `caption`:
 ```{r scatter5, eval=TRUE}
 scatter <- scatter + 
   labs(caption = "Data source: Panem Social Survey.")
@@ -105,8 +107,8 @@ scatter <- scatter +
 scatter
 ```
 
-## Achsen
-Die Variable hat nur ganzzahlige Werte, die Markierungen sind aber immer im Halbpunkt. Das ändern wir nun:
+## Eixos
+A variável possui apenas valores inteiros, mas as marcações estão sempre nos pontos médios. Vamos corrigir isso agora:
 ```{r scatter6, eval=TRUE}
 scatter <- scatter +
   scale_y_continuous(
@@ -127,8 +129,8 @@ scatter <- scatter +
 scatter
 ```
 
-## Regressionslinie
-Ebenso können wir bereits eine Regressionlinie für den Zusammenhang zwischen den zwei Variablen einzeichnen. Dazu nutzen wir die Funktion `geom_smooth()`. Im Argument `method` geben wir an, dass es sich um ein lineares Modell handelt (`lm`), das Konfidenzintervall soll eingezeichnet werden (`se = TRUE`) und wir legen Farben fest. 
+## Linha de Regressão
+Também podemos adicionar uma linha de regressão para a relação entre as duas variáveis. Para isso, usamos a função `geom_smooth()`. No argumento `method`, indicamos que se trata de um modelo linear (`lm`), o intervalo de confiança deve ser plotado (`se = TRUE`) e definimos as cores.
 ```{r scatter7, eval=TRUE}
 scatter + 
   geom_smooth(
@@ -139,4 +141,4 @@ scatter +
   )
 ```
 
-Weiter geht's und du fügst jetzt eine Gruppenvariable hinzu!
+Vamos continuar e agora você irá adicionar uma variável de grupo!

@@ -1,8 +1,8 @@
 ---
-title: "Import von .txt und .csv"  # Titel der Seite
-weight: 122  # Individuelles Gewicht 
-menuTitle: "Text-Import" # Falls Titel zulang ist, hier Kurztitel
-tags: [".txt", "datei", ".csv", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Import of .txt and .csv"  # Page Title
+weight: 122  # Custom Weight 
+menuTitle: "Text Import" # Short Title if the Title is too long
+tags: [".txt", "file", ".csv", "import"]  # Tags; Brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,62 +33,55 @@ exam <- read.table(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Dataset\" /%}}
 
-Als erstes werden wir globale Datensatz-Dateiformate importieren. Dies sind `.txt` und `.csv`. Beim Format `.csv` gibt es wieder eine Sprachenbesonderheit. Im Standard (englische Sprachversion am Computer) ist das Trennzeichen der Daten ein `,` (Komma), auf Computern mit deutscher Spracheinstellung weicht dies ab und das Datentrennzeichen ist ein `;` (Semikolon). 
+First, we will import global dataset file formats. These are `.txt` and `.csv`. For the `.csv` format, there is a language peculiarity. In the standard (English language version on the computer), the data delimiter is a `,` (comma), but on computers with German language settings, this differs, and the data delimiter is a `;` (semicolon).
 
-## Import einer .txt-Datei
+## Importing a .txt File
 
-Eine `.txt`-Datei ist eine reine Textdatei in der Daten mit einem Tabulator getrennt sind (siehe Screenshot). Auch hier ist das Format in der Konvention, dass in der Spalte Variablen eingetragen sind und in den Zeilen die Fälle. In der Regel stellt die erste Zeile keinen Fall dar, sondern beinhaltet wie im Beispiel die Variablennamen.
+A `.txt` file is a plain text file where data is separated by a tab (see screenshot). Here, too, the convention is that variables are entered in the columns and cases in the rows. Typically, the first row does not represent a case but contains, as in the example, the variable names.
 
-![Beispiel .txt-Datei](../img/txt.png)
-Im Beispiel haben wir also einen Datensatz mit vier Variablen: `age`, `duration`, `grade` und `exam`. 
+![Example .txt File](../img/txt.png)
+In the example, we have a dataset with four variables: `age`, `duration`, `grade`, and `exam`. 
 
+{ /* examples */ }
 
-{{% expand \"Überlege einmal kurz, was die Variablen wohl bedeuten könnten?\" %}}
-In der Regel versuchen Forschenden Variablen möglichst eindeutig zu benennen. **age** beinhaltet das Alter der Befragten, **duration** die Zeitdauer, die die Person für die Prüfung benötigt hat, **grade** die Note, die die Person in der jeweiligen Prüfung erhalten hat und **exam** beinhaltet, um welche Prüfung es sich handelt. 
+{{% expand "Take a moment to think about what the variables could mean." %}}
+Researchers typically try to name variables as clearly as possible. **age** contains the age of the respondents, **duration** the time it took the person to complete the exam, **grade** the grade the person received in the respective exam, and **exam** indicates which exam it is. 
 {{% /expand %}}
 
-Wenn du Dateien lädtst, musst du dir in Erinnerung rufen, was ein Dateipfad ist. Wenn du das nicht mehr weißt, geh zurück in den [Lernblock 1](https://lehre.bpkleer.de/statsplus/lb1). RStudio Cloud erleichtert uns dies, indem der Pfad sehr leicht angewählt werden kann: In den RStudio Projekte ist immer ein Ordner namens `data` vorhanden, der wie folgt angesteuert wird: `./data/` und nach dem zweiten Slash folgt der Dateiname. Wie es bei einer lokalen Installation funktioniert, kannst du ganz unten nachlesen. Das ist aber für den Kurs erstmal nicht relevant, da wir alle mit der RStudio Cloud arbeiten.
+When you load files, you need to remember what a file path is. If you don't remember, go back to [Learning Block 1](https://lehre.bpkleer.de/statsplus/lb1). RStudio Cloud makes this easier for us by allowing us to easily select the path: In RStudio Projects, there is always a folder named `data` that can be accessed as follows: `./data/`, and after the second slash comes the file name. You can read about how it works with a local installation at the very bottom. However, this is not relevant for the course at the moment, as we are all working with RStudio Cloud.
 
-In R ist das **Environment** der Ort, wo wir alle geladenen und gespeicherten Daten und Objekte sehen.
+In R, the **Environment** is where we see all the loaded and saved data and objects.
 
-Um nun die *.txt-Datei* (*tab-separated file*) in R zu laden, benötigen wir die Funktion `read.table()`. Immer wenn man Hilfe zur einer bekannten Funktion benötigt, kann man einfach ein `?` vor diese setzen und die Argumente leer lassen. Im **Help**-Tab in der **Files**-Kachel öffnen sich dann Hinweise zur Funktion. 
+To load the *.txt file* (tab-separated file) in R, we need the `read.table()` function. Whenever you need help with a known function, you can simply put a `?` in front of it and leave the arguments empty. In the **Help** tab in the **Files** pane, hints about the function will appear.
 
-Probieren wir es aus. 
+Let's give it a try.
 ```{r help, eval=FALSE}
-# Falls man Hilfe zur Funktion benötigt:
+# If you need help with the function:
 ?read.table()
 ```
 
-Jetzt wollen wir die Daten in R importieren, damit wir mit diesen arbeiten können. Die Datensätze sind bereits im Ordner `data` gespeichert. Datensatz-Objekte benennt man am besten so, dass man intuitiv darauf schließen kann, um welche Daten es sich handelt. Innerhalb der Import-Funktion (`read.table()`) gibst du einfach den gesamten Pfad zur Datei an. Da die erste Zeile in der Datei die Variablennamen beinhaltet, geben wir im letzten Argument `header = TRUE` an, dass dort die Variablennamen zu finden sind. Das Argument `sep = "\t"` gibt einfach an, dass das Trennzeichen für die Daten ein Tabulator ist. 
-
-```{r load-txt, eval=FALSE}
-
-exam <- read.table(
-  "./data/exam.txt",
-  sep = "\t",                        
-  header = TRUE  
-)             
+Now we want to import the data into R so that we can work with it. The datasets are already stored in the `data` folder. It's best to name dataset objects in a way that intuitively indicates what data they contain. Within the import function (`read.table()`), you simply provide the full path to the file. Since the first line in the file contains the variable names, we specify `header = TRUE` in the last argument to indicate that the variable names are there. The argument `sep = "\t"` simply specifies that the delimiter for the data is a tab.
 
 ```
 
-Wir haben nun die Daten importiert und einen neuen **data frame** importiert, der `exam` heißt! Dieser ist im **Environment** bei dir nun sichtbar.
+We have now imported the data and created a new **data frame** named `exam`! This is now visible in the **Environment**.
 
-## Struktur eines Datensatzes
-Es gibt eine Reihe von Helfer-Funktionen, um einen Überblick über importierte Daten zu bekommen. Diese wirst du jetzt kennenlernen. 
+## Structure of a Dataset
+There are a number of helper functions to get an overview of imported data. You will now get to know these.
 
-Um die Struktur des Datensatzes anzeigen zu lassen, ruft man die folgende Funktion auf:
+To display the structure of the dataset, you call the following function:
 ```{r eval=TRUE}
 str(exam)
 ```
 
-Mit der Funktion `head()` können wir einen ersten Einblick in die Daten bekommen (die ersten $6$ Fälle):
+With the function `head()`, we can get a first look at the data (the first $6$ cases):
 ```{r eval=TRUE}
 head(exam)
 ```
 
-Wir können uns auch mehr als $6$ Fälle anzeigen lassen, dazu fügt man ein zweites Argument hinzu, in dem die Anzahl genannt wird.
+We can also display more than $6$ cases by adding a second argument specifying the number.
 ```{r eval=TRUE}
 head(
   exam,
@@ -96,23 +89,22 @@ head(
 )
 ```
 
-
-Wir können auch einzelne Variablen innerhalb des Datensatzes ansprechen. Dazu nennen wir den Datensatz und adressieren mit dem `$` eine einzelne Variable:
+We can also address individual variables within the dataset. To do this, we specify the dataset and address an individual variable using the `$` sign:
 ```{r eval=TRUE}
 head(exam$grade)
 ```
 
-So jetzt hast du das geschafft und die Anwendung auf andere Dateiformate ist gar nicht so viel mehr Arbeit. Importieren wir als nächstes eine `.csv`-Datei. 
+So now you have accomplished that, and applying it to other file formats is not much more work. Next, let's import a `.csv` file.
 
-## Import einer .csv-file
+## Importing a .csv file
 
-Um eine *.csv-file* zu laden, benötigen wir kein weitere **library**. Die Funktion (wie die oben) ist in R-Base enthalten. 
+To load a *.csv file*, we do not need any additional **library**. The function (similar to the one above) is included in R-Base.
 
-Die Datei inkludiert den gleichen Datensatz, nur als `.csv`-Datei.
+The file includes the same dataset, just as a `.csv` file.
 
-Wir benötigen die Funktion `read.csv()` bzw. `read.csv2()`. Dies hängt davon ab, ob ihr die `.csv`-Datei bereits einmal auf eurem Rechner (Excel oder LibreOffice) geöffnet habt. Wenn ja und eure Computersprache Deutsch ist, müsst ihr `read.csv2()` verwenden. Habt ihr die Datei nicht ein einziges Mal geöffnet oder englische Spracheinstellungen nutzt `read.csv()`.
+We need the function `read.csv()` or `read.csv2()`. This depends on whether you have already opened the `.csv` file on your computer (Excel or LibreOffice). If yes, and your computer language is German, you need to use `read.csv2()`. If you have never opened the file or use English language settings, use `read.csv()`.
 
-Probieren wir es mal aus!
+Let's give it a try!
 ```{r eval=FALSE}
 examcsv <- read.csv(
   "./data/exam.csv", 
@@ -125,32 +117,32 @@ examcsv2 <- read.csv2(
 )
 ```
 
-Hier seht ihr einen Screenshot der zwei importierten Datensätze mit den unterschiedlichen Funktionen.
+Here you can see a screenshot of the two imported datasets using the different functions.
 
-![exam mit read.csv()](../img/examcsv.png)
+![exam with read.csv()](../img/examcsv.png)
 
-![exam mit read.csv2()](../img/examcsv2.png)
+![exam with read.csv2()](../img/examcsv2.png)
 
-{{% expand \"Schau dir die Screenshots an und überlege kurz (mit dem Wissen von oben), warum dies unterschiedlich importiert wird?\" %}}
-Es liegt am Trennzeichen der Daten. Die Funktion **read.csv()** liest in meinem Fall die Daten korrekt, denn ich habe ein englischsprachiges Format und die Daten sind in der Datei mit einem Komma getrennt. Die Funktion **read.csv2()** nimmt ein deutschsprachgies Format als Standard und erwartet daher Semikolon als Daten-Trennzeichen. Da es dieses nicht findet, endet es einfach in jeder Zeile und schreibt nur eine Variable, in der die gesamten Daten mit dem Komma-Trennzeichen inkludiert sind.
+{{% expand \"Take a look at the screenshots and briefly consider (with the knowledge above) why they are imported differently.\" %}}
+It is due to the delimiter of the data. The function **read.csv()** reads the data correctly in my case because I have an English format and the data in the file is separated by a comma. The function **read.csv2()** assumes a German format as default and therefore expects a semicolon as the data delimiter. Since it does not find this, it simply ends in each line and writes only one variable including all the data with the comma delimiter.
 {{% /expand %}}
 
-Es ist wichtig zu verstehen, welches Dateiformat vorliegt und wie dies zu importieren ist, denn so können Fehler beim Import leicht vermieden werden. 
+It is important to understand the file format and how to import it, as this can easily avoid errors during import.
 
-Gehen wir nun über in die Formate, die R zur Verfügung stellt!
+Now let's move on to the formats provided by R!
 
-## Lokales Arbeiten
-Wenn du mal später lokal arbeitest, musst du immer den direkten Pfad der Datei angeben. Oder du speicherst in einem Objekt den Pfad und nutzt dann dieses Objekt innerhalb der Helfer-Funktion `file.path()`. Das hat den Vorteil, dass du nicht ständig den Pfad eingeben musst, denn es empfiehlt es alle Datensätze an einem Ort zu speichern. Mit diesem einen zentralen Ort, kannst du einfach ein Objekt erstellen, dass diesen Pfad als Text beinhaltet. Du erstellst also wie im Lernblock 1 einfach ein Objekt, dass *character* beinhaltet, die hier sinnvoll den Pfad angeben. So muss der Pfad nicht immer neu eingegeben werden. 
+## Local Work
+When you work locally later on, you always have to specify the direct path of the file. Or you save the path in an object and then use this object within the helper function `file.path()`. The advantage is that you do not have to enter the path constantly, as it is recommended to store all datasets in one place. With this one central location, you can simply create an object containing this path as text. So, as in Learning Block 1, you simply create an object containing *character* that sensibly specifies the path here. This way, the path does not have to be entered anew each time.
 
-**Wichtig**: Der Pfad geht nur bis zum Ordner, in dem die Datei liegt. Die Datei wird nicht mit in das `path`-Objekt gespeichert.
+**Important**: The path only goes up to the folder where the file is located. The file is not saved in the `path` object.
 
-Lege also ein Objekt an, dass den Pfad beinhaltet. Wir nennen dies in der Regel `path`.
+So, create an object containing the path. We usually call this `path`.
 ```{r eval=FALSE}
-path <- "C:/Dateipfad zum gespeicherten Objekt/" 
-# kopiere dies aus dem Explorer oder Finder und denke daran bei Windows die Backslashes zu Slashes zu ändern
+path <- "C:/File path to the saved object/" 
+# copy this from Explorer or Finder and remember to change backslashes to slashes for Windows
 ```
 
-In der Import-Funktion ergänzt du einfach die Helfer-Funktion `file.path()`, deren erstes Argument das Objekt `path` (der Character zu deinem Objekt) und deren zweites Argument der Dateiname ist (hier `exam.txt`). Alles andere bleibt wie oben!
+In the import function, you simply add the helper function `file.path()`, where the first argument is the object `path` (the character for your object) and the second argument is the file name (here `exam.txt`). Everything else remains as above!
 ```{r filepath, eval=FALSE}
 exam <- read.table(
   file.path(

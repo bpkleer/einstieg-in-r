@@ -1,8 +1,8 @@
 ---
-title: "Verteilung"  # Titel der Seite
-weight: 301  # Individuelles Gewicht 
-menuTitle: "Verteilung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "verteilung", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Distribuição"  # Título da página
+weight: 301  # Peso individual
+menuTitle: "Distribuição" # Se o título for muito longo, coloque um título curto aqui
+tags: ["ggplot", "distribuição", "avançado"]  # Tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
@@ -19,13 +19,13 @@ tags: ["ggplot", "verteilung", "advanced"]  # Tags hiereinsetzen; Kurzwort, was 
 
 {{% button href="https://bmc.link/bpkleerw" icon="fa-solid fa-beer-mug-empty" %}} {{% /button %}}
 
-Zuerst möchstest du nun die Variable `stfdem` darstellen. Überlege dir kurz wie du diese Variable darstellen kannst und versuche selbstständig Code zu schreiben. Schaue erst im Anschluss auf die möglichen Lösungen. 
+Agora você quer representar a variável `stfdem`. Pense rapidamente em como você pode representar essa variável e tente escrever o código por conta própria. Só então, veja as possíveis soluções.
 
 {{< tabs groupId="1" >}}
-{{% tab name = "Start" %}}
-Probier dich aus, bevor du in die anderen Tabs schaust!
+{{% tab name = "Início" %}}
+Experimente antes de olhar para as outras abas!
 {{% /tab %}}
-{{% tab name="Möglichkeit 1" %}}
+{{% tab name="Opção 1" %}}
 ```R
 barplot <- ggplot(
   pss, 
@@ -65,7 +65,7 @@ barplot <- ggplot(
 barplot
 ```
 {{% /tab %}}
-{{% tab name="Möglichkeit 2" %}}
+{{% tab name="Opção 2" %}}
 ```R
 hist <- ggplot(
   pss, 
@@ -104,13 +104,13 @@ hist
 {{% /tab %}}
 {{< /tabs >}}
 
-Super, wenn du das geschafft hast. Jetzt möchtest du noch schauen, ob es Unterschiede auf der Variable nach Geschlecht gibt. 
+Ótimo se você conseguiu. Agora você quer verificar se há diferenças na variável por sexo.
 
 {{< tabs groupId="2" >}}
-{{% tab name = "Start" %}}
-Probier dich aus, bevor du in die anderen Tabs schaust!
+{{% tab name = "Início" %}}
+Experimente antes de olhar para as outras abas!
 {{% /tab %}}
-{{% tab name="Möglichkeit 1" %}}
+{{% tab name="Opção 1" %}}
 ```R
 stfdemDistrict <- ggplot(
   pss, 
@@ -153,7 +153,7 @@ stfdemDistrict <- ggplot(
 stfdemDistrict
 ```
 {{% /tab %}}
-{{% tab name="Möglichkeit 2" %}}
+{{% tab name="Opção 2" %}}
 ```R
 stfdemDistrict2 <- ggplot(
   pss,
@@ -187,7 +187,7 @@ stfdemDistrict2 <- ggplot(
 stfdemDistrict2
 ```
 {{% /tab %}}
-{{% tab name="Möglichkeit 3" %}}
+{{% tab name="Opção 3" %}}
 ```R
 stfdemDistrict3 <- ggplot(
   pss, 
@@ -220,4 +220,4 @@ stfdemDistrict3
 {{% /tab %}}
 {{< /tabs >}}
 
-Weiter geht's zur Korrelationsdarstellung!
+Vamos para a visualização de correlação!

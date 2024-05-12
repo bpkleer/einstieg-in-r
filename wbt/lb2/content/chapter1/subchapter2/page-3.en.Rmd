@@ -1,9 +1,8 @@
 ---
-title: "Import von .RData und .rds"  # Titel der Seite
-weight: 123  # Individuelles Gewicht 
-menuTitle: "R-Import" # Falls Titel zulang ist, hier Kurztitel
-tags: [".RData", "datei", ".rds", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "Importing .RData and .rds"  # Page title
+weight: 123  # Custom weight
+menuTitle: "R-Import" # Short title if necessary
+tags: [".RData", "file", ".rds", "import"]  # Tags: brief description of page content
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -31,11 +30,11 @@ load("../data/exam.RData")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Dataset\" /%}}
 
-Wenn Datensätze einmal als R-Daten (`.RData` oder `.rds`) gespeichert wurden, können die Daten leichter importiert werden. Wir laden jetzt wieder den Datensatz `exam` ein weiteres Mal in das **Environment**. 
+Once datasets have been saved as R data (`.RData` or `.rds`), importing the data becomes easier. We will now reload the `exam` dataset into the **Environment**.
 
-Dafür räumen wir unser **Environment** aber erstmal auf und entfernen alle Objekte, damit wir die Veränderungen auch sehen. Dafür nutzt man die Funktion `rm()` (*rm* steht für *remove*). In der Funktion gibt man dann einfach mit einem `,` (Komma) getrennt an, welche Objekte man aus dem Environment löschen möchte. Wir löschen mal alle!
+To do this, we first clean up our **Environment** and remove all objects so that we can see the changes. To do this, we use the `rm()` function (*rm* stands for *remove*). In the function, simply list the objects you want to remove from the Environment, separated by a `,` (comma). Let's delete everything!
 
 ```{r clean-env, eval=FALSE}
 rm(
@@ -46,17 +45,19 @@ rm(
 )
 ```
 
-Wenn wir R-Daten laden, ist dies deutlich leichter, da die Daten direkt in einem Format sind, das für R lesbar ist. 
-Laden wir ein einzelnes Objekt (`.rds`-Datei) nutzen wir die Funktion `readRDS()`.  **Wichtig:** Bei dieser Funktion müssen wir die eingelesenen Daten einem Objekt hinzufügen, damit diese dann auch im **Environment** zur Verfügung stehen. Gut daran ist, dass wir die Daten zu unserem Gefallen umbenennen können und nicht auf den Dateinamen angewiesen sind. 
+When loading R data, it is much easier as the data is directly in a format that R can read. 
+When loading a single object (`.rds` file), we use the `readRDS()` function. **Important:** With this function, we need to assign the read data to an object so that it is available in the **Environment**. The advantage is that we can rename the data as we like and are not dependent on the file name. 
 ```{r import-rds, eval=FALSE}
 exam <- readRDS("./data/exam.rds")
 ```
 
-Wir könnten auch ein gesamtes Environment laden. Dies können zum Beispiel alle Objekte einer Session sein, also das, was wir bis gerade gemacht haben. Diese Art von Daten ist im Format `.RData` gespeichert und wir nutzen einfach die Funktion `load()`.
+We could also load an entire environment. This could be, for example, all objects of a session, so what we have just done. This type of data is saved in the `.RData` format and we simply use the `load()` function.
 
 ```{r import-rdata, eval-FALSE}
-# alternativ gesamter Workspace
+# alternatively entire workspace
 load("./data/exam.RData")
 ```
 
-Das war es auch schon, so können wir Daten importieren, die in globalen Formaten vorliegen oder in R-spezifischen Formaten. Als letztes lernen wir jetzt noch den Import von SPSS-Datensätzen kennen, da leider immer noch eine Reihe an Organisationen ihre Datensätze in diesem Format zur Verfügung stellen. 
+That's it, this is how we can import data that is available in global formats or in R-specific formats. Finally, we will now learn about importing SPSS datasets, as unfortunately, a number of organizations still provide their datasets in this format. 
+
+

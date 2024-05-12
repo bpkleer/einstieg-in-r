@@ -1,16 +1,16 @@
 ---
-menuTitle: "Balkendiagramme"
-title: "Balkendiagramme"
+menuTitle: "Bar Charts"
+title: "Bar Charts"
 chapter: true
 pre: "1.1 "
 weight: 110
 ---
 
-### Kapitel 1.1
+### Chapter 1.1
 
-# Balkendiagramme
+# Bar Charts
 
-In diesem Kapitel lernst du die Erstellung von Balkendiagrammen in `ggplot` kennen. Du lernst alle Schritte einzeln kennen, die wir in den anderen Grafiken später nur mehr wiederholen!
+In this chapter, you will learn how to create bar charts in `ggplot`. You will learn each step individually, which we will later only repeat in the other graphics!
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
@@ -20,7 +20,7 @@ In diesem Kapitel lernst du die Erstellung von Balkendiagrammen in `ggplot` kenn
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

@@ -1,16 +1,16 @@
 ---
-title: "Von der Erhebung zum Datensatz"
-menuTitle: "Aufbau Datensatz"
+title: "Da Coleta de Dados ao Conjunto de Dados"
+menuTitle: "Estrutura do Conjunto de Dados"
 chapter: true
 pre: "1.1 "
 weight: 110
 ---
 
-### Kapitel 1.1
+### Capítulo 1.1
 
-# Von der Erhebung zum Datensatz
+# Da Coleta de Dados ao Conjunto de Dados
 
-In diesem Kapitel wiederholst du den Weg von der Datenerhebung zum Datensatz und lernst wie ein Datensatz in einer Datei aufgebaut ist. 
+Neste capítulo, você revisará o caminho da coleta de dados ao conjunto de dados e aprenderá como um conjunto de dados é estruturado em um arquivo.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

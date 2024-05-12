@@ -1,8 +1,8 @@
 ---
-title: "Dataframes"  # Titel der Seite
-weight: 204  # Individuelles Gewicht 
-menuTitle: "Dataframes" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datentypen" , "dataframes"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Dataframes"  # Page Title
+weight: 204  # Custom Weight 
+menuTitle: "Dataframes" # Short Title if Title is too long
+tags: ["datatypes" , "dataframes"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -30,17 +30,18 @@ pss <- readRDS("../../static/files/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Neben Vektoren und Faktoren und gibt es noch den für uns wichtigen Objekttyp **data frame**. Ein **data frame** ist einfach eine Verbindung mehrerer Vektoren (Variablen) derselben Länge in einer Matrix. Im konventionellen Format (*wide-Format*) sind in den Spalten die Variablen vorzufinden und in den Zeilen die Befragten
+In addition to vectors and factors, there is another important object type for us, the **data frame**. A **data frame** is simply a combination of multiple vectors (variables) of the same length in a matrix. In the conventional format (*wide format*), the variables are found in the columns and the respondents in the rows.
 
-- Spalten: Vektoren, Faktoren (Variablen)
+- Columns: Vectors, factors (variables)
+- Rows: Cases (individual observation units, e.g., respondents)
 
-- Zeilen: Fälle (einzelne Beobachtungseinheiten, z.B. Befragte)
-
-Machen wir das ganze am Beispiel des Datensatzes, den wir während des Kurses benutzen werden: **Panem Social Survey** (`pss`). Dies ist ein Trainingsdatensatz ausgerichtet am European Social Survey, der aber deutlich weniger Variablen/Fälle beinhaltet (hier nur 10 Fälle und 4 Variablen):
+Let's illustrate this with the example of the dataset we will use during the course: **Panem Social Survey** (`pss`). This is a training dataset based on the European Social Survey, but with significantly fewer variables/cases (only 10 cases and 4 variables):
 ```{r df1, eval=TRUE, echo=FALSE}
 knitr::kable(pss[1:10, c("idno", "district", "gndr", "agea")])
 ```
 
-Hier im Beispiel haben wir im Datensatz vier Variablen: `idno`, `district`, `gndr` sowie `agea`. Diese sind selbsterklärend: `idno` ist die unique ID, `district` ist der Bezirk des Befragten, `gndr` das Geschlecht und `agea` das Alter. Oftmals sind Variablen nicht intuitiv herleitbar, so dass man ein Codebook konsultieren muss. Mit dem Handling von größeren Datensätzen werden wir uns im nächsten Lernblock beschäftigen. 
+In this example dataset, we have four variables: `idno`, `district`, `gndr`, and `agea`. These are self-explanatory: `idno` is the unique ID, `district` is the district of the respondent, `gndr` is the gender, and `agea` is the age. Often, variables are not intuitively understandable, so you may need to consult a codebook. Handling larger datasets will be covered in the next learning block. 
 
-Auf geht's zur abschließenden Challenge!
+{ /* examples */ }
+
+Let's go to the final challenge!

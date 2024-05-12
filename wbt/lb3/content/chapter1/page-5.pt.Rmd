@@ -1,8 +1,8 @@
 ---
-title: "Korrelationen graphisch darstellen"  # Titel der Seite
-weight: 105  # Individuelles Gewicht 
-menuTitle: "Grafiken" # Falls Titel zulang ist, hier Kurztitel
-tags: ["Zusammenhangsmaße", "Korrelationen", "graphische Darstellung", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Visualização gráfica de correlações"  # Título da página
+weight: 105  # Peso individual
+menuTitle: "Gráficos" # Se o título for muito longo, use um título curto aqui
+tags: ["Medidas de associação", "Correlações", "Visualização gráfica", "ggplot"]  # Tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -35,14 +35,16 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Du hast jetzt im Output von R Tabellen erstellt. Oftmals werden Korrelationen aber in Grafiken dargestellt, da diese für das Auge leichter zu verarbeiten sind als eine Tabelle. 
+Agora você criou tabelas de saída no R. Muitas vezes, as correlações são representadas graficamente, pois são mais fáceis de serem processadas visualmente do que em uma tabela.
 
-An dieser Stelle wirst du zwei Möglichkeiten kennenlernen, solche zu erstellen: Einmal mit der **library** `psych` und einmal mit der **library** `corrplot`. 
+Neste ponto, você aprenderá duas maneiras de criar essas representações: uma com a **biblioteca** `psych` e outra com a **biblioteca** `corrplot`.
 
-## Library `psych`
-Die **library** `psych` bietet mit der Funktion `pairs.panels()` eine gute Funktion, um Korrelationen sowie den Zusammenhang zwischen Variablen grafisch darzustellen. In der Funktion gibst du wie zuvor den Datensatz an bzw. welche Variablen du nutzen möchtest. Danach gibst du die Methode der Korrelation an (`pearson` oder `spearman`). Da hier pseudometrische Daten vorliegen, ist es sinnvoll das Argument `jiggle = TRUE` einzusetzen, da so die Datenpunkte nicht überlappen. Mit dem zusätzlichen Argument `stars = TRUE` werden die konventionellen Signifikanz-Sternchen angezeigt. 
+## Biblioteca `psych`
+A **biblioteca** `psych` oferece a função `pairs.panels()`, que é uma ótima maneira de representar graficamente as correlações e a associação entre variáveis. Na função, você fornece o conjunto de dados ou as variáveis que deseja usar. Em seguida, você especifica o método de correlação (`pearson` ou `spearman`). Como os dados são pseudométricos aqui, é útil usar o argumento `jiggle = TRUE` para evitar que os pontos de dados se sobreponham. Com o argumento adicional `stars = TRUE`, os asteriscos de significância convencionais são exibidos. 
 
-Dazu gehört die Funktion `pairs.panels()` aus der **library** `psych`.
+{ /* examples */ }
+
+Dazu inclui a função `pairs.panels()` da **biblioteca** `psych`.
 ```{r pairs-panels, eval=FALSE}
 pairs.panels(
   pss[c(
@@ -57,25 +59,25 @@ pairs.panels(
   stars = TRUE  # Konvention für Signifikanzen
 )               
 ```
-Das ganze sieht dann grafisch so aus: Im oberen Drittel befinden sich die Korrelationskoeffzienten, in der diagonalen die univariate Verteilung der jeweiligen Variable und im unteren Drittel die bivariate Verteilung des Variablenpaars.
-![Pairs Panel](../img/pairspanels.png)
+A representação gráfica é a seguinte: No terço superior estão os coeficientes de correlação, na diagonal a distribuição univariada de cada variável e no terço inferior a distribuição bivariada do par de variáveis.
+![Painel de Pares](../img/pairspanels.png)
 
-Leider ist die Funktion nicht so leicht anzupassen und zu erweitern wie `ggplots`, die wir später im Lernblock 5 kennenlernen werden. Dort lernst du auch eine `ggplot`-Variante kennen, um Pairs-Panels zu erstellen. 
+Infelizmente, a função não é tão fácil de adaptar e expandir como os `ggplots`, que aprenderemos mais tarde no bloco de aprendizado 5. Lá você também aprenderá uma variante de `ggplot` para criar Painéis de Pares.
 
-## Library `corrplot`
-Eine weitere Darstellungsmöglichkeit mehrerer Korrelationen ist eine sogenannte **Heat Map**. Um diesen Plot zu erstellen, benötigst du die **library** `corrplot` und daraus Funktion `corrplot()`. 
+## Biblioteca `corrplot`
+Outra forma de representar várias correlações é através de um **Mapa de Calor**. Para criar este gráfico, você precisará da **biblioteca** `corrplot` e da função `corrplot()`.
 
-Eine **Heat Map** zeigt die Stärke des Zusammenhangs über die Farbwahl an 
+Um **Mapa de Calor** mostra a força da relação através da escolha de cores.
 
-![Heat Map](../img/corrplot.png)
+![Mapa de Calor](../img/corrplot.png)
 
-Als erstes lade das *package* `corrplot`:
+Primeiro, carregue o *pacote* `corrplot`:
 ```{r corrplot1, eval=FALSE}
 install.packages("corrplot")
 library("corrplot")
 ```
 
-Dann erstellst du eine Korrelationsmatrix, dazu nutzt du die Funktion `corr.test()`:
+Em seguida, crie uma matriz de correlação, utilizando a função `corr.test()`:
 ```{r corrplot2, eval = TRUE}
 cor2 <- corr.test(
   pss[c(
@@ -90,14 +92,14 @@ cor2 <- corr.test(
 ) 
 ```
 
-Als Ergebnis erhalten wir wieder ein **list**-Objekt, das drei Matrizen beinhaltet: Den Korrelationswert, die Stichprobengröße und den p-Wert. Wir benötigen für die Heatmap aber nur den Korrelationswert und den p-Wert.
+Como resultado, obtemos novamente um objeto **list**, que contém três matrizes: o valor de correlação, o tamanho da amostra e o valor p. No entanto, para o mapa de calor, precisamos apenas do valor de correlação e do valor p.
 ```{r corrplot3, eval=TRUE}
 cor2
 
 ls(cor2)
 ```
 
-Nun kannst du den Plot erstellen:
+Agora você pode criar o gráfico:
 ```{r corrplot5, eval=FALSE}
 corrplot(
   cor2$r, 
@@ -108,6 +110,6 @@ corrplot(
 )    
 ```
 
-![Heat Map](../img/corrplot.png)
+![Mapa de Calor](../img/corrplot.png)
 
-Die **library** `corrplot` ermöglicht dir eine Reihe an weiteren Einstellungen, diese kannst du dir [hier](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html) ansehen. Wir werden uns im fünften Lernblock intensiver mit Grafiken beschäftigen. 
+A **biblioteca** `corrplot` oferece uma série de outras configurações, que você pode ver [aqui](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html). Vamos nos aprofundar em gráficos no quinto bloco de aprendizado.

@@ -1,8 +1,8 @@
 ---
-title: "Annahme 6: Einflussreiche Fälle"  # Titel der Seite
-weight: 307  # Individuelles Gewicht 
-menuTitle: "Einflussreiche Fälle" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "einflussreiche fälle"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assumption 6: Influential Cases"  # Page title
+weight: 307  # Custom weight 
+menuTitle: "Influential Cases" # Short title if the title is too long
+tags: ["regression diagnostics", "influential cases"]  # Tags; Brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,34 +36,34 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um auf einflussreiche Fälle zu prüfen, nutzen wir wieder die Resdiuen. Hier sind zwei Werte relevant: **Leverage** und **Cook's D(istance)**. Da **Cook's D(istance)** in Teilen auf dem **leverage** beruht, fokussieren wir direkt **Cook's D**.
+To check for influential cases, we again use the residuals. Two values are relevant here: **Leverage** and **Cook's D(istance)**. Since **Cook's D(istance)** is partly based on **leverage**, we focus directly on **Cook's D**.
 
 {{% tabs %}}
 {{% tab name=\"Leverage\" %}}
 
-- Ist die partielle Ableitung des geschätzten $i$-ten Wert der abhängigen Variable $\hat{y_i}$ in Abhängigkeit des gemessenen $i$-ten Wert der abhängigen Variable $y_i$ 
+- Is the partial derivative of the estimated $i$-th value of the dependent variable $\hat{y_i}$ with respect to the measured $i$-th value of the dependent variable $y_i$ 
 
-- Der Grad, in dem der $i$-te gemessene Wert den $i$-ten gefitteten Wert beeinflusst wird
+- The degree to which the $i$-th measured value influences the $i$-th fitted value
 
-- "Ungewöhnlichkeit" der $x$'s
+- "Unusualness" of the $x$'s
 
 - $h_{ii} = \frac{\partial \hat{y_i}}{\partial y_i}$
 
-- Fall gilt als einflussreich, falls $h_{ii} > .2$
+- Case is considered influential if $h_{ii} > .2$
 {{% /tab %}}
 {{% tab name=\"Cook's D\" %}}
 
-- Ist die Distanz der Veränderung, die ein geschätzter Wert innerhalb der Konfidenz-Ellipse bewegt, die die Region plausibler Werte für den Parameter annimmt
+- Is the distance of the change that a estimated value moves within the confidence ellipse that assumes the region of plausible values for the parameter
 
-- Misst den Einfluss (wie stark ein Fall das Regressionsmodell ändert)
+- Measures the influence (how strongly a case changes the regression model)
 
-- $D_i = \frac{ \sum_{j=1}^n (\hat{y}_j - \hat{y}_{j(i)})}{p * s^2}$, wobei $p$ Anzahl der Parameter ist
+- $D_i = \frac{ \sum_{j=1}^n (\hat{y}_j - \hat{y}_{j(i)})}{p * s^2}$, where $p$ is the number of parameters
 
-- Klassifiziert als einflussreich, wenn $D_i > \bar{D} *3$
+- Classified as influential if $D_i > \bar{D} *3$
 {{% /tab %}}
 {{% /tabs %}}
 
-Zuerst können wir einfach **Cook's D** plotten. Dazu nutzt du wieder die Funktion `plot()`, gibst das Regressionsmodell an und setzt im zweiten Argument den Wert `4`:
+First, we can simply plot **Cook's D**. To do this, use the `plot()` function again, specify the regression model, and set the value `4` in the second argument:
 ```{r cooksd, eval=TRUE}
 plot(
   olsModel2,
@@ -71,15 +71,15 @@ plot(
 )
 ```
 
-**Grenzwerte**:
+**Thresholds**:
 
-$D_i < 1$: keine einzige Beobachtung
+$D_i < 1$: no single observation
 
-$\frac{4}{4890} \approx 0.0008179959$: viele Fälle
+$\frac{4}{4890} \approx 0.0008179959$: many cases
 
-$\bar{D} * 3 \approx 0.0005895857$: viele Fälle
+$\bar{D} * 3 \approx 0.0005895857$: many cases
 
-Wir können auch direkt **Cook's D** gegen das **leverage** plotten und Linien für die Grenzwerte einziehen:
+We can also directly plot **Cook's D** against the **leverage** and draw lines for the thresholds:
 ```{r eval=FALSE}
 plot(
   olsModel2, 
@@ -101,9 +101,9 @@ abline(
 ) 
 ```
 
-Um nun zu prüfen, ob diese theoretisch potentiell einflussreichen Fälle wirklich einflussreich sind, berechnen wir das Modell erneut unter Ausschluss dieser Beobachtungen.
+To check if these theoretically potentially influential cases are indeed influential, we re-estimate the model excluding these observations.
 
-Dafür benötigen wir einen Datensatz, der dieselbe Länge hat wie unsere Modellschätzung:
+For this, we need a dataset that has the same length as our model estimation:
 ```{r rerun, eval=TRUE}
 nobs(olsModel2)
 
@@ -118,7 +118,7 @@ pss2 <- pss[complete.cases(pss[,ccol]),]
 dim(pss2)
 ```
 
-Nun können wir die Werte des **leverage** (*hat values*) und **Cook's D** dem Datensatz hinzufügen.
+Now we can add the values of **leverage** (*hat values*) and **Cook's D** to the dataset.
 
 ```{r hats, eval=TRUE}
 pss2$hats <- hatvalues(olsModel2)    
@@ -126,9 +126,9 @@ pss2$hats <- hatvalues(olsModel2)
 pss2$cooksd <- cooks.distance(olsModel2)  
 ```
 
-Alles, was jetzt folgt, benötigt ein tieferes Verständnis, und insbesonder das Verständnis für Schleifen und *if*-Bedingungen aus dem [Lernblock 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **Aber** wie geschrieben, ist dieses Kapitel extra und wird nicht Teil der verpflichtenden Lab-Übung sein. 
+Everything that follows now requires a deeper understanding, especially of loops and *if* conditions from [Learning Block 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **But** as mentioned, this chapter is extra and will not be part of the mandatory lab exercise.
 
-Um nun die potentiell einflussreichen Fälle auszuschließen, benötigen wir einen Dummy, der uns anzeigt, ob der Fall nach den Kriterien einflussreich ist ($1$) oder nicht ($0$): In der Schleife prüfen wir zuerst, ob der jeweilige Wert des Falles über dem Grenzwert ist. Wenn ja, bekommt für das *leverage* die Variable `leverage` den Wert 1 bzw. für Cook's D die Variable `influence`.
+To exclude the potentially influential cases, we need a dummy variable that indicates whether the case is influential according to the criteria ($1$) or not ($0): In the loop, we first check if the respective case value is above the threshold. If yes, the variable `leverage` is assigned the value 1 for leverage or `influence` for Cook's D.
 ```{r loop, eval=TRUE}
 for (i in 1:dim(pss2)[1]) {   
 if (pss2$hats[i] > (2*(2+1)/dim(pss2)[1])) {
@@ -147,7 +147,7 @@ for (i in 1:dim(pss2)[1]) {
 }
 ```
 
-Nun können wir das Modell mit dem verkleinerten Datensatz erneut rechnen: Hierbei beschränken wir den Datensatz auf die Fälle, die jeweils in den neu geschaffenen Variablen `leverage` und `influence` den Wert `0` haben, also nicht einflussreich sind. 
+Now we can recalculate the model with the reduced dataset: Here we limit the dataset to the cases that have a value of `0` in the newly created variables `leverage` and `influence`, meaning they are not influential.
 ```{r model-rerun, eval=TRUE}
 olsModel2Re <- lm(
   stfdem ~ 1 + stfeco + trstlgl,  
@@ -155,19 +155,19 @@ olsModel2Re <- lm(
 )
 ```
 
-Um herauszufinden, wie viele Fälle wir ausgeschlossen haben, kannst du folgende einfache Subtraktion machen:
+To find out how many cases we have excluded, you can perform the following simple subtraction:
 ```{r diff, eval=TRUE}
 nobs(olsModel2Re) - nobs(olsModel2)
 ```
 
-Es wurden also 736 Fälle ausgeschlossen. Eine ganze Menge!
+So, 736 cases were excluded. Quite a lot!
 
-Schauen wir uns das Ergebnis des Re-definierten Modells mit `summary()` an:
-**Re-definiertes Modelll**
+Let's look at the result of the redefined model using `summary()`:
+**Redefinition Model**
 ```{r model-check, eval=TRUE}
 summary(olsModel2Re)
 ```
-Doch weicht das nun ab vom alten Modell? Dazu nehmen wir einfach die Funktion `modelsummary()`, die wir schon kennengelernt haben. Denn in einer Tabelle können wir die Werte besser vergleichen. Wichtig ist hierbei zu prüfen, ob sich die Standardfehler bzw. die Koeffizienten ändern. 
+But does this now differ from the old model? To check this, we simply use the `modelsummary()` function we have already learned. In a table, we can compare the values better. It is important to check whether the standard errors or the coefficients change.
 ```{r model-check2, eval=TRUE}
 modelsummary(
   list(
@@ -177,11 +177,11 @@ modelsummary(
   stars = TRUE
 )
 ```
-$\Rightarrow$ Du siehst, dass sich der Koeffizient für den *intercept* als auch für `stfeco` ändert. Der *intercept* wird kleiner, der Effekt von `stfdem` dagegen größer. Die Standardfehler (Werte in Klammern) ändern sich dagegen nicht. 
+$\Rightarrow$ You can see that the coefficient for the *intercept* as well as for `stfeco` changes. The *intercept* becomes smaller, while the effect of `stfdem` becomes larger. However, the standard errors (values in parentheses) do not change.
 
-Wenn wir große Änderungen erkennen, müssen die gefilterten Fälle genauer inspiziert werden. Denn wir können Fälle nicht einfach aufgrund mathematischer Bedingungen exkludieren. 
+If we notice significant changes, the filtered cases need to be inspected more closely. We cannot simply exclude cases based on mathematical conditions.
 
-Um herauszufinden, um welche Fälle es sich handelt, kann man wieder eine Schleife programmieren:
+To find out which cases are involved, you can program a loop again:
 ```{r extract-influentials, eval=TRUE}
 levInfluential <- c()
 cookInfluential <- c()
@@ -209,7 +209,7 @@ for (i in 1:dim(pss2)[1]) {
 }
 ```
 
-Als Ergebnis bekommst du drei Vektoren, die jeweils die einflussreichen Fälle beinhalten:
+As a result, you will get three vectors, each containing the influential cases:
 ```{r result-influential, eval=TRUE}
 levInfluential
 
@@ -218,6 +218,8 @@ cookInfluential
 allInfluential
 ```
 
-Anschließend könntest du dir die Wertepaare auf den Variablen in der Regression pro Fall genauer anschauen!
+Then you could take a closer look at the value pairs on the variables in the regression for each case!
 
-Das war's zur Regressionsdiagnostik. In den sechs Schritten kannst du also sichergehen, ob deine Regressionsrechnung nicht aufgrund einer Annahmenverletzung verzerrt ist.
+That's it for regression diagnostics. In these six steps, you can ensure that your regression calculation is not biased due to a violation of assumptions.
+
+Please paste the Markdown content you would like me to translate.

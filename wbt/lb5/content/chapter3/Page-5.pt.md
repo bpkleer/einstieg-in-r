@@ -1,8 +1,8 @@
 ---
-title: "Mittelwertvergleiche"  # Titel der Seite
-weight: 305  # Individuelles Gewicht 
-menuTitle: "Mittelwertvergleich" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "mittelwertvergleich", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Comparação de Médias"  # Título da página
+weight: 305  # Peso individual
+menuTitle: "Comparação de Médias" # Se o título for muito longo, use um título curto aqui
+tags: ["ggplot", "comparação de médias", "avançado"]  # Insira as tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
@@ -19,13 +19,13 @@ tags: ["ggplot", "mittelwertvergleich", "advanced"]  # Tags hiereinsetzen; Kurzw
 
 {{% button href="https://bmc.link/bpkleerw" icon="fa-solid fa-beer-mug-empty" %}} {{% /button %}}
 
-Jetzt wollen wir Mittelwertvergleiche darstellen. Eine gute Möglichkeit sind *Rainclouds* (diese hast du schon kennengelernt) und versuchen für folgendes Problem *rainclouds* zu erstellen:
+Agora vamos representar as comparações de médias. Uma boa maneira são as *Rainclouds* (você já as conheceu) e vamos tentar criar *rainclouds* para o seguinte problema:
 
 {{< tabs >}}
-{{% tab name="Frage" %}}
-Du willst jetzt testen, ob sich die Zufriedenheit mit der Demokratie nach Distrikt unterscheidet, dazu hast du einen Mittelwertvergleich gerechnet, möchtest dies jetzt aber auch noch grafisch darstellen. 
+{{% tab name="Pergunta" %}}
+Agora você quer testar se a satisfação com a democracia difere por distrito, para isso você calculou uma comparação de médias, mas agora também deseja representar graficamente isso.
 {{% /tab %}}
-{{% tab name="Solution 1" %}}
+{{% tab name="Solução 1" %}}
 ```R
 ggplot(
   pss, 
@@ -61,7 +61,7 @@ ggplot(
   )
 ```
 {{% /tab %}}
-{{% tab name="Solution 2" %}}
+{{% tab name="Solução 2" %}}
 ```R
 ggplot(
   pss, 
@@ -97,4 +97,4 @@ ggplot(
 {{% /tab %}}
 {{< /tabs >}}
 
-Weiter geht's zu Regressionen!
+Vamos continuar com as regressões!

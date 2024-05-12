@@ -1,16 +1,16 @@
 ---
-title: "Lernblock 5"
+title: "Bloco de Aprendizagem 5"
 ---
 
-<center><h4>WBT Statistik+: Einstieg in R leicht gemacht!</h4></center>
+<center><h4>WBT Estatísticas+: Comece a usar o R de forma fácil!</h4></center>
 
-# Lernblock 5
+# Bloco de Aprendizagem 5
 
-Willkommen in diesem letzten Lernblock! In diesem Lernblock werden wir Grafiken erstellen und verschiedene Optionen bei Grafiken erlernen. 
+Bem-vindo a este último bloco de aprendizagem! Neste bloco, iremos criar gráficos e aprender diferentes opções de gráficos.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Sobre este botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros nas páginas diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Sobre este botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros nas páginas diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

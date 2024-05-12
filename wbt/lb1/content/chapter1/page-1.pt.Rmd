@@ -1,8 +1,8 @@
 ---
-title: "Basics: Neues & Recap"  # Titel der Seite
-menuTitle: "Basics" # Falls Titel zulang ist, hier Kurztitel
-weight: 101  # Individuelles Gewicht 
-tags: ["datei", "dateimanagement", "dateipfad"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Fundamentos: Novidades & Recapitulação"  # Título da página
+menuTitle: "Fundamentos" # Se o título for muito longo, use um título curto aqui
+weight: 101  # Peso individual
+tags: ["arquivo", "gerenciamento de arquivos", "caminho do arquivo"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,43 +19,43 @@ tags: ["datei", "dateimanagement", "dateipfad"]  # Tags hiereinsetzen; Kurzwort,
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In der praktischen Datenanalyse, in der wir Berechnungen nicht händisch durchführen (wie z. B. in der Vorlesung zu Statistik), nutzen wir die Rechnerleistung eines Computers, um Daten zu bearbeiten, einfache Berechnungen oder auch kompliziertere statische Modelle zu berechnen. Wir verwenden dabei Daten, die wir in Dateien gespeichert haben. Doch was sind eigentlich nochmal Dateien und wie lassen sich diese finden?
+Na análise de dados práticos, onde não realizamos cálculos manualmente (como em uma aula de Estatística), utilizamos a capacidade de processamento de um computador para manipular dados, realizar cálculos simples ou até mesmo modelos estatísticos mais complexos. Nesse processo, utilizamos dados que estão armazenados em arquivos. Mas afinal, o que são arquivos e como podemos encontrá-los?
 
-Daten werden in der Regel als **Dateien** an einem *lokalen* Ort auf dem Computer (Desktop oder Laptop) oder Tablet gespeichert. *Lokal* meint dabei, dass die Dateien physisch auf deinem Rechner abgelegt sind. Das Gegenteil Dateien, die zum Beispiel in einer Cloud (wie der Hessenbox) gespeichert sind und nur temporär bei Bearbeitung der Dateien lokal gespeichert werden. 
+Os dados geralmente são armazenados como **arquivos** em um local *local* no computador (desktop ou laptop) ou tablet. *Local* significa que os arquivos estão fisicamente armazenados em sua máquina. O oposto seriam arquivos armazenados, por exemplo, em uma nuvem (como o Hessenbox) e que são temporariamente salvos localmente apenas durante a edição dos arquivos.
 
-Dateien haben immer eine Endung, die den Typ der Datei festlegt. So haben Word-Dokumente in der Regel die Endung *.docx* bzw. Powerpoint-Dateien die Endung *.pptx*. Auch Bilddateien haben festgelegte Endungen wie *.jpg* oder *.png*. Die Endung einer Datei gibt Aufschluss, wie diese Datei zu lesen ist bzw. mit welchem Programm die Datei geöffnet wird. Dies ist meist in den automatischen Einstellungen (in Windows oder Mac) festgelegt. 
+Os arquivos sempre possuem uma extensão que determina o tipo de arquivo. Por exemplo, documentos do Word geralmente têm a extensão *.docx* e arquivos do Powerpoint têm a extensão *.pptx*. Arquivos de imagem também possuem extensões específicas, como *.jpg* ou *.png*. A extensão de um arquivo indica como ele deve ser lido ou com qual programa ele deve ser aberto. Geralmente, isso é configurado nas configurações automáticas (no Windows ou Mac).
 
-Eine zweite Information, die wir über Dateien benötigen, wenn wir mit diesen arbeiten möchten ist der *Pfad*. Der *Pfad* ist sozusagen die Wohnadresse der Datei. Jede Datei ist an einem bestimmten lokalen Ort gespeichert und dazu gibt es immer eine eindeutige Adresse, mit der die Datei ansprechbar bzw. auffindbar ist. Das ist auf dem Tablet eventuell schwer nachvollziehbar, am Desktop/Laptop wird dies aber schnell klar. 
+Uma segunda informação que precisamos sobre arquivos ao trabalhar com eles é o *caminho*. O *caminho* é essencialmente o endereço residencial do arquivo. Cada arquivo é armazenado em um local específico no computador e sempre possui um endereço único pelo qual o arquivo pode ser acessado ou localizado. Isso pode ser um pouco difícil de entender em um tablet, mas é mais claro em um desktop ou laptop.
 
-Ich habe zum Beispiel die Datei **syllabus.pdf** (Kursplan dieses Kurses) lokal auf meinem Computer gespeichert. Doch wie finden wir heraus, wo wir die Datei gespeichert haben? 
+Por exemplo, eu tenho o arquivo **syllabus.pdf** (plano de curso deste curso) salvo localmente no meu computador. Mas como descobrimos onde o arquivo está salvo?
 
-Der erste Schritt ist sicher im Finder (Mac) oder Explorer (Windows) danach zu suchen. Haben wir die Datei gefunden, können wir auch den eindeutigen Pfad anzeigen lassen. 
+O primeiro passo é procurar no Finder (Mac) ou no Explorer (Windows). Depois de encontrar o arquivo, podemos exibir o caminho único.
 
-Auf dem Mac-Rechner sieht das wie folgt aus:
-![Beispiel Pfad](../img/path.png)
+No computador Mac, isso se parece com o seguinte:
+![Exemplo de Caminho](../img/path.png)
 
-Analog sieht es auf dem Windows-Rechner wie folgt aus:
-![Beispiel Pfad Win](../img/path-win.png)
+No computador Windows, é semelhante a isso:
+![Exemplo de Caminho no Windows](../img/path-win.png)
 
-Die Adresse der Datei ist nicht unbedingt direkt sichtbar. Sie befindet sich bei Mac am unteren Ende des Fensters bzw. bei Windows am oberen Ende des Fenster. Durch Rechtsklick kann man aus dem Finder als auch dem Explorer den Pfad kopieren und hat somit die eindeutige Adresse einer Datei.
+O endereço do arquivo nem sempre é diretamente visível. No Mac, ele está na parte inferior da janela e no Windows, na parte superior. Clicando com o botão direito, é possível copiar o caminho tanto no Finder quanto no Explorer, obtendo assim o endereço único de um arquivo.
 
-Auf dem Mac-Rechner ist die Adresse (Pfad) im Beispiel: 
+No computador Mac, o endereço (caminho) no exemplo é:
 ```
 /Users/jlug/Documents/Teaching/syllabus.pdf
 ```
 
-Auf dem Windows-Rechner ist die Adresse (Pfad) im Beispiel: 
+No computador Windows, o endereço (caminho) no exemplo é:
 ```
 D:\g31442\Teaching\syllabus.pdf
 ```
 
-Einen wichtigen Unterschied sehen wir jetzt hier schon. Bei Windows-Rechnern mit deutscher Spracheinstellung wird ein Backslash `\` zur Unterscheidung von Ordnern genutzt, bei Mac-Rechnern ein einfacher Slash `/`. Das liegt an den Spracheinstellungen meines Windows-Rechner, der auf eine deutsche Systemsprache eingestellt ist. Wenn du mit einem Windows-Rechner arbeitest, ist es wichtig, dass diese Backslashes in der Benutzung in R immer zu normalen Slash umgestellt werden. Denn R arbeitet nur mit der englischen Spracheinstellung und in der werden Pfade immer mit Slashes `/` angegeben. 
+Já podemos ver uma diferença importante aqui. Em computadores Windows com configuração de idioma alemão, é utilizado uma barra invertida `\` para separar pastas, enquanto em computadores Mac é utilizada uma barra simples `/`. Isso se deve às configurações de idioma do meu computador Windows, que está configurado para a língua alemã. Se você estiver usando um computador Windows, é importante substituir essas barras invertidas por barras normais ao trabalhar com R, pois o R só reconhece a configuração de idioma em inglês, onde os caminhos são sempre indicados com barras `/`.
 
-Wir müssen also den oberen Pfad wie folgt ändern:
+Wir precisamos alterar o caminho superior da seguinte forma:
 ```
-D:/g31442/Teaching/syllabus.pdf
+D:/g31442/Ensino/silabo.pdf
 ```
 
-Es ist wichtig, dass du diesen ersten Schritt verstanden hast. Am besten probierst du einmal selbst aus, den Dateifpad von einer beliebigen Datei in ein Word-Dokument zu kopieren. 
+É importante que você tenha entendido este primeiro passo. Experimente copiar o caminho de um arquivo qualquer para um documento do Word.
 
-Falls du Fragen dazu hast, melde dich in der Präsenzzeit. Wir werden in den späteren Lernblöcken Pfade nutzen, um Daten in R zu bearbeiten und auch Ergebnisse aus R auf dem Computer zu speichern. 
+Se tiver dúvidas, entre em contato durante o horário de atendimento. Nos próximos blocos de aprendizado, usaremos caminhos para manipular dados no R e também para salvar resultados do R no computador.

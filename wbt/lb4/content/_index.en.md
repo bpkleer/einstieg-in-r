@@ -1,13 +1,13 @@
 ---
-title: "Lernblock 4"
+title: "Learning Block 4"
 ---
 
-<center><h4>WBT Statistik+: Einstieg in R leicht gemacht!</h4></center>
+<center><h4>WBT Statistics+: Easy Introduction to R!</h4></center>
 
-# Lernblock 4
-Willkommen in diesen Lernblock! In diesem Lernblock werden wir die Basics zur linearen Regression in R kennenlernen.
+# Learning Block 4
+Welcome to this learning block! In this block, we will learn the basics of linear regression in R.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Use this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} to report errors directly to us on pages. You need to log in once with the JLU ID. You can find the button on every page.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

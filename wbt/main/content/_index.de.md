@@ -4,9 +4,7 @@ title: "WBT Statistik<sup>+</sup>"
 
 # Einführung in das Web-Based-Training
 
-Das Web-Based-Training wird im Blended-Learning-Kurs zur Vor- und Nachbereitung eingesetzt. Zu jedem Präsenzblock gibt es einen eigenen Lernblock, der wiederum in Unterkapitel aufgeteilt ist. Der Lernblock 1 ist nur zur Nachbereitung, bei den vier weiteren Lernblöcken wird erwartet, dass du diese im Vorfeld der Präsenzzeit durcharbeitest. In der Präsenz kannst du dann deine praktischen Fragen rund um R stellen und wir werden weitere Übungsaufgaben machen, die deinen Lernfortschritt sichern. Du findest die Links in die Lernblöcke entweder direkt hier unter dem Text oder im Menü links.
-
-Bitte wundere dich nicht, falls ein Lernblock noch nicht online ist, wir werden die Lernblöcke erst nach und nach im Semester online stellen. 
+Das Web-Based-Training kann zum Selbstlernen oder als Zusatzmaterial in der Lehre zur Vor- und Nachbereitung (*blended learning*) eingesetzt werden. Der Inhalt ist in fünf Lernblöcke aufgeteilt, die aufeinander aufbauen. Du findest die Links in die Lernblöcke entweder direkt hier unter dem Text oder im Menü links.
 
 Hier geht es zu den einzelnen Lernblöcken: 
 
@@ -20,7 +18,7 @@ Hier geht es zu den einzelnen Lernblöcken:
 
 [Lernblock 5](./lb5/de/index.html) 
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt melden. Falls du noch keinen GitLab-Account hast, musst du diesen einmalig anlegen.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

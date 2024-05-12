@@ -1,8 +1,8 @@
 ---
-title: "Start: Balkendiagramm"  # Titel der Seite
-weight: 111  # Individuelles Gewicht 
-menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
-tags: ["Balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Início: Gráfico de Barras"  # Título da página
+weight: 111  # Peso individual
+menuTitle: "Início" # Se o título for muito longo, use um título curto aqui
+tags: ["Gráficos de Barras", "ggplot"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -32,14 +32,13 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir starten nun mit Balkendiagrammen. Die Hauptfunktion, die wir durchgehend nutzen, um eine Grafik mit der **library** `ggplot` zu erstellen lautet `ggplot()`! Diese Grafiken kannst du dir direkt ausgeben lassen (einfacher Aufruf der Funktion) und das Bild erscheint dann im **Plots**-Tab bei **Files**. Alternativ kannst du den Plot auch (wie alles andere!) in einem Objekt speichern. 
+Vamos começar com gráficos de barras. A principal função que usaremos consistentemente para criar um gráfico com a **biblioteca** `ggplot` é `ggplot()`! Você pode exibir esses gráficos diretamente (chamando a função de forma simples) e a imagem aparecerá na aba **Plots** em **Files**. Alternativamente, você também pode (assim como qualquer outra coisa!) salvar o gráfico em um objeto.
 
-Das speichern der Grafik in einem Objekt hat mehrere Vorteile: Wie du später merken wirst, besteht ein `ggplot` aus verschiedenen Layern. Willst du etwas ändern oder hinzufügen und speicherst du den vorherigen Plot in einem Objekt musst du nur das Objekt aufrufen und den geänderten oder neuen Layer hinzufügen. Speicherst du dein Plot nicht in einem Objekt, musst du jedes Mal den gesamten Code erneut aufrufen. Im Lernmodul arbeiten wir daher mit Objekten!
+Salvar o gráfico em um objeto tem várias vantagens: Como você verá mais tarde, um `ggplot` é composto por diferentes camadas. Se você quiser fazer alguma alteração ou adição e tiver salvo o gráfico anterior em um objeto, basta chamar o objeto e adicionar a camada modificada ou nova. Se você não salvar seu gráfico em um objeto, precisará chamar todo o código novamente a cada vez. No módulo de aprendizagem, portanto, trabalhamos com objetos!
 
+Vamos falar sobre os gráficos de barras. Um **gráfico de barras** é um plot de uma única variável categórica. Agora você criará um gráfico de barras da variável `edu`. 
 
-Kommen wir zu den Balkendiagrammen. Ein **Balkendiagramm** ist ein Plot einer einzelnen kategorialen Variable. Du wirst jetzt ein Balkendiagramm der `edu`-Variable erstellen. 
-
-Zuerst schauen wir uns das Grundgerüst der Funktion `ggplot()` an: Die Funktion hat im ersten Argument das Objekt, in dem die Daten gespeichert sind (`data = pss`). Im zweiten Argument (`mapping`) geben wir die Achsen der Grafik an. Ein Balkendiagramm hat eine zu bestimmende Achse (x-Achse), denn die y-Achse stellt bei einem Balkendiagramm automatisch die Häufigkeiten dar. Du musst also nur die x-Achse hier im `mapping` angeben. 
+Zuerst vamos dar uma olhada na estrutura básica da função `ggplot()`: A função tem no primeiro argumento o objeto onde os dados estão armazenados (`data = pss`). No segundo argumento (`mapping`), especificamos os eixos do gráfico. Um gráfico de barras tem um eixo a ser determinado (eixo x), pois o eixo y automaticamente representa as frequências em um gráfico de barras. Portanto, você só precisa especificar o eixo x aqui no `mapping`.
 
 ```{r grundgeruest, eval=FALSE}
 # direkter Output
@@ -50,7 +49,7 @@ ggplot(
 
 ```
 
-Doch wenn wir uns dieses ausgeben lassen, erscheint folgendes:
+Mas se exibirmos isso, veremos o seguinte:
 ```{r grundgeruest2, eval=TRUE, echo=FALSE}
 # direkter Output
 ggplot(
@@ -60,11 +59,11 @@ ggplot(
 
 ```
 
-{{% expand \"Aber warum ist der Plot leer?\" %}}
-Wir haben in den Zeilen lediglich das Gerüst bestimmt. Nun müssen wir noch spezifizieren, was wir in der Grafik anzeigen wollen (Balken, Punkte, etc.). Für **Balkendiagramme** fügen wir die Funktion `geom_bar()` hinzu. Die einzelnen Zusatzfunktionen und deren Argumente werden in diesem Lernmodul Schritt für Schritt vorgestellt. 
+{{% expand \"Mas por que o gráfico está vazio?\" %}}
+Nós apenas definimos a estrutura nas linhas. Agora precisamos especificar o que queremos exibir no gráfico (barras, pontos, etc.). Para **gráficos de barras**, adicionamos a função `geom_bar()`. As funções adicionais e seus argumentos serão apresentados passo a passo neste módulo de aprendizagem.
 {{% /expand %}}
 
-Fügen wir also die Anweisung hinzu, dass wir ein Balkendiagramm der angegeben Daten haben möchten. Jetzt speichern wir das ganze auch in einem Objekt.
+Então, vamos adicionar a instrução de que queremos um gráfico de barras dos dados fornecidos. Agora vamos salvar tudo em um objeto.
 
 ``` {r barplot1, eval=TRUE}
 barplot1 <- ggplot(
@@ -76,9 +75,9 @@ barplot1 <- ggplot(
 barplot1
 ```
 
-Wir haben nun ein **Balkendiagramm**, dass die Häufigkeit der Ausprägungen der Variable `edu` anzeigt. Wenn du stattdessen lieber Prozente anzeigen lassen möchtest, ist dies leicht möglich. Dazu musst du die y-Achse ändern, so dass Prozente angezeigt werden. Dazu gibst du innerhalb des `mapping` Arguments nun auch die y-Achse an (denn du veränderst den Standard!). Hierbei nutzt du einen Shortcut, der in `ggplot` implementiert ist: `..prop..` wird automatisch der Anteil angezeigt. 
+Agora temos um **gráfico de barras** que mostra a frequência das categorias da variável `edu`. Se você preferir exibir porcentagens em vez disso, isso é facilmente possível. Para isso, você precisa alterar o eixo y para exibir porcentagens. Dentro do argumento `mapping`, você agora também especifica o eixo y (pois está alterando o padrão!). Aqui você usa um atalho implementado no `ggplot`: `..prop..` exibe automaticamente a proporção.
 
-## Prozente statt Häufigkeiten
+## Porcentagens em vez de frequências
 ```{r barplot2, eval=TRUE}
 barplot2 <- ggplot(
   data = pss, 
@@ -93,14 +92,14 @@ barplot2 <- ggplot(
 barplot2
 ```
 
-{{% expand \"Innerhalb von `mapping` gibt es noch das Argument `group = 1`, lösche das Argument und probiere aus, was passiert\" %}}
-Das Argument `group = 1` sagt `ggplot`, dass alle Ausprägungen zu einer Gesamtgruppe gehören. Wenn du das Argument entfernst, sind alle Balken gleich hoch, da jeweils der Prozentanteil innerhalb einer Ausprägung ausgegeben wird und das ist logischerweise immer pro Ausprägung 100 Prozent. 
+{{% expand \"Dentro de `mapping`, há o argumento `group = 1`, remova o argumento e veja o que acontece\" %}}
+O argumento `group = 1` diz ao `ggplot` que todas as categorias pertencem a um grupo total. Se você remover o argumento, todas as barras terão a mesma altura, pois cada uma exibirá a porcentagem dentro de uma categoria e isso é logicamente sempre 100%. 
 {{% /expand %}}
 
-Wir reden die ganze Zeit von **Balkendiagrammen** haben aber immer fälschlicherweise **Säulendiagramme** dargestellt. Wir können die Säulen ganz einfach zu Balken ändern mit der zusätzlichen Funktion `coord_flip()`:
+Wir estamos falando o tempo todo de **gráficos de barras** mas sempre representamos erroneamente **gráficos de colunas**. Podemos facilmente transformar as colunas em barras com a função adicional `coord_flip()`:
 ```{r barplot-coord, eval=TRUE}
  barplot1 + 
    coord_flip()
 ```
 
-Jetzt geben wir dem ganzen etwas Farbe!
+Agora vamos adicionar um pouco de cor!

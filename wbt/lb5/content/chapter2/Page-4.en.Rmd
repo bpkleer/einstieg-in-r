@@ -1,8 +1,8 @@
 ---
-title: "naniar & UpSetR"  # Titel der Seite
-weight: 204  # Individuelles Gewicht 
-menuTitle: "naniar & UpSetR" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "naniar & UpSetR"  # Page Title
+weight: 204  # Custom Weight 
+menuTitle: "naniar & UpSetR" # Short Title if the Title is too long
+tags: ["ggplot", "Missing values", "advanced"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,57 +32,57 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Mit dem Paket `naniar` sind die oben dargestellten Schritte viel schneller und leichter darzustellen. Das Paket schafft dabei auch immer einen `ggplot`, so dass die oben gelernten Anpassungen auch hier möglich sind. Zuerst nutzen wir Funktionen, um uns Tabellen mithilfe von `naniar` ausgeben zu lassen. Die Erste ist die Funktion `miss_var_summary()`, die uns die absolute und relative Häufigkeit von *missings* in den Variablen ausgibt. 
+Using the `naniar` package makes the steps shown above much faster and easier to display. The package also always creates a `ggplot`, so the adjustments learned above are also possible here. First, we use functions to display tables using `naniar`. The first one is the `miss_var_summary()` function, which gives us the absolute and relative frequency of *missing values* in the variables.
 
-``` {r table-naniar1, eval=TRUE}
+```{r table-naniar1, eval=TRUE}
 pss %>%
   miss_var_summary()
 ```
 
-Dies können wir auch gruppieren:
-``` {r table-naniar2, eval=TRUE}
+We can also group this:
+```{r table-naniar2, eval=TRUE}
 pss %>% 
   group_by(district) %>% 
   miss_var_summary()
 ```
 
-Zuerst können wir uns eine Verteilung der *missings* im Datensatz ausgeben lassen. Die Funktion `gg_miss_var_cumsum()` gibt uns die kumulierte Summe der *missings* pro Variable aus. Hieran kann man also ablesen, wie sich die *missings* auf die Variablen verteilen.
+First, we can display a distribution of *missing values* in the dataset. The `gg_miss_var_cumsum()` function gives us the cumulative sum of *missing values* per variable. This way, we can see how the *missing values* are distributed across the variables.```
 
 ```{r naniar0, eval=TRUE}
 gg_miss_var_cumsum(pss)
 ```
 
-Die Funktion `vis_miss()` visualisiert die *missings* eines gesamten Datensatzes (außer wir grenzen ein). 
+The function `vis_miss()` visualizes the *missing values* of an entire dataset (unless we specify a subset).
 
-``` {r naniar1, eval=TRUE}
+```{r naniar1, eval=TRUE}
 vis_miss(pss)
 ```
 
-Eine weitere ansprechende Alternative ist die Funktion `gg_miss_upset()` aus dem Paket `naniar`. Hierbei werden auch die Häufigkeiten der Kombination der *missings* zwischen den Variablen angezeigt. Aber auch dies wird bei allzu großen Datensätzen schnell unübersichtlich. Für Teilbereich kann das aber aufschlussreich sein (z.B. wenn man prüfen möchte, ob Personen nur Teile einer Itembatterie oder die Itembatterie komplett nicht beantwortet haben).
+Another appealing alternative is the function `gg_miss_upset()` from the package `naniar`. Here, the frequencies of the combinations of *missing values* between variables are also displayed. However, this can quickly become overwhelming with very large datasets. It can be insightful for subsets (e.g., when checking if individuals have only partially answered an item battery or have not answered the item battery at all).
 
-``` {r naniar2, eval=TRUE}
+```{r naniar2, eval=TRUE}
 gg_miss_upset(pss)
 ```
 
-In der Grafik sieht man, dass die vier Variablen `trstprt`, `trtprl`, `stfdem` und `agea` `edu` haben. Insgesamt gibt es folgende Kombinationen:
+In the graph, it can be seen that the four variables `trstprt`, `trtprl`, `stfdem`, and `agea` have missing values. The following combinations exist:
 
-- 311 Fälle, die in `edu` `NA` haben, 
-- 148 Fälle, die in `agea` `NA` haben, 
-- 82 Fälle, die in `stfdem` `NA` haben, 
-- 30 Fälle, die in `trstprl` `NA` haben, 
-- 13 Fälle, die in `trstprt` haben, 
-- 9 Fälle, die in `stfdem` und `edu` `NA` haben, 
-- 5 Fälle, die in `agea` und `edy` `NA` haben, 
-- 4 Fälle, die in `trstprl` und `edu` `NA` haben, 
-- 3 Fälle, die in `stfdem` und `agea` `NA` haben, 
-- 3 Fälle, die in `trstprt` und `edu` `NA` haben, 
-- 1 Fälle, die in `trstprl` und `stfdem` `NA` haben, 
-- 1 Fälle, die in `trstprt` und `agea` `NA` haben, 
+- 311 cases with missing values in `edu`,
+- 148 cases with missing values in `agea`,
+- 82 cases with missing values in `stfdem`,
+- 30 cases with missing values in `trstprl`,
+- 13 cases with missing values in `trstprt`,
+- 9 cases with missing values in both `stfdem` and `edu`,
+- 5 cases with missing values in both `agea` and `edu`,
+- 4 cases with missing values in both `trstprl` and `edu`,
+- 3 cases with missing values in both `stfdem` and `agea`,
+- 3 cases with missing values in both `trstprt` and `edu`,
+- 1 case with missing values in both `trstprl` and `stfdem`,
+- 1 case with missing values in both `trstprt` and `agea`.
 
-Insgesamt gilt, dass die maximale Anzahl an Kombinationen wie folgt berechnet wird: $2^{Anzahl Variable} - 1$. In diesem Fall wären es 31 mögliche Kombinationen, angezeigt werden aber nur 12. Warum?
+Overall, the maximum number of combinations is calculated as follows: $2^{Number of Variables} - 1$. In this case, there would be 31 possible combinations, but only 12 are displayed. Why?
 
-Daneben können *missings* zweier Variablen auch über die Funktion `geom_miss_point()` ganz leicht in einem `ggplot` dargestellt werden:
-``` {r missValggplot, eval=TRUE}
+Additionally, *missing values* of two variables can be easily visualized in a `ggplot` using the function `geom_miss_point()`:
+```{r missValggplot, eval=TRUE}
 ggplot(
   pss,
   aes(
@@ -93,11 +93,11 @@ ggplot(
   geom_miss_point() 
 ```
 
-So kann man ganz leicht sehen, ob die *missings* sich eventuell bei einer bestimmten Kombination häufen. 
+This allows for easy identification of any potential clustering of *missing values* in specific combinations.
 
-Alternativ kann man auch noch die Funktionen `gg_miss_var()` und `gg_miss_fct()` nutzen. 
+Alternatively, the functions `gg_miss_var()` and `gg_miss_fct()` can also be used.
 
-Mit der Funktion `gg_miss_var()` wird die Anzahl der *missings* dargestellt. Mit dem Argument `facet` kann man dies auch auf einzelne Ausprägungen runterbrechen. So kann man sehen, ob evtl. eine Gruppe deutlich mehr *missings* aufweist, als eine andere Gruppe.
+The function `gg_miss_var()` displays the number of *missing values*. Using the `facet` argument, this can be broken down by individual categories. This helps in identifying if one group has significantly more *missing values* than another group.
 ```{r ggmissvar, eval=TRUE}
 gg_miss_var(
   pss,
@@ -105,7 +105,8 @@ gg_miss_var(
 )
 
 ```
-Mit der Funktion `gg_miss_fct()` können *missings* visuell sehr schön aufbereitet werden. 
+
+The function `gg_miss_fct()` provides a visually appealing representation of *missing values*.
 
 ``` {r ggmissfct, eval=TRUE}
 gg_miss_fct(
@@ -113,7 +114,7 @@ gg_miss_fct(
   fct = district
 )
 ```
-Auch das kann man sich wieder nach Ausprägungen auf einer weiteren Variable ausgeben lassen, um zu sehen, ob es starke Gruppenunterschiede gibt:
+You can also display this based on values of another variable to see if there are strong group differences:
 ``` {r ggmissfct2, eval=TRUE}
 gg_miss_fct(
   x = pss, 
@@ -122,4 +123,4 @@ gg_miss_fct(
   labs(title = "NA in PSS nach Distrikt")
 ```
 
-Das war's zu *missing values*!
+That's it for *missing values*!

@@ -1,16 +1,16 @@
 ---
-title: "Lernblock 3"
+title: "Bloco de Aprendizagem 3"
 ---
 
-<center><h4>WBT Statistik+: Einstieg in R leicht gemacht!</h4></center>
+<center><h4>WBT Estatísticas+: Facilitando a entrada no R!</h4></center>
 
-# Lernblock 3
+# Bloco de Aprendizagem 3
 
-Willkommen in diesen Lernblock! Hier lernst du, wie du Zusammenhangsmaße berechnest und Mittelwertvergleiche durchführst. Du bekommst also einen Überblick über bivariate Zusammenhänge.
+Bem-vindo a este bloco de aprendizagem! Aqui você aprenderá como calcular medidas de associação e realizar comparações de médias. Você terá uma visão geral sobre relações bivariadas.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

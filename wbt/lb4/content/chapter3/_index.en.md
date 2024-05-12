@@ -1,17 +1,17 @@
 ---
-title: "Diagnostik"
-menuTitle: "Regressiondiagnostik"
+title: "Diagnostics"
+menuTitle: "Regression Diagnostics"
 chapter: true
 pre: "3. "
 weight: 300
 ---
-### Kapitel 3 
+### Chapter 3
 
-# Regressionsdiagnostik
+# Regression Diagnostics
 
-In diesem Kapitel lernst du, wie du die Annahmen der linearen Regression testest. Dieses Kapitel ist ein *Extra*-Kapitel und gehört nicht zur verpflichtenden Bearbeitung!
+In this chapter, you will learn how to test the assumptions of linear regression. This chapter is an *extra* chapter and is not mandatory!
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
@@ -19,7 +19,7 @@ In diesem Kapitel lernst du, wie du die Annahmen der linearen Regression testest
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

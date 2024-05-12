@@ -1,18 +1,18 @@
 ---
-title: "Datenerhebung & Datensätze"
-menuTitle: "Datenerhebung & Datensätze"
+title: "Data Collection & Datasets"
+menuTitle: "Data Collection & Datasets"
 chapter: true
 pre: "1. "
 weight: 100
 ---
 
-### Kapitel 1 
+### Chapter 1
 
-# Datenerhebung & Datensätze
+# Data Collection & Datasets
 
-In diesem Kapitel wirst du kurz wiederholen, wie du von der Datenerhebung zu einem Datensatz gelangst und welche Eigenschaften ein Datensatz (i.d.R.) besitzt. In den weiteren Kapiteln wirst du Datensätze importieren und deskriptive Statistiken mithilfe von R berechnen. 
+In this chapter, you will briefly review how to go from data collection to a dataset and the typical characteristics a dataset possesses. In the following chapters, you will import datasets and calculate descriptive statistics using R.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

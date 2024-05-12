@@ -1,17 +1,17 @@
 ---
-title: "Diagnostik"
-menuTitle: "Regressiondiagnostik"
+title: "Diagnóstico"
+menuTitle: "Diagnóstico de Regressão"
 chapter: true
 pre: "3. "
 weight: 300
 ---
-### Kapitel 3 
+### Capítulo 3
 
-# Regressionsdiagnostik
+# Diagnóstico de Regressão
 
-In diesem Kapitel lernst du, wie du die Annahmen der linearen Regression testest. Dieses Kapitel ist ein *Extra*-Kapitel und gehört nicht zur verpflichtenden Bearbeitung!
+Neste capítulo, você aprenderá como testar as suposições da regressão linear. Este capítulo é um *Extra* e não faz parte do estudo obrigatório!
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

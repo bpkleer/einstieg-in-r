@@ -1,9 +1,8 @@
 ---
-title: "Achsen, Legende & Titel"  # Titel der Seite
-weight: 114  # Individuelles Gewicht 
-menuTitle: "Achsen, Legende & Titel" # Falls Titel zulang ist, hier Kurztitel
-tags: ["achsen", "titel", "legende", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "Axes, Legend & Title"  # Page title
+weight: 114  # Custom weight 
+menuTitle: "Axes, Legend & Title" # Short title if the main title is too long
+tags: ["axes", "title", "legend", "bar charts", "ggplot"]  # Tags: brief description of the content
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -43,8 +42,8 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Achsen
-Oftmals müssen die Achsen angepasst werden, um die Daten besser darzustellen. Wenn du dich gerade ausprobiert hast und versucht hast die Werte überhalb der Balken anzeigen zu lassen, ist es womöglich passiert, dass nicht mehr alle Werte von jedem Balken angezeigt wurden. Dies lag daran, dass die y-Achse zu kurz ist. Du kannst die Achsen ganz einfach in der Funktion `scale_x_continuous()` begrenzen. `continuous` wird hier genutzt, weil es die Hua (Typ *integer* oder *numeric*) handelt. Dort nutzt du für die Begrenzung das Argument `limits = c(...)` und gibst darin das Minimum und das Maximum an.
+## Axes
+Often, the axes need to be adjusted to better represent the data. If you have been experimenting and trying to display values above the bars, you may have noticed that not all values from each bar were displayed. This happened because the y-axis was too short. You can easily limit the axes in the `scale_x_continuous()` function. `continuous` is used here because it deals with the data type (*integer* or *numeric*). To limit the axes, you use the argument `limits = c(...)` and specify the minimum and maximum values.
 
 ```{r barplot-axis, eval=TRUE}
 barplotBeyonce <- barplotBeyonce +
@@ -65,7 +64,7 @@ barplotBeyonce <- barplotBeyonce +
 barplotBeyonce
 ```
 
-Ebenso kannst du in der Funktion `scale_y_continuous` die Achsenmarkierungen bestimmen. Dies machst du im Argument `breaks` und gibst dort einfach eine Sequenz an. 
+Similarly, you can determine the axis markings in the `scale_y_continuous` function. You do this in the `breaks` argument by simply specifying a sequence.
 ```{r barplot-ticks, eval=TRUE}
 barplotBeyonce <- barplotBeyonce + 
   scale_y_continuous(
@@ -83,7 +82,7 @@ barplotBeyonce <- barplotBeyonce +
 barplotBeyonce
 ```
 
-Das gleiche geht für die x-Achse: Du weißt, dass die Variable `edu` ein Faktor mit fünf Leveln (plus `NA`) ist. Es handelt sich also nicht um eine kontinuierliche Variable. Daher benutzt du hier die Funktion `scale_x_discrete()`. 
+The same goes for the x-axis: You know that the variable `edu` is a factor with five levels (plus `NA`). So, it is not a continuous variable. Therefore, you use the function `scale_x_discrete()` here.
 ```{r barplot-axis-discrete, eval=TRUE}
 barplotBeyonce <- barplotBeyonce + 
   scale_x_discrete(
@@ -99,24 +98,24 @@ barplotBeyonce <- barplotBeyonce +
 
 barplotBeyonce
 ```
-Du musst also bei nicht-kontinuierlichen Variablen die Ausprägungen anzeigen, die angezeigt werden sollen. 
+So, for non-continuous variables, you need to display the categories that should be shown.
 
-{{% expand \"Überlege bzw. probiere aus, wie du die `NA`-Kategorie ausschließen kannst?\" %}}
-Nicht immer möchte man auch die `NA`-Kategorie anzeigen. In dem du diese einfach aus der Funktion `scale_x_discrete()` ausschließt, wird sie auch nicht mehr im Plot angezeigt. 
+{{% expand "Think about or try how you can exclude the `NA` category?" %}}
+You may not always want to display the `NA` category. By simply excluding it from the `scale_x_discrete()` function, it will no longer be displayed in the plot.
 {{% /expand %}}
 
-{{% expand \"Du möchtest die Reihenfolge ändern, von der höchsten zur niedrigsten Ausprägung. Wie kannst du das machen?\" %}}
-Genau! Du musst einfach nur die Reihenfolge innerhalb der Funktion `scale_x_discrete()` ändern!
+{{% expand "You want to change the order from the highest to the lowest category. How can you do that?" %}}
+Exactly! You just need to change the order within the `scale_x_discrete()` function!
 {{% /expand %}}
 
-## Legende
-Gerade erscheint die Legende rechts. Du kannst das beliebig ändern mit dem Argument `legend.position` innerhalb der zusätzlichen Funktion `theme()`:
+## Legend
+Currently, the legend appears on the right. You can change it as you like using the `legend.position` argument within the additional `theme()` function:
 ```{r barplot-legend, eval=TRUE}
 barplotBeyonce +
-  theme(legend.position = "bottom") # left, right, top oder none
+  theme(legend.position = "bottom") # left, right, top, or none
 ```
 
-Auch die Beschriftung der Legende kannst du anpassen:
+You can also customize the legend labels:
 ```{r barlplot-legend2, eval=TRUE}
 barplotBeyonce + 
   scale_fill_manual(
@@ -133,8 +132,8 @@ barplotBeyonce +
   )
 ```
 
-## Titel
-Jetzt fehlen noch angepasste Achsenbeschriftungen und Titel!
+## Title
+Now, we just need customized axis labels and titles!
 ```{r barplot-titles, eval=TRUE}
 barplotBeyonce + 
   labs(
@@ -144,4 +143,4 @@ barplotBeyonce +
   )
 ```
 
-Alles im Überblick? Gehe weiter!
+Everything clear? Keep going!

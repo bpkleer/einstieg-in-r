@@ -1,23 +1,23 @@
 ---
-weight: 200  # Individuelles Gewicht 
+weight: 200  # Individual weight
 pre: "2. "
 chapter: true
-title: "Mittelwertvergleiche"
-menuTitle: "Mittelwertvergleiche" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "Mittelwertvergleiche"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Mean Comparisons"
+menuTitle: "Mean Comparisons" # If the title is too long, use a short title here
+tags: ["mean", "Mean Comparisons"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
-### Kapitel 2 
+### Chapter 2
 
-# Mittelwertvergleiche
+# Mean Comparisons
 
-In diesem Kapitel werden Mittelwertvergleiche vorgestellt. Bei Mittelwertvergleichen werden verschiedene Testsituationen unterschieden:
+This chapter introduces mean comparisons. Different test situations are distinguished in mean comparisons:
 
 <ol class="index-list">
-  <li>eine Stichprobe: Ein-Stichproben t-Test</li>
-  <li>zwei Stichproben (ungepaart): ungepaarter t-Test</li>
-  <li>zwei Stichproben (gepaart): gepaarter t-Test</li>
-  <li>mehr als zwei Gruppen (ungepaart): ANOVA</li>
+  <li>one sample: One-Sample t-Test</li>
+  <li>two samples (unpaired): Unpaired t-Test</li>
+  <li>two samples (paired): Paired t-Test</li>
+  <li>more than two groups (unpaired): ANOVA</li>
 </ol>
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 

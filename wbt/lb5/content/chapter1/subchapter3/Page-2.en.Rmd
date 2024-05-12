@@ -1,8 +1,8 @@
 ---
-title: "ggboxplot()"  # Titel der Seite
-weight: 132  # Individuelles Gewicht 
-menuTitle: "ggboxplot()" # Falls Titel zulang ist, hier Kurztitel
-tags: ["`ggboxplot()`", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "ggboxplot()"  # Page Title
+weight: 132  # Custom Weight 
+menuTitle: "ggboxplot()" # Short Title if the Title is too long
+tags: ["`ggboxplot()`", "ggplot"]  # Tags; Brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -42,7 +42,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Alternativ kannst du die Funktion `ggboxplot()` aus der **library** `ggpubr`: Installiere die **library** zuerst und aktiviere sie dann. Wir lassen uns nun die Arbeitszeit nach Geschlecht ausgeben.
+Alternatively, you can use the `ggboxplot()` function from the **library** `ggpubr`: First, install the **library** and then activate it. Now, we will display working hours by gender.
 ```{r bp1, eval=TRUE}
 ggbox <- ggboxplot(
   pss,
@@ -62,7 +62,7 @@ ggbox <- ggboxplot(
 ggbox
 ```
 
-Auch hier können wir einfach Feinsteuerungen vornehmen: Wir können zum Beispiel mit einer horizontalen Linie (`geom_hline()`) noch den Mittelwert für jede Gruppe einzeichnen. 
+Here, we can make fine adjustments easily: For example, we can add a horizontal line (`geom_hline()`) to mark the mean for each group. 
 ```{r bp2, eval=TRUE}
 ggbox +
   geom_hline(
@@ -89,10 +89,12 @@ ggbox +
   theme(legend.position = "none")
 ```
 
-Kopiere den Code in dein Skript und probiere verschiedene Zahlenwerte in den Argumenten `lwd` und `lty` aus.
+Copy the code into your script and try different numerical values for the `lwd` and `lty` arguments.
 
-{{% expand \"Wofür stehen die Argumente lwd und lty?\" %}}
-`lwd` steht für *line width*. Damit gibst du die Dicke der Linie an. `lty` steht für *linetype*, womit du verschiedene Linientypen auswählen kannst. Eine Übersicht findest du [hier](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
+{{% expand \"What do the arguments lwd and lty stand for?\" %}}
+`lwd` stands for *line width*. This specifies the thickness of the line. `lty` stands for *linetype*, allowing you to choose different line types. You can find an overview [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/).
 {{% /expand %}}
 
-Als nächstes kannst du dir noch `rainclouds` als bessere Visualisierungsmöglichkeit anschauen! Das ist aber **freiwillig**!
+Next, you can explore `rainclouds` as a better visualization option! However, this is **optional**!
+
+I'm ready to start the translation once you provide the Markdown content.

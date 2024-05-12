@@ -1,8 +1,8 @@
 ---
-title: "Teilen eines Datensatzes"  # Titel der Seite
-weight: 313  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Dividindo um Conjunto de Dados"  # Título da página
+weight: 313  # Peso individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["dplyr", "tidyverse", "conjunto de dados"]  # Insira as tags aqui; Palavra curta que descreve o que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -32,10 +32,10 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Zuerst wiederholen wir noch einmal, wie wir einen Datensatz teilen: Wir filtern die Fälle, die für unsere spätere Analyse relevant sind. Zum Beispiel wollen wir nur männliche Befragte aus Distrikt 5 forschen.
+Primeiro, vamos revisar como dividir um conjunto de dados: filtramos os casos relevantes para nossa análise posterior. Por exemplo, queremos pesquisar apenas entrevistados do sexo masculino do Distrito 5.
 
-{{% expand \"Welche Funktionen müssen wir anwenden?\" %}}
-Genau wir nutzen filter(). 
+{{% expand \"Quais funções devemos usar?\" %}}
+Precisamente, usamos a função filter().
 
 ```R
 pssD5M <- pss %>%
@@ -46,10 +46,10 @@ head(pssD5M)
 {{% /expand %}}
 
 {{% tabs groupId=\"tab1\" %}}
-{{% tab name=\"Aufgabe\" %}}
-Filtere jetzt einmal den Datensatz nach Personen, die in Distrikt 1 oder 12 leben und mehr als 30h arbeiten! Speichere das Subset in einem neuen Objekt!
+{{% tab name=\"Tarefa\" %}}
+Agora filtre o conjunto de dados para pessoas que vivem no Distrito 1 ou 12 e trabalham mais de 30 horas! Salve o subconjunto em um novo objeto!
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
+{{% tab name=\"Código\" %}}
 ```R
 pssD1D12o30 <- pss %>%
   filter((district == "Distrikt 1" | district == "Distrikt 12") & wkhtot > 30)
@@ -59,4 +59,4 @@ head(pssD1D12o30)
 {{% /tab %}}
 {{% /tabs %}}
 
-Manchmal muss man selbst auch Datensätze, die getrennt erhoben wurden, selbst zusammenfügen. Das kannst du auf der nächsten Seite lernen. Die nächste Seite kannst du aber auch überspringen, wenn du findest, dass das für dich nicht relevant ist!
+Às vezes, é necessário unir conjuntos de dados que foram coletados separadamente. Você pode aprender isso na próxima página. No entanto, você também pode pular a próxima página se achar que não é relevante para você!

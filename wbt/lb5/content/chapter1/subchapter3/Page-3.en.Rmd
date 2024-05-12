@@ -1,8 +1,8 @@
 ---
-title: "Rainclouds"  # Titel der Seite
-weight: 133  # Individuelles Gewicht 
-menuTitle: "Rainclouds" # Falls Titel zulang ist, hier Kurztitel
-tags: ["rainclouds", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Rainclouds"  # Page Title
+weight: 133  # Custom Weight
+menuTitle: "Rainclouds" # Short Title if Title is too long
+tags: ["rainclouds", "ggplot"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -62,9 +62,9 @@ data <- tibble(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Sogenannte **Rainclouds** beinhalten nicht nur die Verteilungsinformationen aus einem Boxplot, sondern auch die Verteilung der Rohwerte. Denn verschiedene Verteilungen können zu einem gleichen Boxplot führen. Das folgende Beispiel ist aus einem Blogbeitrag con [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), in dem (auf Englisch) sehr gut erklärt wird, warum Boxplots manchmal nicht so gut sind. 
+So-called **Rainclouds** not only include the distribution information from a box plot but also the distribution of the raw values. Because different distributions can lead to the same box plot. The following example is from a blog post by [Cédric Scherer](https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/), where it is very well explained (in English) why box plots are sometimes not so good.
 
-{{% expand \"Code zum Erstellen des fiktiven Datensatze\" %}}
+{{% expand "Code to create the fictitious dataset" %}}
 \`\`\`R
 data <- tibble(
   group = factor(
@@ -133,7 +133,7 @@ data <- tibble(
 \`\`\`
 {{% /expand %}}
 
-Wir haben einen fiktiven Datensatz, der folgendes Boxplot ergibt:
+We have a fictional dataset that results in the following box plot:
 ```{r bp1, eval=TRUE, echo=FALSE}
 plot <- ggplot(
   data, 
@@ -146,7 +146,7 @@ plot <- ggplot(
 
 plot
 ```
-Es sieht also erstmal von den Kennzahlen des Boxplots so aus, dass die Daten ähnlich sind. Fügen wir jetzt mal die Fallzahlen hinzu:
+So, at first glance, the box plot's statistics suggest that the data is similar. Let's now add the case numbers:
 ```{r bp2, eval=TRUE, echo=FALSE}
 # Funktion zur Angabe der Gruppengrüße
 n_fun <- function(x){
@@ -177,7 +177,7 @@ ggplot(
   )
 ```
 
-Obwohl dasselbe Boxplot entsteht, sind die Fallzahlen pro Gruppe sehr unterschiedlich. Jetzt fügen wir mal die Rohwerte (`geom_point()`) hinzu:
+Even though the same box plot is generated, the case numbers per group are very different. Now let's add the raw values (`geom_point()`):
 
 ```{r bp4, eval=TRUE}
 ggplot(
@@ -197,16 +197,16 @@ ggplot(
     )
   )
 ```
-Beim ersten Anblick wird schon deutlich, dass die Verteilung zwischen den Gruppen gar nicht so ähnlich ist, wie es die Boxplots möglicherweise angedeutet haben. 
+At first glance, it is already clear that the distribution between the groups is not as similar as the box plots may have suggested.
 
-Um diese Informationen in einem **Raincloud**-Plot einzuschließen, werden sowohl die Rohdaten eingezeichnet als auch die Verteilung. Dazu musst du die **library** `ggdist` installieren und aktivieren:
+To include this information in a **Raincloud** plot, both the raw data and the distribution are plotted. To do this, you need to install and activate the **library** `ggdist`:
 
 ```{r ggdist, eval=FALSE}
 install.packages("ggdist")
 library("ggdist")
 ```
 
-Aus der **library** `ggdist` nutzt du die Funktion `stat_halfeye()` um die Verteilung auszugeben. Machen wir diesen ersten Schritt:
+From the **library** `ggdist`, you use the function `stat_halfeye()` to display the distribution. Let's take this first step:
 ```{r raincloud, eval=TRUE}
 ggplot(data, aes(x = group, y = value)) + 
   ## add half-violin from {ggdist} package
@@ -228,7 +228,7 @@ ggplot(data, aes(x = group, y = value)) +
   )
 ```
 
-Du siehst jetzt also neben dem Boxplot noch die Verteilung. Aber die Information der Rohdatenpunkte war ebenfalls sehr hilfreich um die Daten visuell zu verstehen. Dazu nutzt du die Funktion `stat_dots()` aus `ggdist`. 
+Now you can see the distribution alongside the box plot. However, the information from the raw data points was also very helpful in visually understanding the data. For this, you use the function `stat_dots()` from `ggdist`.
 
 ```{r raincloud2, eval=TRUE}
 ggplot(
@@ -260,7 +260,7 @@ ggplot(
   )
 ```
 
-Als letztes kann man noch den *white space* entfernen, indem du die x-Achse beschränkst:
+Finally, you can remove the white space by limiting the x-axis:
 ```{r raincloud3, eval=TRUE}
 ggplot(
   data, 
@@ -298,7 +298,7 @@ ggplot(
   )
 ```
 
-Wenn du viele Datenpunkte hast und viele Gruppen, ist die Ansicht mit `stat_dots()` manchmal zu unübersichtlich. Alternativ eignet sich: `geom_halfpoint()`!
+When you have many data points and groups, the view with `stat_dots()` can sometimes be overwhelming. Alternatively, `geom_halfpoint()` is suitable!
 
 ```{r raincloud4, eval=TRUE}
 ggplot(
@@ -338,7 +338,7 @@ ggplot(
   )
 ```
 
-Oder aber mit gejitterten Punkten:
+Or with jittered points:
 ```{r raincloud5, eval=TRUE}
 ggplot(
   data, 
@@ -374,4 +374,4 @@ ggplot(
   )
 ```
 
-Eine **Raincloud** gibt dir also eine deutlich bessere Übersicht als ein Boxplot!
+So, a **Raincloud** plot gives you a much better overview than a box plot!

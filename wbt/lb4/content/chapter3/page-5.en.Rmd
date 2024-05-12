@@ -1,8 +1,8 @@
 ---
-title: "Annahme 4: Autokorrelation"  # Titel der Seite
-weight: 305  # Individuelles Gewicht 
-menuTitle: "Autokorrelation" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "autokorrelation"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assumption 4: Autocorrelation"  # Page title
+weight: 305  # Custom weight 
+menuTitle: "Autocorrelation" # Short title if the main title is too long
+tags: ["regression diagnostics", "autocorrelation"]  # Tags; brief description of the page content
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,26 +36,26 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Autokorrelation** kann insbesondere ein Problem in linearen Regression sein, in denen Zeitreihen als Daten vorliegen. Wenn **Autokorrelation** vorliegt, erhalten wir verzerrte Schätzer. **Autokorrelation** heißt, dass der Wert des Residuums den nachfolgenden Wert positiv oder negativ beeinflusst.  **Autokorrelation** heißt also, dass der $i$-te Residualwert den $(i+1)$-ten Residualwert beeinflusst.
+**Autocorrelation** can be a problem in linear regression, especially when dealing with time series data. If **autocorrelation** is present, our estimators will be biased. **Autocorrelation** means that the value of the residual influences the subsequent value positively or negatively. Therefore, **autocorrelation** implies that the $i$-th residual value affects the $(i+1)$-th residual value.
 
-**Autokorrelation** indiziert daher zeitliche Bezüge (nicht-lineare Beziehung) oder das Fehlen von Variablen im Modell.
+**Autocorrelation** indicates temporal relationships (non-linear relationship) or the absence of variables in the model.
 
 ![](../img/autocorr_pos.png)
 
 ![](../img/autocorr_neg.png)
 
-Es gibt vier Möglichkeiten auf **Autokorrelation** zu testen:
+There are four ways to test for **autocorrelation**:
 
 1. *lagged regression*
 
-2. Durbin-Watson-Test ($lag = 1$)
+2. Durbin-Watson test ($lag = 1$)
 
-3. Breusch-Godfrey-Test (änderbares *lag*)
+3. Breusch-Godfrey test (adjustable *lag*)
 
-4. Grafische Analyse
+4. Graphical analysis
 
-## Variante 1: *lagged regression* 
-Hierbei wird einfach eine Regression der Residuen gerechnet. Abhängige Variable sind die Residuen in umgekehrter Reihenfolge (`res[-n]`)  und unabhängige Variable ist jeweils vorherige Residuum (`res[-1]`). Wir sollten einen nicht signifikanten Wert für den Koeffizienten von `res[-1]` erhalten. Wenn dieser signifikant ist, könnte **Autokorrelation** vorliegen.
+## Option 1: *lagged regression* 
+In this method, a regression of the residuals is simply calculated. The dependent variable is the residuals in reverse order (`res[-n]`), and the independent variable is the previous residual (`res[-1]`). We should obtain a non-significant value for the coefficient of `res[-1]`. If this is significant, **autocorrelation** may be present.
 
 ```{r autocor1, eval=TRUE}
 res <- olsModel2$res  
@@ -67,34 +67,34 @@ testmodel <- lm(res[-n] ~ res[-1])
 summary(testmodel)
 ```
 
-$\Rightarrow$ Und wir haben das in diesem Fall erhalten! Wenn der Effekt signifikant ist, weißt du, dass das jeweiligevorherige Residuum einen signifikanten (also mehr als zufälligen) Effekt hat. Und das bedeutet dann, dass Autokorrelation vorliegt. 
+$\Rightarrow$ And we have obtained this in this case! If the effect is significant, you know that the respective previous residual has a significant (i.e., more than random) effect. And that means that autocorrelation is present.
 
-## Variante 2: Durbin-Watson-Test
-Zweitens kannst du dir die **Durbin-Watson-Statistik** ausgeben lassen. Dazu nutzt du die Funktion `dwtest()` aus der **library** `lmtest`.
+## Variant 2: Durbin-Watson Test
+Secondly, you can output the **Durbin-Watson statistic**. To do this, you use the `dwtest()` function from the **library** `lmtest`.
 
-Der **Durbin-Watson-Test** ist ein Hypothesentest. Die Nullhypothese lautet dabei:
+The **Durbin-Watson test** is a hypothesis test. The null hypothesis is:
 
-$H_0$: Autokorrelation ist gleich $0$. 
+$H_0$: Autocorrelation is equal to $0$.
 
-Ziel ist es also einen nicht signifikanten Hypothesentest zu erhalten, um abzulehnen, dass Autokorrelation vorliegt. 
+The goal is to obtain a non-significant hypothesis test to reject the presence of autocorrelation.
 
-In diesem Test ist das *lag* (Verzögerung) immer gleich $1$:
+In this test, the *lag* (delay) is always equal to $1$:
 ```{r dwtest, eval=TRUE}
 dwtest(olsModel2)
 ```
 
-$\Rightarrow$ Wie in Variante 1 zeigt der **Durbin-Watson-Test** ebenfalls an, dass keine Autokorrelation vorliegt. 
+$\Rightarrow$ As in Variant 1, the **Durbin-Watson test** also indicates that no autocorrelation is present.
 
-## Variante 3: Breusch-Godfrey-Test
-Ein dritter Weg ist die Ausgabe des **Breusch-Godfrey-Test**. In diesem Test können wir die Verzögerung (*lag*) einstellen. Hierfür nutzen wir die Funktion `bgtest()` aus der **library** `lmtest`.
+## Variant 3: Breusch-Godfrey Test
+A third way is to output the **Breusch-Godfrey test**. In this test, we can set the delay (*lag*). For this, we use the `bgtest()` function from the **library** `lmtest`.
 
-Auch der **Breusch-Godfrey-Test** ist ein Hypothesentest. Wie auch beim Durbin-Watson-Test ist die Nullhypothese folgende: 
+The **Breusch-Godfrey test** is also a hypothesis test. As with the Durbin-Watson test, the null hypothesis is as follows:
 
-$H_0$: Autokorrelation ist gleich $0$.
+$H_0$: Autocorrelation is equal to $0$.
 
-Ziel ist also wie beim Durbin-Watson-Test auch ein nicht signifikantes Testergebnis!
+The goal is, as with the Durbin-Watson test, to obtain a non-significant test result!
 
-Wie zuvor ist im erten Argument der Funktion einfach das Objekt der Regression. Im zweiten Argument (`order`) kannst du das *lag* einstellen. 
+As before, in the first argument of the function, simply enter the regression object. In the second argument (`order`), you can set the *lag*.
 ```{r bgtest, eval=TRUE}
 bgtest(
   olsModel2,
@@ -102,12 +102,12 @@ bgtest(
 ) 
 ```
 
-$\Rightarrow$ Auch hier erhalten wir die Information, dass keine Autokorrelation vorliegt. 
+$\Rightarrow$ Here too, we receive the information that no autocorrelation is present.
 
-## Variante 4: Grafische Analyse
-Wir könnten uns auch noch die Residuen plotten, um auf **Autokorrelation** zu prüfen. Dazu nutzt man einfach wieder die `plot()`-Funktion und gibt nun die Residuen des Models als Dateneingabe ein. Liegt Autokorrelation vor, würdest du ein Muster wie ganz am Anfang auf dieser Seite sehen. 
+## Variant 4: Graphical Analysis
+We could also plot the residuals to check for **autocorrelation**. To do this, simply use the `plot()` function again and now enter the residuals of the model as the data input. If autocorrelation is present, you would see a pattern like at the very beginning of this page.
 ```{r autocor-plot, eval=TRUE}
 plot(olsModel2$residuals)
 ```
 
-$\Rightarrow$ Du siehst, dass kein Muster wie oben vorliegt. Auch hiermit bestätigst du, dass keine Autokorrelation vorliegt. 
+$\Rightarrow$ You can see that there is no pattern as above. By this, you confirm that there is no autocorrelation.

@@ -1,8 +1,8 @@
 ---
-title: "Was ist tidyverse?"  # Titel der Seite
-weight: 301  # Individuelles Gewicht 
-menuTitle: "Was ist es?" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "funktionen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "What is tidyverse?"  # Page title
+weight: 301  # Custom weight
+menuTitle: "What is it?" # Short title if the title is too long
+tags: ["dplyr", "tidyverse", "functions"]  # Tags: brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -30,41 +30,40 @@ knitr::opts_chunk$set(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Tidyverse** ist ein Paket, dass mehrere **libraries** beinhaltet, die alle nach ähnlicher Syntax funktionieren und untereinander kompatibel sind. Es bietet somit einen sehr großen Funktionsumfang und wird daher auch viel genutzt.
+**Tidyverse** is a package that includes multiple **libraries** which all operate with similar syntax and are compatible with each other. It provides a wide range of functions and is therefore widely used.
 
 ![The tidyverse](../img/tidyverse.png)
 
-**Tidyverse** beinhaltet Kernpakete, die allesamt mit dem Befehl `library("tidyverse")` geladen werden. Dies sind:
+**Tidyverse** includes core packages, all of which can be loaded with the command `library("tidyverse")`. These are:
 
-- **dplyr** (Datenbereinigung)
+- **dplyr** (Data manipulation)
  
-- **tidyr** (Umgang mit Datensätzen)
+- **tidyr** (Data tidying)
  
-- ggplot2 (Grafiken)
+- ggplot2 (Graphics)
 
-- stringr (Umgang mit Textdaten)
+- stringr (String manipulation)
 
-- forcats (Umgang mit Faktoren)
+- forcats (Factor handling)
 
-- tibble (Tabellentool)
+- tibble (Table tool)
 
-- readr (Import von Daten)
+- readr (Data import)
 
-- purrr (Umgang mit Funktionen und Vektoren)
+- purrr (Function and vector handling)
 
-Im Laufe dieses Lernblocks lernst du `dplyr` und `tidyr` kennen!
+Throughout this learning block, you will get to know `dplyr` and `tidyr`!
 
 ![The core tidyverse](../img/coretidy.png) 
 
-Zu allen `tidyverse`-Librariyes gibt es umfangreiche Dokumentationen aber auch kurze Cheat-Sheets. Die Cheatsheets zu den zwei hier nun vorgestellten Libraries findest du hier:
+There are extensive documentations available for all `tidyverse` libraries as well as short cheat sheets. You can find the cheat sheets for the two libraries presented here:
 
-![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf)](../img/dplyr.png) 
+![Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-transformation.pdf) 
 
-![[Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) ](../img/tidyr.png) 
+![Cheat-Sheet](https://github.com/rstudio/cheatsheets/blob/master/data-import.pdf) 
 
-`dplyr` beinhaltet eine Grammatik, um Datenmanipulationen zu machen. Es besticht dabei durch seine Einfachheit und der Kombinationsmöglichkeit der Grundbefehle. Für eine erste Dateneinsicht ist dies meist hilfreich zu nutzen, oder um die Daten umzustrukturieren (manipulieren). 
+`dplyr` includes a grammar for performing data manipulations. It stands out for its simplicity and the ability to combine basic commands. This is usually helpful for initial data exploration or restructuring (manipulating) data.
 
-`tidyr` beinhaltet eine Grammatik, um Datensätze in ein *tidy* Format zu bringen. Ziel ist es, dass jede 
-Spalte eine Variable ist, jede Zeile eine Beobachtung und jede Zelle einen Wert beinhaltet. Hier gibt es das zu `tidyr`.
+`tidyr` includes a grammar for reshaping datasets into a *tidy* format. The goal is to have each column represent a variable, each row an observation, and each cell a value. Here is the link for `tidyr`.
 
-Jetzt kannst du mit `dplyr` starten!
+Now you can start with `dplyr`!

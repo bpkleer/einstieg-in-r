@@ -1,8 +1,8 @@
 ---
-title: "Import von .RData und .rds"  # Titel der Seite
-weight: 123  # Individuelles Gewicht 
-menuTitle: "R-Import" # Falls Titel zulang ist, hier Kurztitel
-tags: [".RData", "datei", ".rds", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Importar .RData e .rds"  # Título da página
+weight: 123  # Peso individual
+menuTitle: "Importação R" # Se o título for longo, use um título curto aqui
+tags: [".RData", "arquivo", ".rds", "importação"]  # Tags aqui; Abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -31,11 +31,11 @@ load("../data/exam.RData")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Conjunto de dados\" /%}}
 
-Wenn Datensätze einmal als R-Daten (`.RData` oder `.rds`) gespeichert wurden, können die Daten leichter importiert werden. Wir laden jetzt wieder den Datensatz `exam` ein weiteres Mal in das **Environment**. 
+Quando os conjuntos de dados são salvos como dados R (`.RData` ou `.rds`), os dados podem ser importados facilmente. Agora vamos carregar novamente o conjunto de dados `exam` no **Ambiente**.
 
-Dafür räumen wir unser **Environment** aber erstmal auf und entfernen alle Objekte, damit wir die Veränderungen auch sehen. Dafür nutzt man die Funktion `rm()` (*rm* steht für *remove*). In der Funktion gibt man dann einfach mit einem `,` (Komma) getrennt an, welche Objekte man aus dem Environment löschen möchte. Wir löschen mal alle!
+Para isso, vamos limpar nosso **Ambiente** primeiro e remover todos os objetos, para que possamos ver as mudanças. Para isso, usamos a função `rm()` (*rm* significa *remover*). Na função, basta separar por vírgula os objetos que queremos excluir do **Ambiente**. Vamos excluir todos!
 
 ```{r clean-env, eval=FALSE}
 rm(
@@ -46,17 +46,19 @@ rm(
 )
 ```
 
-Wenn wir R-Daten laden, ist dies deutlich leichter, da die Daten direkt in einem Format sind, das für R lesbar ist. 
-Laden wir ein einzelnes Objekt (`.rds`-Datei) nutzen wir die Funktion `readRDS()`.  **Wichtig:** Bei dieser Funktion müssen wir die eingelesenen Daten einem Objekt hinzufügen, damit diese dann auch im **Environment** zur Verfügung stehen. Gut daran ist, dass wir die Daten zu unserem Gefallen umbenennen können und nicht auf den Dateinamen angewiesen sind. 
+Quando carregamos dados R, é muito mais fácil, pois os dados estão em um formato diretamente legível para o R. 
+Se carregarmos um único objeto (arquivo `.rds`), usamos a função `readRDS()`. **Importante:** Com esta função, precisamos adicionar os dados lidos a um objeto para que fiquem disponíveis no **Ambiente**. A vantagem é que podemos renomear os dados conforme desejarmos e não precisamos depender do nome do arquivo. 
 ```{r import-rds, eval=FALSE}
 exam <- readRDS("./data/exam.rds")
 ```
 
-Wir könnten auch ein gesamtes Environment laden. Dies können zum Beispiel alle Objekte einer Session sein, also das, was wir bis gerade gemacht haben. Diese Art von Daten ist im Format `.RData` gespeichert und wir nutzen einfach die Funktion `load()`.
+Podemos também carregar um ambiente inteiro. Isso pode ser, por exemplo, todos os objetos de uma sessão, ou seja, o que acabamos de fazer. Esse tipo de dados é armazenado no formato `.RData` e simplesmente usamos a função `load()`.
 
 ```{r import-rdata, eval-FALSE}
-# alternativ gesamter Workspace
+# alternativamente, carregar todo o workspace
 load("./data/exam.RData")
 ```
 
-Das war es auch schon, so können wir Daten importieren, die in globalen Formaten vorliegen oder in R-spezifischen Formaten. Als letztes lernen wir jetzt noch den Import von SPSS-Datensätzen kennen, da leider immer noch eine Reihe an Organisationen ihre Datensätze in diesem Format zur Verfügung stellen. 
+Isso é tudo, assim podemos importar dados que estão em formatos globais ou em formatos específicos do R. Por último, vamos aprender como importar conjuntos de dados do SPSS, já que infelizmente ainda há uma série de organizações que disponibilizam seus conjuntos de dados nesse formato. 
+
+

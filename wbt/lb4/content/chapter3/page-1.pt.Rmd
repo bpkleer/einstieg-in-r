@@ -1,8 +1,8 @@
 ---
-title: "Regressionsdiagnostik"  # Titel der Seite
-weight: 301  # Individuelles Gewicht 
-menuTitle: "Regressionsdiagnostik" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Diagnóstico de Regressão"  # Título da página
+weight: 301  # Peso individual
+menuTitle: "Diagnóstico de Regressão" # Título curto, caso o título seja longo
+tags: ["diagnóstico de regressão"]  # Tags aqui; Palavra-chave do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,93 +19,93 @@ tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Sei
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In diesem Kapitel werden die Annahmen der **linearen Regression** getestet. Ausgangspunkt ist dabei das Modell `olsModel2` aus dem vorherigen Teil.
+Neste capítulo, as suposições da **regressão linear** são testadas. O modelo `olsModel2` do capítulo anterior é o ponto de partida.
 
 $stfdem_i = \beta_0 + \beta_1*stfeco_i + \beta_2*trstlgl_i + e_i$ (olsModel2)
 
-Lade das Regressionsmodell in das **Environment** oder berechne das oben genannte Modell neu.
+Carregue o modelo de regressão no **Ambiente** ou recalcule o modelo mencionado acima.
 
-Für `olsModel2` erhalten wir folgende Regressionsgleichung:
+Para `olsModel2`, obtemos a seguinte equação de regressão:
 
 $$ stfdem_i = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i + e_i $$
 
-Die Bestandteile der Vorhersage sind:
+Os componentes da previsão são:
 
 $$ \widehat{stfdem_i} = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i $$
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-1. Was ist der Effekt von `stfeco`? 
+{{% tab name=\"Pergunta\" %}}
+1. Qual é o efeito de `stfeco`?
 
-2. Welchen Wert sagt das Modell für eine Person voraus, die die Zufriedenheit mit der ökonomischen Leistung mit $10$ und ein Vertrauen in das Rechtssystem mit $5$ angibt?
+2. Qual valor o modelo prevê para uma pessoa que avalia a satisfação com o desempenho econômico como $10$ e a confiança no sistema legal como $5$?
 
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-1. Der Effekt von `stfeco` beträgt $0.87361$.
+{{% tab name=\"Resolução\" %}}
+1. O efeito de `stfeco` é de $0.87361$.
 
 2. $\hat{stfdem} = 0.67658 + 0.87361 * 10 - 0.04212 * 5 = 9.20208$
 {{% /tab %}}
 {{% /tabs %}}
 
-## Annahmen der linearen Regression
+## Suposições da Regressão Linear
 
-Als Sozialwissenschaftler:innen berechnen wir Modelle, die wir hinsichtlich der mathematischen Annahmen prüfen müssen. Es gibt eine Reihe an Funktionen mit denen wir die **Regressionsdiagnostik** berechnen können. Da wir in den Sozialwissenschaften selten perfekte Datensätze haben (Non-Response, `NA's`), sind diese Funktionen oftmals zu restriktiv. In der Anwendung entscheiden wir oft über Annäherung an die Annahmen, und nicht ob die Annahmen voll erfüllt sind. Wir prüfen oft, ob mögliche Verletzungen *gering* genug sind, so dass die Annahme gilt.
+Como cientistas sociais, calculamos modelos que precisamos verificar em relação às suposições matemáticas. Existem várias funções com as quais podemos calcular a **diagnóstico de regressão**. Como raramente temos conjuntos de dados perfeitos nas ciências sociais (Não-Resposta, `NA's`), essas funções muitas vezes são muito restritivas. Na prática, muitas vezes decidimos sobre a aproximação das suposições, e não se as suposições são totalmente cumpridas. Frequentemente verificamos se possíveis violações são *suficientemente* pequenas para que a suposição seja válida.
 
 
-**Dies sind die Annahmen der linearen Regression:**
+**Estas são as suposições da regressão linear:**
 {{% tabs %}}
-{{% tab name=\"Annahmen\" %}}
-1. lineare Beziehung
+{{% tab name=\"Suposições\" %}}
+1. relação linear
 
 2. $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$
 
-3. $Var(\epsilon_i) = \sigma^2$ (**Homoskedastizität**)
+3. $Var(\epsilon_i) = \sigma^2$ (**Homoscedasticidade**)
 
-4. $Cov(\epsilon_i, \epsilon_j) = 0, i \neq j$ (**Auto-Korrelation**)
+4. $Cov(\epsilon_i, \epsilon_j) = 0, i \neq j$ (**Auto-Correlação**)
 
-5. keine lineare Abhängigkeit unter den unabhängigen Variablen (**Multikollinearität**)
+5. nenhuma dependência linear entre as variáveis independentes (**Multicolinearidade**)
 
-6. keine einflussreichen Fälle
+6. nenhum caso influente
 {{% /tab %}}
-{{% tab name=\"Wirkung bei Verletzung\" %}}
-1. verzerrte Schätzer
+{{% tab name=\"Efeito em Caso de Violação\" %}}
+1. estimadores enviesados
 
-2. invalide Signifikanztest, verzerrte Schätzer
+2. testes de significância inválidos, estimadores enviesados
 
-3. verzerrte Schätzer
+3. estimadores enviesados
 
-4. ineffiziente Schätzung 
+4. estimativa ineficiente
 
-5. verzerrte Schätzer
+5. estimadores enviesados
 
-6. verzerrte Schätzer
+6. estimadores enviesados
 {{% /tab %}}
-{{% tab name=\"Mögliche Lösung\" %}}
-1. nicht-lineare Transformation
+{{% tab name=\"Solução Possível\" %}}
+1. transformação não linear
 
-2. *nichts!*
+2. *nada!*
 
-3. Transformation der abhängigen Variable (oder der linearen Gleichung)
+3. Transformação da variável dependente (ou da equação linear)
 
-4. nicht-lineare Transformation
+4. transformação não linear
 
-5. Variablen entfernen
+5. remover variáveis
 
-6. Beobachtungen entfernen (muss aber theoretisch begründbar sein!)
+6. remover observações (mas deve ser teoricamente justificável!)
 {{% /tab %}}
-{{% tab name=\"Testvorgehen\" %}}
-1. Plot Inspektion
+{{% tab name=\"Procedimento de Teste\" %}}
+1. Inspeção de Gráficos
 
-2. Plot Inspektion (Shapiro-Wilk-Test)
+2. Inspeção de Gráficos (Teste de Shapiro-Wilk)
 
-3. Breusch-Pagan-Test
+3. Teste de Breusch-Pagan
 
-4. Durbin-Watson-Statistik
+4. Estatística de Durbin-Watson
 
-5. Korrelation zwischen unabhängigen Variablen sowie VIF / Tolerance factor
+5. Correlação entre variáveis independentes e FIV / Fator de Tolerância
 
-6. Cook's D
+6. D de Cook
 {{% /tab %}}
 {{% /tabs %}}
 
-Auf den nächsten Seiten wirst du Schritt für Schritt die Annahmen testen. 
+Nas próximas páginas, você testará passo a passo as suposições.

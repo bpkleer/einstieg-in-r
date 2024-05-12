@@ -1,8 +1,8 @@
 ---
-title: "Count Plots"  # Titel der Seite
-weight: 143  # Individuelles Gewicht 
-menuTitle: "Count Plots" # Falls Titel zulang ist, hier Kurztitel
-tags: ["count plots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Gráficos de Contagem"  # Titulo da página
+weight: 143  # Peso individual
+menuTitle: "Gráficos de Contagem" # Se o título for muito longo, use um título curto aqui
+tags: ["gráficos de contagem", "ggplot"]  # Insira tags aqui; Palavras-chave do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,7 +32,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Eine andere gute Möglichkeit, um zwei pseudometrische Variablen darzustellen, ist der **count plot**. Hier werden die Kombinationen, die häufiger vorkommen größer dargestellt. Dazu rufen wir die Funktion `geom_count()` auf:
+Outra ótima maneira de representar duas variáveis pseudométricas é com o **gráfico de contagem**. Aqui, as combinações mais frequentes são exibidas em maior tamanho. Para isso, chamamos a função `geom_count()`:
 
 ```{r count, eval=TRUE}
 countplot <- ggplot( 
@@ -47,8 +47,8 @@ countplot <- ggplot(
 countplot
 ```
 
-## Coloring
-Auch hier können wir Farben hinzufügen:
+## Coloração
+Também podemos adicionar cores aqui:
 ```{r count2, eval=TRUE}
 ggplot(
   pss, 
@@ -64,4 +64,4 @@ ggplot(
   guides(color = "legend")  
 ```
 
-Zuguterletzt lernst du noch kennen, wie du eine bivariate Verteilung auch darstellen kannst!
+Por fim, você aprenderá como representar uma distribuição bivariada também!

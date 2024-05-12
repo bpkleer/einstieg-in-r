@@ -1,8 +1,8 @@
 ---
-title: "Änderungen weitergeben"  # Titel der Seite
-weight: 303  # Individuelles Gewicht 
-menuTitle: "Änderungen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Sharing Changes"  # Page title
+weight: 303  # Custom weight
+menuTitle: "Changes" # Short title if needed
+tags: ["pull", "push", "commit", "gitlab"]  # Tags: brief description of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,15 +19,15 @@ tags: ["pull", "push", "commit", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was 
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Jetzt müssen wir ein paar Vokabeln für **gitlab** lernen. Wie gesagt, wir haben dank der Konfiguration mit RStudio Cloud alle Einstellungen bereits vorgenommen, dennoch ist es wichtig, dass ihr euch diese Begrifflichkeit anschaut und versteht!
+Now we need to learn some vocabulary for **gitlab**. As mentioned, thanks to the configuration with RStudio Cloud, all settings have already been made, but it is important that you look at and understand this terminology!
 
-Folgende Begriffe werden hier kurz für dich erklärt. 
+The following terms are briefly explained here:
 
-- Project (oder auch Repository)
+- Project (or Repository)
 
 - Group
 
-- Clone 
+- Clone
 
 - Commit
 
@@ -36,62 +36,66 @@ Folgende Begriffe werden hier kurz für dich erklärt.
 - Push
 
 
-## Project (oder auch Repository)
-Ein **Project** (**Repository**) ist wie ein Ordner in der Hessenbox oder DropBox. **Projects** sind durch **Git** synchronisiert und die Versionsverläufe können nachverfolgt werden. Ein **Project** ist also eine Sammlung von Dateien, deren Bearbeitungsverlauf in Schnappschüssen versioniert wird. Mit **Git** kann man beliebig viele unterschiedliche Repositories verwalten.
+## Project (or Repository)
+A **Project** (**Repository**) is like a folder in Hessenbox or DropBox. **Projects** are synchronized through **Git** and version histories can be tracked. A **Project** is a collection of files, with their editing history versioned in snapshots. With **Git**, you can manage any number of different repositories.
 
-Ein **Git-project** sind z.B. die [Kursmaterialien](https://gitlab.ub.uni-giessen.de/intro-r-spring21/course-materials). Dieses **Project** beinhaltet die Kursmaterialien zum Kurs. Dies ist die globale Version (*server-side*), die auf **JLU Gitlab** gehostet wird. Man kann die Dateien auf dem Server direkt bearbeiten, das macht man aber in der Regel nicht. Wir werden die Dateien alle in RStudio Cloud bearbeiten und auch darüber verändern. 
+A **Git project** is, for example, the [course materials](https://gitlab.ub.uni-giessen.de/intro-r-spring21/course-materials). This **Project** contains the course materials for the course. This is the global version (*server-side*) hosted on **JLU Gitlab**. You can edit the files directly on the server, but you usually don't do that. We will edit all the files in RStudio Cloud and make changes there as well. 
 
-## Group 
-Eine **Group** in **Gitlab** ist einfach eine Sammlung verschiedener Repositories in einer Gruppe. So ist z.B. dieser [Kurs](https://gitlab.ub.uni-giessen.de/intro-r-spring21) eine solche Gruppe, in der es mehrere Subgroups und ein *Project* gibt: `effie` bis `rue` (subgroups) und `course-materials` (project).
+{ /* examples */ }
 
-![Übersicht einer Gruppe](../img/groupteaching.png)
+## Group
+A **Group** in **Gitlab** is simply a collection of different repositories within a group. For example, this [course](https://gitlab.ub.uni-giessen.de/intro-r-spring21) is such a group, where there are several subgroups and a *Project*: `effie` to `rue` (subgroups) and `course-materials` (project).
+
+![Overview of a Group](../img/groupteaching.png)
 
 ## Clone
-In RStudio Cloud sind in den entsprechenden Projekten bereits die Ordner gecloned, diesen Schritt musst du nicht selbst durchführen. Für das Verständnis ist es dennoch sinnvoll, kurz zu verstehen was **clonen** ist. 
+In RStudio Cloud, the folders are already cloned in the respective projects, so you don't need to do this step yourself. However, for understanding purposes, it is still useful to briefly understand what **cloning** is.
 
-Um nun Dateien lokal bearbeiten zu können, muss man die Server-Version lokal speichern und mit **Git** verknüpfen. Dies nennt man **clonen**, da man ein Spiegelbild der Server-Version lokal auf seinem Computer anlegt und diese dann bearbeiten kann.
+To be able to edit files locally, you need to save the server version locally and link it with **Git**. This process is called **cloning**, as you create a mirror image of the server version locally on your computer and can then work on it.
 
-So kann jede Person aus einem Team an dem jeweiligen lokalen **Clone** autonom arbeiten. Um dann aber wiederum die einzelnen Änderungen allen zur Verfügung zu stellen, muss man den **git-Dreischritt** vollziehen, der aus **commit**, **pull** und **push** besteht. 
+This allows each person in a team to work autonomously on their respective local **clone**. However, to make the individual changes available to everyone again, you need to perform the **git three-step process**, which consists of **commit**, **pull**, and **push**.
 
-## Git-Dreischritt: Commit, Pull & Push
+## Git Three-Step Process: Commit, Pull & Push
 
 ### Commit
-Nachdem du das Skript für die Gruppenaufgabe in RStudio bearbeitet hast, kannst du diese Änderungen allen anderen zur Verfügung stellen. Dazu machen wir den **git-Dreischritt**, wobei **commit** der erste Schritt ist.
+After editing the script for the group assignment in RStudio, you can make these changes available to everyone else. To do this, we follow the **git three-step process**, where **commit** is the first step.
 
-Mit **commit** als ersten Schritt geben wir **Git** an, dass die Änderungen, die wir gemacht haben, registriert und in die Server-Versionen hinzugefügt werden sollen.
+With **commit** as the first step, we inform **Git** that the changes we have made should be registered and added to the server versions.
 
-In RStudio Cloud muss man dafür einfach in die Kachel **Environment** gehen und dort auf den Tab **Git wechseln**. 
+In RStudio Cloud, you simply need to go to the **Environment** pane and switch to the **Git tab**.
 
-![Ansicht Git in RStudio](../img/rstudio-git1.png)
+![View of Git in RStudio](../img/rstudio-git1.png)
 
-Dort siehst du auch direkt die drei Buttons des **git-Dreischritts**: Commit, Pull und Push. 
+There you will also see the three buttons of the **git three-step process**: Commit, Pull, and Push.
 
-Wenn eine Datei von dir verändert wurde (im Vergleich zur Serverversion) wird das direkt in dem Fenster angezeigt.
+If a file has been changed by you (compared to the server version), it will be displayed directly in the window.
 
-![Geänderte Datei](../img/rstudio-git2.png)
+![Modified File](../img/rstudio-git2.png)
 
-Das kleine `M` bedeutet hierbei *modified*, also dass du die Datei geändert hast. Fügst du eine Datei hinzu, erscheint ein kleines `A` neben der Datei (für *added*) und löscht du eine Datei erscheint ein kleines `D` (für delete). 
+The small `M` means *modified*, indicating that you have changed the file. If you add a file, a small `A` will appear next to the file (for *added*), and if you delete a file, a small `D` will appear (for delete).
 
-Um den ersten Schritt **committ** auszuführen, klickst du einfach auf den Button `commit` in RStudio. Es öffnet sich dann ein neues Fenster wie im Screenshot und wir erklären dir nun die Schritte von **commit**. 
+To execute the first step **commit**, simply click on the `commit` button in RStudio. A new window will open, as shown in the screenshot, and we will now explain the steps of **commit**.
 
-![Commit-Fenster](../img/rstudio-git3.png)
+![Commit Window](../img/rstudio-git3.png)
 
-Im linken oberen Teil siehst du alle Dateien die geändert wurden. Hier jetzt nur die Datei `README.md`. Um die Änderungen an dieser Datei zu committen, musst du den Haken neben der Datei setzen. Hast du also mehrere Dateien geändert und möchtest diese gleichzeitig committen, musst du die Haken neben jeder Datei einzeln setzen!
+In the upper left part, you will see all the files that have been changed. Here, only the file `README.md` is shown. To commit the changes to this file, you need to check the box next to the file. So, if you have made changes to multiple files and want to commit them simultaneously, you need to check the boxes next to each file individually!
 
-Als zweites gibt es oben rechts eine **commit message**. Dies ist sehr wichtig und du solltest hier eine möglichst präzise Nachricht hinschreiben. Die **commit message** ist sozusagen eine knappe Kurzbeschreibung, was du geändert hast. Sie erscheint bei der Versionierung und so ist es leichter nachzuvollziehen, was geändert wurde, als nur vom reinen Code her. Hast du z.B. die erste Teilaufgabe hinzugefügt, könntest du hier schreiben: *task 1a solved*. 
+Secondly, there is a **commit message** at the top right. This is very important, and you should write a precise message here. The **commit message** is a brief description of what you have changed. It appears during versioning, making it easier to understand what has been changed, rather than just looking at the code itself. For example, if you have added the first subtask, you could write here: *task 1a solved*.
 
-Im unteren Teil ist die Übersicht der Datei: Hier siehst du was entfernt oder hinzugefügt wurde, im Vergleich zur globalen Datei. Das ist in unseren kleinen Projekten nicht weiter relevant, aber du kannst es dir gern immer auch nochmal anschauen. 
+In the lower part, you will see an overview of the file: Here, you can see what has been removed or added compared to the global file. This is not particularly relevant in our small projects, but you can always take a look at it if you wish.
 
-Hast du die Datei(en) ausgewählt, eine sinnvolle **commit message** eingetragen, dann kannst du in dem Fenster einfach auf **commit** klicken.
+Once you have selected the file(s), entered a meaningful **commit message**, you can simply click on **commit** in the window.
 
 ### Pull
-Als zweiten Schritt kannst du dann im Fenster **Pull** klicken. Mit **Pull** holst du dir die aktuellste Version der Datei in deine RStudio Cloud. Das ist wichtig, da du evtl. mit einer Version arbeitest, die bereits von einer anderen Person weiterbearbeitet wurde. Wenn du dann vorher nicht pullst, gibt es einen **Merge conflict**. In diesem Fall musst du dich bei uns melden. Wenn du aber den **git-Dreischritt** immer einhältst, passiert dies nicht!
+As a second step, you can then click on **Pull** in the window. With **Pull**, you fetch the latest version of the file into your RStudio Cloud. This is important because you might be working with a version that has already been further edited by someone else. If you don't pull beforehand, there will be a **Merge conflict**. In this case, you need to contact us. However, if you always follow the **git three-step process**, this won't happen!
 
-Nachdem du also deine Änderungen mit **commit** registriert hast, danach mit **pull** die aktuellste Version vom Server geladen hast, kannst du nun deine Änderungen mit **push** an alle anderen teilen. 
+So, after registering your changes with **commit** and then loading the latest version from the server with **pull**, you can now share your changes with everyone else by using **push**.
 
-**Wichtig:** Führe **pull** nicht aus, wenn du deine Änderungen vorher nicht committed hast. Denn dann kommt es zu einer Fehlermeldung, dass du deine Änderungen nicht hinterlegt hast. Deshalb: immer den **git-Dreischritt** einhalten!
+**Important:** Do not execute **pull** if you have not committed your changes beforehand. Otherwise, you will receive an error message stating that your changes are not staged. Therefore, always follow the **git three-step** process!
 
 ### Push
-Mit **push** gibst du deine registrierten Veränderungen an den Server bzw. die anderen zurück. Wenn du den git-Dreischritt einhältst, sollte es zu keinen Problemen kommen. Falls doch, melde dich einfach bei uns!
+With **push**, you send your registered changes back to the server or others. If you follow the git three-step process, there should be no issues. If there are any problems, feel free to contact us!
 
-So jetzt bist du bereit und weißt wie du Änderungen in RStudio in der Gruppenarbeit teilen kannst. Auf der nächsten und letzten Seite erklären wir dir jetzt noch, wie du die automatische Kontrolle in **gitlab** nutzen kannst. 
+Now you are ready and know how to share changes in RStudio during group work. On the next and final page, we will explain how you can utilize the automatic check in **GitLab**. 
+
+{ /* examples */ }

@@ -1,8 +1,8 @@
 ---
-title: "tidy up statclass 2"  # Titel der Seite
-weight: 324  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "tidy up statclass 2"  # Page Title
+weight: 324  # Custom Weight 
+menuTitle: "" # Short Title if the Title is too long
+tags: ["tidyr", "tidyverse", "dataset"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -32,14 +32,14 @@ statclass2 <- readRDS("./data/statclass2.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wo liegt hier das Problem?
+Where is the problem?
 ``` {r statclass2a, eval=TRUE}
 statclass2
 ```
 
-> - Namenwerte sind Spaltennamen!
+> - Variable names are column names!
 
-Und hier die Lösung: Auch hier wandeln wir wieder in das *long*-Format um!
+And here is the solution: Here we also convert to the *long* format again!
 ```{r statclass2tidy, eval=TRUE}
 statclass2Tidy <- statclass2 %>%
   pivot_longer(
@@ -51,9 +51,9 @@ statclass2Tidy <- statclass2 %>%
 statclass2Tidy
 ```
 
-Gibt es evtl. noch mehr Probleme?
+Are there possibly more problems?
 
-> - `exam` beinhaltet keine Werte, sondern Namen von Variablen, nämlich von `exam1` und `exam2`! Variablen, die die Note in der Prüfung angeben, deren Wert noch in `grade` steht. Deshalb nutzen wir hier jetzt `pivot_wider()`, um die Daten final *tidy* zu machen:
+> - `exam` does not contain values, but names of variables, namely `exam1` and `exam2`! Variables that indicate the grade in the exam, whose value is still in `grade`. Therefore, we now use `pivot_wider()` here to make the data *tidy*:
 
 ``` {r statclass2tidy2, eval=FALSE}
 statclass2Tidy <- statclass2Tidy %>% 
@@ -70,7 +70,7 @@ statclass2Tidy <- statclass2Tidy %>%
 statclass2Tidy
 ```
 
-Nur zur Übung könnte man auch dies wiederum in den Ursprungsdatensatz mit `pivot_wider()` verändern:
+Just for practice, you could also transform this back into the original dataset with `pivot_wider()`:
 
 ``` {r statclass2tidy3, eval=FALSE}
 statclass2re <- statclass2Tidy %>% 

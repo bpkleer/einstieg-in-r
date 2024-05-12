@@ -1,8 +1,8 @@
 ---
-title: "Start: Histogramm"  # Titel der Seite
-weight: 121  # Individuelles Gewicht 
-menuTitle: "Start" # Falls Titel zulang ist, hier Kurztitel
-tags: ["histogramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Início: Histograma"  # Título da página
+weight: 121  # Peso individual
+menuTitle: "Início" # Se o título for muito longo, use um título curto aqui
+tags: ["histogramas", "ggplot"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -30,7 +30,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um eine einzelne kontinuierliche Variable darzustellen, nutzen wir **Histogramme**. Damit kann die Verteilung der Variable interpretiert werden. Für ein **Histogramm** nutzen wir die Funktion `geom_hist()`.
+Para representar uma única variável contínua, usamos **Histogramas**. Isso nos permite interpretar a distribuição da variável. Para um **Histograma**, usamos a função `geom_hist()`.
 ```{r hist, eval=TRUE}
 hist <- ggplot(
   pss, 
@@ -41,7 +41,7 @@ hist <- ggplot(
 hist
 ```
 
-Nun können wir die Grafik etwas anpassen wie zuvor. Beginne mit den Titeln:
+Agora podemos personalizar o gráfico um pouco como antes. Comece com os títulos:
 ```{r hist-title, eval=TRUE}
 hist <-  ggplot(
   pss, 
@@ -60,7 +60,7 @@ hist <-  ggplot(
 hist
 ```
 
-Oftmals möchten wir die Verteilung interpretieren. Deshalb zeigen wir uns die Verteilung der Dichte zusätzlich an. Dazu fügen wir die Funktion `geom_density()` hinzu. Zusätzlich musst du die Achse in `geom_histogram()` auf `..density..` ändern!
+Muitas vezes queremos interpretar a distribuição. Portanto, vamos adicionar a visualização da densidade da distribuição. Para isso, adicionamos a função `geom_density()`. Além disso, você precisa alterar o eixo em `geom_histogram()` para `..density..`!
 ```{r hist-density, eval=TRUE}
 histDens <- ggplot(
   pss, 
@@ -84,4 +84,5 @@ histDens <- ggplot(
 histDens
 ```
 
-Auch hier können wir gruppieren!
+Também podemos agrupar aqui!
+

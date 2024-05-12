@@ -1,8 +1,8 @@
 ---
-title: "Regressionen"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Regressionen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "regression", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Regressões"  # Título da página
+weight: 306  # Peso individual
+menuTitle: "Regressões" # Título curto, se o título for longo
+tags: ["ggplot", "regressão", "avançado"]  # Tags; resumo do conteúdo da página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,9 +33,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Im Beispiel ist es das Ziel eine Untersuchung der Variable `stfdem` in allen Schritten grafisch darzustellen. Zuletzt willst du jetzt ein Regressionmodell auf `stfdem` rechnen, dass die Effekte von `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl` und `agea` inkludiert. 
+No exemplo, o objetivo é visualizar graficamente a variável `stfdem` em todos os passos. Por fim, você deseja calcular um modelo de regressão em `stfdem`, incluindo os efeitos de `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl` e `agea`.
 
-Als erstes berechnest du nun das Modell, bevor du mit den grafischen Darstellungen beginnen kannst:
+Primeiro, você calcula o modelo antes de começar as representações gráficas:
 ```{r model, eval=TRUE}
 model1 <- lm(
   stfdem ~ 1 + stfeco + district + gndr + trstlgl + trstprl + agea,
@@ -45,15 +45,15 @@ model1 <- lm(
 summary(model1)
 ```
 
-Im Model erkennst du signifikante Effekte von `stfeco`, `gndrmale` sowie `trstlgl`. Diese wollen wir gleich darstellen. Zuerst wiederholst du jetzt aber die Darstellung des Plots aller Regressionskoeffizienten aus Lernblock 4 mit `dwplot()`.
+No modelo, você identifica efeitos significativos de `stfeco`, `gndrmale` e `trstlgl`. Vamos representá-los a seguir. Mas antes, repita a representação dos coeficientes de regressão de todos os blocos de aprendizado 4 com `dwplot()`.
 
-{{% expand \"Probiere es erst selbst und schaue erst danach hier nach!\" %}}
+{{% expand \"Tente por si mesmo primeiro e depois veja aqui!\" %}}
 \`\`\`R
 dwplot(
   model1,
-  # hier kannst du das Konfidenzintervall ändern
+  # você pode alterar o intervalo de confiança aqui
   ci = 0.95, 
-  # hier kannst du das Erscheinungsbild der Punkte ändern (alles aus geom_point möglich)
+  # você pode alterar a aparência dos pontos (todas as opções de geom_point são possíveis)
   dot_args = list(
     size = 3.5,
     shape = 18
@@ -67,19 +67,20 @@ dwplot(
     xintercept = 0,
     lty = "dashed",
     color = beyonce_palette(72)[5]
-    
+
+```r
   ) +
   scale_y_discrete(labels = rev(
     c(
-      "Zufriedenheit \n Ökonomie", 
-      "Distrikt 5 \n(ref: Distrikt 1)",
-      "Distrikt 7 \n(ref: Distrikt 1)",
-      "Distrikt 10 \n(ref: Distrikt 1)",
-      "Distrikt 12 \n(ref: Distrikt 1)",
-      "Male \n(ref: Female)",
-      "Vertrauen Rechtssystem",
-      "Vertrauen Parlament", 
-      "Vertrauen Alter"
+      "Satisfação \n Economia", 
+      "Distrito 5 \n(ref: Distrito 1)",
+      "Distrito 7 \n(ref: Distrito 1)",
+      "Distrito 10 \n(ref: Distrito 1)",
+      "Distrito 12 \n(ref: Distrito 1)",
+      "Masculino \n(ref: Feminino)",
+      "Confiança no Sistema Legal",
+      "Confiança no Parlamento", 
+      "Confiança na Idade"
     )
   )
   ) + 
@@ -91,32 +92,32 @@ dwplot(
     ),
     limits = c(-1, 1)
   ) +
-  labs(title = "Lin. Regressionsmodelle auf stfdem",
-       caption = "Data: Panem Social Survey."
+  labs(title = "Modelos de Regressão Linear em stfdem",
+       caption = "Dados: Pesquisa Social Panem."
   ) +
   scale_color_manual(values = beyonce_palette(72)[1]) +
   theme(
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank()
   )
-\`\`\`
-{{% /expand %}}
+```
 
-Oftmals ist es nicht nur das Ziel Regressionsmodelle in Tabellen darzustellen, sondern auch spezifische Effekte grafisch darzustellen, z.B. von den signifikanten Effekten. Dazu stellen wir hier eine Möglichkeit vor: manuell über eigene **predictions**. 
+Frequentemente, o objetivo não é apenas apresentar modelos de regressão em tabelas, mas também representar graficamente efeitos específicos, como os efeitos significativos. Aqui apresentamos uma maneira de fazer isso: manualmente através de suas próprias **previsões**.
 
-Es gibt zwar **libraries** wie `ggraphExtra`, diese können aber nur sehr eingeschränkt plotten. 
+Existem **bibliotecas** como `ggraphExtra`, mas elas têm limitações na plotagem. 
 
-Sobald wir aber ein multivariates Modell haben, ist dies nicht mehr direkt so möglich. Da wir die anderen Effekte konstanthalten müssen, um die Abbildung korrekt darzustellen. Aber es ist immer noch leicht umzusetzen, sobald man versteht, was **Konstanthalten** bedeutet.
+No entanto, uma vez que temos um modelo multivariado, não é mais tão simples. Devemos manter os outros efeitos constantes para representar corretamente o gráfico. Mas ainda é fácil de fazer, desde que se entenda o que significa **manter constante**.
 
-Wir möchten den Effekt von `stfeco` auf `stfdem` plotten. Dieser Effekt ist immer mit den weiteren Effekten zu interpretieren. Um den Effekt plotten zu können, halten wir den (oder die) weiteren Effekt(e) konstant. Dazu nehmen wir die **library** `sjPlot` und daraus nutzt du die Funktion `plot_model()`. Ebenso must du `ggplot` laden.
+Queremos plotar o efeito de `stfeco` em `stfdem`. Esse efeito deve ser interpretado juntamente com os outros efeitos. Para plotar o efeito, mantemos o(s) outro(s) efeito(s) constante(s). Para isso, usamos a **biblioteca** `sjPlot` e a função `plot_model()`. Você também precisa carregar o `ggplot`.
 
-```{r sjplot, eval=FALSE}
+```r
 install.packages("sjPlot")
 library("sjPlot")
 library("tidyverse")
 ```
 
-In der Funktion `plot_model()` rufst du zuerst das Objekt des Regressionsmodels auf (hier `model1`), gibst im zweiten Argument an, dass es sich um ein *marginal plot*, der vorhergesagte Werte beinhaltet, handelt (`type = pred`) und bestimmst dann im Argument `terms`, welcher Effekt geplottet werden soll. Die Funktion stellt automatisch alle metrischen Variablen konstant auf den Mittelwert bzw. kategorielle Variablen auf die Referenzkategorie. 
+Na função `plot_model()`, primeiro você chama o objeto do modelo de regressão (aqui `model1`), indica no segundo argumento que é um *gráfico marginal*, que inclui valores previstos (`type = pred`), e então especifica no argumento `terms` qual efeito deve ser plotado. A função automaticamente mantém todas as variáveis métricas no valor médio e as variáveis categóricas na categoria de referência. 
+```
 
 ```{r marginal1, eval=TRUE}
 plot_model(
@@ -126,9 +127,9 @@ plot_model(
 )
 ```
 
-Du siehst in der Grafik also den Effekt on `stfeco` auf `stfdem`, unter Konstanthalten (Mittelwert) von `trstlgl`, `trstprl` und `agea` für weibliche (Referenzlevel `gndr`) Personen aus Distrikt 1 (Referenzlevel `district`).
+Portanto, na figura, você vê o efeito de `stfeco` em `stfdem`, mantendo constante (média) de `trstlgl`, `trstprl` e `agea` para pessoas do sexo feminino (nível de referência `gndr`) do Distrito 1 (nível de referência `district`).
 
-Willst du jetzt den Effekt für unterschiedliche Gruppen der kategoriellen Variablen hinzufügen, gibst du in `terms` einfach die weitere Variable an:
+Se você quiser adicionar o efeito para diferentes grupos da variável categórica, basta adicionar a variável adicional em `terms`:
 ```{r marginal2, eval=TRUE}
 plot_model(
   model1, 
@@ -140,7 +141,7 @@ plot_model(
 )
 ```
 
-Genauso leicht könntest du die nächste kategorielle Variable einfach hinzufügen:
+Da mesma forma, você poderia adicionar facilmente a próxima variável categórica:
 ```{r marginal3, eval=TRUE}
 plot_model(
   model1, 
@@ -153,7 +154,7 @@ plot_model(
 )
 ```
 
-Ebenso kannst du die Ausgabe auf bestimmte `levels` (Ausprägungen einer Variable beschränken), in dem du die `levels` in `[..]` Klammern hinter den Variablennamen setzt (aber innerhalb der `"..."`):
+Você também pode restringir a saída para determinados `levels` (valores de uma variável) ao colocar os `levels` entre colchetes `[..]` após os nomes das variáveis (mas dentro das `"..."`):
 ```{r marginal4, eval=TRUE}
 # levels von district
 levels(pss$district)
@@ -168,7 +169,7 @@ plot_model(
 )
 ```
 
-Modifikationen eines `ggplots` funktionieren auch hier: Wir ändern die Achsen und ändern die Farben!
+Modificações em um `ggplot` também funcionam aqui: Vamos alterar os eixos e as cores!
 ```{r marginal5, eval=TRUE}
 plot_model(
   model1, 
@@ -197,11 +198,11 @@ plot_model(
 ```
 
 {{% tabs %}}
-{{% tab name=\"Aufgabe\" %}}
-Stelle jetzt den Zusammenhang zwischen `trstlgl` und `stfdem` dar. Dabei soll für jeden Distrikt jeweils eine eigene Linie abgebildet sein und die Plots nach Geschlecht getrennt sein. Probiere es erst selbst aus, bevor du dir die Lösung anschaust.  
+{{% tab name="Tarefa" %}}
+Agora represente a relação entre `trstlgl` e `stfdem`. Para cada distrito, uma linha própria deve ser exibida e os gráficos devem ser separados por sexo. Experimente primeiro por conta própria antes de ver a solução.
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
-\`\`\`R
+{{% tab name="Código" %}}
+```R
 plot_model(
   model1, 
   type = "pred",
@@ -226,8 +227,8 @@ plot_model(
     )
   ) +
   scale_color_manual(values = beyonce_palette(18))
-\`\`\`
+```
 {{% /tab %}}
 {{% /tabs %}}
 
-So das war's! Du hast in diesem Kapitel geübt für einzelne Methoden Grafiken darzustellen und beherrschst nun erste Schritte mit `ggplot`!
+Isso é tudo! Você praticou neste capítulo como representar gráficos para métodos individuais e agora domina os primeiros passos com `ggplot`!

@@ -1,16 +1,16 @@
 ---
-title: "Ergebnisdarstellung"
-menuTitle: "Ergebnisse darstellen"
+title: "Results Presentation"
+menuTitle: "Presenting Results"
 chapter: true
 pre: "3. "
 weight: 300
 ---
 
-### Kapitel 3
+### Chapter 3
 
-# Challenge: Ergebnisse grafisch darstellen
+# Challenge: Presenting Results Graphically
 
-Nachdem du die Grundgerüste kennengelernt hast und auch schon individuelle Veränderungen vornehmen kannst, lernst du jetzt wie du spezifische Methoden grafisch darstellt. Wir gehen hierbei folgendes Beispiel durch. Du möchtest die Zufriedenheit mit der Demokratie untersuchen. Dazu stellst du zuerst die Verteilung der Variable `stfdem` dar. Anschließend stellst du die Korrelation mit möglichen (metrischen) Einflussfaktoren vor. Anschließend führst du Mittelwertvergleiche auf der Zufriedenheit mit der Demokratie mit kategoriellen Einflussfaktoren durch. Und abschließend führst du eine lineare Regression durch!
+After you have familiarized yourself with the basics and can already make individual modifications, you will now learn how to graphically represent specific methods. We will go through the following example. You want to examine satisfaction with democracy. To start, you present the distribution of the variable `stfdem`. Then, you present the correlation with possible (metric) influencing factors. Next, you perform mean comparisons on satisfaction with democracy with categorical influencing factors. Finally, you conduct a linear regression!
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

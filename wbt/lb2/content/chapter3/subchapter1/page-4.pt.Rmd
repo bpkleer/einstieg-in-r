@@ -1,8 +1,8 @@
 ---
-title: "Datensätze zusammenführen (Fälle hinzufügen)"  # Titel der Seite
-weight: 314  # Individuelles Gewicht 
-menuTitle: "Fälle hinzufügen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Combinando conjuntos de dados (adicionando casos)"  # Título da página
+weight: 314  # Peso personalizado
+menuTitle: "Adicionar casos" # Título curto, se necessário
+tags: ["dplyr", "tidyverse", "conjunto de dados"]  # Tags: palavras-chave relacionadas ao conteúdo da página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -37,7 +37,7 @@ pss12 <- readRDS("./data/pss12.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Im nächsten Schritt nehmen wir nun an, dass die Datenerfassung getrennt nach Distrikt durchgeführt wurde und es somit fünf Teildatensätze gibt, die nun zu einem vollständigen Datensatz verbunden werden sollen. Dazu nutzen wir die Funktion `bind_rows()`. In unserem Beispiel haben alle fünf Teildatensätze genau die gleiche Anzahl an Variablen, die dazu auch noch genau gleich benannt sind! Mit dem Argument `.id` erstellen wir eine Variable names `"origin"`, die die Herkunft des Falles erfasst. Dies ist automatisch nummeriert. Mit `mutate()` machen wir daraus einen Faktor, der eine bessere Beschreibung beinhaltet (*process1*, *process2*, *process3*, *process4*, *process5*)
+No próximo passo, vamos supor que a coleta de dados tenha sido feita separadamente por distrito, resultando em cinco subconjuntos de dados que precisam ser combinados em um único conjunto de dados completo. Para isso, usaremos a função `bind_rows()`. Em nosso exemplo, todos os cinco subconjuntos de dados têm exatamente o mesmo número de variáveis, que também têm exatamente os mesmos nomes! Com o argumento `.id`, criamos uma variável chamada `"origem"`, que indica a origem do caso. Esta variável é automaticamente numerada. Com `mutate()`, transformamos isso em um fator que contém uma descrição mais clara (*processo1*, *processo2*, *processo3*, *processo4*, *processo5*)
 
 ```{r merge1, eval=TRUE}
 pssAll <- pss1 %>%
@@ -67,9 +67,9 @@ table(pssAll$origin)
 head(pssAll$origin)
 ``` 
 
-Wir haben hier jetzt also aus fünf Teildatensätzen einen gesamten Datensatz erstellt, der alle Fälle der fünf Teildatensätze enthält. Wichtig, in diesem Fall waren alle Variablennamen gleich!
+Assim, combinamos os cinco subconjuntos de dados em um único conjunto que contém todos os casos dos cinco subconjuntos. Importante ressaltar que, neste caso, todos os nomes das variáveis eram iguais!
 
-Nun probieren wir einmal aus, was passiert, wenn es zum Beispiel in einem Teildatensatz einen Typo gibt. Zuerst erstellen wir dazu einfach zwei neue Datensätze, die jeweils nur 3 Fälle inkludieren, und unterschiedliche Variablen.
+Agora vamos testar o que acontece quando há um erro de digitação, por exemplo, em um subconjunto de dados. Primeiro, vamos criar dois novos conjuntos de dados, cada um com apenas 3 casos, e variáveis diferentes.
 
 ``` {r merge-prob, eval=TRUE}
 pssA <- pss[1:3, 2:3]
@@ -96,9 +96,8 @@ head(pssA)
 head(pssB)
 ``` 
 
-Wir haben also in beiden Datensätzen die zwei Variablen, die Distrikt und Geschlecht angeben. Im Datensatz `pssB` ist aber die Variable des Distrikts anders geschrieben. Probieren wir `bind_rows()` aus. 
+Ambos os conjuntos de dados têm as variáveis Distrito e Gênero. No conjunto de dados `pssB`, no entanto, a variável de Distrito está escrita de forma diferente. Vamos testar o `bind_rows()`.
 
- 
 ``` {r test-bind-rows, eval=TRUE}
 pssTest <- pssA %>% 
   bind_rows(pssB)
@@ -106,12 +105,12 @@ pssTest <- pssA %>%
 pssTest
 ```
 
-Da die Variablennamen nicht genau gleich sind, werden nun drei Variablen geschaffen: `district`, `gndr` und `District`. Wo die Variable nicht vorliegt, werden automatisch `NAs` erzeugt. Dies ist vorteilhaft, kann aber auch frickelig werden, wenn bei der Datensatzerstellung nicht streng nach einem Codenamen-Schema gearbeitet wurde. **Lösung**: Im Vorfeld Variablen abklären und umbenennen. Andernfalls kann man `full_join()` nutzen.
+Como os nomes das variáveis não são exatamente iguais, serão criadas três variáveis: `district`, `gndr` e `District`. Onde a variável não está presente, `NAs` são automaticamente gerados. Isso é vantajoso, mas pode se tornar complicado se não houver um esquema de nomenclatura rigoroso ao criar o conjunto de dados. **Solução**: Definir e renomear as variáveis antecipadamente. Caso contrário, pode-se usar `full_join()`.
 
-### Datensätze zusammenführen (unterschiedliche Spaltennamen)
-Dieser Ansatz ist nicht weniger aufwändig, als das Umbenennen von Spaltennamen, bietet aber dennoch eine Alternative. Mit `full_join()` kombinieren wir zwei Datensätze und können im Argument `by` angeben, welche Spalten jeweils denselben Inhalt haben. Schreibaufwand hierbei ist, dass gleiche Spaltennamen auch aufgeführt werden müssen, da ansonsten (hier im Beispiel) die Variablen `gndr.x` und `gndr.y` gebildet werden. Dies liegt daran, da `full_join()` eigentlich dafür gedacht ist, neue/zusätzliche Variablen hinzuzufügen. 
+### Mesclando conjuntos de dados (com nomes de colunas diferentes)
+Este método não é menos trabalhoso do que renomear as colunas, mas ainda oferece uma alternativa. Com `full_join()`, combinamos dois conjuntos de dados e podemos especificar no argumento `by` quais colunas têm o mesmo conteúdo. A desvantagem aqui é que os mesmos nomes de colunas também devem ser listados, caso contrário (como no exemplo aqui) as variáveis `gndr.x` e `gndr.y` serão criadas. Isso ocorre porque `full_join()` é originalmente destinado a adicionar novas/variáveis adicionais.
 
-In unserem Beispiel würden wir also angeben, dass aus Datensatz `pssA` die Spalte `district` gleich der Spalte `District` aus dem Datensatz `pssB` ist. Gleiches gilt für die `gndr` Variable. 
+Em nosso exemplo, indicaríamos que a coluna `district` do conjunto de dados `pssA` é igual à coluna `District` do conjunto de dados `pssB`. O mesmo vale para a variável `gndr`.
 
 ```{r full-join, eval=TRUE}
 pssTest2 <- pssA %>% 
@@ -126,4 +125,4 @@ pssTest2 <- pssA %>%
 head(pssTest2)
 ```
 
-So klappt es dann auch mit unterschiedlichen Variablennamen!
+Assim, é possível mesclar conjuntos de dados com nomes de variáveis diferentes!

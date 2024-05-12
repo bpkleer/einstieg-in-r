@@ -40,22 +40,20 @@ Analog sieht es auf dem Windows-Rechner wie folgt aus:
 Die Adresse der Datei ist nicht unbedingt direkt sichtbar. Sie befindet sich bei Mac am unteren Ende des Fensters bzw. bei Windows am oberen Ende des Fenster. Durch Rechtsklick kann man aus dem Finder als auch dem Explorer den Pfad kopieren und hat somit die eindeutige Adresse einer Datei.
 
 Auf dem Mac-Rechner ist die Adresse (Pfad) im Beispiel: 
-```
+```{cmd}
 /Users/jlug/Documents/Teaching/syllabus.pdf
 ```
 
 Auf dem Windows-Rechner ist die Adresse (Pfad) im Beispiel: 
-```
+```{cmd}
 D:\g31442\Teaching\syllabus.pdf
 ```
 
 Einen wichtigen Unterschied sehen wir jetzt hier schon. Bei Windows-Rechnern mit deutscher Spracheinstellung wird ein Backslash `\` zur Unterscheidung von Ordnern genutzt, bei Mac-Rechnern ein einfacher Slash `/`. Das liegt an den Spracheinstellungen meines Windows-Rechner, der auf eine deutsche Systemsprache eingestellt ist. Wenn du mit einem Windows-Rechner arbeitest, ist es wichtig, dass diese Backslashes in der Benutzung in R immer zu normalen Slash umgestellt werden. Denn R arbeitet nur mit der englischen Spracheinstellung und in der werden Pfade immer mit Slashes `/` angegeben. 
 
 Wir müssen also den oberen Pfad wie folgt ändern:
-```
+```{cmd}
 D:/g31442/Teaching/syllabus.pdf
 ```
 
 Es ist wichtig, dass du diesen ersten Schritt verstanden hast. Am besten probierst du einmal selbst aus, den Dateifpad von einer beliebigen Datei in ein Word-Dokument zu kopieren. 
-
-Falls du Fragen dazu hast, melde dich in der Präsenzzeit. Wir werden in den späteren Lernblöcken Pfade nutzen, um Daten in R zu bearbeiten und auch Ergebnisse aus R auf dem Computer zu speichern. 

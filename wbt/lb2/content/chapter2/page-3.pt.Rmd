@@ -1,8 +1,8 @@
 ---
-title: "Streumaße"  # Titel der Seite
-weight: 203  # Individuelles Gewicht 
-menuTitle: "Streumaße" # Falls Titel zulang ist, hier Kurztitel
-tags: ["deskriptiv", "streumaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Medidas de Dispersão"  # Título da página
+weight: 203  # Peso individual
+menuTitle: "Medidas de Dispersão" # Se o título for muito longo, use um título curto aqui
+tags: ["descritivo", "medidas de dispersão"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,8 +29,8 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-### Interquartilsabstand{.tabset .tabset-fade}
-Der Interquartilsabstand kann mit der Funktion `IQR()` ausgegeben werden:
+### Amplitude Interquartil{.tabset .tabset-fade}
+A amplitude interquartil pode ser calculada usando a função `IQR()`:
 ```{r iqr, eval=FALSE}
 IQR(
   pss$stfdem, 
@@ -38,15 +38,15 @@ IQR(
 )
 ```
 
-{{% expand \"Wie interpretierst du diese Zahl?\" %}}
-Der Abstand zwischen dem ersten und dritten Quartil beträgt 3! Dieser Wert sagt uns noch nicht, wo das erste und das dritte Quartil liegen.
+{{% expand \"Como interpretar esse número?\" %}}
+A distância entre o primeiro e o terceiro quartil é de 3! Esse valor ainda não nos diz onde estão localizados o primeiro e o terceiro quartil.
 
 $$q_{75} - q_{25} = IQR$$
 {{% /expand %}}
 
-### Alternative Ausgabe des IQR
-Eine etwas anpassungsfähigere Alternative ist die Kombination der Funktionen `diff()` und `quantile()`. In der Funktion`quantile()` wird die Variable angegeben ($1.$ Argument), die gewünschten Quantile ($2.$ Argument) und zuletzt werden `NA's` ausgeschlossen. Die Funktion liefert zwei Werte und mit der Funktion `diff()` wird von diesen zwei Werten dann die Differenz berechnet und ausgegeben.
-```{r iqr-manuell, eval=FALSE}
+### Alternativa para o cálculo do IQR
+Uma alternativa um pouco mais flexível é combinar as funções `diff()` e `quantile()`. Na função `quantile()`, você especifica a variável ($1.$ argumento), os quantis desejados ($2.$ argumento) e, por último, exclui os `NA's`. A função retorna dois valores e, com a função `diff()`, a diferença entre esses dois valores é calculada e exibida.
+```{r iqr-manual, eval=FALSE}
 diff(
   quantile(
     pss$stfdem, 
@@ -59,8 +59,8 @@ diff(
 )   
 ```
 
-### Standardabweichung & Varianz
-Die Standardabweichung und die Varianz erhalten wir über die folgenden zwei Funktionen:
+### Desvio Padrão & Variância
+O desvio padrão e a variância são obtidos pelas seguintes funções:
 ```{r sd-var, eval=FALSE}
 sd(
   pss$stfdem, 
@@ -73,8 +73,8 @@ var(
 )
 ```
 
-{{% expand \"Wie könntest du alternativ von der Standardabweichung auf die Varianz kommen?\" %}}
-Du weißt, dass die Standardabweichung nur die Wurzel der Varianz ist. Um also von der Standardabweichung auf die Varianz zu kommen, muss diese einfach quadriert werden. Das kann als einfache Rechnung umgesetzt werden:
+{{% expand "Como você poderia chegar à variância a partir do desvio padrão de forma alternativa?" %}}
+Você sabe que o desvio padrão é apenas a raiz quadrada da variância. Portanto, para chegar à variância a partir do desvio padrão, basta elevar ao quadrado. Isso pode ser implementado como um cálculo simples:
 
 ```{R}
 sd(pss$stfdem, na.rm = TRUE) ^ 2
@@ -82,4 +82,4 @@ sd(pss$stfdem, na.rm = TRUE) ^ 2
 
 {{% /expand %}}
 
-Nun gehen wir einen Schritt tiefer noch in die Verarbeitung von Datensätzen und betreten das `tidyverse`!
+Agora vamos um passo adiante na manipulação de conjuntos de dados e entrar no `tidyverse`!

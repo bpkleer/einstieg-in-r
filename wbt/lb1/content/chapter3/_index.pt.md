@@ -1,16 +1,16 @@
 ---
-title: "Einstieg in Gitlab"
+title: "Introdução ao Gitlab"
 menuTitle: "Gitlab"
 chapter: true
 pre: "3. "
 weight: 300
 ---
 
-### Kapitel 3
+### Capítulo 3
 
-# Einstieg in Gitlab
+# Introdução ao Gitlab
 
-In diesem Kapitel wirst du ein Grundverständnis für Gitlab aufbauen und verstehen wie du es für die Gruppenarbeiten anwendest. 
+Neste capítulo, você irá desenvolver uma compreensão básica do Gitlab e entender como utilizá-lo para trabalhos em grupo.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

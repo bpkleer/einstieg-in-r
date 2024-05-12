@@ -1,9 +1,8 @@
 ---
-title: "Von der Datenerhebung zum Datensatz"  # Titel der Seite
-weight: 111  # Individuelles Gewicht 
-menuTitle: "Datenerhebung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datenerhebung", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "From Data Collection to Dataset"  # Page title
+weight: 111  # Custom weight
+menuTitle: "Data Collection" # Short title if necessary
+tags: ["data collection", "dataset"]  # Tags describing the content of the page
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
@@ -19,30 +18,32 @@ tags: ["datenerhebung", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf de
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In R bearbeitest du meistens bereits erhobene Daten. Um aber das Objekt **data frame** besser zu verstehen, wirst du auf dieser Seite die Schritte von der Datenerhebung zum Datensatz nachvollziehen können. Das hilft dir dabei, das Objekt **data frame** in R besser zu verstehen. 
+In R, you usually work with already collected data. However, to better understand the **data frame** object, on this page, you will be able to follow the steps from data collection to dataset. This will help you in understanding the **data frame** object in R.
 
-Im weiteren Verlauf nutzen wir einen fiktiven Trainingsdatensatz *Panem Social Survey*, der angelehnt an den [European Social Survey](https://europeansocialsurvey.com) ist. Vorteil ist, dass du erstmal mit einem deutlich kleineren Trainingsdatensatz üben kannst, bevor wir mit richtigen (größeren) Datensätzen in der Präsenz arbeiten. 
-Den Datensatz und das Codebook des **PSS** findest du bereits im RStudio Projekt. Falls du es nochmal manuell lokal auf deinem Rechner speichern möchtest, findest du es hier:
+Later on, we will be using a fictional training dataset called *Panem Social Survey*, inspired by the [European Social Survey](https://europeansocialsurvey.com). The advantage is that you can practice with a much smaller training dataset first before working with real (larger) datasets in person. 
+You can already find the dataset and the codebook for **PSS** in the RStudio project. If you want to manually save it on your computer again, you can find it here:
 
 {{%attachments style=\"grey\" title=\"Data sets\" /%}}
 
-Ebenso findest du in den Attachments eine PDF mit dem Namen `from-survey-to-data.pdf`. Lade diese herunter und schau sie dir an!
+You will also find a PDF named `from-survey-to-data.pdf` in the attachments. Download it and take a look! 
 
-In der Datei ist ein Auszug von vier Fragen (Variablen aus dem Datensatz), die in diesem fiktiven Datensatz erhoben wurden. **Tipp:** Im Codebook erhältst du genauere Informationen zu der Art der Messung der einzelnen Variablen. 
+{ /* examples */ }
 
-{{% expand \"Überlege dir jetzt einmal kurz, welches Skalenniveau die einzelnen Fragen (Variablen) haben und mit welcher Art von Vektor (numeric, integer, character, boolean) du diese in R umsetzen würdest.\" %}}
+In the file is an excerpt of four questions (variables from the dataset) that were collected in this fictional dataset. **Tip:** In the codebook, you will get more detailed information about the type of measurement of each variable.
 
-Die ID-Frage ist auf nominalen Skalenniveau, es können lediglich Unterschiede zwischen den Ausprägungen festgestellt werden. Am besten setzt man dies mit einem *character*-Vektor um. 
+{{% expand "Now take a moment to consider the scale level of each question (variable) and with what type of vector (numeric, integer, character, boolean) you would implement them in R." %}}
 
-Das Geschlecht wird auf nominalem Skalenniveau gemessen. Es empfiehlt sich daher ein *character*-Vektor oder im speziellen ein *factor*. 
+The ID question is at a nominal scale level, only differences between the manifestations can be identified. It is best to implement this with a *character* vector.
 
-Das Alter ist eindeutig auf metrischem Skalenniveau und da wir das Alter in ganzen Jahren messen, reicht ein *integer*-Vektor. Ein *numeric*-Vektor wäre aber ebenso korrekt. 
+Gender is measured at a nominal scale level. Therefore, a *character* vector or specifically a *factor* is recommended.
 
-Das Haushaltseinkommen wird ordinal abgefragt. Es gibt Unterschiede zwischen den Ausprägungen und eine klare Rangfolge, die Abstände sind aber nicht gleich! In R kann man dies als *ordered factor* umsetzen. 
+Age is clearly at a metric scale level, and since we measure age in whole years, an *integer* vector is sufficient. However, a *numeric* vector would also be correct.
 
-Zuletzt wird noch die Zufriedenheit mit der Demokratie in Panem abgefragt. Dies ist eindeutig auf ordinalem Skalenniveau, da es mehr als zehn Ausprägungen sind, kann man dies auch als pseudometrisches Skalenniveau interpretieren. In R würde man dies dann mit einem *numeric*- oder *integer*-Vektor umsetzen. 
+Household income is queried ordinally. There are differences between the manifestations and a clear ranking, but the intervals are not equal! In R, this can be implemented as an *ordered factor*.
+
+Lastly, the satisfaction with democracy in Panem is queried. This is clearly at an ordinal scale level, and since there are more than ten manifestations, it can also be interpreted as a pseudo-metric scale level. In R, this would then be implemented with a *numeric* or *integer* vector.
 {{% /expand %}}
 
-Wie du jetzt sicher schon verstanden hast, ist ein Datensatz nichts anderes als eine Sammlung mehrerer Variablen von befragten Personen, die zusammen verarbeitet werden. Deshalb werden Datensätze in Tabellenform verarbeitet bzw. gelesen. Diese Datentabellen haben zwei Dimensionen: **Zeilen** und **Spalten**. 
+As you have probably already understood, a dataset is nothing more than a collection of several variables from surveyed individuals that are processed together. Therefore, datasets are processed or read in tabular form. These data tables have two dimensions: **Rows** and **Columns**.
 
-Den Aufbau einer Datentabelle lernst du auf der nächsten Seite kennen. 
+You will learn about the structure of a data table on the next page.

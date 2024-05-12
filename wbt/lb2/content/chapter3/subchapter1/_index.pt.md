@@ -6,11 +6,11 @@ pre: "3.1 "
 weight: 310
 ---
 
-### Kapitel 3.1
+### Capítulo 3.1
 
 # Tidyverse - dplyr
 
-In diesem Kapitel wird die Datenaufbereitung mit dem dplyr-Package vorgestellt.
+Neste capítulo, a preparação de dados com o pacote dplyr será apresentada.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

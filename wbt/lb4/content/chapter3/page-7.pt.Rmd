@@ -1,8 +1,8 @@
 ---
-title: "Annahme 6: Einflussreiche Fälle"  # Titel der Seite
-weight: 307  # Individuelles Gewicht 
-menuTitle: "Einflussreiche Fälle" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "einflussreiche fälle"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assunção 6: Casos Influentes"  # Título da página
+weight: 307  # Peso individual
+menuTitle: "Casos Influentes" # Se o título for longo, use um título curto aqui
+tags: ["diagnóstico de regressão", "casos influentes"]  # Insira tags aqui; Palavra curta que descreve o que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,34 +36,35 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um auf einflussreiche Fälle zu prüfen, nutzen wir wieder die Resdiuen. Hier sind zwei Werte relevant: **Leverage** und **Cook's D(istance)**. Da **Cook's D(istance)** in Teilen auf dem **leverage** beruht, fokussieren wir direkt **Cook's D**.
+Para verificar casos influentes, usamos novamente os resíduos. Aqui, dois valores são relevantes: **Alavancagem** e **Distância de Cook (Cook's D)**. Como **Cook's D** é baseado em parte na **alavancagem**, focamos diretamente em **Cook's D**.
 
 {{% tabs %}}
-{{% tab name=\"Leverage\" %}}
+{{% tab name=\"Alavancagem\" %}}
 
-- Ist die partielle Ableitung des geschätzten $i$-ten Wert der abhängigen Variable $\hat{y_i}$ in Abhängigkeit des gemessenen $i$-ten Wert der abhängigen Variable $y_i$ 
+- É a derivada parcial do valor estimado $i$-ésimo da variável dependente $\hat{y_i}$ em relação ao valor medido $i$-ésimo da variável dependente $y_i$ 
 
-- Der Grad, in dem der $i$-te gemessene Wert den $i$-ten gefitteten Wert beeinflusst wird
+- O grau em que o valor medido $i$-ésimo influencia o valor ajustado $i$-ésimo
 
-- "Ungewöhnlichkeit" der $x$'s
+- "Anormalidade" dos $x$'s
 
 - $h_{ii} = \frac{\partial \hat{y_i}}{\partial y_i}$
 
-- Fall gilt als einflussreich, falls $h_{ii} > .2$
+- Um caso é considerado influente se $h_{ii} > .2$
 {{% /tab %}}
-{{% tab name=\"Cook's D\" %}}
+{{% tab name=\"Distância de Cook (Cook's D)\" %}}
 
-- Ist die Distanz der Veränderung, die ein geschätzter Wert innerhalb der Konfidenz-Ellipse bewegt, die die Region plausibler Werte für den Parameter annimmt
+- É a distância pela qual um valor estimado se move dentro da elipse de confiança que assume a região de valores plausíveis para o parâmetro
 
-- Misst den Einfluss (wie stark ein Fall das Regressionsmodell ändert)
 
-- $D_i = \frac{ \sum_{j=1}^n (\hat{y}_j - \hat{y}_{j(i)})}{p * s^2}$, wobei $p$ Anzahl der Parameter ist
+- Avalia a influência (o quanto um caso altera o modelo de regressão)
 
-- Klassifiziert als einflussreich, wenn $D_i > \bar{D} *3$
+- $D_i = \frac{ \sum_{j=1}^n (\hat{y}_j - \hat{y}_{j(i)})}{p * s^2}$, onde $p$ é o número de parâmetros
+
+- Classificado como influente se $D_i > \bar{D} *3$
 {{% /tab %}}
 {{% /tabs %}}
 
-Zuerst können wir einfach **Cook's D** plotten. Dazu nutzt du wieder die Funktion `plot()`, gibst das Regressionsmodell an und setzt im zweiten Argument den Wert `4`:
+Primeiro, podemos simplesmente plotar **Cook's D**. Para isso, utilize novamente a função `plot()`, passe o modelo de regressão como argumento e defina o valor `4` no segundo argumento:
 ```{r cooksd, eval=TRUE}
 plot(
   olsModel2,
@@ -71,15 +72,15 @@ plot(
 )
 ```
 
-**Grenzwerte**:
+**Limites**:
 
-$D_i < 1$: keine einzige Beobachtung
+$D_i < 1$: nenhum único caso
 
-$\frac{4}{4890} \approx 0.0008179959$: viele Fälle
+$\frac{4}{4890} \approx 0.0008179959$: muitos casos
 
-$\bar{D} * 3 \approx 0.0005895857$: viele Fälle
+$\bar{D} * 3 \approx 0.0005895857$: muitos casos
 
-Wir können auch direkt **Cook's D** gegen das **leverage** plotten und Linien für die Grenzwerte einziehen:
+Também podemos plotar **Cook's D** versus **leverage** e desenhar linhas para os limites:
 ```{r eval=FALSE}
 plot(
   olsModel2, 
@@ -101,9 +102,9 @@ abline(
 ) 
 ```
 
-Um nun zu prüfen, ob diese theoretisch potentiell einflussreichen Fälle wirklich einflussreich sind, berechnen wir das Modell erneut unter Ausschluss dieser Beobachtungen.
+Agora, para verificar se esses casos teoricamente potencialmente influentes são realmente influentes, recalculamos o modelo excluindo essas observações.
 
-Dafür benötigen wir einen Datensatz, der dieselbe Länge hat wie unsere Modellschätzung:
+Para isso, precisamos de um conjunto de dados com o mesmo comprimento que nossa estimativa do modelo:
 ```{r rerun, eval=TRUE}
 nobs(olsModel2)
 
@@ -118,7 +119,7 @@ pss2 <- pss[complete.cases(pss[,ccol]),]
 dim(pss2)
 ```
 
-Nun können wir die Werte des **leverage** (*hat values*) und **Cook's D** dem Datensatz hinzufügen.
+Agora podemos adicionar os valores de **leverage** (*hat values*) e **Cook's D** ao conjunto de dados.
 
 ```{r hats, eval=TRUE}
 pss2$hats <- hatvalues(olsModel2)    
@@ -126,9 +127,9 @@ pss2$hats <- hatvalues(olsModel2)
 pss2$cooksd <- cooks.distance(olsModel2)  
 ```
 
-Alles, was jetzt folgt, benötigt ein tieferes Verständnis, und insbesonder das Verständnis für Schleifen und *if*-Bedingungen aus dem [Lernblock 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **Aber** wie geschrieben, ist dieses Kapitel extra und wird nicht Teil der verpflichtenden Lab-Übung sein. 
+Tudo o que segue requer um entendimento mais profundo, especialmente o entendimento de loops e condições *if* do [Bloco de Aprendizagem 2](https://lehre.bpkleer.de/statsplus/lb2/chapter3/). **Mas** como mencionado, este capítulo é adicional e não fará parte do exercício de laboratório obrigatório.
 
-Um nun die potentiell einflussreichen Fälle auszuschließen, benötigen wir einen Dummy, der uns anzeigt, ob der Fall nach den Kriterien einflussreich ist ($1$) oder nicht ($0$): In der Schleife prüfen wir zuerst, ob der jeweilige Wert des Falles über dem Grenzwert ist. Wenn ja, bekommt für das *leverage* die Variable `leverage` den Wert 1 bzw. für Cook's D die Variable `influence`.
+Agora, para excluir os casos potencialmente influentes, precisamos de um indicador que nos mostre se o caso é influente de acordo com os critérios ($1$) ou não ($0$): No loop, primeiro verificamos se o valor do caso está acima do limite. Se sim, atribuímos o valor 1 para a variável `leverage` ou para Cook's D a variável `influence`.
 ```{r loop, eval=TRUE}
 for (i in 1:dim(pss2)[1]) {   
 if (pss2$hats[i] > (2*(2+1)/dim(pss2)[1])) {
@@ -147,7 +148,7 @@ for (i in 1:dim(pss2)[1]) {
 }
 ```
 
-Nun können wir das Modell mit dem verkleinerten Datensatz erneut rechnen: Hierbei beschränken wir den Datensatz auf die Fälle, die jeweils in den neu geschaffenen Variablen `leverage` und `influence` den Wert `0` haben, also nicht einflussreich sind. 
+Nós podemos recalcular o modelo com o conjunto de dados reduzido: Aqui, estamos restringindo o conjunto de dados aos casos em que as novas variáveis criadas, `alavancagem` e `influência`, têm o valor `0`, ou seja, não são influentes.
 ```{r model-rerun, eval=TRUE}
 olsModel2Re <- lm(
   stfdem ~ 1 + stfeco + trstlgl,  
@@ -155,19 +156,19 @@ olsModel2Re <- lm(
 )
 ```
 
-Um herauszufinden, wie viele Fälle wir ausgeschlossen haben, kannst du folgende einfache Subtraktion machen:
+Para descobrir quantos casos foram excluídos, você pode fazer a seguinte subtração simples:
 ```{r diff, eval=TRUE}
 nobs(olsModel2Re) - nobs(olsModel2)
 ```
 
-Es wurden also 736 Fälle ausgeschlossen. Eine ganze Menge!
+Portanto, foram excluídos 736 casos. Muitos!
 
-Schauen wir uns das Ergebnis des Re-definierten Modells mit `summary()` an:
-**Re-definiertes Modelll**
+Vamos analisar o resultado do modelo redefinido com `summary()`:
+**Modelo Redefinido**
 ```{r model-check, eval=TRUE}
 summary(olsModel2Re)
 ```
-Doch weicht das nun ab vom alten Modell? Dazu nehmen wir einfach die Funktion `modelsummary()`, die wir schon kennengelernt haben. Denn in einer Tabelle können wir die Werte besser vergleichen. Wichtig ist hierbei zu prüfen, ob sich die Standardfehler bzw. die Koeffizienten ändern. 
+Mas será que isso difere do modelo antigo? Para isso, vamos usar a função `modelsummary()` que já conhecemos. Em uma tabela, podemos comparar os valores melhor. É importante verificar se os erros padrão ou os coeficientes mudam.
 ```{r model-check2, eval=TRUE}
 modelsummary(
   list(
@@ -177,11 +178,11 @@ modelsummary(
   stars = TRUE
 )
 ```
-$\Rightarrow$ Du siehst, dass sich der Koeffizient für den *intercept* als auch für `stfeco` ändert. Der *intercept* wird kleiner, der Effekt von `stfdem` dagegen größer. Die Standardfehler (Werte in Klammern) ändern sich dagegen nicht. 
+$\Rightarrow$ Você pode ver que o coeficiente para o *intercept* e para `stfeco` mudam. O *intercept* diminui, enquanto o efeito de `stfdem` aumenta. Os erros padrão (valores entre parênteses) não mudam.
 
-Wenn wir große Änderungen erkennen, müssen die gefilterten Fälle genauer inspiziert werden. Denn wir können Fälle nicht einfach aufgrund mathematischer Bedingungen exkludieren. 
+Se observarmos grandes mudanças, os casos filtrados precisam ser inspecionados mais detalhadamente. Não podemos simplesmente excluir casos com base em condições matemáticas.
 
-Um herauszufinden, um welche Fälle es sich handelt, kann man wieder eine Schleife programmieren:
+Para descobrir quais casos são, você pode programar um loop novamente:
 ```{r extract-influentials, eval=TRUE}
 levInfluential <- c()
 cookInfluential <- c()
@@ -209,7 +210,7 @@ for (i in 1:dim(pss2)[1]) {
 }
 ```
 
-Als Ergebnis bekommst du drei Vektoren, die jeweils die einflussreichen Fälle beinhalten:
+Como resultado, você obterá três vetores, cada um contendo os casos influentes:
 ```{r result-influential, eval=TRUE}
 levInfluential
 
@@ -218,6 +219,8 @@ cookInfluential
 allInfluential
 ```
 
-Anschließend könntest du dir die Wertepaare auf den Variablen in der Regression pro Fall genauer anschauen!
+Em seguida, você pode examinar mais de perto os pares de valores nas variáveis da regressão por caso!
 
-Das war's zur Regressionsdiagnostik. In den sechs Schritten kannst du also sichergehen, ob deine Regressionsrechnung nicht aufgrund einer Annahmenverletzung verzerrt ist.
+Isso conclui a diagnóstico de regressão. Com os seis passos, você pode garantir que sua análise de regressão não esteja distorcida devido a uma violação de pressupostos.
+
+Please provide the Markdown content you would like me to translate into Brazilian Portuguese.

@@ -1,14 +1,14 @@
 ---
-title: "Lernblock 3"
+title: "Learning Block 3"
 ---
 
-<center><h4>WBT Statistik+: Einstieg in R leicht gemacht!</h4></center>
+<center><h4>WBT Statistics+: Easy Introduction to R!</h4></center>
 
-# Lernblock 3
+# Learning Block 3
 
-Willkommen in diesen Lernblock! Hier lernst du, wie du Zusammenhangsmaße berechnest und Mittelwertvergleiche durchführst. Du bekommst also einen Überblick über bivariate Zusammenhänge.
+Welcome to this learning block! Here you will learn how to calculate measures of association and perform mean comparisons. You will get an overview of bivariate relationships.
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Use this button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} to report errors directly to us on the pages. To do this, you need to log in once with your JLU ID. You will find the button on every page.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

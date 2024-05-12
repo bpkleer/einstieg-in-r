@@ -1,8 +1,8 @@
 ---
-title: "Wie mit einem data frame umgehen"  # Titel der Seite
-weight: 113  # Individuelles Gewicht 
-menuTitle: "Data frame in R" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "How to Handle a Data Frame"  # Page Title
+weight: 113  # Custom Weight 
+menuTitle: "Data Frame in R" # Short Title if the Title is too long
+tags: ["dataset", "data frame"]  # Tags: Brief description of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -32,21 +32,21 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Datensätze sind vereinfacht ausgedrückt eine Sammlung verschiedener Variablen in einer Datentabelle. In R bedeutet dies, dass wir verschiedene Vektoren gleicher Länge zu einer Datentabelle in einem neuem Objekt speichern. 
+Datasets are simply put, a collection of different variables in a data table. In R, this means storing different vectors of the same length in a data table within a new object.
 
-{{% expand \"Warum haben die Vektoren in einer Datentabelle alle dieselbe Länge?\" %}}
-Alle Befragten erhalten dieselben Fragen. Selbst wenn spezifische Fragengruppen nur einem Teil der Befragten präsentiert wurden, haben die anderen Befragten auch einen Wert auf dieser Variable. Nämlich einen `NA`-Wert. Sie haben also dann ein *missing value* auf dieser Variablen. Das geschieht auch, wenn Personen es ablehnen einzelne Fragen zu beantworten. 
+{{% expand \"Why do the vectors in a data table all have the same length?\" %}}
+All respondents receive the same questions. Even if specific question groups were only presented to a subset of respondents, the other respondents also have a value on that variable. Namely, an `NA` value. So, they then have a *missing value* on that variable. This also happens when individuals refuse to answer specific questions.
 {{% /expand %}}
 
-Damit du eine Übersicht über einen Datensatz erhältst, nutze die Funktion `str()`. `str` steht hierbei für *structure*. 
+To get an overview of a dataset, use the `str()` function. `str` stands for *structure*.
 
 ```{r structure, eval=TRUE}
 str(pss)
 ```
 
-Du siehst hier, wie viele Dimensionen die Datentabelle (**data frame**) hat (5000 Zeilen und 14 Spalten) und erhältst zu jeder Variable den Wertetyp sowie die ersten Ausprägungen.
+Here, you can see how many dimensions the data table (**data frame**) has (5000 rows and 14 columns) and you get the value type and the first observations for each variable.
 
-Eine weitere Möglichkeit einen Einblick in einen Datensatz zu erlangen, ist die Funktion `head()` oder `tail()`. Diese zeigen jeweils die ersten sechs oder letzten sechs Fälle an. 
+Another way to gain insight into a dataset is by using the `head()` or `tail()` function. These functions display the first six or last six cases, respectively.
 
 ```{r head, eval=TRUE}
 head(pss)
@@ -56,25 +56,25 @@ head(pss)
 tail(pss)
 ```
 
-In der Anwendung von statistischen Berechnungen arbeitest du nicht mit dem ganzen Objekt, sondern in der Regel mit einzelnen Variablen. Doch wie kannst du diese einzelnen Variablen ansprechen? Du möchtest zum Beispiel die Varianz der Variable `stfdem` wissen.
+When applying statistical calculations, you do not work with the entire object but usually with individual variables. But how can you address these individual variables? For example, you may want to know the variance of the variable `stfdem`.
 
-Wir haben das **data frame**-Objekt namens `pss` und in diesem Objekt haben wir 14 Vektoren, wobei ein Vektor davon den Namen `stfdem` hat. Wenn du das Objekt im **Environment** ausklappst, siehst du schon, dass vor dem Namen der Variablen jeweils ein `$` steht. Dies zeigt an, dass eben die Variablen jeweils eine Komponente des **data frames** sind und auch so anzusprechen sind.
+We have the **data frame** object named `pss`, and within this object, we have 14 vectors, one of which is named `stfdem`. When you expand the object in the **Environment**, you will see that each variable name is preceded by a `$`. This indicates that the variables are components of the **data frame** and should be addressed as such.
 
-Greifen wir also auf die Komponente `stfdem` zu. Wenn wir auf Objekte zugreifen wollen, müssen wir deren Namen aufrufen:
+Let's access the component `stfdem`. When accessing objects, we need to call their names:
 
 ```{r gettingvar, eval=FALSE}
 stfdem
 ```
 
-{{% expand \"Oops! Warum gibt es hier eine Fehlermeldung?\" %}}
-Die Fehlermeldung sagt, dass es das Objekt `stfdem` nicht gibt. Aber es steht doch im Environment?!?! Richtig, aber eben als Komponente des Objekts `pss` und dieses muss man auch berücksichtigen beim Aufruf. 
+{{% expand "Oops! Why is there an error message here?" %}}
+The error message indicates that the object `stfdem` does not exist. But it's in the Environment, right?!?! Correct, but as a component of the object `pss`, which needs to be considered when calling it.
 {{% /expand %}}
 
-Probieren wir es erneut:
+Let's try again:
 ```{r gettingvar2, eval=TRUE}
 pss$stfdem
 ```
 
-Jetzt klappt es! Willst du also einzelne Variablen aus einem Datensatz ansprechen, musst du bei der Eingabe berücksichtigen, wo diese gespeichert sind. Mit dem `$`-Zeichen, gibst du an, dass die Variable eben Teil des Datensatzes vor dem `$`-Zeichen ist. 
+Now it works! So, when you want to address individual variables from a dataset, you need to consider where they are stored in the input. Using the `$` sign indicates that the variable is part of the dataset before the `$` sign.
 
-Du hast jetzt den Grundaufbau eines Datensatzes verstanden. Als nächstes importieren wir nun Daten in R, damit die Datenanalyse beginnen kann. Im darauffolgenden Kapitel wirst du deskriptive Kennzahlen einzelner Variablen ausgeben lassen.
+You now understand the basic structure of a dataset. Next, we will import data into R to start the data analysis. In the following chapter, you will output descriptive statistics of individual variables.

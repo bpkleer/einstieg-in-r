@@ -1,14 +1,14 @@
 ---
-title: "Lernblock 1"
+title: "Bloco de Aprendizagem 1"
 ---
 
-<h4><center>WBT Statistik+: Einstieg in R leicht gemacht!</center></h4> 
+<h4><center>WBT Estatísticas+: Comece a usar o R facilmente!</center></h4> 
 
-# Einführung in den Lernblock 1
+# Introdução ao Bloco de Aprendizagem 1
 
-Willkommen in diesem Lernblock! Wir steigen hiermit in R ein und du kannst zusätzlich auch lernen, wie Git funktioniert (sofern erforderlich für dich oder in deinem Kurs).
+Bem-vindo a este bloco de aprendizagem! Aqui vamos começar a usar o R e você também pode aprender como o Git funciona (se necessário para você ou para o seu curso).
 
-Über diesen Button {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} kannst du Fehler auf Seiten direkt an uns melden. Dazu musst du dich einmalig mit der JLU-Kennung anmelden. Du findest den Button auf jeder Seite.
+Por meio deste botão {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}, você pode relatar erros diretamente para nós. Para isso, você precisa fazer login uma vez com a identificação JLU. Você encontrará o botão em cada página.
 
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 

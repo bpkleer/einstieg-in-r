@@ -1,8 +1,8 @@
 ---
-title: "Untidy Datensätze"  # Titel der Seite
-weight: 322  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Untidy Datasets"  # Page title
+weight: 322  # Custom weight 
+menuTitle: "" # Short title if the main title is too long
+tags: ["tidyr", "tidyverse", "dataset"]  # Insert tags here; abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -34,17 +34,18 @@ statclass2 <- readRDS("./data/statclass2.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Die folgenden zwei Datensätze zeigen Daten, die jeweils nicht *tidy* sind. Wir werden diese im Folgenden bereinigen.
+The following two datasets show data that are not *tidy*. We will clean these up below.
 ```{r statclass, eval=TRUE}
 statclass
 ```
 
-Dieser Datensatz ist im sogenannten *wide*-Format. D.h. wenn wir neue Prüfungen hätten, würden wir einfach weitere Spalten hinzufügen. Dies ist aber für die Verarbeitung mit R teilweise problematisch, denn wir benötigen oft ein *long*-Format.
+This dataset is in the so-called *wide* format. That means if we had new exams, we would simply add more columns. However, this can be problematic for processing with R, as we often need a *long* format.
 
 ``` {r statclass2, eval=FALSE}
 statclass2
 ```
 
-In diesem Fall haben wir mehrere Probleme: Zum einen sind in den Spalten nicht überall Variablen, sondern Beobachtungen (`momo`, `kim`, `sascha`) und in `exam` finden wir wiederum Variablennamen. 
+In this case, we have several issues: Firstly, not all columns contain variables, but observations (`momo`, `kim`, `sascha`), and in `exam`, we find variable names again.
 
-Fangen wir mit `statclass` an. 
+Let's start with `statclass`. 
+

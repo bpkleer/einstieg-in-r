@@ -31,19 +31,21 @@ Insgesamt bietet R Studio **4 Hauptfenster** (die auch angepasst werden können)
 
 1. Editor (Skriptfenster)
 
-Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die [Login-Seite](https://login.rstudio.cloud). Falls du dir noch keinen Account bei RStudio Cloud gemacht hast, registriere dich zuerst! Leider ist es technisch nicht möglich wie geplant einen Login mit der JLU-Kennung zu ermöglichen. 
+Um RStudio zu nutzen, gehen wir auf die Cloud-Version bzw. die [Login-Seite](https://login.rstudio.cloud). Falls du dir noch keinen Account bei RStudio Cloud gemacht hast, registriere dich zuerst! Du kannst natürlich auch eine lokale Installation an deinem Computer nutzen. 
 
 Hier siehst du eine Animation, wie der Login-Prozess nach der Registrierung eines Accounts abläuft. 
 ![Login RStudio](../img/login.gif)
 
-Wie du in der GIF siehst, bist du zuerst in deinem persönlichen Workspace und dort siehst du noch keinerlei Projekte. Wenn du links auf den Kurs-Workspace klickst, siehst du das Projekt **course materials** und **firststeps**. Ein Workspace ist eine *Verwaltungseinheit* in RStudio Cloud, in der verschiedene Projekte zusammengefasst werden können. 
+Wie du in der GIF siehst, bist du zuerst in deinem persönlichen Workspace und dort siehst du noch keinerlei Projekte. 
+
+**Wenn du in einem Kurs an der JLU studierst, haben wir bereits Kurs-Workspaces vorbereitet.** Wenn du links auf den Kurs-Workspace klickst, siehst du das Projekt **course materials** und **firststeps**. Ein Workspace ist eine *Verwaltungseinheit* in RStudio Cloud, in der verschiedene Projekte zusammengefasst werden können. 
 
 Klicke einfach auf das Projekt **firststeps**. Wenn du das Projekt öffnest, siehst du erstmal folgendes Bild:
 
 ![Start in RStudio](../img/rstudio.png)
-Das **Wichtigste**, wenn du vorbereitete Projekte wie **firststeps** oder **course materials** nutzt, ist das du eine Kopie für deinen Account anlegst! Oben rechts siehst du daher beim ersten Öffnen nur, dass du eine *temporary copy* geöffnet hast. Damit du aber in dem Projekt arbeiten kannst und deine Änderungen für dich gespeichert werden, musst du einmalig auf **Save a permanent copy** klicken. Das Projekt wird dann erstellt und an deinen Account geknüpft. Nachdem das passiert ist, siehst du auch nicht mehr den roten Schriftzug *temporary copy*. In diesem kannst du nun arbeiten und du schaust dir jetzt die verschiedenen Bereiche an. 
+Das **Wichtigste**, wenn du vorbereitete Projekte wie **firststeps** oder **course materials** nutzt, ist, dass du eine Kopie für deinen Account anlegst! Oben rechts siehst du daher beim ersten Öffnen nur, dass du eine *temporary copy* geöffnet hast. Damit du aber in dem Projekt arbeiten kannst und deine Änderungen für dich gespeichert werden, musst du einmalig auf **Save a permanent copy** klicken. Das Projekt wird dann erstellt und an deinen Account geknüpft. Nachdem das passiert ist, siehst du auch nicht mehr den roten Schriftzug *temporary copy*. In diesem kannst du nun arbeiten und du schaust dir jetzt die verschiedenen Bereiche an. 
 
-RStudio hat also ein Kachelmuster mit verschiedenen Kacheln. Links sehen wir die **Console**, rechts oben das **Environment** und rechts unten **Files**. Es gibt noch weitere Tabs in den Kacheln, aber diese lassen wir erstmal außen vor. 
+RStudio hat also ein Kachelmuster mit verschiedenen Kacheln (egal ob in der Cloud oder lokal). Links sehen wir die **Console**, rechts oben das **Environment** und rechts unten **Files**. Es gibt noch weitere Tabs in den Kacheln, aber diese lassen wir erstmal außen vor. 
 
 In der **Console** können wir mithilfe der Sprache R direkt Befehle eingeben und ausführen lassen. Gib nun einfach mal eine beliebige Rechnung in die Console ein und bestätige mit `Enter`. 
 

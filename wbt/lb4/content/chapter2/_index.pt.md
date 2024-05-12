@@ -1,17 +1,17 @@
 ---
-title: "Standardisierung"
-menuTitle: "Standardisierung & Export"
+title: "Padronização"
+menuTitle: "Padronização & Exportação"
 chapter: true
 pre: "2. "
 weight: 200
 ---
-### Kapitel 2 
+### Capítulo 2
 
-# Standardisierte Koeffizienten und Export
+# Coeficientes Padronizados e Exportação
 
-In diesem Kapitel lernst du wie du Modelle mit standardisierten Koeffizienten ausgeben lässt und wie du die Ergebnisse von R in deine Textdateien exportieren kannst.
+Neste capítulo, você aprenderá como exibir modelos com coeficientes padronizados e como exportar os resultados do R para seus arquivos de texto.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
@@ -19,7 +19,7 @@ In diesem Kapitel lernst du wie du Modelle mit standardisierten Koeffizienten au
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

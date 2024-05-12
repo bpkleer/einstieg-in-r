@@ -1,16 +1,16 @@
 ---
-menuTitle: "Scatterplots"
-title: "Scatteprlots"
+menuTitle: "Gráficos de Dispersão"
+title: "Gráficos de Dispersão"
 chapter: true
 pre: "1.4 "
 weight: 140
 ---
 
-### Kapitel 1.4
+### Capítulo 1.4
 
-# Scatterplots
+# Gráficos de Dispersão
 
-In diesem Kapitel lernst du die Erstellung von Scatterplots in `ggplot` kennen. Du wiederholst die Schritte, die wir zuvor kennengelernt haben. 
+Neste capítulo, você aprenderá a criar gráficos de dispersão no `ggplot`. Você irá revisar os passos que aprendemos anteriormente.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
@@ -20,7 +20,7 @@ In diesem Kapitel lernst du die Erstellung von Scatterplots in `ggplot` kennen. 
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

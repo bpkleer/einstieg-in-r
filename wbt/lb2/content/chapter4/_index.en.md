@@ -1,16 +1,16 @@
 ---
-title: "Programmierexkurs"
-menuTitle: "Programmierexkurs"
+title: "Programming Excursion"
+menuTitle: "Programming Excursion"
 chapter: true
 pre: "4. "
 weight: 400
 ---
 
-### Kapitel 4
+### Chapter 4
 
-# Programmierexkurs
+# Programming Excursion
 
-In diesem Kapitel werden lernen wir die Programmierung von Schleifen und Funktionen. Dieses Kapitel ist **nicht verpflichtend**, es bietet dir nur die Möglichkeit ein tieferes Verständnis aufzubauen!
+In this chapter, we will learn about programming loops and functions. This chapter is **not mandatory**, it simply provides you with the opportunity to build a deeper understanding!
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 
@@ -20,7 +20,7 @@ In diesem Kapitel werden lernen wir die Programmierung von Schleifen und Funktio
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

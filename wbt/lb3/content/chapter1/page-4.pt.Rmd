@@ -1,8 +1,8 @@
 ---
-title: "Korrelationen berechnen"  # Titel der Seite
-weight: 104  # Individuelles Gewicht 
-menuTitle: "Korrelationen berechnen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["korrelationen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Calcular Correlações"  # Título da página
+weight: 104  # Peso individual
+menuTitle: "Calcular Correlações" # Se o título for muito longo, use um título curto aqui
+tags: ["correlações"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,64 +34,64 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wenn du nicht nur die Stärke des Zusammenhangs interpretieren möchtest, sondern auch die Richtung des Zusammenhangs, kannst du die Korrelation berechnen. 
+Se você não apenas deseja interpretar a força da relação, mas também a direção da relação, você pode calcular a correlação.
 
-In diesem Lernblock werden zwei Korrelationsmaße vorgestellt:
+Neste bloco de aprendizado, dois coeficientes de correlação são apresentados:
 
-- **Pearson's r**
+- **r de Pearson**
 
-- **Spearman's $\rho$**
+- **$\rho$ de Spearman**
 
-Für die Berechnung von **Pearson's r** müssen folgende Bedingungen erfüllt sein: 
+Para calcular o **r de Pearson**, as seguintes condições devem ser atendidas:
 
-- (pseudo-)metrische Variablen
+- Variáveis (pseudo-)métricas
 
-- lineare (monotone) Beziehung
+- Relação linear (monótona)
 
-- Varianzgleichheit
+- Igualdade de variância
 
-- (bivariate Normalverteilung)
+- (Distribuição normal bivariada)
 
-Für die Berechnung von **Spearman's $\rho$** müssen dagegen nur folgende Bedingungen erfüllt sein: 
+Para calcular o **$\rho$ de Spearman**, por outro lado, apenas as seguintes condições precisam ser atendidas:
 
-- (mind.) ordinale Variablen
+- Variáveis (pelo menos) ordinais
 
-- monotone Beziehung
+- Relação monótona
 
-## Lineare und nicht lineare Beziehungen
-In der Abbildung sind vier Beispiele vorgestellt, die alle nahezu gleiche statistische Maßzahlen ausgeben würden (*Ascombe-Quartett*).
+## Relações Lineares e Não Lineares
+Na figura, são apresentados quatro exemplos que dariam quase os mesmos valores estatísticos (*Quarteto de Anscombe*).
 
-![Linearität und Nicht-Linearität](../img/linearity.png)
+![Linearidade e Não Linearidade](../img/linearity.png)
 
-Feld A zeigt eine lineare und monotone Beziehung zwischen zwei Variablen. Hier wäre die Anwendung der Berechnung von **Pearson's r** korrekt. Feld B zeigt zwar eine monotone Beziehung, diese ist aber nicht linear. In diesem Fall kann **Spearman's $\rho$** berechnet werden. Feld C zeigt, wie ein Ausreißer die Beziehungsstruktur verändern kann und hier würden beide Korrelationsmaße einen verzerrten Wert ausgeben. Feld D zeigt eine nicht lineare wie nicht-monotone Beziehung. 
+O Campo A mostra uma relação linear e monótona entre duas variáveis. Neste caso, a aplicação do cálculo do **r de Pearson** seria apropriada. O Campo B mostra uma relação monótona, mas não linear. Neste caso, o **$\rho$ de Spearman** pode ser calculado. O Campo C mostra como um valor atípico pode alterar a estrutura da relação e, aqui, ambos os coeficientes de correlação dariam um valor distorcido. O Campo D mostra uma relação não linear e não monótona.
 
-Deutlich wird hier, dass vor der Berechnung von Maßzahlen die grafische Analyse hilfreich bzw. erforderlich ist!
+É evidente aqui que antes de calcular medidas, a análise gráfica é útil ou necessária!
 
-## Beispiel Korrelation
-Nun sollst du die  Korrelation zwischen *Trust in Parliament* (`trstprl`) und *Trust in Politicians* (`trstplt`) aus dem **PSS** berechnen.
+## Exemplo de Correlação
+Agora você deve calcular a correlação entre *Confiança no Parlamento* (`trstprl`) e *Confiança nos Políticos* (`trstplt`) do **PSS**.
 
-Beide Variablen sind pseudo-metrische Variablen, daher solltest du **Pearson's r** berechnen. 
+Ambas as variáveis são pseudo-métricas, portanto você deve calcular o **r de Pearson**.
 
-Dafür musst du die Annahmen von **Pearson's r** testen:
+Para isso, você precisa testar as suposições do **r de Pearson**:
 
-- Stichprobe von verbundenen Werten $\checkmark$
+- Amostra de valores pareados $\checkmark$
 
-- beide Variablen metrisch $\checkmark$
+- ambas as variáveis são métricas $\checkmark$
 
-- Beziehung zwischen Variablen ist linear
+- relação entre as variáveis é linear
 
-### Prüfen der Annahme
-Du kannst dies einfach prüfen, in dem du einen Scatterplot erstellst. Dazu kannst du die *base*-Funktion `plot()` nutzen. Das leistungsstärkere Grafik-*library* `ggplot2` lernen wir im letzten Lernblock kennen.
-``` {r corr-plot1, eval=TRUE}
+### Verificação da Suposição
+Você pode verificar isso facilmente criando um gráfico de dispersão. Para isso, você pode usar a função *base* `plot()`. No último bloco de aprendizado, conheceremos a biblioteca de gráficos mais poderosa `ggplot2`.
+```{r corr-plot1, eval=TRUE}
 plot(
   pss$trstprl, 
   pss$trstplt
 )
 ```
 
-Da die Daten nur pseudometrisch sind und sich viele Datenpunkte (ganzzahlig)  überlappen, kannst du aus dem Plot wenig erkennen. 
+Como os dados são apenas pseudo-métricos e muitos pontos de dados (inteiros) se sobrepõem, você pode não conseguir ver muito no gráfico.
 
-**Lösung**: Nutze die Funktion `jitter()` um die Punkte stärker zu streuen:
+**Solução**: Use a função `jitter()` para espalhar mais os pontos:
 ```{r eval=TRUE}
 plot(
   jitter(
@@ -104,22 +104,22 @@ plot(
     )
 )
 ```
-Diese grafische Analyse bedarf etwas Gewöhnung: Sofern du keine klaren anderen Muster wie im Ascombe-Quartett siehst, kannst du von einer linearen Beziehung ausgehen. 
+Esta análise gráfica requer um pouco de prática: Se você não ver padrões claros como no Quarteto de Anscombe, pode assumir uma relação linear.
 
-Abschließend können wir also festhalten, dass die Bedingungen erfüllt sind:
+Em conclusão, podemos afirmar que as condições são atendidas:
 
-- Stichprobe von verbundenen Werten $\checkmark$
+- Amostra de valores pareados $\checkmark$
 
-- beide Variablen metrisch $\checkmark$
+- ambas as variáveis são métricas $\checkmark$
 
-- Beziehung zwischen Variablen ist linear $\checkmark$
+- relação entre as variáveis é linear $\checkmark$
 
-$\Rightarrow$ Du kannst nun **Pearson's r** berechnen!
+$\Rightarrow$ Agora você pode calcular o **r de Pearson**!
 
-### Berechnen des Koeffizienten
+### Cálculo do Coeficiente
 
-Um den Korrelationskoeffizienten zu berechnen, nutzt du die Funktion `cor()` (sowohl für **Pearson's r** als auch für **Spearman's** $\rho$). Zuerst musst du die zwei Variablen in der Funktion benennen. Anschliessend solltest du den Korrelationskoeffizient wählen und abschliessend noch auswählen wie mit `NA's` in den Variablen umgegangen wird. Hier löschst du jede Zeile, die auf eine der zwei Variablen einen `NA`-Wert hat.
-``` {r corrcalc, eval=TRUE}
+Para calcular o coeficiente de correlação, você usa a função `cor()` (tanto para o **r de Pearson** quanto para **Spearman's** $\rho$). Primeiro, você precisa nomear as duas variáveis na função. Em seguida, você deve escolher o coeficiente de correlação e, por fim, escolher como lidar com `NA's` nas variáveis. Aqui, você exclui qualquer linha que tenha um valor `NA` em uma das duas variáveis.
+```{r corrcalc, eval=TRUE}
 cor(
   pss$trstprl, 
   pss$trstplt, 
@@ -128,10 +128,10 @@ cor(
 )      
 ```
 
-Die Ausgabe zeigt einen Korrelationskoeffizienten von $r \approx 0.232$ an. In dieser Ausgabe ist kein p-Wert inkludiert und du kannst keine Aussage über die Signifikanz treffen.
+A saída mostra um coeficiente de correlação de $r \approx 0.232$. Nesta saída, não há valor de p incluído e você não pode fazer uma afirmação sobre a significância.
 
-### Berechnen des Koeffizienten mit **library** `psych`
-Mit der *library* `psych` kannst du die Funktion `corr.test()` nutzen, die auch den Signifikanztest liefert:
+### Calculando o coeficiente com a **biblioteca** `psych`
+Com a *biblioteca* `psych`, você pode usar a função `corr.test()`, que também fornece o teste de significância:
 
 ```{r cor-psych, eval=FALSE}
 install.packages("psych")
@@ -146,16 +146,16 @@ corr.test(
 )     
 ```
 
-Dieser Test generiert drei Matrizen (Korrelationsmatrix, Matrix der Stichprobengröße, Matrix der p-Werte), die du später für die Visualisierung nutzen kannst.
+Este teste gera três matrizes (matriz de correlação, matriz de tamanho da amostra, matriz de valores de p), que você pode usar posteriormente para visualização.
 
-Die benötigte weitere Information des p-Werts findet sich an der letzten Stelle. Hier liegt ein p-Wert von $0$ vor. 
+A informação adicional necessária do valor de p está no último lugar. Aqui, temos um valor de p de $0$.
 
-{{% expand \"Was bedeutet der p-Wert an dieser Stelle?\" %}}
-Der p-Wert ist kleiner als $0.05$ und somit liegt ein statistisch signifikanter Zusammenhang zwischen dem Vertrauen in das Parlament und in Politiker:innen vor. Allerdings ist dieser nur schwach ($r=0.23$)
+{{% expand \"O que significa o valor de p neste ponto?\" %}}
+O valor de p é menor que $0.05$ e, portanto, há uma relação estatisticamente significativa entre a confiança no parlamento e nos políticos. No entanto, essa relação é fraca ($r=0.23$).
 {{% /expand %}}
 
-### Berechnen mehrerer Korrelationen
-Mit beiden Funktionen kannst du nicht nur die Korrelation zwischen zwei Variablen berechnen, sondern direkt mehr als zwei Variablen angeben. Es wird dann jeweils paarweise zwischen allen Variablen die Korrelation berechnet. Hierfür nutzt du die Funktion `c()`, um anzugeben zwischen welchen Variablen du paarweise Korrelationswerte bekommen möchtest:
+### Calculando várias correlações
+Com ambas as funções, você pode calcular não apenas a correlação entre duas variáveis, mas também especificar mais de duas variáveis diretamente. Será calculada a correlação em pares entre todas as variáveis. Para isso, use a função `c()` para especificar entre quais variáveis você deseja obter valores de correlação em pares:
 ```{r cor-group1, eval=TRUE}
 cor(
   pss[
@@ -186,10 +186,10 @@ corr.test(
 )  
 ```
 
-In beiden Ausgaben erscheint eine Korrelationmatrix. Die Variablennamen sind jeweils in der Spalte angegeben und in den Zeilen. Die Diagonale ist stets $1$, denn der Zusammenhang zwischen der Variable und sich selbst ist $1$ (also perfekt!). 
+Ambas as saídas mostram uma matriz de correlação. Os nomes das variáveis são fornecidos em cada coluna e linha. A diagonal é sempre $1$, pois a relação entre a variável e ela mesma é $1$ (ou seja, perfeita!).
 
-{{% expand \"Leseprobe! Wie hoch ist der Korrelationskoeffizient für den Zusammenhang zwischen trstplt und trstprt?\" %}}
-Der Korrelationskoeffizient beträgt $r = 0.40$ und damit liegt ein mittlerer Zusammenhang zwischen den zwei Variablen vor.
+{{% expand \"Exemplo! Qual é o coeficiente de correlação para a relação entre trstplt e trstprt?\" %}}
+O coeficiente de correlação é $r = 0.40$, indicando uma correlação moderada entre as duas variáveis.
 {{% /expand %}}
 
-Wie stellen wir nun Korrelationen grafisch dar?
+Como podemos representar graficamente as correlações agora?

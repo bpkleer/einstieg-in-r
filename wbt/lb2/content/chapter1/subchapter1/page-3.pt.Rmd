@@ -1,8 +1,8 @@
 ---
-title: "Wie mit einem data frame umgehen"  # Titel der Seite
-weight: 113  # Individuelles Gewicht 
-menuTitle: "Data frame in R" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Como lidar com um quadro de dados"  # Título da página
+weight: 113  # Peso personalizado
+menuTitle: "Quadro de dados no R" # Se o título for muito longo, use um título curto aqui
+tags: ["conjunto de dados", "quadro de dados"]  # Insira tags aqui; Palavra-chave, o que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -32,21 +32,21 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Datensätze sind vereinfacht ausgedrückt eine Sammlung verschiedener Variablen in einer Datentabelle. In R bedeutet dies, dass wir verschiedene Vektoren gleicher Länge zu einer Datentabelle in einem neuem Objekt speichern. 
+Conjuntos de dados são, em termos simples, uma coleção de diferentes variáveis em uma tabela de dados. No R, isso significa que armazenamos diferentes vetores de mesma extensão em uma tabela de dados em um novo objeto.
 
-{{% expand \"Warum haben die Vektoren in einer Datentabelle alle dieselbe Länge?\" %}}
-Alle Befragten erhalten dieselben Fragen. Selbst wenn spezifische Fragengruppen nur einem Teil der Befragten präsentiert wurden, haben die anderen Befragten auch einen Wert auf dieser Variable. Nämlich einen `NA`-Wert. Sie haben also dann ein *missing value* auf dieser Variablen. Das geschieht auch, wenn Personen es ablehnen einzelne Fragen zu beantworten. 
+{{% expand \"Por que os vetores em uma tabela de dados têm todos o mesmo comprimento?\" %}}
+Todos os entrevistados recebem as mesmas perguntas. Mesmo que grupos específicos de perguntas tenham sido apresentados apenas a parte dos entrevistados, os outros entrevistados também têm um valor nessa variável. Ou seja, um valor `NA`. Eles terão então um *valor ausente* nessa variável. Isso também acontece quando as pessoas se recusam a responder a perguntas individuais.
 {{% /expand %}}
 
-Damit du eine Übersicht über einen Datensatz erhältst, nutze die Funktion `str()`. `str` steht hierbei für *structure*. 
+Para obter uma visão geral de um conjunto de dados, use a função `str()`. `str` significa *estrutura*.
 
 ```{r structure, eval=TRUE}
 str(pss)
 ```
 
-Du siehst hier, wie viele Dimensionen die Datentabelle (**data frame**) hat (5000 Zeilen und 14 Spalten) und erhältst zu jeder Variable den Wertetyp sowie die ersten Ausprägungen.
+Você verá quantas dimensões a tabela de dados (**data frame**) possui (5000 linhas e 14 colunas) e obterá o tipo de valor e as primeiras ocorrências de cada variável.
 
-Eine weitere Möglichkeit einen Einblick in einen Datensatz zu erlangen, ist die Funktion `head()` oder `tail()`. Diese zeigen jeweils die ersten sechs oder letzten sechs Fälle an. 
+Uma outra maneira de obter uma visão geral de um conjunto de dados é usando a função `head()` ou `tail()`. Elas mostram os primeiros seis ou últimos seis casos, respectivamente.
 
 ```{r head, eval=TRUE}
 head(pss)
@@ -56,25 +56,25 @@ head(pss)
 tail(pss)
 ```
 
-In der Anwendung von statistischen Berechnungen arbeitest du nicht mit dem ganzen Objekt, sondern in der Regel mit einzelnen Variablen. Doch wie kannst du diese einzelnen Variablen ansprechen? Du möchtest zum Beispiel die Varianz der Variable `stfdem` wissen.
+Ao realizar cálculos estatísticos, você geralmente trabalha com variáveis individuais em vez do objeto inteiro. Mas como você pode se referir a essas variáveis individuais? Por exemplo, se você quiser saber a variância da variável `stfdem`.
 
-Wir haben das **data frame**-Objekt namens `pss` und in diesem Objekt haben wir 14 Vektoren, wobei ein Vektor davon den Namen `stfdem` hat. Wenn du das Objekt im **Environment** ausklappst, siehst du schon, dass vor dem Namen der Variablen jeweils ein `$` steht. Dies zeigt an, dass eben die Variablen jeweils eine Komponente des **data frames** sind und auch so anzusprechen sind.
+Temos o objeto **data frame** chamado `pss`, e dentro deste objeto temos 14 vetores, sendo um deles chamado `stfdem`. Ao expandir o objeto no **Environment**, você verá que antes do nome da variável há um `$`. Isso indica que as variáveis são componentes do **data frame** e devem ser referenciadas dessa forma.
 
-Greifen wir also auf die Komponente `stfdem` zu. Wenn wir auf Objekte zugreifen wollen, müssen wir deren Namen aufrufen:
+Vamos acessar a componente `stfdem`. Quando queremos acessar objetos, precisamos chamar seus nomes:
 
 ```{r gettingvar, eval=FALSE}
 stfdem
 ```
 
-{{% expand \"Oops! Warum gibt es hier eine Fehlermeldung?\" %}}
-Die Fehlermeldung sagt, dass es das Objekt `stfdem` nicht gibt. Aber es steht doch im Environment?!?! Richtig, aber eben als Komponente des Objekts `pss` und dieses muss man auch berücksichtigen beim Aufruf. 
+{{% expand \"Oops! Por que está ocorrendo um erro aqui?\" %}}
+A mensagem de erro indica que o objeto `stfdem` não existe. Mas ele está no Environment, certo?!?! Sim, mas como uma componente do objeto `pss`, e isso deve ser considerado ao fazer a chamada.
 {{% /expand %}}
 
-Probieren wir es erneut:
+Vamos tentar novamente:
 ```{r gettingvar2, eval=TRUE}
 pss$stfdem
 ```
 
-Jetzt klappt es! Willst du also einzelne Variablen aus einem Datensatz ansprechen, musst du bei der Eingabe berücksichtigen, wo diese gespeichert sind. Mit dem `$`-Zeichen, gibst du an, dass die Variable eben Teil des Datensatzes vor dem `$`-Zeichen ist. 
+Agora funcionou! Portanto, ao se referir a variáveis individuais em um conjunto de dados, você precisa considerar onde elas estão armazenadas durante a entrada. Com o símbolo `$`, você indica que a variável é parte do conjunto de dados antes do `$`.
 
-Du hast jetzt den Grundaufbau eines Datensatzes verstanden. Als nächstes importieren wir nun Daten in R, damit die Datenanalyse beginnen kann. Im darauffolgenden Kapitel wirst du deskriptive Kennzahlen einzelner Variablen ausgeben lassen.
+Agora você entendeu a estrutura básica de um conjunto de dados. A próxima etapa é importar dados para o R, para que a análise de dados possa começar. No próximo capítulo, você irá gerar estatísticas descritivas para variáveis individuais.

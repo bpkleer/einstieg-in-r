@@ -1,16 +1,16 @@
 ---
-menuTitle: "Balkendiagramme"
-title: "Balkendiagramme"
+menuTitle: "Barras de Gráfico"
+title: "Barras de Gráfico"
 chapter: true
 pre: "1.1 "
 weight: 110
 ---
 
-### Kapitel 1.1
+### Capítulo 1.1
 
-# Balkendiagramme
+# Barras de Gráfico
 
-In diesem Kapitel lernst du die Erstellung von Balkendiagrammen in `ggplot` kennen. Du lernst alle Schritte einzeln kennen, die wir in den anderen Grafiken später nur mehr wiederholen!
+Neste capítulo, você aprenderá a criar barras de gráfico no `ggplot`. Você aprenderá cada etapa individualmente, as quais iremos repetir mais tarde em outros gráficos!
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

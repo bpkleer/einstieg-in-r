@@ -1,9 +1,9 @@
 ---
-title: "Lagemaße"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Lagemaße" # Falls Titel zulang ist, hier Kurztitel
-tags: ["deskriptiv", "lagemaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "Measures of Central Tendency"  { /*examples*/ }
+weight: 202  
+menuTitle: "Measures of Central Tendency" 
+tags: ["descriptive", "measures of central tendency"]  
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,   # Code wird angezeigt
@@ -29,25 +29,25 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Deskriptive Statistik in R
+## Descriptive Statistics in R
 
-Nun werden einige Funktionen vorgestellt, mit denen deskriptive Statistiken ausgegeben werden.
+Now, we will introduce some functions to display descriptive statistics.
 
 {{% tabs groupId=\"tab1\" %}}
-{{% tab name=\"Zur Erinnerung\" %}}
-Welche Maßzahlen zentraler Tendenz und der Verteilung gibt es?
+{{% tab name=\"Reminder\" %}}
+What measures of central tendency and distribution are there?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-- Modus, Median, arithm. Mittel
+{{% tab name=\"Resolution\" %}}
+- Mode, Median, Mean
 
-- Spannweite (Range), Interquartilsabstand, Quartile
+- Range, Interquartile Range, Quartiles
 
-- Varianz, Standardabweichung
+- Variance, Standard Deviation
 {{% /tab %}}
 {{% /tabs %}}
 
-### Minimum, Maximum und Spannweite
-Die Funktionen für Minimum, Maximum und Spannweite sind:
+### Minimum, Maximum, and Range
+The functions for minimum, maximum, and range are:
 ```{R min-max-range, eval=TRUE}
 # Minimum
 min(pss$wkhtot)
@@ -59,13 +59,13 @@ max(pss$wkhtot)
 range(pss$wkhtot)
 ```
 
-Nun versuche es für die Variable `stfdem`. Was passiert?
+Now, try it for the variable `stfdem`. What happens?
 ```{r nas, eval = TRUE}
 min(pss$stfdem)
 ```
-Es gibt eine Fehlermeldung, dass der Wert nicht berechnet werden kann. Denn in dieser Variable gibt es *missing values* (`NA's`). Manche Personen haben hier also keinen Wert angegeben und dies wird in R mit `NA` gekennzeichnet! Daher kann kein Wert berechnet werden.
+An error message will appear stating that the value cannot be calculated. This is because there are *missing values* (`NA's`) in this variable. Some individuals have not provided a value, which is indicated in R as `NA`. Therefore, a value cannot be calculated.
 
-$\rightarrow$ Um dennoch einen Wert berechnen zu können, müssen *missing values* exkludiert werden.
+$\rightarrow$ In order to calculate a value, missing values must be excluded.
 ```{r na-stfdem2, eval=TRUE}
 min(
   pss$stfdem, 
@@ -74,8 +74,8 @@ min(
 ## na.rm: NA = missing values, rm = remove      
 ```
 
-### Modus, Median und arithm. Mittelwert
-Für den Median und Mittelwert gibt es jeweils R-Base Funktionen, die direkt genutzt werden können:
+### Mode, Median, and Mean
+For the median and mean, there are R base functions that can be used directly:
 ```{r median-mean, eval=TRUE}
 ## Median
 median(
@@ -90,17 +90,17 @@ mean(
 )
 ```
 
-Für den Modus gibt es das nicht, man kann sich aber mit der Funktion `table()` die Datentabelle einer Variable anzeigen lassen und daraus dann den Modus oder die Modi ablesen:
+For the mode, there is no built-in function, but you can use the `table()` function to display the data table of a variable and then determine the mode(s) from it:
 ```{r modus, eval=TRUE}
-## Modus (no built-in function)
+## Mode (no built-in function)
 table(pss$stfdem)
-max(table(pss$stfdem)) # nicht hilfreich bei bimodalen (etc.) Verteilungen
+max(table(pss$stfdem)) # not helpful for bimodal (etc.) distributions
 ```
 
-### Quantile
-Manchmal sollen von einer Variable verschiedene Bereiche ausgegeben werden, z.B. das Einkommen in Dezilen oder Quintilen. Hierfür wird die Funktion `quantile()` genutzt. Diese wird dafür mit der Funktion `seq()` kombiniert.
+### Quantiles
+Sometimes you may want to output different ranges of a variable, such as income in deciles or quintiles. For this purpose, the `quantile()` function is used, combined with the `seq()` function.
 
-Die Funktion `seq()` liefert eine Reihenfolge von Zahlen, die wir über die drei Argumente *from*, *to* und *by* festsetzen. Das *from*-Argument legt den Startwert fest, das *to*-Argument den Endwert und das *by*-Argument legt die Schritte fest. Wir gehen also im Beispiel von `0` zu `1`, wobei der Schritt jeweils `0.1` ist!
+The `seq()` function generates a sequence of numbers, which we define using the three arguments *from*, *to*, and *by*. The *from* argument sets the starting value, the *to* argument sets the ending value, and the *by* argument sets the steps. In the example, we go from `0` to `1` in steps of `0.1`!
 ```{r eval=FALSE}
 seq(
   from = 0,
@@ -122,7 +122,7 @@ seq(
 )
 ```
 
-Nun können Dezile (`0.1`-Schritt) ausgegeben werden:
+Now deciles (in `0.1` steps) can be output:
 ```{r eval= FALSE}
 quantile(
   pss$stfdem, 
@@ -136,12 +136,12 @@ quantile(
 ```
 
 ### Test
-{{% tabs groupId=\"tab2\" %}}
-{{% tab name=\"Frage\" %}}
-Was muss geändert werden, um Quintile ausgeben zu lassen?
+{{% tabs groupId="tab2" %}}
+{{% tab name="Question" %}}
+What needs to be changed to output quintiles?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Um Quintile zu erreichen, wird in $0.2$-Schritten gegangen, so dass wir fünf Werte von $0$ bis $1$ erhalten.
+{{% tab name="Resolution" %}}
+To achieve quintiles, we go in steps of $0.2$, resulting in five values from $0$ to $1$.
 
 ```{r eval=FALSE}
 quantile(
@@ -158,9 +158,9 @@ quantile(
 {{% /tabs %}}
 
 ### Summary()
-Um sich eine Reihe an deskriptiven Werten ausgeben zu lassen, kann man ebenfalls die Funktion `summary()` nutzen: 
+To output a series of descriptive values, you can also use the `summary()` function:
 ```{r eval=FALSE}
 summary(pss$stfdem)
 ```
 
-Weiter zu den Streumaßen!
+Next, let's move on to measures of dispersion!

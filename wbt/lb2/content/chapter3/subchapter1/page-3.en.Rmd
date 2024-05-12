@@ -1,8 +1,8 @@
 ---
-title: "Teilen eines Datensatzes"  # Titel der Seite
-weight: 313  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Splitting a Dataset"  # Page title
+weight: 313  # Custom weight 
+menuTitle: "" # Short title if the title is too long
+tags: ["dplyr", "tidyverse", "dataset"]  # Tags: brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -32,10 +32,10 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Zuerst wiederholen wir noch einmal, wie wir einen Datensatz teilen: Wir filtern die Fälle, die für unsere spätere Analyse relevant sind. Zum Beispiel wollen wir nur männliche Befragte aus Distrikt 5 forschen.
+First, let's review how to split a dataset: We filter the cases that are relevant for our later analysis. For example, we only want to study male respondents from District 5.
 
-{{% expand \"Welche Funktionen müssen wir anwenden?\" %}}
-Genau wir nutzen filter(). 
+{{% expand \"Which functions do we need to apply?\" %}}
+Exactly, we use filter(). 
 
 ```R
 pssD5M <- pss %>%
@@ -46,8 +46,8 @@ head(pssD5M)
 {{% /expand %}}
 
 {{% tabs groupId=\"tab1\" %}}
-{{% tab name=\"Aufgabe\" %}}
-Filtere jetzt einmal den Datensatz nach Personen, die in Distrikt 1 oder 12 leben und mehr als 30h arbeiten! Speichere das Subset in einem neuen Objekt!
+{{% tab name=\"Task\" %}}
+Now filter the dataset for individuals living in District 1 or 12 and working more than 30 hours! Save the subset in a new object!
 {{% /tab %}}
 {{% tab name=\"Code\" %}}
 ```R
@@ -59,4 +59,6 @@ head(pssD1D12o30)
 {{% /tab %}}
 {{% /tabs %}}
 
-Manchmal muss man selbst auch Datensätze, die getrennt erhoben wurden, selbst zusammenfügen. Das kannst du auf der nächsten Seite lernen. Die nächste Seite kannst du aber auch überspringen, wenn du findest, dass das für dich nicht relevant ist!
+Sometimes you may need to merge datasets that were collected separately. You can learn that on the next page. However, feel free to skip the next page if you don't find it relevant for you! 
+
+{ /* examples */ }

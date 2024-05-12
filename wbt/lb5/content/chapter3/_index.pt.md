@@ -1,16 +1,16 @@
 ---
-title: "Ergebnisdarstellung"
-menuTitle: "Ergebnisse darstellen"
+title: "Apresentação dos Resultados"
+menuTitle: "Apresentar Resultados"
 chapter: true
 pre: "3. "
 weight: 300
 ---
 
-### Kapitel 3
+### Capítulo 3
 
-# Challenge: Ergebnisse grafisch darstellen
+# Desafio: Apresentar Resultados Graficamente
 
-Nachdem du die Grundgerüste kennengelernt hast und auch schon individuelle Veränderungen vornehmen kannst, lernst du jetzt wie du spezifische Methoden grafisch darstellt. Wir gehen hierbei folgendes Beispiel durch. Du möchtest die Zufriedenheit mit der Demokratie untersuchen. Dazu stellst du zuerst die Verteilung der Variable `stfdem` dar. Anschließend stellst du die Korrelation mit möglichen (metrischen) Einflussfaktoren vor. Anschließend führst du Mittelwertvergleiche auf der Zufriedenheit mit der Demokratie mit kategoriellen Einflussfaktoren durch. Und abschließend führst du eine lineare Regression durch!
+Depois de ter aprendido os conceitos básicos e de já poder fazer alterações individuais, agora você aprenderá como apresentar métodos específicos graficamente. Vamos passar por um exemplo. Você deseja investigar a satisfação com a democracia. Para isso, primeiro você apresenta a distribuição da variável `stfdem`. Em seguida, você apresenta a correlação com possíveis fatores de influência (métricos). Depois, você realiza comparações de médias na satisfação com a democracia com fatores de influência categóricos. E, por fim, você realiza uma regressão linear!
 
 {{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

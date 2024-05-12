@@ -1,8 +1,8 @@
 ---
-title: "Missing values"  # Titel der Seite
+title: "Valores ausentes"  # Titel der Seite
 weight: 203  # Individuelles Gewicht 
-menuTitle: "Missing values" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "Missing values", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+menuTitle: "Valores ausentes" # Falls Titel zulang ist, hier Kurztitel
+tags: ["ggplot", "Valores ausentes", "avançado"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,9 +32,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Oftmals möchte man bevor man die eigentliche Datenanalyse beginnt, zuerst die Daten inspizieren und vor allem die ***missing values*** prüfen. Dazu gibt es zwei umfangreiche Pakete, die auf `ggplot2` aufbauen. Dies sind: `naniar` und `UpSetR`.
+Frequentemente, antes de iniciar a análise de dados propriamente dita, é importante inspecionar os dados e, principalmente, verificar os ***valores ausentes***. Para isso, existem dois pacotes abrangentes que se baseiam no `ggplot2`: `naniar` e `UpSetR`.
 
-Zuerst installieren bzw. laden wir die Pakete:
+Primeiramente, vamos instalar ou carregar os pacotes:
 ``` {r packages-install-mis, eval=FALSE}
 install.packages("UpSetR")
 install.packages("naniar")
@@ -43,7 +43,7 @@ library("UpSetR")
 library("naniar")
 ```
 
-Wir benutzen nun den Datensatz weiterhin den Datensatz `pss`. Zuerst wollen wir nun die *missings* pro Variable darstellen. Dazu filtern wir zuerst den Datensatz auf die ID-Variable und die folgenden vier Variablen: `stfdem`, `stfeco`, `trstprl` und `trstlgl`. Anschließend bringen wir den Datensatz in ein long-Format und schaffen eine dann dritte Spalte, die angibt, ob es ein *missing*-Wert ist oder nicht. Dann gruppieren wir nach Variablen und der neuen ditten Spalte und zählen die *missings* pro Variable (bzw. auch die nicht-*missings*). Danach schließen wir die nicht-*missings* aus und sortieren die Tabelle absteigend. Wir sehen dann, wie viele *missings* in jeder der vier Variablen vorhanden sind. 
+Agora vamos continuar utilizando o conjunto de dados `pss`. Primeiramente, queremos visualizar os *valores ausentes* por variável. Para isso, filtramos o conjunto de dados pela variável de ID e pelas quatro variáveis seguintes: `stfdem`, `stfeco`, `trstprl` e `trstlgl`. Em seguida, transformamos o conjunto de dados em um formato longo e criamos uma terceira coluna que indica se é um valor *ausente* ou não. Então, agrupamos por variáveis e pela nova terceira coluna, contamos os *valores ausentes* por variável (bem como os não *valores ausentes*). Em seguida, excluímos os não *valores ausentes* e classificamos a tabela em ordem decrescente. Assim, podemos ver quantos *valores ausentes* existem em cada uma das quatro variáveis.
 ``` {r miss-tidy, eval=TRUE}
 missingValues <- pss %>%
   select(
@@ -75,7 +75,7 @@ missingValues <- pss %>%
 missingValues
 ```
 
-Anschließend kann man sich ein einfaches Balkendiagramm ausgeben lassen mit diesem neuen Datensatz:
+Em seguida, você pode gerar um simples gráfico de barras com esse novo conjunto de dados:
 ```{r missValBarplot, eval=TRUE}
 missingValues %>%
   ggplot() +
@@ -99,7 +99,7 @@ missingValues %>%
   )
 ```
 
-Hier kann man alle Spielereien von oben austesten. Wir wollen aber jetzt Prozente ausgeben, um zu sehen, wie viel Prozent der Variable *missings* sind. Dazu wiederholen wir die Schritte von zuvor, fügen aber einen `mutate`-Schritt ein, der uns die Prozente angibt.
+Aqui você pode experimentar todas as brincadeiras acima. Mas agora queremos exibir porcentagens para ver quanto por cento da variável *missings* existe. Para isso, repetimos os passos anteriores, mas adicionamos uma etapa `mutate` que nos dá as porcentagens.
 
 ```{r missValPercent, eval=TRUE}
 #Prozente
@@ -170,7 +170,7 @@ missingsPercent <- missingValues %>%
 missingsPercent
 ```
 
-Alternativ kann man auch die *missings* so anzeigen, dass sichtbar wird, welcher Fall auf welcher Variable *missing* ist. Bei großen Datensätzen wird das aber schnell unübersichtlich.
+Alternativamente, você também pode exibir os *missings* de forma que seja visível em qual caso cada variável está *missing*. No entanto, em conjuntos de dados grandes, isso pode se tornar rapidamente confuso.
 ``` {r missValCasewise, eval=FALSE}
 # pro Fall (wird aber bei großen Datensätzen etwas schwer zu lesen)
 rawPlot <-  pss %>%
@@ -218,4 +218,4 @@ rawPlot <-  pss %>%
 rawPlot
 ```
 
-Weiter geht's zu den **libraries** `naniar` und `UpSetR`!
+Vamos agora para as **bibliotecas** `naniar` e `UpSetR`!

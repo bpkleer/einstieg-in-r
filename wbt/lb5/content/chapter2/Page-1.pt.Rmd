@@ -1,8 +1,8 @@
 ---
-title: "Layout-Fragen"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Layout" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "layout", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Perguntas de Layout"  # Título da página
+weight: 201  # Peso individual
+menuTitle: "Layout" # Se o título for muito longo, use um título curto aqui
+tags: ["ggplot", "layout", "avançado"]  # Insira tags aqui; Palavras-chave do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -31,9 +31,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Innerhalb eines `ggplots` können nahezu alle dargestellten Teilbereiche verändert und angepasst werden. Einige dieser Änderungen werden wie im nachfolgenden besprechen.
+Dentro de um `ggplot`, quase todas as áreas representadas podem ser modificadas e ajustadas. Algumas dessas alterações serão discutidas a seguir.
 
-Dazu schaffen wir uns zuerst nochmal ein ggplot-Objekt mit unserem Scatterplot aus der Einführung in `ggplot`:
+Para isso, primeiro criamos novamente um objeto ggplot com nosso gráfico de dispersão da introdução ao `ggplot`:
 ``` {r base-scatter, eval=TRUE}
 scatter <- ggplot(
   pss, 
@@ -64,7 +64,7 @@ scatter <- ggplot(
 scatter
 ``` 
 
-Zuerst fügen wir nochmals Titel, Achsenbeschriftung und Quellen hinzu. 
+Primeiro, adicionamos novamente título, rótulos dos eixos e fontes.
 ``` {r legends, eval=TRUE}
 scatterLeg <- scatter +
   labs(
@@ -77,7 +77,7 @@ scatterLeg <- scatter +
 scatterLeg
 ```
 
-Innerhalb der Funktion `theme()` können wir Teilbereiche des Plots ansprechen und ändern. Dies umfasst u.a. folgende Eigenschaften des Plots:
+Dentro da função `theme()`, podemos abordar e alterar áreas específicas do gráfico. Isso inclui propriedades como:
 
 - `plot.title`
 - `axis.title.x` / `axis.title.y`
@@ -86,11 +86,11 @@ Innerhalb der Funktion `theme()` können wir Teilbereiche des Plots ansprechen u
 - `plot.background` / `panel.background`
 
 {{% notice tip %}}
-Eine komplette Übersicht aller Einstellungen die in `theme()` genutzt werden können findet sich in der
-[User-Dokumentation](https://ggplot2.tidyverse.org/reference/theme.html).
+Uma visão completa de todas as configurações que podem ser usadas em `theme()` pode ser encontrada na
+[Documentação do Usuário](https://ggplot2.tidyverse.org/reference/theme.html).
 {{% /notice %}}
 
-Wir werden jetzt nach und nach Veränderungen vornehmen. Zuerst werden wir die Schriftgröße, Position und das Erscheinungsbild des Titels ändern. Dies machen wir über `plot.title` in `theme()`. Dazu verwenden wir die Funktion `element_text()`:
+Wir vamos fazer alterações gradualmente. Primeiro, vamos alterar o tamanho da fonte, a posição e a aparência do título. Isso é feito através de `plot.title` em `theme()`. Para isso, usamos a função `element_text()`:
 ``` {r title, eval=TRUE}
 scatterLeg +
   theme(
@@ -102,9 +102,9 @@ scatterLeg +
   )
 ```
 
-Dazu haben wir die drei Argumente `size` (Schriftgröße), `face` (Erscheinungsbild) und `hjust` (Position) genutzt. 
+Para isso, usamos os três argumentos `size` (tamanho da fonte), `face` (aparência) e `hjust` (posição).
 
-Als nächstes wollen wir die Achsentitel bearbeiten. 
+Em seguida, vamos editar os títulos dos eixos.
 
 ``` {r axisticks, eval=TRUE}
 scatterAxes <- scatterLeg +
@@ -135,7 +135,7 @@ scatterAxes <- scatterLeg +
 scatterAxes
 ```
 
-Anstatt eine Farbe anzugeben, kann man mit der Funktion `rgb()` auch den Farbton bestimmen. Alternativ kann man auch den HTML-Code der Farbe innerhalb des Arguments `color` nutzen.
+Em vez de especificar uma cor, você pode determinar o tom de cor usando a função `rgb()`. Alternativamente, você também pode usar o código HTML da cor dentro do argumento `color`.
 
 ``` {r axisticks2, eval=TRUE}
 scatterLeg +
@@ -159,7 +159,7 @@ scatterLeg +
   )
 ```
 
-Nun möchten wir weiter experimentieren und die Achsenticks bearbeiten. Dazu nutzen wir `axis.ticks.x` bzw. `axis.ticks.y`.
+Agora, vamos continuar experimentando e editar as marcas dos eixos. Para isso, usamos `axis.ticks.x` ou `axis.ticks.y`.
 
 ```{r axesticks, eval=TRUE}
 scatterTicks <- scatterAxes +
@@ -179,9 +179,9 @@ scatterTicks <- scatterAxes +
 scatterTicks
 ```
 
-Mit dem Argument `angle` können wir die Achsenbeschriftungen drehen lassen. Mit `hjust` und `vjust` können wir die Startposition des Texts ändern. 
+Com o argumento `angle`, podemos girar as marcações dos eixos. Com `hjust` e `vjust`, podemos alterar a posição inicial do texto.
 
-Als nächstes möchten wir das Grid des Plots ändern, also die Linien. Dazu nutzen wir erstmal das Argument `panel.grid` und innerhalb des Arguments die Funktion `element_line()`
+Em seguida, queremos alterar o grid do gráfico, ou seja, as linhas. Para isso, primeiro usamos o argumento `panel.grid` e dentro do argumento a função `element_line()`
 ```{r grid1, eval=TRUE}
 scatterGrid <- scatterTicks +
   theme(
@@ -195,7 +195,7 @@ scatterGrid <- scatterTicks +
 scatterGrid
 ```
 
-Mit den Argumenten `panel.grid.major` und `panel.grid.minor` können die Haupt- und Hilfslinien getrennt bearbeitet werden. Wenn wir zum Beispiel nur die Hauptlinien wollen, machen wir folgendes:
+Com os argumentos `panel.grid.major` e `panel.grid.minor`, as linhas principais e auxiliares podem ser editadas separadamente. Se quisermos apenas as linhas principais, fazemos o seguinte:
 ```{r grid2, eval=TRUE}
 scatterGrid <- scatterTicks +
   theme(
@@ -210,9 +210,9 @@ scatterGrid <- scatterTicks +
 scatterGrid
 ```
 
-Man kann auch die Hilfslinien getrennt nach Achsen bearbeiten. Dazu muss man einfach jeweils `.x` bzw. `.y` beifügen.
+Também é possível editar as linhas auxiliares separadamente por eixo. Para isso, basta adicionar `.x` ou `.y` respectivamente.
 
-Zuletzt kann man noch den Hintergrund des Plots bzw. des Panels ändern. Dies geschieht über die Argumente `plot.background` bzw. `panel.background`. Dazu nutzt man die Funktion `element_rect()` innerhalb des Arguments
+Por fim, é possível alterar o fundo do gráfico ou do painel. Isso é feito através dos argumentos `plot.background` ou `panel.background`. Para isso, usamos a função `element_rect()` dentro do argumento
 
 ```{r background, eval=TRUE}
 scatterGrid +
@@ -228,9 +228,8 @@ scatterGrid +
   )
 ```
  
-Es gibt ebenso eine ganze Reihe an vorgefertigten Themes, die dann wiederum individuell angepasst werden können. 
+Existem também uma série de temas predefinidos que podem ser personalizados individualmente.
 
 {{% notice tip %}}
-Eine Übersicht über vorhandene Themes gibt es [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+Uma visão geral dos temas disponíveis está [aqui](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 {{% /notice %}}
-

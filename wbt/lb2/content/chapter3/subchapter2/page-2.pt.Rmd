@@ -1,8 +1,8 @@
 ---
-title: "Untidy Datensätze"  # Titel der Seite
-weight: 322  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Conjuntos de Dados Desorganizados"  # Título da página
+weight: 322  # Peso individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["tidyr", "tidyverse", "conjunto de dados"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -34,17 +34,18 @@ statclass2 <- readRDS("./data/statclass2.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Die folgenden zwei Datensätze zeigen Daten, die jeweils nicht *tidy* sind. Wir werden diese im Folgenden bereinigen.
+Os dois conjuntos de dados a seguir mostram dados que não estão *organizados*. Vamos limpá-los a seguir.
 ```{r statclass, eval=TRUE}
 statclass
 ```
 
-Dieser Datensatz ist im sogenannten *wide*-Format. D.h. wenn wir neue Prüfungen hätten, würden wir einfach weitere Spalten hinzufügen. Dies ist aber für die Verarbeitung mit R teilweise problematisch, denn wir benötigen oft ein *long*-Format.
+Este conjunto de dados está no formato *wide*. Ou seja, se tivéssemos novos exames, simplesmente adicionaríamos mais colunas. No entanto, isso pode ser problemático para processamento com R, pois muitas vezes precisamos de um formato *long*.
 
 ``` {r statclass2, eval=FALSE}
 statclass2
 ```
 
-In diesem Fall haben wir mehrere Probleme: Zum einen sind in den Spalten nicht überall Variablen, sondern Beobachtungen (`momo`, `kim`, `sascha`) und in `exam` finden wir wiederum Variablennamen. 
+Neste caso, temos vários problemas: Em algumas colunas, não temos variáveis, mas observações (`momo`, `kim`, `sascha`) e na coluna `exam`, encontramos nomes de variáveis novamente.
 
-Fangen wir mit `statclass` an. 
+Vamos começar com `statclass`. 
+```

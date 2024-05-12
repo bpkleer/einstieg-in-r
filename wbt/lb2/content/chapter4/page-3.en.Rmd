@@ -1,0 +1,188 @@
+---
+title: "Functions"  # Title of the page
+weight: 403  # Custom weight 
+menuTitle: "" # If the title is too long, use a short title here
+tags: ["functions"]  # Insert tags here; abbreviation of what happens on the page
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+## Writing Functions in R
+
+In R, not only can we use the functions provided by packages, but we can also easily write our own functions. First, we will create a custom function to calculate the mean and then proceed to create a function to calculate the interquartile range.
+
+<br> 
+
+### Syntax
+Below, we will write our own functions. The basic structure of the code is as follows: 
+```{r function, eval=FALSE}
+my_function <- function(arg1, arg2, ..., argn){
+  # Instructions
+}
+```
+
+First, we define a name for the function (`my_function`) and assign a function to it. The arguments passed to the function are enclosed in parentheses `()`, and these arguments are used in the instructions (enclosed in curly braces `{}`). These arguments can be datasets, variables, or individual values, depending on how they are used in the instructions.
+
+### Custom Function: Mean
+Now, we aim to calculate the mean of a variable using a custom function. To do this, the dataset `statistics` (or any other dataset with a metric variable) should be loaded into the **environment**. We create a function where we pass an argument: the variable for which the mean should be calculated. In the function, we name this argument `x`. Whenever we use `x` in the instructions, the passed argument will be utilized when calling the `own_mean()` function. 
+
+Next, we calculate the mean in the first statement of the new function. Here, we access the passed argument (`x`). In the second statement, we output this value. Then we can call the self-created function and must specify the one required argument (variable of calculation). The mean is calculated and output.
+```{r function2, eval=FALSE}
+own_mean <- function(x){
+  mean = sum(x) / length(x)
+  
+  print(mean) 
+}
+
+own_mean(statistics$grade)
+```
+
+Thus, we have written our first custom function!
+
+
+### Custom Function: Interquartile Range
+Now we want to write a function that outputs the lower and upper quartiles, as well as the interquartile range. We need **three statements** in the function:
+
+1. calculation of the lower quartile,
+2. calculation of the upper quartile, and
+3. calculation of the interquartile range.
+
+Additionally, we output these three values using the `print()` function.
+```{r function3, eval=FALSE}
+own_iqr <- function(x){
+  uGrenze <-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze <- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand <- oGrenze - uGrenze
+  
+  print(paste("Das untere Quartil liegt bei:",
+              uGrenze
+              )
+        )
+  
+  print(paste("Das obere Quartil liegt bei:",
+              oGrenze
+              )
+        )
+  
+  print(paste("Der Interquartilsabstand beträgt:",
+              abstand
+              )
+        )
+}
+
+own_iqr(statistics$grade)
+```
+
+However, if we want to store the calculated values of the function in a new object, we need to use `return` as above. First, we create a new list `results`, so that our goal is to have a list object with the individual values. We name the individual parts of the list as in the function `$lowerBound`, `$upperBound`, and `$range`. The `quantile()` function automatically stores a *named numeric*, but we only want to store the numerical value. Therefore, we index the assignment to our list with `[[1]]`.
+```{r function4, eval=FALSE}
+own_iqr_return <- function(x){
+  uGrenze <-  quantile(x,
+                       probs = 0.25,
+                       na.rm = TRUE
+                       )
+  
+  oGrenze <- quantile(x,
+                      probs = 0.75,
+                      na.rm = TRUE
+                      )
+  
+  abstand <- oGrenze - uGrenze
+  
+  print(paste("Das untere Quartil liegt bei:",
+              uGrenze
+              )
+        )
+  
+  print(paste("Das obere Quartil liegt bei:",
+              oGrenze
+              )
+        )
+  
+  print(paste("Der Interquartilsabstand beträgt:",
+              abstand
+              )
+        )
+  
+  results <- list()
+  
+  results$uGrenze <- uGrenze[[1]]
+  
+  results$oGrenze <-oGrenze[[1]]
+  
+  results$abstand <- abstand[[1]]
+  
+  return(results) 
+}
+
+test <- own_iqr(statistics$grade)
+
+test
+```
+
+Writing custom functions in R is easy to implement and is helpful in many steps of data analysis when there are no existing functions for specific applications.
+
+### Functions and Loops
+We can also effectively use loops in functions. For example, we could write a function that shows us the deviation from the mean and the value from a variable. For this, we use the example dataset `statistics`.
+
+We will now link the function with a **for** loop and an **if** statement. We will name the function `showcase` and pass an argument (the variable to be used). Then the **for** loop will be initiated. If no value is present, a message will be displayed stating that no value is present. If a value is present, the distance to the *mean* will be calculated and this, along with the achieved value, will be displayed.
+
+```{r function-loop, eval = FALSE}
+showcase <- function(x){
+  for (i in 1:length(x)) {
+    if (is.na(x[i])) {
+      print(paste("Für Student", 
+                  i, 
+                  "liegt kein Wert vor."
+                  )
+            )
+      next
+    } else {
+      abstand = mean(x, 
+                     na.rm = TRUE
+                     ) - x[i]
+      
+      print(paste0("Student ",
+                  i, 
+                  " hat folgenden Wert: ",
+                  x[i], 
+                  " (Abweichung zum Mean: ",
+                  round(abstand, 
+                        2
+                        ),
+                  ")"
+                  )
+            )
+    }
+  }
+}
+```
+
+Now we can display an example for the variable `grade` and `grade2` from the `statistics` dataset.
+
+```{r, eval=FALSE}
+showcase(statistics$grade)
+```
+
+```{r, eval=FALSE}
+showcase(statistics$grade2)
+```

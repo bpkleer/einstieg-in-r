@@ -1,8 +1,8 @@
 ---
-title: "Wertebeschriftungen"  # Titel der Seite
-weight: 113  # Individuelles Gewicht 
-menuTitle: "Wertebeschriftungen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["wertebeschriftungen", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Legendas de Valores"  # Título da página
+weight: 113  # Peso Individual
+menuTitle: "Legendas de Valores" # Se o título for muito longo, use um título curto aqui
+tags: ["legendas-de-valores", "gráficos-de-barras", "ggplot"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -44,7 +44,7 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Du kannst die einzelnen Häufigkeiten pro Ausprägung hinzufügen. Dazu nutzt du die Funktion `geom_text()` und fügst diese einfach dem letzten Plot hinzu: Das erste Argument gibt an, dass hier die Häufigkeiten genutzt werden und im zweiten Argument gibst du an, dass die Ausgabe eben die gezählte Häufigkeit sein soll (label = ..count..`):
+Você pode adicionar as frequências individuais por categoria. Para fazer isso, use a função `geom_text()` e simplesmente adicione-a ao último gráfico: O primeiro argumento indica que as frequências serão usadas aqui e no segundo argumento você especifica que a saída será a frequência contada (label = ..count..`):
 
 ```{r barplot-text, eval=TRUE}
 barplotBeyonce +
@@ -55,7 +55,7 @@ barplotBeyonce +
    
 ```
 
-Jetzt ist es so, dass die Zahlen teils nicht lesbar sind. Verschieben wir die Zahlenwerte und ändern die Schriftfarbe! Die Position und das Erscheinungsbild können wir mit verschiedenen Argumenten innerhalb von `geom_text()` verändern:
+Agora, algumas vezes os números podem não ser legíveis. Vamos mover os valores numéricos e alterar a cor da fonte! Podemos alterar a posição e a aparência com diferentes argumentos dentro de `geom_text()`:
 
 ```{R barplot-text2, eval=TRUE}
 barplotBeyonce +
@@ -69,10 +69,10 @@ barplotBeyonce +
 ```
 
 {{% tabs %}}
-{{% tab name=\"Jetzt bist du dran!\" %}}
-Verändere den Code oben so, dass die Zahlen über den Balken sind und die Schriftart `darkblue` ist! Probier dich erst ein bisschen aus, bevor du auf die Lösung schaust!
+{{% tab name=\"Agora é a sua vez!\" %}}
+Altere o código acima para que os números fiquem acima das barras e a cor da fonte seja `darkblue`! Experimente um pouco antes de olhar para a solução!
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
+{{% tab name=\"Código\" %}}
 \`\`\`R
 barplotBeyonce +
   geom_text(
@@ -85,7 +85,7 @@ barplotBeyonce +
 {{% /tab %}}
 {{% /tabs %}}
 
-Die Größe des Texts kannst du zusätzlich über das Argument `size` anpassen. Ändere im Code einfach mal die Werte, um zu sehen, wie es sich verändert!
+A dimensão do texto pode ser ajustada usando o argumento `size`. Altere os valores no código para ver como ele muda!
 
 ```{r barplot-text3, eval=TRUE}
 barplotBeyonce +
@@ -99,4 +99,5 @@ barplotBeyonce +
 
 ```
 
-Weiter geht's zu den letzten Einstellungen!
+
+Continuamos com as últimas configurações!

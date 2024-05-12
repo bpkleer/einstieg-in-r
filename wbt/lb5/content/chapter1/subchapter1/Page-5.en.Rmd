@@ -1,8 +1,8 @@
 ---
-title: "Überblick & Speichern"  # Titel der Seite
-weight: 115  # Individuelles Gewicht 
-menuTitle: "Überblick & Speichern" # Falls Titel zulang ist, hier Kurztitel
-tags: ["speichern", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Overview & Saving"  # Page Title
+weight: 115  # Custom Weight 
+menuTitle: "Overview & Saving" # Short Title if the Title is too long
+tags: ["saving", "bar charts", "ggplot"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -43,21 +43,21 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Alles in allem kann man folgende Schritte berücksichtigen:
+Overall, the following steps can be considered:
 
-1. Auswahl der Variable (gruppiert oder nicht?)
+1. Selection of the variable (grouped or not?)
 
-2. Flipped oder nicht?
+2. Flipped or not?
 
-3. Grenzen/Ordnung der y-Achse
+3. Limits/order of the y-axis
 
-4. Grenzen/Ordnung der x-Achse
+4. Limits/order of the x-axis
 
-5. Häufigkeiten oder Prozentuierung?
+5. Frequencies or percentages?
 
-6. Beschriftungen
+6. Labels
 
-7. Farben und Legende
+7. Colors and legend
 
 ```{r barplot-final}
 barplotFinal <- ggplot(
@@ -110,9 +110,9 @@ barplotFinal <- ggplot(
 barplotFinal
 ```
 
-## Plots speichern
+## Saving Plots
 
-Um den Plot zu speichern, nutzt man am besten die Funktion `ggsave()`. R speichert diese Dateien im *working directory*. Wenn man nicht weiß wo dies ist, ruft man die Funktion `getwd()` auf. Mit `setwd()` kann das *working directory* auf einen beliebigen Pfad geändert werden. Zur Erinnerung: In RStudio Cloud ist das *working directory* der Pfad des Projekts, in dem du bist! Erstelle dort einen Unterornder `img`!
+To save the plot, it is best to use the `ggsave()` function. R saves these files in the *working directory*. If you are unsure where this is, use the `getwd()` function. You can change the *working directory* to any path using `setwd()`. Remember: In RStudio Cloud, the *working directory* is the path of the project you are in! Create a subfolder `img` there!
 
 ```{r savepices, eval=FALSE}
 getwd()
@@ -125,5 +125,6 @@ ggsave("./img/mffggplot.png",
        )        
 ```
 
-Als letzten Schritt mit Balkendiagrammen wollen wir diese nach einer weiteren Variable gruppieren!
+As a final step with bar charts, we want to group them by another variable! 
 
+Please paste the Markdown content you would like me to translate.

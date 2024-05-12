@@ -1,8 +1,8 @@
 ---
-title: "Standardisierte Regressionskoeffizienten"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Stand. Koeffizienten" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "regressionskoeffizienten", "standardisiert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Coeficientes de Regressão Padronizados"  # Título da página
+weight: 201  # Peso individual
+menuTitle: "Coef. Padronizados" # Se o título for muito longo, use um título curto aqui
+tags: ["regressão", "coeficientes de regressão", "padronizado"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -41,13 +41,15 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In Statistik I hast du ja bereits die z-Standardisierung kennengelernt und Verteilungen von Variablen besser vergleichen zu können. Die z-Standardisierung rekodiert eine Variable auf die Einheit Standardabweichung, so dass Variablen, die z-standardisiert sind, vergleichbar sind. 
+Em Estatística I, você já aprendeu sobre a padronização z e como comparar melhor as distribuições de variáveis. A padronização z recodifica uma variável para a unidade de desvio padrão, tornando as variáveis z-padronizadas comparáveis.
 
-Nicht rekodierte Variablen liefern in R auch nicht-standardisierte Regressionskoeffizienten. Du hast dies an der Interpretation der Regressionsergebnisse gesehen: Du hast immer in der Einheit der Variablen ausgewertet. Nachteil von nicht-standardisierten Variablen ist, dass die Effekte nicht in der Stärke untereinander vergleichbar sind. Dies geht nur mit standardisierten Variablen. 
+Variáveis não padronizadas também fornecem coeficientes de regressão não padronizados no R. Você viu isso na interpretação dos resultados da regressão: você sempre avaliou na unidade das variáveis. A desvantagem das variáveis não padronizadas é que os efeitos não são comparáveis em termos de magnitude. Isso só é possível com variáveis padronizadas.
 
-In manchen (oft komplexeren) Modellen möchten wir die Stärke der einzelnen unabhängigen Variablen bewerten. Da die Variablen nicht dieselbe Einheit besitzen, ist dies wie oben erklärt nicht so einfach möglich. Wir können die Variablen aber standardisieren, so dass alle Variablen dieselbe Einheit besitzen (Standardabweichungen). Dazu nutzt du am besten die Funktion `scale()` aus dem **tidyverse** (`dplyr`). In komplexeren Regressionsmodellen oder erweiterten Modellen (wie *Multi-Level-Modellen*) standardisiert man die Variablen meist vor der Berechnung des Modells.
+Em alguns modelos (geralmente mais complexos), queremos avaliar a magnitude das variáveis independentes individualmente. Como as variáveis não têm a mesma unidade, como explicado acima, isso não é tão simples. No entanto, podemos padronizar as variáveis para que todas tenham a mesma unidade (desvios padrão). Para isso, é melhor usar a função `scale()` do **tidyverse** (`dplyr`). Em modelos de regressão mais complexos ou modelos avançados (como *Modelos Multinível*), as variáveis geralmente são padronizadas antes do cálculo do modelo. 
 
-Machen wir diesen Schritt nun für die Variablen im `olsModel2`:
+{ /* examples */ }
+
+Vamos agora fazer esse passo para as variáveis no `olsModel2`:
 ```{r scale, eval=TRUE}
 pss <- pss %>% 
   mutate(
@@ -58,7 +60,7 @@ pss <- pss %>%
 
 ```
 
-Wir berechnen das Modell anschließend erneut mit den neuen Variablen:
+Em seguida, recalculamos o modelo com as novas variáveis:
 ```{r olsM2Z, eval=TRUE}
 olsModel2Z <- lm(
   stfdemZ ~ 1 + stfecoZ + trstlglZ,   
@@ -66,9 +68,9 @@ olsModel2Z <- lm(
 )   
 ```
 
-Wie interpretieren wir das Ergebnis?
+Como interpretamos o resultado?
 ```{r eval=TRUE, echo=TRUE}
 summary(olsModel2Z)
 ```
 
-**Ergebnis**: Mit jedem Anstieg um eine Standardabweichung in `stfeco` steigt `stfdem` um $0.697244$ Standardabweichungen. Wie zu sehen ist, ist die Interpretation etwas schwerfälliger. Aber nun können die einzelnen Effekte zwischen metrischen Variablen verglichen werden. Es wird sichtbar, dass der Effekt von `stfeco` stärker ist als der von `trstlgl` ($0.697244 > |-0.033592|$).
+**Resultado**: Com cada aumento de um desvio padrão em `stfeco`, `stfdem` aumenta $0.697244$ desvios padrão. Como pode ser visto, a interpretação é um pouco mais complicada. Mas agora os efeitos individuais entre variáveis métricas podem ser comparados. É visível que o efeito de `stfeco` é mais forte do que o de `trstlgl` ($0.697244 > |-0.033592|$).

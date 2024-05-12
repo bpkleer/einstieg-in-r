@@ -1,8 +1,8 @@
 ---
-title: "Annahme 5: Multikollinearität"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Multikollinearität" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "multikollinearität"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assumption 5: Multicollinearity"  # Page title
+weight: 306  # Custom weight
+menuTitle: "Multicollinearity" # Short title if the title is too long
+tags: ["regression diagnostics", "multicollinearity"]  # Tags describing the content of the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,12 +36,12 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Multikollinearität** bedeutet, dass unter den unabhängigen Variablen lineare Abhängigkeiten vorliegen. Dies prüfst du über den *variance inflation factor* (**VIF**). Wenn der Wert des **VIF** über $10$ liegt, dann ist die **Multikollinearität** hoch und die Schätzung verzerrt (andere empfehlen Richtwert $5$).
+**Multicollinearity** means that there are linear dependencies among the independent variables. You can check this using the *variance inflation factor* (**VIF**). If the **VIF** value is above $10$, then the **multicollinearity** is high, and the estimation is biased (some recommend a threshold of $5$).
 
-Formel des **VIF**:
+Formula for **VIF**:
 $$VIF_i = \frac{1}{1-R^2_i}$$
 
-Um den **VIF** zu berechnen, rufen wir die Funktion `vif()` aus der **library** `car` auf. Für jede unabhängige Variable erhälst du den **VIF**-Wert:
+To calculate the **VIF**, we use the `vif()` function from the **library** `car`. For each independent variable, you will get the **VIF** value:
 ```{r car, eval=FALSE}
 install.packages("car")
 library("car")
@@ -50,4 +50,4 @@ library("car")
 vif(olsModel2)
 ```
 
-$\Rightarrow$ Wir erhalten hier keine Werte, die über den empfohlenem Grenzwert liegen. Also weiterhin alles okay!
+$\Rightarrow$ We do not have any values here that exceed the recommended threshold. So, everything is still okay!

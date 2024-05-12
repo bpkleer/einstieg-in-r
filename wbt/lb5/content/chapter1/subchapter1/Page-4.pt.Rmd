@@ -1,8 +1,8 @@
 ---
-title: "Achsen, Legende & Titel"  # Titel der Seite
-weight: 114  # Individuelles Gewicht 
-menuTitle: "Achsen, Legende & Titel" # Falls Titel zulang ist, hier Kurztitel
-tags: ["achsen", "titel", "legende", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Eixos, Legenda & Título"  # Título da página
+weight: 114  # Peso individual
+menuTitle: "Eixos, Legenda & Título" # Se o título for muito longo, use um título curto aqui
+tags: ["eixos", "título", "legenda", "gráficos de barras", "ggplot"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -43,8 +43,8 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Achsen
-Oftmals müssen die Achsen angepasst werden, um die Daten besser darzustellen. Wenn du dich gerade ausprobiert hast und versucht hast die Werte überhalb der Balken anzeigen zu lassen, ist es womöglich passiert, dass nicht mehr alle Werte von jedem Balken angezeigt wurden. Dies lag daran, dass die y-Achse zu kurz ist. Du kannst die Achsen ganz einfach in der Funktion `scale_x_continuous()` begrenzen. `continuous` wird hier genutzt, weil es die Hua (Typ *integer* oder *numeric*) handelt. Dort nutzt du für die Begrenzung das Argument `limits = c(...)` und gibst darin das Minimum und das Maximum an.
+## Eixos
+Frequentemente, é necessário ajustar os eixos para melhor representar os dados. Se você tentou exibir os valores acima das barras e percebeu que nem todos os valores de cada barra foram exibidos, provavelmente a causa foi que o eixo y era muito curto. Você pode facilmente limitar os eixos na função `scale_x_continuous()`. O `continuous` é usado aqui porque trata-se de uma variável contínua (tipo *integer* ou *numeric*). Para limitar, você utiliza o argumento `limits = c(...)` e especifica o mínimo e o máximo.
 
 ```{r barplot-axis, eval=TRUE}
 barplotBeyonce <- barplotBeyonce +
@@ -65,7 +65,7 @@ barplotBeyonce <- barplotBeyonce +
 barplotBeyonce
 ```
 
-Ebenso kannst du in der Funktion `scale_y_continuous` die Achsenmarkierungen bestimmen. Dies machst du im Argument `breaks` und gibst dort einfach eine Sequenz an. 
+Da mesma forma, você pode determinar as marcações dos eixos na função `scale_y_continuous`. Isso é feito no argumento `breaks`, onde você simplesmente especifica uma sequência. 
 ```{r barplot-ticks, eval=TRUE}
 barplotBeyonce <- barplotBeyonce + 
   scale_y_continuous(
@@ -83,7 +83,7 @@ barplotBeyonce <- barplotBeyonce +
 barplotBeyonce
 ```
 
-Das gleiche geht für die x-Achse: Du weißt, dass die Variable `edu` ein Faktor mit fünf Leveln (plus `NA`) ist. Es handelt sich also nicht um eine kontinuierliche Variable. Daher benutzt du hier die Funktion `scale_x_discrete()`. 
+O mesmo vale para o eixo x: Você sabe que a variável `edu` é um fator com cinco níveis (além de `NA`). Portanto, não é uma variável contínua. Por isso, você usa a função `scale_x_discrete()` aqui.
 ```{r barplot-axis-discrete, eval=TRUE}
 barplotBeyonce <- barplotBeyonce + 
   scale_x_discrete(
@@ -99,24 +99,24 @@ barplotBeyonce <- barplotBeyonce +
 
 barplotBeyonce
 ```
-Du musst also bei nicht-kontinuierlichen Variablen die Ausprägungen anzeigen, die angezeigt werden sollen. 
+Portanto, ao lidar com variáveis não contínuas, você precisa mostrar as categorias que deseja exibir.
 
-{{% expand \"Überlege bzw. probiere aus, wie du die `NA`-Kategorie ausschließen kannst?\" %}}
-Nicht immer möchte man auch die `NA`-Kategorie anzeigen. In dem du diese einfach aus der Funktion `scale_x_discrete()` ausschließt, wird sie auch nicht mehr im Plot angezeigt. 
+{{% expand "Pense ou experimente como excluir a categoria `NA`." %}}
+Não é sempre que se deseja exibir a categoria `NA`. Ao simplesmente excluí-la da função `scale_x_discrete()`, ela também não será mais exibida no gráfico.
 {{% /expand %}}
 
-{{% expand \"Du möchtest die Reihenfolge ändern, von der höchsten zur niedrigsten Ausprägung. Wie kannst du das machen?\" %}}
-Genau! Du musst einfach nur die Reihenfolge innerhalb der Funktion `scale_x_discrete()` ändern!
+{{% expand "Você deseja alterar a ordem, da maior para a menor categoria. Como você pode fazer isso?" %}}
+Exatamente! Você só precisa alterar a ordem dentro da função `scale_x_discrete()`.
 {{% /expand %}}
 
-## Legende
-Gerade erscheint die Legende rechts. Du kannst das beliebig ändern mit dem Argument `legend.position` innerhalb der zusätzlichen Funktion `theme()`:
+## Legenda
+Atualmente, a legenda está sendo exibida à direita. Você pode alterar isso conforme desejar com o argumento `legend.position` dentro da função adicional `theme()`:
 ```{r barplot-legend, eval=TRUE}
 barplotBeyonce +
-  theme(legend.position = "bottom") # left, right, top oder none
+  theme(legend.position = "bottom") # left, right, top ou none
 ```
 
-Auch die Beschriftung der Legende kannst du anpassen:
+Você também pode ajustar a legenda:
 ```{r barlplot-legend2, eval=TRUE}
 barplotBeyonce + 
   scale_fill_manual(
@@ -133,8 +133,8 @@ barplotBeyonce +
   )
 ```
 
-## Titel
-Jetzt fehlen noch angepasste Achsenbeschriftungen und Titel!
+## Título
+Agora faltam apenas as etiquetas dos eixos e o título personalizados!
 ```{r barplot-titles, eval=TRUE}
 barplotBeyonce + 
   labs(
@@ -144,4 +144,4 @@ barplotBeyonce +
   )
 ```
 
-Alles im Überblick? Gehe weiter!
+Tudo claro? Continue!

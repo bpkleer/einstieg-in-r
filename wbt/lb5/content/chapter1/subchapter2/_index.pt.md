@@ -1,16 +1,16 @@
 ---
-menuTitle: "Histogramme"
-title: "Histogramme"
+menuTitle: "Histograma"
+title: "Histograma"
 chapter: true
 pre: "1.2 "
 weight: 120
 ---
 
-### Kapitel 1.2
+### Capítulo 1.2
 
-# Histogramme
+# Histograma
 
-In diesem Kapitel lernst du die Erstellung von Histogrammen in `ggplot` kennen. Du wiederholst die Schritte, die wir zuvor kennengelernt haben. 
+Neste capítulo, você aprenderá a criar histogramas no `ggplot`. Você irá revisar os passos que aprendemos anteriormente.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

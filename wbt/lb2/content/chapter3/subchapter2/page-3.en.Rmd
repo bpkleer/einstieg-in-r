@@ -1,8 +1,8 @@
 ---
-title: "tidy up statclass"  # Titel der Seite
-weight: 323  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Tidy Up Statclass"  # Page Title
+weight: 323  # Custom Weight 
+menuTitle: "" # Short Title if the Title is too long
+tags: ["tidyr", "tidyverse", "dataset"]  # Insert Tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -32,7 +32,7 @@ statclass <- readRDS("./data/statclass.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In der Tabelle kann die Note jeder Person aus jeder Prüfung ausgelesen werden. Überlegt kurz, welche Variablen wir bei diesem Satz generieren möchten!
+In the table, the grade of each person from each exam can be read. Think briefly about which variables we want to generate from this sentence!
 
 ```{r statclassa, eval=TRUE}
 statclass
@@ -40,11 +40,11 @@ statclass
 
 > - `names`: momo, sascha, kim
 > - `course`: statI, statII, r, spss
-> - `grade`: Wert in Abhängigkeit der zwei oberen.
+> - `grade`: Value depending on the above two.
 
-Es sind also zwei Informationen in den Spalten `stat1`, `stat2`, `r` und `spss`. Nämlich welcher Test es ist (implizit über Variablenname) und die Note. D.h. hier sind Werte als Variablenname angegeben und das verstößt gegen die Regeln eines *tidy* Datensatzes. Wir benötigen in einem *tidy*-Format aber beide Informationen explizit! Denn die Spaltennamen sind hier Werte (Art der Prüfung) und nicht einfach Namen.
+So there are two pieces of information in the columns `stat1`, `stat2`, `r`, and `spss`. Namely, what type of test it is (implicitly through variable name) and the grade. That is, values are given as variable names here, which violates the rules of a *tidy* dataset. However, in a *tidy* format, we need both pieces of information explicitly! Because the column names here are values (type of exam) and not just names.
 
-Um dies zu bereinigen, nutzt man `pivot_longer()`. Hierbei geben wir zuerst an, welche Spalten neugeordnet werden sollen (in unserem Fall `stat1` bis `spss`), dann in welche neuen Variablen die Namen bzw. die Werte gespeichert werden sollen. Mit `names_to` benennen wir die neue Variable, die den Test unterscheidet und mit `values_to` benennen wir die Variable, die die Noten beinhaltet. 
+To clean this up, we use `pivot_longer()`. First, we specify which columns should be rearranged (in our case `stat1` to `spss`), then in which new variables the names or values should be stored. With `names_to`, we name the new variable that distinguishes the test, and with `values_to`, we name the variable that contains the grades. 
 
 ``` {r pivot-longer, eval=TRUE}
 statclassTidy <- statclass %>% 
@@ -61,9 +61,9 @@ statclassTidy <- statclass %>%
 statclassTidy
 ```
 
-Jetzt haben wir ein *long*-Format, dass die Datenbearbeitung oft einfacher macht (z.B. mit `ggplot2`). **Aber Aufpassen**: Man kann jetzt nicht einfach mehr einen Mittelwert von `grade` berechnen, da dies verschiedene Kurse beinhaltet. Man muss dabei also Bedingungen setzen (wenn man im *long*-Format ist).
+Now we have a *long* format, which often makes data manipulation easier (e.g., with `ggplot2`). **But be careful**: You can't simply calculate the mean of `grade` anymore, as this includes different courses. You have to set conditions when working in the *long* format.
 
-Möchte man dies wieder umkehren, nutzt man die Funktion `pivot_wider()`:
+To reverse this process, you can use the `pivot_wider()` function:
 ``` {r pivot-wider, eval=FALSE}
 statclassRe <- statclassTidy %>% 
   pivot_wider(

@@ -1,8 +1,8 @@
 ---
-title: "Wertebeschriftungen"  # Titel der Seite
-weight: 113  # Individuelles Gewicht 
-menuTitle: "Wertebeschriftungen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["wertebeschriftungen", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Value Labels"  # Page Title
+weight: 113  # Custom Weight
+menuTitle: "Value Labels"  # Short Title if Title is too long
+tags: ["value labels", "bar charts", "ggplot"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -44,7 +44,7 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Du kannst die einzelnen Häufigkeiten pro Ausprägung hinzufügen. Dazu nutzt du die Funktion `geom_text()` und fügst diese einfach dem letzten Plot hinzu: Das erste Argument gibt an, dass hier die Häufigkeiten genutzt werden und im zweiten Argument gibst du an, dass die Ausgabe eben die gezählte Häufigkeit sein soll (label = ..count..`):
+You can add individual frequencies per category. To do this, use the `geom_text()` function and simply add it to the last plot: The first argument indicates that the frequencies are used here, and in the second argument, you specify that the output should be the counted frequency (label = ..count..`):
 
 ```{r barplot-text, eval=TRUE}
 barplotBeyonce +
@@ -55,7 +55,7 @@ barplotBeyonce +
    
 ```
 
-Jetzt ist es so, dass die Zahlen teils nicht lesbar sind. Verschieben wir die Zahlenwerte und ändern die Schriftfarbe! Die Position und das Erscheinungsbild können wir mit verschiedenen Argumenten innerhalb von `geom_text()` verändern:
+Now, some of the numbers may not be readable. Let's move the number values and change the font color! We can adjust the position and appearance using various arguments within `geom_text()`:
 
 ```{R barplot-text2, eval=TRUE}
 barplotBeyonce +
@@ -69,8 +69,8 @@ barplotBeyonce +
 ```
 
 {{% tabs %}}
-{{% tab name=\"Jetzt bist du dran!\" %}}
-Verändere den Code oben so, dass die Zahlen über den Balken sind und die Schriftart `darkblue` ist! Probier dich erst ein bisschen aus, bevor du auf die Lösung schaust!
+{{% tab name=\"Your Turn Now!\" %}}
+Modify the code above so that the numbers are above the bars and the font color is `darkblue`! Try it out a bit before looking at the solution!
 {{% /tab %}}
 {{% tab name=\"Code\" %}}
 \`\`\`R
@@ -85,7 +85,7 @@ barplotBeyonce +
 {{% /tab %}}
 {{% /tabs %}}
 
-Die Größe des Texts kannst du zusätzlich über das Argument `size` anpassen. Ändere im Code einfach mal die Werte, um zu sehen, wie es sich verändert!
+You can adjust the size of the text using the `size` argument. Just change the values in the code to see how it changes!
 
 ```{r barplot-text3, eval=TRUE}
 barplotBeyonce +
@@ -99,4 +99,4 @@ barplotBeyonce +
 
 ```
 
-Weiter geht's zu den letzten Einstellungen!
+Let's move on to the final settings!

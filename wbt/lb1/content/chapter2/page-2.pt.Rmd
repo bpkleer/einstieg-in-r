@@ -1,8 +1,8 @@
 ---
-title: "Vektoren"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Vektoren" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datentypen", "vektoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Vetores"  # Título da página
+weight: 202  # Peso individual
+menuTitle: "Vetores" # Título curto, se o título for longo
+tags: ["tipos-de-dados", "vetores"]  # Tags relacionadas; breve descrição do conteúdo da página
 ---
 
 ```{r setup, include = FALSE}
@@ -30,33 +30,33 @@ knitr::opts_chunk$set(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wenn wir mit Datensätzen arbeiten, beinhaltet eine Variable ja nicht nur einen einzigen Wert, sondern die Werte auf der Variable aller Befragten. Wenn wir eine Variable Einkommen haben, sind in dieser alle Einkommenswerte aller Befragten aufgelistet. Wir sprechen dann dabei auch von einem Vektor: Die einzelnen Werte der Befragten sind die Komponenten des Vektors. 
+Quando trabalhamos com conjuntos de dados, uma variável não contém apenas um único valor, mas sim os valores da variável de todos os entrevistados. Se tivermos uma variável de renda, ela listará todos os valores de renda de todos os entrevistados. Nesse caso, estamos falando de um vetor: os valores individuais dos entrevistados são as componentes do vetor.
 
-Nehmen wir ein Beispiel von fünf Personen mit den Einkommenswerten: $1432$, $982$, $5139$, $3210$ und $726$. 
+Vamos considerar um exemplo com cinco pessoas e os valores de renda: $1432$, $982$, $5139$, $3210$ e $726$.
 
-Als Vektor würde dies wie folgt dargestellt: 
+Como vetor, isso seria representado da seguinte forma:
 
-$$ income = \left(\begin{array}{c} 1432 \\ 982 \\ 5139 \\ 3210 \\ 726 \end{array}\right) $$
-Ein **Vektor** ist sozusagen eine *Kette* von Werten.
+$$ renda = \left(\begin{array}{c} 1432 \\ 982 \\ 5139 \\ 3210 \\ 726 \end{array}\right) $$
+Um **vetor** é essencialmente uma *cadeia* de valores.
 
-## Vektoren in R
-Ein **Vektor** kann jede beliebige Anzahl von Nummern, Buchstaben oder einer Kombination aus beiden beinhalten. Er kann also aus einem der vier Wertetypen bestehen, die du zuvor kennengelernt hast.
+## Vetores em R
+Um **vetor** pode conter qualquer número de números, letras ou uma combinação de ambos. Portanto, pode consistir em um dos quatro tipos de valores que você aprendeu anteriormente.
 
-Zur Erinnerung hier nochmal die Wertetypen:
+Para relembrar, aqui estão os tipos de valores:
 
-- `numeric`: $1.456783135786$, $2.5467$, $-3.45786$
+- `numérico`: $1.456783135786$, $2.5467$, $-3.45786$
 
-- `integer`: $1$, $27$, $1453$, $-144$, $545$
+- `inteiro`: $1$, $27$, $1453$, $-144$, $545$
 
-- `character`: jeder beliebige Buchstabe/Zeichen oder eine Kombination von Zeichen und Ziffern
+- `caractere`: qualquer letra/símbolo ou uma combinação de letras e números
 
-- `logical`: `TRUE` oder `FALSE`
+- `lógico`: `VERDADEIRO` ou `FALSO`
 
-In R führen wir verschiedene Werte mit einer Funktion in einem Objekt zusammen, das neue Objekt ist dann nicht mehr ein einfacher Wert, sondern ein Vektor. Eine Funktion ist eine bereits programmierte Anweisung, die über den spezifischen Befehl aufgerufen und angewendet werden kann. R bietet umfassende **libraries** (was das ist, lernen wir nächstes Mal!) mit mehreren tausenden Funktionen. Aber keine Sorge, niemand kennt diese alle auswendig. Der wichtigste Skill im R-Kurs ist es, Programmieren zu verstehen, denn so kann man sich neue Funktionen oder vergessene Funktionen wieder aneignen. 
+Em R, combinamos diferentes valores em um objeto usando uma função, e o novo objeto não é mais um valor simples, mas sim um vetor. Uma função é uma instrução já programada que pode ser chamada e aplicada por meio de um comando específico. R oferece extensas **bibliotecas** (vamos aprender o que é isso na próxima vez!) com milhares de funções. Mas não se preocupe, ninguém conhece todas elas de cor. A habilidade mais importante no curso de R é entender a programação, pois assim podemos aprender novas funções ou relembrar funções esquecidas.
 
-Die Funktion, die wir jetzt nutzen wollen, wird mit `c()` aufgerufen. In der Klammer werden alle Werte aufgeführt, die wir in einem Objekt zu einem Vektor verbinden wollen. Das, was in einer Funktion in Klammern steht, wird auch **Argument** genannt. Wir trennen die Werte/Argumente mit einem Komma. 
+A função que queremos usar agora é chamada com `c()`. Dentro dos parênteses, listamos todos os valores que queremos combinar em um vetor em um objeto. O que está dentro dos parênteses de uma função também é chamado de **argumento**. Separamos os valores/argumentos com uma vírgula.
 
-Machen wir ein Beispiel, in dem wir mehrere numerische Werte verbinden:
+Vamos fazer um exemplo em que combinamos vários valores numéricos:
 
 ```{r vector1, eval=TRUE}
 math <- c(
@@ -70,13 +70,13 @@ math <- c(
 math
 ```
 
-In der Ausgabe wird nicht mehr nur ein Wert ausgegeben, sondern eben alle in dem Vektor gespeicherten Werte. Ein Vektor kann beliebig lang sein. 
+Na saída, não é mais exibido apenas um valor, mas sim todos os valores armazenados no vetor. Um vetor pode ter qualquer comprimento.
 
-Im **Environment** sehen wir jetzt, dass neben dem Wert auch der Typ des Vektors angegeben ist (hier `num`). Nach dem Typ wird die Länge des Vektors angegeben: `[1:5]`. Wir starten als bei der Zählung des Vektors bei `1` und es endet bei `5`. **Wichtig:** In vielen anderen Sprachen beginnt die Zählung bei `0`. 
+No **Ambiente**, agora vemos que, além do valor, o tipo do vetor é indicado (aqui `num`). Após o tipo, é indicado o comprimento do vetor: `[1:5]`. Começamos a contar os elementos do vetor a partir de `1` e terminamos em `5`. **Importante:** Em muitas outras linguagens, a contagem começa em `0`.
 
-![Vektor im Environment](../img/vektor1.png)
+![Vetor no Ambiente](../img/vektor1.png)
 
-Auch mit den anderen Wertetypen können wir Vektoren beliebiger Länge schaffen:
+Também podemos criar vetores de comprimento variável com os outros tipos de valores:
 ```{r vector2, eval=TRUE}
 logi <- c(
   TRUE, 
@@ -104,11 +104,11 @@ char <- c(
 )
 ```
 
-Im Environment finden wir dann alle diese Vektoren wieder und den jeweiligen Typ:
+No Ambiente, encontramos todos esses vetores novamente, juntamente com o tipo correspondente:
 
-![Vektoren im Environment](../img/vektor2.png)
+![Vetores no Ambiente](../img/vektor2.png)
 
-Was passiert wenn wir mehrere Wertetypen in einem Vektor vermischen wollen? Führe den Code aus und schau dir im Environment an, welcher Typ zugeordnet wird.
+O que acontece se quisermos misturar vários tipos de valores em um vetor? Execute o código e veja no Ambiente qual tipo é atribuído.
 
 ```{r vektor3, eval=TRUE}
 mix <- c(
@@ -120,20 +120,20 @@ mix <- c(
 ```
 
 
-## Eine zweite Funktion
-Nun lernen wir eine weitere Funktion bzw. vier weitere Funktionen kennen, mit denen wir den Typ eines Objekts testen können. Diese Funktionen lauten:
+## Uma segunda função
+Agora vamos aprender mais uma função, ou melhor, quatro funções adicionais, com as quais podemos testar o tipo de um objeto. Essas funções são:
 
 1. `is.numeric()`, 
 
 1. `is.integer()`,
 
-1. `is.character()` und 
+1. `is.character()` e 
 
 1. `is.logical()`
 
-In der Klammer geben wir ein zu testendes Objekt ein, das wir im **Environment** gespeichert haben. Es gibt also nur ein einziges Argument in dieser Funktion. In der Ausgabe erhalten wir einen logischen Wert: `TRUE` oder `FALSE`. Je nachdem, ob es zutrifft oder nicht. 
+Dentro dos parênteses, inserimos o objeto a ser testado, que foi armazenado no **Environment**. Portanto, há apenas um único argumento nesta função. A saída será um valor lógico: `TRUE` ou `FALSE`, dependendo se for verdadeiro ou não.
 
-Versuche es mit den gespeicherten Objekten von oben. Wann trifft die Eigenschaft zu? Kopiere den Code einfach in dein Skript und führe die Funktionen/Befehle dann aus!
+Experimente com os objetos armazenados acima. Quando a propriedade é verdadeira? Basta copiar o código para o seu script e executar as funções/comandos!
 ```{r eval=FALSE}
 is.numeric(numbers)
 
@@ -144,15 +144,15 @@ is.logical(logi)
 is.character(logi)
 ```
 
-## Einzelne Elemente innerhalb eines Vektors
-Manchmal möchten wir wissen, was der x-te Wert eines Vektors ist. Dies können wir mit Bedingungen auf einem Objekt lösen. Bedingungen auf einem Objekt werden in eckigen Klammern angegeben `[]`. Bei Vektoren haben wir nur eine Dimension, das heißt wir können hier nur ein Argument angeben. 
+## Elementos individuais dentro de um vetor
+Às vezes, queremos saber qual é o valor da x-ésima posição de um vetor. Isso pode ser resolvido com condições em um objeto. As condições em um objeto são indicadas entre colchetes `[]`. Para vetores, temos apenas uma dimensão, o que significa que só podemos fornecer um argumento aqui.
 
-Wir wollen zum Beispiel wissen, welche Stadt Person $3$ in der Variable `char` angegeben hat. Wir nutzen das Objekt und geben (ohne Leerzeichen) in eckigen Klammern die gewünschte Position aus (hier dann $3$):
+Por exemplo, queremos saber qual cidade a Pessoa $3$ indicou na variável `char`. Usamos o objeto e especificamos (sem espaços) entre colchetes a posição desejada (neste caso, $3$):
 ```{r vektorposition, eval=TRUE}
 char[3]
 ```
-Person $3$ hat also die Stadt Berlin angegeben.
+Portanto, a Pessoa $3$ indicou a cidade de Berlim.
 
-Diese kleine Anwendung wird später beim Rekodieren und Bearbeiten von Variablen wichtig, daher schau es dir ruhig ein zweites Mal an oder probiere mit den anderen Objekten und anderen Stellen aus. 
+Essa pequena aplicação será importante mais tarde ao recodificar e editar variáveis, então dê uma olhada novamente ou experimente com outros objetos e posições.
 
-Was gibt es denn neben Vektoren noch als Objekttyp in R?
+Além de vetores, que outros tipos de objetos existem em R?

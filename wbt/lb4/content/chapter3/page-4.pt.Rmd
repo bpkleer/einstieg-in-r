@@ -1,8 +1,8 @@
 ---
-title: "Annahme 3: Homoskedastizität"  # Titel der Seite
-weight: 304  # Individuelles Gewicht 
-menuTitle: "Homoskedastizität" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "homoskedastizitaet"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assunção 3: Homoscedasticidade"  # Título da página
+weight: 304  # Peso individual
+menuTitle: "Homoscedasticidade" # Se o título for longo, use um título curto aqui
+tags: ["diagnóstico de regressão", "homoscedasticidade"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -37,9 +37,9 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Die dritte Annahme ist **Homoskedastizität**. **Homoskedastizität** bedeutete, dass die Varianz der Resdiuen annähernd gleich ist und nicht variiert. 
+A terceira suposição é a **Homoscedasticidade**. **Homoscedasticidade** significa que a variância dos resíduos é aproximadamente a mesma e não varia.
 
-Um zu diagnostizieren, ob die Varianzen der Residuen gleiche Varianzen aufweisen, ändern wir das zweite Argument in der Funktion `plot()` auf den Wert `3`:
+Para diagnosticar se as variâncias dos resíduos apresentam variâncias iguais, alteramos o segundo argumento na função `plot()` para o valor `3`:
 ```{r assumption3, eval = TRUE}
 plot(
   olsModel2, 
@@ -47,9 +47,9 @@ plot(
 )
 ```
 
-$\Rightarrow$ die Punkte sollten gleichmäßig um die horzontale Linie gelegen sein. Mit pseudo-metrischen Daten ist das ganze nur schwer zu interpretieren.
+$\Rightarrow$ os pontos devem estar uniformemente distribuídos em torno da linha horizontal. Com dados pseudo-métricos, isso é difícil de interpretar.
 
-Mit der **library** `ggplot` ist die Darstellung besser, da wir die Datenpunkt jittern lassen können. Wie du `ggplot` genau anwendest, lernst du im Lernblock 5!
+Com a **biblioteca** `ggplot`, a representação é melhor, pois podemos jitterizar os pontos de dados. Você aprenderá como aplicar o `ggplot` exatamente no Bloco de Aprendizagem 5!
 
 ```{r assumption3b, eval = TRUE}
 ggplot(
@@ -73,23 +73,23 @@ ggplot(
   ggtitle("Scale-Location")
 ```
 
-$\Rightarrow$ Punkte sollten gleichmäßig um die horizontale Linie streuen.
+$\Rightarrow$ Os pontos devem estar uniformemente distribuídos em torno da linha horizontal.
 
-Wir können auch einen statistischen Test durchführen. Dies ist hilfreich, wenn die grafische Analyse schwerfällt. Dieser Test heißt **Breusch-Pagan-Test**. 
+Também podemos realizar um teste estatístico. Isso é útil quando a análise gráfica é difícil. Este teste é chamado de **Teste de Breusch-Pagan**.
 
-- $H_0:$ Es liegen homoskedastische Residuen vor.
+- $H_0:$ Resíduos homocedásticos estão presentes.
 
-Dazu nutzen wir die Funktion `bptest()` aus der **library** `lmtest`:
+Para isso, utilizamos a função `bptest()` da **biblioteca** `lmtest`:
 ```{r bp-test, eval = TRUE}
 library("lmtest")
 
 bptest(olsModel2)
 ```
 
-Der p-Wert zeigt uns an, dass die Nullhypothese nicht abgelehnt werden kann. Wir können daher homskedastische Residuen annehmen und die Annahme als erfüllt ansehen!
+O valor p nos indica que a hipótese nula não pode ser rejeitada. Portanto, podemos assumir que os resíduos são homocedásticos e considerar a suposição como cumprida!
 
-## Hilfe bei heteroskedastischen Daten
-Wenn heteroskedastische Daten vorliegen, können wir eine sogenannte *robuste* Schätzungen durchführen. Dies inkludiert mathematische Verfahren, die nicht in dem Maße durch heteroskedastische Daten beeinflusst werden. Die Interpretation der Kennwerte bleibt genau gleich. Dazu verwendest du die **library** `robustbase`:
+## Ajuda com dados heterocedásticos
+Quando os dados são heterocedásticos, podemos realizar estimativas *robustas*. Isso inclui procedimentos matemáticos que não são tão afetados por dados heterocedásticos. A interpretação dos valores permanece a mesma. Para isso, você deve usar a **biblioteca** `robustbase`:
 ```{r robustlm, eval=FALSE}
 install.packages("robustbase")
 library("robustbase")
@@ -103,4 +103,4 @@ olsModel2rob <- lmrob(
 summary(olsModel2rob)
 ```
 
-Das Ergebnis wird ergänzt um sogenannte *robustness weights*, die aber erstmal für dich nicht interessant sind. Der obere Teil wird wie zuvor interpretiert!
+O resultado será complementado com *robustness weights*, mas isso não é relevante para você no momento. A parte superior é interpretada da mesma forma que antes!

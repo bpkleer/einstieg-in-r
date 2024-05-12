@@ -1,5 +1,5 @@
 ---
-title: "Ridgeline Plot"  # Titel der Seite
+title: "Gráfico de Ridgeline"  # Titel der Seite
 weight: 123  # Individuelles Gewicht 
 menuTitle: "Ridgeline" # Falls Titel zulang ist, hier Kurztitel
 tags: ["ridgline", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
@@ -43,14 +43,14 @@ cbp1 <- c(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Eine Alternative zu Histogrammen sind **Ridgeline Plots**, die ebenfalls die Dichte-Verteilung anzeigen. Dazu nutzen wir eine Funktion aus der **library** `ggridges`. **Ridgeline Plots** stellen immer aufgeteilte Variablen dar, du benötigst also die Angabe einer y-Variable in der `ggplot()`-Funktion. Du erstellst gleich ein **Ridgeline Plot** des Alters getrennt nach Geschlechtskategorien.
+Uma alternativa aos histogramas são os **Gráficos de Ridgeline**, que também mostram a distribuição de densidade. Para isso, usamos uma função da **biblioteca** `ggridges`. Os **Gráficos de Ridgeline** sempre representam variáveis divididas, então você precisa especificar uma variável y na função `ggplot()`. Vamos criar um **Gráfico de Ridgeline** da idade separado por categorias de gênero.
 
 ```{r rlplot, eval=FALSE}
 install.packages("ggridges")
 library("ggridges")
 ```
 
-Um ein **Ridgeline Plot** zu erstellen, nutzen wir die Funktion `geom_density_ridges()`: Wir stellen innerhalb der `ggplot()`-Funktion noch Geschlecht als y-Variable fest und sagen, dass die farbliche Darstellung nach der Variable `gndr` unterschiedlich sein soll (Argument `fill = gndr`):
+Para criar um **Gráfico de Ridgeline**, usamos a função `geom_density_ridges()`: Dentro da função `ggplot()`, especificamos o gênero como variável y e dizemos que a representação de cores deve ser diferente com base na variável `gndr` (argumento `fill = gndr`):
 ```{r rlplot1, eval=TRUE}
 ridgeline <- ggplot(
   pss, 
@@ -70,7 +70,7 @@ ridgeline <- ggplot(
 ridgeline
 ```
 
-Auch dieses kannst du leicht wieder anpassen.
+Você também pode facilmente ajustar isso novamente.
 ```{r rlplot3, eval=TRUE}
 ridgeline + 
   labs(

@@ -1,8 +1,8 @@
 ---
-title: "Automatisierte Kontrolle"  # Titel der Seite
-weight: 305  # Individuelles Gewicht 
-menuTitle: "Kontrolle Lab" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Controle Automatizada"  # Título da página
+weight: 305  # Peso individual
+menuTitle: "Lab de Controle" # Se o título for muito longo, use um título curto aqui
+tags: ["ci", "lab de controle", "gitlab"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,43 +19,43 @@ tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf d
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Hier zeigen wir dir nun, wie du euer Skript für die Gruppenabgabe automatisiert prüfen kannst. Ihr könnt den Test beliebig oft durchführen, es beansprucht aber etwas Zeit, da dies über einen privaten Server und nicht über die Universität läuft. Deshalb arbeiten wir in den Lab-Aufgaben auch nur mit dem fiktiven Datensatz des PSS.
+Aqui vamos te mostrar como você pode automatizar a verificação do seu script para a entrega em grupo. Vocês podem executar o teste quantas vezes quiserem, mas isso leva um pouco de tempo, pois é feito em um servidor privado e não na universidade. Por isso, nas tarefas de laboratório, trabalhamos apenas com o conjunto de dados fictício do PSS.
 
-Du hast ja gerade schon gelernt, wie du Änderungen an die globale Version sendest. Habt ihr in der Gruppe eine fertige Version, kann sich eine Person der Gruppe in [gitlab](https://gitlab.ub.uni-giessen.de) einloggen und dort dann die automatische Kontrolle starten. 
+Você acabou de aprender como enviar alterações para a versão global. Quando a equipe tiver uma versão final, um membro do grupo pode fazer login no [gitlab](https://gitlab.ub.uni-giessen.de) e iniciar a verificação automática lá.
 
-Dazu müsst ihr nur drei kleine Schritte machen:
+Para isso, você só precisa seguir três pequenos passos:
 
-1. Loggt euch in [gitlab](https://gitlab.ub.uni-giessen.de)
+1. Faça login no [gitlab](https://gitlab.ub.uni-giessen.de)
 
-2. Gehe zu deiner Gruppe (im Beispiel hier Katnyss)
+2. Vá para o seu grupo (no exemplo aqui, Katnyss)
 
-![Gehe zur Gruppe](../img/pipeline1.png)
+![Ir para o grupo](../img/pipeline1.png)
 
-3. Gehe in das Repository der jeweiligen Lab Task
+3. Acesse o repositório da respectiva tarefa de laboratório
 
-![Gehe zur entsprechenden labtask](../img/pipeline2.png)
+![Ir para a tarefa de laboratório correspondente](../img/pipeline2.png)
 
-4. Gehe dann links im Menü auf **CI/CD** -> **Pipelines**
+4. Em seguida, no menu à esquerda, vá para **CI/CD** -> **Pipelines** {/examples}
 
-![Gehe zu Pipelines](../img/pipeline3.png)
-5. Klicke dann rechts auf **Run Pipeline**.
+![Ir para Pipelines](../img/pipeline3.png)
+5. Em seguida, clique à direita em **Executar Pipeline**.
 
-![Starte Pipeline](../img/pipeline4.png)
+![Iniciar Pipeline](../img/pipeline4.png)
 
-6. Auf der neuen Seite dann einfach nochmal **Run Pipeline** klicken und keine Einstellung verändern.
+6. Na nova página, clique novamente em **Executar Pipeline** e não altere nenhuma configuração.
 
-![Starte Pipeline](../img/pipeline5.png)
+![Iniciar Pipeline](../img/pipeline5.png)
 
-7. Die Pipeline ist gestartet und du erhältst folgendes Bild:
+7. A Pipeline foi iniciada e você verá a seguinte imagem:
 
-![gestartete Pipeline](../img/pipeline6.png)
+![Pipeline iniciada](../img/pipeline6.png)
 
-8. Wenn die Pipeline erfolgreich ist, wird **passed** angezeigt, wenn sie nicht erfolgreich war (Lösungen nicht korrekt) erscheint **failed**. Hier im Beispiel erscheint natürlich **failed**, denn das Skript ist noch leer und kann somit nicht korrekt sein. 
+8. Se a Pipeline for bem-sucedida, será exibido **passed**; se não for bem-sucedida (soluções incorretas), será exibido **failed**. Neste exemplo, é claro que será exibido **failed**, pois o script ainda está vazio e, portanto, não pode estar correto.
 
-![Failed Pipeline](../img/pipeline7.png)
+![Pipeline falhou](../img/pipeline7.png)
 
-Wenn eine Pipeline **failed**, musst du weiter am Skript arbeiten und dir nochmal überlegen, was eventuell verändert werden muss. Kommst du oder ihr in der Gruppe nicht weiter, geht in die Sprechstunde der Tutor:innen!
+Se uma Pipeline **falhar**, você precisará continuar trabalhando no script e reconsiderar o que pode precisar ser alterado. Se você ou seu grupo não conseguirem avançar, vá até o horário de atendimento dos tutores!
 
-So einfach kannst du deine Abgabe automatisiert kontrollieren. Dies kannst du zu jeder beliebigen Zeit machen! Bitte beachtet, dass der hinterlegte Server nicht unendlich viel Leistung hat, es daher bei den späteren Aufgaben durchaus 10 bis 20 Minuten dauern kann, bis ihr ein Ergebnis in der Pipeline habt. 
+É assim que você pode verificar automaticamente sua entrega. Você pode fazer isso a qualquer momento! Por favor, note que o servidor utilizado não tem recursos infinitos, então nas tarefas posteriores pode levar de 10 a 20 minutos até que você tenha um resultado na Pipeline.
 
-Jetzt musst du nur noch lernen, wie du die Kursmaterialien updatest!
+Agora você só precisa aprender como atualizar os materiais do curso!

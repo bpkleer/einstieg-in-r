@@ -6,11 +6,11 @@ pre: "3.2 "
 weight: 320
 ---
 
-### Kapitel 3.2
+### Capítulo 3.2
 
 # Tidyverse - tidyr
 
-In diesem Kapitel wird die Bearbeitung von Datensätzen mit dem tidyr-Package vorgestellt. Dieses Kapitel ist nur für dich **relevant**, wenn du daran interessiert bist, einen vertieften Umgang mit Datensätzen kennenzulernen. Wenn dich das nicht interessiert, kannst du dieses Kapitel überspringen.
+Neste capítulo, a edição de conjuntos de dados com o pacote tidyr é apresentada. Este capítulo é **relevante** apenas para você se estiver interessado em aprofundar seu conhecimento na manipulação de conjuntos de dados. Se isso não te interessa, pode pular este capítulo.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

@@ -1,8 +1,8 @@
 ---
-title: "Tabellen"  # Titel der Seite
-weight: 101  # Individuelles Gewicht 
-menuTitle: "Tabellen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tabellen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Tabelas"  # Título da página
+weight: 101  # Peso individual
+menuTitle: "Tabelas" # Título curto, se o título for longo
+tags: ["tabelas"]  # Tags relacionadas; abreviação do conteúdo da página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -35,15 +35,15 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Bevor du dich an die Berechnung von Zusammenhangsmaßen machst, erstellst du nun zuerst Tabellen. Dies ist manchmal für die grafische Darstellung relevant. Oftmals werden zur Darstellung Tabellen gewählt, die Häufigkeiten von Variablen ausgeben. Für eine einfache (Häufigkeits-)Tabelle rufen wir die Funktion `table()` auf:
+Antes de calcular medidas de associação, você primeiro irá criar tabelas. Isso é às vezes relevante para a representação gráfica. Muitas vezes, tabelas que exibem frequências de variáveis são escolhidas para representação. Para uma tabela simples (de frequência), chamamos a função `table()`:
 ```{r table1, eval=TRUE}
 table(pss$stfdem)
 ```
-Die erste Zeile beinhaltet die Code-Werte, die zweite die Häufigkeiten. Aufgelistet sind hier die gültigen Fälle, also die jeder Ausprägung, die nicht *NA* gesetzt ist. 
+A primeira linha contém os valores de código, a segunda as frequências. Listados aqui estão os casos válidos, ou seja, de cada valor que não está definido como *NA*.
 
-Wie viele gültige Fälle haben wir? Wie viele NA's?
+Quantos casos válidos temos? Quantos NA's?
 
-Um dies zu testen, nutzen wir die Funktionen `sum()` und `length()`:
+Para testar isso, usamos as funções `sum()` e `length()`:
 ```{r table2, eval=TRUE}
 # gültige Fälle aus der Tabelle
 sum(
@@ -63,7 +63,7 @@ sum(
 length(pss$stfdem)
 ```
 
-Alternativ kann man die Funktion `table()` auch um das Argument `useNA = "ifany"` erweitern:
+Alternativamente, a função `table()` pode ser expandida com o argumento `useNA = "ifany"`:
 ```{r table3, eval=TRUE}
 table(
   pss$stfdem,
@@ -71,8 +71,8 @@ table(
 )
 ```
 
-## Tabelle mit **library** `summarytools`
-Um eine strukturierte Ausgabe zu erhalten, kann die **library** `summarytools` genutzt werden. Man erhält in etwa eine Ansicht wie in SPSS. Die **library** muss zuerst installiert bzw. geladen werden:
+## Tabela com a **biblioteca** `summarytools`
+Para obter uma saída estruturada, a **biblioteca** `summarytools` pode ser utilizada. Você obterá uma visualização semelhante ao SPSS. A **biblioteca** deve ser instalada e carregada primeiro:
 ```{r eval=FALSE}
 install.packages("summarytools")
 library("summarytools")
@@ -83,6 +83,6 @@ Dann wird die Funktion `freq()` genutzt:
 freq(pss$stfdem)
 ```
 
-In der ersten Spalte sind die Code-Werte eingetragen. In der zweiten sind die Häufigkeiten angegeben, in der dritten die Prozente (von gültigen Fällen) und in der vierten Spalte die kumulierten Prozente (von gültigen Fällen). Spalte $5$ und $6$ geben die Prozente bzw. kumulierten Prozente von allen Fällen (auch `NA's`) wieder.
+Na primeira coluna estão os valores de código. Na segunda estão as frequências, na terceira os percentuais (dos casos válidos) e na quarta coluna os percentuais cumulativos (dos casos válidos). As colunas $5$ e $6$ mostram os percentuais e os percentuais cumulativos de todos os casos (incluindo `NA's`).
 
-Im nächsten Schritt lernst du Kreuztabellen kennen!
+No próximo passo, você aprenderá sobre tabelas cruzadas!

@@ -1,8 +1,8 @@
 ---
-title: "Datensatz im Data frame"  # Titel der Seite
-weight: 112  # Individuelles Gewicht 
-menuTitle: "Data frame" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Dataset in Data Frame"  # Page Title
+weight: 112  # Custom Weight
+menuTitle: "Data Frame" # Short Title if the Title is too long
+tags: ["dataset", "data frame"]  # Tags; Brief description of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -32,7 +32,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Jetzt lernst du den Aufbau einer Datentabelle kennen. Im Screenshot siehst du den Datensatz des **PSS** eingeschränkt auf die vier Beispielfragen (Variablen) von der vorherigen Seite. 
+Now you will learn about the structure of a data table. In the screenshot, you can see the dataset of **PSS** limited to the four sample questions (variables) from the previous page.
 
 ```{r df-example, eval=TRUE, echo=FALSE}
 paged_table(
@@ -41,27 +41,26 @@ paged_table(
 )
 ```
 
-{{% expand \"Was kannst du in der Tabelle erkennen? Was ist in den Spalten und was ist in den Zeilen?\" %}}
-Du hast es richtig erkannt! In einer Datentabelle sind in der Spalte die Variablen abgebildet und in den Zeilen die Fälle. Die Besonderheit ist die ersten Zeile, da diese keine Antworten enthält, sondern die Namen der Variablen!
+{{% expand \"What can you observe in the table? What is in the columns and what is in the rows?\" %}}
+You got it right! In a data table, the variables are represented in the columns and the cases in the rows. The special thing is the first row, as it does not contain answers but the names of the variables!
 {{% /expand %}}
 
-Wenn du jetzt einen genaueren Blick auf die Variable `stfdem` wirfst, siehst du, dass dort nur Zahlenwerte eingetragen sind. Auch für den Codewert `0` und `10` ist nicht die Wertebeschriftung aus der PDF genutzt, sondern der Codewert! **Das ist eine wichtige Erkenntnis.** Denn nur wenn auf allen Ausprägungen Zahlenwerte genutzt werden, kann die Variable als metrisches Skalenniveau genutzt werden und in einem *numeric*- oder *integer*-Vektor gespeichert werden. Denn: Alle statistischen Berechnungen bedingen *numeric*- oder *integer*-Vektoren, denn mit Buchstaben lässt sich keine Standardabweichung berechnen. 
+If you take a closer look at the variable `stfdem` now, you will see that only numerical values are entered there. Even for the code values `0` and `10`, the value labels from the PDF are not used, but the code value! **This is an important insight.** Because only when numerical values are used for all variations, the variable can be used as a metric scale level and stored in a *numeric* or *integer* vector. Because: All statistical calculations require *numeric* or *integer* vectors, as standard deviation cannot be calculated with letters.
 
+{{% expand "In which income target is the person with ID number 10020 located?" %}}
+In the 7th decile, correct! So, the cells of the data table contain the corresponding values of a surveyed person for the respective variable.
 
-{{% expand \"In welchem Einkommensziel befindet sich die Person mit der ID-Nummer 10020?\" %}}
-Im 7. Dezil, richtig! In den Zellen der Datentabelle befinden sich also die entsprechenden Werte einer befragten Person zu der entsprechenden Variable. 
-
-Prima, du kannst jetzt also eine Datentabelle bzw. ein **data frame**-Gerüst verstehen!
+Great, you can now understand a data table or a **data frame** structure!
 {{% /expand %}}
 
-Du hast jetzt verstanden, wie eine Datentabelle aufgebaut ist, was sich in den Zeilen, Spalten und Zellen befindet. In R werden diese Datentabellen als Objekttyp **data frame** abgelegt. 
+You have now understood how a data table is structured, what is contained in the rows, columns, and cells. In R, these data tables are stored as objects of type **data frame**.
 
-![Beispiel data frame im Environment](../img/df1.png)
+![Example data frame in the Environment](../img/df1.png)
 
-Im **Environment** siehst du, dass dies unter die Gruppe **data** fällt. Du siehst auch, dass das Objekt *ausklappbar* ist. Wenn du den Pfeil-Button drückst, erscheinen alle Variablen (jeweils mit einem `$` davor) auf, die in diesem neuem Objekt zusammengefasst sind. Es ist also einfach zu verstehen, dass ein **data frame** lediglich die Zusammenfassung alle Variablen (bzw. Vektoren in R) einer Befragung ist. 
+In the **Environment**, you can see that this falls under the group **data**. You also see that the object is *expandable*. If you click the arrow button, all variables (each with a `$` in front) that are summarized in this new object will appear. It is easy to understand that a **data frame** is simply the summary of all variables (or vectors in R) of a survey.
 
-Mit einem Doppelklick kannst du die Datenansicht öffnen. Dies ist einfach die Datentabelle, wie oben besprochen. In den Spalten befinden sich die Variablen und in den Zeilen die Fälle (außer erste Zeile!).
+You can open the data view with a double-click. This is simply the data table as discussed above. The variables are in the columns and the cases are in the rows (except the first row!).
 
-![Beispiel Datenansicht R](../img/df3.png)
+![Example Data View in R](../img/df3.png)
 
-Aber wie handhabst du nun einen Datensatz in R?
+But how do you handle a dataset in R?

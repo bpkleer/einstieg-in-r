@@ -1,8 +1,8 @@
 ---
-title: "Bivariate lineare Regression"  # Titel der Seite
-weight: 102  # Individuelles Gewicht 
-menuTitle: "Bivariates Beispiel" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "bivariat", "regressionskoeffizienten", "p-wert"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Bivariate Linear Regression"  # Page title
+weight: 102  # Custom weight
+menuTitle: "Bivariate Example" # Short title if the title is too long
+tags: ["regression", "bivariate", "regression coefficients", "p-value"]  # Tags describing the content of the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,9 +29,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir nutzen jetzt wieder den Datensatz **PSS**, den wir schon während der gesamten Übung genutzt haben. Wir möchten nun testen, inwieweit die Zufriedenheit mit der ökonomischen Leistung die Zufriedenheit mit der Demokratie erklärt. Die zwei Variablen, die du daher benötigst für diese lineare Regression sind `stfeco` und `stfdem`. Die theoretische Prämisse dahinter ist, dass Personen, die ökonomisch zufrieden sind, auch zufriedener mit dem politischen System in Gänze sind. 
+We are now using the dataset **PSS**, which we have been using throughout the exercise. We want to test how much satisfaction with economic performance explains satisfaction with democracy. The two variables you need for this linear regression are `stfeco` and `stfdem`. The theoretical premise behind this is that individuals who are economically satisfied are also more satisfied with the political system as a whole.
 
-{{% expand \"Wie sieht die Gleichung für diesen Fall aus?\" %}}
+{{% expand \"What is the equation for this case?\" %}}
 
 $$Y = \hat{\beta_0} + \hat{\beta_1}*X_1 + \hat{\varepsilon}$$
 
@@ -39,21 +39,21 @@ $$stfdem = \hat{\beta_0} + \hat{\beta_1}*stfeco + \hat{\varepsilon}$$
 {{% /expand %}}
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-Könnten wir auch ein Modell berechnen, dass die Zufriedenheit mit der ökonomischen Leistung durch die Zufriedenheit mit der Demokratie erklärt!
+{{% tab name=\"Question\" %}}
+Could we also calculate a model that explains satisfaction with economic performance through satisfaction with democracy?
 
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Ja, das geht! Allerdings würdest du hier dann die theoretischen Annahmen ändern. Du siehst also, dass statistische Modelle nicht autark sind, sondern immer einen theoretischen Bezugspunkt haben!
+{{% tab name="Resolution" %}}
+Yes, that's possible! However, you would then change the theoretical assumptions here. So, you see that statistical models are not autonomous but always have a theoretical reference point!
 {{% /tab %}}
 {{% /tabs %}}
 
-## Berechnung des Beispiels
-In R nutzen wir die Funktion `lm()` um ein **lineares Regressionsmodell** zu berechnen. Es ist wichtig die Formel zu kennen, da wir das Modell als Formel in der Funktion angeben. 
+## Calculation of the Example
+In R, we use the function `lm()` to calculate a **linear regression model**. It is important to know the formula because we specify the model as a formula in the function.
 
-Wir speichern das Ergebnis der Modellberechnung in einem Objekt! In der Funktion `lm()` gibst du im ersten Argument die Formel der linearen Regression an und im zweiten Argument gibst du das Datenobjekt an, in diesem Fall `pss`. Der Datensatz ist im RStudio Projekt im Ordner `data` vorhanden. Falls du mit einer lokalen Version arbeitest, kannst du den Datensatz hier herunterladen:
+We store the result of the model calculation in an object! In the `lm()` function, you specify the formula of the linear regression in the first argument and the data object in the second argument, in this case, `pss`. The dataset is available in the `data` folder in the RStudio project. If you are working with a local version, you can download the dataset here:
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style="grey" title="Dataset" /%}}
 
 
 ```{r linreg1, eval=TRUE}
@@ -63,51 +63,51 @@ olsModel <- lm(
 )  
 ```
 
-Wir erhalten im Modell verschiedene Werte, die wir interpretieren müssen: *Coefficients*, *t-value(or pr(>|t|))* und *(adjusted) R-Squared*.
+In the model, we obtain various values that we need to interpret: *Coefficients*, *t-value(or pr(>|t|))* and *(adjusted) R-Squared*.
 
-Folgende Fragen sollten am Ende zu jedem Modell beantwortet werden:
+The following questions should be answered at the end of each model:
 
-- Wie viel kann das Modell erklären?
+- How much can the model explain?
 
-- Welche Effekte haben die einzelnen Variablen?
+- What effects do the individual variables have?
 
-Die einzelnen Werte werden nun Schritt für Schritt interpretiert. Die Ergebnisse werden mit der Funktion `summary()` aufgerufen:
+The individual values are now interpreted step by step. The results are called using the `summary()` function:
 ```{r linreg2, eval=TRUE, echo=TRUE}
 summary(olsModel) 
 ```
 
-## Interpretation der Koeffizienten
+## Interpretation of the Coefficients
 
 ```{r linreg3, eval=TRUE}
 coef(olsModel)
 ```
-Wie interpretieren wir den Wert für `stfeco`?
+How do we interpret the value for `stfeco`?
 
-$\Rightarrow$ Mit jedem Anstieg um eine Einheit in `stfeco`, steigt auch `stfdem` um $0.8727124$ Punkte.
+$\Rightarrow$ With each increase of one unit in `stfeco`, `stfdem` also increases by $0.8727124$ points.
 
-$\Rightarrow$ Eine Person, die den Wert $0$ in `stfeco` hat, erreicht den Wert $0.4808475$ in `stfdem` (*Intercept*).
+$\Rightarrow$ A person with a value of $0$ in `stfeco` achieves a value of $0.4808475` in `stfdem` (*Intercept*).
 
-Mit der Funktion `confint()` erhalten wir die geschätzten Intervalle (in `summary()` erhalten wir nur den *t-value* und *p-value*):
+Using the `confint()` function, we obtain the estimated intervals (in `summary()` we only get the *t-value* and *p-value*):
 ```{r linreg4, eval=TRUE}
 confint(olsModel)
 ```
-In den Sozialwissenschaften ist die Interpretation des *Intercepts* in den meisten Fällen weniger relevant. Deshalb schauen wir primär auf den Einfluss von `grade`. Das Konfidenzintervall geht von $[0.8461641, 0.8992608]$ und inkludiert nicht den Wert $0$. Dieser Effekt ist daher signifikant. Wir verwerfen die Nullhypothese, dass dieser Effekt gleich $0$ ist ($\beta_1 =0$).
+In the social sciences, the interpretation of the *Intercept* is usually less relevant in most cases. Therefore, we primarily look at the influence of `grade`. The confidence interval ranges from $[0.8461641, 0.8992608]$ and does not include the value $0`. This effect is therefore significant. We reject the null hypothesis that this effect is equal to $0` ($\beta_1 =0`).
 
-### Konfidenzintervallen & p-Wert
-Was sagen uns das Konfidenzintervall und der p-Wert?
+### Confidence Intervals & p-Value
+What do the confidence interval and the p-value tell us?
 
-- Wir haben den *mean effect* von `stfeco` auf `stfdem` berechnet und das Konfidenzintervall dieses Effekts
+- We have calculated the *mean effect* of `stfeco` on `stfdem` and the confidence interval of this effect.
 
-- Mit Signifikanztests (in den meisten Fällen t-Tests) schließen wir aus, dass der Populationswert ($\mu$) dieser Berechnung gleich $0$ ist (signifikanter p-Wert): Es ist dann sehr unwahrscheinlich ($95 %$), dass $\mu = 0$.
+- Through significance tests (mostly t-tests), we infer that the population value ($\mu$) of this calculation is not equal to $0$ (significant p-value): It is then very unlikely ($95 %$) that $\mu = 0$.
 
-- Der p-Wert erlaubt uns nicht zu sagen, dass der wahre Wert dem berechneten Wert entspricht (z.B. mit $95 %$ Sicherheit ist der wahre Mittelwert innerhalb des berechneten Konfidenzintervalls). Denn wir wissen nicht, ob unsere Stichprobe eine der Stichproben ist, die den wahren Wert ($\mu$) inkludiert ($95 %$ der Stichproben inkludieren den Wert)
+- The p-value does not allow us to say that the true value corresponds to the calculated value (e.g., with $95 %$ certainty, the true mean is within the calculated confidence interval). Because we do not know if our sample is one of the samples that includes the true value ($95 %$ of the samples include the value).
 
-- Nicht-signifikante Werte sagen uns daher, dass wir nicht ausschließen können, dass der wahre Populationswert ($\mu$) gleich $0$ ist; wir können aber nicht sagen, dass der wahre Wert gleich $0$ ist. 
+- Non-significant values, therefore, tell us that we cannot rule out that the true population value ($\mu$) is equal to $0$; however, we cannot say that the true value is equal to $0$.
 
-$\Rightarrow$ Verwirrt? Einfach daran erinnern, dass es hier um Falsifikation und nicht um Verifikation geht (Grundlage der empirischen Sozialforschung!).
+$\Rightarrow$ Confused? Just remember that this is about falsification and not verification (basis of empirical social research!).
 
-### Weitere Ausgabemöglichkeiten
-Wenn wir die Berechnung in einem Objekt gespeichert haben, können wir verschiedene Teile des Modells ansprechen (z.B. Koeffizienten, geschätzte Werte oder Residuen):
+### Additional Output Options
+If we have saved the calculation in an object, we can refer to different parts of the model (e.g., coefficients, estimated values, or residuals):
 ```{r linreg5, eval=TRUE}
 olsModel$coefficients # Koeffizienten
 
@@ -116,7 +116,7 @@ head(olsModel$fitted.values) # geschätzte Werte
 head(olsModel$residuals) # Residuen
 ```
 
-Wir können auch die folgenden Funktionen stattdessen nutzen: `coef()`, `fitted()`, `resid()` or `confint()`.
+We can also use the following functions instead: `coef()`, `fitted()`, `resid()` or `confint()`.
 ```{r linreg6, eval=TRUE}
 coef(olsModel) # Koeffizienten
 
@@ -127,28 +127,27 @@ head(resid(olsModel)) # Residuen
 confint(olsModel) # Konfidenzintervalle
 ```
 
-## Globale Bewertung des Modells
-Zur globalen Bewertung der Modellgüte wird oftmals das Bestimmtheitsmaß $R^2$ angegeben. $R^2$ liefert die Information, wie viel der Varianz der abhängigen Variablen durch das Modell erklärt werden kann. 
+## Global Model Evaluation
+For the global assessment of model quality, the coefficient of determination $R^2$ is often provided. $R^2$ provides information on how much of the variance of the dependent variable can be explained by the model.
 
-Die Gleichung lautet:
+The equation is:
 
-$$R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{erklärte \, Varianz}{gesamte \, Varianz}$$
+$$R^2 = \frac{\sum_{i=1}^n(\hat{y_i}-\bar{y})^2}{\sum_{i=1}^n(y_i-\bar{y})^2} = \frac{explained \, variance}{total \, variance}$$
 
 ![$R^2$](../img/r2.png)
 
-Die Grafik stellt die Formel nochmal dar: die erklärte Varianz ist die Summe der quadrierte Abstände zwischen geschätztem Wert und dem Mittelwert. Die gesamte Varianz ist die Summe der quadrierten Abstände zwischen beobachtetem Wert und dem Mittelwert.
+The graph illustrates the formula again: the explained variance is the sum of squared distances between estimated value and the mean. The total variance is the sum of squared distances between observed value and the mean.
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
+{{% tab name="Question" %}}
 
-Wie beschreiben wir nun das Ergebnis? $R^2$ ist in der vorletzten Zeile angegeben.
+How do we now describe the result? $R^2$ is given in the penultimate line.
 ```{r linreg7, eval=TRUE}
 summary(olsModel)
 ```
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
+{{% tab name="Solution" %}}
 
-Das Modell erklärt $45.85 %$ der Varianz von der Zufriedenheit mit der Demokratie (`stfdem`) ($R^2$). Eine höhere Zufriedenheit mit der ökonomischen Leistung (`stfeco`) ist positiv verbunden mit der Zufriedenheit mit der Demokratie (`stfdem`). Mit jedem Anstieg um eine Einheit in der Zufriedenheit mit der ökonomischen Leistung, steigt der Wert der der Zufriedenheit mit der Demokratie um $0.87271$. Der Effekt von `stfeco` auf `stfdem` ist signifikant ($p<0.001$). 
+The model explains $45.85\%$ of the variance in satisfaction with democracy (`stfdem`) ($R^2$). Higher satisfaction with economic performance (`stfeco`) is positively associated with satisfaction with democracy (`stfdem`). For every one-unit increase in satisfaction with economic performance, the value of satisfaction with democracy increases by $0.87271$. The effect of `stfeco` on `stfdem` is significant ($p<0.001$).
 {{% /tab %}}
 {{% /tabs %}}
-

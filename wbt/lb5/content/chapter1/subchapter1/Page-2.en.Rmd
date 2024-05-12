@@ -1,8 +1,8 @@
 ---
-title: "Coloring"  # Titel der Seite
-weight: 112  # Individuelles Gewicht 
-menuTitle: "Coloring" # Falls Titel zulang ist, hier Kurztitel
-tags: ["coloring", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Coloring"  # Page Title
+weight: 112  # Custom Weight 
+menuTitle: "Coloring" # Short Title if Title is too long
+tags: ["coloring", "bar charts", "ggplot"]  # Insert tags here; Short description of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -34,9 +34,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Bisher ist unser Balkendiagramm recht fad: Die Achsenbeschriftung ist unklar und in grau schaut es trist aus. Dies ändern wir nun. **Wichtig ist**, dass wir, wenn wir die Konvention in `ggplot` einhalten, erklärende Teile wie `data = ...` oder `mapping = ...` weglassen können. Das heißt weniger Schreibarbeit! Farbe fügen wir einfach hinzu, in dem wir innerhalb von `aes()` das Argument `color` hinzufügen und sagen, nach welcher Variable die Farbe sich unterscheiden soll. 
+So far, our bar chart is quite dull: the axis labels are unclear, and in gray, it looks dreary. Let's change that now. **It is important** that if we follow the convention in `ggplot`, we can omit explanatory parts like `data = ...` or `mapping = ...`. This means less writing! We simply add color by including the argument `color` within `aes()` and specifying which variable should determine the color.
 
-Zuerst fügen wir etwas Farbe hinzu:
+First, let's add some color:
 ```{r barplot-clean, eval=TRUE}
 barplot <- ggplot(
   pss, 
@@ -50,7 +50,7 @@ barplot <- ggplot(
 barplot
 ```
 
-Wir sehen, dass das Argument `color` lediglich die Randlinien ändert. Um die Füllung zu ändern, müssen wir das Argument `fill` benutzen:
+We see that the `color` argument only changes the outline. To change the fill, we need to use the `fill` argument:
 ```{r barplot-fill, eval=TRUE}
 barplot <- ggplot(
   pss, 
@@ -64,9 +64,9 @@ barplot <- ggplot(
 barplot
 ```
 
-So jetzt haben wir die Grafik schonmal bunt gemacht. Du kannst aber auch die Farbwerte festlegen, wenn du selbst bestimmen möchtest wie bunt die Grafik wird. Dies kannst du festlegen, in dem du in der Funktion `geom_bar()` das Argument `fill` nutzt. Dort gibst du so viele Farben an, wie du benötigst (nicht mehr und nicht weniger!). Eine Übersicht gängiger Farbcodes findest du hier: 
- 
-{{%attachments style=\"grey\" title=\"Farben in R\" /%}}
+Now we have made the graph colorful. However, you can also set the color values yourself if you want to determine how colorful the graph will be. You can do this by using the `fill` argument in the `geom_bar()` function. There, you specify as many colors as you need (no more and no less!). An overview of common color codes can be found here: 
+
+{{%attachments style=\"grey\" title=\"Colors in R\" /%}}
 
 ```{r barplot-color, eval=TRUE}
 barplot <- ggplot(
@@ -90,11 +90,11 @@ barplot <- ggplot(
 barplot
 ```
 
-{{% expand \"Du möchtest jetzt aber, dass der zweite Balken die blaue Farbe hat. Wie kannst du das ändern?\" %}}
-Richtig, es ist ganz leicht! Du musst einfach nur die Reihenfolge verändern!
+{{% expand \"But now you want the second bar to be blue. How can you change that?\" %}}
+Correct, it's very easy! You just need to change the order!
 {{% /expand %}}
 
-Du kannst Farbcodes auch in einem Objekt (Vektor) speichern und diesen dann in der `ggplot()`-Funktion aufrufen. So bleibt der Plot-Code übersichtlicher. Wichtig ist, dass der Vektor genau dieselbe Länge haben muss wie die Anzahl der Gruppen.
+You can also store color codes in an object (vector) and then call it in the `ggplot()` function. This keeps the plot code more organized. It is important that the vector must have the exact same length as the number of groups.
 ```{r barplot-color-vektor, eval=TRUE}
 educol = c(
   "steelblue", 
@@ -117,7 +117,7 @@ barplot <- ggplot(
 barplot
 ```
 
-Wenn du einen Farbvektor nutzt, kannst du auch Farbvektoren nutzen, die von der Anzahl der genauen Ausprägungen abweichen. Gibt es zu wenige Farben im Farbevktor, wiederholen sich die Farben. Diesen kannst du aber nicht im `fill`-Argument in der Funktion `geom_bar()` nutzen, sondern du nutzt dafür die zusätzliche Funktion `scale_fill_manual()`:
+When using a color vector, you can also use color vectors that differ from the exact number of categories. If there are too few colors in the color vector, the colors will repeat. However, you cannot use this in the `fill` argument in the `geom_bar()` function; instead, you use the additional function `scale_fill_manual()` for that:
 ```{r barplot-colorblind, eval=TRUE}
 # a colourblind-friendly palettes
 cbp1 <- c(
@@ -144,7 +144,7 @@ barplotCb <- ggplot(
 barplotCb
 ```
 
-Wenn man Dokumente nicht digital abgeben kann, nutzt man häufig graue Grafiken, um Kosten zu sparen. Hierzu gibt es die Zusatz-Funktion `scale_fill_grey()`, die den Plot automatisch in Graustufen ausgibt:
+When you cannot submit documents digitally, you often use gray graphics to save costs. For this purpose, there is the additional function `scale_fill_grey()`, which automatically outputs the plot in grayscale:
 ```{r barplot-gray, eval=TRUE}
 barplotGray <- ggplot(
   pss, 
@@ -159,7 +159,7 @@ barplotGray <- ggplot(
 barplotGray
 ```
 
-Ebenso gibt es einige **libraries**, die vorgefertigte Farbpaletten beinhalten. Zum Beispiel: `RColorBrewer` oder [`beyonce`](https://github.com/dill/beyonce). Wir nutzen hier jetzt erstmal `RColorBrewer`. `RColorBrewer` ist normal zu installieren, die **library** `beyonce` wird über ein Entwicklertool installiert. Viele **libraries** sind noch im Entwicklungsstadium und sind noch nicht offiziell verfügbar, können aber über ein Entwicklertool dennoch geladen und auch schon genutzt werden. 
+There are also some **libraries** that contain pre-made color palettes. For example: `RColorBrewer` or [`beyonce`](https://github.com/dill/beyonce). Here, we will first use `RColorBrewer`. `RColorBrewer` is easy to install, while the **library** `beyonce` is installed via a developer tool. Many **libraries** are still in the development stage and are not officially available yet, but they can still be loaded and used through a developer tool.
 
 ```{r barplot-install-palettes}
 install.packages("RColorBrewer")
@@ -174,14 +174,14 @@ install.packages(
 devtools::install_github("dill/beyonce")
 ```
 
-Bei `RColorBrewer` kannst du dir die Farbpaletten anzeigen lassen:
+With `RColorBrewer`, you can display the color palettes:
 ```{r rcolorbrewer, eval=TRUE}
 library("RColorBrewer")
 
 display.brewer.all()
 ```
 
-Um eine dieser Paletten von `RColorBrewer` nutzen zu können, nutzt du die Funktion `scale_fill_brewer()` und legst darin die Farbpalette fest:
+To use one of these palettes from `RColorBrewer`, you use the function `scale_fill_brewer()` and specify the color palette within it:
 ```{r barplot-brewer, eval=TRUE}
 barplotBrewer <- ggplot(
   pss, 
@@ -196,7 +196,7 @@ barplotBrewer <- ggplot(
 barplotBrewer
 ```
 
-Um die `beyonce` Farbpalette zu nutzen, gehst du anders vor: Zuerst lass dir mal alle Farbpaletten ausgeben.
+To use the `beyonce` color palette, you proceed differently: First, let's output all color palettes.
 
 ```{r beyonce, eval=TRUE}
 library("beyonce")
@@ -206,7 +206,7 @@ par(mfrow=c(26,5))
 for(i in 1:130) print(beyonce_palette(i))
 ```
 
-Im Beispiel entscheiden wir uns für Farbpalette 25. Um die jeweilige Farbpalette aufzurufen, nutzt du die Funktion `beyonce_palette()` aus der **library** `beyonce` und als einziges Argument gibst du die Nummer der Farbpalette an. Um diese nun zu nutzen, benutzt du die zusätzliche Funktion `scale_fill_manual()` im `ggplot`.
+In the example, we choose color palette 25. To call the respective color palette, use the `beyonce_palette()` function from the **library** `beyonce`, and as the only argument, provide the number of the color palette. To use it now, use the additional function `scale_fill_manual()` in `ggplot`.
 
 ```{r barplot-beyonce, eval=TRUE}
 barplotBeyonce <- ggplot(
@@ -223,4 +223,6 @@ barplotBeyonce
 
 ```
 
-Auf geht's und du fügst Wertebeschriftungen hinzu!
+Let's go and add value labels! 
+
+{/*examples*/}

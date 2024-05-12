@@ -1,8 +1,8 @@
 ---
-title: "Annotations"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Annotations" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "annotation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Annotations"  # Page Title
+weight: 202  # Custom Weight 
+menuTitle: "Annotations" # Short Title if Title is too long
+tags: ["ggplot", "annotation", "advanced"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,12 +32,12 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Neben den ganzen Spielereien möchte man manchmal auch einzelne Bereiche einer Grafik besonders hervorheben oder aber zum Beispiel Beschriftungen der Fälle hinzufügen (bei kleinem n). 
+In addition to all the fun stuff, sometimes you may want to highlight specific areas of a plot or add labels to cases (with small n), for example.
 
-Hierzu gibt es die Funktionen `geom_text()` und `annotate()`, die mit `ggplot` genutzt werden können. Dazu nehmen wir wieder das Scatterplot vom Beginn, begrenzen aber diesmal die Anzahl auf 15, damit wir eine klare Darstellung bekommen. 
+For this purpose, there are the functions `geom_text()` and `annotate()`, which can be used with `ggplot`. Here, we will use the scatter plot from the beginning again, but this time limiting the number to 15 for a clear representation.
 
 {{% notice warning %}}
-`geom_jitter()` kann nicht genutzt werden, da die Datenbeschriftungen am Datenpunkt und nicht am gejitterten Datenpunkt auftauchen!
+`geom_jitter()` cannot be used because the data labels appear at the data point and not at the jittered data point!
 {{% /notice %}}
 
 ``` {r base-scatter2, eval=TRUE}
@@ -66,7 +66,8 @@ scatter2 <- ggplot(
 
 scatter2
 ``` 
-Mit der Funktion `geom_text()` kann man den Datenpunkten Beschriftungen hinzufügen. So zum Beispiel die Zeilennummer oder die ID-Variable. Wir machen letzteres, da sich die Zeilennummer bei Sortierungen ändern kann und somit nicht eindeutig ist. Daher fügen wir jetzt mit der Funktion in `aes` ein `label` hinzu (`idno`).
+
+Using the `geom_text()` function, you can add labels to the data points. For example, you can use the row number or the ID variable. We will use the latter, as the row number can change with sorting and may not be unique. Therefore, we will now add a `label` (`idno`) using the function in `aes`.
 
 ``` {r addtext, eval=TRUE}
 scatter2 +
@@ -74,7 +75,7 @@ scatter2 +
     aes(label = idno)
   )
 ``` 
-Innerhalb von `geom_text()` kann man nun weitere Einstellungen vornehmen. Ein paar davon kennen wir schon, zwei weitere wichtige sind `nudge_y` und `nudge_x`, die den Schriftstart auf der jeweiligen Achse verschieben. 
+Within `geom_text()`, you can now make further adjustments. We already know a few of them, two more important ones are `nudge_y` and `nudge_x`, which shift the starting point of the text on the respective axis.
 
 ``` {r addtext2, eval=TRUE}
 scatter2 +
@@ -85,7 +86,7 @@ scatter2 +
   )
 ``` 
 
-Wenn man nun trotzdem alle Datenpunkte abbilden möchte und nur spezifische Datenpunkte hervorheben möchte, ist dies ganz leicht möglich: Wir möchten nur die ersten zehn Fälle anzeigen und begrenzen daher die Daten in `geom_text()`. Dies ist auch über `subset()` mit mehreren Verknüpfungen möglich.
+If you still want to display all data points and only highlight specific ones, this is easily possible: We only want to display the first ten cases and therefore limit the data in `geom_text()`. This is also possible using `subset()` with multiple conditions.
 
 ``` {r addtext3, eval=TRUE}
 ggplot(
@@ -119,7 +120,7 @@ ggplot(
   )
 ``` 
 
-Weitaus größere Möglichkeiten bietet `annotate()`. Mit dieser können nicht nur Beschriftungen, sondern auch bestimmte Bereiche innerhalb eines Plots hervorgehoben werden. Nehmen wir wieder das gejitterte Plot und markieren einen bestimmten Bereich im Plot:
+`annotate()` offers much greater possibilities. With this, not only labels, but also specific areas within a plot can be highlighted. Let's take the jittered plot again and mark a specific area in the plot:
 ``` {r annotated, eval=TRUE}
 scatter2 +
   annotate(
@@ -133,7 +134,7 @@ scatter2 +
   )
 ```
 
-Der Nachteil wird direkt ersichtlich! Da `ggplot` über Layer angesprochen wird, muss der `annotate()`-Layer vor dem `geom_jitter()`-Layer stehen. Oder wir fügen `alpha` hinzu, um die Sichtbarkeit zu verändrn:
+The disadvantage becomes apparent immediately! Since `ggplot` is addressed via layers, the `annotate()` layer must precede the `geom_jitter()` layer. Or we can add `alpha` to change the visibility:
 
 ``` {r annotated2, eval=TRUE}
 scatter2 +
@@ -148,7 +149,7 @@ scatter2 +
     alpha = .1
   )
 ```
-Jetzt möchten wir in der Grafik noch eine Beschriftung hinzufügen, damit der Leser:in klar wird, welchen Bereich wir hier markiert haben:
+Now we want to add a label to the plot to make it clear to the reader which area we have marked here:
 ``` {r annotated3, eval=TRUE}
 scatter2 +
   annotate(
@@ -170,7 +171,7 @@ scatter2 +
   ) 
 ```
 
-Als weitere Möglichkeit bietet `annotate()` die Möglichkeit Linien zu erstellen, so dass wir unseren Text auf das Feld zeigen lassen können:
+As another option, `annotate()` offers the possibility to create lines, so that we can point our text to the field:
 ``` {r annotated4, eval=TRUE}
 scatter2 +
   annotate(
@@ -201,4 +202,4 @@ scatter2 +
   )
 ```
 
-Im letzten Schritt lernst du noch die Darstellung von *missing values* kennen!
+In the final step, you will learn about the representation of *missing values*!

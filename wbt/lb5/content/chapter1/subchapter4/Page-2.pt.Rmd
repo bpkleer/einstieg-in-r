@@ -1,8 +1,8 @@
 ---
-title: "Gruppierte Scatterplots"  # Titel der Seite
-weight: 142  # Individuelles Gewicht 
-menuTitle: "Gruppen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["Gruppen", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Gráficos de Dispersão Agrupados"  # Título da página
+weight: 142  # Peso personalizado
+menuTitle: "Grupos" # Título curto, se necessário
+tags: ["Grupos", "ggplot"]  # Tags: resumo do conteúdo da página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,7 +33,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Auch **Scatterplots** können wir nach einer Gruppenvariable teilen. Hier nutzen wir wieder die Variable der *Distrikte* vom Beginn des Lernmoduls:
+Também podemos dividir os **Gráficos de Dispersão** com base em uma variável de grupo. Aqui, vamos usar novamente a variável dos *Distritos* do início do módulo de aprendizagem:
 ```{r scatter-group, eval=TRUE}
 groupscatter <- ggplot(
   pss, 
@@ -74,22 +74,22 @@ groupscatter <- ggplot(
 
 groupscatter
 ```
-Leider ist hierauf nicht wirklich viel zu erkennen, da trotzdem alles innerhalb eines Plots dargestellt wird. Um das zu umgehen, können wir facets nutzen!
+Infelizmente, não é possível ver muita coisa aqui, pois tudo ainda está sendo mostrado em um único gráfico. Para contornar isso, podemos usar facetas!
 
-## Facets
-Wir können aber auch vier einzelne Plots in einem darstellen. Dazu nutzen wir die Funktion `facet_grid()` :
+## Facetas
+Também podemos representar quatro gráficos separados em um único. Para isso, usamos a função `facet_grid()` :
 ```{r scatter-group-facet-grid, eval=TRUE}
 groupscatter +
   facet_grid(. ~ district)
 ```
 
-Ein weiterer Weg ist mit der Funktion `facet_wrap()` möglich. Dieser schafft sowohl in Spalten als auch Zeilen gleichmäßige Felder, in denen dann die einzelnen Plots dargestellt werden:
+Outra opção é usar a função `facet_wrap()`. Ela cria campos uniformes em colunas e linhas, nos quais os gráficos individuais são exibidos:
 ```{r scatter-group-facet-wrap, eval=TRUE}
 groupscatter + 
   facet_wrap(~district)
 ```
 
-Nun haben wir aber die Legende zweimal, daher wollen wir eine loswerden:
+No entanto, agora temos a legenda duplicada, então vamos nos livrar de uma delas:
 ```{r scatter-group-facet-grid2, eval=TRUE}
 groupscatter2 <- ggplot(
   pss, 
@@ -130,7 +130,7 @@ groupscatter2 <- ggplot(
 groupscatter2
 ```
 
-Zuguterletzt können wir auch hier eine Regressionslinie hinzufügen:
+Por fim, também podemos adicionar uma linha de regressão aqui:
 ```{r group-scatter-reg2, eval=TRUE}
 groupscatter2 + 
   geom_smooth(
@@ -140,4 +140,4 @@ groupscatter2 +
   )
 ```
 
-Gehen wir weiter zu einer anderen Art der Darstellung für pseudo-metrische Daten!
+Vamos avançar para outro tipo de representação de dados pseudo-métricos!

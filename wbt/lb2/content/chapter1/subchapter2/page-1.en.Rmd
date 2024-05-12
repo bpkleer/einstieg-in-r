@@ -1,8 +1,8 @@
 ---
-title: "Speicherarten von Daten"  # Titel der Seite
-weight: 121  # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["daten"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Types of Data Storage"  # Title of the page
+weight: 121  # Custom weight 
+menuTitle: "" # If the title is too long, use a short title here
+tags: ["data"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,23 +19,27 @@ tags: ["daten"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wie bereits in Lernblock 1 besprochen, haben Dateien immer **Dateiendungen**, die auf das Lese-/Schreibformat hinweisen. Dies waren zur Erinnerung zum Beispiel `.docx` für Word-Dateien oder `.pptx` für Powerpoint-Dateien. 
+As discussed in Learning Block 1, files always have **file extensions** that indicate the read/write format. These were, for example, `.docx` for Word files or `.pptx` for PowerPoint files.
 
-Für Datensätze gibt es globale Dateiformate, die von den meisten Programmen gelesen werden können, aber auch programmspezifische Dateiformate. 
+For datasets, there are global file formats that can be read by most programs, as well as program-specific file formats.
 
-Globale Dateiformate sind zum Beispiel:
+Global file formats include:
 
-- `.txt` (Textdateien, in der Daten meist mit einem Tabulator getrennt sind)
+- `.txt` (text files, where data is usually separated by a tab)
 
-- `.csv` (Komma-getrennte Werte)
+- `.csv` (comma-separated values)
 
-In R gibt es zwei wichtige Dateiformate: `.RData` und `.rds`. Dateien mit der Endung `.RData` können mehrere Objekte beinhalten, dies nutzt man zum Beispiel, wenn man am Ende seines Skripts alle Objekte in einer einzigen Datei speichern möchte. Das Format `.rds` ist ein komprimiertes Dateiformat, in dem immer nur ein einziges Objekt gespeichert werden kann. Für die Verbreitung von Datensätzen ist dies das häufigste Format, das in R genutzt wird. 
+In R, there are two important file formats: `.RData` and `.rds`. Files with the extension `.RData` can contain multiple objects, which is useful, for example, when you want to save all objects in a single file at the end of your script. The `.rds` format is a compressed file format that can only store a single object. This is the most common format used in R for distributing datasets.
 
-Leider ist es immer noch so, dass manche öffentlich zugängliche Datensätze lediglich in einem SPSS-konformen Dateiformat (`.sav`) zur Verfügung gestellt werden. Dies ist aber kein Problem, denn mithilfe einer **library** können wir RStudio Funktionen hinzufügen, die auch dieses Dateiformat lesen können. 
+Unfortunately, some publicly available datasets are only provided in an SPSS-compliant file format (`.sav`). However, this is not a problem because with the help of a **library**, we can add RStudio functions that can also read this file format. 
 
-**Was ist eigentlich eine library?**
-R ist eine *open-source-language*, in der jede Anwender:in neue Funktionen schreiben kann und diese der Welt zur Verfügung stellen kann. Bei der Installation werden lediglich die *Basis*-Funktionen mit installiert, die nur einen Bruchteil des Anwendungsumfangs darstellen. Dies ist eine der **Stärken** gegenüber SPSS oder auch Stata, denn so können viele Anwendungsfälle inkludiert werden. Es ist aber auch gleichzeitig am Anfang ein großer Dschungel, denn da viele Personen auf gleiche Probleme gestoßen sind, gibt es immer mehr als eine Lösung bzw. mehr als eine mögliche **library**, die hinzugefügt werden kann. In diesem Kurs werden wir keinen kompletten Überblick über verschiedene **libraries** für das gleiche Problem darstellen, sondern immer nur die von uns präferierte **library** vorstellen. Das muss dich aber nicht abhalten, nach einer anderen **library** zu suchen und den Lösungsweg darüber zu finden. 
+{ /* examples */ }
 
-Åuf der offiziellen **Library**-Website werden derzeit (Stand: März 2022) 18994 verschiedene **libraries** gelistet, die zusätzliche Funktionen beinhalten, um so statistische Anwendungen durchzuführen. Daneben gibt es noch etliche **libraries** im Entwicklungsstadium, die man aber auch bereits meist nutzen kann. Das ist aber wiedeurm nur etwas für erfahrene Nutzer:innen - also für dich nach diesem Kurs. 
+**What is a library, actually?**
+R is an *open-source language* where any user can write new functions and make them available to the world. During installation, only the *base* functions are installed, representing only a fraction of the application scope. This is one of its **strengths** compared to SPSS or Stata, as it allows for the inclusion of many use cases. However, it can also be overwhelming at first, as many people have encountered similar problems, resulting in more than one solution or more than one possible **library** that can be added. In this course, we will not provide a complete overview of various **libraries** for the same problem but will always introduce our preferred **library**. However, this should not deter you from searching for another **library** and finding the solution path through it.
 
-Im folgenden werden wir jetzt unterschiedliche Datensatz-Dateiformate in R importieren, um im Anschluss damit zu arbeiten. 
+As of March 2022, the official **library** website lists 18,994 different **libraries** that contain additional functions to perform statistical applications. Additionally, there are numerous **libraries** in the development stage, which can usually already be used. However, this is more suitable for experienced users - like you after completing this course.
+
+Next, we will import different dataset file formats into R to work with them afterward. 
+
+{ /* examples */ }

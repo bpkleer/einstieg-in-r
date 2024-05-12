@@ -1,8 +1,8 @@
 ---
-title: "Gruppieren"  # Titel der Seite
-weight: 116  # Individuelles Gewicht 
-menuTitle: "Gruppieren" # Falls Titel zulang ist, hier Kurztitel
-tags: ["gruppieren", "balkendiagramme", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Grouping"  # Title of the page
+weight: 116  # Custom weight 
+menuTitle: "Grouping" # Short title in case the title is too long
+tags: ["grouping", "bar charts", "ggplot"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 
 ```{r setup, include = FALSE}
@@ -43,7 +43,7 @@ barplotBeyonce <- ggplot(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Auch eine weitere Gruppenvariable kann einer Grafik leicht hinzugefügt werden. Diese Variable sollte ein Faktor sein, wenn nicht wird die Variable in einen Faktor *coerced*, was manchmal zu Problemen führen kann.
+Another grouping variable can easily be added to a plot. This variable should be a factor; if not, the variable will be *coerced* into a factor, which can sometimes lead to issues.
 ```{r bar-grouped, eval=TRUE}
 str(pss$gndr)
 
@@ -59,7 +59,7 @@ barGroup <- ggplot(
 barGroup
 ```
 
-Wir können die Teilbalken auch nebeneinander positionieren, anstatt sie übereinander anzeigen zu lassen:
+We can also position the sub-bars next to each other instead of stacking them:
 ```{r bar-group2, eval=TRUE}
 barGroup <- ggplot(
   pss, 
@@ -73,7 +73,7 @@ barGroup <- ggplot(
 barGroup
 ```
 
-Wie zuvor können wir alle weiteren Optionen ebenso einstellen:
+Just like before, we can adjust all other options as well:
 ```{r bar-group-adjustments, eval=FALSE}
 barGroup + 
   scale_y_continuous(
@@ -109,4 +109,5 @@ barGroup +
   )
 ```
 
-So einfach geht das! Auf geht's zu den anderen Grafiktypen!
+That's how simple it is! Let's move on to the other types of plots!
+

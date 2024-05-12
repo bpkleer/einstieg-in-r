@@ -1,9 +1,8 @@
 ---
-title: "Datensatz im Data frame"  # Titel der Seite
-weight: 112  # Individuelles Gewicht 
-menuTitle: "Data frame" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datensatz", "data frame"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "Conjunto de Dados em Data Frame"  # Título da página
+weight: 112  # Peso personalizado
+menuTitle: "Data Frame" # Título curto, se necessário
+tags: ["conjunto de dados", "data frame"]  # Tags: palavras-chave relacionadas à página
 
 ```{r setup, include = FALSE}
 library("rmarkdown")
@@ -32,7 +31,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Jetzt lernst du den Aufbau einer Datentabelle kennen. Im Screenshot siehst du den Datensatz des **PSS** eingeschränkt auf die vier Beispielfragen (Variablen) von der vorherigen Seite. 
+Agora você vai aprender sobre a estrutura de uma tabela de dados. Na captura de tela abaixo, você verá o conjunto de dados do **PSS** limitado às quatro perguntas de exemplo (variáveis) da página anterior.
 
 ```{r df-example, eval=TRUE, echo=FALSE}
 paged_table(
@@ -41,27 +40,27 @@ paged_table(
 )
 ```
 
-{{% expand \"Was kannst du in der Tabelle erkennen? Was ist in den Spalten und was ist in den Zeilen?\" %}}
-Du hast es richtig erkannt! In einer Datentabelle sind in der Spalte die Variablen abgebildet und in den Zeilen die Fälle. Die Besonderheit ist die ersten Zeile, da diese keine Antworten enthält, sondern die Namen der Variablen!
+{{% expand \"O que você pode observar na tabela? O que está nas colunas e o que está nas linhas?\" %}}
+Você acertou! Em uma tabela de dados, as colunas representam as variáveis e as linhas representam os casos. A particularidade está na primeira linha, que não contém respostas, mas sim os nomes das variáveis!
 {{% /expand %}}
 
-Wenn du jetzt einen genaueren Blick auf die Variable `stfdem` wirfst, siehst du, dass dort nur Zahlenwerte eingetragen sind. Auch für den Codewert `0` und `10` ist nicht die Wertebeschriftung aus der PDF genutzt, sondern der Codewert! **Das ist eine wichtige Erkenntnis.** Denn nur wenn auf allen Ausprägungen Zahlenwerte genutzt werden, kann die Variable als metrisches Skalenniveau genutzt werden und in einem *numeric*- oder *integer*-Vektor gespeichert werden. Denn: Alle statistischen Berechnungen bedingen *numeric*- oder *integer*-Vektoren, denn mit Buchstaben lässt sich keine Standardabweichung berechnen. 
+Se você observar mais de perto a variável `stfdem`, verá que apenas valores numéricos estão inseridos lá. Mesmo para os códigos `0` e `10`, não foi utilizada a descrição de valor do PDF, mas sim o código! **Isso é uma descoberta importante.** Pois somente quando valores numéricos são usados em todas as categorias, a variável pode ser considerada de nível de escala métrica e armazenada em um vetor *numeric* ou *integer*. Pois: Todas as análises estatísticas requerem vetores *numeric* ou *integer*, já que não é possível calcular desvio padrão com letras.
 
+{{% expand \"Em qual faixa de renda está a pessoa com o número de identificação 10020?\" %}}
+No 7º decil, correto! Portanto, as células da tabela de dados contêm os valores correspondentes de uma pessoa entrevistada para a variável correspondente.
 
-{{% expand \"In welchem Einkommensziel befindet sich die Person mit der ID-Nummer 10020?\" %}}
-Im 7. Dezil, richtig! In den Zellen der Datentabelle befinden sich also die entsprechenden Werte einer befragten Person zu der entsprechenden Variable. 
+Ótimo, agora você pode entender um esquema de tabela de dados ou um **data frame**!
 
-Prima, du kannst jetzt also eine Datentabelle bzw. ein **data frame**-Gerüst verstehen!
 {{% /expand %}}
 
-Du hast jetzt verstanden, wie eine Datentabelle aufgebaut ist, was sich in den Zeilen, Spalten und Zellen befindet. In R werden diese Datentabellen als Objekttyp **data frame** abgelegt. 
+Agora que você entende como uma tabela de dados é estruturada, o que está nas linhas, colunas e células. No R, essas tabelas de dados são armazenadas como objetos do tipo **data frame**.
 
-![Beispiel data frame im Environment](../img/df1.png)
+![Exemplo de data frame no Environment](../img/df1.png)
 
-Im **Environment** siehst du, dass dies unter die Gruppe **data** fällt. Du siehst auch, dass das Objekt *ausklappbar* ist. Wenn du den Pfeil-Button drückst, erscheinen alle Variablen (jeweils mit einem `$` davor) auf, die in diesem neuem Objekt zusammengefasst sind. Es ist also einfach zu verstehen, dass ein **data frame** lediglich die Zusammenfassung alle Variablen (bzw. Vektoren in R) einer Befragung ist. 
+No **Environment**, você pode ver que isso está sob o grupo **data**. Você também pode ver que o objeto é *expansível*. Ao clicar na seta, todas as variáveis (cada uma com um `$` na frente) contidas nesse novo objeto são exibidas. Portanto, é fácil entender que um **data frame** é simplesmente a compilação de todas as variáveis (ou vetores no R) de uma pesquisa.
 
-Mit einem Doppelklick kannst du die Datenansicht öffnen. Dies ist einfach die Datentabelle, wie oben besprochen. In den Spalten befinden sich die Variablen und in den Zeilen die Fälle (außer erste Zeile!).
+Com um clique duplo, você pode abrir a visualização dos dados. Isso é simplesmente a tabela de dados, como discutido anteriormente. As variáveis estão nas colunas e os casos nas linhas (exceto a primeira linha!).
 
-![Beispiel Datenansicht R](../img/df3.png)
+![Exemplo de visualização de dados no R](../img/df3.png)
 
-Aber wie handhabst du nun einen Datensatz in R?
+Mas como você manipula um conjunto de dados no R?

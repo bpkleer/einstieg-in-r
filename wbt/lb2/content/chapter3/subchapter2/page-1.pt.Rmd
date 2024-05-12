@@ -1,8 +1,8 @@
 ---
-title: "Das Gerüst von Datensätzen mit tidyr"  # Titel der Seite
-weight: 321  # Individuelles Gewicht 
-menuTitle: "Gerüst von Datensätzen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "A Estrutura de Conjuntos de Dados com tidyr"  # Título da página
+weight: 321  # Peso individual
+menuTitle: "Estrutura de Dados" # Se o título for muito longo, use um título curto aqui
+tags: ["tidyr", "tidyverse", "conjunto de dados"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,13 +19,13 @@ tags: ["tidyr", "tidyverse", "datensatz"]  # Tags hiereinsetzen; Kurzwort, was a
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Es ist für die Datenverarbeitung wichtig, dass die Datensätz *tidy* sind, damit die Funktionen in R problemlos mit den Daten laufen. Das bedeutet, dass die Daten in einem bestimmten Format vorliegen müssen, damit die Funktionen in R auch gut mit den Daten funktionieren (weniger *troubleshooting*). 
+É importante para o processamento de dados que os conjuntos de dados sejam *tidy*, para que as funções em R possam operar sem problemas com os dados. Isso significa que os dados devem estar em um formato específico para que as funções em R funcionem bem com os dados (menos *troubleshooting*).
 
-## Zur Wiederholung: Was ist ein Datensatz?
-Ein Datensatz ist generell immer eine Sammlung von Werten, sei es numerisch oder eine Zeichenkette. Diese Werte sind immer auf zwei Arten organisiert: Jeder Wert gehört zu einer **Variable** und zu einer **Beobachtung**. Eine **Variable** inkludiert alle Werte, die für diese gemessen worden sind (also alle Beobachtungen auf dieser Variable). Eine **Beobachtung** inkludiert alle Werte, die für diese Beobachtung gemessen wurden (also alle Variablenwerte dieser *Einheit*). 
+## Recapitulando: O que é um conjunto de dados?
+Um conjunto de dados é sempre uma coleção de valores, seja numérico ou uma string. Esses valores são sempre organizados de duas maneiras: Cada valor pertence a uma **Variável** e a uma **Observação**. Uma **Variável** inclui todos os valores que foram medidos para ela (ou seja, todas as observações nessa variável). Uma **Observação** inclui todos os valores que foram medidos para essa observação (ou seja, todos os valores das variáveis dessa *unidade*).
 
-Damit Daten in R gut mit den Funktionen genutzt werden können, müssen diese in einem *tidy*-Format vorliegen (auch *long*-Format genannt). Ein Datensatz ist dann *tidy*, wenn ...
+Para que os dados possam ser bem utilizados com as funções em R, eles devem estar em um formato *tidy* (também conhecido como formato *long*). Um conjunto de dados é considerado *tidy* quando ...
 
-> - ... jede Variable eine Spalte ist,
-> - ... jede Beobachtung eine Zeile ist,
-> - ... und jede Beobachtungseinheit eine Tabelle formt.
+- ...cada variável é uma coluna,
+- ...cada observação é uma linha,
+- ...e cada unidade de observação forma uma tabela.

@@ -1,23 +1,23 @@
 ---
-title: "Erweiterungen"
-menuTitle: "Erweiterungen"
+title: "Extensões"
+menuTitle: "Extensões"
 chapter: true
 pre: "2. "
 weight: 200
 ---
 
-### Kapitel 2
+### Capítulo 2
 
-# Fortgeschrittene Erweiterungen
-In diesem Kapitel baust du das Grundgerüst um. Du lernst, wie leicht du Plots verändern bzw. anpassen kannst. Wenn du hieran nicht interessiert bist, kannst du das Kapitel überspringen! 
+# Extensões Avançadas
+Neste capítulo, você vai aprimorar a estrutura básica. Você aprenderá como é fácil modificar ou personalizar gráficos. Se não estiver interessado nisso, pode pular este capítulo!
 
-In diesem Teil des Kurses werden weiterführende Einstellungen innerhalb des Pakets `ggplot2` dargestellt. Aufbauend auf die Einführung in die Grammatik von `ggplot` werden folgende Teile dargestellt: Schriftarten bearbeiten bzw. Darstellung des Plots, Anmerkungen im Plot und *missing values* darstellen
+Nesta parte do curso, serão apresentadas configurações avançadas dentro do pacote `ggplot2`. Com base na introdução à gramática do `ggplot`, os seguintes aspectos serão abordados: edição de fontes e aparência do gráfico, anotações no gráfico e representação de *missing values*.
 
 {{% notice tip %}}
-Eine gute Übersicht bietet auch folgendes [Online-Lernbuch](https://r-graphics.org) (auf Englisch). 
+Uma boa visão geral também é fornecida por este [livro de aprendizado online](https://r-graphics.org) (em inglês).
 {{% /notice %}}
 
-{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.ub.uni-giessen.de/methoden-politik/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

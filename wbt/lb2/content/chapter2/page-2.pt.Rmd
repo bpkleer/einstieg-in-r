@@ -1,8 +1,8 @@
 ---
-title: "Lagemaße"  # Titel der Seite
-weight: 202  # Individuelles Gewicht 
-menuTitle: "Lagemaße" # Falls Titel zulang ist, hier Kurztitel
-tags: ["deskriptiv", "lagemaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Medidas de Tendência Central"  # Título da página
+weight: 202  # Peso individual
+menuTitle: "Medidas de Tendência Central" # Título curto, se o título for longo
+tags: ["descritivo", "medidas de tendência central"]  # Tags; breve descrição do conteúdo da página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,25 +29,25 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Deskriptive Statistik in R
+## Estatísticas Descritivas no R
 
-Nun werden einige Funktionen vorgestellt, mit denen deskriptive Statistiken ausgegeben werden.
+Aqui estão algumas funções para exibir estatísticas descritivas.
 
 {{% tabs groupId=\"tab1\" %}}
-{{% tab name=\"Zur Erinnerung\" %}}
-Welche Maßzahlen zentraler Tendenz und der Verteilung gibt es?
+{{% tab name=\"Lembrando\" %}}
+Quais são as medidas de tendência central e de dispersão?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-- Modus, Median, arithm. Mittel
+{{% tab name=\"Resolução\" %}}
+- Moda, Mediana, Média aritmética
 
-- Spannweite (Range), Interquartilsabstand, Quartile
+- Amplitude, Intervalo interquartil, Quartis
 
-- Varianz, Standardabweichung
+- Variância, Desvio padrão
 {{% /tab %}}
 {{% /tabs %}}
 
-### Minimum, Maximum und Spannweite
-Die Funktionen für Minimum, Maximum und Spannweite sind:
+### Mínimo, Máximo e Amplitude
+As funções para mínimo, máximo e amplitude são:
 ```{R min-max-range, eval=TRUE}
 # Minimum
 min(pss$wkhtot)
@@ -59,13 +59,13 @@ max(pss$wkhtot)
 range(pss$wkhtot)
 ```
 
-Nun versuche es für die Variable `stfdem`. Was passiert?
+Agora tente para a variável `stfdem`. O que acontece?
 ```{r nas, eval = TRUE}
 min(pss$stfdem)
 ```
-Es gibt eine Fehlermeldung, dass der Wert nicht berechnet werden kann. Denn in dieser Variable gibt es *missing values* (`NA's`). Manche Personen haben hier also keinen Wert angegeben und dies wird in R mit `NA` gekennzeichnet! Daher kann kein Wert berechnet werden.
+Você receberá uma mensagem de erro informando que o valor não pode ser calculado. Isso ocorre porque nesta variável existem *valores ausentes* (`NA's`). Algumas pessoas não forneceram um valor aqui, e isso é indicado em R como `NA`! Portanto, não é possível calcular um valor.
 
-$\rightarrow$ Um dennoch einen Wert berechnen zu können, müssen *missing values* exkludiert werden.
+$\rightarrow$ Para poder calcular um valor mesmo assim, os *valores faltantes* devem ser excluídos.
 ```{r na-stfdem2, eval=TRUE}
 min(
   pss$stfdem, 
@@ -74,8 +74,8 @@ min(
 ## na.rm: NA = missing values, rm = remove      
 ```
 
-### Modus, Median und arithm. Mittelwert
-Für den Median und Mittelwert gibt es jeweils R-Base Funktionen, die direkt genutzt werden können:
+### Moda, Mediana e Média Aritmética
+Para a mediana e média, existem funções base do R que podem ser usadas diretamente:
 ```{r median-mean, eval=TRUE}
 ## Median
 median(
@@ -90,17 +90,17 @@ mean(
 )
 ```
 
-Für den Modus gibt es das nicht, man kann sich aber mit der Funktion `table()` die Datentabelle einer Variable anzeigen lassen und daraus dann den Modus oder die Modi ablesen:
+Para a moda, não existe uma função direta, mas é possível usar a função `table()` para exibir a tabela de dados de uma variável e então identificar a moda ou modas a partir dela:
 ```{r modus, eval=TRUE}
-## Modus (no built-in function)
+## Moda (sem função integrada)
 table(pss$stfdem)
-max(table(pss$stfdem)) # nicht hilfreich bei bimodalen (etc.) Verteilungen
+max(table(pss$stfdem)) # não útil para distribuições bimodais (etc.)
 ```
 
-### Quantile
-Manchmal sollen von einer Variable verschiedene Bereiche ausgegeben werden, z.B. das Einkommen in Dezilen oder Quintilen. Hierfür wird die Funktion `quantile()` genutzt. Diese wird dafür mit der Funktion `seq()` kombiniert.
+### Quantis
+Às vezes, é necessário exibir diferentes intervalos de uma variável, como a renda em decis ou quintis. Para isso, a função `quantile()` é utilizada. Ela é combinada com a função `seq()`.
 
-Die Funktion `seq()` liefert eine Reihenfolge von Zahlen, die wir über die drei Argumente *from*, *to* und *by* festsetzen. Das *from*-Argument legt den Startwert fest, das *to*-Argument den Endwert und das *by*-Argument legt die Schritte fest. Wir gehen also im Beispiel von `0` zu `1`, wobei der Schritt jeweils `0.1` ist!
+A função `seq()` fornece uma sequência de números, que são definidos pelos três argumentos *from*, *to* e *by*. O argumento *from* define o valor inicial, o argumento *to* define o valor final e o argumento *by* define os passos. No exemplo, estamos indo de `0` para `1`, com passos de `0.1`!
 ```{r eval=FALSE}
 seq(
   from = 0,
@@ -122,7 +122,7 @@ seq(
 )
 ```
 
-Nun können Dezile (`0.1`-Schritt) ausgegeben werden:
+Agora, os decis (`0.1` de passo) podem ser exibidos:
 ```{r eval= FALSE}
 quantile(
   pss$stfdem, 
@@ -135,13 +135,13 @@ quantile(
 ) 
 ```
 
-### Test
+### Teste
 {{% tabs groupId=\"tab2\" %}}
-{{% tab name=\"Frage\" %}}
-Was muss geändert werden, um Quintile ausgeben zu lassen?
+{{% tab name=\"Pergunta\" %}}
+O que precisa ser alterado para exibir quintis?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Um Quintile zu erreichen, wird in $0.2$-Schritten gegangen, so dass wir fünf Werte von $0$ bis $1$ erhalten.
+{{% tab name=\"Resolução\" %}}
+Para obter quintis, é necessário avançar em incrementos de $0.2$, resultando em cinco valores de $0$ a $1$.
 
 ```{r eval=FALSE}
 quantile(
@@ -158,9 +158,9 @@ quantile(
 {{% /tabs %}}
 
 ### Summary()
-Um sich eine Reihe an deskriptiven Werten ausgeben zu lassen, kann man ebenfalls die Funktion `summary()` nutzen: 
+Para exibir uma série de valores descritivos, também é possível utilizar a função `summary()`:
 ```{r eval=FALSE}
 summary(pss$stfdem)
 ```
 
-Weiter zu den Streumaßen!
+Continuar para as medidas de dispersão!

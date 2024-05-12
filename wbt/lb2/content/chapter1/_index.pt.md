@@ -1,18 +1,18 @@
 ---
-title: "Datenerhebung & Datensätze"
-menuTitle: "Datenerhebung & Datensätze"
+title: "Coleta de Dados & Conjuntos de Dados"
+menuTitle: "Coleta de Dados & Conjuntos de Dados"
 chapter: true
 pre: "1. "
 weight: 100
 ---
 
-### Kapitel 1 
+### Capítulo 1
 
-# Datenerhebung & Datensätze
+# Coleta de Dados & Conjuntos de Dados
 
-In diesem Kapitel wirst du kurz wiederholen, wie du von der Datenerhebung zu einem Datensatz gelangst und welche Eigenschaften ein Datensatz (i.d.R.) besitzt. In den weiteren Kapiteln wirst du Datensätze importieren und deskriptive Statistiken mithilfe von R berechnen. 
+Neste capítulo, você irá revisar brevemente como passar da coleta de dados para um conjunto de dados e quais são as características de um conjunto de dados (geralmente). Nos próximos capítulos, você irá importar conjuntos de dados e calcular estatísticas descritivas usando o R.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-r/-/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

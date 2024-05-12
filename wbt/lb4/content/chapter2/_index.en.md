@@ -1,17 +1,18 @@
 ---
-title: "Standardisierung"
-menuTitle: "Standardisierung & Export"
+title: "Standardization"
+menuTitle: "Standardization & Export"
 chapter: true
 pre: "2. "
 weight: 200
 ---
-### Kapitel 2 
 
-# Standardisierte Koeffizienten und Export
+### Chapter 2
 
-In diesem Kapitel lernst du wie du Modelle mit standardisierten Koeffizienten ausgeben lässt und wie du die Ergebnisse von R in deine Textdateien exportieren kannst.
+# Standardized Coefficients and Export
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+In this chapter, you will learn how to output models with standardized coefficients and how to export the results from R into your text files.
+
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 
@@ -19,7 +20,7 @@ In diesem Kapitel lernst du wie du Modelle mit standardisierten Koeffizienten au
 
 {{% buttonShare href="https://api.whatsapp.com/send?text=" icon="fab fa-whatsapp" %}} {{% /buttonShare %}}
 
-{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-x-twitter" %}} {{% /buttonShare %}}
+{{% buttonShare href="https://twitter.com/share?url=" icon="fab fa-twitter" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="https://www.facebook.com/sharer/sharer.php?u=" icon="fab fa-facebook" %}} {{% /buttonShare %}}
 

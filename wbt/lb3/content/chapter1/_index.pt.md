@@ -1,18 +1,18 @@
 ---
-weight: 100  # Individuelles Gewicht 
+weight: 100  # Peso individual
 pre: "1. "
 chapter: true
-title: "Zusammenhangsmaße"
-menuTitle: "Zusammenhangsmaße" # Falls Titel zulang ist, hier Kurztitel
-tags: ["Zusammenhangsmaße", "Korrelationen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Medidas de Associação"
+menuTitle: "Medidas de Associação"  # Se o título for muito longo, use um título curto aqui
+tags: ["Medidas de Associação", "Correlações"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
-### Kapitel 1 
+### Capítulo 1
 
-# Zusammenhangsmaße
-In diesem Kapitel lernst du Zusammenhänge zwischen zwei Variablen zu berechnen. 
+# Medidas de Associação
+Neste capítulo, você aprenderá a calcular as associações entre duas variáveis.
 
-{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
+{{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}}
 
 {{% buttonShare href="mailto:" icon="fas fa-paper-plane" %}} {{% /buttonShare %}}
 

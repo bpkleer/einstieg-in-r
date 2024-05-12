@@ -6,11 +6,11 @@ pre: "1.3 "
 weight: 130
 ---
 
-### Kapitel 1.3
+### Capítulo 1.3
 
 # Boxplots
 
-In diesem Kapitel lernst du die Erstellung von Boxplots in `ggplot` kennen. Du wiederholst die Schritte, die wir zuvor kennengelernt haben. 
+Neste capítulo, você aprenderá a criar boxplots no `ggplot`. Você irá revisar os passos que aprendemos anteriormente.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

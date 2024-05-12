@@ -1,0 +1,108 @@
+---
+title: "Condição If"  # Título da página
+weight: 401  # Peso individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["condição-if"]  # Insira tags aqui; abreviação do que acontece na página
+---
+
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+
+{{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/t.me\/share\/url?url=\" icon=\"fab fa-telegram\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+
+{{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
+
+{{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
+
+A expressão **if** é utilizada quando se deseja executar um comando sob certas condições. Uma condição (*condition*) é verificada e, se for verdadeira (`TRUE`), a operação especificada é realizada.
+
+A lógica da expressão **if** simples é representada no diagrama:
+
+![Lógica da Condição If](../img/if.PNG){width=50%}
+
+Vamos considerar o seguinte exemplo: Temos a motivação de estudo de um estudante e queremos (um vetor `mot` com um único valor), se ele indicou um valor maior ou igual a $7$ na escala ($0$-$10$), exibir a observação *muito motivado*.
+
+``` {r if, eval=FALSE}
+mot <- 9
+
+if (mot >= 7) {
+  print("sehr motiviert")
+}
+```
+
+Portanto, a expressão **if** simples segue um padrão muito claro:
+
+1. **if** é chamado e a condição é definida entre parênteses: `if (mot >= 7)`
+
+2. Entre chaves, seguem as instruções a serem executadas se a condição for verdadeira: `{ print("muito motivado") }`
+
+A expressão **if** simples pode ser facilmente implementada.
+
+### Expressão If-Else
+
+Além da simples expressão **if**, existem também as expressões **else if**, que permitem verificar condições adicionais caso a condição anterior não seja atendida. Nesse caso, o processo de verificação passa por várias condições. Isso é ilustrado no diagrama:
+
+![Lógica da Condição If](../img/ifelse.PNG){width=50%}
+
+Para o caso de um estudante que tenha indicado apenas $5$ de motivação, poderíamos escrever a seguinte expressão **else if**:
+
+```{r else-if, eval=FALSE}
+mot <- 5
+
+if (mot >= 7) {
+  print("sehr motiviert")
+} else if (mot >= 4 & mot < 7) {
+  print("motiviert")
+}
+```
+
+Isso significa que a sintaxe simples do **if** é apenas complementada por:
+
+1. uma nova instrução que, com **else if**, verifica uma nova condição: `else if (mot >= 4 & mot < 7)`
+
+2. um novo bloco de instruções para a nova condição: `{ print("motivado")}`
+
+Isso também é muito fácil de implementar. **Importante ressaltar**: A segunda condição só será verificada se a primeira condição for `FALSE`. É possível programar quantas verificações `else if` forem necessárias. Vamos considerar outro exemplo:
+
+```{r else-if2, eval=FALSE}
+mot <- 3
+
+if (mot >= 7) {
+  print("sehr motiviert")
+} else if (mot >= 4 & mot < 7) {
+  print("motiviert")
+} else if (mot >= 0 & mot < 4) {
+  print("nicht motiviert")
+}
+```
+
+A única alteração que fizemos aqui foi adicionar uma terceira condição de verificação. Assim como antes, essa terceira condição só será verificada se a primeira e a segunda condição forem ambas `FALSE`. As expressões **else if** têm, portanto, uma estrutura **hierárquica**.
+
+### Expressão Else
+
+Também é possível tomar decisões dicotômicas. Suponhamos que desejamos apenas distinguir entre *motivado* e *não motivado* e decidimos considerar motivadas as pessoas que indicaram um valor acima de $7$ e não motivadas aquelas com valores de escala mais baixos. Aqui, verificamos apenas se o valor é maior que $7$. Caso contrário, decidimos com **else** (em todos os outros casos) que será exibido *não motivado*. **Else** contém uma instrução que será executada para todos os casos em que a condição **if** mencionada anteriormente não for atendida (ou seja, resultar em `FALSE`).
+
+``` {r else, eval=FALSE}
+mot <- 5
+
+if (mot >= 7) {
+  print("sehr motiviert")
+} else {
+  print("nicht motiviert")
+}
+```
+
+Aqui também a estrutura é bastante simples:
+
+1. adicionamos uma instrução após a condição **if** com **else**, que não tem mais uma condição: `else`. Lembre-se: com **else**, a condição é inerente, pois inclui todos os casos `FALSE` da condição anterior.
+
+2. Aqui também indicamos a instrução entre chaves: `{ print("não motivado)}`
+
+
+#### É isso!
+Estes foram exemplos simples de expressões **if** e **else if**. Geralmente, essas expressões são usadas dentro de loops (por exemplo, quando se deseja tomar decisões para todas as observações em um conjunto de dados). Isso será mostrado na próxima página.

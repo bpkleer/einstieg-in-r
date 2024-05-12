@@ -1,9 +1,8 @@
 ---
-title: "Multivariate lin. Regression mit polytomen kategoriellen Variablen"  # Titel der Seite
-weight: 105  # Individuelles Gewicht 
-menuTitle: "Polytome kategorielle Variablen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regression", "kategoriell", "polytom"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
----
+title: "Multivariate lin. Regression with polytomous categorical variables"  # Page title
+weight: 105  # Custom weight
+menuTitle: "Polychotomous Categorical Variables" # Short title if the title is too long
+tags: ["regression", "categorical", "polytomous"]  # Tags: brief description of the content
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -45,10 +44,10 @@ olsModel3 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir können nicht nur dichotome, sondern auch polytome kategorielle Variablen in das Regressionsmodell hinzufügen. Wir möchten nun die Variable `edu` ins Modell aufnehmen. Diese Variable beinhaltet den höchsten Bildungsabschluss der befraten Person. Welche theoretischen Annahmen könnten wir für den Effekt von `edu` treffen?
+We can add not only dichotomous but also polytomous categorical variables to the regression model. Now, we want to include the variable `edu` in the model. This variable represents the highest level of education attained by the surveyed individual. What theoretical assumptions could we make about the effect of `edu`?
 
-## Berechnen des Modells
-Wir fügen einfach die Variable, wie zuvor, in der `lm()`-Funktion hinzu:
+## Calculating the Model
+We simply add the variable to the `lm()` function as before:
 ```{r olsModel4, eval=TRUE}
 olsModel4 <- lm(
     stfdem ~ 1 + stfeco + trstlgl + gndr + edu,   
@@ -58,24 +57,24 @@ summary(olsModel4)
 ```
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-Wie hat die Funktion `lm()` die polytome Variable in das Modell eingefügt? 
+{{% tab name=\"Question\" %}}
+How did the `lm()` function incorporate the polytomous variable into the model?
 
-Was ist die Referenzkategorie?
+What is the reference category?
 
-Und wie würde die Gleichung der Regression aussehen?
+And what would the regression equation look like?
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Es wird der zusätzliche Effekt von den vier höchsten Ausprägungen (`ES-ISCED II`, `ES-ISCED III`, `ES-ISCED IV` und `ES-ISCED V`) gegenüber der niedrigsten Ausprägung (`ES-ISCED I`) berechnet. 
+{{% tab name=\"Solution\" %}}
+It calculates the additional effect of the four highest categories (`ES-ISCED II`, `ES-ISCED III`, `ES-ISCED IV`, and `ES-ISCED V`) compared to the lowest category (`ES-ISCED I`). 
 
-Die Referenzkategorie ist daher `ES-ISCED I` (ausgelassene Ausprägung).
+The reference category is therefore `ES-ISCED I` (omitted category).
 
 $$\begin{align*}stfdem = &\beta_0 + \beta_1*stfeco + \beta_2*trstlgl + \beta_3*gndr + \\ &\beta_4*eduLevelII + \beta_5*eduLevelIII + \\ &\beta_6*eduLevelIV + \beta_7*eduLevelV + \\&e \end{align*}$$
 {{% /tab %}}
 {{% /tabs %}}
 
-## Ändern der Referenzkategorie
-In diesem Beispiel wurde automatisch die niedrigste (bzw. erste) Ausprägung als Referenzkategorie gewählt. Doch was, wenn du z.B. die mittlere Kategorie (`ES-ISCED III`) als Referenz haben möchtest? Dies kannst du einfach mit der Funktion `relevel()` ändern. Dazu gibst du im ersten Argument die Datenquelle an (Variable `pss$edu`) und im zweiten Argument `ref` die entsprechende Ausprägung (also `"ES-ISCED III"`). **Wichtig:** Du musst das natürlich mit den Anweisungpfeil in der Variable im Datensatz speichern!
+## Changing the Reference Category
+In this example, the lowest (or first) category was automatically chosen as the reference category. But what if you want, for example, the middle category (`ES-ISCED III`) as the reference? You can easily do this using the `relevel()` function. In the first argument, specify the data source (variable `pss$edu`), and in the second argument `ref`, specify the corresponding category (i.e., `"ES-ISCED III"`). **Important:** You must save this with the assignment arrow in the variable in the dataset!
 
 ```{r relevel, eval=TRUE}
 pss$edu <- relevel(
@@ -84,7 +83,7 @@ pss$edu <- relevel(
 ) 
 ```
 
-Dann musst du nur das Modell erneut berechnen:
+Then you just need to recalculate the model:
 ```{r olsModel5, eval=TRUE}
 olsModel5 <- lm(
   stfdem ~ 1 + stfeco + trstlgl + gndr + edu,
@@ -96,13 +95,13 @@ summary(olsModel5)
 
 {{% tabs %}}
 {{% tab name=\"Interpretation\" %}}
-Interpretiere das respezifizierte Modell. Schreibe ein paar Sätze in das Skript. 
+Interpret the re-specified model. Write a few sentences in the script.
 
 {{% /tab %}}
-{{% tab name=\"Musterlösung\" %}}
+{{% tab name=\"Sample Solution\" %}}
 
-Das Modell erklärt $46.35 %$ der Varianz in `stfdem`. Der Effekt von `stfeco` ist positiv und signifikant ($p<0.001$). Personen mit höherem Vertrauen in das Rechtssystem haben eine geringe Zufriedenheit ($\beta_2 = -0.044393$, $p<0.01$). Männliche und weibliche Befragte haben keine unterschiedliche Zufriedenheit ($\beta_3 = 0.001836$. $p>0.05$). Im Vergleich zu Personen mit mittlerem Bildungsabschluss, haben Personen mit sehr niedrigem Abschluss (`ES-ISCED I`) und niedrigem Bildungsabschluss (`ES-ISCED II`) ein geringeres Vertrauen ($\beta_4 = -0.343037$ bzw. $\beta_5 = -0.174643$). Beide Effekte sind signifikant. Personen mit dem höchsten Bildungsabschluss haben ein deutlich höheres Vertrauen als Personen mit mittlerem Bildungsabschluss ($\beta_7 = 0.527465$, $p<0.001$). Personen mit dem zweithöchsten Abschluss haben ein geringfügig höheres Vertrauen ($\beta_6 = 0.076024$), dieser Effekt ist aber nicht signifikant. 
+The model explains $46.35 %$ of the variance in `stfdem`. The effect of `stfeco` is positive and significant ($p<0.001$). Individuals with higher trust in the legal system have lower satisfaction ($\beta_2 = -0.044393$, $p<0.01$). Male and female respondents do not have different satisfaction levels ($\beta_3 = 0.001836$. $p>0.05$). Compared to individuals with a medium level of education, individuals with very low education level (`ES-ISCED I`) and low education level (`ES-ISCED II`) have lower trust ($\beta_4 = -0.343037$ and $\beta_5 = -0.174643$ respectively). Both effects are significant. Individuals with the highest education level have significantly higher trust than those with a medium education level ($\beta_7 = 0.527465$, $p<0.001$). Individuals with the second-highest education level have slightly higher trust ($\beta_6 = 0.076024$), but this effect is not significant.
 {{% /tab %}}
 {{% /tabs %}}
 
-So du kannst jetzt also auch schon polytome kategorielle Variablen hinzufügen und das Regressionsmodell in der Ausgabe in R interpretieren!
+So now you can also add polytomous categorical variables and interpret the regression model in the R output!

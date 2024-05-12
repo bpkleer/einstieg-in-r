@@ -1,8 +1,8 @@
 ---
-title: "Login in Gitlab"  # Titel der Seite
-weight: 302  # Individuelles Gewicht 
-menuTitle: "Login" # Falls Titel zulang ist, hier Kurztitel
-tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Login no Gitlab"  # Título da página
+weight: 302  # Peso individual
+menuTitle: "Login" # Se o título for muito longo, use um título curto aqui
+tags: ["gitlab", "login"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,15 +19,15 @@ tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite pas
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-An der JLU gibt es eine eigene **gitlab**-Distribution, auf der du dich einfach mit deiner s-/j-Kennung einloggen kannst. Falls du das noch nicht gemacht hast, hole es direkt nach und schreib einen der beiden Tutor:innen kurz deine s-/j-Kennung per E-Mail ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) oder [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)). 
+Na JLU, há uma distribuição própria do **gitlab**, onde você pode fazer login facilmente com seu usuário s-/j-. Se você ainda não fez isso, faça agora mesmo e envie sua s-/j- para um dos tutores por e-mail ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) ou [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)).
 
-Und hier ist der Link zum Login: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
+E aqui está o link para fazer login: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
 
-Du kannst dann, wenn du möchtest dein Profil bearbeiten, indem du rechts oben auf den Kreis klickst und dann **Edit profile** klickst. Du kannst dort ein Bild einstellen, deine Pronomen festlegen, Social-Media-Kontakte festlegen oder auch eine 2-Faktor-Authentifizierung aktivieren.
+Você pode então, se desejar, editar seu perfil, clicando no círculo no canto superior direito e em seguida em **Editar perfil**. Lá você pode adicionar uma foto, definir seus pronomes, configurar contatos de redes sociais ou ativar autenticação de dois fatores.
 
-![Profil editieren](../img/editprofile.png)
+![Editar perfil](../img/editprofile.png)
 
-Ebenso kannst du links unter **Menu** (Menü), weiter auf  **Groups** (Gruppen) und weiter auf **Your Groups** (deine Gruppen) dann unseren Kurs sehen: **intro-r-spring22**. Du kannst einfach auf diese Gruppe klicken. In der Gruppe siehst du dann wiederum Gruppen: Einmal fünf Gruppen für die Einteilung der Gruppenarbeiten (Einteilung läuft über [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) und dann eine Gruppe mit dem Namen **course-materials**. In **course-materials** befinden sich alle Dateien für den Kurs. **ABER:** Man kann Dateien hier über das Web steuern, wir machen aber alles aus RStudio, denn dort haben wir das schon für dich eingerichtet und du musst selbst nur mehr deinen Benutzernamen angeben! 
+Da mesma forma, você pode clicar em **Menu**, depois em **Grupos** e em seguida em **Seus Grupos** para ver nosso curso: **intro-r-spring22**. Basta clicar neste grupo. Dentro do grupo, você verá cinco grupos para a divisão dos trabalhos em grupo (a divisão é feita através do [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) e um grupo chamado **course-materials**. Em **course-materials**, estão todos os arquivos do curso. **MAS:** Você não deve controlar os arquivos aqui pela web, pois faremos tudo pelo RStudio, onde já configuramos tudo para você e você só precisa fornecer seu nome de usuário!
 
-![Gruppen](../img/groups.png)
-Lediglich für die automatische Kontrolle musst du in das Web-Interface. Wie das funktioniert zeigen wir dir am Ende des Kapitels!
+![Grupos](../img/groups.png)
+Apenas para fins de verificação automática, você precisa acessar a interface web. Mostraremos como fazer isso no final do capítulo!

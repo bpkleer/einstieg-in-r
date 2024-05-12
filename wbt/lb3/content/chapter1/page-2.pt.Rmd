@@ -1,8 +1,8 @@
 ---
-title: "Kreuztabellen"  # Titel der Seite
-weight: 102  # Individuelles Gewicht 
-menuTitle: "Kreuztabellen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["kreuztabellen"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Tabelas Cruzadas"  # Título da página
+weight: 102  # Peso individual
+menuTitle: "Tabelas Cruzadas" # Se o título for muito longo, use um título curto aqui
+tags: ["tabelas cruzadas"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -35,7 +35,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Eine Kreuztabelle gibt Auskunft über eine bivariate Verteilung, also über die Verteilung auf zwei Variablen. Um eine Kreuztabelle zu bekommen, müssen wir nur eine zweite Variable in der `table()`-Funktion hinzufügen: Wir lassen uns hier eine Kreuztabelle zwischen der Zufriedenheit mit der Demokratie und dem Geschlecht ausgeben:
+Uma tabela cruzada fornece informações sobre uma distribuição bivariada, ou seja, sobre a distribuição de duas variáveis. Para obter uma tabela cruzada, basta adicionar uma segunda variável na função `table()`: Aqui está uma tabela cruzada entre a satisfação com a democracia e o gênero:
 
 ```{r crosstab1,eval=TRUE}
 table(
@@ -44,11 +44,11 @@ table(
 )
 ```
 
-{{% expand \"Welche Variable ist die Spaltenvariable?\" %}}
-Die zweite Variable in der Funktion ist die Spaltenvariable (hier `gndr`). Denn die Konvention in der Erstellung von Kreuztabellen fordert, dass die unabhängige Variable in die Spalte kommt. Wir nehmen also an, dass das Geschlecht einen Effekt darauf hat, wie zufrieden wir mit der Demokratie sind. 
+{{% expand \"Qual variável é a variável de coluna?\" %}}
+A segunda variável na função é a variável de coluna (aqui `gndr`). Pois a convenção na criação de tabelas cruzadas exige que a variável independente vá para a coluna. Portanto, assumimos que o gênero tem um efeito sobre o quão satisfeitos estamos com a democracia.
 {{% /expand %}}
 
-Wie bei allem in R, können wir diese Tabelle auch als Objekt speichern:
+Como em tudo no R, também podemos salvar esta tabela como um objeto:
 ```{r crosstab2, eval=TRUE}
 mytable <- table(
   pss$stfdem, 
@@ -56,7 +56,7 @@ mytable <- table(
 )
 ```
 
-Um anstatt der Häufigkeiten Prozente ausgeben zu lassen, wird die Funktion `prop.table()` genutzt. Diese kann die Spalten-, Zeilen- oder die Gesamtprozentuierung ausgeben. Wir können entweder ein Tabellenobjekt aufrufen, oder in der Funktion die Funktion `table()` nutzen. Hier rufen wir im letzten Argument mit dem Wert $1$die Zeilenprozentuierung auf.
+Para exibir porcentagens em vez de frequências, usamos a função `prop.table()`. Esta função pode exibir a porcentagem das colunas, das linhas ou do total. Podemos chamar um objeto de tabela ou usar a função `table()` na função. Aqui, chamamos a porcentagem das linhas no último argumento com o valor $1$.
 ```{r crosstab3, eval=TRUE}
 # Zeilenprozentuierung
 prop.table(
@@ -75,7 +75,7 @@ prop.table(
 )
 ```
 
-Die Spaltenprozentuierung kann ausgegeben werden, indem das zweite Argument auf den Wert $2$ geändert wird:
+A percentualização das colunas pode ser exibida alterando o segundo argumento para o valor $2$:
 ```{r crosstab5, eval=TRUE}
 prop.table(
   mytable,
@@ -83,13 +83,13 @@ prop.table(
 )
 ```
 
-Wenn kein zweites Argument geliefert wird, wird automatisch die Gesamtprozentuierung ausgegeben:
+Se nenhum segundo argumento for fornecido, a percentualização total será exibida automaticamente:
 ```{r crosstab6, eval=TRUE}
 prop.table(mytable)
 ```
 
-## Randhäufigkeiten
-Die Randhäufigkeiten können mit der Funktion `margin.table()` ausgegeben werden. Auch hier gilt wieder, dass der Wert $1$ im zweiten Argument für Zeilenrandhäufikgeiten steht und der Wert $2$ die Spaltenrandhäufigkeiten ausgibt: 
+## Frequências Marginais
+As frequências marginais podem ser exibidas usando a função `margin.table()`. Novamente, o valor $1$ no segundo argumento representa as frequências marginais das linhas e o valor $2$ exibe as frequências marginais das colunas:
 ```{r crosstab7, eval=TRUE}
 # Zeilenrandhäufigkeiten
 margin.table(
@@ -104,14 +104,14 @@ margin.table(
 )
 ```
 
-## Andere Libraries
-Es gibt verschiedene **libraries**, mit denen sich relative Häufigkeiten *schöner* darstellen lassen. Eins davon ist die *library* `gmodels`:
+## Outras Bibliotecas
+Existem várias **bibliotecas** que permitem representar as frequências relativas de forma mais *atraente*. Uma delas é a *biblioteca* `gmodels`:
 ```{r gmodels, eval=FALSE}
 if(!require("gmodels")) install.packages("gmodels")
 library("gmodels")
 ```
 
-Aus der **library** nutzen wir die Funktion `CrossTable()`. Diese gibt alle oben aufgeführten Informationen auf einmal aus:
+Da **biblioteca**, usamos a função `CrossTable()`. Esta função exibe todas as informações mencionadas acima de uma vez:
 ```{r gmodels2, eval=TRUE}
 CrossTable(
   pss$stfdem, 

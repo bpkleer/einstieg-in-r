@@ -1,8 +1,8 @@
 ---
-title: "Gruppieren"  # Titel der Seite
-weight: 122  # Individuelles Gewicht 
-menuTitle: "Gruppieren" # Falls Titel zulang ist, hier Kurztitel
-tags: ["gruppieren", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Grouping"  # Page title
+weight: 122  # Custom weight 
+menuTitle: "Grouping" # Short title if necessary
+tags: ["grouping", "ggplot"]  # Tags; brief description of page content
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -31,7 +31,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Ebenso können wir **Histogramme** einer Variable nach Gruppen trennen, wie wir es mit den Balkendiagrammen zuvor gemacht haben. Hierzu nutzen wir die Extra-Funktion `facet_grid()`, die den Plot teilt, sodass die Grafiken besser zu erkennen sind. In `facet_grid()` geben wir einfach nur in einer Formel an (`x ~ y`) nach welcher Variable auf der x-Achse bzw. y-Achse aufgeteilt werden soll. Wir wollen jetzt nur auf der y-Achse nach Geschlecht aufteilen. 
+Similarly, we can **group** histograms of a variable, just like we did with bar charts earlier. To do this, we use the `facet_grid()` function, which divides the plot to make the graphs easier to interpret. In `facet_grid()`, we simply specify in a formula (`x ~ y`) how the variable should be divided on the x-axis or y-axis. Here, we want to divide by gender on the y-axis.
 ``` {r hist-group, eval=TRUE}
 histGroup <- ggplot(
   pss,
@@ -65,8 +65,8 @@ histGroup <- ggplot(
 histGroup
 ```
 
-## Anpassungen
-Nun verändern wir noch die Beschriftungen über den **Histogrammen** und entfernen die Legende (weil sonst doppelt!).
+## Adjustments
+Next, we will modify the labels above the **histograms** and remove the legend (to avoid duplication!).
 ```{r hist-group2, eval=TRUE}
 histGroup <- ggplot(
   pss,
@@ -96,4 +96,6 @@ histGroup <- ggplot(
 histGroup
 ```
 
-Als Alternative kannst du auch ein Ridgeline-Plot erstellen. Mehr dazu auf der nächsten Seite!
+Alternatively, you can also create a Ridgeline plot. More on that on the next page! 
+
+{ /* examples */ }

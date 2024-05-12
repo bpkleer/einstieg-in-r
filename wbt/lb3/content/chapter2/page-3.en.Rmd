@@ -1,8 +1,8 @@
 ---
-title: "Zwischen mehr als zwei Gruppen"  # Titel der Seite
-weight: 203  # Individuelles Gewicht 
-menuTitle: "F-Test" # Falls Titel zulang ist, hier Kurztitel
-tags: ["mittelwert", "mittelwertvergleiche", "anova", "t-Test"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Between more than two groups"  # Page title
+weight: 203  # Custom weight 
+menuTitle: "F-Test" # Short title if the main title is too long
+tags: ["mean", "mean comparisons", "anova", "t-Test"]  # Tags describing the content of the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,22 +29,22 @@ pss <-  readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Auf dieser Seite werden Mittelwertvergleiche zwischen mehr als zwei Gruppen vorgestellt. Diese Test-Statistik wird **ANOVA** oder **F-Test** genannt. Wir möchten nun die verschiedenen Gruppen der `edu`-Variable testen. 
+This page presents mean comparisons between more than two groups. This test statistic is called **ANOVA** or **F-Test**. We now want to test the different groups of the `edu` variable.
 
-**Annahmen**:
+**Assumptions**:
 
-1. abhängige Variable ist metrisch$\checkmark$
+1. Dependent variable is metric$\checkmark$
 
-2. unabhängige Variable ist kategoriell $\checkmark$
+2. Independent variable is categorical $\checkmark$
 
-3. Gruppen sind unabhängig voneinander $\checkmark$
+3. Groups are independent of each other $\checkmark$
 
-4. [Normalverteilung der metr. Variable in jeder Gruppe (nötig nur für $n \leq 25$)] $\checkmark$
+4. [Normal distribution of the metric variable in each group (only necessary for $n \leq 25$)] $\checkmark$
 
-5. Varianzgleichheit zwischen Gruppen
+5. Equality of variance between groups
 
-### Prüfen der Annahmen
-Wir möchten testen, inwieweit die Arbeitsstunden zwischen verschiedenen Bildungsgruppen differieren. Dazu nimmst du die `edu`-Variable, die mehrere Bildungsgruppen beinhaltet. Zuerst führst du wieder den Levene-Test durch. Da du jetzt alle Gruppen inkludierst, kannst du wieder die Formelschreibweise nutzen:
+### Checking the Assumptions
+We want to test how the working hours differ between different educational groups. For this, you will use the `edu` variable, which includes multiple educational groups. First, you will perform the Levene's test again. Since you are now including all groups, you can use the formula notation again:
 ```{r levene, eval=TRUE}
 leveneTest(
   pss$wkhtot ~ pss$edu,
@@ -52,21 +52,21 @@ leveneTest(
 )
 ```
 
-{{% expand \"Wie interpretierst du das Ergebnis?\" %}}
-Zwischen keinem Gruppenpaar gibt es signifikante Differenzen, daher wird Varianzgleichheit angenommen. 
+{{% expand "How do you interpret the result?" %}}
+There are no significant differences between any pair of groups, hence homogeneity of variances is assumed.
 
-$H_0$: Alle Gruppen haben dieselbe Varianz in der metrischen Variable.
+$H_0$: All groups have the same variance in the metric variable.
 {{% /expand %}}
 
-### Berechnen des Tests (ungleiche Varianzen)
-Um den Test zu berechnen, kannst du die Funktionen `oneway.test()` und `pairwise.t.test()` nutzen:
+### Calculating the test (unequal variances)
+To calculate the test, you can use the functions `oneway.test()` and `pairwise.t.test()`:
 ```{r oneway, eval=TRUE}
 oneway.test(
   pss$wkhtot ~ pss$edu,
   var.equal = TRUE
 )
 ```
-Dieser Test zeigt an (p-Wert), dass es mindestens zwischen zwei Gruppen signifikante Differenzen gibt (p-Wert $< 0.05$). Um nun festzustellen zwischen welchen Gruppen diese vorliegen, nutzt du die Funktion `pairwise.t.test()`:
+This test indicates (p-value) that there are significant differences between at least two groups (p-value $< 0.05$). To determine between which groups these differences exist, you can use the function `pairwise.t.test()`:
 ```{r pairwise, eval = TRUE}
 pairwise.t.test(
   pss$wkhtot, # metrische Variable zuerst
@@ -74,10 +74,10 @@ pairwise.t.test(
   p.adj = "holm"  # Korrektur (Standardverwendung)
 ) 
 ```
-Im Testergebnis siehst du eine Matrix zwischen den Gruppen, in der die p-Werte für den jeweiligen Vergleich zweier Gruppen eingetragen sind. 
+In the test result, you will see a matrix between the groups, where the p-values for the comparison of two groups are entered.
 
-{{% expand \"Zwischen welchen Gruppen lassen sich also signifikante Unterschiede feststellen??\" %}}
-Richtig, zwischen allen Gruppen!
+{{% expand "So, between which groups can significant differences be observed?" %}}
+Correct, between all groups!
 {{% /expand %}}
 
-Das war's für diesen Lernblock!
+That's it for this learning block!

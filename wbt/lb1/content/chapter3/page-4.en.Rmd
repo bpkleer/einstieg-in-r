@@ -1,11 +1,11 @@
 ---
-title: "Automatisierte Kontrolle"  # Titel der Seite
-weight: 305  # Individuelles Gewicht 
-menuTitle: "Kontrolle Lab" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Automated Control"  # Page title
+weight: 305  # Custom weight 
+menuTitle: "Control Lab" # Short title if the title is too long
+tags: ["ci", "control lab", "gitlab"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
-{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/introduction-to-statistics\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
 
@@ -19,43 +19,43 @@ tags: ["ci", "control lab", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf d
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Hier zeigen wir dir nun, wie du euer Skript für die Gruppenabgabe automatisiert prüfen kannst. Ihr könnt den Test beliebig oft durchführen, es beansprucht aber etwas Zeit, da dies über einen privaten Server und nicht über die Universität läuft. Deshalb arbeiten wir in den Lab-Aufgaben auch nur mit dem fiktiven Datensatz des PSS.
+Here we show you how to automatically check your script for the group submission. You can run the test as many times as you want, but it takes some time because it runs on a private server and not through the university. That's why in the lab tasks, we only work with the fictional dataset of the PSS.
 
-Du hast ja gerade schon gelernt, wie du Änderungen an die globale Version sendest. Habt ihr in der Gruppe eine fertige Version, kann sich eine Person der Gruppe in [gitlab](https://gitlab.ub.uni-giessen.de) einloggen und dort dann die automatische Kontrolle starten. 
+You have just learned how to send changes to the global version. If your group has a finished version, one person from the group can log in to [gitlab](https://gitlab.ub.uni-giessen.de) and start the automated check there.
 
-Dazu müsst ihr nur drei kleine Schritte machen:
+To do this, you just need to follow three simple steps:
 
-1. Loggt euch in [gitlab](https://gitlab.ub.uni-giessen.de)
+1. Log in to [gitlab](https://gitlab.ub.uni-giessen.de)
 
-2. Gehe zu deiner Gruppe (im Beispiel hier Katnyss)
+2. Go to your group (in this example, Katnyss)
 
-![Gehe zur Gruppe](../img/pipeline1.png)
+![Go to the group](../img/pipeline1.png)
 
-3. Gehe in das Repository der jeweiligen Lab Task
+3. Go to the repository of the respective lab task
 
-![Gehe zur entsprechenden labtask](../img/pipeline2.png)
+![Go to the corresponding lab task](../img/pipeline2.png)
 
-4. Gehe dann links im Menü auf **CI/CD** -> **Pipelines**
+4. Then go to the left menu **CI/CD** -> **Pipelines** 
 
-![Gehe zu Pipelines](../img/pipeline3.png)
-5. Klicke dann rechts auf **Run Pipeline**.
+![Go to Pipelines](../img/pipeline3.png)
+5. Then click on **Run Pipeline** on the right.
 
-![Starte Pipeline](../img/pipeline4.png)
+![Start Pipeline](../img/pipeline4.png)
 
-6. Auf der neuen Seite dann einfach nochmal **Run Pipeline** klicken und keine Einstellung verändern.
+6. On the new page, simply click **Run Pipeline** again without changing any settings.
 
-![Starte Pipeline](../img/pipeline5.png)
+![Start Pipeline](../img/pipeline5.png)
 
-7. Die Pipeline ist gestartet und du erhältst folgendes Bild:
+7. The pipeline has started, and you will see the following image:
 
-![gestartete Pipeline](../img/pipeline6.png)
+![Started Pipeline](../img/pipeline6.png)
 
-8. Wenn die Pipeline erfolgreich ist, wird **passed** angezeigt, wenn sie nicht erfolgreich war (Lösungen nicht korrekt) erscheint **failed**. Hier im Beispiel erscheint natürlich **failed**, denn das Skript ist noch leer und kann somit nicht korrekt sein. 
+8. If the pipeline is successful, it will show **passed**; if it was not successful (solutions are not correct), it will show **failed**. In this example, **failed** will naturally appear because the script is still empty and therefore cannot be correct.
 
 ![Failed Pipeline](../img/pipeline7.png)
 
-Wenn eine Pipeline **failed**, musst du weiter am Skript arbeiten und dir nochmal überlegen, was eventuell verändert werden muss. Kommst du oder ihr in der Gruppe nicht weiter, geht in die Sprechstunde der Tutor:innen!
+If a pipeline **failed**, you need to continue working on the script and reconsider what may need to be changed. If you or your group are stuck, attend the tutors' office hours!
 
-So einfach kannst du deine Abgabe automatisiert kontrollieren. Dies kannst du zu jeder beliebigen Zeit machen! Bitte beachtet, dass der hinterlegte Server nicht unendlich viel Leistung hat, es daher bei den späteren Aufgaben durchaus 10 bis 20 Minuten dauern kann, bis ihr ein Ergebnis in der Pipeline habt. 
+This is how easily you can automate the checking of your submission. You can do this at any time! Please note that the server being used does not have unlimited resources, so for later tasks, it may take 10 to 20 minutes before you see a result in the pipeline.
 
-Jetzt musst du nur noch lernen, wie du die Kursmaterialien updatest!
+Now you just need to learn how to update the course materials!

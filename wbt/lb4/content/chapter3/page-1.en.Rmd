@@ -1,8 +1,8 @@
 ---
-title: "Regressionsdiagnostik"  # Titel der Seite
-weight: 301  # Individuelles Gewicht 
-menuTitle: "Regressionsdiagnostik" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Regression Diagnostics"  # Page title
+weight: 301  # Custom weight
+menuTitle: "Regression Diagnostics" # Short title if the title is too long
+tags: ["regression diagnostics"]  # Insert tags here; abbreviation of what happens on the page
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,93 +19,92 @@ tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Sei
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-In diesem Kapitel werden die Annahmen der **linearen Regression** getestet. Ausgangspunkt ist dabei das Modell `olsModel2` aus dem vorherigen Teil.
+In this chapter, the assumptions of **linear regression** are tested. The starting point is the model `olsModel2` from the previous section.
 
 $stfdem_i = \beta_0 + \beta_1*stfeco_i + \beta_2*trstlgl_i + e_i$ (olsModel2)
 
-Lade das Regressionsmodell in das **Environment** oder berechne das oben genannte Modell neu.
+Load the regression model into the **environment** or recalculate the above-mentioned model.
 
-Für `olsModel2` erhalten wir folgende Regressionsgleichung:
+For `olsModel2`, we obtain the following regression equation:
 
 $$ stfdem_i = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i + e_i $$
 
-Die Bestandteile der Vorhersage sind:
+The components of the prediction are:
 
 $$ \widehat{stfdem_i} = 0.67658 + 0.87361 * stfeco_i - 0.04212 * trstlgl_i $$
 
 {{% tabs %}}
-{{% tab name=\"Frage\" %}}
-1. Was ist der Effekt von `stfeco`? 
+{{% tab name=\"Question\" %}}
+1. What is the effect of `stfeco`?
 
-2. Welchen Wert sagt das Modell für eine Person voraus, die die Zufriedenheit mit der ökonomischen Leistung mit $10$ und ein Vertrauen in das Rechtssystem mit $5$ angibt?
+2. What value does the model predict for a person who indicates satisfaction with economic performance as $10$ and trust in the legal system as $5$?
 
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-1. Der Effekt von `stfeco` beträgt $0.87361$.
+{{% tab name=\"Solution\" %}}
+1. The effect of `stfeco` is $0.87361$.
 
 2. $\hat{stfdem} = 0.67658 + 0.87361 * 10 - 0.04212 * 5 = 9.20208$
 {{% /tab %}}
 {{% /tabs %}}
 
-## Annahmen der linearen Regression
+## Assumptions of Linear Regression
 
-Als Sozialwissenschaftler:innen berechnen wir Modelle, die wir hinsichtlich der mathematischen Annahmen prüfen müssen. Es gibt eine Reihe an Funktionen mit denen wir die **Regressionsdiagnostik** berechnen können. Da wir in den Sozialwissenschaften selten perfekte Datensätze haben (Non-Response, `NA's`), sind diese Funktionen oftmals zu restriktiv. In der Anwendung entscheiden wir oft über Annäherung an die Annahmen, und nicht ob die Annahmen voll erfüllt sind. Wir prüfen oft, ob mögliche Verletzungen *gering* genug sind, so dass die Annahme gilt.
+As social scientists, we calculate models that need to be tested for the mathematical assumptions. There are a number of functions with which we can calculate **regression diagnostics**. Since we rarely have perfect datasets in the social sciences (non-response, `NA's`), these functions are often too restrictive. In practice, we often decide on an approximation to the assumptions rather than whether the assumptions are fully met. We often check if possible violations are *small* enough for the assumption to hold.
 
-
-**Dies sind die Annahmen der linearen Regression:**
+**These are the assumptions of linear regression:**
 {{% tabs %}}
-{{% tab name=\"Annahmen\" %}}
-1. lineare Beziehung
+{{% tab name="Assumptions" %}}
+1. linear relationship
 
 2. $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$
 
-3. $Var(\epsilon_i) = \sigma^2$ (**Homoskedastizität**)
+3. $Var(\epsilon_i) = \sigma^2$ (**Homoscedasticity**)
 
-4. $Cov(\epsilon_i, \epsilon_j) = 0, i \neq j$ (**Auto-Korrelation**)
+4. $Cov(\epsilon_i, \epsilon_j) = 0, i \neq j$ (**Autocorrelation**)
 
-5. keine lineare Abhängigkeit unter den unabhängigen Variablen (**Multikollinearität**)
+5. no linear dependence among the independent variables (**Multicollinearity**)
 
-6. keine einflussreichen Fälle
+6. no influential cases
 {{% /tab %}}
-{{% tab name=\"Wirkung bei Verletzung\" %}}
-1. verzerrte Schätzer
+{{% tab name="Effects of Violation" %}}
+1. biased estimators
 
-2. invalide Signifikanztest, verzerrte Schätzer
+2. invalid significance tests, biased estimators
 
-3. verzerrte Schätzer
+3. biased estimators
 
-4. ineffiziente Schätzung 
+4. inefficient estimation
 
-5. verzerrte Schätzer
+5. biased estimators
 
-6. verzerrte Schätzer
+6. biased estimators
 {{% /tab %}}
-{{% tab name=\"Mögliche Lösung\" %}}
-1. nicht-lineare Transformation
+{{% tab name="Possible Solutions" %}}
+1. non-linear transformation
 
-2. *nichts!*
+2. *nothing!*
 
-3. Transformation der abhängigen Variable (oder der linearen Gleichung)
+3. transformation of the dependent variable (or the linear equation)
 
-4. nicht-lineare Transformation
+4. non-linear transformation
 
-5. Variablen entfernen
+5. remove variables
 
-6. Beobachtungen entfernen (muss aber theoretisch begründbar sein!)
+6. remove observations (but must be theoretically justifiable!)
 {{% /tab %}}
-{{% tab name=\"Testvorgehen\" %}}
-1. Plot Inspektion
+{{% tab name="Testing Procedure" %}}
+1. Plot inspection
 
-2. Plot Inspektion (Shapiro-Wilk-Test)
+2. Plot inspection (Shapiro-Wilk test)
 
-3. Breusch-Pagan-Test
+3. Breusch-Pagan test
 
-4. Durbin-Watson-Statistik
+4. Durbin-Watson statistic
 
-5. Korrelation zwischen unabhängigen Variablen sowie VIF / Tolerance factor
+5. Correlation between independent variables as well as VIF / Tolerance factor
 
 6. Cook's D
 {{% /tab %}}
 {{% /tabs %}}
 
-Auf den nächsten Seiten wirst du Schritt für Schritt die Annahmen testen. 
+In the following pages, you will test the assumptions step by step.

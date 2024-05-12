@@ -6,11 +6,11 @@ pre: "3. "
 weight: 300
 ---
 
-### Kapitel 3
+### Chapter 3
 
 # Tidyverse
 
-In diesem Kapitel werden erste Pakete des **tidyverse** vorgestellt.
+This chapter introduces the first packages of the **tidyverse**.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

@@ -1,8 +1,8 @@
 ---
-title: "Coding Challenge"  # Titel der Seite
-weight: 205  # Individuelles Gewicht 
-menuTitle: "Challenge" # Falls Titel zulang ist, hier Kurztitel
-tags: ["challenge"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Desafio de Codificação"  # Título da página
+weight: 205  # Peso individual
+menuTitle: "Desafio" # Se o título for muito longo, use um título curto aqui
+tags: ["desafio"]  # Insira tags aqui; abreviação do que acontece na página
 ---
 
 ```{r setup, include = FALSE}
@@ -30,20 +30,21 @@ pss <- readRDS("../../static/files/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Wir haben jetzt bereits erste Schritte im Verbinden von einzelnen Werten zu Vektoren (Variablen) gemacht und wir wiederholen dies an dieser Stelle und führen ein paar zusätzliche Schritte ein. Manchmal werden Daten selbstständig erhoben und wir schaffen nun aus erhobenen Daten einen Datensatz. Mit den folgenden Schritten vertiefst du das Verständnis des Objekts **data frame**. 
+Já demos os primeiros passos na conexão de valores individuais para vetores (variáveis) e vamos revisar isso aqui e introduzir alguns passos adicionais. Às vezes, os dados são coletados independentemente e agora estamos transformando os dados coletados em um conjunto de dados. Com os seguintes passos, você aprofundará seu entendimento do objeto **data frame**.
 
-In einem fiktiven Beispiel befragten wir $5$ Student:innen bezüglich ihrer Zufriedenheit mit der Mensa anhand von $5$ Variablen (Ausprägungen auf einer Likert-Skala von $1$ *sehr unzufrieden* bis $5$ *sehr zufrieden*). Diese siehst du in der folgenden Abbildung:
+Em um exemplo fictício, entrevistamos $5$ estudantes sobre sua satisfação com o refeitório usando $5$ variáveis (avaliações em uma escala Likert de $1$ *muito insatisfeito* a $5$ *muito satisfeito*). Você pode ver isso na seguinte imagem:
 
-![Beispiel](../img/df-beispiel.png)
+![Exemplo](../img/df-beispiel.png)
+
+Agora você pode criar $5$ vetores, onde cada vetor representa uma pessoa. **Importante:** Fornecemos uma solução no **Código**, mas é importante para o seu progresso de aprendizado tentar por si mesmo primeiro. Depois de conseguir, você pode verificar a solução. Mas lembre-se: em R, há sempre mais de um caminho, então se o seu caminho for diferente, não significa que está errado, desde que o resultado final seja o mesmo! 
 
 
-Du kannst nun $5$ Vektoren schaffen, so dass jeder Vektor eine Person darstellt. **Wichtig:** Wir stellen eine Lösung unter **Code** zur Verfügung, aber es ist für deinen Lernfortschritt wichtig, dass du dich erst zuerst selbst ausprobierst. Nachdem du es geschafft hast, kannst du die Lösung abgleichen. Aber bedenke: Es gibt in R immer mehr als einen Weg, wenn dein Weg also abweicht, muss er nicht falsch sein, wenn am Ende dasselbe bei herauskommt! 
 
-{{% tabs groupId=\"tab1\"%}}
-{{% tab name=\"Frage\" %}}
-Als erstes müssen wir fünf Vektoren (für die fünf Variablen schaffen), die jeweils die Werte aller Personen beinhalten. Diesen Schritt kannst du bereits selbst mit deinem Wissen ausführen. Probiere es zuerst selbst und schaue erst danach in die Lösung. 
+{{% tabs groupId="tab1"%}}
+{{% tab name="Frage" %}}
+Como primeiro passo, precisamos criar cinco vetores (para as cinco variáveis), cada um contendo os valores de todas as pessoas. Você pode realizar este passo com seu conhecimento. Tente fazer por conta própria primeiro e só depois confira a solução.
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
+{{% tab name="Código" %}}
 ```{r eval=TRUE}
 auswahl <- c(
   4, 
@@ -88,7 +89,7 @@ preis <- c(
 {{% /tab %}}
 {{% /tabs %}}
 
-Jetzt hast du fünf einzelne Variablen, die aber noch zu einem Datensatz verbunden werden müssen. Dazu nutzen wir die Funktion `cbind()`, wobei das `c` für *column* steht: Denn Variablen werden konventionell in die Spalte (*column*) eines Datensatzes gesetzt. Mit der Funktion verbinden die einzelnen Vektoren zu einem Objekt:
+Agora você tem cinco variáveis individuais, mas elas ainda precisam ser combinadas em um conjunto de dados. Para isso, usamos a função `cbind()`, onde o `c` significa *coluna*: pois as variáveis são convencionalmente colocadas na coluna de um conjunto de dados. Com a função, os vetores individuais são combinados em um objeto:
 
 ```{r dfcreate1, eval=TRUE}
 df <- cbind(
@@ -100,12 +101,12 @@ df <- cbind(
 )
 ```
 
-Jetzt haben wir das neue Objekt erstellt, wenn wir dieses nun aufrufen, sieht dies noch nicht wie der zuvor aufgerufene Datensatz aus. Denn Vektoren gleicher Länge werden automatisch zu einer Matrix verbunden:
+Agora que criamos o novo objeto, se o chamarmos agora, ele não se parecerá com o conjunto de dados chamado anteriormente. Isso ocorre porque vetores do mesmo comprimento são automaticamente combinados em uma matriz:
 ```{r dfcreate2, eval=TRUE}
 df
 ```
 
-Wir müssen jetzt noch speziell anweisen, dass es ich um einen **dataframe** handelt und R das Objekt entsprechend behandeln soll. Dazu nutzen wir die Funktion `data.frame()`, die ein Objekt (in Form einer Matrix) in den Datentyp **dataframe** wandelt.
+Agora precisamos especificar que se trata de um **dataframe** e que o R deve tratar o objeto adequadamente. Para isso, usamos a função `data.frame()`, que converte um objeto (na forma de uma matriz) para o tipo de dados **dataframe**.
 
 ```{r dfcreate3, eval=TRUE}
 df2 <- data.frame(df)
@@ -113,18 +114,18 @@ df2 <- data.frame(df)
 df2
 ```
 
-Fertig ist der Datensatz!
+O conjunto de dados está pronto!
 
-Auch im Datensatz können wir wie in Vektor-Objekten einzelne Werte herausgreifen. Wie zuvor machen wir dies, in dem wir den Objektnamen nutzen und direkt dahinter in eckigen Klammern `[]` die Bedingungen setzen. 
+Também no conjunto de dados, assim como em objetos de vetor, podemos extrair valores individuais. Como antes, fazemos isso usando o nome do objeto e colocando as condições entre colchetes `[]` imediatamente a seguir.
 
-**Wichtig:** Es gibt hier jetzt zwei Dimensionen - Zeilen und Spalten. Das erste Argument in der Zeile ist die Auswahl der Zeile, das zweite Argument die Auswahl der Spalte. Willst du den allerersten Eintrag wissen, setze beide Argumente auf 1.
+**Importante:** Agora temos duas dimensões - linhas e colunas. O primeiro argumento na linha é a seleção da linha, o segundo argumento é a seleção da coluna. Se você quiser saber o primeiro item, defina ambos os argumentos como 1.
 
 ```{r dfselection, eval=TRUE}
 df2[1, 1] 
-# 1. Eintrag: 1. Zeile, 1. Spalte
+# 1º item: 1ª linha, 1ª coluna
 ```
 
-Anstatt einzelner Werte kannst du dir auch eine gesamte Zeile oder Spalte ausgeben lassen. Du musst einfach nur das andere Argument leer lassen:
+Em vez de valores individuais, você também pode exibir uma linha ou coluna inteira. Basta deixar o outro argumento vazio:
 
 ```{r dfselection2, eval=TRUE}
 # dritte Zeile
@@ -134,7 +135,7 @@ df2[3, ]
 df2[, 5]
 ```
 
-Wenn du dir mehrere Spalten oder Zeilen gleichzeitig ausgeben lassen kannst, nutzt du einfach die bekannte Funktion `c()` in der eckigen Klammer. 
+Quando você deseja exibir várias colunas ou linhas ao mesmo tempo, basta usar a função conhecida `c()` dentro dos colchetes. 
 ``` {r dfselection3, eval=TRUE}
 # Spalte 1, 3 & 4
 df2[, 
@@ -146,13 +147,13 @@ df2[,
     ]
 ```
 
-Alternativ zu `c()` kann man auch einen Doppelpunkt `:` verwenden. 
+Como alternativa ao `c()`, você também pode usar dois pontos `:`. 
 ```{r dfselection4, eval=TRUE}
-# Zeile 3 bis 5
+# Linhas 3 a 5
 df2[3:5, ]
 ```
 
-Zuguterletzt musst du natürlich nicht immer die Position der Variablen wissen, stattdessen kannst du auch den Variablennamen nutzen. Dies geht aber nur in Kombination mit der `c()`-Funktion, wenn du mehrere Spalten ausgeben lassen willst. 
+Por fim, você não precisa sempre saber a posição das variáveis, em vez disso, você pode usar o nome da variável. No entanto, isso só é possível em combinação com a função `c()` quando você deseja exibir várias colunas.
 
 ```{r dfselection5, eval=TRUE}
 # Spalte auswahl, service und preis
@@ -165,6 +166,6 @@ df2[,
 ]
 ```
 
-Jetzt bist du im Verständnis wie Datensätze grundsätzlich aufgebaut sind fit! Im nächsten Lernblock werden wir dann reale und fiktive Datensätze nutzen und anfangen Daten zu bearbeiten und zu beschreiben. 
+Agora que você entende como os conjuntos de dados são estruturados de forma básica! No próximo bloco de aprendizado, começaremos a usar conjuntos de dados reais e fictícios e a manipular e descrever os dados.
 
-Bevor du nun abbrichst, folgt im nächsten Kapitel noch eine Einführung in **gitlab**. Dies ist wichtig für die Gruppenarbeit, da **gitlab** euch diese sehr vereinfacht!
+Antes de encerrar, no próximo capítulo haverá uma introdução ao **gitlab**. Isso é importante para o trabalho em grupo, pois o **gitlab** facilita muito essa colaboração!

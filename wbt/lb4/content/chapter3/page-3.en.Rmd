@@ -1,8 +1,8 @@
 ---
-title: "Annahme 2: Normalverteilung Residuen"  # Titel der Seite
-weight: 303  # Individuelles Gewicht 
-menuTitle: "Normalverteilung" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assumption 2: Normal Distribution of Residuals"  # Title of the page
+weight: 303  # Custom weight 
+menuTitle: "Normal Distribution" # Short title if necessary
+tags: ["regression diagnostics"]  # Insert tags here; Brief description of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,7 +34,7 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Um zu prüfen, ob die Residuen normalverteilt mit Erwartungswert $E=0$ sind, rufen wir den sogenannten *Normal-Q-Q*-Plot auf. Dazu ändern wir einfach das zweite Argument in der Funktion `plot()` einfach auf den Wert `2`:
+To check if the residuals are normally distributed with an expected value of $E=0$, we call the so-called *Normal Q-Q* plot. To do this, we simply change the second argument in the `plot()` function to the value `2`:
 
 ```{r assumption2, eval = TRUE}
 plot(
@@ -44,9 +44,9 @@ plot(
 
 ```
 
-$\Rightarrow$ Die Punkte sollten der Diagonalen folgen bzw. eng an der Linie liegen. Wir können also auch hier asymptotisch die Annahme als erfüllt ansehen. 
+$\Rightarrow$ The points should follow the diagonal line or lie closely to it. Therefore, we can also consider the assumption to be met asymptotically here.
 
-Wir können auch die Dichte-Funktion der Residuen analysieren: 
+We can also analyze the density function of the residuals:
 ```{r assumption2b, eval = TRUE}
 plot(density(olsModel2$residuals))
 
@@ -62,4 +62,4 @@ curve(
 )
 ```
 
-$\Rightarrow$ Verteilung sollte der grünen Linie folgen. Das ganze ist hier etwas ungenau, da wir pseudo-metrische Daten haben!
+$\Rightarrow$ The distribution should follow the green line. This is somewhat imprecise here since we have pseudo-metric data!

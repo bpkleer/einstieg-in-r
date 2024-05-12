@@ -1,8 +1,8 @@
 ---
-title: "Annahme 5: Multikollinearität"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Multikollinearität" # Falls Titel zulang ist, hier Kurztitel
-tags: ["regressionsdiagnostik", "multikollinearität"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Assunção 5: Multicolinearidade"  # Título da página
+weight: 306  # Peso individual
+menuTitle: "Multicolinearidade" # Se o título for muito longo, use um título curto aqui
+tags: ["diagnóstico de regressão", "multicolinearidade"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -36,12 +36,12 @@ olsModel2 <- lm(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Multikollinearität** bedeutet, dass unter den unabhängigen Variablen lineare Abhängigkeiten vorliegen. Dies prüfst du über den *variance inflation factor* (**VIF**). Wenn der Wert des **VIF** über $10$ liegt, dann ist die **Multikollinearität** hoch und die Schätzung verzerrt (andere empfehlen Richtwert $5$).
+**Multicolinearidade** significa que existem dependências lineares entre as variáveis independentes. Isso é verificado pelo *fator de inflação da variância* (**VIF**). Se o valor do **VIF** for superior a $10$, então a **multicolinearidade** é alta e a estimativa está distorcida (outros recomendam um limite de $5$).
 
-Formel des **VIF**:
+Fórmula do **VIF**:
 $$VIF_i = \frac{1}{1-R^2_i}$$
 
-Um den **VIF** zu berechnen, rufen wir die Funktion `vif()` aus der **library** `car` auf. Für jede unabhängige Variable erhälst du den **VIF**-Wert:
+Para calcular o **VIF**, chamamos a função `vif()` da **biblioteca** `car`. Para cada variável independente, você obterá o valor do **VIF**:
 ```{r car, eval=FALSE}
 install.packages("car")
 library("car")
@@ -50,4 +50,4 @@ library("car")
 vif(olsModel2)
 ```
 
-$\Rightarrow$ Wir erhalten hier keine Werte, die über den empfohlenem Grenzwert liegen. Also weiterhin alles okay!
+$\Rightarrow$ Aqui não obtemos valores que ultrapassam o limite recomendado. Então, tudo continua bem!

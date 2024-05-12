@@ -1,8 +1,8 @@
 ---
-title: "Kursmaterialien"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Kursmaterialien" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Materiais do Curso"  # Título da página
+weight: 306  # Peso individual
+menuTitle: "Materiais do Curso" # Se o título for muito longo, use um título curto aqui
+tags: ["ci", "materiais do curso", "gitlab"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,17 +19,17 @@ tags: ["ci", "course materials", "gitlab"]  # Tags hiereinsetzen; Kurzwort, was 
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Die Kursmaterialien sind als Projekt in RStudio angelegt: **course materials** (im Workspace *Stats<sup>+</sup>: Einstieg in R*). 
+Os materiais do curso estão configurados como um projeto no RStudio: **materiais do curso** (no Workspace *Stats<sup>+</sup>: Introdução ao R*). 
 
-Als erstes legst du dir eine eigene Kopie des Projekts an, wie zuvor mit **firststeps**. 
+Primeiro, faça uma cópia do projeto, assim como fez com **primeiros passos**. 
 
-![Kopieren **course materials**](../img/course-project.gif)
+![Copiando **materiais do curso**](../img/course-project.gif)
 
-Jetzt hast du das Projekt kopiert und kannst selbst darin arbeiten und zum Beispiel Kommentare in die Skripte hinzufügen. Du findest unter `instructions.Rmd` eine Anleitung, wie du den Ordner handhabst. Wir fügen nach und nach Kursmaterialien hinzu. Das Projekt ist mit **gitlab** verbunden und daher kannst du Updates ganz einfach **pullen**. 
-![Lesen der Anweisungen](../img/read-instructions.gif)
+Agora que você copiou o projeto, pode trabalhar nele e adicionar comentários aos scripts, por exemplo. Você encontrará um guia em `instructions.Rmd` sobre como lidar com a pasta. Estamos adicionando materiais do curso gradualmente. O projeto está conectado ao **gitlab**, então você pode atualizá-lo facilmente com um **pull**. 
+![Lendo as instruções](../img/read-instructions.gif)
 
-Um nun Updates zu erhalten, öffnest du eine neues Skript und führst die Schritte aus den Instruktionen durch. Danach gehst du bei **Environment** zum Tab **Git** und klickst einfach **nur** auf **pull**. Wichtig: Hier musst du nicht den Dreischritt ausführen, da deine persönliche Kommentare ja nicht allen zur Verfügung gestellt werden sollen. Daher nur **pullen**!
+Para receber atualizações, abra um novo script e siga os passos das instruções. Em seguida, vá para a aba **Git** em **Environment** e clique apenas em **pull**. Importante: Você não precisa executar o processo de três etapas aqui, já que seus comentários pessoais não devem ser disponibilizados para todos. Portanto, apenas **faça o pull**!
 
-![Updaten der Kursmaterialien](../img/git-pull.gif)
+![Atualizando os materiais do curso](../img/git-pull.gif)
 
-Das war's! Jetzt bist du auch fit für **gitlab**!
+É isso aí! Agora você também está pronto para o **GitLab**!

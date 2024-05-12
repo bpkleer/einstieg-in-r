@@ -1,8 +1,8 @@
 ---
-title: "Deskriptive Statistik"  # Titel der Seite
-weight: 201  # Individuelles Gewicht 
-menuTitle: "Allgemein" # Falls Titel zulang ist, hier Kurztitel
-tags: ["deskriptiv"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Descriptive Statistics"  # Title of the page
+weight: 201  # Custom weight 
+menuTitle: "General" # Short title in case the title is too long
+tags: ["descriptive"]  # Insert tags here; abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")   
 ```
 
-{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/introduction-to-statistics\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
 
@@ -23,20 +23,20 @@ pss <- readRDS("./data/pss.rds")
 
 {{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
 
-{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-twitter\" %}} {{% /buttonShare %}}
 
 {{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-## Struktur und Informationen eines Datensatzes
-Als erstes probieren wir aber das vorhin gelernte aus und laden nun den Datensatz `pss` in das Environment! In RStudio Cloud ist der Datensatz bereits in deinem Ordner `data`. Arbeitest du lokal mit RStudio findest du den Datensatz und das Codebook hier:
+## Structure and Information of a Dataset
+But first, let's apply what we learned earlier and now load the dataset `pss` into the environment! In RStudio Cloud, the dataset is already in your `data` folder. If you are working locally with RStudio, you can find the dataset and the codebook here:
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Dataset\" /%}}
 
 {{% tabs groupId=\"tab1\" %}}
-{{% tab name=\"Aufgabe\" %}}
-Lade den Datensatz in das Environment hinein!
+{{% tab name=\"Task\" %}}
+Load the dataset into the environment!
 {{% /tab %}}
 {{% tab name=\"Code\" %}}
 ```R
@@ -45,19 +45,21 @@ pss <- readRDS("./data/pss.rds")
 {{% /tab %}}
 {{% /tabs %}}
 
-Zur Erinnerung: Mit der Funktion `head()` können wir einen ersten Einblick in die Daten bekommen (die ersten $6$ Fälle):
+As a reminder: With the function `head()`, we can get a first look at the data (the first $6$ cases):
 ```{r eval=FALSE}
 head(pss)
 ```
 
-## Variablen und Skalenniveau
+## Variables and Scale Level
 
-Im Datensatz **PSS** sind eine Reihe von Variablen vorhanden. Zum Datensatz gibt es ein Codebook, dass in der RStudio Cloud gespeichert ist bzw. über den oberen Link herunterzuladen ist. 
-Überlege kurz zu den folgenden Variablen, welches Skalenniveau diese aufweisen und welcher Datentyp in R dafür geeignet wäre.
+In the **PSS** dataset, there are several variables available. There is a codebook for the dataset, which is stored in RStudio Cloud or can be downloaded via the link above. 
+Briefly consider the following variables, what scale level they exhibit, and which data type in R would be suitable for them. 
 
-{{% tabs groupId=\"tab2\" %}}
-{{% tab name=\"Variablen im Datensatz\" %}}
-Variablen im Datensatz `pss`:
+{ /* examples */ }
+
+{{% tabs groupId="tab2" %}}
+{{% tab name="Variables in the Dataset" %}}
+Variables in the dataset `pss`:
 
 - `wkhtot`
 
@@ -68,20 +70,19 @@ Variablen im Datensatz `pss`:
 - `trstprl`
 
 {{% /tab %}}
-{{% tab name=\"Auflösung\" %}}
-Die Variablen haben folgendes Skalenniveau:
+{{% tab name="Resolution" %}}
+The variables have the following scale levels:
 
-- `wkhtot`: metrisch
+- `wkhtot`: metric
 
 - `gndr`: nominal
 
-- `stfdem`: (pseudo-)metrisch / ordinal
+- `stfdem`: (pseudo-)metric / ordinal
 
-- `trstprl`: (pseudo-)metrisch / ordinal
+- `trstprl`: (pseudo-)metric / ordinal
 
 {{% /tab %}}
-{{% tab name=\"Datentyp in R\" %}}
-```R
+{{% tab name="Data Type in R" %}}
 
 str(pss$wkhtot)
 
@@ -95,23 +96,23 @@ str(pss$trstprl)
 {{% /tab %}}
 {{% /tabs %}}
 
-Bei allen Variablen passt der Datentyp zum Skalenniveau. 
+All variables have the appropriate data type for their scale level.
 
-## Länge eines Vektors
-Um die Länge eines Vektors auszugeben, wird die Funktion `length()` genutzt. Diese Funktion gibt die Anzahl der Werte in einem Vektor an. Im Fall einer Variable also die Anzahl an Beobachtungen in einer Variable.
+## Length of a Vector
+To display the length of a vector, the `length()` function is used. This function provides the number of values in a vector. In the case of a variable, it indicates the number of observations in that variable.
 ```{r eval=FALSE}
 length(pss$edu)
 ```
 
-{{% expand \"Können wir auf die Länge der anderen Vektoren schließen, oder müssen wir uns diese auch nochmal ausgeben lassen?\" %}}
-In einem Datensatz bzw. **data frame** haben alle Vektoren dieselbe Länge (denn es ist ja eine Tabelle!). Das heißt von der Länge eines Vektors können wir auf die Länge aller Vektoren schließen. **Aber:** das heißt nicht, dass alle Variablen dieselbe Anzahl gültiger Antworten haben, da ja auch `NA's` (*missing values*) vorliegen können. 
+{{% expand "Can we infer the length of the other vectors, or do we need to display them again?" %}}
+In a dataset or **data frame**, all vectors have the same length (because it's a table!). This means we can infer the length of all vectors from the length of one vector. **However:** this does not mean that all variables have the same number of valid responses, as there may also be `NA's` (missing values).
 {{% /expand %}}
 
-Alternativ kann man die Länge auch über die Funktion `dim()` herausfinden. Hierbei muss aber das **data frame**-Objekt aufgerufen werden. 
+Alternatively, you can also determine the length using the `dim()` function. However, the **data frame** object must be called in this case.
 ```{r dim, eval=TRUE}
 dim(pss)
 ```
 
-Die erste Dimension sind die Zeilen (Fälle), die zweite Dimension sind die Spalten (Variablen). 
+The first dimension represents the rows (cases), and the second dimension represents the columns (variables).
 
-Gehen wir weiter und lassen uns Maße der zentralen Tendenz ausgeben!
+Let's continue and display measures of central tendency!

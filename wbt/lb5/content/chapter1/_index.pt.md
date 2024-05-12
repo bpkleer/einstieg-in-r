@@ -1,16 +1,16 @@
 ---
-menuTitle: "Darstellungen"
-title: "Graf. Darstellungen"
+menuTitle: "Representações"
+title: "Representações Gráficas"
 chapter: true
 pre: "1. "
 weight: 100
 ---
 
-### Kapitel 1
+### Capítulo 1
 
-# Grafische Darstellungen
+# Representações Gráficas
 
-In diesem Kapitel lernst du die Grundgerüste von Grafiken in `ggplot` kennen: ein Balkendiagramm, ein Histogramm, Boxplots und Scatterplots. 
+Neste capítulo, você aprenderá os fundamentos de gráficos no `ggplot`: um gráfico de barras, um histograma, boxplots e gráficos de dispersão.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

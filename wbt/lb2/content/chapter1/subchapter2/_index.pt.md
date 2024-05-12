@@ -1,16 +1,16 @@
 ---
-title: "Datenimport"
-menuTitle: "Datenimport"
+title: "Importação de Dados"
+menuTitle: "Importação de Dados"
 chapter: true
 pre: "1.2 "
 weight: 120
 ---
 
-### Kapitel 1.2
+### Capítulo 1.2
 
-# Datenimport
+# Importação de Dados
 
-In diesem Kapitel lernst du Datensatz-Dateien und das Importieren in R kennen.
+Neste capítulo, você aprenderá sobre arquivos de conjunto de dados e como importá-los no R.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

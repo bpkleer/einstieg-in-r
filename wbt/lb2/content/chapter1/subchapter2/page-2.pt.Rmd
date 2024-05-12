@@ -1,8 +1,8 @@
 ---
-title: "Import von .txt und .csv"  # Titel der Seite
-weight: 122  # Individuelles Gewicht 
-menuTitle: "Text-Import" # Falls Titel zulang ist, hier Kurztitel
-tags: [".txt", "datei", ".csv", "import"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Importação de .txt e .csv"  # Título da página
+weight: 122  # Peso personalizado
+menuTitle: "Importação de Texto" # Se o título for muito longo, use um título curto aqui
+tags: [".txt", "arquivo", ".csv", "importação"]  # Tags: abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,62 +33,54 @@ exam <- read.table(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-{{%attachments style=\"grey\" title=\"Datensatz\" /%}}
+{{%attachments style=\"grey\" title=\"Conjunto de Dados\" /%}}
 
-Als erstes werden wir globale Datensatz-Dateiformate importieren. Dies sind `.txt` und `.csv`. Beim Format `.csv` gibt es wieder eine Sprachenbesonderheit. Im Standard (englische Sprachversion am Computer) ist das Trennzeichen der Daten ein `,` (Komma), auf Computern mit deutscher Spracheinstellung weicht dies ab und das Datentrennzeichen ist ein `;` (Semikolon). 
+Primeiramente, vamos importar formatos de arquivo de conjunto de dados globais. Estes são `.txt` e `.csv`. No formato `.csv`, há uma particularidade de idioma. No padrão (versão em inglês no computador), o separador de dados é `,` (vírgula), mas em computadores com configuração de idioma em alemão, isso muda e o separador de dados é `;` (ponto e vírgula).
 
-## Import einer .txt-Datei
+## Importar um arquivo .txt
 
-Eine `.txt`-Datei ist eine reine Textdatei in der Daten mit einem Tabulator getrennt sind (siehe Screenshot). Auch hier ist das Format in der Konvention, dass in der Spalte Variablen eingetragen sind und in den Zeilen die Fälle. In der Regel stellt die erste Zeile keinen Fall dar, sondern beinhaltet wie im Beispiel die Variablennamen.
+Um arquivo `.txt` é um arquivo de texto puro onde os dados são separados por tabulação (veja a captura de tela). Aqui também, o formato segue a convenção de ter as variáveis nas colunas e os casos nas linhas. Geralmente, a primeira linha não representa um caso, mas contém, como no exemplo, os nomes das variáveis.
 
-![Beispiel .txt-Datei](../img/txt.png)
-Im Beispiel haben wir also einen Datensatz mit vier Variablen: `age`, `duration`, `grade` und `exam`. 
+![Exemplo de arquivo .txt](../img/txt.png)
+No exemplo, temos um conjunto de dados com quatro variáveis: `idade`, `duração`, `nota` e `exame`.
 
+{{% expand \"Pense por um momento no que as variáveis poderiam significar?\" %}}
+Normalmente, os pesquisadores tentam nomear as variáveis de forma o mais clara possível. **idade** representa a idade dos entrevistados, **duração** o tempo que a pessoa levou para fazer o exame, **nota** a nota que a pessoa obteve no exame e **exame** indica qual exame está sendo realizado.
 
-{{% expand \"Überlege einmal kurz, was die Variablen wohl bedeuten könnten?\" %}}
-In der Regel versuchen Forschenden Variablen möglichst eindeutig zu benennen. **age** beinhaltet das Alter der Befragten, **duration** die Zeitdauer, die die Person für die Prüfung benötigt hat, **grade** die Note, die die Person in der jeweiligen Prüfung erhalten hat und **exam** beinhaltet, um welche Prüfung es sich handelt. 
 {{% /expand %}}
 
-Wenn du Dateien lädtst, musst du dir in Erinnerung rufen, was ein Dateipfad ist. Wenn du das nicht mehr weißt, geh zurück in den [Lernblock 1](https://lehre.bpkleer.de/statsplus/lb1). RStudio Cloud erleichtert uns dies, indem der Pfad sehr leicht angewählt werden kann: In den RStudio Projekte ist immer ein Ordner namens `data` vorhanden, der wie folgt angesteuert wird: `./data/` und nach dem zweiten Slash folgt der Dateiname. Wie es bei einer lokalen Installation funktioniert, kannst du ganz unten nachlesen. Das ist aber für den Kurs erstmal nicht relevant, da wir alle mit der RStudio Cloud arbeiten.
+Ao carregar arquivos, é importante lembrar o que é um caminho de arquivo. Se você não se lembra, volte para o [Bloco de Aprendizagem 1](https://lehre.bpkleer.de/statsplus/lb1). O RStudio Cloud facilita isso, pois o caminho pode ser facilmente selecionado: Em projetos do RStudio, sempre há uma pasta chamada `data`, que é acessada da seguinte forma: `./data/` e após a segunda barra, vem o nome do arquivo. Como funciona em uma instalação local, você pode ler mais abaixo. No entanto, isso não é relevante para o curso no momento, já que todos estamos trabalhando com o RStudio Cloud.
 
-In R ist das **Environment** der Ort, wo wir alle geladenen und gespeicherten Daten und Objekte sehen.
+No R, o **Ambiente** é onde podemos ver todos os dados e objetos carregados e salvos.
 
-Um nun die *.txt-Datei* (*tab-separated file*) in R zu laden, benötigen wir die Funktion `read.table()`. Immer wenn man Hilfe zur einer bekannten Funktion benötigt, kann man einfach ein `?` vor diese setzen und die Argumente leer lassen. Im **Help**-Tab in der **Files**-Kachel öffnen sich dann Hinweise zur Funktion. 
+Para carregar o arquivo *.txt* (*arquivo separado por tabulação*) no R, precisamos usar a função `read.table()`. Sempre que precisar de ajuda com uma função conhecida, basta colocar um `?` antes dela e deixar os argumentos vazios. Na aba **Ajuda** na guia **Arquivos**, serão exibidas informações sobre a função.
 
-Probieren wir es aus. 
-```{r help, eval=FALSE}
-# Falls man Hilfe zur Funktion benötigt:
+Vamos tentar.
+```{r ajuda, eval=FALSE}
+# Se precisar de ajuda com a função:
 ?read.table()
 ```
 
-Jetzt wollen wir die Daten in R importieren, damit wir mit diesen arbeiten können. Die Datensätze sind bereits im Ordner `data` gespeichert. Datensatz-Objekte benennt man am besten so, dass man intuitiv darauf schließen kann, um welche Daten es sich handelt. Innerhalb der Import-Funktion (`read.table()`) gibst du einfach den gesamten Pfad zur Datei an. Da die erste Zeile in der Datei die Variablennamen beinhaltet, geben wir im letzten Argument `header = TRUE` an, dass dort die Variablennamen zu finden sind. Das Argument `sep = "\t"` gibt einfach an, dass das Trennzeichen für die Daten ein Tabulator ist. 
-
-```{r load-txt, eval=FALSE}
-
-exam <- read.table(
-  "./data/exam.txt",
-  sep = "\t",                        
-  header = TRUE  
-)             
+Agora queremos importar os dados para o R para poder trabalhar com eles. Os conjuntos de dados já estão salvos na pasta `data`. É melhor nomear os objetos de conjunto de dados de forma que seja intuitivo entender sobre quais dados estamos falando. Dentro da função de importação (`read.table()`), basta fornecer o caminho completo para o arquivo. Como a primeira linha do arquivo contém os nomes das variáveis, especificamos em `header = TRUE` que os nomes das variáveis estão lá. O argumento `sep = "\t"` indica que o separador de dados é uma tabulação.
 
 ```
 
-Wir haben nun die Daten importiert und einen neuen **data frame** importiert, der `exam` heißt! Dieser ist im **Environment** bei dir nun sichtbar.
+Temos agora os dados importados e um novo **data frame** importado, chamado `exam`! Este está visível no **Environment** para você.
 
-## Struktur eines Datensatzes
-Es gibt eine Reihe von Helfer-Funktionen, um einen Überblick über importierte Daten zu bekommen. Diese wirst du jetzt kennenlernen. 
+## Estrutura de um conjunto de dados
+Existem uma série de funções auxiliares para obter uma visão geral dos dados importados. Você irá conhecê-las agora.
 
-Um die Struktur des Datensatzes anzeigen zu lassen, ruft man die folgende Funktion auf:
+Para exibir a estrutura do conjunto de dados, chamamos a seguinte função:
 ```{r eval=TRUE}
 str(exam)
 ```
 
-Mit der Funktion `head()` können wir einen ersten Einblick in die Daten bekommen (die ersten $6$ Fälle):
+Com a função `head()`, podemos ter uma primeira visão dos dados (os primeiros $6$ casos):
 ```{r eval=TRUE}
 head(exam)
 ```
 
-Wir können uns auch mehr als $6$ Fälle anzeigen lassen, dazu fügt man ein zweites Argument hinzu, in dem die Anzahl genannt wird.
+Também podemos exibir mais do que $6$ casos, adicionando um segundo argumento com o número desejado.
 ```{r eval=TRUE}
 head(
   exam,
@@ -96,23 +88,22 @@ head(
 )
 ```
 
-
-Wir können auch einzelne Variablen innerhalb des Datensatzes ansprechen. Dazu nennen wir den Datensatz und adressieren mit dem `$` eine einzelne Variable:
+Também podemos acessar variáveis individuais dentro do conjunto de dados. Para isso, mencionamos o conjunto de dados e usamos o `$` para acessar uma variável específica:
 ```{r eval=TRUE}
 head(exam$grade)
 ```
 
-So jetzt hast du das geschafft und die Anwendung auf andere Dateiformate ist gar nicht so viel mehr Arbeit. Importieren wir als nächstes eine `.csv`-Datei. 
+Agora que você conseguiu isso, a aplicação em outros formatos de arquivo não é muito mais trabalhosa. Vamos importar um arquivo `.csv` a seguir.
 
-## Import einer .csv-file
+## Importando um arquivo .csv
 
-Um eine *.csv-file* zu laden, benötigen wir kein weitere **library**. Die Funktion (wie die oben) ist in R-Base enthalten. 
+Para carregar um arquivo *.csv*, não precisamos de nenhuma outra **biblioteca**. A função (como acima) está incluída no R-Base.
 
-Die Datei inkludiert den gleichen Datensatz, nur als `.csv`-Datei.
+O arquivo inclui o mesmo conjunto de dados, mas como um arquivo `.csv`.
 
-Wir benötigen die Funktion `read.csv()` bzw. `read.csv2()`. Dies hängt davon ab, ob ihr die `.csv`-Datei bereits einmal auf eurem Rechner (Excel oder LibreOffice) geöffnet habt. Wenn ja und eure Computersprache Deutsch ist, müsst ihr `read.csv2()` verwenden. Habt ihr die Datei nicht ein einziges Mal geöffnet oder englische Spracheinstellungen nutzt `read.csv()`.
+Precisamos da função `read.csv()` ou `read.csv2()`. Isso depende se você já abriu o arquivo `.csv` em seu computador (Excel ou LibreOffice). Se sim, e o idioma do seu computador for alemão, você deve usar `read.csv2()`. Se você nunca abriu o arquivo ou está usando configurações de idioma em inglês, use `read.csv()`.
 
-Probieren wir es mal aus!
+Vamos tentar!
 ```{r eval=FALSE}
 examcsv <- read.csv(
   "./data/exam.csv", 
@@ -125,32 +116,32 @@ examcsv2 <- read.csv2(
 )
 ```
 
-Hier seht ihr einen Screenshot der zwei importierten Datensätze mit den unterschiedlichen Funktionen.
+Aqui está uma captura de tela dos dois conjuntos de dados importados com as diferentes funções.
 
-![exam mit read.csv()](../img/examcsv.png)
+![exam com read.csv()](../img/examcsv.png)
 
-![exam mit read.csv2()](../img/examcsv2.png)
+![exam com read.csv2()](../img/examcsv2.png)
 
-{{% expand \"Schau dir die Screenshots an und überlege kurz (mit dem Wissen von oben), warum dies unterschiedlich importiert wird?\" %}}
-Es liegt am Trennzeichen der Daten. Die Funktion **read.csv()** liest in meinem Fall die Daten korrekt, denn ich habe ein englischsprachiges Format und die Daten sind in der Datei mit einem Komma getrennt. Die Funktion **read.csv2()** nimmt ein deutschsprachgies Format als Standard und erwartet daher Semikolon als Daten-Trennzeichen. Da es dieses nicht findet, endet es einfach in jeder Zeile und schreibt nur eine Variable, in der die gesamten Daten mit dem Komma-Trennzeichen inkludiert sind.
+{{% expand \"Veja as capturas de tela e pense um pouco (com o conhecimento acima), por que elas são importadas de forma diferente?\" %}}
+Isso se deve ao separador de dados. A função **read.csv()** lê os dados corretamente no meu caso, pois estou usando um formato em inglês e os dados no arquivo estão separados por vírgula. A função **read.csv2()** assume um formato em alemão como padrão e espera ponto e vírgula como separador de dados. Como não encontra isso, ele simplesmente termina em cada linha e escreve apenas uma variável, na qual os dados completos com o separador de vírgula são incluídos.
 {{% /expand %}}
 
-Es ist wichtig zu verstehen, welches Dateiformat vorliegt und wie dies zu importieren ist, denn so können Fehler beim Import leicht vermieden werden. 
+É importante entender qual formato de arquivo está sendo usado e como importá-lo, pois isso pode evitar facilmente erros durante a importação.
 
-Gehen wir nun über in die Formate, die R zur Verfügung stellt!
+Agora vamos explorar os formatos disponíveis no R!
 
-## Lokales Arbeiten
-Wenn du mal später lokal arbeitest, musst du immer den direkten Pfad der Datei angeben. Oder du speicherst in einem Objekt den Pfad und nutzt dann dieses Objekt innerhalb der Helfer-Funktion `file.path()`. Das hat den Vorteil, dass du nicht ständig den Pfad eingeben musst, denn es empfiehlt es alle Datensätze an einem Ort zu speichern. Mit diesem einen zentralen Ort, kannst du einfach ein Objekt erstellen, dass diesen Pfad als Text beinhaltet. Du erstellst also wie im Lernblock 1 einfach ein Objekt, dass *character* beinhaltet, die hier sinnvoll den Pfad angeben. So muss der Pfad nicht immer neu eingegeben werden. 
+## Trabalho Local
+Quando você estiver trabalhando localmente mais tarde, sempre precisará especificar o caminho direto do arquivo. Ou você pode salvar em um objeto o caminho e usar esse objeto dentro da função auxiliar `file.path()`. Isso tem a vantagem de não precisar digitar o caminho o tempo todo, pois é recomendado salvar todos os conjuntos de dados em um único local. Com esse local central, você pode simplesmente criar um objeto que contenha esse caminho como texto. Assim, você cria um objeto, como no bloco de aprendizado 1, que contém *character* significativo para o caminho. Portanto, o caminho não precisa ser digitado novamente.
 
-**Wichtig**: Der Pfad geht nur bis zum Ordner, in dem die Datei liegt. Die Datei wird nicht mit in das `path`-Objekt gespeichert.
+**Importante**: O caminho vai apenas até a pasta onde o arquivo está localizado. O arquivo não é armazenado no objeto `path`.
 
-Lege also ein Objekt an, dass den Pfad beinhaltet. Wir nennen dies in der Regel `path`.
+Então, crie um objeto que contenha o caminho. Geralmente chamamos isso de `path`.
 ```{r eval=FALSE}
-path <- "C:/Dateipfad zum gespeicherten Objekt/" 
-# kopiere dies aus dem Explorer oder Finder und denke daran bei Windows die Backslashes zu Slashes zu ändern
+path <- "C:/Caminho para o arquivo salvo/" 
+# copie isso do Explorer ou Finder e lembre-se de alterar as barras invertidas para barras normais no Windows
 ```
 
-In der Import-Funktion ergänzt du einfach die Helfer-Funktion `file.path()`, deren erstes Argument das Objekt `path` (der Character zu deinem Objekt) und deren zweites Argument der Dateiname ist (hier `exam.txt`). Alles andere bleibt wie oben!
+Na função de importação, basta adicionar a função auxiliar `file.path()`, onde o primeiro argumento é o objeto `path` (o texto para o seu objeto) e o segundo argumento é o nome do arquivo (aqui `exam.txt`). Todo o resto permanece como acima!
 ```{r filepath, eval=FALSE}
 exam <- read.table(
   file.path(

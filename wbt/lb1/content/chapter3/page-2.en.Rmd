@@ -1,8 +1,8 @@
 ---
-title: "Login in Gitlab"  # Titel der Seite
-weight: 302  # Individuelles Gewicht 
-menuTitle: "Login" # Falls Titel zulang ist, hier Kurztitel
-tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Login to Gitlab"  # Page title
+weight: 302  # Custom weight 
+menuTitle: "Login" # Short title if the main title is too long
+tags: ["gitlab", "login"]  # Tags: brief description of the page content
 ---
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
@@ -19,15 +19,17 @@ tags: ["gitlab", "login"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite pas
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-An der JLU gibt es eine eigene **gitlab**-Distribution, auf der du dich einfach mit deiner s-/j-Kennung einloggen kannst. Falls du das noch nicht gemacht hast, hole es direkt nach und schreib einen der beiden Tutor:innen kurz deine s-/j-Kennung per E-Mail ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) oder [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)). 
+At JLU, there is a dedicated **Gitlab** distribution where you can easily log in with your s-/j-identifier. If you haven't done so yet, please do it now and send one of the tutors your s-/j-identifier via email ([Leon Klemm](leon.klemm@sowi.uni-giessen.de) or [Meike Schulz-Narres](meike.schulz-narres@geogr.uni-giessen.de)).
 
-Und hier ist der Link zum Login: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
+And here is the link to log in: [JLU Gitlab](https://gitlab.ub.uni-giessen.de)
 
-Du kannst dann, wenn du möchtest dein Profil bearbeiten, indem du rechts oben auf den Kreis klickst und dann **Edit profile** klickst. Du kannst dort ein Bild einstellen, deine Pronomen festlegen, Social-Media-Kontakte festlegen oder auch eine 2-Faktor-Authentifizierung aktivieren.
+After logging in, you can edit your profile by clicking on the circle at the top right and then selecting **Edit profile**. You can set a profile picture, define your pronouns, set up social media contacts, or activate two-factor authentication.
 
-![Profil editieren](../img/editprofile.png)
+![Edit Profile](../img/editprofile.png)
 
-Ebenso kannst du links unter **Menu** (Menü), weiter auf  **Groups** (Gruppen) und weiter auf **Your Groups** (deine Gruppen) dann unseren Kurs sehen: **intro-r-spring22**. Du kannst einfach auf diese Gruppe klicken. In der Gruppe siehst du dann wiederum Gruppen: Einmal fünf Gruppen für die Einteilung der Gruppenarbeiten (Einteilung läuft über [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) und dann eine Gruppe mit dem Namen **course-materials**. In **course-materials** befinden sich alle Dateien für den Kurs. **ABER:** Man kann Dateien hier über das Web steuern, wir machen aber alles aus RStudio, denn dort haben wir das schon für dich eingerichtet und du musst selbst nur mehr deinen Benutzernamen angeben! 
+Similarly, on the left under **Menu**, go to **Groups** and then **Your Groups** to find our course: **intro-r-spring22**. Simply click on this group. Within the group, you will see five groups for group work assignments (assignments are managed through [ILIAS](https://ilias.uni-giessen.de/ilias/goto.php?target=crs_293249&client_id=JLUG)) and a group named **course-materials**. All course files are located in **course-materials**. **BUT:** While you can control files here via the web, we do everything from RStudio, as we have already set it up for you, and you only need to provide your username! 
 
-![Gruppen](../img/groups.png)
-Lediglich für die automatische Kontrolle musst du in das Web-Interface. Wie das funktioniert zeigen wir dir am Ende des Kapitels!
+
+
+![Groups](../img/groups.png)
+You only need to go to the web interface for automatic checking. We will show you how this works at the end of the chapter!

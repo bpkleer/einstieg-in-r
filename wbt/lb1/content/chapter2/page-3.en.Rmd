@@ -1,8 +1,8 @@
 ---
-title: "Faktoren"  # Titel der Seite
-weight: 203  # Individuelles Gewicht 
-menuTitle: "Faktoren" # Falls Titel zulang ist, hier Kurztitel
-tags: ["datentypen" , "faktoren"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Factors"  # Title of the page
+weight: 203  # Custom weight 
+menuTitle: "Factors" # Short title in case the title is too long
+tags: ["data types", "factors"]  # Insert tags here; Abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -34,27 +34,28 @@ char <- c(
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-**Faktoren** sind spezielle Vektoren, die vor allem für nominale und ordinale Variablen in den Sozialwissenschaften genutzt werden. **Faktoren** beinhalten **levels**, die die Beschreibung der Werte beinhalten (in SPSS nennt man dies *value labels*). Den wesentlichen Unterschied zu **character**-Vektoren können wir mit der Funktion `as.factor()` und dem Objekt `char` schnell erkennen. 
+**Factors** are special vectors used primarily for nominal and ordinal variables in the social sciences. **Factors** contain **levels** that include the description of the values (referred to as *value labels* in SPSS). The essential difference from **character** vectors can be quickly identified using the `as.factor()` function and the `char` object.
 
 ```{r factor, eval=TRUE}
 as.factor(char)
 ```
 
-Wir erhalten nicht nur die gespeicherten Städte, sondern auch eine zweite Zeile, die mit `Levels` beginnt. **Levels** sind *unique* Werte, die in dem Vektor vorliegen. In diesem Fall sind dies nur drei, da die Stadt Taipeh von zwei Befragten genannt wurde. Dieser R-spezielle Datentyp wird später beim Vergleich von Gruppen oder auch der grafischen Darstellung gebraucht. 
+We not only get the stored cities, but also a second line starting with `Levels`. **Levels** are unique values present in the vector. In this case, there are only three, as the city of Taipei was mentioned by two respondents. This R-specific data type will be useful later for comparing groups or for graphical representation.
 
-Du hast nun eine Änderung vom Objekt `char` durchgeführt, diese aber nicht gespeichert. Um die Änderung zu speichern, musst du diesen Schritt einem Objekt zuordnen:
+You have made a change to the `char` object, but you have not saved this change. To save the change, you need to assign this step to an object:
 ```{r factor2, eval=TRUE}
 charFactor <- as.factor(char)
 ```
 
-Wir haben also jetzt einen Faktor erstellt im Objekt `charFactor`. Im Environment können wir folgendes sehen:
- 
-![Faktor im Environment](../img/faktor1.png)
-In der Eigenschaft ist nun angegeben, dass es sich um einen Faktor handelt, der eben drei verschiedene Ausprägungen hat. Im Vektor selbst werden dann Zahlenwerte genutzt, die den jeweiligen **Levels** zugeordnet sind. Die Reihenfolge richtet sich dabei nach der Auflistung der Levels: Berlin hat den Wert $1$, Seoul hat den Wert $2$ und Taipeh $3$. Dieser Typ wird oftmals für Variablen, die nominales oder ordinales Skalenniveau besitzen. **Wichtig:** Ein Faktor an sich beinhaltet noch keine Ordnung zwischen den Werten, sondern beinhaltet lediglich die Unterschiede. Streng genommen sollte dieser Typ nur für nominale Variablen genutzt werden.
+We have now created a factor in the object `charFactor`. In the environment, we can see the following:
 
-Wir können in einem Faktor aber auch eine Ordnung angeben, so dass dieser einem ordinalen Skalenniveau entspricht. Wir können zum Beispiel ein Objekt erstellen, dass die Benotung im amerikanischen System von sechs Personen beinhaltet. Die Werte sind: $A$, $C$, $D$, $B$, $C$ und $A$. Zur Erinnerung im amerikanischen System ist $A$ der beste Wert und $D$ der schlechteste Wert. Die Ordnung der Werte ist also folgende: $D < C < B < A$.
+![Factor in the Environment](../img/faktor1.png)
 
-Hierfür erstellen wir zuerst ein Objekt, dass die sechs Werte beinhaltet. Dafür nutzen wir wieder die Funktion `c()`. 
+The property now indicates that it is a factor with three different levels. In the vector itself, numerical values are used that are assigned to the respective **levels**. The order is based on the listing of the levels: Berlin has the value $1$, Seoul has the value $2$, and Taipei has $3$. This type is often used for variables that have nominal or ordinal scale levels. **Important:** A factor itself does not imply any order between the values, but only contains the differences. Strictly speaking, this type should only be used for nominal variables.
+
+However, we can also specify an order within a factor, making it correspond to an ordinal scale level. For example, we can create an object that includes the grading in the American system for six people. The values are: $A$, $C$, $D$, $B$, $C$, and $A. As a reminder, in the American system, $A$ is the best grade and $D$ is the worst grade. The order of the values is as follows: $D < C < B < A$.
+
+To do this, we first create an object that includes the six values. We use the function `c()` for this.
 
 ```{r ordered1, eval=TRUE}
 grade <- c(
@@ -69,7 +70,7 @@ grade <- c(
 grade
 ```
 
-Anschließend nutzen wir die Funktion `factor()` und schaffen einen **ordered factor**. Die Funktion `factor()` benötigt dafür drei Argumente. Im ersten Argument geben wir die Daten ein, die *geordnet* werden sollen. Im zweiten Argument geben wir mit `ordered = TRUE` ein, dass nicht nur ein Faktor erstellt werden soll, sondern auch eine Ordnung berücksichtigt werden soll. Im dritten Argument geben wir dann in `levels = ...` die eigentliche Ordnung an (also aufsteigend von $D$ nach $A$).
+Then we use the function `factor()` and create an **ordered factor**. The `factor()` function requires three arguments for this. In the first argument, we enter the data that should be *ordered*. In the second argument, we specify `ordered = TRUE` to indicate that not only a factor should be created but also an order should be considered. In the third argument, we specify the actual order in `levels = ...` (ascending from $D$ to $A`).
 
 ```{r ordered2, eval=TRUE}
 gradeOrd <- factor(
@@ -87,10 +88,10 @@ gradeOrd
 
 ```
 
-Im Environment sehen wir dann bei der Eigenschaft `Ord. factor` und wiederum die Angabe der **Levels** und deren Ordnung. 
+In the environment, we then see the property `Ord. factor` and again the specification of the **levels** and their order.
 
-![Ordered Factor im Environment](../img/faktor2.png)
+![Ordered Factor in Environment](../img/factor2.png)
 
-Wie zuvor auch werden zwei Informationen gespeichert: Einmal die Levels mit der Angabe der Noten und dann Zahlenwerte, die mit den Levels korrespondieren. Die Zahlenwerte werden wieder in Reihenfolge der Levels vergeben: Also bekommt $D$ den Wert $1$, $C$ den Wert $2$, $B$ den Wert $3$ und $A$ schließlich den Wert $4$.
+As before, two pieces of information are stored: once the levels with the grades and then numerical values corresponding to the levels. The numerical values are assigned again in the order of the levels: So $D$ gets the value $1$, $C$ gets the value $2$, $B$ gets the value $3$, and finally $A$ gets the value $4$.
 
-Es bleibt spannend und wir gehen über zu Datensätzen.
+It remains exciting as we move on to datasets.

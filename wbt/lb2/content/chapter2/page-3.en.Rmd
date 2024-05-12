@@ -1,8 +1,8 @@
 ---
-title: "Streumaße"  # Titel der Seite
-weight: 203  # Individuelles Gewicht 
-menuTitle: "Streumaße" # Falls Titel zulang ist, hier Kurztitel
-tags: ["deskriptiv", "streumaße"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Measures of Dispersion"  # Title of the page
+weight: 203  # Custom weight 
+menuTitle: "Measures of Dispersion" # Short title in case the title is too long
+tags: ["descriptive", "measures of dispersion"]  # Insert tags here; abbreviation of what happens on the page
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 pss <- readRDS("./data/pss.rds")   
 ```
 
-{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
+{{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/introduction-to-statistics\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 
 
 {{% buttonShare href=\"mailto\:\" icon=\"fas fa-paper-plane\" %}} {{% /buttonShare %}}
 
@@ -23,14 +23,14 @@ pss <- readRDS("./data/pss.rds")
 
 {{% buttonShare href=\"https\:\/\/api.whatsapp.com\/send?text=\" icon=\"fab fa-whatsapp\" %}} {{% /buttonShare %}}
 
-{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-x-twitter\" %}} {{% /buttonShare %}}
+{{% buttonShare href=\"https\:\/\/twitter.com\/share?url=\" icon=\"fab fa-twitter\" %}} {{% /buttonShare %}}
 
 {{% buttonShare href=\"https\:\/\/www.facebook.com\/sharer\/sharer.php?u=\" icon=\"fab fa-facebook\" %}} {{% /buttonShare %}}
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-### Interquartilsabstand{.tabset .tabset-fade}
-Der Interquartilsabstand kann mit der Funktion `IQR()` ausgegeben werden:
+### Interquartile Range{.tabset .tabset-fade}
+The interquartile range can be calculated using the `IQR()` function:
 ```{r iqr, eval=FALSE}
 IQR(
   pss$stfdem, 
@@ -38,15 +38,15 @@ IQR(
 )
 ```
 
-{{% expand \"Wie interpretierst du diese Zahl?\" %}}
-Der Abstand zwischen dem ersten und dritten Quartil beträgt 3! Dieser Wert sagt uns noch nicht, wo das erste und das dritte Quartil liegen.
+{{% expand \"How do you interpret this number?\" %}}
+The distance between the first and third quartiles is 3! This value does not tell us where the first and third quartiles are located.
 
 $$q_{75} - q_{25} = IQR$$
 {{% /expand %}}
 
-### Alternative Ausgabe des IQR
-Eine etwas anpassungsfähigere Alternative ist die Kombination der Funktionen `diff()` und `quantile()`. In der Funktion`quantile()` wird die Variable angegeben ($1.$ Argument), die gewünschten Quantile ($2.$ Argument) und zuletzt werden `NA's` ausgeschlossen. Die Funktion liefert zwei Werte und mit der Funktion `diff()` wird von diesen zwei Werten dann die Differenz berechnet und ausgegeben.
-```{r iqr-manuell, eval=FALSE}
+### Alternative Calculation of IQR
+A more customizable alternative is to combine the `diff()` and `quantile()` functions. In the `quantile()` function, you specify the variable ($1^{st}$ argument), the desired quantiles ($2^{nd}$ argument), and finally exclude `NA's`. The function returns two values, and the `diff()` function calculates and outputs the difference between these two values.
+```{r iqr-manual, eval=FALSE}
 diff(
   quantile(
     pss$stfdem, 
@@ -59,8 +59,8 @@ diff(
 )   
 ```
 
-### Standardabweichung & Varianz
-Die Standardabweichung und die Varianz erhalten wir über die folgenden zwei Funktionen:
+### Standard Deviation & Variance
+We obtain the standard deviation and variance using the following two functions:
 ```{r sd-var, eval=FALSE}
 sd(
   pss$stfdem, 
@@ -73,13 +73,12 @@ var(
 )
 ```
 
-{{% expand \"Wie könntest du alternativ von der Standardabweichung auf die Varianz kommen?\" %}}
-Du weißt, dass die Standardabweichung nur die Wurzel der Varianz ist. Um also von der Standardabweichung auf die Varianz zu kommen, muss diese einfach quadriert werden. Das kann als einfache Rechnung umgesetzt werden:
+{{% expand "How could you alternatively derive the variance from the standard deviation?" %}}
+You know that the standard deviation is just the square root of the variance. So, to derive the variance from the standard deviation, you simply need to square it. This can be implemented as a simple calculation:
 
 ```{R}
 sd(pss$stfdem, na.rm = TRUE) ^ 2
 ```
-
 {{% /expand %}}
 
-Nun gehen wir einen Schritt tiefer noch in die Verarbeitung von Datensätzen und betreten das `tidyverse`!
+Now, let's take a step further into data processing and enter the `tidyverse`!

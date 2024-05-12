@@ -1,8 +1,8 @@
 ---
-title: "ggcorrplot()"  # Titel der Seite
-weight: 304  # Individuelles Gewicht 
-menuTitle: "ggcorrplot()" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "ggcorrplot", "korrelation", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "ggcorrplot()"  # Título da página
+weight: 304  # Peso individual
+menuTitle: "ggcorrplot()" # Se o título for muito longo, use um título curto aqui
+tags: ["ggplot", "ggcorrplot", "correlação", "avançado"]  # Insira tags aqui; Palavra curta que descreve o que acontece na página
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,19 +33,19 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Auch als `ggplot` können Korrelationsplots erstellt werden. Dazu nutzt du wieder die **library** `GGally`.
+Também é possível criar plots de correlação usando `ggplot`. Para isso, você utilizará a **biblioteca** `GGally`.
 
 ```{r install-ggally, eval=FALSE}
 library("GGally")
 ```
 
-Hier verwendest du jetzt die Funktion `ggcorr()`: Nicht metrische Variablen werden automatisch ausgeschlossen.
+Agora você usará a função `ggcorr()`: Variáveis não métricas serão automaticamente excluídas.
 
 ```{r ggcorr, eval=TRUE}
 ggcorr(pss)
 ```
 
-Im zusätzlichen Argument `method` kannst du angeben, wie mit `NA's` umgegangen werden soll, und welche Art von Korrelation berechnet werden soll (`pearson`, `spearman`, `kendall`):
+No argumento adicional `method`, você pode especificar como lidar com `NA's` e qual tipo de correlação deve ser calculado (`pearson`, `spearman`, `kendall`):
 
 ```{r ggcorr2, eval=TRUE}
 ggcorr(
@@ -57,7 +57,7 @@ ggcorr(
 )
 ```
 
-Zusätzlich kannst du mit `label = TRUE` den Korrelationskoeffizienten auch anzeigen lassen:
+Além disso, você pode exibir os coeficientes de correlação com `label = TRUE`:
 
 ```{r ggcorr3, eval=TRUE}
 ggcorr(
@@ -70,7 +70,7 @@ ggcorr(
 )
 ```
 
-Mit dem Argument `label_round` stellst du die Dezimalzeichen fest:
+Com o argumento `label_round`, você define o número de casas decimais:
 ```{r ggcorr4, eval=TRUE}
 ggcorr(
   pss,
@@ -83,7 +83,7 @@ ggcorr(
 )
 ```
 
-Im Argument `geom` kannst du zwischen `tile`, `circle`, `text` oder `blank` auswählen. 
+No argumento `geom`, você pode escolher entre `tile`, `circle`, `text` ou `blank`. 
 ```{r ggcorr5, eval=TRUE}
 ggcorr(
   pss,
@@ -97,7 +97,7 @@ ggcorr(
 )
 ```
 
-Zuguterletzt kannst du im Argument `palette` noch drei Farben angeben ($-1$, $0$, $1$), die die Farbskala bilden sollen: Ich greife hier wieder auf `beyonce` zurück! **Wichtig:** Du gibst hier nicht die ganze Palette an, sondern eine Farbe aus der jeweiligen Palette, deshalb in `[..]`-Klammern noch eine zusätzliche Zahl!
+Por último, você pode especificar três cores no argumento `palette` ($-1$, $0$, $1$) que formarão a escala de cores: Vou usar novamente o `beyonce` aqui! **Importante:** Você não está fornecendo toda a paleta aqui, mas sim uma cor de cada paleta, portanto, coloque um número adicional entre colchetes `[..]`!
 ```{r ggcorr6, eval=TRUE}
 ggcorr(
   pss,
@@ -114,7 +114,7 @@ ggcorr(
 )
 ```
 
-Alternativ kannst du auch noch die `limits` ändern. Das kann hilfreich sein, wenn deine Korrelationswerte nicht sehr hoch sind und alle nur sehr schwach farbig sind. Mit `limits = FALSE` werden automatisch die Endpunkte gesetzt (entsprechend den Daten!).
+Alternativamente, você também pode alterar os `limits`. Isso pode ser útil se seus valores de correlação não forem muito altos e todos estiverem muito fracamente coloridos. Com `limits = FALSE`, os pontos finais são definidos automaticamente (de acordo com os dados!).
 ```{r ggcorr7, eval=TRUE}
 ggcorr(
   pss,
@@ -132,8 +132,8 @@ ggcorr(
 )
 ```
 
-**Wichtig:** In `ggcorr()` können nicht signifikante Werte nicht ausgeblendet werden, da die Autorin dieser Funktionen (zu Recht) gegen eine Fokussierung auf das Signifikanzniveau ist. 
+**Importante:** Em `ggcorr()`, valores não significativos não podem ser ocultados, pois a autora dessas funções (corretamente) é contra a focalização no nível de significância.
 
-Mehr zum Funktionsumfang in `ggcorr()` findest du [hier](https://ggobi.github.io/ggally/reference/ggcorr.html?q=ggcorr).
+Para mais informações sobre as funcionalidades em `ggcorr()`, consulte [aqui](https://ggobi.github.io/ggally/reference/ggcorr.html?q=ggcorr).
 
-Gehen wir nun weiter zu der Darstellung von Mittelwertvergleichen.
+Agora vamos avançar para a representação de comparações de médias.

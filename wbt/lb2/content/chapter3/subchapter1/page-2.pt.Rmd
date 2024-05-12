@@ -1,8 +1,8 @@
 ---
-title: "Piping"  # Titel der Seite
-weight: 312 # Individuelles Gewicht 
-menuTitle: "" # Falls Titel zulang ist, hier Kurztitel
-tags: ["dplyr", "tidyverse", "piping"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Piping"  # Título da página
+weight: 312 # Peso individual
+menuTitle: "" # Se o título for muito longo, coloque um título curto aqui
+tags: ["dplyr", "tidyverse", "piping"]  # Insira tags aqui; Abreviação do que acontece na página
 ---
 ```{r setup, include = FALSE}
 library("knitr")
@@ -32,9 +32,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Nachdem nun die gängigsten Funktionen vorgestellt wurden, stellen wir vor, wie die Modularisierung bzw. das **piping** mit `dplyr` funktioniert. Wie schon oben genannt ist ein immenser Vorteil von `dplyr`, dass die Operationen **gepipt** werden, also in einzelne Bausteine aufgeteilt werden, die leicht nachzuvollziehen sind. 
+Depois de apresentar as funções mais comuns, vamos mostrar como a modularização ou o **piping** funciona com o `dplyr`. Como mencionado anteriormente, uma grande vantagem do `dplyr` é que as operações são **encadeadas**, ou seja, divididas em blocos individuais que são fáceis de seguir.
 
-Über das **Piping** werden Datensätze oder **tibbles** aus vorherigen Operationen weitergegeben. Dies erfolgt über den Operator `%>%`. Schauen wir ein erstes Beispiel an:
+Através do **Piping**, conjuntos de dados ou **tibbles** são passados adiante a partir de operações anteriores. Isso é feito usando o operador `%>%`. Vamos ver um primeiro exemplo:
 ``` {r pipe1, eval = TRUE}
 pss <- pss %>%
   group_by(district) %>%
@@ -46,16 +46,16 @@ pss <- pss %>%
   ) %>%
   ungroup() 
 ```
-Zuerst übergeben wir den geladenen Datensatz `pss`. Danach führen wir drei Operationen am Datensatz aus: `group_by()`, `mutate()` und `ungroup()`. Anschließend übergeben wir das bearbeitete Objekt mit den Zuordnungspfeilen `->` wieder an das ursprüngliche Objekt (wir überschreiben es also!). 
+Primeiro passamos o conjunto de dados carregado `pss`. Em seguida, realizamos três operações no conjunto de dados: `group_by()`, `mutate()` e `ungroup()`. Depois, passamos o objeto editado de volta para o objeto original usando as setas de atribuição `->` (ou seja, estamos sobrescrevendo-o!).
 
-Das Beispiel berechnet die durchschnittliche Arbeitszeit nach Distrikt und speichert dies in der neuen Variable `wkhtotMean`. Damit diese auch im Datensatz `pss` gespeichert wird, speichern wir diese Schritte mit dem Zuordnungspfeil wieder in das Objekt `pss`. 
+O exemplo calcula a média do tempo de trabalho por distrito e armazena isso na nova variável `wkhtotMean`. Para que isso também seja armazenado no conjunto de dados `pss`, salvamos essas etapas de volta no objeto `pss` usando a seta de atribuição.
 
-Da wir den Datensatz *übergeben*, müssen wir diesen in den einzelnen Operationen nicht mehr aufrufen. Die Piping-Operatoren muss man nicht immer händisch eingeben, sondern dieser wird automatisch mit `[Strg] + [Shift] + [M]` (Windows) bzw. `[Cmd] + [Shift] = [M]` (Mac) eingefügt.
+Quando passamos o conjunto de dados, não precisamos mais chamá-lo em cada operação. Os operadores de encadeamento não precisam ser digitados manualmente, pois são inseridos automaticamente com `[Ctrl] + [Shift] + [M]` (Windows) ou `[Cmd] + [Shift] = [M]` (Mac).
 
-Im nachfolgenden wollen wir verschiedene Vorbereitungsschritte mit **piping** durchführen.
+A seguir, vamos realizar diferentes etapas de preparação usando **encadeamento**.
 
-### Berechnen und Recodieren von Variablen
-Im Beispiel möchten wir nun eine neue Variable schaffen, die danach unterscheidet wie viel Vertrauen Personen in Politiker:innen haben (`trstplt`). So möchten wir zwischen geringem, mittlerem und hohem Vertrauen unterscheiden.
+### Calcular e Recodificar Variáveis
+No exemplo a seguir, vamos criar uma nova variável que diferencia o nível de confiança das pessoas nos políticos (`trstplt`). Queremos distinguir entre baixa, média e alta confiança.
 
 ```{r pipe2, eval = TRUE}
 pss <- pss %>%
@@ -69,12 +69,12 @@ pss <- pss %>%
 table(pss$trstpltG)
 ```
 
-Wenn man nun die neue Variable prüft, wird ersichtlich, dass die neue Variable als Typ *character* gespeichert wurde.
+Ao verificar a nova variável, percebemos que ela foi salva como tipo *character*.
 ```{r trstplt-str, eval = TRUE}
 str(pss$trstpltG)
 ```
 
-Dies kann ganz normal geändert werden, oder man schreibt es direkt ins **Piping**:
+Isso pode ser alterado normalmente, ou podemos fazer diretamente no **encadeamento**:
 ```{r pipe3, eval = TRUE}
 pss <- pss %>%
   mutate(
@@ -91,7 +91,7 @@ table(pss$trstpltG)
 str(pss$trstpltG)
 ```
 
-Jetzt haben wir einen Faktor, aber noch ohne Ordnung, das können wir ebenfalls beheben:
+Agora temos um fator, mas sem ordem, o que também podemos corrigir:
 ```{r pipe4, eval = TRUE}
 pss <- pss %>%
   mutate(
@@ -118,7 +118,7 @@ table(pss$trstpltG)
 str(pss$trstpltG)
 ```
 
-Etwas komplexer wäre folgende Aufgabe: Wir wollen nicht nur den Mittelwert der Arbeitszeit pro Distrikt berechnen, sondern die Abweichung einer Person im jeweiligen Distrikt vom Mittelwert des Distrikts!
+Uma tarefa um pouco mais complexa seria a seguinte: não queremos apenas calcular a média do tempo de trabalho por distrito, mas sim a diferença de uma pessoa em relação à média do distrito!
 
 ```{r pipe5, eval = TRUE}
 pss <- pss %>%
@@ -144,9 +144,9 @@ head(
 )
 ```
 
-Hier können wir jetzt auch einen Vorteil des modularen Prinzips erkennen. Wenn wir neue Variablen (hier `wkhtotMean`) berechnen und *weitergeben*, können wir diese in den folgenden Operationen direkt nutzen.
+Aqui podemos ver uma vantagem do princípio modular. Ao calcular e *passar adiante* novas variáveis (como `wkhtotMean`), podemos usá-las diretamente nas operações seguintes.
 
-Alternativ könnten wir die Daten auch hierarchisch gruppieren nach Distrikt und Bildung (`edu`) und uns dann einfach die unterschiedlichen Mittelwerte mit `summarize()` ausgeben lassen:
+Alternativamente, poderíamos agrupar hierarquicamente os dados por distrito e educação (`edu`) e, em seguida, simplesmente exibir as diferentes médias com `summarize()`:
 
 ```{r meansdistrictedu, eval = TRUE}
 meansDistriktEdu <- pss %>%
@@ -159,4 +159,6 @@ meansDistriktEdu <- pss %>%
 meansDistriktEdu
 ```
 
-Wir gehen jetzt nochmal einen Schritt zurück und schauen uns an, wie wir Datensätze teilen können. Dies ist relevant unter anderem in der Arbeit mit Sekundärdatensätze, da diese manchmal für mehr Personen erhoben wurden, als man selbst für seinen Forschungszweck benötigt. 
+Agora vamos dar um passo para trás e ver como podemos dividir conjuntos de dados. Isso é relevante, por exemplo, ao trabalhar com conjuntos de dados secundários, pois às vezes eles foram coletados para mais pessoas do que o necessário para o propósito da pesquisa.
+
+Please paste the Markdown content you would like me to translate into Brazilian Portuguese.

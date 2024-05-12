@@ -1,8 +1,8 @@
 ---
-title: "Count Plots"  # Titel der Seite
-weight: 143  # Individuelles Gewicht 
-menuTitle: "Count Plots" # Falls Titel zulang ist, hier Kurztitel
-tags: ["count plots", "ggplot"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Count Plots"  # Page Title
+weight: 143  # Custom Weight
+menuTitle: "Count Plots" # Short Title if necessary
+tags: ["count plots", "ggplot"]  # Tags: brief description
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -32,7 +32,7 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Eine andere gute Möglichkeit, um zwei pseudometrische Variablen darzustellen, ist der **count plot**. Hier werden die Kombinationen, die häufiger vorkommen größer dargestellt. Dazu rufen wir die Funktion `geom_count()` auf:
+Another great way to represent two pseudometric variables is the **count plot**. Here, combinations that occur more frequently are displayed larger. To do this, we call the `geom_count()` function:
 
 ```{r count, eval=TRUE}
 countplot <- ggplot( 
@@ -48,7 +48,7 @@ countplot
 ```
 
 ## Coloring
-Auch hier können wir Farben hinzufügen:
+Here we can also add colors:
 ```{r count2, eval=TRUE}
 ggplot(
   pss, 
@@ -64,4 +64,4 @@ ggplot(
   guides(color = "legend")  
 ```
 
-Zuguterletzt lernst du noch kennen, wie du eine bivariate Verteilung auch darstellen kannst!
+Lastly, you will learn how to represent a bivariate distribution as well!

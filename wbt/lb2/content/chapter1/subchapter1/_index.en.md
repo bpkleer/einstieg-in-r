@@ -1,16 +1,16 @@
 ---
-title: "Von der Erhebung zum Datensatz"
-menuTitle: "Aufbau Datensatz"
+title: "From Data Collection to Dataset"
+menuTitle: "Building Dataset"
 chapter: true
 pre: "1.1 "
 weight: 110
 ---
 
-### Kapitel 1.1
+### Chapter 1.1
 
-# Von der Erhebung zum Datensatz
+# From Data Collection to Dataset
 
-In diesem Kapitel wiederholst du den Weg von der Datenerhebung zum Datensatz und lernst wie ein Datensatz in einer Datei aufgebaut ist. 
+In this chapter, you will review the process from data collection to dataset and learn how a dataset is structured in a file.
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

@@ -10,7 +10,7 @@ weight: 400
 
 # Programmierexkurs
 
-In diesem Kapitel werden lernen wir die Programmierung von Schleifen und Funktionen. Dieses Kapitel ist **nicht verpflichtend**, es bietet dir nur die Möglichkeit ein tieferes Verständnis aufzubauen!
+Neste capítulo, aprenderemos sobre a programação de loops e funções. Este capítulo **não é obrigatório**, ele apenas oferece a oportunidade de aprofundar seu entendimento!
 
 {{% buttonShare href="https://gitlab.com/bpkleer/einstieg-in-statistik/issues/new?issue[title]=" icon="fas fa-bug" %}} {{% /buttonShare %}} 
 

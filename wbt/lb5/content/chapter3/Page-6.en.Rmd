@@ -1,8 +1,8 @@
 ---
-title: "Regressionen"  # Titel der Seite
-weight: 306  # Individuelles Gewicht 
-menuTitle: "Regressionen" # Falls Titel zulang ist, hier Kurztitel
-tags: ["ggplot", "regression", "advanced"]  # Tags hiereinsetzen; Kurzwort, was auf der Seite passsiert
+title: "Regressions"  # Page title
+weight: 306  # Custom weight
+menuTitle: "Regressions"  # Short title if the title is too long
+tags: ["ggplot", "regression", "advanced"]  # Tags to describe the content
 ---
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -33,9 +33,9 @@ pss <- readRDS("./data/pss.rds")
 
 {{% button href=\"https\:\/\/bmc.link\/bpkleerw\" icon=\"fa-solid fa-beer-mug-empty\" %}} {{% /button %}}
 
-Im Beispiel ist es das Ziel eine Untersuchung der Variable `stfdem` in allen Schritten grafisch darzustellen. Zuletzt willst du jetzt ein Regressionmodell auf `stfdem` rechnen, dass die Effekte von `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl` und `agea` inkludiert. 
+In this example, the goal is to visually represent the variable `stfdem` in all steps. Finally, you want to calculate a regression model on `stfdem` that includes the effects of `stfeco`, `district`, `gndr`, `trstlgl`, `trstprl`, and `agea`.
 
-Als erstes berechnest du nun das Modell, bevor du mit den grafischen Darstellungen beginnen kannst:
+First, you will now calculate the model before you can start with the graphical representations:
 ```{r model, eval=TRUE}
 model1 <- lm(
   stfdem ~ 1 + stfeco + district + gndr + trstlgl + trstprl + agea,
@@ -45,15 +45,15 @@ model1 <- lm(
 summary(model1)
 ```
 
-Im Model erkennst du signifikante Effekte von `stfeco`, `gndrmale` sowie `trstlgl`. Diese wollen wir gleich darstellen. Zuerst wiederholst du jetzt aber die Darstellung des Plots aller Regressionskoeffizienten aus Lernblock 4 mit `dwplot()`.
+In the model, you can see significant effects of `stfeco`, `gndrmale`, and `trstlgl`. We will now visualize these effects. But first, you will repeat the plot of all regression coefficients from Learning Block 4 using `dwplot()`.
 
-{{% expand \"Probiere es erst selbst und schaue erst danach hier nach!\" %}}
+{{% expand \"Try it yourself first and then check here!\" %}}
 \`\`\`R
 dwplot(
   model1,
-  # hier kannst du das Konfidenzintervall ändern
+  # you can change the confidence interval here
   ci = 0.95, 
-  # hier kannst du das Erscheinungsbild der Punkte ändern (alles aus geom_point möglich)
+  # you can change the appearance of the points here (all options from geom_point are possible)
   dot_args = list(
     size = 3.5,
     shape = 18
@@ -66,20 +66,21 @@ dwplot(
   geom_vline(
     xintercept = 0,
     lty = "dashed",
-    color = beyonce_palette(72)[5]
-    
+    color = beyonce_palette(72)[5] 
+
+```markdown
   ) +
   scale_y_discrete(labels = rev(
     c(
-      "Zufriedenheit \n Ökonomie", 
-      "Distrikt 5 \n(ref: Distrikt 1)",
-      "Distrikt 7 \n(ref: Distrikt 1)",
-      "Distrikt 10 \n(ref: Distrikt 1)",
-      "Distrikt 12 \n(ref: Distrikt 1)",
+      "Satisfaction \n Economy", 
+      "District 5 \n(ref: District 1)",
+      "District 7 \n(ref: District 1)",
+      "District 10 \n(ref: District 1)",
+      "District 12 \n(ref: District 1)",
       "Male \n(ref: Female)",
-      "Vertrauen Rechtssystem",
-      "Vertrauen Parlament", 
-      "Vertrauen Alter"
+      "Trust Legal System",
+      "Trust Parliament", 
+      "Trust Age"
     )
   )
   ) + 
@@ -91,7 +92,7 @@ dwplot(
     ),
     limits = c(-1, 1)
   ) +
-  labs(title = "Lin. Regressionsmodelle auf stfdem",
+  labs(title = "Linear Regression Models on stfdem",
        caption = "Data: Panem Social Survey."
   ) +
   scale_color_manual(values = beyonce_palette(72)[1]) +
@@ -102,13 +103,13 @@ dwplot(
 \`\`\`
 {{% /expand %}}
 
-Oftmals ist es nicht nur das Ziel Regressionsmodelle in Tabellen darzustellen, sondern auch spezifische Effekte grafisch darzustellen, z.B. von den signifikanten Effekten. Dazu stellen wir hier eine Möglichkeit vor: manuell über eigene **predictions**. 
+Often, the goal is not only to present regression models in tables but also to graphically represent specific effects, such as the significant effects. Here we present a method: manually through custom **predictions**.
 
-Es gibt zwar **libraries** wie `ggraphExtra`, diese können aber nur sehr eingeschränkt plotten. 
+While there are **libraries** like `ggraphExtra`, they have limited plotting capabilities.
 
-Sobald wir aber ein multivariates Modell haben, ist dies nicht mehr direkt so möglich. Da wir die anderen Effekte konstanthalten müssen, um die Abbildung korrekt darzustellen. Aber es ist immer noch leicht umzusetzen, sobald man versteht, was **Konstanthalten** bedeutet.
+However, once we have a multivariate model, this is no longer directly possible. We need to hold the other effects constant to correctly represent the visualization. But it is still easy to implement once you understand what **holding constant** means.
 
-Wir möchten den Effekt von `stfeco` auf `stfdem` plotten. Dieser Effekt ist immer mit den weiteren Effekten zu interpretieren. Um den Effekt plotten zu können, halten wir den (oder die) weiteren Effekt(e) konstant. Dazu nehmen wir die **library** `sjPlot` und daraus nutzt du die Funktion `plot_model()`. Ebenso must du `ggplot` laden.
+We want to plot the effect of `stfeco` on `stfdem`. This effect should always be interpreted in conjunction with the other effects. To plot the effect, we hold the other effect(s) constant. For this, we use the `sjPlot` **library** and utilize the `plot_model()` function. You also need to load `ggplot`.
 
 ```{r sjplot, eval=FALSE}
 install.packages("sjPlot")
@@ -116,7 +117,8 @@ library("sjPlot")
 library("tidyverse")
 ```
 
-In der Funktion `plot_model()` rufst du zuerst das Objekt des Regressionsmodels auf (hier `model1`), gibst im zweiten Argument an, dass es sich um ein *marginal plot*, der vorhergesagte Werte beinhaltet, handelt (`type = pred`) und bestimmst dann im Argument `terms`, welcher Effekt geplottet werden soll. Die Funktion stellt automatisch alle metrischen Variablen konstant auf den Mittelwert bzw. kategorielle Variablen auf die Referenzkategorie. 
+In the `plot_model()` function, you first call the object of the regression model (here `model1`), specify in the second argument that it is a *marginal plot* containing predicted values (`type = pred`), and then determine in the `terms` argument which effect to plot. The function automatically holds all metric variables constant at their mean and categorical variables at the reference category.
+```
 
 ```{r marginal1, eval=TRUE}
 plot_model(
@@ -126,9 +128,9 @@ plot_model(
 )
 ```
 
-Du siehst in der Grafik also den Effekt on `stfeco` auf `stfdem`, unter Konstanthalten (Mittelwert) von `trstlgl`, `trstprl` und `agea` für weibliche (Referenzlevel `gndr`) Personen aus Distrikt 1 (Referenzlevel `district`).
+So in the graph, you see the effect of `stfeco` on `stfdem`, while holding constant (mean) `trstlgl`, `trstprl`, and `agea` for female (reference level `gndr`) individuals from District 1 (reference level `district`).
 
-Willst du jetzt den Effekt für unterschiedliche Gruppen der kategoriellen Variablen hinzufügen, gibst du in `terms` einfach die weitere Variable an:
+If you want to add the effect for different groups of categorical variables, simply specify the additional variable in `terms`:
 ```{r marginal2, eval=TRUE}
 plot_model(
   model1, 
@@ -140,7 +142,7 @@ plot_model(
 )
 ```
 
-Genauso leicht könntest du die nächste kategorielle Variable einfach hinzufügen:
+Similarly, you could easily add the next categorical variable:
 ```{r marginal3, eval=TRUE}
 plot_model(
   model1, 
@@ -153,7 +155,7 @@ plot_model(
 )
 ```
 
-Ebenso kannst du die Ausgabe auf bestimmte `levels` (Ausprägungen einer Variable beschränken), in dem du die `levels` in `[..]` Klammern hinter den Variablennamen setzt (aber innerhalb der `"..."`):
+You can also limit the output to specific `levels` (values of a variable) by placing the `levels` in `[..]` brackets after the variable name (but within the `"..."`):
 ```{r marginal4, eval=TRUE}
 # levels von district
 levels(pss$district)
@@ -168,7 +170,7 @@ plot_model(
 )
 ```
 
-Modifikationen eines `ggplots` funktionieren auch hier: Wir ändern die Achsen und ändern die Farben!
+Modifications of a `ggplot` work here as well: We change the axes and adjust the colors!
 ```{r marginal5, eval=TRUE}
 plot_model(
   model1, 
@@ -197,11 +199,11 @@ plot_model(
 ```
 
 {{% tabs %}}
-{{% tab name=\"Aufgabe\" %}}
-Stelle jetzt den Zusammenhang zwischen `trstlgl` und `stfdem` dar. Dabei soll für jeden Distrikt jeweils eine eigene Linie abgebildet sein und die Plots nach Geschlecht getrennt sein. Probiere es erst selbst aus, bevor du dir die Lösung anschaust.  
+{{% tab name="Task" %}}
+Now, represent the relationship between `trstlgl` and `stfdem`. Each district should have its own line, and the plots should be separated by gender. Try it out yourself before looking at the solution.
 {{% /tab %}}
-{{% tab name=\"Code\" %}}
-\`\`\`R
+{{% tab name="Code" %}}
+```R
 plot_model(
   model1, 
   type = "pred",
@@ -226,8 +228,8 @@ plot_model(
     )
   ) +
   scale_color_manual(values = beyonce_palette(18))
-\`\`\`
+```
 {{% /tab %}}
 {{% /tabs %}}
 
-So das war's! Du hast in diesem Kapitel geübt für einzelne Methoden Grafiken darzustellen und beherrschst nun erste Schritte mit `ggplot`!
+That's it! In this chapter, you have practiced creating graphics for individual methods and now have mastered the first steps with `ggplot`!
