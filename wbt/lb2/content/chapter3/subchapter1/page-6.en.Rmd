@@ -1,8 +1,8 @@
 ---
-title: "Merging Datasets (Adding New Variables)"  {# Page Title}
-weight: 316  {# Custom Weight}
-menuTitle: "New Variables"  {# Short Title if Title is too long}
-tags: ["dplyr", "tidyverse", "dataset"]  {# Tags; Brief description of page content}
+title: "Merging Datasets (Adding New Variables)"
+weight: 316    
+menuTitle: "New Variables"
+tags: ["dplyr", "tidyverse", "dataset"]  
 ---
 
 ```{r setup, include = FALSE}

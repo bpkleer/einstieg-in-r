@@ -1,5 +1,5 @@
 ---
-title: "Measures of Central Tendency"  { /*examples*/ }
+title: "Measures of Central Tendency"  
 weight: 202  
 menuTitle: "Measures of Central Tendency" 
 tags: ["descriptive", "measures of central tendency"]  

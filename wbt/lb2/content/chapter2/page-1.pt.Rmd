@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   warnings = FALSE # warnings werden nicht angezeigt
 )
 
-pss <- readRDS("/../../files/data/pss.rds")   
+pss <- readRDS("./data/pss.rds")   
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 

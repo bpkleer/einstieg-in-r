@@ -13,8 +13,8 @@ knitr::opts_chunk$set(
   warnings = FALSE # warnings werden nicht angezeigt
 )
 
-exam <- readRDS("./files/data/exam.rds")   
-load("./files/data/exam.RData")
+exam <- readRDS("./data/exam.rds")   
+load("./data/exam.RData")
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 

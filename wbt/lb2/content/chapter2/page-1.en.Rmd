@@ -68,7 +68,7 @@ Variables in the dataset `pss`:
 - `trstprl`
 
 {{% /tab %}}
-{{% tab name=\"Resolution\" %}}
+{{% tab name=\"Solution\" %}}
 The variables have the following scale levels:
 
 - `wkhtot`: metric
@@ -103,7 +103,7 @@ To display the length of a vector, the `length()` function is used. This functio
 length(pss$edu)
 ```
 
-{{% expand "Can we infer the length of the other vectors, or do we need to display them again?" %}}
+{{% expand \"Can we infer the length of the other vectors, or do we need to display them again?\" %}}
 In a dataset or **data frame**, all vectors have the same length (because it's a table!). This means we can infer the length of all vectors from the length of one vector. **However:** this does not mean that all variables have the same number of valid responses, as there may also be `NA's` (missing values).
 {{% /expand %}}
 

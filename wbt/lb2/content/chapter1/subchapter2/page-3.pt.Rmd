@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 
 exam <- readRDS("./data/exam.rds")   
-load("./files/data/exam.RData")
+load("./data/exam.RData")
 ```
 
 {{% buttonShare href=\"https\:\/\/gitlab.com\/bpkleer\/einstieg-in-statistik\/issues\/new?issue[title]=\" icon=\"fas fa-bug\" %}} {{% /buttonShare %}} 

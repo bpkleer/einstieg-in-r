@@ -3,6 +3,25 @@ title: "Merging Datasets (Adding Cases)"  # Page Title
 weight: 314  # Custom Weight
 menuTitle: "Add Cases"  # Short Title if necessary
 tags: ["dplyr", "tidyverse", "dataset"]  # Tags: brief description of page content
+---
+```{r setup, include = FALSE}
+library("knitr")
+library("htmltools")
+library("tidyverse")
+knitr::opts_chunk$set(
+  echo = TRUE,   # Code wird angezeigt
+  eval = FALSE,  # Code wird nicht ausgeführt
+  message = FALSE, # Messages werden nicht angezeigt
+  warnings = FALSE # warnings werden nicht angezeigt
+)
+
+pss <- readRDS("./data/pss.rds")
+pss1 <- readRDS("./data/pss1.rds")
+pss5 <- readRDS("./data/pss5.rds")
+pss7 <- readRDS("./data/pss7.rds")
+pss10 <- readRDS("./data/pss10.rds")
+pss12 <- readRDS("./data/pss12.rds")
+```
 
 Im nächsten Schritt nehmen wir nun an, dass die Datenerfassung getrennt nach Distrikt durchgeführt wurde und es somit fünf Teildatensätze gibt, die nun zu einem vollständigen Datensatz verbunden werden sollen. Dazu nutzen wir die Funktion `bind_rows()`. In unserem Beispiel haben alle fünf Teildatensätze genau die gleiche Anzahl an Variablen, die dazu auch noch genau gleich benannt sind! Mit dem Argument `.id` erstellen wir eine Variable namens `"origin"`, die die Herkunft des Falles erfasst. Dies ist automatisch nummeriert. Mit `mutate()` machen wir daraus einen Faktor, der eine bessere Beschreibung beinhaltet (*process1*, *process2*, *process3*, *process4*, *process5*)
 
